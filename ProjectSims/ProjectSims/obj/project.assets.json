@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Korisnik\\Desktop\\SimsProject\\SimsProjekat\\ProjectSims\\ProjectSims\\ProjectSims.vbproj",
+      "projectUniqueName": "C:\\Users\\Korisnik\\Desktop\\SimsProject\\SimsProjekat\\ProjectSims\\ProjectSims\\ProjectSims.csproj",
       "projectName": "ProjectSims",
-      "projectPath": "C:\\Users\\Korisnik\\Desktop\\SimsProject\\SimsProjekat\\ProjectSims\\ProjectSims\\ProjectSims.vbproj",
+      "projectPath": "C:\\Users\\Korisnik\\Desktop\\SimsProject\\SimsProjekat\\ProjectSims\\ProjectSims\\ProjectSims.csproj",
       "packagesPath": "C:\\Users\\Korisnik\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Korisnik\\Desktop\\SimsProject\\SimsProjekat\\ProjectSims\\ProjectSims\\obj\\",
       "projectStyle": "PackageReference",
