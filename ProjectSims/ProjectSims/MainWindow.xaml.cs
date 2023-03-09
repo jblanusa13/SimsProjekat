@@ -24,5 +24,12 @@ namespace ProjectSims
         {
             InitializeComponent();
         }
+
+        private void Guest2_Click(object sender, RoutedEventArgs e)
+        {
+            TourDisplayAndSearchView window = new TourDisplayAndSearchView();
+            window.Show();
+
+        }
     }
 }
