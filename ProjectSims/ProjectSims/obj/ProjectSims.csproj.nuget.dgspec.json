@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Korisnik\\Desktop\\SimsProject\\SimsProjekat\\ProjectSims\\ProjectSims\\ProjectSims.csproj": {}
+    "C:\\Users\\Jelena\\OneDrive\\Desktop\\sims\\SimsProjekat\\ProjectSims\\ProjectSims\\ProjectSims.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Korisnik\\Desktop\\SimsProject\\SimsProjekat\\ProjectSims\\ProjectSims\\ProjectSims.csproj": {
+    "C:\\Users\\Jelena\\OneDrive\\Desktop\\sims\\SimsProjekat\\ProjectSims\\ProjectSims\\ProjectSims.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Korisnik\\Desktop\\SimsProject\\SimsProjekat\\ProjectSims\\ProjectSims\\ProjectSims.csproj",
+        "projectUniqueName": "C:\\Users\\Jelena\\OneDrive\\Desktop\\sims\\SimsProjekat\\ProjectSims\\ProjectSims\\ProjectSims.csproj",
         "projectName": "ProjectSims",
-        "projectPath": "C:\\Users\\Korisnik\\Desktop\\SimsProject\\SimsProjekat\\ProjectSims\\ProjectSims\\ProjectSims.csproj",
-        "packagesPath": "C:\\Users\\Korisnik\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Korisnik\\Desktop\\SimsProject\\SimsProjekat\\ProjectSims\\ProjectSims\\obj\\",
+        "projectPath": "C:\\Users\\Jelena\\OneDrive\\Desktop\\sims\\SimsProjekat\\ProjectSims\\ProjectSims\\ProjectSims.csproj",
+        "packagesPath": "C:\\Users\\Jelena\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Jelena\\OneDrive\\Desktop\\sims\\SimsProjekat\\ProjectSims\\ProjectSims\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Korisnik\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Jelena\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0-windows7.0"
+          "net6.0-windows"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -45,7 +45,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -57,7 +58,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
