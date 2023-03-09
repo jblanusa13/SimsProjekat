@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjectSims.Model
 {
-    internal class Tour : ISerializable
+    public class Tour : ISerializable
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -16,20 +16,46 @@ namespace ProjectSims.Model
         public string Language { get; set; }
         public int MaxNumberGuests { get; set; }
         public string KeyPoints { get; set; }
-        public List<DateTime> StartOfTheTour { get; set; }
+        public DateTime StartOfTheTour { get; set; }
         public int Duration { get; set; }
         public string Images { get; set; }
 
 
-        //Implements
+        public Tour() { }
+
+        public Tour(int id, string name, string location, string descrption, string language, int maxNumberGuests, string keyPoints, DateTime startOfTheTour, int duration, string images)
+        {
+            Id = id;
+            Name = name;
+            Location = location;
+            Descrption = descrption;
+            Language = language;
+            MaxNumberGuests = maxNumberGuests;
+            KeyPoints = keyPoints;
+            StartOfTheTour = startOfTheTour;
+            Duration = duration;
+            Images = images;
+        }
+
+
         public void FromCSV(string[] values)
         {
-            throw new NotImplementedException();
+            Id = Convert.ToInt32(values[0]);
+            Name = values[1];
+            Location = values[2];
+            Descrption = values[3];
+            Language = values[4];
+            MaxNumberGuests = Convert.ToInt32(values[5]);
+            KeyPoints = values[6];
+            StartOfTheTour = DateTime.Parse(values[7]);
+            Duration = Convert.ToInt32(values[8]);
+            Images = values[9];
         }
 
         public string[] ToCSV()
         {
-            throw new NotImplementedException();
+            string[] csvvalues = { Id.ToString(), Name, Location, Descrption, Language, MaxNumberGuests.ToString(), KeyPoints, StartOfTheTour.ToString(), Duration.ToString(), Images };
+            return csvvalues;
         }
     }
 }
