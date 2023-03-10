@@ -25,22 +25,46 @@ namespace ProjectSims
     {
         private TourController tourController;
 
-        public ObservableCollection<Tour> ListTour;
+        public  ObservableCollection<Tour> ListTour { get; }
+        public Tour SelectedTour { get; set; }
         public TourDisplayAndSearchView()
         {
             InitializeComponent();
             DataContext = this;
-            /*
+            
             tourController = new TourController();
-            tourController.Subscribe(this);
+            tourController.Subscribe(this);           
             ListTour = new ObservableCollection<Tour>(tourController.GetAllTours());
-            */
+            
 
+        }
+
+        private void UpdateTourList()
+        {
+            ListTour.Clear();
+            foreach (var tour in tourController.GetAllTours())
+            {
+                ListTour.Add(tour);
+            }
         }
 
         public void Update()
         {
-            throw new NotImplementedException();
+            UpdateTourList();
+        }
+
+        private void See_More_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedTour != null)
+            {
+                var see_more = new DetailsTourWindow(SelectedTour);
+                see_more.Show();
+            }
+            else
+            {
+                MessageBox.Show("You must select a tour for more details!");
+            }
+
         }
     }
 }

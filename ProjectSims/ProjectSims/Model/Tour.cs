@@ -1,6 +1,7 @@
 ﻿using ProjectSims.Serializer;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +37,9 @@ namespace ProjectSims.Model
             Duration = duration;
             Images = images;
         }
+
+        
+
 
 
         public void FromCSV(string[] values)

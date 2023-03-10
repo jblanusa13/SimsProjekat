@@ -5,36 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims"
         mc:Ignorable="d"
-        Title="TourDisplayAndSearchView" Height="647" Width="864">
+        Title="TourDisplayAndSearchView" Height="500" Width="864" WindowStartupLocation="CenterScreen">
     <Grid>
-        <DockPanel LastChildFill="False" Grid.ColumnSpan="2">
-            <StackPanel DockPanel.Dock="Top">
-                <Label FontSize="20" FontFamily="Calibri" FontWeight="Bold">
-                    Prikaz svih mogucih tura:
-                </Label>
-            </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="760"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="15"/>
+        </Grid.RowDefinitions>
 
-            <DataGrid x:Name="DataGridTours" Width="804" ItemsSource="{Binding TourList, UpdateSourceTrigger=PropertyChanged}"
-                      SelectionMode="Single" SelectedItem="{Binding SelectedTour, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True">
+        <StackPanel Grid.Row="3" Grid.Column="1">
+            <DataGrid  x:Name="DataGridTours" Width="752" 
+                       ItemsSource="{Binding ListTour}"
+                       SelectionMode="Single" 
+                       SelectedItem="{Binding Path=SelectedTour}" IsReadOnly="True" Height="254" 
+                       AutoGenerateColumns="False" >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Width="120" />
-                    <DataGridTextColumn Header="Location" Width="100" />
-                    <DataGridTextColumn Header="Descrption" Width="150" />
-                    <DataGridTextColumn Header="Language" Width="80" />
-                    <DataGridTextColumn Header="Number guests" Width="95" />
-                    <DataGridTextColumn Header="Key points" Width="120" />
-                    <DataGridTextColumn Header="Duration" Width="70" />
-                    <DataGridTextColumn Header="Images" Width="110" />
-
-
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="180" />
+                    <DataGridTextColumn Header="Location" Binding="{Binding Location}" Width="150" />
+                    <DataGridTextColumn Header="Language" Binding="{Binding Language}" Width="80" />
+                    <DataGridTextColumn Header="Number guests" Binding="{Binding MaxNumberGuests}" Width="95" />
+                    <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="*" />
                 </DataGrid.Columns>
             </DataGrid>
+        </StackPanel>
+
+        <Grid Grid.Row="4" Grid.Column="1">
+            <Button Content="See more details..." FontSize="18" Click="See_More_Click" Margin="528,8,37,10"/>
+        </Grid>
+
+        <WrapPanel Grid.Row="2" Grid.Column="1">
+            <Label Content="Jezik:" Width="118" Height="40" HorizontalContentAlignment="Right" FontSize="18" />
+            <TextBox TextWrapping="Wrap" Text="" Width="200" Height="30" FontSize="18"/>
+            <Label Content="Broj ljudi:" Width="118" Height="40" HorizontalContentAlignment="Right" FontSize="18"/>
+            <TextBox TextWrapping="Wrap" Text="" Width="200" Height="30" FontSize="18"/>
 
 
-
-
-        </DockPanel>
-
+        </WrapPanel>
+        <WrapPanel Grid.Row="1" Grid.Column="1">
+            <Label Content="Lokacija:" Width="118" Height="40" HorizontalContentAlignment="Right" FontSize="18"/>
+            <TextBox TextWrapping="Wrap" Text="" Width="200" Height="30" FontSize="18"/>
+            <Label Content="Trajanje ture:" Width="118" Height="40" HorizontalContentAlignment="Right" FontSize="18"/>
+            <TextBox TextWrapping="Wrap" Text="" Width="200" Height="30" FontSize="18"/>
+            <Button Content="Search" HorizontalAlignment="Left" Width="86" Margin="20,0,0,0" FontSize="18" />
+        </WrapPanel>
 
 
     </Grid>
