@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace ProjectSims.Observer
 {
-    interface ISubject
-    {
-        void Subscribe(IObserver observer);
+        public interface ISubject
+        {
+            void Subscribe(IObserver observer);
 
-        void Unsubscribe(IObserver observer);
+            void Unsubscribe(IObserver observer);
 
-        void NotifyObservers();
-    }
+            void NotifyObservers();
+        }
+
 }

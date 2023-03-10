@@ -24,5 +24,11 @@ namespace ProjectSims
         {
             InitializeComponent();
         }
+
+        public void Guest1_Click(object sender, RoutedEventArgs e)
+        {
+            Guest1View guest1 = new Guest1View();
+            guest1.Show();
+        }
     }
 }
