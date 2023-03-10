@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjectSims.ModelDAO
+namespace ProjectSims.Observer
 {
-    class AccomodationDAO
+    public interface IObserver
     {
-
+        void Update();
     }
 }

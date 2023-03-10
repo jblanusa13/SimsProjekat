@@ -9,22 +9,22 @@ using System.Windows.Media;
 
 namespace ProjectSims.Model
 {
-    public enum AccomodationType { Apartman, Kuca, Koliba };
-    public class Accomodation : ISerializable
+    public enum AccommodationType { Apartman, Kuca, Koliba };
+    public class Accommodation : ISerializable
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Location { get; set; }
-        public AccomodationType Type { get; set; }
+        public AccommodationType Type { get; set; }
         public int GuestMaximum { get; set; }
         public int MinimumReservationDays { get; set; }
         public int DismissalDays { get; set; }
         public string Images { get; set; }
         public Owner Owner { get; set; }
         public int IdOwner { get; set; }
-        public Accomodation() { }
+        public Accommodation() { }
 
-        public Accomodation(int id, string name, string location, AccomodationType type, int guestMaximum, int minimumReservationDays, int dismissalDays, string images, Owner owner, int idOwner) {
+        public Accommodation(int id, string name, string location, AccommodationType type, int guestMaximum, int minimumReservationDays, int dismissalDays, string images, Owner owner, int idOwner) {
             Id = id;
             Name = name;
             Location = location;
@@ -42,7 +42,7 @@ namespace ProjectSims.Model
             Id = Convert.ToInt32(values[0]);
             Name = values[1];
             Location = values[2];
-            Type = Enum.Parse<AccomodationType>(values[3]);
+            Type = Enum.Parse<AccommodationType>(values[3]);
             GuestMaximum = Convert.ToInt32(values[4]);
             MinimumReservationDays = Convert.ToInt32(values[5]);
             DismissalDays = Convert.ToInt32(values[6]);

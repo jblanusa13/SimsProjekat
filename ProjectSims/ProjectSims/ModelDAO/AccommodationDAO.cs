@@ -9,55 +9,55 @@ using System.Threading.Tasks;
 
 namespace ProjectSims.ModelDAO
 {
-    class TourDAO : ISubject
+    class AccommodationDAO : ISubject
     {
-        private TourFileHandler tourFile;
-        private List<Tour> tours;
+        private AccommodationFileHandler accommodationFile;
+        private List<Accommodation> accommodations;
 
         private List<IObserver> observers;
 
-        public TourDAO()
+        public AccommodationDAO()
         {
-            tourFile = new TourFileHandler();
-            tours = tourFile.Load();
+            accommodationFile = new AccommodationFileHandler();
+            accommodations = accommodationFile.Load();
             observers = new List<IObserver>();
         }
 
         public int NextId()
         {
-            return tours.Max(t => t.Id) + 1;
+            return accommodations.Max(a => a.Id) + 1;
         }
 
-        public void Add(Tour tour)
+        public void Add(Accommodation accommodation)
         {
-            tour.Id = NextId();
-            tours.Add(tour);
-            tourFile.Save(tours);
+            accommodation.Id = NextId();
+            accommodations.Add(accommodation);
+            accommodationFile.Save(accommodations);
             NotifyObservers();
         }
 
-        public void Remove(Tour tour)
+        public void Remove(Accommodation accommodation)
         {
-            tours.Remove(tour);
-            tourFile.Save(tours);
+            accommodations.Remove(accommodation);
+            accommodationFile.Save(accommodations);
             NotifyObservers();
         }
 
-        public void Update(Tour tour)
+        public void Update(Accommodation accommodation)
         {
-            int index = tours.FindIndex(t => tour.Id == t.Id);
+            int index = accommodations.FindIndex(a => accommodation.Id == a.Id);
             if (index != -1)
             {
-                tours[index] = tour;
+                accommodations[index] = accommodation;
             }
-            tourFile.Save(tours);
+            accommodationFile.Save(accommodations);
             NotifyObservers();
         }
 
 
-        public List<Tour> GetAll()
+        public List<Accommodation> GetAll()
         {
-            return tours;
+            return accommodations;
         }
 
         public void Subscribe(IObserver observer)
