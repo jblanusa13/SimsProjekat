@@ -74,3 +74,5 @@ C:\Users\Korisnik\Desktop\SimsProjektic\SimsProjekat\ProjectSims\ProjectSims\obj
 C:\Users\Korisnik\Desktop\SimsProjektic\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\DetailsTourWindow.baml
 C:\Users\Korisnik\Desktop\SimsProjektic\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\Guest1View.baml
 C:\Users\Korisnik\Desktop\SimsProjektic\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\TourDisplayAndSearchView.baml
+C:\Users\Korisnik\Desktop\SimsProjektic\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\DetailsTourView.g.cs
+C:\Users\Korisnik\Desktop\SimsProjektic\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\DetailsTourView.baml
