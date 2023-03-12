@@ -93,7 +93,7 @@ namespace ProjectSims {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ProjectSims;component/tourdisplayandsearchview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ProjectSims;V1.0.0.0;component/tourdisplayandsearchview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\TourDisplayAndSearchView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

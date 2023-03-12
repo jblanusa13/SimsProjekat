@@ -165,7 +165,7 @@ namespace ProjectSims {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ProjectSims;component/detailstourwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ProjectSims;V1.0.0.0;component/detailstourwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\DetailsTourWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
