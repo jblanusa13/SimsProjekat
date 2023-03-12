@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Korisnik\\Desktop\\SimsProjektic\\SimsProjekat\\ProjectSims\\ProjectSims\\ProjectSims.csproj",
+      "projectUniqueName": "C:\\Users\\Korisnik\\Desktop\\Simsic\\SimsProjekat\\ProjectSims\\ProjectSims\\ProjectSims.csproj",
       "projectName": "ProjectSims",
-      "projectPath": "C:\\Users\\Korisnik\\Desktop\\SimsProjektic\\SimsProjekat\\ProjectSims\\ProjectSims\\ProjectSims.csproj",
+      "projectPath": "C:\\Users\\Korisnik\\Desktop\\Simsic\\SimsProjekat\\ProjectSims\\ProjectSims\\ProjectSims.csproj",
       "packagesPath": "C:\\Users\\Korisnik\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Korisnik\\Desktop\\SimsProjektic\\SimsProjekat\\ProjectSims\\ProjectSims\\obj\\",
+      "outputPath": "C:\\Users\\Korisnik\\Desktop\\Simsic\\SimsProjekat\\ProjectSims\\ProjectSims\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Korisnik\\AppData\\Roaming\\NuGet\\NuGet.Config",

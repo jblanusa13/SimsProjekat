@@ -38,7 +38,7 @@
         </StackPanel>
 
         <Grid Grid.Row="4" Grid.Column="1">
-            <Button Content="See more details..." FontSize="18" Click="See_More_Click" Margin="528,8,37,10"/>
+            <Button Content="See more details and reservation..." FontSize="18" Click="See_More_Click" Margin="424,8,37,10"/>
         </Grid>
 
         <WrapPanel Grid.Row="2" Grid.Column="1">

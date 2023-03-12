@@ -24,6 +24,21 @@ namespace ProjectSims.Controller
             return tours.GetAll();
         }
 
+        public List<Tour> GetAllToursWithSameLocation(Tour t)
+        {
+            List<Tour> wantedTours = new List<Tour>();
+
+            foreach(Tour tour in tours.GetAll())
+            {
+                if(tour.Location == t.Location && tour.Id != t.Id)
+                {
+                    wantedTours.Add(tour);
+                }
+            }
+
+            return wantedTours;
+        }
+
         public void Create( Tour tour)
         {
             tours.Add(tour);
