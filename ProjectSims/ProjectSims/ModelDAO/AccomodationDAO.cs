@@ -14,18 +14,28 @@ namespace ProjectSims.ModelDAO
         private readonly List<IObserver> _observers;
 
         private readonly List<Accomodation> _accommodations;
+        private readonly List<Location> _locations;
         private readonly AccomodationFileHandler _accommodationFileHandler;
+        private readonly LocationFileHandler _locationFileHandler;
 
         public AccomodationDAO()
         {
             _observers = new List<IObserver>();
             _accommodationFileHandler = new AccomodationFileHandler();
             _accommodations = _accommodationFileHandler.Load();
+            _locationFileHandler = new LocationFileHandler();
+            _locations = _locationFileHandler.Load();
         }
 
         public List<Accomodation> GetAll()
         {
             return _accommodations;
+        }
+
+        public Location FindLocation(int locationId)
+        {
+            Location location = _locations.Find(l => l.Id == locationId);
+            return location;
         }
         public void Subscribe(IObserver observer)
         {

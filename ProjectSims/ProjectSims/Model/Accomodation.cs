@@ -14,6 +14,7 @@ namespace ProjectSims.Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        //public int LocationId { get; set; }
         public string Location { get; set; }
         public AccomodationType Type { get; set; }
         public int GuestMaximum { get; set; }
@@ -24,10 +25,11 @@ namespace ProjectSims.Model
         public int IdOwner { get; set; }
         public Accomodation() { }
 
-        public Accomodation(int id, string name, string location, AccomodationType type, int guestMaximum, int minimumReservationDays, int dismissalDays, string images, Owner owner, int idOwner) {
+        public Accomodation(int id, string name, string location , AccomodationType type, int guestMaximum, int minimumReservationDays, int dismissalDays, string images, Owner owner, int idOwner) {
             Id = id;
             Name = name;
             Location = location;
+            //LocationId = locationId;
             Type = type;
             GuestMaximum = guestMaximum;
             MinimumReservationDays = minimumReservationDays;
@@ -42,6 +44,7 @@ namespace ProjectSims.Model
             Id = Convert.ToInt32(values[0]);
             Name = values[1];
             Location = values[2];
+            //LocationId = Convert.ToInt32(values[2]);
             Type = Enum.Parse<AccomodationType>(values[3]);
             GuestMaximum = Convert.ToInt32(values[4]);
             MinimumReservationDays = Convert.ToInt32(values[5]);

@@ -25,7 +25,13 @@ namespace ProjectSims
     {
         private readonly AccomodationController _accomodationController;
         public ObservableCollection<Accomodation> Accommodations { get; set; }
-        public Accomodation SelectedAccommodation { get; set; }
+        public string NameSearch { get; set; }
+        //public string CitySearch { get; set; }
+        //public string CountrySearch { get; set; }
+        public string LocationSearch { get; set; }
+        public string TypeSearch { get; set; }
+        public string GuestsNumberSearch { get; set; }
+        public string DaysNumberSearch { get; set; }
         
         public Guest1View()
         {
@@ -35,6 +41,70 @@ namespace ProjectSims
             _accomodationController = new AccomodationController();
             _accomodationController.Subscribe(this);
             Accommodations = new ObservableCollection<Accomodation>(_accomodationController.GetAllAccommodations());
+        }
+
+        public void TextboxName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            NameSearch = TextboxName.Text;
+        }
+
+        //public void TextboxCity_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+         //   CitySearch = TextboxCity.Text;
+        //}
+
+        //ublic void TextboxCountry_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+          //  CountrySearch = TextboxCountry.Text;
+        //}
+        public void TextboxLocation_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            LocationSearch = TextboxLocation.Text;
+        }
+
+        public void TextboxType_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TypeSearch = TextboxType.Text;
+        }
+
+        public void TextboxGuests_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            GuestsNumberSearch = TextboxGuests.Text;
+        }
+
+        public void TextboxDays_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            DaysNumberSearch = TextboxDays.Text;
+        }
+
+        public void Search_Click(object sender, RoutedEventArgs e)
+        {
+            Accommodations.Clear();
+            
+
+            foreach (Accomodation accommodation in _accomodationController.GetAllAccommodations())
+            {
+                if (CheckSearchConditions(accommodation))
+                {
+                    Accommodations.Add(accommodation);
+                }
+            }
+        }
+
+        public bool CheckSearchConditions(Accomodation accommodation)
+        {
+            bool ContainsName, ContainsLocation, ContainsType, GuestsNumberIsLower, DaysNumberIsGreater;
+
+            ContainsName = string.IsNullOrEmpty(NameSearch) ? true : accommodation.Name.ToLower().Contains(NameSearch.ToLower());
+            ContainsLocation = string.IsNullOrEmpty(LocationSearch) ? true : accommodation.Location.ToLower().Contains(LocationSearch.ToLower());
+            //ContainsCity = string.IsNullOrEmpty(CitySearch) ? true : _accomodationController.FindLocation(accommodation.LocationId).City.ToLower().Contains(CitySearch.ToLower());
+            //ContainsCountry = string.IsNullOrEmpty(CountrySearch) ? true : _accomodationController.FindLocation(accommodation.LocationId).Country.ToLower().Contains(CountrySearch.ToLower());
+            ContainsType = string.IsNullOrEmpty(TypeSearch) ? true : accommodation.Type.ToString().ToLower().Contains(TypeSearch.ToLower());
+            GuestsNumberIsLower = string.IsNullOrEmpty(GuestsNumberSearch) ? true : Convert.ToInt32(GuestsNumberSearch) <= accommodation.GuestMaximum;
+            DaysNumberIsGreater = string.IsNullOrEmpty(DaysNumberSearch) ? true : Convert.ToInt32(DaysNumberSearch) >= accommodation.DismissalDays;
+
+
+            return ContainsName && ContainsLocation && ContainsType && GuestsNumberIsLower && DaysNumberIsGreater;
         }
 
         public void Update()
