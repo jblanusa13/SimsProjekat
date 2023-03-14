@@ -14,18 +14,18 @@
         <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Margin="278,85,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="355" Height="35" FontSize="16" IsEnabled="False"/>
         <TextBox x:Name="LocationTextBox" HorizontalAlignment="Left" Margin="278,139,0,0" TextWrapping="Wrap" Text="" FontSize="16" VerticalAlignment="Top" Width="355" Height="35" IsEnabled="False"/>
         <TextBox x:Name="DescriptionTextBox" HorizontalAlignment="Left" Margin="278,190,0,0" TextWrapping="Wrap" Text="" FontSize="16" VerticalAlignment="Top" Width="355" Height="100" IsEnabled="False"/>
-        <Label Content="Jezik:" FontSize="16" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="30,325,0,0" VerticalAlignment="Top" Height="35" Width="231"/>
-        <TextBox x:Name="LanguageTextBox" HorizontalAlignment="Left" Margin="278,325,0,0" TextWrapping="Wrap" Text="" FontSize="16" VerticalAlignment="Top" Width="355" Height="35" IsEnabled="False"/>
+        <Label Content="Jezik:" FontSize="16" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="30,308,0,0" VerticalAlignment="Top" Height="35" Width="231"/>
+        <TextBox x:Name="LanguageTextBox" HorizontalAlignment="Left" Margin="278,308,0,0" TextWrapping="Wrap" Text="" FontSize="16" VerticalAlignment="Top" Width="355" Height="35" IsEnabled="False"/>
         <Label Content="Maksimalan broj gostiju:" FontSize="16" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center" Width="225" Height="35"/>
         <TextBox x:Name="MaxGuestsTextBox" HorizontalAlignment="Left" Margin="278,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="355" Height="35" FontSize="16" IsEnabled="False"/>
         <Label Content="Kljucne tacke:" FontSize="16" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="28,430,0,0" VerticalAlignment="Top" Width="230" Height="35"/>
-        <TextBox x:Name="KeyPointTextBox" HorizontalAlignment="Left" Margin="278,430,0,0" TextWrapping="Wrap" Text="" FontSize="16" VerticalAlignment="Top" Width="355" Height="35" IsEnabled="False"/>
-        <Label Content="Datum i vreme pocetka ture:" FontSize="16" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="30,490,0,0" VerticalAlignment="Top" Height="35" Width="231"/>
-        <TextBox x:Name="DateStartTextBox" HorizontalAlignment="Left" Margin="278,490,0,0" TextWrapping="Wrap" Text="" FontSize="16" VerticalAlignment="Top" Width="355" Height="35" IsEnabled="False"/>
-        <Label Content="Trajanje" FontSize="16" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="30,547,0,0" VerticalAlignment="Top" Height="35" Width="231"/>
-        <TextBox x:Name="DurationTextBox" HorizontalAlignment="Left" Margin="278,547,0,0" TextWrapping="Wrap" Text="" FontSize="16" VerticalAlignment="Top" Width="355" Height="35" IsEnabled="False"/>
-        <Label Content="Slike:" FontSize="16" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="30,604,0,0" VerticalAlignment="Top" Width="231" Height="35"/>
-        <Image x:Name="Image" HorizontalAlignment="Left" Height="152" Margin="278,604,0,0" VerticalAlignment="Top" Width="481"/>
+        <TextBox x:Name="KeyPointTextBox" HorizontalAlignment="Left" Margin="278,430,0,0" TextWrapping="Wrap" Text="" FontSize="16" VerticalAlignment="Top" Width="355" Height="81" IsEnabled="False"/>
+        <Label Content="Datum i vreme pocetka ture:" FontSize="16" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="30,519,0,0" VerticalAlignment="Top" Height="42" Width="231"/>
+        <TextBox x:Name="DateStartTextBox" HorizontalAlignment="Left" Margin="278,519,0,0" TextWrapping="Wrap" Text="" FontSize="16" VerticalAlignment="Top" Width="355" Height="42" IsEnabled="False"/>
+        <Label Content="Trajanje" FontSize="16" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="30,566,0,0" VerticalAlignment="Top" Height="43" Width="231"/>
+        <TextBox x:Name="DurationTextBox" HorizontalAlignment="Left" Margin="278,566,0,0" TextWrapping="Wrap" Text="" FontSize="16" VerticalAlignment="Top" Width="355" Height="43" IsEnabled="False"/>
+        <Label Content="Slike:" FontSize="16" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="30,614,0,0" VerticalAlignment="Top" Width="231" Height="43"/>
+        
         <Label Content="Izvrsi rezervaciju ture:" FontSize="18" HorizontalAlignment="Left" Height="35" Margin="735,31,0,0" VerticalAlignment="Top" Width="318" FontWeight="Bold"/>
         <Label Content="Unesite broj osoba koje bi isle na turu:" FontSize="16" HorizontalAlignment="Left" Margin="735,85,0,0" VerticalAlignment="Top" Height="35" Width="280"/>
         <TextBox x:Name="NumberGuestsTextBox" HorizontalAlignment="Left" Margin="1033,85,0,0" TextWrapping="Wrap" Text="" FontSize="16" VerticalAlignment="Top" Width="102" Height="35"/>
@@ -42,6 +42,13 @@
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock x:Name="MessageBlock" HorizontalAlignment="Left" Margin="933,604,0,0" TextWrapping="Wrap" Text="" FontSize="16" VerticalAlignment="Top" Height="54" Width="227" FontStyle="Italic"/>
+        <ListView x:Name="ImageList"  Margin="278,636,415,10">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Grid>
 </Window>

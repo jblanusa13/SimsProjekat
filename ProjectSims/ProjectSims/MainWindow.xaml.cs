@@ -34,7 +34,12 @@ namespace ProjectSims
         {
             TourDisplayAndSearchView window = new TourDisplayAndSearchView();
             window.Show();
+        }
 
+        private void Guide(object sender, RoutedEventArgs e)
+        {
+            CreateTour createTour = new CreateTour();
+            createTour.Show();
         }
     }
 }

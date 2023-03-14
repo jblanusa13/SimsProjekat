@@ -39,13 +39,27 @@ namespace ProjectSims
             InitializeComponent();
             DataContext = this;
             tour = tourSelected;
-
+            
             NameTextBox.Text = tourSelected.Name;
             LocationTextBox.Text = tourSelected.Location;
-            DescriptionTextBox.Text = tourSelected.Descrption;
+            DescriptionTextBox.Text = tourSelected.Description;
             LanguageTextBox.Text = tourSelected.Language;
             MaxGuestsTextBox.Text = tourSelected.MaxNumberGuests.ToString();
-            KeyPointTextBox.Text = tourSelected.KeyPoints;
+
+            
+            foreach(KeyPoint keyPoint in tourSelected.KeyPoints) 
+            {
+                if (keyPoint.Equals(tourSelected.KeyPoints.Last()))
+                {
+                    KeyPointTextBox.Text += keyPoint.Name;
+                }
+                else
+                {
+                    KeyPointTextBox.Text += keyPoint.Name + ", ";
+                }
+                
+            }
+            
             DateStartTextBox.Text = tourSelected.StartOfTheTour.ToString();
             DurationTextBox.Text = tourSelected.Duration.ToString();
 
@@ -58,22 +72,25 @@ namespace ProjectSims
 
             Image im = Image.FromStream(stream);
             */
+
             
-            var image = new Image();
-            var fullFilePath = tourSelected.Images;
+            /*var image = new Image();
 
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
-            bitmap.EndInit();
+            foreach (var fullFilePath in tourSelected.Images)
+            {
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
+                bitmap.EndInit();
 
-            image.Source = bitmap;
+                image.Source = bitmap;
 
-            image.Width = 100;
-            image.Height = 80;
+                image.Width = 100;
+                image.Height = 80;
 
-            Image.Source = bitmap;
-
+                ImageList.Items.Add(bitmap);
+            }*/
+            
             tourController = new TourController();
             TourList = new ObservableCollection<Tour>(tourController.GetAllToursWithSameLocation(tourSelected));
 

@@ -12,6 +12,7 @@ namespace ProjectSims.FileHandler
     {
         private const string FilePath = "../../../Resources/Data/tour.csv";
 
+
         private Serializer<Tour> _serializer;
 
         public TourFileHandler()

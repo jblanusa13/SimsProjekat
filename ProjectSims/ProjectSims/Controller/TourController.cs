@@ -1,17 +1,21 @@
 ﻿using ProjectSims.FileHandler;
 using ProjectSims.Model;
 using ProjectSims.ModelDAO;
-using ProjectSims.Observer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Xml.Linq;
+using ProjectSims.Observer;
+using System.Globalization;
 
 namespace ProjectSims.Controller
 {
     public class TourController
     {
+
         private TourDAO tours;
 
         public TourController()
@@ -52,6 +56,25 @@ namespace ProjectSims.Controller
         public void Update(Tour tour)
         {
             tours.Update(tour);
+        }
+        public void Save(string name, string location, string description, string language, string maxNumberGuests, string startKeyPoint, string finishKeyPoint, List<string> otherKeyPoints, string tourStarts, string duration, string images)
+        {
+            List<string> keyPoints = new List<string>();
+            keyPoints.Add(startKeyPoint);
+            keyPoints.AddRange(otherKeyPoints);
+            keyPoints.Add(finishKeyPoint);
+
+            List<string> imageList = new List<string>();
+            foreach (string image in images.Split(','))
+            {
+                imageList.Add(image);
+            }
+
+
+            foreach (string tourStart in tourStarts.Split(','))
+            {
+                tours.Save(name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPoints, DateTime.Parse(tourStart), Convert.ToDouble(duration), imageList);
+            }
         }
 
         public void Subscribe(IObserver observer)
@@ -256,7 +279,6 @@ namespace ProjectSims.Controller
             }
 
             return wantedTours;
-
         }
 
     }

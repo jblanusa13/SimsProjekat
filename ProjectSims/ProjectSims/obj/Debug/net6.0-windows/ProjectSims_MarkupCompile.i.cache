@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Korisnik\Desktop\Simsic\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\
+C:\Users\Korisnik\Desktop\sims ana\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\
 ProjectSims
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\Korisnik\Desktop\Simsic\SimsProjekat\ProjectSims\ProjectSims\App.xaml
-4584041474
+C:\Users\Korisnik\Desktop\sims ana\SimsProjekat\ProjectSims\ProjectSims\App.xaml
+5-907053575
 
-28-333914226
+30-20718804
 1941645785384
-DetailsTourWindow.xaml;Guest1View.xaml;MainWindow.xaml;TourDisplayAndSearchView.xaml;
+CreateTour.xaml;DetailsTourWindow.xaml;Guest1View.xaml;MainWindow.xaml;TourDisplayAndSearchView.xaml;
 
-False
+True
 
