@@ -11,15 +11,15 @@ namespace ProjectSims.ModelDAO
 {
     class OwnerDAO : ISubject
     {
-        private OwnerFileHandler ownerFile;
+        private OwnerFileHandler ownerFileHandler;
         private List<Owner> owners;
 
         private List<IObserver> observers;
 
         public OwnerDAO()
         {
-            ownerFile = new OwnerFileHandler();
-            owners = ownerFile.Load();
+            ownerFileHandler = new OwnerFileHandler();
+            owners = ownerFileHandler.Load();
             observers = new List<IObserver>();
         }
 
@@ -32,14 +32,14 @@ namespace ProjectSims.ModelDAO
         {
             owner.Id = NextId();
             owners.Add(owner);
-            ownerFile.Save(owners);
+            ownerFileHandler.Save(owners);
             NotifyObservers();
         }
 
         public void Remove(Owner owner)
         {
             owners.Remove(owner);
-            ownerFile.Save(owners);
+            ownerFileHandler.Save(owners);
             NotifyObservers();
         }
 
@@ -50,7 +50,7 @@ namespace ProjectSims.ModelDAO
             {
                 owners[index] = owner;
             }
-            ownerFile.Save(owners);
+            ownerFileHandler.Save(owners);
             NotifyObservers();
         }
 
@@ -76,6 +76,10 @@ namespace ProjectSims.ModelDAO
             {
                 observer.Update();
             }
+        }
+        public Owner FindById(int id) 
+        {
+            return owners.Find(owner => owner.Id == id);
         }
     }
 }

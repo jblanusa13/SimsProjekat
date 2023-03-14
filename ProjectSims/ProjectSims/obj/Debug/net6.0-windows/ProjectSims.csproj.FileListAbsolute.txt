@@ -61,3 +61,7 @@ C:\Users\Marina\Desktop\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-wi
 C:\Users\Marina\Desktop\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ProjectSims.pdb
 C:\Users\Marina\Desktop\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ProjectSims.genruntimeconfig.cache
 C:\Users\Marina\Desktop\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ref\ProjectSims.dll
+C:\Users\Marina\Desktop\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\Guest1View.g.cs
+C:\Users\Marina\Desktop\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\View\AccommodationRegistrationView.g.cs
+C:\Users\Marina\Desktop\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\Guest1View.baml
+C:\Users\Marina\Desktop\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\View\AccommodationRegistrationView.baml

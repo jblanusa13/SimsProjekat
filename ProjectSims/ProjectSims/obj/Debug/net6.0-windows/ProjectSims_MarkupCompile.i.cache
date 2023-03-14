@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\Marina\Desktop\SimsProjekat\ProjectSims\ProjectSims\App.xaml
-21241016970
+31741633960
 
-22-740025224
+23-919364265
 194101785492
-MainWindow.xaml;View\AccommodationRegistrationView.xaml;
+Guest1View.xaml;MainWindow.xaml;View\AccommodationRegistrationView.xaml;
 
-False
+True
 

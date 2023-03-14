@@ -23,18 +23,18 @@ namespace ProjectSims
     /// </summary>
     public partial class Guest1View : Window, IObserver
     {
-        private readonly AccomodationController _accomodationController;
-        public ObservableCollection<Accomodation> Accommodations { get; set; }
-        public Accomodation SelectedAccommodation { get; set; }
+        private readonly AccommodationController _accomodationController;
+        public ObservableCollection<Accommodation> Accommodations { get; set; }
+        public Accommodation SelectedAccommodation { get; set; }
         
         public Guest1View()
         {
             InitializeComponent();
             DataContext = this;
 
-            _accomodationController = new AccomodationController();
+            _accomodationController = new AccommodationController();
             _accomodationController.Subscribe(this);
-            Accommodations = new ObservableCollection<Accomodation>(_accomodationController.GetAllAccommodations());
+            Accommodations = new ObservableCollection<Accommodation>(_accomodationController.GetAllAccommodations());
         }
 
         public void Update()

@@ -10,7 +10,7 @@ namespace ProjectSims.FileHandler
 {
     class AccommodationFileHandler
     {
-        private const string FilePath = "../../Resources/Data/accommodation.csv";
+        private const string FilePath = "../../../Resources/Data/accommodation.csv";
 
         private readonly Serializer<Accommodation> _serializer;
 

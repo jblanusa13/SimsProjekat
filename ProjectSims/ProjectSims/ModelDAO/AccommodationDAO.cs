@@ -11,15 +11,19 @@ namespace ProjectSims.ModelDAO
 {
     class AccommodationDAO : ISubject
     {
-        private AccommodationFileHandler accommodationFile;
-        private List<Accommodation> accommodations;
+        private readonly AccommodationFileHandler accommodationFileHandler;
+        private readonly List<Accommodation> accommodations; 
+        private readonly OwnerFileHandler ownerFileHandler;
+        private readonly List<Owner> owners;
 
-        private List<IObserver> observers;
+        private readonly List<IObserver> observers;
+
+        public OwnerDAO OwnerDao { get; set; }
 
         public AccommodationDAO()
         {
-            accommodationFile = new AccommodationFileHandler();
-            accommodations = accommodationFile.Load();
+            accommodationFileHandler = new AccommodationFileHandler();
+            accommodations = accommodationFileHandler.Load();
             observers = new List<IObserver>();
         }
 
@@ -32,14 +36,14 @@ namespace ProjectSims.ModelDAO
         {
             accommodation.Id = NextId();
             accommodations.Add(accommodation);
-            accommodationFile.Save(accommodations);
+            accommodationFileHandler.Save(accommodations);
             NotifyObservers();
         }
 
         public void Remove(Accommodation accommodation)
         {
             accommodations.Remove(accommodation);
-            accommodationFile.Save(accommodations);
+            accommodationFileHandler.Save(accommodations);
             NotifyObservers();
         }
 
@@ -50,7 +54,7 @@ namespace ProjectSims.ModelDAO
             {
                 accommodations[index] = accommodation;
             }
-            accommodationFile.Save(accommodations);
+            accommodationFileHandler.Save(accommodations);
             NotifyObservers();
         }
 
@@ -77,5 +81,18 @@ namespace ProjectSims.ModelDAO
                 observer.Update();
             }
         }
+        public void ConnectAccommodationWithOwner() 
+        {
+            foreach (Accommodation accommodation in accommodations)
+            {
+                Owner owner = OwnerDao.FindById(accommodation.IdOwner);
+                if (owner != null) 
+                {
+                    owner.OwnersAccommodations.Add(accommodation);
+                    accommodation.Owner = owner;
+                }
+            }
+        }
+
     }
 }
