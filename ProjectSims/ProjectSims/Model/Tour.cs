@@ -1,6 +1,7 @@
 ﻿using ProjectSims.Serializer;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,11 +20,13 @@ namespace ProjectSims.Model
         public DateTime StartOfTheTour { get; set; }
         public int Duration { get; set; }
         public string Images { get; set; }
+        public int AvailableSeats { get; set; }
+
 
 
         public Tour() { }
 
-        public Tour(int id, string name, string location, string descrption, string language, int maxNumberGuests, string keyPoints, DateTime startOfTheTour, int duration, string images)
+        public Tour(int id, string name, string location, string descrption, string language, int maxNumberGuests, string keyPoints, DateTime startOfTheTour, int duration, string images, int availableSeats)
         {
             Id = id;
             Name = name;
@@ -35,7 +38,11 @@ namespace ProjectSims.Model
             StartOfTheTour = startOfTheTour;
             Duration = duration;
             Images = images;
+            AvailableSeats = availableSeats;
         }
+
+        
+
 
 
         public void FromCSV(string[] values)
@@ -50,11 +57,12 @@ namespace ProjectSims.Model
             StartOfTheTour = DateTime.Parse(values[7]);
             Duration = Convert.ToInt32(values[8]);
             Images = values[9];
+            AvailableSeats = Convert.ToInt32(values[10]);
         }
 
         public string[] ToCSV()
         {
-            string[] csvvalues = { Id.ToString(), Name, Location, Descrption, Language, MaxNumberGuests.ToString(), KeyPoints, StartOfTheTour.ToString(), Duration.ToString(), Images };
+            string[] csvvalues = { Id.ToString(), Name, Location, Descrption, Language, MaxNumberGuests.ToString(), KeyPoints, StartOfTheTour.ToString(), Duration.ToString(), Images, AvailableSeats.ToString() };
             return csvvalues;
         }
     }
