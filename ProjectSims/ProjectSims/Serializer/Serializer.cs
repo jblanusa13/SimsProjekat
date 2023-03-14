@@ -27,6 +27,12 @@ namespace ProjectSims.Serializer
         {
             List<T> objects = new List<T>();
 
+            if (!File.Exists(fileName))
+            {
+                FileStream fs = File.Create(fileName);
+                fs.Close();
+            }
+
             foreach (string line in File.ReadLines(fileName))
             {
                 string[] csvValues = line.Split(Delimiter);

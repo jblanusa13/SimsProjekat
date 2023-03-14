@@ -10,9 +10,10 @@ namespace ProjectSims.FileHandler
 {
     class TourFileHandler
     {
-        private const string FilePath = "../../Resorce/Data/tour.csv";
+        private const string FilePath = "../../../Resources/Data/tour.csv";
 
-        private readonly Serializer<Tour> _serializer;
+
+        private Serializer<Tour> _serializer;
 
         public TourFileHandler()
         {
