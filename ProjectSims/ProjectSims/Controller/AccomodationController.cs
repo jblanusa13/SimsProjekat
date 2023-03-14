@@ -21,7 +21,6 @@ namespace ProjectSims.Controller
         {
             return _accommodations.GetAll();
         }
-
         public void Subscribe(IObserver observer)
         {
             _accommodations.Subscribe(observer);

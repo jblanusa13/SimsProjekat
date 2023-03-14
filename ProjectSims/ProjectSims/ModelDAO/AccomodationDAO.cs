@@ -27,6 +27,7 @@ namespace ProjectSims.ModelDAO
         {
             return _accommodations;
         }
+
         public void Subscribe(IObserver observer)
         {
             _observers.Add(observer);
