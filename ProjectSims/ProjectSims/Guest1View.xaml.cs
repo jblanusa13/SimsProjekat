@@ -33,6 +33,7 @@ namespace ProjectSims
         public string GuestsNumberSearch { get; set; }
         public string DaysNumberSearch { get; set; }
         
+        
         public Guest1View()
         {
             InitializeComponent();

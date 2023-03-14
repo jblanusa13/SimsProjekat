@@ -21,11 +21,6 @@ namespace ProjectSims.Controller
         {
             return _accommodations.GetAll();
         }
-        public Location FindLocation(int locationId)
-        {
-            return _accommodations.FindLocation(locationId);
-        }
-
         public void Subscribe(IObserver observer)
         {
             _accommodations.Subscribe(observer);
