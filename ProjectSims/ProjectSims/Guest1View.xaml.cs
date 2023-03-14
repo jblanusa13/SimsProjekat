@@ -23,8 +23,8 @@ namespace ProjectSims
     /// </summary>
     public partial class Guest1View : Window, IObserver
     {
-        private readonly AccomodationController _accomodationController;
-        public ObservableCollection<Accomodation> Accommodations { get; set; }
+        private readonly AccommodationController _accomodationController;
+        public ObservableCollection<Accommodation> Accommodations { get; set; }
         public string NameSearch { get; set; }
         //public string CitySearch { get; set; }
         //public string CountrySearch { get; set; }
@@ -39,9 +39,9 @@ namespace ProjectSims
             InitializeComponent();
             DataContext = this;
 
-            _accomodationController = new AccomodationController();
+            _accomodationController = new AccommodationController();
             _accomodationController.Subscribe(this);
-            Accommodations = new ObservableCollection<Accomodation>(_accomodationController.GetAllAccommodations());
+            Accommodations = new ObservableCollection<Accommodation>(_accomodationController.GetAllAccommodations());
         }
 
         public void TextboxName_TextChanged(object sender, TextChangedEventArgs e)
@@ -83,7 +83,7 @@ namespace ProjectSims
             Accommodations.Clear();
             
 
-            foreach (Accomodation accommodation in _accomodationController.GetAllAccommodations())
+            foreach (Accommodation accommodation in _accomodationController.GetAllAccommodations())
             {
                 if (CheckSearchConditions(accommodation))
                 {
@@ -92,7 +92,7 @@ namespace ProjectSims
             }
         }
 
-        public bool CheckSearchConditions(Accomodation accommodation)
+        public bool CheckSearchConditions(Accommodation accommodation)
         {
             bool ContainsName, ContainsLocation, ContainsType, GuestsNumberIsLower, DaysNumberIsGreater;
 

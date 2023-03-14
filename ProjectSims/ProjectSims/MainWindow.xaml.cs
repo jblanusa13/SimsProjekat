@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectSims.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,6 +41,11 @@ namespace ProjectSims
         {
             CreateTour createTour = new CreateTour();
             createTour.Show();
+        }
+        private void Owner_Click(object sender, RoutedEventArgs e)
+        {
+            AccommodationRegistrationView accommodationRegistrationView = new AccommodationRegistrationView();
+            accommodationRegistrationView.Show();
         }
     }
 }

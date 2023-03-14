@@ -11,68 +11,68 @@ namespace ProjectSims.ModelDAO
 {
     class AccommodationDAO : ISubject
     {
-        private AccommodationFileHandler accommodationFile;
-        private List<Accommodation> accommodations;
+        private AccommodationFileHandler _accommodationFileHandler;
+        private List<Accommodation> _accommodations;
 
-        private List<IObserver> observers;
+        private List<IObserver> _observers;
 
         public AccommodationDAO()
         {
-            accommodationFile = new AccommodationFileHandler();
-            accommodations = accommodationFile.Load();
-            observers = new List<IObserver>();
+            _accommodationFileHandler = new AccommodationFileHandler();
+            _accommodations = _accommodationFileHandler.Load();
+            _observers = new List<IObserver>();
         }
 
         public int NextId()
         {
-            return accommodations.Max(a => a.Id) + 1;
+            return _accommodations.Max(a => a.Id) + 1;
         }
 
         public void Add(Accommodation accommodation)
         {
             accommodation.Id = NextId();
-            accommodations.Add(accommodation);
-            accommodationFile.Save(accommodations);
+            _accommodations.Add(accommodation);
+            _accommodationFileHandler.Save(_accommodations);
             NotifyObservers();
         }
 
         public void Remove(Accommodation accommodation)
         {
-            accommodations.Remove(accommodation);
-            accommodationFile.Save(accommodations);
+            _accommodations.Remove(accommodation);
+            _accommodationFileHandler.Save(_accommodations);
             NotifyObservers();
         }
 
         public void Update(Accommodation accommodation)
         {
-            int index = accommodations.FindIndex(a => accommodation.Id == a.Id);
+            int index = _accommodations.FindIndex(a => accommodation.Id == a.Id);
             if (index != -1)
             {
-                accommodations[index] = accommodation;
+                _accommodations[index] = accommodation;
             }
-            accommodationFile.Save(accommodations);
+            _accommodationFileHandler.Save(_accommodations);
             NotifyObservers();
         }
 
 
         public List<Accommodation> GetAll()
         {
-            return accommodations;
+            return _accommodations;
         }
 
         public void Subscribe(IObserver observer)
         {
-            observers.Add(observer);
+            _observers.Add(observer);
         }
 
         public void Unsubscribe(IObserver observer)
         {
-            observers.Remove(observer);
+            _observers.Remove(observer);
         }
 
         public void NotifyObservers()
         {
-            foreach (var observer in observers)
+            foreach (var observer in _observers)
             {
                 observer.Update();
             }

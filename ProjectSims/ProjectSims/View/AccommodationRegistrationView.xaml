@@ -5,8 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims.View"
         mc:Ignorable="d"
-        Title="AccommodationRegistrationView" Height="450" Width="800">
+        Title="Registracija smjestaja" Height="500" Width="540" ResizeMode="CanResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ControlTemplate x:Key="ValidationTemplate">
+            <StackPanel>
+                <!-- Placeholder for the TextBox itself -->
+                <AdornedElementPlaceholder x:Name="textBox" />
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" />
+            </StackPanel>
+        </ControlTemplate>
+    </Window.Resources>
     <Grid>
-        
+        <Label Content="Naziv:" HorizontalAlignment="Left" Margin="104,50,0,0" VerticalAlignment="Top"/>
+        <Label Content="Lokacija(Grad,Drzava):" HorizontalAlignment="Left" Margin="104,95,0,0" VerticalAlignment="Top" Height="30" Width="136"/>
+        <Label Content="Tip:" HorizontalAlignment="Left" Margin="104,140,0,0" VerticalAlignment="Top"/>
+        <Label Content="Maksimalan broj gostiju:" HorizontalAlignment="Left" Margin="104,185,0,0" VerticalAlignment="Top"/>
+        <Label Content="Broj dana:" HorizontalAlignment="Left" Margin="104,230,0,0" VerticalAlignment="Top"/>
+        <Label Content="Dani za otkaz:" HorizontalAlignment="Left" Margin="104,275,0,0" VerticalAlignment="Top"/>
+        <Label Content="URL slike(odvojiti zarezom ako ih je vise):" HorizontalAlignment="Left" Margin="104,320,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="Title" Text="{Binding Path=AccommodationName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Height="22" Margin="334,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136"/>
+        <TextBox Text="{Binding Path=Location, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="22" Margin="334,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136"/>
+        <TextBox Text="{Binding Path=GuestsMaximum, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Height="22" Margin="334,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136"/>
+        <TextBox Text="{Binding Path=MinimumReservationDays, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Height="22" Margin="334,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136"/>
+        <TextBox Text="{Binding Path=DismissalDays, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Height="22" Margin="334,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136"/>
+        <TextBox Text="{Binding Path=Images, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="22" Margin="334,320,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136"/>
+        <Button Content="Registruj" Click="RegisterAccommodation_Click" HorizontalAlignment="Center" Height="26" Margin="0,378,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="1.194,0.155"/>
+        <ComboBox Text="{Binding Path=Type, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Margin="334,140,0,0" VerticalAlignment="Top" Width="136">
+            <ComboBoxItem Content="Kuca"/>
+            <ComboBoxItem Content="Apartman"/>
+            <ComboBoxItem Content="Koliba"/>
+        </ComboBox>
     </Grid>
 </Window>
