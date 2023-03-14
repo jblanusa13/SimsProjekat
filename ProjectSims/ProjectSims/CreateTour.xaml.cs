@@ -168,6 +168,20 @@ namespace ProjectSims
             }
         }
 
+        private string _images;
+        public string Images
+        {
+            get => _images;
+            set
+            {
+                if (value != _images)
+                {
+                    _images = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private List<string> _otherKeyPoints;
         public List<string> OtherKeyPoints
         {
@@ -199,7 +213,7 @@ namespace ProjectSims
 
         private void CreateTourClick(object sender, RoutedEventArgs e)
         {
-            _controller.Save(TourName, Location, Description, TourLanguage, MaxNumberGuests, StartKeyPoint,FinishKeyPoint,OtherKeyPoints,TourStart, Duration, "slike");
+            _controller.Save(TourName, Location, Description, TourLanguage, MaxNumberGuests, StartKeyPoint,FinishKeyPoint,OtherKeyPoints,TourStart, Duration, Images);
             Close();
             
         }

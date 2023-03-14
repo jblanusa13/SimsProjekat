@@ -12,12 +12,12 @@
         <Label Content="Jezik" HorizontalAlignment="Left" Margin="35,80,0,0" VerticalAlignment="Top" Height="25"/>
         <Label Content="Maksimalan broj gostiju" HorizontalAlignment="Left" Margin="35,110,0,0" VerticalAlignment="Top" Height="25"/>
         <Label Content="Trajanje(u satima)" HorizontalAlignment="Left" Margin="35,140,0,0" VerticalAlignment="Top" Height="25"/>
-        <Label Content="Datum i vreme u formatu MM/dd/yyyy HH:mm(odvojeni zarezom ako ih je više)" HorizontalAlignment="Left" Margin="35,170,0,0" VerticalAlignment="Top" Height="25"/>
+        <Label Content="Datum i vreme početka u formatu DD/MM/YYYY HH:MM (odvojeni zarezom ako ih je više)" HorizontalAlignment="Left" Margin="35,170,0,0" VerticalAlignment="Top" Height="25"/>
         <Label Content="Početna stanica" HorizontalAlignment="Left" Margin="35,230,0,0" VerticalAlignment="Top" Height="25"/>
         <Label Content="Stanice između" HorizontalAlignment="Left" Margin="35,260,0,0" VerticalAlignment="Top" Height="25"/>
         <Label Content="Krajnja stanica" HorizontalAlignment="Left" Margin="35,290,0,0" VerticalAlignment="Top" Height="25"/>
         <Label Content="Opis ture" HorizontalAlignment="Left" Margin="35,330,0,0" VerticalAlignment="Top" Height="25"/>
-        <Label Content="URL slike(odvojeni zarezom ako ih je više)" HorizontalAlignment="Left" Margin="35,520,0,0" VerticalAlignment="Top" Height="25"/>
+        <Label Content="URL slike(odvojeni zarezom ako ih je više)" HorizontalAlignment="Left" Margin="35,500,0,0" VerticalAlignment="Top" Height="25"/>
         <TextBox Text="{Binding Path=TourName, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="180,20,0,0"  VerticalAlignment="Top" Width="200" Height="25"/>
         <TextBox Text="{Binding Path=Location, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="180,50,0,0"  VerticalAlignment="Top" Width="200" Height="25"/>
         <ComboBox Text="{Binding Path=TourLanguage, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="180,80,0,0" VerticalAlignment="Top" Width="200">
@@ -30,14 +30,14 @@
         </ComboBox>
         <TextBox Text="{Binding Path=MaxNumberGuests, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="180,110,0,0"  VerticalAlignment="Top" Width="200" Height="25"/>
         <TextBox Text="{Binding Path=Duration, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="180,140,0,0"  VerticalAlignment="Top" Width="200" Height="25"/>
-        <TextBox  Text="{Binding Path=TourStart, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="35,200,0,0"  VerticalAlignment="Top" Width="500" Height="25"/>
+        <TextBox  Text="{Binding Path=TourStart, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="35,200,0,0"  VerticalAlignment="Top" Width="720" Height="25"/>
         <TextBox Text="{Binding Path=StartKeyPoint, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="130,230,0,0"  VerticalAlignment="Top" Width="200" Height="25"/>
         <TextBox Text="{Binding Path=FinishKeyPoint, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="130,290,0,0"  VerticalAlignment="Top" Width="200" Height="25"/>
         <Button Click="AddKeyPoint" Content="Dodaj stanicu" HorizontalAlignment="Left" Margin="340,260,0,0"  VerticalAlignment="Top" Width="90" Height="30"/>
         <TextBox Name="OtherKeyPointTextBox" Text="{Binding Path=OtherKeyPoint, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="130,260,0,0"  VerticalAlignment="Top" Width="200" Height="25"/>
         <TextBox Text="{Binding Path=Description, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="35,360,0,0"  VerticalAlignment="Top" Width="720" Height="125"/>
-        <TextBox Text="{Binding Path=Images, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="270,520,0,0"  VerticalAlignment="Top" Width="485" Height="25"/>
-        <Button  Click="CreateTourClick" Content="Kreiraj turu" HorizontalAlignment="Left" Margin="35,550,0,0"  VerticalAlignment="Top" Width="80" Height="25" Background="LightSteelBlue"/>
+        <TextBox Text="{Binding Path=Images, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="35,530,0,0"  VerticalAlignment="Top" Width="720" Height="25"/>
+        <Button  Click="CreateTourClick" Content="Kreiraj turu" HorizontalAlignment="Left" Margin="35,570,0,0"  VerticalAlignment="Top" Width="80" Height="25" Background="LightSteelBlue"/>
 
     </Grid>
 </Window>

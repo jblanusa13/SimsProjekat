@@ -18,16 +18,17 @@ namespace ProjectSims.Model
         public List<KeyPoint> KeyPoints { get; set; }
         public DateTime StartOfTheTour { get; set; }
         public double Duration { get; set; }
-        public string Images { get; set; }
+        public List<string> Images { get; set; }
         public int AvailableSeats { get; set; }
 
 
         public Tour() 
         {
             KeyPoints = new List<KeyPoint>();
+            Images = new List<string>();
         }
 
-        public Tour(int id, string name, string location, string description, string language, int maxNumberGuests, List<KeyPoint> keyPoints, DateTime startOfTheTour, double duration, string images, int availableSeats)
+        public Tour(int id, string name, string location, string description, string language, int maxNumberGuests, List<KeyPoint> keyPoints, DateTime startOfTheTour, double duration, List<string> images, int availableSeats)
         {
             Id = id;
             Name = name;
@@ -57,7 +58,11 @@ namespace ProjectSims.Model
             
             StartOfTheTour = DateTime.Parse(values[7]);
             Duration = Convert.ToDouble(values[8]);
-            Images = values[9];
+            
+            foreach (string image in values[9].Split(","))
+            {
+                Images.Add(image);
+            }
         }
 
         public string[] ToCSV()
@@ -67,12 +72,23 @@ namespace ProjectSims.Model
             {
                 if(keyPoint != KeyPoints.Last())
                 {
-                    KeyPointNames = KeyPointNames + keyPoint.Name + ",";
+                    KeyPointNames += keyPoint.Name + ",";
                 }
             }
-            KeyPointNames=KeyPointNames+KeyPoints.Last().Name;
+            KeyPointNames += KeyPoints.Last().Name;
 
-            string[] csvvalues = { Id.ToString(), Name, Location, Description, Language, MaxNumberGuests.ToString(), KeyPointNames, StartOfTheTour.ToString(), Duration.ToString(), Images };
+            string ImageString = "";
+            foreach (string image in Images)
+            {
+                if (image != Images.Last())
+                {
+                   ImageString += image + ",";
+                }
+            }
+            ImageString += Images.Last();
+
+
+            string[] csvvalues = { Id.ToString(), Name, Location, Description, Language, MaxNumberGuests.ToString(), KeyPointNames, StartOfTheTour.ToString(), Duration.ToString(), ImageString };
             return csvvalues;
         }
     }

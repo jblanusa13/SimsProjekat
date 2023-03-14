@@ -29,7 +29,7 @@ namespace ProjectSims.ModelDAO
             else
                 return _tours[_tours.Count - 1].Id + 1;
         }
-        public void Save(string name, string location, string description, string language, int maxNumberGuests, List<string> keyPointNames, DateTime tourStart, double duration, string images)
+        public void Save(string name, string location, string description, string language, int maxNumberGuests, List<string> keyPointNames, DateTime tourStart, double duration, List<string> images)
         {
             int id = GenerateID();
             List<KeyPoint> keyPoints = new List<KeyPoint>();
