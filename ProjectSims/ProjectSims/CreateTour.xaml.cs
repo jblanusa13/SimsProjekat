@@ -29,15 +29,15 @@ namespace ProjectSims
     {
         private readonly TourController _controller;
 
-        private string _name;
-        public string Name
+        private string _tourName;
+        public string TourName
         {
-            get => _name;
+            get => _tourName;
             set
             {
-                if (value != _name)
+                if (value != _tourName)
                 {
-                    _name = value;
+                    _tourName = value;
                     OnPropertyChanged();
                 }
             }
@@ -57,15 +57,15 @@ namespace ProjectSims
             }
         }
 
-        private string _language;
-        public string Language
+        private string _tourLanguage;
+        public string TourLanguage
         {
-            get => _language;
+            get => _tourLanguage;
             set
             {
-                if (value != _language)
+                if (value != _tourLanguage)
                 {
-                    _language = value;
+                    _tourLanguage = value;
                     OnPropertyChanged();
                 }
             }
@@ -113,29 +113,42 @@ namespace ProjectSims
             }
         }
 
-        private string _startStation;
-        public string StartStation
+        private string _startKeyPoint;
+        public string StartKeyPoint
         {
-            get => _startStation;
+            get => _startKeyPoint;
             set
             {
-                if (value != _startStation)
+                if (value != _startKeyPoint)
                 {
-                    _startStation = value;
+                    _startKeyPoint = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private string _finishStation;
-        public string FinishStation
+        private string _finishKeyPoint;
+        public string FinishKeyPoint
         {
-            get => _finishStation;
+            get => _finishKeyPoint;
             set
             {
-                if (value != _finishStation)
+                if (value != _finishKeyPoint)
                 {
-                    _finishStation = value;
+                    _finishKeyPoint = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private string _otherKeyPoint;
+        public string OtherKeyPoint
+        {
+            get => _otherKeyPoint;
+            set
+            {
+                if (value != _otherKeyPoint)
+                {
+                    _otherKeyPoint = value;
                     OnPropertyChanged();
                 }
             }
@@ -155,11 +168,26 @@ namespace ProjectSims
             }
         }
 
+        private List<string> _otherKeyPoints;
+        public List<string> OtherKeyPoints
+        {
+            get => _otherKeyPoints;
+            set
+            {
+                if (value != _otherKeyPoints)
+                {
+                    _otherKeyPoints = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public CreateTour()
         {
             InitializeComponent();
             DataContext = this;
             _controller = new TourController();
+            OtherKeyPoints = new List<string>();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -171,8 +199,15 @@ namespace ProjectSims
 
         private void CreateTourClick(object sender, RoutedEventArgs e)
         {
-            _controller.Save(Name,Location,Language,MaxNumberGuests,Duration,TourStart,Description);
+            _controller.Save(TourName, Location, Description, TourLanguage, MaxNumberGuests, StartKeyPoint,FinishKeyPoint,OtherKeyPoints,TourStart, Duration, "slike");
+            Close();
             
+        }
+
+        private void AddKeyPoint(object sender, RoutedEventArgs e)
+        {
+            OtherKeyPoints.Add(OtherKeyPoint);
+            OtherKeyPointTextBox.Text = "";
         }
     }
 }

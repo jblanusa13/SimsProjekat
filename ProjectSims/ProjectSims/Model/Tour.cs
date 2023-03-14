@@ -12,49 +12,67 @@ namespace ProjectSims.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public string Location { get; set; }
-        public string Descrption { get; set; }
+        public string Description { get; set; }
         public string Language { get; set; }
         public int MaxNumberGuests { get; set; }
-        public string KeyPoints { get; set; }
+        public List<KeyPoint> KeyPoints { get; set; }
         public DateTime StartOfTheTour { get; set; }
-        public int Duration { get; set; }
+        public double Duration { get; set; }
         public string Images { get; set; }
+        public int AvailableSeats { get; set; }
 
 
-        public Tour() { }
+        public Tour() 
+        {
+            KeyPoints = new List<KeyPoint>();
+        }
 
-        public Tour(int id, string name, string location, string descrption, string language, int maxNumberGuests, string keyPoints, DateTime startOfTheTour, int duration, string images)
+        public Tour(int id, string name, string location, string description, string language, int maxNumberGuests, List<KeyPoint> keyPoints, DateTime startOfTheTour, double duration, string images, int availableSeats)
         {
             Id = id;
             Name = name;
             Location = location;
-            Descrption = descrption;
+            Description = description;
             Language = language;
             MaxNumberGuests = maxNumberGuests;
             KeyPoints = keyPoints;
             StartOfTheTour = startOfTheTour;
             Duration = duration;
             Images = images;
+            AvailableSeats = availableSeats;
         }
-
-
         public void FromCSV(string[] values)
         {
             Id = Convert.ToInt32(values[0]);
             Name = values[1];
             Location = values[2];
-            Descrption = values[3];
+            Description = values[3];
             Language = values[4];
             MaxNumberGuests = Convert.ToInt32(values[5]);
-            KeyPoints = values[6];
+
+            foreach(string keyPointName in values[6].Split(","))
+            {
+                 KeyPoints.Add(new KeyPoint(keyPointName, Id));
+            }
+            
             StartOfTheTour = DateTime.Parse(values[7]);
-            Duration = Convert.ToInt32(values[8]);
+            Duration = Convert.ToDouble(values[8]);
             Images = values[9];
         }
 
         public string[] ToCSV()
         {
-            string[] csvvalues = { Id.ToString(), Name, Location, Descrption, Language, MaxNumberGuests.ToString(), KeyPoints, StartOfTheTour.ToString(), Duration.ToString(), Images };
+            string KeyPointNames="";
+            foreach(KeyPoint keyPoint in KeyPoints)
+            {
+                if(keyPoint != KeyPoints.Last())
+                {
+                    KeyPointNames = KeyPointNames + keyPoint.Name + ",";
+                }
+            }
+            KeyPointNames=KeyPointNames+KeyPoints.Last().Name;
+
+            string[] csvvalues = { Id.ToString(), Name, Location, Description, Language, MaxNumberGuests.ToString(), KeyPointNames, StartOfTheTour.ToString(), Duration.ToString(), Images };
             return csvvalues;
         }
     }

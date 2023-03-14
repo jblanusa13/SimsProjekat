@@ -20,11 +20,14 @@ namespace ProjectSims.Controller
         {
             _tourDAO = new TourDAO();
         }
-        public void Save(string name, string location, string language, string maxNumberGuests, string duration, string tourStart, string description)
-        {
-             
-             _tourDAO.Save(name,location,language,Convert.ToInt32(maxNumberGuests),Convert.ToInt32(duration), DateTime.ParseExact(tourStart,"MM/dd/yyyy HH:mm", CultureInfo.InvariantCulture), description);
-            
+        public void Save(string name, string location, string description,string language, string maxNumberGuests, string startKeyPoint, string finishKeyPoint, List<string> otherKeyPoints, string tourStart, string duration,string images)
+        {             
+            List<string> keyPoints = new List<string>();
+            keyPoints.Add(startKeyPoint);
+            keyPoints.AddRange(otherKeyPoints);
+            keyPoints.Add(finishKeyPoint);
+
+             _tourDAO.Save(name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPoints, DateTime.ParseExact(tourStart,"MM/dd/yyyy HH:mm", CultureInfo.InvariantCulture), Convert.ToDouble(duration), images);          
         }
 
         public void Subscribe(IObserver observer)

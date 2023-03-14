@@ -29,10 +29,15 @@ namespace ProjectSims.ModelDAO
             else
                 return _tours[_tours.Count - 1].Id + 1;
         }
-        public void Save(string name, string location, string language, int maxNumberGuests, int duration, DateTime tourStart, string description)
+        public void Save(string name, string location, string description, string language, int maxNumberGuests, List<string> keyPointNames, DateTime tourStart, double duration, string images)
         {
             int id = GenerateID();
-            Tour newTour = new Tour(id, name, location, description, language, maxNumberGuests, "aaa", tourStart, duration, "aaa");
+            List<KeyPoint> keyPoints = new List<KeyPoint>();
+            foreach(string keyPointName  in keyPointNames) 
+            { 
+                keyPoints.Add(new KeyPoint(keyPointName, id));
+            }
+            Tour newTour = new Tour(id, name, location, description, language, maxNumberGuests, keyPoints, tourStart, duration, images, maxNumberGuests);
             _tours.Add(newTour);
             _fileHandler.Save(_tours);
             NotifyObservers();
