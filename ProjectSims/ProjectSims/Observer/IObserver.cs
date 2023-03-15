@@ -9,5 +9,6 @@ namespace ProjectSims.Observer
     public interface IObserver
     {
         void Update();
+
     }
 }

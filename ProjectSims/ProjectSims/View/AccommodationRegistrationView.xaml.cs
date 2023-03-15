@@ -42,7 +42,7 @@ namespace ProjectSims.View
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-       
+
         private string accommodationName;
         public string AccommodationName
         {
@@ -117,7 +117,7 @@ namespace ProjectSims.View
                 }
             }
         }
-        
+
         private int dismissalDays;
         public int DismissalDays
         {

@@ -7,8 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Guest2" HorizontalAlignment="Left" Margin="532,267,0,0" VerticalAlignment="Top" Height="48" Width="133" FontSize="18" FontWeight="Bold" />
-        <Button Content="Guide" HorizontalAlignment="Left" Margin="161,267,0,0" VerticalAlignment="Top" Height="48" Width="133" FontSize="18" FontWeight="Bold" />
+
+        <Button Content="Guest2" HorizontalAlignment="Left" Margin="532,267,0,0" VerticalAlignment="Top" Height="48" Width="133" FontSize="18" FontWeight="Bold" Click="Guest2_Click" />
+        <Button Click="Guide" Content="Guide" HorizontalAlignment="Left" Margin="161,267,0,0" VerticalAlignment="Top" Height="48" Width="133" FontSize="18" FontWeight="Bold" />
         <Button Content="Guest1" Click="Guest1_Click" HorizontalAlignment="Left" Margin="532,79,0,0" VerticalAlignment="Top" Height="54" Width="133" FontSize="18" FontWeight="Bold" />
         <Button Content="Owner" Click="Owner_Click" HorizontalAlignment="Left" Margin="161,79,0,0" VerticalAlignment="Top" Height="54" Width="133" FontSize="18" FontWeight="Bold" />
 

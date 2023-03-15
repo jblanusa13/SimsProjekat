@@ -77,7 +77,7 @@ namespace ProjectSims.ModelDAO
                 observer.Update();
             }
         }
-        public Owner FindById(int id) 
+        public Owner FindById(int id)
         {
             return owners.Find(owner => owner.Id == id);
         }

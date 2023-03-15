@@ -6,15 +6,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Animation;
+
 
 namespace ProjectSims.ModelDAO
 {
     class TourDAO : ISubject
     {
+
         private TourFileHandler tourFile;
         private List<Tour> tours;
-
         private List<IObserver> observers;
+
+
+        public int GenerateID()
+        {
+            if (tours.Count == 0)
+                return 1;
+            else
+                return tours[tours.Count - 1].Id + 1;
+        }
+        public void Save(string name, string location, string description, string language, int maxNumberGuests, List<string> keyPointNames, DateTime tourStart, double duration, List<string> images)
+        {
+            int id = GenerateID();
+            List<KeyPoint> keyPoints = new List<KeyPoint>();
+            foreach(string keyPointName  in keyPointNames) 
+            { 
+                keyPoints.Add(new KeyPoint(keyPointName, id));
+            }
+            Tour newTour = new Tour(id, name, location, description, language, maxNumberGuests, keyPoints, tourStart, duration, images, maxNumberGuests);
+            tours.Add(newTour);
+            tourFile.Save(tours);
+            NotifyObservers();
+        }
+
 
         public TourDAO()
         {
@@ -40,13 +65,13 @@ namespace ProjectSims.ModelDAO
         {
             tours.Remove(tour);
             tourFile.Save(tours);
-            NotifyObservers();
+            NotifyObservers() ;
         }
 
         public void Update(Tour tour)
         {
             int index = tours.FindIndex(t => tour.Id == t.Id);
-            if (index != -1)
+            if(index != -1)
             {
                 tours[index] = tour;
             }
@@ -72,7 +97,7 @@ namespace ProjectSims.ModelDAO
 
         public void NotifyObservers()
         {
-            foreach (var observer in observers)
+            foreach(var observer in observers)
             {
                 observer.Update();
             }

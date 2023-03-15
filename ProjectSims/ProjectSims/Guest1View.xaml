@@ -11,23 +11,25 @@
                   SelectedItem="{Binding Path=SelectedAccommodation, UpdateSourceTrigger=PropertyChanged}"
             Margin="45,99,45,38" Grid.ColumnSpan="2" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="160"></DataGridTextColumn>
-                <DataGridTextColumn Header="Location" Binding="{Binding Location}" Width="160"></DataGridTextColumn>
-                <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="120"></DataGridTextColumn>
-                <DataGridTextColumn Header="Max number of guests" Binding="{Binding GuestsMaximum}" Width="130"></DataGridTextColumn>
-                <DataGridTextColumn Header="Min days for reservation" Binding="{Binding MinimumReservationDays}" Width="137"></DataGridTextColumn>
+                <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" Width="150"></DataGridTextColumn>
+                <DataGridTextColumn Header="Lokacija" Binding="{Binding Location}" Width="160"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tip smestaja" Binding="{Binding Type}" Width="110"></DataGridTextColumn>
+                <DataGridTextColumn Header="Maks broj gostiju" Binding="{Binding GuestMaximum}" Width="129"></DataGridTextColumn>
+                <DataGridTextColumn Header="Min broj dana za rezervaciju" Binding="{Binding MinimumReservationDays}" Width="158"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Name:" HorizontalAlignment="Left" Margin="25,20,0,0" VerticalAlignment="Top"/>
-        <Label Content="Location:" HorizontalAlignment="Left" Margin="185,20,0,0" VerticalAlignment="Top"/>
-        <Label Content="Type:" HorizontalAlignment="Left" Margin="345,20,0,0" VerticalAlignment="Top"/>
-        <Label Content="Number of guests:" HorizontalAlignment="Left" Margin="465,20,0,0" VerticalAlignment="Top"/>
-        <Label Content="Number of days:" HorizontalAlignment="Left" Margin="595,20,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="25,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="20"/>
-        <TextBox HorizontalAlignment="Left" Margin="185,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="20"/>
-        <TextBox HorizontalAlignment="Left" Margin="345,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="110" Height="20"/>
-        <TextBox HorizontalAlignment="Left" Margin="465,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20"/>
-        <TextBox HorizontalAlignment="Left" Margin="595,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="20"/>
-        <Button Content="Search" HorizontalAlignment="Left" Margin="735,45,0,0" VerticalAlignment="Top" Width="50" Height="20"/>
+        <Label Content="Naziv:" HorizontalAlignment="Left" Margin="25,20,0,0" VerticalAlignment="Top"/>
+        <Label Content="Lokacija:" HorizontalAlignment="Left" Margin="185,20,0,0" VerticalAlignment="Top"/>
+        <!-- "<Label Content="Drzava:" HorizontalAlignment="Left" Margin="185,45,0,0" VerticalAlignment="Top"/> -->
+        <Label Content="Tip smestaja:" HorizontalAlignment="Left" Margin="345,20,0,0" VerticalAlignment="Top"/>
+        <Label Content="Broj gostiju:" HorizontalAlignment="Left" Margin="465,20,0,0" VerticalAlignment="Top"/>
+        <Label Content="Broj dana:" HorizontalAlignment="Left" Margin="595,20,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="TextboxName" TextChanged="TextboxName_TextChanged" HorizontalAlignment="Left" Margin="25,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="20"/>
+        <TextBox Name="TextboxLocation" TextChanged="TextboxLocation_TextChanged" HorizontalAlignment="Left" Margin="185,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="20"/>
+       <!-- <TextBox Name="TextboxCountry" TextChanged="TextboxCountry_TextChanged" HorizontalAlignment="Left" Margin="185,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="20"/> -->
+        <TextBox Name="TextboxType" TextChanged="TextboxType_TextChanged" HorizontalAlignment="Left" Margin="345,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="110" Height="20"/>
+        <TextBox Name="TextboxGuests" TextChanged="TextboxGuests_TextChanged" HorizontalAlignment="Left" Margin="465,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20"/>
+        <TextBox Name="TextboxDays" TextChanged="TextboxDays_TextChanged" HorizontalAlignment="Left" Margin="595,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="20"/>
+        <Button Content="Pretraga" Click="Search_Click" HorizontalAlignment="Left" Margin="735,45,0,0" VerticalAlignment="Top" Width="60" Height="20"/>
     </Grid>
 </Window>
