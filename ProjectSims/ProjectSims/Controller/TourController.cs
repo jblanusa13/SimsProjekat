@@ -87,8 +87,7 @@ namespace ProjectSims.Controller
             List<Tour> tours = GetAllTours();
             List<Tour> wantedTours = new List<Tour>();
 
-            //durationStart i durationEnd su uvijek jednake ili razlicite od -1
-
+            //durationStart and durationEnd always go together (both are -1 or both aren't -1)
             if (location != "")
             {
                 if (durationStart != -1 && language == "" && numberGuests != -1)    //1

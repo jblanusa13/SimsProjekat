@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims"
         mc:Ignorable="d"
-        Title="TourDisplayAndSearchView" Height="500" Width="864" WindowStartupLocation="CenterScreen">
+        Title="TourDisplayAndSearchView" Height="500" Width="1000" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="760"/>
+            <ColumnDefinition Width="850"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -22,17 +22,18 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="3" Grid.Column="1">
-            <DataGrid  x:Name="DataGridTours" Width="752" 
+            <DataGrid  x:Name="DataGridTours" Width="844" 
                        ItemsSource="{Binding ListTour}"
                        SelectionMode="Single" 
                        SelectedItem="{Binding Path=SelectedTour}" IsReadOnly="True" Height="254" 
                        AutoGenerateColumns="False" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="180" />
-                    <DataGridTextColumn Header="Location" Binding="{Binding Location}" Width="150" />
-                    <DataGridTextColumn Header="Language" Binding="{Binding Language}" Width="80" />
+                    <DataGridTextColumn Header="Location" Binding="{Binding Location}" Width="140" />
+                    <DataGridTextColumn Header="Language" Binding="{Binding Language}" Width="70" />
                     <DataGridTextColumn Header="Maximal number guests" Binding="{Binding MaxNumberGuests}" Width="150" />
-                    <DataGridTextColumn Header="Duration tour (hours)" Binding="{Binding Duration}" Width="*" />
+                    <DataGridTextColumn Header="Start date" Binding="{Binding StartOfTheTour}" Width="150" />
+                    <DataGridTextColumn Header="Duration (hours)" Binding="{Binding Duration}" Width="*" />
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>

@@ -77,8 +77,7 @@ namespace ProjectSims
             
             double durationEnd = tourController.ConvertToDouble(DurationEndTextBox.Text);
             if(durationEnd == -2) return;
-            
-            
+                       
             //both duration fields must be entered
             if((durationStart == -1 && durationEnd != -1) || (durationStart != -1 && durationEnd == -1))
             {
