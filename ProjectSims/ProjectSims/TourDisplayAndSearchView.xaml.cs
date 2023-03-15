@@ -71,16 +71,49 @@ namespace ProjectSims
         {
             String location = LocationTextBox.Text;
 
-            int duration;
+            double durationStart;
+            double durationEnd;
             //Validation wrong input
-            if (string.IsNullOrEmpty(DurationTextBox.Text))
+            if (string.IsNullOrEmpty(DurationStartTextBox.Text))
             {
-                duration = -1;
+                durationStart = -1;
             }
-            else if( !int.TryParse(DurationTextBox.Text, out duration) )
+            else if( !double.TryParse(DurationStartTextBox.Text, out durationStart))
             {
-                MessageBox.Show("Wrong input! Duration tour must be a integer!");
+                MessageBox.Show("Wrong input! Duration tour must be a double!");
                 return;
+            }
+            else if (durationStart < 0)
+            {
+                MessageBox.Show("The tour duration search fields cannot have a negative value");
+                return;
+            }
+            if (string.IsNullOrEmpty(DurationEndTextBox.Text))
+            {
+                durationEnd = -1;
+            }
+            else if (!double.TryParse(DurationEndTextBox.Text, out durationEnd))
+            {
+                MessageBox.Show("Wrong input! Duration tour must be a double!");
+                return;
+            }else if( durationEnd < 0)
+            {
+                MessageBox.Show("The tour duration search fields cannot have a negative value");
+                return;
+            }
+            //both duration fields must be entered
+            if((durationStart == -1 && durationEnd != -1) || (durationStart != -1 && durationEnd == -1))
+            {
+                MessageBox.Show("Both duration fields must be entered for search tours!");
+                return;
+            }else if(durationStart != -1 && durationEnd != -1)
+            //if both fields are entered the first must be less than the second
+            {
+                if(durationStart > durationEnd)
+                {
+                    MessageBox.Show("The first duration fiels must be less than the second!");
+                    return;
+                }
             }
 
             String language = LanguageTextBox.Text;
@@ -95,9 +128,13 @@ namespace ProjectSims
             {
                 MessageBox.Show("Wrong input! Number guests on tour must be a integer!");
                 return;
+            }else if(numberGuests < 0)
+            {
+                MessageBox.Show("The number of people on the tour can't be negative!");
+                return;
             }
 
-            if (location == "" && duration == -1 && language == "" && numberGuests == -1)         //16. case (nothing entered)
+            if (location == "" && durationStart == -1 && language == "" && numberGuests == -1)         //16. case (nothing entered)
             {
                 MessageBox.Show("You must enter some information for search!");
                 ListTour.Clear();
@@ -107,10 +144,7 @@ namespace ProjectSims
                 }
                 return;
             }
-
-
-
-            List<Tour> wantedTours = tourController.SearchTours(location,duration,language,numberGuests);
+            List<Tour> wantedTours = tourController.SearchTours(location,durationStart,durationEnd,language,numberGuests);
             ListTour.Clear();
             foreach (Tour tour in wantedTours)
             {

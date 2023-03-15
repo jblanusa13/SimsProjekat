@@ -52,8 +52,12 @@
         <WrapPanel Grid.Row="1" Grid.Column="1">
             <Label Content="Lokacija:" Width="118" Height="40" HorizontalContentAlignment="Right" FontSize="18"/>
             <TextBox x:Name="LocationTextBox" TextWrapping="Wrap" Text="" Width="200" Height="30" FontSize="18"/>
-            <Label Content="Trajanje ture:" Width="118" Height="40" HorizontalContentAlignment="Right" FontSize="18"/>
-            <TextBox x:Name="DurationTextBox" TextWrapping="Wrap" Text="" Width="200" Height="30" FontSize="18"/>
+            <Label Content="Trajanje ture od:" Width="138" Height="40" HorizontalContentAlignment="Right" FontSize="18"/>
+            
+            <TextBox x:Name="DurationStartTextBox" TextWrapping="Wrap" Text="" Width="69" Height="30" FontSize="18"/>
+            <Label Content="do:" Width="38" Height="40" HorizontalContentAlignment="Right" FontSize="18"/>
+            <TextBox x:Name="DurationEndTextBox" TextWrapping="Wrap" Text="" Width="69" Height="30" FontSize="18"/>
+            
             <Button Content="Search" HorizontalAlignment="Left" Width="86" Margin="20,0,0,0" FontSize="18" Click="Search_Click" />
         </WrapPanel>
 
