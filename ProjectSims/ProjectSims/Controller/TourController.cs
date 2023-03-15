@@ -284,5 +284,50 @@ namespace ProjectSims.Controller
             return wantedTours;
         }
 
+        //if text empty return -1
+        //if text isn't integer or < 0 return -2
+        public int ConvertToInt(String text)
+        {
+            int number;
+            if (string.IsNullOrEmpty(text))
+            {
+                number = -1;
+            }
+            else if (!int.TryParse(text, out number))
+            {
+                MessageBox.Show("Wrong input! Number guests on tour must be a integer!");
+                return -2;
+            }
+            else if (number < 0)
+            {
+                MessageBox.Show("The number of people on the tour can't be negative!");
+                return -2;
+            }
+
+            return number;
+        }
+
+        //if text empty return -1
+        //if text isn't double or < 0 return -2
+        public double ConvertToDouble(String text)
+        {
+            double number;
+            if (string.IsNullOrEmpty(text))
+            {
+                number = -1;
+            }
+            else if (!double.TryParse(text, out number))
+            {
+                MessageBox.Show("Wrong input! Duration tour must be a double!");
+                return -2;
+            }
+            else if (number < 0)
+            {
+                MessageBox.Show("The tour duration search fields cannot have a negative value");
+                return -2;
+            }
+            return number;
+        }
+
     }
 }

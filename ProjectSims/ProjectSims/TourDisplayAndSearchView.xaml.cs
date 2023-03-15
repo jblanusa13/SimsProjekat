@@ -70,37 +70,15 @@ namespace ProjectSims
         private void Search_Click(object sender, RoutedEventArgs e)
         {
             String location = LocationTextBox.Text;
+            String language = LanguageTextBox.Text;
 
-            double durationStart;
-            double durationEnd;
-            //Validation wrong input
-            if (string.IsNullOrEmpty(DurationStartTextBox.Text))
-            {
-                durationStart = -1;
-            }
-            else if( !double.TryParse(DurationStartTextBox.Text, out durationStart))
-            {
-                MessageBox.Show("Wrong input! Duration tour must be a double!");
-                return;
-            }
-            else if (durationStart < 0)
-            {
-                MessageBox.Show("The tour duration search fields cannot have a negative value");
-                return;
-            }
-            if (string.IsNullOrEmpty(DurationEndTextBox.Text))
-            {
-                durationEnd = -1;
-            }
-            else if (!double.TryParse(DurationEndTextBox.Text, out durationEnd))
-            {
-                MessageBox.Show("Wrong input! Duration tour must be a double!");
-                return;
-            }else if( durationEnd < 0)
-            {
-                MessageBox.Show("The tour duration search fields cannot have a negative value");
-                return;
-            }
+            double durationStart = tourController.ConvertToDouble(DurationStartTextBox.Text);
+            if(durationStart == -2) return;    
+            
+            double durationEnd = tourController.ConvertToDouble(DurationEndTextBox.Text);
+            if(durationEnd == -2) return;
+            
+            
             //both duration fields must be entered
             if((durationStart == -1 && durationEnd != -1) || (durationStart != -1 && durationEnd == -1))
             {
@@ -116,24 +94,9 @@ namespace ProjectSims
                 }
             }
 
-            String language = LanguageTextBox.Text;
-
-            int numberGuests;
-            //Validation wrong input
-            if (string.IsNullOrEmpty(NumberGuestsTextBox.Text))
-            {
-                numberGuests = -1;
-            }
-            else if( !int.TryParse(NumberGuestsTextBox.Text, out numberGuests) )
-            {
-                MessageBox.Show("Wrong input! Number guests on tour must be a integer!");
-                return;
-            }else if(numberGuests < 0)
-            {
-                MessageBox.Show("The number of people on the tour can't be negative!");
-                return;
-            }
-
+            int numberGuests = tourController.ConvertToInt(NumberGuestsTextBox.Text);
+            if (numberGuests == -2) return;
+            
             if (location == "" && durationStart == -1 && language == "" && numberGuests == -1)         //16. case (nothing entered)
             {
                 MessageBox.Show("You must enter some information for search!");
