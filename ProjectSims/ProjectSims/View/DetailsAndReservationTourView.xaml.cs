@@ -23,9 +23,9 @@ using ProjectSims.Observer;
 namespace ProjectSims
 {
     /// <summary>
-    /// Interaction logic for DetailsTourWindow.xaml
+    /// Interaction logic for DetailsAndReservationTourView.xaml
     /// </summary>
-    public partial class DetailsTourWindow : Window
+    public partial class DetailsAndReservationTourView : Window
     {
         private TourController tourController;
 
@@ -34,7 +34,7 @@ namespace ProjectSims
 
         public ObservableCollection<Tour> TourList { get; set; }
         public Tour SelectedTour { get; set; }
-        public DetailsTourWindow(Tour tourSelected)
+        public DetailsAndReservationTourView(Tour tourSelected)
         {
             InitializeComponent();
             DataContext = this;

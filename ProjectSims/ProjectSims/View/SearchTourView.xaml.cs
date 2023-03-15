@@ -19,15 +19,15 @@ using System.Windows.Shapes;
 namespace ProjectSims
 {
     /// <summary>
-    /// Interaction logic for TourDisplayAndSearchView.xaml
+    /// Interaction logic for SearchTourView.xaml
     /// </summary>
-    public partial class TourDisplayAndSearchView : Window , IObserver
+    public partial class SearchTourView : Window , IObserver
     {
         private TourController tourController;
 
         public  ObservableCollection<Tour> ListTour { get; }
         public Tour SelectedTour { get; set; }
-        public TourDisplayAndSearchView()
+        public SearchTourView()
         {
             InitializeComponent();
             DataContext = this;
@@ -57,7 +57,7 @@ namespace ProjectSims
         {
             if (SelectedTour != null)
             {
-                var see_more = new DetailsTourWindow(SelectedTour);
+                var see_more = new DetailsAndReservationTourView(SelectedTour);
                 see_more.Show();
             }
             else

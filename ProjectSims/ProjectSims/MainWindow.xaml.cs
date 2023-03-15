@@ -33,8 +33,8 @@ namespace ProjectSims
         }
         private void Guest2_Click(object sender, RoutedEventArgs e)
         {
-            TourDisplayAndSearchView window = new TourDisplayAndSearchView();
-            window.Show();
+            SearchTourView guest2 = new SearchTourView();
+            guest2.Show();
         }
 
         private void Guide(object sender, RoutedEventArgs e)

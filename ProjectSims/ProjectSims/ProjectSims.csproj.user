@@ -2,25 +2,25 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-	 <Compile Update="CreateTour.xaml.cs">
-		  <SubType>Code</SubType>
-	 </Compile>
-    <Compile Update="DetailsTourWindow.xaml.cs">
+    <Compile Update="CreateTour.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="TourDisplayAndSearchView.xaml.cs">
+    <Compile Update="View\DetailsAndReservationTourView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\SearchTourView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="DetailsTourWindow.xaml">
+    <Page Update="View\DetailsAndReservationTourView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="TourDisplayAndSearchView.xaml">
+    <Page Update="View\SearchTourView.xaml">
       <SubType>Designer</SubType>
     </Page>
-	  <Page Update="CreateTour.xaml">
-		  <SubType>Designer</SubType>
-	  </Page>
+    <Page Update="CreateTour.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 </Project>
