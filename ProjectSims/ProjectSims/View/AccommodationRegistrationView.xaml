@@ -11,9 +11,6 @@
             <StackPanel>
                 <!-- Placeholder for the TextBox itself -->
                 <AdornedElementPlaceholder x:Name="textBox" />
-                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" />
-                <TextBlock Text="{Binding [1].ErrorContent}" Foreground="Red" />
-                <TextBlock Text="{Binding [2].ErrorContent}" Foreground="Red" />
                 <TextBlock Text="{Binding [3].ErrorContent}" Foreground="Red" />
             </StackPanel>
         </ControlTemplate>
