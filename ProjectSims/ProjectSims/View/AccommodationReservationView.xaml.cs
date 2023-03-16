@@ -93,6 +93,21 @@ namespace ProjectSims.View
             }
         }
 
+        private string _username;
+        public string Username
+        {
+            get => _username;
+            set
+            {
+                if (value != _username)
+                {
+                    _username = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+
         private AccommodationController _accommodationController;
 
         public AccommodationReservationView(Accommodation SelectedAccommodation, AccommodationController accommodationController)
@@ -116,15 +131,14 @@ namespace ProjectSims.View
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         public void Update()
         {
             throw new NotImplementedException();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
