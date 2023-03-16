@@ -20,7 +20,7 @@
         <Label Content="Jezik" HorizontalAlignment="Left" Margin="35,85,0,0" VerticalAlignment="Top" Height="25"/>
         <Label Content="Maksimalan broj gostiju" HorizontalAlignment="Left" Margin="35,125,0,0" VerticalAlignment="Top" Height="25"/>
         <Label Content="Trajanje(u satima)" HorizontalAlignment="Left" Margin="35,165,0,0" VerticalAlignment="Top" Height="25"/>
-        <Label Content="Datum i vreme početka u formatu DD/MM/YYYY HH:MM (odvojeni zarezom ako ih je više)" HorizontalAlignment="Left" Margin="35,205,0,0" VerticalAlignment="Top" Height="25"/>
+        <Label Content="Datum i vreme početka(odvojeni zarezom ako ih je više)" HorizontalAlignment="Left" Margin="35,205,0,0" VerticalAlignment="Top" Height="25"/>
         <Label Content="Početna stanica" HorizontalAlignment="Left" Margin="35,270,0,0" VerticalAlignment="Top" Height="25"/>
         <Label Content="Sledeća stanica" HorizontalAlignment="Left" Margin="35,310,0,0" VerticalAlignment="Top" Height="25"/>
         <Label Content="Krajnja stanica" HorizontalAlignment="Left" Margin="35,350,0,0" VerticalAlignment="Top" Height="25"/>

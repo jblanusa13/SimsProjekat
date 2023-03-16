@@ -239,6 +239,11 @@ namespace ProjectSims
                 {
                     if (string.IsNullOrEmpty(TourStart))
                         return "Unesite datum i vreme početka ture!";
+                    DateTime result;
+                    foreach(string dateTime in TourStart.Split(',')){
+                        if (!DateTime.TryParse(dateTime, out result))
+                            return "Format nije ispravan!";
+                    }
                 }
                 else if (columnName == "StartKeyPoint")
                 {
@@ -297,8 +302,13 @@ namespace ProjectSims
 
         private void AddKeyPoint(object sender, RoutedEventArgs e)
         {
-            OtherKeyPoints.Add(OtherKeyPoint);
-            OtherKeyPointTextBox.Text = "";
+            if (OtherKeyPoint != "")
+            {
+                OtherKeyPoints.Add(OtherKeyPoint);
+                OtherKeyPointTextBox.Text = "";
+            }
+            else
+                MessageBox.Show("Unesite stanicu!");
         }
     }
 }
