@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims.View"
         mc:Ignorable="d"
-        Title="Rezervacija smestaja" Height="450" Width="600"
+        Title="Rezervacija smestaja" Height="540" Width="700"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label Content="Naziv:" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" Height="26"/>
@@ -13,22 +13,34 @@
         <Label Content="Tip smestaja:" HorizontalAlignment="Left" Margin="20,80,0,0" VerticalAlignment="Top" Height="26"/>
         <Label Content="Maksimalan broj gostiju:" HorizontalAlignment="Left" Margin="20,110,0,0" VerticalAlignment="Top" Height="26"/>
         <Label Content="Minimalan broj dana za rezervaciju:" HorizontalAlignment="Left" Margin="20,140,0,0" VerticalAlignment="Top" Height="26"/>
-        <TextBox HorizontalAlignment="Left" Margin="300,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="26" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="300,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="26" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="300,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="26" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="300,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="26" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="300,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="26" IsReadOnly="True"/>
-        <Label Content="Rezervacija" HorizontalAlignment="Left" Margin="250,0,0,0" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Height="50"/>
+        <TextBox Text="{Binding Path=AccommodationName}" HorizontalAlignment="Left" Margin="300,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="348" Height="26" IsReadOnly="True" Foreground="#FF6E6E6E"/>
+        <TextBox Text="{Binding Path=Location}" HorizontalAlignment="Left" Margin="300,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="348" Height="26" IsReadOnly="True" Foreground="#FF6E6E6E"/>
+        <TextBox Text="{Binding Path=Type}" HorizontalAlignment="Left" Margin="300,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="348" Height="26" IsReadOnly="True" Foreground="#FF6E6E6E"/>
+        <TextBox Text="{Binding Path=MaxGuests}" HorizontalAlignment="Left" Margin="300,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="348" Height="26" IsReadOnly="True" Foreground="#FF6E6E6E"/>
+        <TextBox Text="{Binding Path=MinDays}" HorizontalAlignment="Left" Margin="300,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="348" Height="26" IsReadOnly="True" Foreground="#FF6E6E6E"/>
+        <Label Content="Rezervacija" HorizontalAlignment="Left" Margin="20,-90,0,0" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Height="46"/>
 
-        <Label Content="Ime:" HorizontalAlignment="Left" Margin="20,250,0,0" VerticalAlignment="Top" Height="26"/>
-        <Label Content="Prezime:" HorizontalAlignment="Left" Margin="20,280,0,0" VerticalAlignment="Top" Height="26"/>
-        <Label Content="Datum dolaska:" HorizontalAlignment="Left" Margin="20,310,0,0" VerticalAlignment="Top" Height="26"/>
-        <Label Content="Datum odlaska:" HorizontalAlignment="Left" Margin="20,340,0,0" VerticalAlignment="Top" Height="26"/>
-        <Label Content="Broj gostiju:" HorizontalAlignment="Left" Margin="20,370,0,0" VerticalAlignment="Top" Height="26"/>
-        <TextBox HorizontalAlignment="Left" Margin="200,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="26" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="200,280,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="26" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="200,310,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="26" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="200,340,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="26" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="200,370,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="26" IsReadOnly="True"/>
+        <Label Content="Ime:" HorizontalAlignment="Left" Margin="20,230,0,0" VerticalAlignment="Top" Height="26" Foreground="#FF6E6E6E"/>
+        <Label Content="Prezime:" HorizontalAlignment="Left" Margin="20,270,0,0" VerticalAlignment="Top" Height="26" Foreground="#FF6E6E6E"/>
+        <Label Content="Pocetni datum pretrage:" HorizontalAlignment="Left" Margin="20,310,0,0" VerticalAlignment="Top" Height="26"/>
+        <Label Content="Krajnji datum pretrage:" HorizontalAlignment="Left" Margin="20,350,0,0" VerticalAlignment="Top" Height="26"/>
+        <Label Content="Broj dana:" HorizontalAlignment="Left" Margin="20,390,0,0" VerticalAlignment="Top" Height="26"/>
+        <Label Content="Broj gostiju:" HorizontalAlignment="Left" Margin="20,460,0,0" VerticalAlignment="Top" Height="26"/>
+        <TextBox HorizontalAlignment="Left" Margin="200,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="26" IsReadOnly="True"/>
+        <TextBox HorizontalAlignment="Left" Margin="200,270,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="26" IsReadOnly="True"/>
+        <DatePicker HorizontalAlignment="Left" Margin="200,310,0,0" VerticalAlignment="Top" Height="25" Width="200" Text="Izaberite datum"/>
+        <DatePicker HorizontalAlignment="Left" Margin="200,350,0,0" VerticalAlignment="Top" Height="25" Width="200"/>
+        <TextBox HorizontalAlignment="Left" Margin="200,390,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="26" />
+        <TextBox HorizontalAlignment="Left" Margin="200,460,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="26" />
+
+        <DataGrid Name="DatesTable" Margin="434,230,37,108">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Dolazak" Width="110"></DataGridTextColumn>
+                <DataGridTextColumn Header="Odlazak" Width="*"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Potvrdi rezervaciju" HorizontalAlignment="Left" Margin="478,434,0,0" VerticalAlignment="Top" Width="140" Height="43"/>
+        <Label Content="Slobodni datumi:" HorizontalAlignment="Left" Margin="434,199,0,0" VerticalAlignment="Top" FontStyle="Italic"/>
+        <Button Content="Pretrazi datume" HorizontalAlignment="Left" Margin="238,434,0,0" VerticalAlignment="Top" Width="124"/>
     </Grid>
 </Window>
