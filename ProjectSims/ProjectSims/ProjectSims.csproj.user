@@ -2,9 +2,9 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-	 <Compile Update="CreateTour.xaml.cs">
-		  <SubType>Code</SubType>
-	 </Compile>
+    <Compile Update="View\CreateTourView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="DetailsTourWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -19,8 +19,8 @@
     <Page Update="TourDisplayAndSearchView.xaml">
       <SubType>Designer</SubType>
     </Page>
-	  <Page Update="CreateTour.xaml">
-		  <SubType>Designer</SubType>
-	  </Page>
+    <Page Update="View\CreateTourView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 </Project>

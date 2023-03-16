@@ -26,7 +26,7 @@ namespace ProjectSims
     /// <summary>
     /// Interaction logic for CreateTour.xaml
     /// </summary>
-    public partial class CreateTour : Window, INotifyPropertyChanged, IDataErrorInfo
+    public partial class CreateTourView : Window, INotifyPropertyChanged, IDataErrorInfo
     {
         private readonly TourController _controller;
 
@@ -268,7 +268,7 @@ namespace ProjectSims
                 return true;
             }
         }
-        public CreateTour()
+        public CreateTourView()
         {
             InitializeComponent();
             DataContext = this;
