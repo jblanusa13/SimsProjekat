@@ -30,6 +30,8 @@ namespace ProjectSims
         private TourController tourController;
 
         private ReservationTourController reservationController;
+
+        private KeyPointController keyPointController;
         public Tour tour { get; set; }
 
         public ObservableCollection<Tour> TourList { get; set; }
@@ -39,6 +41,7 @@ namespace ProjectSims
             InitializeComponent();
             DataContext = this;
             tour = tourSelected;
+            keyPointController = new KeyPointController();
             
             NameTextBox.Text = tourSelected.Name;
             LocationTextBox.Text = tourSelected.Location;
@@ -46,8 +49,8 @@ namespace ProjectSims
             LanguageTextBox.Text = tourSelected.Language;
             MaxGuestsTextBox.Text = tourSelected.MaxNumberGuests.ToString();
 
-            
-            foreach(KeyPoint keyPoint in tourSelected.KeyPoints) 
+
+            /*foreach(KeyPoint keyPoint in tourSelected.KeyPoints) 
             {
                 if (keyPoint.Equals(tourSelected.KeyPoints.Last()))
                 {
@@ -58,8 +61,20 @@ namespace ProjectSims
                     KeyPointTextBox.Text += keyPoint.Name + ", ";
                 }
                 
+            }*/
+            foreach(int id in tourSelected.KeyPointIds) 
+            {
+                if (id.Equals(tourSelected.KeyPointIds.Last()))
+                {
+                    KeyPointTextBox.Text += keyPointController.FindNameById(id);
+                }
+                else
+                {
+                    KeyPointTextBox.Text += keyPointController.FindNameById(id) + ", ";
+                }
+
             }
-            
+
             DateStartTextBox.Text = tourSelected.StartOfTheTour.ToString();
             DurationTextBox.Text = tourSelected.Duration.ToString();
 
