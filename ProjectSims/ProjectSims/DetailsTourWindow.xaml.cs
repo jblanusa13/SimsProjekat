@@ -67,11 +67,11 @@ namespace ProjectSims
             {
                 if (id.Equals(tourSelected.KeyPointIds.Last()))
                 {
-                    KeyPointTextBox.Text += keyPointController.FindById(id);
+                    KeyPointTextBox.Text += keyPointController.FindNameById(id);
                 }
                 else
                 {
-                    KeyPointTextBox.Text += keyPointController.FindById(id) + ", ";
+                    KeyPointTextBox.Text += keyPointController.FindNameById(id) + ", ";
                 }
 
             }

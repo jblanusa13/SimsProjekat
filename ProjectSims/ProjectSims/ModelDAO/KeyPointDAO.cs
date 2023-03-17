@@ -53,28 +53,19 @@ namespace ProjectSims.ModelDAO
             }
             keyPointFile.Save(keyPoints);
             NotifyObservers();
-            //edit tours?
         }
         public List<KeyPoint> GetAll()
         {
             return keyPoints;
         }
-        public string FindNameById(int id)
-        {
-            KeyPoint keyPoint = keyPoints.Find(k => k.Id == id);
-            return keyPoint.Name;
-            
-        }
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);
         }
-
         public void Unsubscribe(IObserver observer)
         {
             observers.Remove(observer);
         }
-
         public void NotifyObservers()
         {
             foreach (var observer in observers)

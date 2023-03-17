@@ -30,10 +30,10 @@ namespace ProjectSims.Controller
         {
             keyPoints.Remove(keyPoint);
         }
-
-        public string FindById(int id)
+        public string FindNameById(int id)
         {
-            return keyPoints.FindNameById(id);
+            List<KeyPoint> allKeyPoints = keyPoints.GetAll();
+            return allKeyPoints.Find(k => k.Id == id).Name;
         }
         public void Update(KeyPoint keyPoint)
         {

@@ -24,7 +24,7 @@
         <Label Content="Početna stanica" HorizontalAlignment="Left" Margin="35,270,0,0" VerticalAlignment="Top" Height="25"/>
         <Label Content="Sledeća stanica" HorizontalAlignment="Left" Margin="35,310,0,0" VerticalAlignment="Top" Height="25"/>
         <Label Content="Krajnja stanica" HorizontalAlignment="Left" Margin="35,350,0,0" VerticalAlignment="Top" Height="25"/>
-        <Label Content="Opis ture" HorizontalAlignment="Left" Margin="35,380,0,0" VerticalAlignment="Top" Height="25"/>
+        <Label Content="Opis ture" HorizontalAlignment="Left" Margin="35,375,0,0" VerticalAlignment="Top" Height="25"/>
         <Label Content="URL slike(odvojeni zarezom ako ih je više)" HorizontalAlignment="Left" Margin="35,520,0,0" VerticalAlignment="Top" Height="25"/>
         <TextBox Text="{Binding Path=TourName, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged ,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="180,5,0,0"  VerticalAlignment="Top" Width="400" Height="25"/>
         <TextBox Text="{Binding Path=Location, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged ,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="180,45,0,0"  VerticalAlignment="Top" Width="400" Height="25"/>
@@ -38,14 +38,14 @@
         </ComboBox>
         <TextBox Text="{Binding Path=MaxNumberGuests, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged ,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="180,125,0,0"  VerticalAlignment="Top" Width="100" Height="25"/>
         <TextBox Text="{Binding Path=Duration, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged ,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="180,165,0,0"  VerticalAlignment="Top" Width="100" Height="25"/>
-        <TextBox  Text="{Binding Path=TourStart, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged ,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="35,230,0,0"  VerticalAlignment="Top" Width="720" Height="25"/>
+        <TextBox  Text="{Binding Path=TourStarts, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged ,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="35,230,0,0"  VerticalAlignment="Top" Width="720" Height="25"/>
         <TextBox Text="{Binding Path=StartKeyPoint, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged ,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="130,270,0,0"  VerticalAlignment="Top" Width="400" Height="25"/>
         <TextBox Text="{Binding Path=FinishKeyPoint, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged ,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="130,350,0,0"  VerticalAlignment="Top" Width="400" Height="25"/>
         <Button Click="AddKeyPoint" Content="Dodaj stanicu" HorizontalAlignment="Left" Margin="550,310,0,0"  VerticalAlignment="Top" Width="90" Height="30"/>
         <TextBox Name="OtherKeyPointTextBox" Text="{Binding Path=OtherKeyPoint, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged ,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="130,310,0,0"  VerticalAlignment="Top" Width="400" Height="25"/>
-        <TextBox Text="{Binding Path=Description, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged ,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="35,405,0,0"  VerticalAlignment="Top" Width="720" Height="115"/>
+        <TextBox Text="{Binding Path=Description, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged ,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="35,400,0,0"  VerticalAlignment="Top" Width="720" Height="110"/>
         <TextBox Text="{Binding Path=Images, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged ,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="35,540,0,0"  VerticalAlignment="Top" Width="720" Height="25"/>
-        <Button  Click="CreateTourClick" Content="Kreiraj turu" HorizontalAlignment="Left" Margin="35,570,0,0"  VerticalAlignment="Top" Width="80" Height="25" Background="LightSteelBlue"/>
+        <Button  Click="CreateTourClick" Content="Kreiraj turu" HorizontalAlignment="Left" Margin="650,570,0,0"  VerticalAlignment="Top" Width="80" Height="25" Background="LightSteelBlue"/>
 
     </Grid>
 </Window>

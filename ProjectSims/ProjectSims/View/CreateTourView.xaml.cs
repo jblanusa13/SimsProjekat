@@ -100,15 +100,15 @@ namespace ProjectSims
             }
         }
 
-        private string _tourStart;
-        public string TourStart
+        private string _tourStarts;
+        public string TourStarts
         {
-            get => _tourStart;
+            get => _tourStarts;
             set
             {
-                if (value != _tourStart)
+                if (value != _tourStarts)
                 {
-                    _tourStart = value;
+                    _tourStarts = value;
                     OnPropertyChanged();
                 }
             }
@@ -199,6 +199,7 @@ namespace ProjectSims
 
         private Regex _durationRegex = new Regex("^([0-9]*\\.)?[0-9]+$");
         private Regex _maxNumberGuestsRegex = new Regex("^[1-9][0-9]*$");
+        //private Regex _imageRegex
         public String Error => null;
         public string this[string columnName]
         {
@@ -235,13 +236,13 @@ namespace ProjectSims
                     if (!match.Success)
                         return "Format nije ispravan!";
                 }
-                else if (columnName == "TourStart")
+                else if (columnName == "TourStarts")
                 {
-                    if (string.IsNullOrEmpty(TourStart))
+                    if (string.IsNullOrEmpty(TourStarts))
                         return "Unesite datum i vreme početka ture!";
                     DateTime result;
-                    foreach(string dateTime in TourStart.Split(',')){
-                        if (!DateTime.TryParse(dateTime, out result))
+                    foreach(string tourStart in TourStarts.Split(',')){
+                        if (!DateTime.TryParse(tourStart, out result))
                             return "Format nije ispravan!";
                     }
                 }
@@ -255,12 +256,29 @@ namespace ProjectSims
                     if (string.IsNullOrEmpty(FinishKeyPoint))
                         return "Unesite krajnju stanicu!";
                 }
-             return null;
+                else if (columnName == "Description")
+                {
+                    if (string.IsNullOrEmpty(Description))
+                        return "Unesite opis!";
+                }
+                else if (columnName == "Images")
+                {
+                    if (string.IsNullOrEmpty(Images))
+                        return "Unesite URL slike!";
+                    foreach (string image in Images.Split(','))
+                    {
+                        /*Match match = _imageRegex.Match(image);
+                        if (!match.Success)
+                            return "Format nije ispravan!";*/
+                    }
+
+                }
+                return null;
 
             }
         }
 
-        private readonly string[] _validatedProperties = { "TourName", "Location", "TourLanguage", "MaxNumberGuests", "Duration", "TourStart", "StartKeyPoint", "FinishKeyPoint"};
+        private readonly string[] _validatedProperties = { "TourName", "Location", "TourLanguage", "MaxNumberGuests", "Duration", "TourStarts", "StartKeyPoint", "FinishKeyPoint"};
         public bool IsValid
         {
             get
@@ -292,7 +310,10 @@ namespace ProjectSims
         {
             if (IsValid)
             {
-                _controller.Create(TourName, Location, Description, TourLanguage, MaxNumberGuests, StartKeyPoint, FinishKeyPoint, OtherKeyPoints, TourStart, Duration, Images);
+                foreach(string TourStart in TourStarts.Split(','))
+                {
+                    _controller.Create(TourName, Location, Description, TourLanguage, MaxNumberGuests, StartKeyPoint, FinishKeyPoint, OtherKeyPoints, TourStart, Duration, Images);
+                }
                 Close();
             }
             else

@@ -32,20 +32,6 @@ namespace ProjectSims.ModelDAO
             }
             return tours.Max(t => t.Id) + 1;
         }
-
-        /*public void Save(string name, string location, string description, string language, int maxNumberGuests, List<string> keyPointNames, DateTime tourStart, double duration, List<string> images)
-        {
-            int id = GenerateID();
-            List<KeyPoint> keyPoints = new List<KeyPoint>();
-            foreach(string keyPointName  in keyPointNames) 
-            { 
-                keyPoints.Add(new KeyPoint(keyPointName, id));
-            }
-            Tour newTour = new Tour(id, name, location, description, language, maxNumberGuests, keyPoints, tourStart, duration, images, maxNumberGuests);
-            tours.Add(newTour);
-            tourFile.Save(tours);
-            NotifyObservers();
-        }*/
         public void Add(Tour tour)
         {
             tour.Id = NextId();
@@ -53,14 +39,12 @@ namespace ProjectSims.ModelDAO
             tourFile.Save(tours);
             NotifyObservers();
         }
-
         public void Remove(Tour tour)
         {
             tours.Remove(tour);
             tourFile.Save(tours);
             NotifyObservers() ;
         }
-
         public void Update(Tour tour)
         {
             int index = tours.FindIndex(t => tour.Id == t.Id);
@@ -71,17 +55,14 @@ namespace ProjectSims.ModelDAO
             tourFile.Save(tours);
             NotifyObservers();
         }
-
         public List<Tour> GetAll()
         {
             return tours;
         }
-
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);
         }
-
         public void Unsubscribe(IObserver observer)
         {
             observers.Remove(observer);

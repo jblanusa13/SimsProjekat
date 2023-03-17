@@ -87,7 +87,6 @@ namespace ProjectSims.Model
             }
             ImageString += Images.Last();
 
-
             string[] csvvalues = { Id.ToString(), Name, Location, Description, Language, MaxNumberGuests.ToString(), KeyPointIdArray, StartOfTheTour.ToString(), Duration.ToString(), ImageString, AvailableSeats.ToString()};
             return csvvalues;
         }
