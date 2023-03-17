@@ -18,15 +18,22 @@ namespace ProjectSims.ModelDAO
         private List<Tour> tours;
         private List<IObserver> observers;
 
-
-        public int GenerateID()
+        public TourDAO()
+        {
+            tourFile = new TourFileHandler();
+            tours = tourFile.Load();
+            observers = new List<IObserver>();
+        }
+        public int NextId()
         {
             if (tours.Count == 0)
-                return 1;
-            else
-                return tours[tours.Count - 1].Id + 1;
+            {
+                return 0;
+            }
+            return tours.Max(t => t.Id) + 1;
         }
-        public void Save(string name, string location, string description, string language, int maxNumberGuests, List<string> keyPointNames, DateTime tourStart, double duration, List<string> images)
+
+        /*public void Save(string name, string location, string description, string language, int maxNumberGuests, List<string> keyPointNames, DateTime tourStart, double duration, List<string> images)
         {
             int id = GenerateID();
             List<KeyPoint> keyPoints = new List<KeyPoint>();
@@ -38,21 +45,7 @@ namespace ProjectSims.ModelDAO
             tours.Add(newTour);
             tourFile.Save(tours);
             NotifyObservers();
-        }
-
-
-        public TourDAO()
-        {
-            tourFile = new TourFileHandler();
-            tours = tourFile.Load();
-            observers = new List<IObserver>();
-        }
-
-        public int NextId()
-        {
-            return tours.Max(t => t.Id) + 1;
-        }
-
+        }*/
         public void Add(Tour tour)
         {
             tour.Id = NextId();
@@ -79,7 +72,6 @@ namespace ProjectSims.ModelDAO
             NotifyObservers();
         }
 
-
         public List<Tour> GetAll()
         {
             return tours;
@@ -94,7 +86,6 @@ namespace ProjectSims.ModelDAO
         {
             observers.Remove(observer);
         }
-
         public void NotifyObservers()
         {
             foreach(var observer in observers)

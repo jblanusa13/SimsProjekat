@@ -292,7 +292,7 @@ namespace ProjectSims
         {
             if (IsValid)
             {
-                _controller.Save(TourName, Location, Description, TourLanguage, MaxNumberGuests, StartKeyPoint, FinishKeyPoint, OtherKeyPoints, TourStart, Duration, Images);
+                _controller.Create(TourName, Location, Description, TourLanguage, MaxNumberGuests, StartKeyPoint, FinishKeyPoint, OtherKeyPoints, TourStart, Duration, Images);
                 Close();
             }
             else
