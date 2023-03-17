@@ -1,24 +1,41 @@
-﻿using System;
+﻿using ProjectSims.Serializer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ProjectSims.Model
 {
-    public class KeyPoint
+    public enum KeyPointType { First, Intermediate, Last }
+    public class KeyPoint : ISerializable
     {
+        public int Id { get; set; }
         public string Name { get; set; }
-        public int TourId { get; set; }
-        public KeyPoint()
+        public bool Finished { get; set; }
+        public KeyPointType Type { get; set; }
+        public KeyPoint() { }
+        public KeyPoint(int id, string name, KeyPointType type)
         {
+           Id = id;
+           Name = name;
+           Finished = false;
+           Type = type;
 
         }
-        public KeyPoint(string name, int tourId)
+        public void FromCSV(string[] values)
         {
-            Name = name;
-            TourId = tourId;
-        } 
+            Id = Convert.ToInt32(values[0]);
+            Name = values[1];
+            Finished = Convert.ToBoolean(values[2]);
+            Type = (KeyPointType)Enum.Parse(typeof(KeyPointType),values[3]);
+        }
+        public string[] ToCSV()
+        {
+            string[] csvvalues = { Id.ToString(), Name, Finished.ToString(), Type.ToString() };
+            return csvvalues;
+        }
 
 
     }
