@@ -278,7 +278,7 @@ namespace ProjectSims
             }
         }
 
-        private readonly string[] _validatedProperties = { "TourName", "Location", "TourLanguage", "MaxNumberGuests", "Duration", "TourStarts", "StartKeyPoint", "FinishKeyPoint"};
+        private readonly string[] _validatedProperties = { "TourName", "Location", "TourLanguage", "MaxNumberGuests", "Duration", "TourStarts", "StartKeyPoint", "FinishKeyPoint", "Description", "Images"};
         public bool IsValid
         {
             get

@@ -62,7 +62,6 @@ namespace ProjectSims
                 }
                 
             }*/
-
             foreach(int id in tourSelected.KeyPointIds) 
             {
                 if (id.Equals(tourSelected.KeyPointIds.Last()))
