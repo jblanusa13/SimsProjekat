@@ -1,4 +1,5 @@
-﻿using ProjectSims.Controller;
+﻿using System;
+using ProjectSims.Controller;
 using ProjectSims.Model;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace ProjectSims.View
     /// <summary>
     /// Interaction logic for AccommodationRegistrationView.xaml
     /// </summary>
-    public partial class AccommodationRegistrationView : Window, INotifyPropertyChanged
+    public partial class AccommodationRegistrationView : Window, INotifyPropertyChanged, IDataErrorInfo
     {
         private readonly AccommodationController accommodationController;
         private readonly OwnerController ownerController;
@@ -176,16 +177,16 @@ namespace ProjectSims.View
                 }
             }
         }
-        private string adress;
-        public string Adress
+        private string address;
+        public string Address
         {
-            get => adress;
+            get => address;
 
             set
             {
-                if (value != adress)
+                if (value != address)
                 {
-                    adress = value;
+                    address = value;
                     OnPropertyChanged();
                 }
             }
@@ -206,13 +207,20 @@ namespace ProjectSims.View
         }
         private void RegisterAccommodation_Click(object sender, RoutedEventArgs e)
         {
-            Accommodation accommodation = new Accommodation(-1, AccommodationName, Location, Type, GuestsMaximum, MinimumReservationDays, DismissalDays, Images, null, -1);
-            accommodationController.Create(accommodation);
-            MessageBox.Show("Uspješno registrovan smještaj!", "Registracija smještaja", MessageBoxButton.OK, MessageBoxImage.Information);
-            this.Close();
+            if (IsValid && !string.IsNullOrEmpty(AccommodationNameTextBox.Text)
+                        && !string.IsNullOrEmpty(LocationTextBox.Text)
+                        && !string.IsNullOrEmpty(GuestsMaximumTextBox.Text)
+                        && !string.IsNullOrEmpty(MinimumReservationDaysTextBox.Text)
+                        && !string.IsNullOrEmpty(DismissalDaysTextBox.Text))
+            {
+                Accommodation accommodation = new Accommodation(-1, AccommodationName, Location, Type, GuestsMaximum, MinimumReservationDays, DismissalDays, Images, null, -1);
+                accommodationController.Create(accommodation);
+                MessageBox.Show("Uspješno registrovan smještaj!", "Registracija smještaja", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
+            } 
         }
 
-        /*public string Error => null;
+        public string Error => null;
         public string this[string columnName]
         {
             get
@@ -223,60 +231,85 @@ namespace ProjectSims.View
                 {
                     if (string.IsNullOrEmpty(AccommodationName))
                     {
-                        result = "Naziv je potreban!";
-                        return result;
+                        return "Unesite vrijednost!";
                     }
-                    else if (!Regex.IsMatch(AccommodationName, @"^[a-zA-Z][a-zA-Z0-9\,\.]+$"))
+                    else if (!Regex.IsMatch(AccommodationName, @"^[a-zA-Z0-9,. ]*$"))
                     {
-                        result = "Samo latinicna slova!";
-                        return result;
+                        return "Iskljucivo: slova[a-z] i brojevi[0-9]!";
+                    }
+                }
+                else if (columnName == "Location")
+                {
+                    if (string.IsNullOrEmpty(Location))
+                    {
+                        return "Unesite vrijednost!";
+                    }
+                    else if (!Regex.IsMatch(Location, @"^[a-zA-Z0-9,. ]*$"))
+                    {
+                        return "Iskljucivo: slova[a-z] i brojevi[0-9]!";
+                    }
+                }
+                else if (columnName == "GuestsMaximum")
+                {
+                    if (string.IsNullOrEmpty(Convert.ToString(GuestsMaximum)))
+                    {
+                        return "Unesite vrijednost!";
+                    }
+                    else if (GuestsMaximum < 1)
+                    {
+                        return "Iskljucivo brojevi veci od 0!";
                     }
                 }
 
-                else if (columnName == "GuestsMaximum")
-                {
-                    if (GuestsMaximum < 1)
-                        return "Nevalidna vrijednost!";
-                    try
-                    {
-                        Int32.Parse("GuestsMaximum");
-                    }
-                    catch (Exception e1)
-                    {
-                        return "Vrijednost mora biti veca od 0!";
-                    }
-                }
                 else if (columnName == "MinimumReservationDays")
                 {
-                    if (MinimumReservationDays < 1)
-                        return "Nevalidna vrijednost!";
-                    try
+                    if (string.IsNullOrEmpty(Convert.ToString(MinimumReservationDays)))
                     {
-                        Int32.Parse("MinimumReservationDays");
+                        return "Unesite vrijednost!";
                     }
-                    catch (Exception e2)
+                    else
                     {
-                        return "Vrijednost mora biti veca od 0!";
+                        try
+                        {
+                            if (MinimumReservationDays < 1)
+                            {
+                                return "Iskljucivo brojevi veci od 0!";
+                            }
+                        }
+                        catch (Exception e1)
+                        {
+                            return "Iskljucivo brojevi veci od 0!";
+                        }
                     }
+
                 }
+
                 else if (columnName == "DismissalDays")
                 {
-                    if (DismissalDays < 0)
-                        return "Nevalidna vrijednost!";
-                    try
+                    if (string.IsNullOrEmpty(Convert.ToString(DismissalDays)))
                     {
-                        Int32.Parse("DismissalDays");
+                        return "Unesite vrijednost!";
                     }
-                    catch (Exception e3)
+                    else
                     {
-                        return "Vrijednost mora biti 0 ili veca od 0!";
+                        try
+                        {
+                            if (Convert.ToInt32(DismissalDays) < 0)
+                            {
+                                return "Iskljucivo nenegativni brojevi!";
+                            }
+                        }
+                        catch (Exception e1)
+                        {
+                            return "Iskljucivo nenegativni brojevi!";
+                        }
                     }
                 }
                 return null;
             }
         }
 
-        private readonly string[] validatedProperties = { "AccommodationName", "GuestsMaximum", "MinimumReservationDays", "DismissalDays" };
+        private readonly string[] validatedProperties = { "AccommodationName", "Location", "GuestsMaximum", "MinimumReservationDays", "DismissalDays" };
 
         public bool IsValid
         {
@@ -290,6 +323,41 @@ namespace ProjectSims.View
                 return true;
             }
         }
-        */
+
+        private void MinimumReservationDaysTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsValidMinimumReservationDaysTextBox(((TextBox)sender).Text + e.Text);
+        }
+
+        public static bool IsValidMinimumReservationDaysTextBox(string str) 
+        {
+            int temp;
+            if(!(int.TryParse(str, out temp) && temp >= 1))
+                MessageBox.Show("Iskljucivo brojevi veci od 0!", "Minimum dana za rezervaciju", MessageBoxButton.OK, MessageBoxImage.Error);
+            return int.TryParse(str, out temp) && temp>=1;
+        }
+
+        private void GuestsMaximumTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsValidGuestsMaximumTextBox(((TextBox)sender).Text + e.Text);
+        }
+        public static bool IsValidGuestsMaximumTextBox(string str)
+        {
+            int temp;
+            if (!(int.TryParse(str, out temp) && temp >= 1))
+                MessageBox.Show("Iskljucivo brojevi veci od 0!", "Maksimalan broj gostiju", MessageBoxButton.OK, MessageBoxImage.Error);
+            return int.TryParse(str, out temp) && temp >= 1;
+        }
+        private void DismissalDaysTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsValidDismissalDaysTextBox(((TextBox)sender).Text + e.Text);
+        }
+        public static bool IsValidDismissalDaysTextBox(string str)
+        {
+            int temp;
+            if (!(int.TryParse(str, out temp) && temp >= 0))
+                MessageBox.Show("Iskljucivo nenegativni brojevi!", "Dani za otkaz", MessageBoxButton.OK, MessageBoxImage.Error);
+            return int.TryParse(str, out temp) && temp >= 0;
+        }
     }
 }

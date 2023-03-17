@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -32,8 +33,8 @@ namespace ProjectSims
         public string TypeSearch { get; set; }
         public string GuestsNumberSearch { get; set; }
         public string DaysNumberSearch { get; set; }
-        
-        
+
+
         public Guest1View()
         {
             InitializeComponent();
@@ -51,12 +52,12 @@ namespace ProjectSims
 
         //public void TextboxCity_TextChanged(object sender, TextChangedEventArgs e)
         //{
-         //   CitySearch = TextboxCity.Text;
+        //   CitySearch = TextboxCity.Text;
         //}
 
         //ublic void TextboxCountry_TextChanged(object sender, TextChangedEventArgs e)
         //{
-          //  CountrySearch = TextboxCountry.Text;
+        //  CountrySearch = TextboxCountry.Text;
         //}
         public void TextboxLocation_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -81,7 +82,7 @@ namespace ProjectSims
         public void Search_Click(object sender, RoutedEventArgs e)
         {
             Accommodations.Clear();
-            
+
 
             foreach (Accommodation accommodation in _accomodationController.GetAllAccommodations())
             {
@@ -111,7 +112,7 @@ namespace ProjectSims
         public void Update()
         {
             Accommodations.Clear();
-            foreach(var accommodation in _accomodationController.GetAllAccommodations())
+            foreach (var accommodation in _accomodationController.GetAllAccommodations())
             {
                 Accommodations.Add(accommodation);
             }

@@ -13,7 +13,7 @@ namespace ProjectSims.Model
         public int Id { get; set; }
         public string OwnerName { get; set; }
         public string Surname { get; set; }
-        public string Adress { get; set; }
+        public string Address { get; set; }
         public string Email { get; set; }
         public List<Accommodation> OwnersAccommodations { get; set; }
 
@@ -22,12 +22,12 @@ namespace ProjectSims.Model
             OwnersAccommodations = new List<Accommodation>();
         }
 
-        public Owner(int id, string ownerName, string surname, string adress, string email)
+        public Owner(int id, string ownerName, string surname, string address, string email)
         {
             Id = id;
             OwnerName = ownerName;
             Surname = Surname;
-            Adress = adress;
+            Address = address;
             Email=email;
             OwnersAccommodations = new List<Accommodation>();
         }
@@ -38,13 +38,13 @@ namespace ProjectSims.Model
             Id = Convert.ToInt32(values[0]);
             OwnerName = values[1];
             Surname = values[2];
-            Adress = values[3];
+            Address = values[3];
             Email = values[4];
         }
 
         public string[] ToCSV()
         {
-            string[] csvvalues = { Id.ToString(), OwnerName, Surname, Adress, Email };
+            string[] csvvalues = { Id.ToString(), OwnerName, Surname, Address, Email };
             return csvvalues;
         }
     }
