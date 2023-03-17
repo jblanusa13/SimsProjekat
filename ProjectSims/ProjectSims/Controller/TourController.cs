@@ -17,17 +17,17 @@ namespace ProjectSims.Controller
     {
 
         private TourDAO tours;
+        private KeyPointDAO keyPointDAO;
 
         public TourController()
         {
             tours = new TourDAO();
+            keyPointDAO = new KeyPointDAO();
         }
-
         public List<Tour> GetAllTours()
         {
             return tours.GetAll();
         }
-
         public List<Tour> GetAllToursWithSameLocation(Tour t)
         {
             List<Tour> wantedTours = new List<Tour>();
@@ -41,13 +41,28 @@ namespace ProjectSims.Controller
             }
 
             return wantedTours;
-        }
-
-        public void Create( Tour tour)
+        }        
+        public void Create(string name, string location, string description, string language, string maxNumberGuests, string startKeyPoint, string finishKeyPoint, List<string> otherKeyPoints, string tourStart, string duration, string images)
         {
-            tours.Add(tour);
-        }
+                List<int> keyPointIds = new List<int>();
+                int startId = keyPointDAO.Add(new KeyPoint(-1, startKeyPoint, KeyPointType.First));
+                keyPointIds.Add(startId);
+                foreach (string keyPoint in otherKeyPoints)
+                {
+                    int otherKeyPointId = keyPointDAO.Add(new KeyPoint(-1, keyPoint, KeyPointType.Intermediate));
+                    keyPointIds.Add(otherKeyPointId);
+                }
+                int finishId = keyPointDAO.Add(new KeyPoint(-1, finishKeyPoint, KeyPointType.Last));
+                keyPointIds.Add(finishId);
 
+                List<string> imageList = new List<string>();
+                foreach (string image in images.Split(','))
+                {
+                    imageList.Add(image);
+                }
+                Tour newTour =  new Tour(-1, name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPointIds, DateTime.Parse(tourStart), Convert.ToDouble(duration), imageList, Convert.ToInt32(maxNumberGuests));
+                tours.Add(newTour);
+        }
         public void Delete(Tour tour)
         {
             tours.Remove(tour);
@@ -57,26 +72,6 @@ namespace ProjectSims.Controller
         {
             tours.Update(tour);
         }
-        public void Save(string name, string location, string description, string language, string maxNumberGuests, string startKeyPoint, string finishKeyPoint, List<string> otherKeyPoints, string tourStarts, string duration, string images)
-        {
-            List<string> keyPoints = new List<string>();
-            keyPoints.Add(startKeyPoint);
-            keyPoints.AddRange(otherKeyPoints);
-            keyPoints.Add(finishKeyPoint);
-
-            List<string> imageList = new List<string>();
-            foreach (string image in images.Split(','))
-            {
-                imageList.Add(image);
-            }
-
-
-            foreach (string tourStart in tourStarts.Split(','))
-            {
-                tours.Save(name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPoints, DateTime.Parse(tourStart), Convert.ToDouble(duration), imageList);
-            }
-        }
-
         public void Subscribe(IObserver observer)
         {
             tours.Subscribe(observer);
