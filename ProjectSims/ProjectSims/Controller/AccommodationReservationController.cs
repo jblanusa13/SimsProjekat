@@ -20,5 +20,15 @@ namespace ProjectSims.Controller
         {
             return _reservations.GetAll();
         }
+
+        public List<DateRanges> FindAvailableDates(DateOnly firstDate, DateOnly lastDate, int daysNumber, int accommodationId)
+        {
+            return _reservations.FindAvailableDates(firstDate, lastDate, daysNumber, accommodationId);
+        }
+
+        public void Subscribe(IObserver observer)
+        {
+            _reservations.Subscribe(observer);
+        }
     }
 }

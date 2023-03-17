@@ -103,7 +103,7 @@ namespace ProjectSims
             //ContainsCity = string.IsNullOrEmpty(CitySearch) ? true : _accomodationController.FindLocation(accommodation.LocationId).City.ToLower().Contains(CitySearch.ToLower());
             //ContainsCountry = string.IsNullOrEmpty(CountrySearch) ? true : _accomodationController.FindLocation(accommodation.LocationId).Country.ToLower().Contains(CountrySearch.ToLower());
             ContainsType = string.IsNullOrEmpty(TypeSearch) ? true : accommodation.Type.ToString().ToLower().Contains(TypeSearch.ToLower());
-            GuestsNumberIsLower = string.IsNullOrEmpty(GuestsNumberSearch) ? true : Convert.ToInt32(GuestsNumberSearch) <= accommodation.GuestMaximum;
+            GuestsNumberIsLower = string.IsNullOrEmpty(GuestsNumberSearch) ? true : Convert.ToInt32(GuestsNumberSearch) <= accommodation.GuestMaximum && Convert.ToInt32(GuestsNumberSearch) >= 0;
             DaysNumberIsGreater = string.IsNullOrEmpty(DaysNumberSearch) ? true : Convert.ToInt32(DaysNumberSearch) >= accommodation.DismissalDays;
 
 
@@ -115,7 +115,7 @@ namespace ProjectSims
             SelectedAccommodation = (Accommodation)AccommodationsTable.SelectedItem;
             if (SelectedAccommodation != null)
             {
-                AccommodationReservationView reservation = new AccommodationReservationView(SelectedAccommodation, _accomodationController);
+                AccommodationReservationView reservation = new AccommodationReservationView(SelectedAccommodation);
                 reservation.Show();
             }
         }

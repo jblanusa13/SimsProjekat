@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -24,6 +25,8 @@ namespace ProjectSims.View
     /// </summary>
     public partial class AccommodationReservationView : Window, INotifyPropertyChanged, IObserver
     {
+        private int _accommodationId;
+
         private string _accommodationName;
         public string AccommodationName
         {
@@ -107,22 +110,83 @@ namespace ProjectSims.View
             }
         }
 
+        private string _firstDate;
+        public string FirstDate
+        {
+            get => _firstDate;
+            set
+            {
+                if (value != _firstDate)
+                {
+                    _firstDate = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
-        private AccommodationController _accommodationController;
+        private string _lastDate;
+        public string LastDate
+        {
+            get => _lastDate;
+            set
+            {
+                if (value != _lastDate)
+                {
+                    _lastDate = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
-        public AccommodationReservationView(Accommodation SelectedAccommodation, AccommodationController accommodationController)
+        private string _guestNumber;
+        public string GuestNumber
+        {
+            get => _guestNumber;
+            set
+            {
+                if (value != _guestNumber)
+                {
+                    _guestNumber = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string _daysNumber;
+        public string DaysNumber
+        {
+            get => _daysNumber;
+            set
+            {
+                if (value != _daysNumber)
+                {
+                    _daysNumber = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        
+        public ObservableCollection<DateRanges> AvailableDates { get; set; }
+
+        private AccommodationReservationController _reservationController;
+
+        public AccommodationReservationView(Accommodation SelectedAccommodation)
         {
             InitializeComponent();
             DataContext = this;
 
+            _accommodationId = SelectedAccommodation.Id;
             AccommodationName = SelectedAccommodation.Name;
             Location = SelectedAccommodation.Location;
             Type = SelectedAccommodation.Type.ToString();
             MaxGuests = SelectedAccommodation.GuestMaximum.ToString();
             MinDays = SelectedAccommodation.MinimumReservationDays.ToString();
 
-            _accommodationController = accommodationController;
-            _accommodationController.Subscribe(this);
+            _reservationController = new AccommodationReservationController();
+            _reservationController.Subscribe(this);
+
+           // AvailableDates = new ObservableCollection<DateRanges>();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -131,14 +195,26 @@ namespace ProjectSims.View
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
 
+        private void FindDates_Click(object sender, RoutedEventArgs e)
+        {
+            TexboxDaysNumber.Text = "0";
+            if (!string.IsNullOrEmpty(TexboxFirstDate.Text) && !string.IsNullOrEmpty(TexboxLastDate.Text) && !string.IsNullOrEmpty(TexboxDaysNumber.Text))
+            {
+                // TexboxDaysNumber.Text = "0";
+                //List<DateRanges> availableDates = new List<DateRanges>();
+                //availableDates = _reservationController.FindAvailableDates(DateOnly.Parse(FirstDate), DateOnly.Parse(LastDate), Convert.ToInt32(DaysNumber), _accommodationId);
+                AvailableDates = new ObservableCollection<DateRanges>(_reservationController.FindAvailableDates(DateOnly.Parse(FirstDate), DateOnly.Parse(LastDate), Convert.ToInt32(DaysNumber), _accommodationId));
+                //foreach(DateRanges dateRange in availableDates)
+                //{
+                 //  AvailableDates.Add(dateRange);
+                //}
+            }
         }
 
         public void Update()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
