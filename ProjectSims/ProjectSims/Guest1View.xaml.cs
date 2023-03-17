@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using ProjectSims.Controller;
 using ProjectSims.Model;
 using ProjectSims.Observer;
+using ProjectSims.View;
 
 namespace ProjectSims
 {
@@ -25,6 +26,7 @@ namespace ProjectSims
     {
         private readonly AccommodationController _accomodationController;
         public ObservableCollection<Accommodation> Accommodations { get; set; }
+        public Accommodation SelectedAccommodation { get; set; }
         public string NameSearch { get; set; }
         //public string CitySearch { get; set; }
         //public string CountrySearch { get; set; }
@@ -106,6 +108,16 @@ namespace ProjectSims
 
 
             return ContainsName && ContainsLocation && ContainsType && GuestsNumberIsLower && DaysNumberIsGreater;
+        }
+
+        public void Reservation_Click(object sender, RoutedEventArgs e)
+        {
+            SelectedAccommodation = (Accommodation)AccommodationsTable.SelectedItem;
+            if (SelectedAccommodation != null)
+            {
+                AccommodationReservationView reservation = new AccommodationReservationView(SelectedAccommodation, _accomodationController);
+                reservation.Show();
+            }
         }
 
         public void Update()

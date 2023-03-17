@@ -5,11 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims"
         mc:Ignorable="d"
-        Title="Guest1View" Height="450" Width="820" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Smestaji" Height="450" Width="820" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <DataGrid ItemsSource="{Binding Path=Accommodations, UpdateSourceTrigger=PropertyChanged}"
-                  SelectedItem="{Binding Path=SelectedAccommodation, UpdateSourceTrigger=PropertyChanged}"
-            Margin="45,99,45,38" Grid.ColumnSpan="2" AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid Name="AccommodationsTable" ItemsSource="{Binding Path=Accommodations, UpdateSourceTrigger=PropertyChanged}"
+            Margin="45,99,45,93" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" Width="150"></DataGridTextColumn>
                 <DataGridTextColumn Header="Lokacija" Binding="{Binding Location}" Width="160"></DataGridTextColumn>
@@ -26,10 +25,11 @@
         <Label Content="Broj dana:" HorizontalAlignment="Left" Margin="595,20,0,0" VerticalAlignment="Top"/>
         <TextBox Name="TextboxName" TextChanged="TextboxName_TextChanged" HorizontalAlignment="Left" Margin="25,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="20"/>
         <TextBox Name="TextboxLocation" TextChanged="TextboxLocation_TextChanged" HorizontalAlignment="Left" Margin="185,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="20"/>
-       <!-- <TextBox Name="TextboxCountry" TextChanged="TextboxCountry_TextChanged" HorizontalAlignment="Left" Margin="185,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="20"/> -->
+        <!-- <TextBox Name="TextboxCountry" TextChanged="TextboxCountry_TextChanged" HorizontalAlignment="Left" Margin="185,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="20"/> -->
         <TextBox Name="TextboxType" TextChanged="TextboxType_TextChanged" HorizontalAlignment="Left" Margin="345,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="110" Height="20"/>
         <TextBox Name="TextboxGuests" TextChanged="TextboxGuests_TextChanged" HorizontalAlignment="Left" Margin="465,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20"/>
         <TextBox Name="TextboxDays" TextChanged="TextboxDays_TextChanged" HorizontalAlignment="Left" Margin="595,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="20"/>
         <Button Content="Pretraga" Click="Search_Click" HorizontalAlignment="Left" Margin="735,45,0,0" VerticalAlignment="Top" Width="60" Height="20"/>
+        <Button Content="Rezervisi" Click="Reservation_Click" HorizontalAlignment="Left" Margin="600,340,0,0" VerticalAlignment="Top" Height="44" Width="125"/>
     </Grid>
 </Window>
