@@ -8,7 +8,13 @@
     <Compile Update="View\DetailsAndReservationTourView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\GuideStartingView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\SearchTourView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\TourTrackingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -16,10 +22,16 @@
     <Page Update="View\DetailsAndReservationTourView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="View\GuideStartingView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\SearchTourView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\CreateTourView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\TourTrackingView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

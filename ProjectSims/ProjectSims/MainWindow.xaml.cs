@@ -39,8 +39,8 @@ namespace ProjectSims
 
         private void Guide_Click(object sender, RoutedEventArgs e)
         {
-            CreateTourView createTour = new CreateTourView();
-            createTour.Show();
+            GuideStartingView startingView = new GuideStartingView();
+            startingView.Show();
         }
         private void Owner_Click(object sender, RoutedEventArgs e)
         {

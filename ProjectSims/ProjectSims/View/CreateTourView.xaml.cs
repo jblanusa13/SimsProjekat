@@ -306,7 +306,7 @@ namespace ProjectSims
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void CreateTourClick(object sender, RoutedEventArgs e)
+        private void CreateTour_Click(object sender, RoutedEventArgs e)
         {
             if (IsValid)
             {
@@ -321,7 +321,7 @@ namespace ProjectSims
             
         }
 
-        private void AddKeyPoint(object sender, RoutedEventArgs e)
+        private void AddKeyPoint_Click(object sender, RoutedEventArgs e)
         {
             if (OtherKeyPoint != "")
             {
