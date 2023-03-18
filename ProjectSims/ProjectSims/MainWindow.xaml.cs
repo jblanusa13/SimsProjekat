@@ -37,7 +37,7 @@ namespace ProjectSims
             guest2.Show();
         }
 
-        private void Guide(object sender, RoutedEventArgs e)
+        private void Guide_Click(object sender, RoutedEventArgs e)
         {
             CreateTourView createTour = new CreateTourView();
             createTour.Show();
