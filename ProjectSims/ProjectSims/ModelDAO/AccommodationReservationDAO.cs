@@ -58,32 +58,36 @@ namespace ProjectSims.ModelDAO
             bool isFirstBoundaryCase, isInRangeCase, isLastBoundaryCase;
             foreach(DateRanges unavailableDate in _unavailableDates)
             {
-                // Date range for search: 15.03-22.02, checkIn = 13.03, checkOut = 17.03
+                // Date range for search: 15.03-22.03, checkIn = 14.03, checkOut = 17.03
                 isFirstBoundaryCase = !IsInRange(unavailableDate.CheckIn, _firstDate, _lastDate) && IsInRange(unavailableDate.CheckOut, _firstDate, _lastDate);
 
-                // Date range for search: 15.03-22.02, checkIn = 15.03, checkOut = 17.03
+                // Date range for search: 15.03-22.03, checkIn = 15.03, checkOut = 17.03
                 isInRangeCase = IsInRange(unavailableDate.CheckIn, _firstDate, _lastDate) && IsInRange(unavailableDate.CheckOut, _firstDate, _lastDate);
 
-                // Date range for search: 15.03-22.02, checkIn = 20.03, checkOut = 25.03
+                // Date range for search: 15.03-22.03, checkIn = 20.03, checkOut = 25.03
                 isLastBoundaryCase = IsInRange(unavailableDate.CheckIn, _firstDate, _lastDate) && !IsInRange(unavailableDate.CheckOut, _firstDate, _lastDate);
 
                 if (isFirstBoundaryCase)
                 {
-                    foreach(DateRanges availableDate in _availableDates)
+                    bool checkOutIsInRange, containsUnavailableDates; ;
+                    foreach (DateRanges availableDate in _availableDates)
                     {
-                        if(unavailableDate.CheckOut > availableDate.CheckIn && unavailableDate.CheckOut <= availableDate.CheckOut){
+                        checkOutIsInRange = unavailableDate.CheckOut > availableDate.CheckIn && unavailableDate.CheckOut <= availableDate.CheckOut;
+                        containsUnavailableDates = availableDate.CheckIn < unavailableDate.CheckOut && availableDate.CheckOut < unavailableDate.CheckOut;
+                        if (checkOutIsInRange || containsUnavailableDates){
                             candidatesForDeletion.Add(availableDate);
                         }
                     }
                 }
                 else if (isInRangeCase)
                 {
-                    bool checkInIsInRange, checkOutIsInRange;
+                    bool checkInIsInRange, checkOutIsInRange, containsUnavailableDates;
                     foreach (DateRanges availableDate in _availableDates)
                     {
                         checkInIsInRange = unavailableDate.CheckIn >= availableDate.CheckIn && unavailableDate.CheckIn < availableDate.CheckOut;
                         checkOutIsInRange = unavailableDate.CheckOut > availableDate.CheckIn && unavailableDate.CheckOut <= availableDate.CheckOut;
-                        if(checkInIsInRange || checkOutIsInRange)
+                        containsUnavailableDates = availableDate.CheckIn > unavailableDate.CheckIn && availableDate.CheckOut < unavailableDate.CheckOut;
+                        if(checkInIsInRange || checkOutIsInRange || containsUnavailableDates)
                         {
                             candidatesForDeletion.Add(availableDate);
                         }
@@ -91,9 +95,12 @@ namespace ProjectSims.ModelDAO
                 }
                 else if (isLastBoundaryCase)
                 {
+                    bool checkInIsInRange, containsUnavailableDates;
                     foreach (DateRanges availableDate in _availableDates)
                     {
-                        if (unavailableDate.CheckIn >= availableDate.CheckIn && unavailableDate.CheckIn < availableDate.CheckOut)
+                        checkInIsInRange = unavailableDate.CheckIn >= availableDate.CheckIn && unavailableDate.CheckIn < availableDate.CheckOut;
+                        containsUnavailableDates = availableDate.CheckIn > unavailableDate.CheckIn && availableDate.CheckOut > unavailableDate.CheckIn;
+                        if (checkInIsInRange || containsUnavailableDates)
                         {
                             candidatesForDeletion.Add(availableDate);
                         }
@@ -105,7 +112,7 @@ namespace ProjectSims.ModelDAO
             {
                 _availableDates.Remove(dates);
             }
-            //_unavailableDates.Add(new DateRanges(firstDate, lastDate));
+
             return _availableDates;
         }
 
