@@ -186,7 +186,7 @@ namespace ProjectSims.View
             _reservationController = new AccommodationReservationController();
             _reservationController.Subscribe(this);
 
-           // AvailableDates = new ObservableCollection<DateRanges>();
+            AvailableDates = new ObservableCollection<DateRanges>();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -198,23 +198,40 @@ namespace ProjectSims.View
 
         private void FindDates_Click(object sender, RoutedEventArgs e)
         {
-            TexboxDaysNumber.Text = "0";
+            
             if (!string.IsNullOrEmpty(TexboxFirstDate.Text) && !string.IsNullOrEmpty(TexboxLastDate.Text) && !string.IsNullOrEmpty(TexboxDaysNumber.Text))
             {
-                // TexboxDaysNumber.Text = "0";
-                //List<DateRanges> availableDates = new List<DateRanges>();
-                //availableDates = _reservationController.FindAvailableDates(DateOnly.Parse(FirstDate), DateOnly.Parse(LastDate), Convert.ToInt32(DaysNumber), _accommodationId);
-                AvailableDates = new ObservableCollection<DateRanges>(_reservationController.FindAvailableDates(DateOnly.Parse(FirstDate), DateOnly.Parse(LastDate), Convert.ToInt32(DaysNumber), _accommodationId));
-                //foreach(DateRanges dateRange in availableDates)
-                //{
-                 //  AvailableDates.Add(dateRange);
-                //}
+                
+                List<DateRanges> availableDates = new List<DateRanges>();
+                availableDates = _reservationController.FindAvailableDates(DateOnly.Parse(TexboxFirstDate.Text), DateOnly.Parse(TexboxLastDate.Text), Convert.ToInt32(TexboxDaysNumber.Text), _accommodationId);
+                //AvailableDates = new ObservableCollection<DateRanges>(_reservationController.FindAvailableDates(DateOnly.Parse(FirstDate), DateOnly.Parse(LastDate), Convert.ToInt32(DaysNumber), _accommodationId));
+                //AvailableDates = new ObservableCollection<DateRanges>(_reservationController.FindDates());
+
+                //availableDates = _reservationController.FindDates(prviDatum, drugiDatum, _accommodationId);
+                AvailableDates.Clear();
+                foreach (DateRanges dateRange in availableDates)
+                {
+                 AvailableDates.Add(dateRange);
+                }
+                //buttonFind.IsEnabled = false;
+                //UpdateDates(availableDates);
             }
+
+            
+        }
+
+        public void UpdateDates(List<DateRanges> availableDates)
+        {
+         //   AvailableDates.Clear();
+           // foreach (DateRanges dateRange in availableDates)
+            //{
+             //   AvailableDates.Add(dateRange);
+            //}
         }
 
         public void Update()
         {
-            
+            throw new NotImplementedException();
         }
     }
 }

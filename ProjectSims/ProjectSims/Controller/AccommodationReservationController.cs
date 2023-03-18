@@ -23,7 +23,12 @@ namespace ProjectSims.Controller
 
         public List<DateRanges> FindAvailableDates(DateOnly firstDate, DateOnly lastDate, int daysNumber, int accommodationId)
         {
-            return _reservations.FindAvailableDates(firstDate, lastDate, daysNumber, accommodationId);
+             return _reservations.FindAvailableDates(firstDate, lastDate, daysNumber, accommodationId);
+        }
+
+        public List<DateRanges> FindDates(DateOnly firstDate, DateOnly lastDate, int accommodationId)
+        {
+            return _reservations.FindDates(firstDate,lastDate, accommodationId);
         }
 
         public void Subscribe(IObserver observer)

@@ -34,6 +34,15 @@ namespace ProjectSims.ModelDAO
             return _reservations;
         }
 
+        public List<DateRanges> FindDates(DateOnly firstDate, DateOnly lastDate, int accommodationId)
+        {
+            _availableDates.Clear();
+            _availableDates.Add(new DateRanges(firstDate,lastDate));
+            _availableDates.Add(new DateRanges(firstDate.AddDays(accommodationId), lastDate.AddDays(accommodationId)));
+
+            return _availableDates;
+        }
+
         // finds available dates for chosen accommodation in given date range
         public List<DateRanges> FindAvailableDates(DateOnly firstDate, DateOnly lastDate, int daysNumber, int accommodationId)
         {
@@ -43,7 +52,7 @@ namespace ProjectSims.ModelDAO
             FindAllDates(daysNumber);
             FindUnavailableDates(accommodationId);
 
-            /*
+            
             List<DateRanges> candidatesForDeletion = new List<DateRanges>();
 
             bool isFirstBoundaryCase, isInRangeCase, isLastBoundaryCase;
@@ -95,14 +104,9 @@ namespace ProjectSims.ModelDAO
             foreach (DateRanges dates in candidatesForDeletion)
             {
                 _availableDates.Remove(dates);
-            }*/
-            List<DateRanges> posaljinesto = new List<DateRanges>();
-            posaljinesto.Add(new DateRanges(DateOnly.Parse("01.01.2001."), DateOnly.Parse("01.01.2002.")));
-            if(_unavailableDates == null)
-            {
-                return posaljinesto;
             }
-            return _unavailableDates;
+            //_unavailableDates.Add(new DateRanges(firstDate, lastDate));
+            return _availableDates;
         }
 
         // checks if date is between firstDate and lastDate
@@ -118,9 +122,9 @@ namespace ProjectSims.ModelDAO
             DateOnly endDate = _firstDate.AddDays(daysNumber);
 
             while (endDate <= _lastDate) {
-                _availableDates.Add(new DateRanges(startDate, endDate));
-                startDate.AddDays(1);
-                endDate.AddDays(1);
+            _availableDates.Add(new DateRanges(startDate, endDate));
+            startDate = startDate.AddDays(1);
+            endDate = endDate.AddDays(1);
             }
         }
 
@@ -136,7 +140,6 @@ namespace ProjectSims.ModelDAO
                         _unavailableDates.Add(new DateRanges(reservation.CheckInDate, reservation.CheckOutDate));
                     }
                 }
-                return;
             }
         }
 
