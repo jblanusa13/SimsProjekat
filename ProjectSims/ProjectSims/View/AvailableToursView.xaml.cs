@@ -40,13 +40,21 @@ namespace ProjectSims.View
         }
         private void StartTour_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedTour == null)
+            if(SelectedTour != null)
             {
-                MessageBox.Show("Odaberite turu!");
+                if (tourController.StartTour(SelectedTour))
+                {
+                    TourTrackingView tourTrackingView = new TourTrackingView();
+                    tourTrackingView.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Već postoji započeta tura!");
+                }
             }
             else
             {
-                tourController.StartTour(SelectedTour);
+                MessageBox.Show("Odaberite turu!");
             }
         }
         private void UpdateAvailableTours()

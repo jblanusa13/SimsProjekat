@@ -10,6 +10,7 @@ using System.Windows;
 using System.Xml.Linq;
 using ProjectSims.Observer;
 using System.Globalization;
+using ProjectSims.View;
 
 namespace ProjectSims.Controller
 {
@@ -51,6 +52,17 @@ namespace ProjectSims.Controller
         {
             return (tour.State == TourState.Created);
         }
+        public bool ExistsStartedTour()
+        {
+            foreach(Tour availableTour in GetAllTours())
+            {
+                if(availableTour.State == TourState.Started)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         public List<Tour> GetAvailableTours()
         {
             List<Tour> availableTours = new List<Tour>();
@@ -87,9 +99,19 @@ namespace ProjectSims.Controller
                 tours.Add(newTour);
         }
 
-        public void StartTour(Tour tour)
+        public bool StartTour(Tour tour)
         {
-            tour.State = TourState.Started;
+            if(!ExistsStartedTour())
+            {
+                tour.State = TourState.Started;
+                tours.Update(tour);
+                return true;
+            }            
+             return false;           
+        }
+        public void FinishTour(Tour tour)
+        {
+            tour.State = TourState.Finished;
             tours.Update(tour);
         }
         public void Delete(Tour tour)
