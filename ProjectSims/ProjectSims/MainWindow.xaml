@@ -5,13 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="600" WindowStartupLocation="CenterScreen">
     <Grid>
-
-        <Button Content="Guest2" HorizontalAlignment="Left" Margin="532,267,0,0" VerticalAlignment="Top" Height="48" Width="133" FontSize="18" FontWeight="Bold" Click="Guest2_Click" />
-        <Button Click="Guide_Click" Content="Guide" HorizontalAlignment="Left" Margin="161,267,0,0" VerticalAlignment="Top" Height="48" Width="133" FontSize="18" FontWeight="Bold" />
-        <Button Content="Guest1" Click="Guest1_Click" HorizontalAlignment="Left" Margin="532,79,0,0" VerticalAlignment="Top" Height="54" Width="133" FontSize="18" FontWeight="Bold" />
-        <Button Content="Owner" Click="Owner_Click" HorizontalAlignment="Left" Margin="161,79,0,0" VerticalAlignment="Top" Height="54" Width="133" FontSize="18" FontWeight="Bold" />
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="#FFA7A8B2" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Label Content="Username:" HorizontalAlignment="Left" Margin="151,130,0,0" VerticalAlignment="Top" FontSize="16" Foreground="White"/>
+        <Label Content="Password:" HorizontalAlignment="Left" Margin="151,195,0,0" VerticalAlignment="Top" Width="85" Foreground="White" FontSize="16"/>
+        <TextBox x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="241,130,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="131" Height="31" FontSize="16"/>
+        <PasswordBox x:Name="PasswordTextBox" HorizontalAlignment="Left" Margin="241,195,0,0" VerticalAlignment="Top" Width="131" Height="31"/>
+        <Button Content="Sign in" HorizontalAlignment="Left" Margin="306,271,0,0" VerticalAlignment="Top" FontSize="18" Width="100" Click="SignIn"/>
 
     </Grid>
 </Window>

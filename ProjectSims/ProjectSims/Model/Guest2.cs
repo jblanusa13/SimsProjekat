@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjectSims.Model
 {
-    public class Owner : ISerializable
+    public class Guest2 : ISerializable
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -16,9 +16,11 @@ namespace ProjectSims.Model
         public string Email { get; set; }
         public int UserId { get; set; }
 
-        public Owner() { }
+        public Guest2()
+        {
 
-        public Owner(int id, string name, string surname, string adress, string email, int userId)
+        }
+        public Guest2(int id, string name, string surname, string adress, string email, int userId)
         {
             Id = id;
             Name = name;
