@@ -88,6 +88,7 @@ namespace ProjectSims.Controller
             List<Tour> wantedTours = new List<Tour>();
 
             //durationStart and durationEnd always go together (both are -1 or both aren't -1)
+            /*
             if (location != "")
             {
                 if (durationStart != -1 && language == "" && numberGuests != -1)    //1
@@ -279,8 +280,28 @@ namespace ProjectSims.Controller
                     return wantedTours;
                 }
             }
+            */
 
+            foreach (Tour tour in tours)
+            {
+                if (CheckSearchConditions(tour, location, durationStart, durationEnd, language, numberGuests))
+                {
+                    wantedTours.Add(tour);
+                }
+            }
             return wantedTours;
+        }
+
+        public bool CheckSearchConditions(Tour tour, string location, double durationStart, double durationEnd, string language, int numberGuests)
+        {
+            bool ContainsLocation, ContainsLanguage, NumberGuestsIsLower, DurationBetween;
+
+            ContainsLocation = (location == "") ? true : (tour.Location.ToLower()).Contains(location.ToLower());
+            ContainsLanguage = (language == "") ? true : (tour.Language.ToLower()).Contains(language.ToLower());
+            NumberGuestsIsLower = (numberGuests == -1) ? true : numberGuests <= tour.AvailableSeats;
+            DurationBetween = (durationStart == -1) ? true : durationStart <= tour.Duration && tour.Duration <= durationEnd;
+
+            return ContainsLocation && ContainsLanguage && NumberGuestsIsLower && DurationBetween;
         }
 
         //if text empty return -1

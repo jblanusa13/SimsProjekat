@@ -88,7 +88,7 @@ namespace ProjectSims
             {
                 if(durationStart > durationEnd)
                 {
-                    MessageBox.Show("The first duration fiels must be less than the second!");
+                    MessageBox.Show("The first duration fields must be less than the second!");
                     return;
                 }
             }
@@ -113,5 +113,6 @@ namespace ProjectSims
                 ListTour.Add(tour);
             }
         }
+            
     }
 }
