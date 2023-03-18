@@ -41,7 +41,30 @@ namespace ProjectSims.Controller
             }
 
             return wantedTours;
-        }        
+        }
+        public bool IsToday(Tour tour)
+        {
+            DateTime tourDate = tour.StartOfTheTour.Date;
+            return (DateTime.Today == tourDate);
+        }
+        public bool IsCreated(Tour tour)
+        {
+            return (tour.State == TourState.Created);
+        }
+        public List<Tour> GetAvailableTours()
+        {
+            List<Tour> availableTours = new List<Tour>();
+
+            foreach (Tour tour in tours.GetAll())
+            {
+                if (IsCreated(tour) && IsToday(tour))
+                {
+                    availableTours.Add(tour);
+                }
+            }
+
+            return availableTours;
+        }
         public void Create(string name, string location, string description, string language, string maxNumberGuests, string startKeyPoint, string finishKeyPoint, List<string> otherKeyPoints, string tourStart, string duration, string images)
         {
                 List<int> keyPointIds = new List<int>();
@@ -62,6 +85,12 @@ namespace ProjectSims.Controller
                 }
                 Tour newTour =  new Tour(-1, name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPointIds, DateTime.Parse(tourStart), Convert.ToDouble(duration), imageList, Convert.ToInt32(maxNumberGuests));
                 tours.Add(newTour);
+        }
+
+        public void StartTour(Tour tour)
+        {
+            tour.State = TourState.Started;
+            tours.Update(tour);
         }
         public void Delete(Tour tour)
         {

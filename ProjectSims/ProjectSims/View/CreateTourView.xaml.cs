@@ -241,9 +241,9 @@ namespace ProjectSims
                     if (string.IsNullOrEmpty(TourStarts))
                         return "Unesite datum i vreme početka ture!";
                     DateTime result;
-                    foreach(string tourStart in TourStarts.Split(',')){
+                    foreach (string tourStart in TourStarts.Split(',')){
                         if (!DateTime.TryParse(tourStart, out result))
-                            return "Format nije ispravan!";
+                            return "Format nije ispravan!";                         
                     }
                 }
                 else if (columnName == "StartKeyPoint")

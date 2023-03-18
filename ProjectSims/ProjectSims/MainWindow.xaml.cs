@@ -64,8 +64,8 @@ namespace ProjectSims
                     Guide guide = guideFile.GetByUserId(user.Id);
                     if(guide!= null)
                     {
-                        CreateTourView createTour = new CreateTourView();
-                        createTour.Show();
+                        GuideStartingView startingView = new GuideStartingView();
+                        startingView.Show();
                     }
 
                     Guest2 guest2 = guest2File.GetByUserId(user.Id);
