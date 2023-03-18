@@ -29,12 +29,14 @@ namespace ProjectSims
         private OwnerController ownerController;
 
         private readonly Guest1FileHandler guest1File;
+        private readonly Guest2FileHandler guest2File;
         public MainWindow()
         {
             InitializeComponent();
             userFile = new UserFileHandler();
             ownerController = new OwnerController();
             guest1File = new Guest1FileHandler();
+            guest2File = new Guest2FileHandler();
         }
 
         public void Guest1_Click(object sender, RoutedEventArgs e)
@@ -80,6 +82,13 @@ namespace ProjectSims
                     {
                         Guest1View guest1View = new Guest1View();
                         guest1View.Show();
+                    }
+
+                    Guest2 guest2 = guest2File.GetByUserId(user.Id);
+                    if(guest2 != null)
+                    {
+                        SearchTourView guest2View = new SearchTourView();
+                        guest2View.Show();
                     }
                 }
                 else
