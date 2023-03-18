@@ -23,9 +23,9 @@ using ProjectSims.Observer;
 namespace ProjectSims
 {
     /// <summary>
-    /// Interaction logic for DetailsTourWindow.xaml
+    /// Interaction logic for DetailsAndReservationTourView.xaml
     /// </summary>
-    public partial class DetailsTourWindow : Window
+    public partial class DetailsAndReservationTourView : Window
     {
         private TourController tourController;
 
@@ -36,7 +36,9 @@ namespace ProjectSims
 
         public ObservableCollection<Tour> TourList { get; set; }
         public Tour SelectedTour { get; set; }
-        public DetailsTourWindow(Tour tourSelected)
+
+        public Image image { get; set; }
+        public DetailsAndReservationTourView(Tour tourSelected)
         {
             InitializeComponent();
             DataContext = this;
@@ -78,34 +80,31 @@ namespace ProjectSims
             DateStartTextBox.Text = tourSelected.StartOfTheTour.ToString();
             DurationTextBox.Text = tourSelected.Duration.ToString();
 
-
-            //dodavanje slike uz pomoc url-a
-            /*
-            WebClient w = new WebClient();
-            byte[] imageByte = w.DownloadData(tourSelected.Images);
-            MemoryStream stream = new MemoryStream(imageByte);
-
-            Image im = Image.FromStream(stream);
-            */
-
-            
-            /*var image = new Image();
-
+            //show picture in listview
             foreach (var fullFilePath in tourSelected.Images)
             {
                 BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
-                bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
-                bitmap.EndInit();
+                if(Uri.IsWellFormedUriString(fullFilePath, UriKind.Absolute))
+                {
+                    bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
+                    bitmap.EndInit();
 
-                image.Source = bitmap;
+                    image = new Image();
 
-                image.Width = 100;
-                image.Height = 80;
+                    image.Source = bitmap;
 
-                ImageList.Items.Add(bitmap);
-            }*/
-            
+                    image.Width = 350;
+                    image.Height = 200;
+
+                    ImageList.Items.Add(image);
+                }
+                else
+                {
+                    ImageList.Items.Add("The format of the URL could not be determined.");
+                }
+            }
+           
             tourController = new TourController();
             TourList = new ObservableCollection<Tour>(tourController.GetAllToursWithSameLocation(tourSelected));
 
