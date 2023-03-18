@@ -8,7 +8,7 @@
         Title="Smestaji" Height="450" Width="820" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <DataGrid Name="AccommodationsTable" ItemsSource="{Binding Path=Accommodations, UpdateSourceTrigger=PropertyChanged}"
-            Margin="45,99,45,93" AutoGenerateColumns="False" IsReadOnly="True">
+            Margin="45,99,45,93" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" Width="150"></DataGridTextColumn>
                 <DataGridTextColumn Header="Lokacija" Binding="{Binding Location}" Width="160"></DataGridTextColumn>

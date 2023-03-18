@@ -13,6 +13,10 @@ namespace ProjectSims.ModelDAO
     {
         private AccommodationReservationFileHandler _reservationFileHandler;
         private List<AccommodationReservation> _reservations;
+
+        private Guest1FileHandler _guest1FileHandler;
+        private List<Guest1> _guests;
+
         private List<DateRanges> _availableDates;
         private List<DateRanges> _unavailableDates;
         private DateOnly _firstDate;
@@ -20,15 +24,27 @@ namespace ProjectSims.ModelDAO
 
         private readonly List<IObserver> _observers;
 
+
+
         public AccommodationReservationDAO()
         {
             _reservationFileHandler = new AccommodationReservationFileHandler();
             _reservations = _reservationFileHandler.Load();
+
+            _guest1FileHandler = new Guest1FileHandler();
+            _guests = _guest1FileHandler.Load();
+
             _availableDates = new List<DateRanges>();
             _unavailableDates = new List<DateRanges>();
 
             _observers = new List<IObserver>();
         }
+
+        public Guest1 GetGuestByUsername(string username)
+        {
+            return _guests.Find(g => g.Username == username);       
+        }
+
         public List<AccommodationReservation> GetAll()
         {
             return _reservations;

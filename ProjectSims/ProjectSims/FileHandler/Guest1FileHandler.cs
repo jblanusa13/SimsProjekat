@@ -8,7 +8,7 @@ using ProjectSims.Serializer;
 
 namespace ProjectSims.FileHandler
 {
-    class Guest1FileHandler 
+    public class Guest1FileHandler 
     {
         private const string FilePath = "../../../Resources/Data/guest1.csv";
 

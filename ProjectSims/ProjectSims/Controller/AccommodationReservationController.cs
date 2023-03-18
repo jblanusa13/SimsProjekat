@@ -16,6 +16,12 @@ namespace ProjectSims.Controller
         {
             _reservations = new AccommodationReservationDAO();
         }
+
+        public Guest1 GetGuestByUsername(string username)
+        {
+            return _reservations.GetGuestByUsername(username);
+        }
+
         public List<AccommodationReservation> GetAllReservations()
         {
             return _reservations.GetAll();

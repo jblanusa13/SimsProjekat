@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,7 +24,7 @@ namespace ProjectSims.View
     /// <summary>
     /// Interaction logic for AccommodationReservationView.xaml
     /// </summary>
-    public partial class AccommodationReservationView : Window, INotifyPropertyChanged, IObserver
+    public partial class AccommodationReservationView : Window, INotifyPropertyChanged, IObserver, IDataErrorInfo
     {
         private int _accommodationId;
 
@@ -199,9 +200,8 @@ namespace ProjectSims.View
         private void FindDates_Click(object sender, RoutedEventArgs e)
         {
             
-            if (!string.IsNullOrEmpty(TexboxFirstDate.Text) && !string.IsNullOrEmpty(TexboxLastDate.Text) && !string.IsNullOrEmpty(TexboxDaysNumber.Text))
+            if (FirstDate != null && LastDate != null && DaysNumber != null)
             {
-                
                 List<DateRanges> availableDates = new List<DateRanges>();
                 availableDates = _reservationController.FindAvailableDates(DateOnly.Parse(TexboxFirstDate.Text), DateOnly.Parse(TexboxLastDate.Text), Convert.ToInt32(TexboxDaysNumber.Text), _accommodationId);
                 //AvailableDates = new ObservableCollection<DateRanges>(_reservationController.FindAvailableDates(DateOnly.Parse(FirstDate), DateOnly.Parse(LastDate), Convert.ToInt32(DaysNumber), _accommodationId));
@@ -216,22 +216,107 @@ namespace ProjectSims.View
                 //buttonFind.IsEnabled = false;
                 //UpdateDates(availableDates);
             }
-
-            
         }
-
-        public void UpdateDates(List<DateRanges> availableDates)
+        private void Confirm_Click(object sender, RoutedEventArgs e)
         {
-         //   AvailableDates.Clear();
-           // foreach (DateRanges dateRange in availableDates)
-            //{
-             //   AvailableDates.Add(dateRange);
-            //}
+
         }
+
+
 
         public void Update()
         {
             throw new NotImplementedException();
+        }
+
+        // validation
+        private Regex _DateRegex = new Regex("(0?[1-9]|[12][0-9]|3[01])\\.(0?[1-9]|1[012])\\.[1-2][0-9]{3}\\.?$");
+        private Regex _NumberRegex = new Regex("[1-9]+");
+
+        public string Error => null;
+        public string this[string columnName]
+        {
+            get
+            {
+                if(columnName == "Username")
+                {
+                    if (string.IsNullOrEmpty(Username))
+                        return "Obavezno polje";
+
+                    if (_reservationController.GetGuestByUsername(Username) == null)
+                    {
+                        return "Korisnicko ime ne postoji";
+                    }
+                }
+                else if(columnName == "FirstDate")
+                {
+                    if (string.IsNullOrEmpty(FirstDate))
+                        return "Obavezno polje";
+
+                    Match match = _DateRegex.Match(FirstDate);
+                    if (!match.Success)
+                        return "Datum je u formatu: DD.MM.YYYY";
+                }
+                else if (columnName == "LastDate")
+                {
+                    if (string.IsNullOrEmpty(LastDate))
+                        return "Obavezno polje";
+
+                    Match match = _DateRegex.Match(LastDate);
+                    if (!match.Success)
+                        return "Datum je u formatu: DD.MM.YYYY";
+
+                    if (DateOnly.Parse(LastDate) <= DateOnly.Parse(FirstDate))
+                    {
+                        return "Mora biti veci od pocetnog datuma!";
+                    }
+                }
+                else if(columnName == "DaysNumber")
+                {
+                    if (string.IsNullOrEmpty(DaysNumber))
+                        return "Obavezno polje";
+
+                    Match match = _NumberRegex.Match(DaysNumber);
+                    if (!match.Success)
+                        return "Broj dana je prirodan broj";
+
+                    if(Convert.ToInt32(DaysNumber) < Convert.ToInt32(MinDays))
+                    {
+                        return "Mora biti veci od min dozvoljenog broja dana";
+                    }
+                }
+                else if(columnName == "GuestNumber")
+                {
+                    if (string.IsNullOrEmpty(GuestNumber))
+                        return "Obavezno polje";
+
+                    Match match = _NumberRegex.Match(GuestNumber);
+                    if (!match.Success)
+                        return "Broj gostiju je prirodan broj";
+
+                    if(Convert.ToInt32(GuestNumber) > Convert.ToInt32(MaxGuests))
+                    {
+                        return "Mora biti manji od maks dozvoljenog broja gostiju";
+                    }
+                }
+                return null;
+            }
+        }
+
+        private readonly string[] _validiranaObelezja = { "Username", "FirstDate" , "LastDate", "DaysNumber", "GuestNumber" };
+
+
+        public bool IsValid
+        {
+            get
+            {
+                foreach (var obelezje in _validiranaObelezja)
+                {
+                    if (this[obelezje] != null)
+                        return false;
+                }
+                return true;
+            }
         }
     }
 }
