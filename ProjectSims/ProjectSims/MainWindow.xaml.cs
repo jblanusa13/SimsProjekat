@@ -1,4 +1,7 @@
-﻿using ProjectSims.View;
+﻿using ProjectSims.Controller;
+using ProjectSims.FileHandler;
+using ProjectSims.Model;
+using ProjectSims.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +24,14 @@ namespace ProjectSims
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly UserFileHandler userFile;
+
+        private OwnerController ownerController;
         public MainWindow()
         {
             InitializeComponent();
+            userFile = new UserFileHandler();
+            ownerController = new OwnerController();
         }
 
         public void Guest1_Click(object sender, RoutedEventArgs e)
@@ -46,6 +54,33 @@ namespace ProjectSims
         {
             AccommodationRegistrationView accommodationRegistrationView = new AccommodationRegistrationView();
             accommodationRegistrationView.Show();
+        }
+
+        private void SignIn(object sender, RoutedEventArgs e)
+        {
+            User user = userFile.GetByUsername(UsernameTextBox.Text);
+            if (user != null)
+            {
+                if (user.Password == PasswordTextBox.Password)
+                {
+                    foreach(Owner owner in ownerController.GetAllOwners())
+                    {
+                        if(user.Id == owner.Id)
+                        {
+                            AccommodationRegistrationView accommodationRegistrationView = new AccommodationRegistrationView();
+                            accommodationRegistrationView.Show();
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Wrong password!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Wrong username!");
+            }
         }
     }
 }
