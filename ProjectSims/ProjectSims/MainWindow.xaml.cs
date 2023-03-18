@@ -40,28 +40,6 @@ namespace ProjectSims
             guideFile = new GuideFileHandler();
         }
 
-        public void Guest1_Click(object sender, RoutedEventArgs e)
-        {
-            Guest1View guest1 = new Guest1View();
-            guest1.Show();
-        }
-        private void Guest2_Click(object sender, RoutedEventArgs e)
-        {
-            SearchTourView guest2 = new SearchTourView();
-            guest2.Show();
-        }
-
-        private void Guide(object sender, RoutedEventArgs e)
-        {
-            CreateTourView createTour = new CreateTourView();
-            createTour.Show();
-        }
-        private void Owner_Click(object sender, RoutedEventArgs e)
-        {
-            AccommodationRegistrationView accommodationRegistrationView = new AccommodationRegistrationView();
-            accommodationRegistrationView.Show();
-        }
-
         private void SignIn(object sender, RoutedEventArgs e)
         {
             User user = userFile.GetByUsername(UsernameTextBox.Text);
