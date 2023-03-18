@@ -26,17 +26,18 @@ namespace ProjectSims
     {
         private readonly UserFileHandler userFile;
 
-        private OwnerController ownerController;
-
+        private readonly OwnerFileHandler ownerFile;
         private readonly Guest1FileHandler guest1File;
         private readonly Guest2FileHandler guest2File;
+        private readonly GuideFileHandler guideFile;
         public MainWindow()
         {
             InitializeComponent();
             userFile = new UserFileHandler();
-            ownerController = new OwnerController();
+            ownerFile = new OwnerFileHandler();
             guest1File = new Guest1FileHandler();
             guest2File = new Guest2FileHandler();
+            guideFile = new GuideFileHandler();
         }
 
         public void Guest1_Click(object sender, RoutedEventArgs e)
@@ -68,13 +69,11 @@ namespace ProjectSims
             {
                 if (user.Password == PasswordTextBox.Password)
                 {
-                    foreach(Owner owner in ownerController.GetAllOwners())
+                    Owner owner = ownerFile.GetByUserId(user.Id);
+                    if(owner != null)
                     {
-                        if(user.Id == owner.Id)
-                        {
-                            AccommodationRegistrationView accommodationRegistrationView = new AccommodationRegistrationView();
-                            accommodationRegistrationView.Show();
-                        }
+                        AccommodationRegistrationView accommodationRegistrationView = new AccommodationRegistrationView();
+                        accommodationRegistrationView.Show();
                     }
 
                     Guest1 guest1 = guest1File.GetByUserId(user.Id);
@@ -82,6 +81,13 @@ namespace ProjectSims
                     {
                         Guest1View guest1View = new Guest1View();
                         guest1View.Show();
+                    }
+
+                    Guide guide = guideFile.GetByUserId(user.Id);
+                    if(guide!= null)
+                    {
+                        CreateTourView createTour = new CreateTourView();
+                        createTour.Show();
                     }
 
                     Guest2 guest2 = guest2File.GetByUserId(user.Id);
