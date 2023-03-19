@@ -44,8 +44,8 @@ namespace ProjectSims
         }
         private void Owner_Click(object sender, RoutedEventArgs e)
         {
-            AccommodationRegistrationView accommodationRegistrationView = new AccommodationRegistrationView();
-            accommodationRegistrationView.Show();
+            OwnerView ownerView = new OwnerView();
+            ownerView.Show();
         }
     }
 }

@@ -51,7 +51,18 @@ namespace ProjectSims.Model
         }
         public string[] ToCSV()
         {
-            string[] csvValues ={ Id.ToString(), Name, Location, Type.ToString(), GuestMaximum.ToString(), MinimumReservationDays.ToString(), DismissalDays.ToString(), Images, IdOwner.ToString() };
+            string[] csvValues =
+            { 
+                Id.ToString(), 
+                Name, 
+                Location,
+                Type.ToString(),
+                GuestMaximum.ToString(),
+                MinimumReservationDays.ToString(),
+                DismissalDays.ToString(),
+                Images,
+                IdOwner.ToString() 
+            };
             return csvValues;
         }
     }

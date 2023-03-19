@@ -24,7 +24,7 @@ namespace ProjectSims
     /// </summary>
     public partial class Guest1View : Window, IObserver
     {
-        private readonly AccommodationController _accomodationController;
+        private readonly AccommodationController _accommodationController;
         public ObservableCollection<Accommodation> Accommodations { get; set; }
         public Accommodation SelectedAccommodation { get; set; }
         public string NameSearch { get; set; }
@@ -41,9 +41,9 @@ namespace ProjectSims
             InitializeComponent();
             DataContext = this;
 
-            _accomodationController = new AccommodationController();
-            _accomodationController.Subscribe(this);
-            Accommodations = new ObservableCollection<Accommodation>(_accomodationController.GetAllAccommodations());
+            _accommodationController = new AccommodationController();
+            _accommodationController.Subscribe(this);
+            Accommodations = new ObservableCollection<Accommodation>(_accommodationController.GetAllAccommodations());
         }
 
         public void TextboxName_TextChanged(object sender, TextChangedEventArgs e)
@@ -85,7 +85,7 @@ namespace ProjectSims
             Accommodations.Clear();
             
 
-            foreach (Accommodation accommodation in _accomodationController.GetAllAccommodations())
+            foreach (Accommodation accommodation in _accommodationController.GetAllAccommodations())
             {
                 if (CheckSearchConditions(accommodation))
                 {
@@ -115,7 +115,7 @@ namespace ProjectSims
             SelectedAccommodation = (Accommodation)AccommodationsTable.SelectedItem;
             if (SelectedAccommodation != null)
             {
-                AccommodationReservationView reservation = new AccommodationReservationView(SelectedAccommodation, _accomodationController);
+                AccommodationReservationView reservation = new AccommodationReservationView(SelectedAccommodation, _accommodationController);
                 reservation.Show();
             }
         }
@@ -123,7 +123,7 @@ namespace ProjectSims
         public void Update()
         {
             Accommodations.Clear();
-            foreach(var accommodation in _accomodationController.GetAllAccommodations())
+            foreach(var accommodation in _accommodationController.GetAllAccommodations())
             {
                 Accommodations.Add(accommodation);
             }

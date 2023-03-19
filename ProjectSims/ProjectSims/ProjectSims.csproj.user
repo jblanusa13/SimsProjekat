@@ -14,6 +14,12 @@
     <Compile Update="View\AccommodationReservationView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\GuestRatingtView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\OwnerView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="DetailsTourWindow.xaml">
@@ -23,6 +29,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\CreateTourView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\GuestRatingtView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\OwnerView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
