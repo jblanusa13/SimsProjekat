@@ -42,9 +42,10 @@ namespace ProjectSims.View
         {
             if(SelectedTour != null)
             {
+                Tour startedTour = (Tour)SelectedTour;
                 if (tourController.StartTour(SelectedTour))
                 {
-                    TourTrackingView tourTrackingView = new TourTrackingView();
+                    TourTrackingView tourTrackingView = new TourTrackingView(startedTour);
                     tourTrackingView.Show();
                 }
                 else

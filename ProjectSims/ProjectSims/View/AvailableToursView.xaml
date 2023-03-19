@@ -15,7 +15,7 @@
                  <DataGrid.Columns>
                     <DataGridTextColumn Header="Dostupne ture" Binding="{Binding Name}" Width="400"/>
                     <DataGridTextColumn Header="Početak" Binding="{Binding StartOfTheTour}" Width="200"/> 
-            </DataGrid.Columns>
+                </DataGrid.Columns>
              </DataGrid>
         <Button Click="StartTour_Click" Content="Započni turu" HorizontalAlignment="Left" Margin="550,300,0,0" VerticalAlignment="Top" Height="30" Width="100" Background="#061950" Foreground="White" FontWeight="Bold"/>
     </Grid>

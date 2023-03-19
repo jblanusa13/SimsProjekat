@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjectSims.Model
 {
-    public enum TourState { Created, Started, Finished}
+    public enum TourState { Inactive, Active, Finished}
     public class Tour : ISerializable
     {
         public int Id { get; set; }
@@ -44,7 +44,7 @@ namespace ProjectSims.Model
             Duration = duration;
             Images = images;
             AvailableSeats = availableSeats;
-            State = TourState.Created;
+            State = TourState.Inactive;
         }
         public void FromCSV(string[] values)
         {

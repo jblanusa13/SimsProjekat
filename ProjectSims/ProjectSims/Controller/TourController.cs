@@ -48,15 +48,15 @@ namespace ProjectSims.Controller
             DateTime tourDate = tour.StartOfTheTour.Date;
             return (DateTime.Today == tourDate);
         }
-        public bool IsCreated(Tour tour)
+        public bool IsInactive(Tour tour)
         {
-            return (tour.State == TourState.Created);
+            return (tour.State == TourState.Inactive);
         }
-        public bool ExistsStartedTour()
+        public bool ExistsActiveTour()
         {
             foreach(Tour availableTour in GetAllTours())
             {
-                if(availableTour.State == TourState.Started)
+                if(availableTour.State == TourState.Active)
                 {
                     return true;
                 }
@@ -69,13 +69,26 @@ namespace ProjectSims.Controller
 
             foreach (Tour tour in tours.GetAll())
             {
-                if (IsCreated(tour) && IsToday(tour))
+                if (IsInactive(tour) && IsToday(tour))
                 {
                     availableTours.Add(tour);
                 }
             }
 
             return availableTours;
+        }
+        public List<KeyPoint> GetTourKeyPoints(Tour tour)
+        {
+            List<KeyPoint> allKeyPoints = keyPointDAO.GetAll();
+            List<KeyPoint> tourKeyPoints = new List<KeyPoint>();
+            foreach (KeyPoint keyPoint in allKeyPoints)
+            {
+                if (tour.KeyPointIds.Contains(keyPoint.Id))
+                {
+                    tourKeyPoints.Add(keyPoint);
+                }
+            }
+            return tourKeyPoints;
         }
         public void Create(string name, string location, string description, string language, string maxNumberGuests, string startKeyPoint, string finishKeyPoint, List<string> otherKeyPoints, string tourStart, string duration, string images)
         {
@@ -101,9 +114,9 @@ namespace ProjectSims.Controller
 
         public bool StartTour(Tour tour)
         {
-            if(!ExistsStartedTour())
+            if(!ExistsActiveTour())
             {
-                tour.State = TourState.Started;
+                tour.State = TourState.Active;
                 tours.Update(tour);
                 return true;
             }            
