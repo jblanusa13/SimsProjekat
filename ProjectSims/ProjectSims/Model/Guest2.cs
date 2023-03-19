@@ -4,12 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
-using ProjectSims.Serializer;
 
 namespace ProjectSims.Model
 {
-    public class Guest1 : ISerializable
+    public class Guest2 : ISerializable
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -18,11 +16,11 @@ namespace ProjectSims.Model
         public string Email { get; set; }
         public int UserId { get; set; }
 
-        public Guest1()
+        public Guest2()
         {
 
         }
-        public Guest1(int id, string name, string surname, string adress, string email, int userId)
+        public Guest2(int id, string name, string surname, string adress, string email, int userId)
         {
             Id = id;
             Name = name;

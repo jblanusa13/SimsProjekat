@@ -19,15 +19,17 @@ using System.Windows.Shapes;
 namespace ProjectSims
 {
     /// <summary>
-    /// Interaction logic for TourDisplayAndSearchView.xaml
+    /// Interaction logic for SearchTourView.xaml
     /// </summary>
-    public partial class TourDisplayAndSearchView : Window , IObserver
+    public partial class SearchTourView : Window , IObserver
     {
         private TourController tourController;
 
         public  ObservableCollection<Tour> ListTour { get; }
         public Tour SelectedTour { get; set; }
-        public TourDisplayAndSearchView()
+
+        public Guest2 guest2 { get; set; }
+        public SearchTourView(Guest2 g)
         {
             InitializeComponent();
             DataContext = this;
@@ -35,7 +37,7 @@ namespace ProjectSims
             tourController = new TourController();
             tourController.Subscribe(this);           
             ListTour = new ObservableCollection<Tour>(tourController.GetAllTours());
-            
+            guest2 = g;
 
         }
 
@@ -57,7 +59,7 @@ namespace ProjectSims
         {
             if (SelectedTour != null)
             {
-                var see_more = new DetailsTourWindow(SelectedTour);
+                var see_more = new DetailsAndReservationTourView(SelectedTour,guest2);
                 see_more.Show();
             }
             else
@@ -70,34 +72,33 @@ namespace ProjectSims
         private void Search_Click(object sender, RoutedEventArgs e)
         {
             String location = LocationTextBox.Text;
-
-            int duration;
-            //Validation wrong input
-            if (string.IsNullOrEmpty(DurationTextBox.Text))
-            {
-                duration = -1;
-            }
-            else if( !int.TryParse(DurationTextBox.Text, out duration) )
-            {
-                MessageBox.Show("Wrong input! Duration tour must be a integer!");
-                return;
-            }
-
             String language = LanguageTextBox.Text;
 
-            int numberGuests;
-            //Validation wrong input
-            if (string.IsNullOrEmpty(NumberGuestsTextBox.Text))
+            double durationStart = tourController.ConvertToDouble(DurationStartTextBox.Text);
+            if(durationStart == -2) return;    
+            
+            double durationEnd = tourController.ConvertToDouble(DurationEndTextBox.Text);
+            if(durationEnd == -2) return;
+                       
+            //both duration fields must be entered
+            if((durationStart == -1 && durationEnd != -1) || (durationStart != -1 && durationEnd == -1))
             {
-                numberGuests = -1;
-            }
-            else if( !int.TryParse(NumberGuestsTextBox.Text, out numberGuests) )
-            {
-                MessageBox.Show("Wrong input! Number guests on tour must be a integer!");
+                MessageBox.Show("Both duration fields must be entered for search tours!");
                 return;
+            }else if(durationStart != -1 && durationEnd != -1)
+            //if both fields are entered the first must be less than the second
+            {
+                if(durationStart > durationEnd)
+                {
+                    MessageBox.Show("The first duration fields must be less than the second!");
+                    return;
+                }
             }
 
-            if (location == "" && duration == -1 && language == "" && numberGuests == -1)         //16. case (nothing entered)
+            int numberGuests = tourController.ConvertToInt(NumberGuestsTextBox.Text);
+            if (numberGuests == -2) return;
+            
+            if (location == "" && durationStart == -1 && language == "" && numberGuests == -1)         //16. case (nothing entered)
             {
                 MessageBox.Show("You must enter some information for search!");
                 ListTour.Clear();
@@ -107,15 +108,20 @@ namespace ProjectSims
                 }
                 return;
             }
-
-
-
-            List<Tour> wantedTours = tourController.SearchTours(location,duration,language,numberGuests);
+            List<Tour> wantedTours = tourController.SearchTours(location,durationStart,durationEnd,language,numberGuests);
             ListTour.Clear();
             foreach (Tour tour in wantedTours)
             {
                 ListTour.Add(tour);
             }
+        }
+
+        private void LogOut(object sender, RoutedEventArgs e)
+        {
+            var startView = new MainWindow();
+            startView.Show();
+            Close();
+
         }
     }
 }

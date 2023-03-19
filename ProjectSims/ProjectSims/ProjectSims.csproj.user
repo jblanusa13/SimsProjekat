@@ -5,10 +5,10 @@
     <Compile Update="View\CreateTourView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="DetailsTourWindow.xaml.cs">
+    <Compile Update="View\DetailsAndReservationTourView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="TourDisplayAndSearchView.xaml.cs">
+    <Compile Update="View\SearchTourView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\AccommodationReservationView.xaml.cs">
@@ -22,10 +22,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="DetailsTourWindow.xaml">
+    <Page Update="View\DetailsAndReservationTourView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="TourDisplayAndSearchView.xaml">
+    <Page Update="View\SearchTourView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\CreateTourView.xaml">
