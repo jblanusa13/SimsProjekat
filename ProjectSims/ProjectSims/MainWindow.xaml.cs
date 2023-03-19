@@ -73,6 +73,7 @@ namespace ProjectSims
                     {
                         SearchTourView guest2View = new SearchTourView(guest2);
                         guest2View.Show();
+                        Close();
                     }
                 }
                 else

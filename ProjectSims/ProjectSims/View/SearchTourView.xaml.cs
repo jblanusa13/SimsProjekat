@@ -115,6 +115,13 @@ namespace ProjectSims
                 ListTour.Add(tour);
             }
         }
-            
+
+        private void LogOut(object sender, RoutedEventArgs e)
+        {
+            var startView = new MainWindow();
+            startView.Show();
+            Close();
+
+        }
     }
 }
