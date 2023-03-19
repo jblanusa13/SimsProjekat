@@ -135,7 +135,6 @@ namespace ProjectSims.View
             {
                 GuestRatingtView guestRatingtView = new GuestRatingtView(SelectedGuestAccommodation, _guestAccommodationController);
                 guestRatingtView.Show();
-                Update();
             }
             else
             {

@@ -122,7 +122,7 @@ namespace ProjectSims.View
                 }
             }
         }
-
+        
         private GuestAccommodationController _guestAccommodationController;
         public GuestRatingtView(GuestAccommodation selectedGuestAccommodation, GuestAccommodationController guestAccommodationController)
         {
@@ -135,14 +135,17 @@ namespace ProjectSims.View
             Type = selectedGuestAccommodation.Type;
             CheckInDate = selectedGuestAccommodation.CheckInDate;
             CheckOutDate = selectedGuestAccommodation.CheckOutDate;
+
             // CheckInDate = DateOnly.ParseExact(selectedGuestAccommodation.CheckInDate.ToString(), "MM/dd/yyyy");
             //CheckOutDate = selectedGuestAccommodation.CheckOutDate;
-            //CheckOutDateTextBox.Text = selectedGuestAccommodation.CheckOutDate.ToString();
+            CheckOutDateTextBox.Text = selectedGuestAccommodation.CheckOutDate.ToString();
+            CheckInDateTextBox.Text = selectedGuestAccommodation.CheckInDate.ToString();
             //DateOnly.TryParseExact(CheckInDateTextBox.Text, "MM/dd/yyyy", out DateOnly result);
             //CheckInDate = result;
 
             _guestAccommodationController = guestAccommodationController;
             _guestAccommodationController.Subscribe(this);
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

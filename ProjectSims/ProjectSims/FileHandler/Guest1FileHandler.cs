@@ -23,6 +23,15 @@ namespace ProjectSims.FileHandler
             guests1 = _serializer.FromCSV(FilePath);
         }
 
+        public List<Guest1> Load()
+        {
+            return _serializer.FromCSV(FilePath);
+        }
+
+        public void Save(List<Guest1> guests1)
+        {
+            _serializer.ToCSV(FilePath, guests1);
+        }
         public Guest1 GetByUserId(int id)
         {
             guests1 = _serializer.FromCSV(FilePath);

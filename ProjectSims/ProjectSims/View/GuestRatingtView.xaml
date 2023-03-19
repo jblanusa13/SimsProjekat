@@ -18,12 +18,12 @@
                     <Binding Path="LastName"/>
                 </MultiBinding>
         </TextBox>
-        <TextBox x:Name="AccommodationNameTextBox" Text="{Binding Path=AccommodationName}" HorizontalAlignment="Left" Margin="225,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False"/>
+        <TextBox x:Name="AccommodationNameTextBox" Text="{Binding AccommodationName}" HorizontalAlignment="Left" Margin="225,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False"/>
         <TextBox x:Name="TypeTextBox" Text="{Binding Path=Type}" HorizontalAlignment="Left" Margin="225,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False"/>
         <!--<sdk:DatePicker Grid.Column="0" TabIndex="1" Padding="0" SelectedDate="{Binding EffectiveDate, Mode=TwoWay, Converter={StaticResource DateConverter}}" SelectedDateFormat="Short"/>-->
-        <TextBox x:Name="CheckInDateTextBox" Text="{Binding Path=CheckInDate}" HorizontalAlignment="Left" Margin="225,110,0,0" TextWrapping="Wrap" 
+        <TextBox x:Name="CheckInDateTextBox" HorizontalAlignment="Left" Margin="225,110,0,0" TextWrapping="Wrap" 
                  VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False"/>
-        <TextBox x:Name="CheckOutDateTextBox" Text="{Binding Path=CheckOutDate}" HorizontalAlignment="Left" Margin="225,140,0,0" TextWrapping="Wrap" 
+        <TextBox x:Name="CheckOutDateTextBox" HorizontalAlignment="Left" Margin="225,140,0,0" TextWrapping="Wrap" 
                  VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False"/>
     </Grid>
 </Window>

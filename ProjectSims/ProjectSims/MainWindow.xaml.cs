@@ -50,8 +50,8 @@ namespace ProjectSims
                     Owner owner = ownerFile.GetByUserId(user.Id);
                     if(owner != null)
                     {
-                        AccommodationRegistrationView accommodationRegistrationView = new AccommodationRegistrationView();
-                        accommodationRegistrationView.Show();
+                        OwnerView ownerView = new OwnerView();
+                        ownerView.Show();
                     }
 
                     Guest1 guest1 = guest1File.GetByUserId(user.Id);
