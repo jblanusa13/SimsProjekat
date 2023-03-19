@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims"
         mc:Ignorable="d"
-        Title="SearchTourView" Height="500" Width="1000" WindowStartupLocation="CenterScreen">
+        Title="SearchTourView" Height="500" Width="1100" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="850"/>
+            <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -28,7 +29,7 @@
                        SelectedItem="{Binding Path=SelectedTour}" IsReadOnly="True" Height="254" 
                        AutoGenerateColumns="False" >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="180" />
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="220" />
                     <DataGridTextColumn Header="Location" Binding="{Binding Location}" Width="140" />
                     <DataGridTextColumn Header="Language" Binding="{Binding Language}" Width="70" />
                     <DataGridTextColumn Header="Maximal number guests" Binding="{Binding MaxNumberGuests}" Width="150" />
@@ -54,13 +55,14 @@
             <Label Content="Lokacija:" Width="118" Height="40" HorizontalContentAlignment="Right" FontSize="18"/>
             <TextBox x:Name="LocationTextBox" TextWrapping="Wrap" Text="" Width="200" Height="30" FontSize="18"/>
             <Label Content="Trajanje ture od:" Width="138" Height="40" HorizontalContentAlignment="Right" FontSize="18"/>
-            
+
             <TextBox x:Name="DurationStartTextBox" TextWrapping="Wrap" Text="" Width="69" Height="30" FontSize="18"/>
             <Label Content="do:" Width="38" Height="40" HorizontalContentAlignment="Right" FontSize="18"/>
             <TextBox x:Name="DurationEndTextBox" TextWrapping="Wrap" Text="" Width="69" Height="30" FontSize="18"/>
-            
+
             <Button Content="Search" HorizontalAlignment="Left" Width="86" Margin="20,0,0,0" FontSize="18" Click="Search_Click" />
         </WrapPanel>
+        <Button Grid.Column="2" Content="Log out" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Height="40" FontSize="18" Click="LogOut"/>
 
 
     </Grid>
