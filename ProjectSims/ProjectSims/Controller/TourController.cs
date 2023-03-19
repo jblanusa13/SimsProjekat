@@ -93,14 +93,14 @@ namespace ProjectSims.Controller
         public void Create(string name, string location, string description, string language, string maxNumberGuests, string startKeyPoint, string finishKeyPoint, List<string> otherKeyPoints, string tourStart, string duration, string images)
         {
                 List<int> keyPointIds = new List<int>();
-                int startId = keyPointDAO.Add(new KeyPoint(-1, startKeyPoint, KeyPointType.First));
+                int startId = keyPointDAO.Add(new KeyPoint(-1, startKeyPoint, KeyPointType.First,true));
                 keyPointIds.Add(startId);
                 foreach (string keyPoint in otherKeyPoints)
                 {
-                    int otherKeyPointId = keyPointDAO.Add(new KeyPoint(-1, keyPoint, KeyPointType.Intermediate));
+                    int otherKeyPointId = keyPointDAO.Add(new KeyPoint(-1, keyPoint, KeyPointType.Intermediate,false));
                     keyPointIds.Add(otherKeyPointId);
                 }
-                int finishId = keyPointDAO.Add(new KeyPoint(-1, finishKeyPoint, KeyPointType.Last));
+                int finishId = keyPointDAO.Add(new KeyPoint(-1, finishKeyPoint, KeyPointType.Last,false));
                 keyPointIds.Add(finishId);
 
                 List<string> imageList = new List<string>();

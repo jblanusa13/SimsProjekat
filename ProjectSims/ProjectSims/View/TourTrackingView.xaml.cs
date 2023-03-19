@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,24 +23,72 @@ namespace ProjectSims.View
     /// <summary>
     /// Interaction logic for TourTrackingView.xaml
     /// </summary>
-    public partial class TourTrackingView : Window
+    public partial class TourTrackingView : Window, IObserver
     {
-        private TourController tourController;
         private KeyPointController keyPointController;
-        public Tour tour { get; set; }
-        public List<KeyPoint> KeyPointList { get; set; }
+        private TourController tourController;
+        public ObservableCollection<KeyPoint> UnFinishedKeyPoints { get; set; }
+        public ObservableCollection<KeyPoint> FinishedKeyPoints { get; set; }
+        public KeyPoint SelectedKeyPoint { get; set; }
+        private Tour tour { get; set; }
+        private int expectedId { get; set; }
         public TourTrackingView(Tour selectedTour)
         {
             InitializeComponent();
             DataContext = this;
-            tour = selectedTour;
-            tourController = new TourController();
-            keyPointController = new KeyPointController();
-            KeyPointList = tourController.GetTourKeyPoints(tour);
 
-            
-            TourInfoTextBox.Text = selectedTour.Name + "," + selectedTour.StartOfTheTour.ToString("dd/MM/yyyy HH:mm");
-            
+            keyPointController = new KeyPointController();
+            keyPointController.Subscribe(this);
+            tourController = new TourController();
+            tour = selectedTour;
+            UnFinishedKeyPoints = new ObservableCollection<KeyPoint>(keyPointController.FindUnFinishedKeyPointsByIds(tour.KeyPointIds));
+            FinishedKeyPoints = new ObservableCollection<KeyPoint>(keyPointController.FindFinishedKeyPointsByIds(tour.KeyPointIds));
+            expectedId = tour.KeyPointIds[1];
+        }
+        
+        
+        private void KeyPointSelected_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var keyPoint = KeyPointListView.SelectedItem as KeyPoint;
+            if (keyPoint != null)
+            {
+                if(expectedId == keyPoint.Id)
+                {
+                    if(keyPoint.Type != KeyPointType.Last)
+                    {
+                        keyPointController.Finish(SelectedKeyPoint);
+                        expectedId++;
+                    }
+                    else
+                    {
+                        tourController.FinishTour(tour);
+                        Close();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Preskočena stanica!");
+                }
+
+            }
+        }
+        private void UpdateKeyPointList()
+        {
+            FinishedKeyPoints.Clear();
+            foreach (var keyPoint in keyPointController.FindFinishedKeyPointsByIds(tour.KeyPointIds))
+            {
+                FinishedKeyPoints.Add(keyPoint);
+            }
+            UnFinishedKeyPoints.Clear();
+            foreach (var keyPoint in keyPointController.FindUnFinishedKeyPointsByIds(tour.KeyPointIds))
+            {
+                UnFinishedKeyPoints.Add(keyPoint);
+            }
+        }
+
+        public void Update()
+        {
+            UpdateKeyPointList();
         }
 
     }
