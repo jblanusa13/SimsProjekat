@@ -38,12 +38,12 @@ namespace ProjectSims
         public Tour SelectedTour { get; set; }
         public Image image { get; set; }
         public Guest2 guest2 { get; set; }
-        public DetailsAndReservationTourView(Tour tourSelected, Guest2 g2)
+        public DetailsAndReservationTourView(Tour tourSelected, Guest2 g)
         {
             InitializeComponent();
             DataContext = this;
             tour = tourSelected;
-            guest2 = g2;
+            guest2 = g;
             keyPointController = new KeyPointController();
             
             NameTextBox.Text = tourSelected.Name;

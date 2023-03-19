@@ -29,7 +29,7 @@ namespace ProjectSims
         public Tour SelectedTour { get; set; }
 
         public Guest2 guest2 { get; set; }
-        public SearchTourView(Guest2 user)
+        public SearchTourView(Guest2 g)
         {
             InitializeComponent();
             DataContext = this;
@@ -37,8 +37,7 @@ namespace ProjectSims
             tourController = new TourController();
             tourController.Subscribe(this);           
             ListTour = new ObservableCollection<Tour>(tourController.GetAllTours());
-            guest2 = user;
-            
+            guest2 = g;
 
         }
 

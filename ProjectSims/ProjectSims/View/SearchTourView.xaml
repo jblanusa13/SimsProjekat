@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims"
         mc:Ignorable="d"
-        Title="SearchTourView" Height="500" Width="1000" WindowStartupLocation="CenterScreen">
+        Title="SearchTourView" Height="500" Width="1000" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
