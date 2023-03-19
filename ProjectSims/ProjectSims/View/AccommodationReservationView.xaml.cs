@@ -199,8 +199,8 @@ namespace ProjectSims.View
 
         private void FindDates_Click(object sender, RoutedEventArgs e)
         {
-            
-            if (FirstDate != null && LastDate != null && DaysNumber != null)
+            if(!string.IsNullOrEmpty(TexboxFirstDate.Text) && !string.IsNullOrEmpty(TexboxLastDate.Text) && !string.IsNullOrEmpty(TexboxDaysNumber.Text))
+            //if (FirstDate != null && LastDate != null && DaysNumber != null)
             {
                 List<DateRanges> availableDates = new List<DateRanges>();
                 availableDates = _reservationController.FindAvailableDates(DateOnly.Parse(TexboxFirstDate.Text), DateOnly.Parse(TexboxLastDate.Text), Convert.ToInt32(TexboxDaysNumber.Text), _accommodationId);

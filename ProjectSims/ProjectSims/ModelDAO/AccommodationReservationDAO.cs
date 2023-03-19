@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.FileHandler;
@@ -19,6 +20,7 @@ namespace ProjectSims.ModelDAO
 
         private List<DateRanges> _availableDates;
         private List<DateRanges> _unavailableDates;
+        private List<DateRanges> _candidatesForDeletion;
         private DateOnly _firstDate;
         private DateOnly _lastDate;
 
@@ -36,8 +38,12 @@ namespace ProjectSims.ModelDAO
 
             _availableDates = new List<DateRanges>();
             _unavailableDates = new List<DateRanges>();
+            _candidatesForDeletion = new List<DateRanges>();
 
             _observers = new List<IObserver>();
+
+            _firstDate = new DateOnly();
+            _lastDate = new DateOnly();
         }
 
         public Guest1 GetGuestByUsername(string username)
@@ -62,14 +68,13 @@ namespace ProjectSims.ModelDAO
         // finds available dates for chosen accommodation in given date range
         public List<DateRanges> FindAvailableDates(DateOnly firstDate, DateOnly lastDate, int daysNumber, int accommodationId)
         {
+            _availableDates.Clear();
+
             _firstDate = firstDate;
             _lastDate = lastDate;
 
             FindAllDates(daysNumber);
             FindUnavailableDates(accommodationId);
-
-            
-            List<DateRanges> candidatesForDeletion = new List<DateRanges>();
 
             bool isFirstBoundaryCase, isInRangeCase, isLastBoundaryCase;
             foreach(DateRanges unavailableDate in _unavailableDates)
@@ -85,50 +90,27 @@ namespace ProjectSims.ModelDAO
 
                 if (isFirstBoundaryCase)
                 {
-                    bool checkOutIsInRange, containsUnavailableDates; ;
-                    foreach (DateRanges availableDate in _availableDates)
-                    {
-                        checkOutIsInRange = unavailableDate.CheckOut > availableDate.CheckIn && unavailableDate.CheckOut <= availableDate.CheckOut;
-                        containsUnavailableDates = availableDate.CheckIn < unavailableDate.CheckOut && availableDate.CheckOut < unavailableDate.CheckOut;
-                        if (checkOutIsInRange || containsUnavailableDates){
-                            candidatesForDeletion.Add(availableDate);
-                        }
-                    }
+                    CheckFirstBoundaryCase(unavailableDate);
                 }
                 else if (isInRangeCase)
                 {
-                    bool checkInIsInRange, checkOutIsInRange, containsUnavailableDates;
-                    foreach (DateRanges availableDate in _availableDates)
-                    {
-                        checkInIsInRange = unavailableDate.CheckIn >= availableDate.CheckIn && unavailableDate.CheckIn < availableDate.CheckOut;
-                        checkOutIsInRange = unavailableDate.CheckOut > availableDate.CheckIn && unavailableDate.CheckOut <= availableDate.CheckOut;
-                        containsUnavailableDates = availableDate.CheckIn > unavailableDate.CheckIn && availableDate.CheckOut < unavailableDate.CheckOut;
-                        if(checkInIsInRange || checkOutIsInRange || containsUnavailableDates)
-                        {
-                            candidatesForDeletion.Add(availableDate);
-                        }
-                    }
+                    CheckIsInRangeCase(unavailableDate);
                 }
                 else if (isLastBoundaryCase)
                 {
-                    bool checkInIsInRange, containsUnavailableDates;
-                    foreach (DateRanges availableDate in _availableDates)
-                    {
-                        checkInIsInRange = unavailableDate.CheckIn >= availableDate.CheckIn && unavailableDate.CheckIn < availableDate.CheckOut;
-                        containsUnavailableDates = availableDate.CheckIn > unavailableDate.CheckIn && availableDate.CheckOut > unavailableDate.CheckIn;
-                        if (checkInIsInRange || containsUnavailableDates)
-                        {
-                            candidatesForDeletion.Add(availableDate);
-                        }
-                    }
+                    CheckLastBoundaryCase(unavailableDate);
                 }
             }
 
-            foreach (DateRanges dates in candidatesForDeletion)
+            foreach (DateRanges dates in _candidatesForDeletion)
             {
                 _availableDates.Remove(dates);
             }
 
+            if(_availableDates.Count == 0)
+            {
+                FindAlternativeDates(daysNumber);
+            }
             return _availableDates;
         }
 
@@ -136,6 +118,51 @@ namespace ProjectSims.ModelDAO
         public bool IsInRange(DateOnly date, DateOnly firstDate, DateOnly lastDate)
         {
             return date >= firstDate && date <= lastDate;
+        }
+
+        public void CheckFirstBoundaryCase(DateRanges unavailableDate)
+        {
+            bool checkOutIsInRange, containsUnavailableDates;
+
+            foreach (DateRanges availableDate in _availableDates)
+            {
+                checkOutIsInRange = unavailableDate.CheckOut > availableDate.CheckIn && unavailableDate.CheckOut <= availableDate.CheckOut;
+                containsUnavailableDates = availableDate.CheckIn < unavailableDate.CheckOut && availableDate.CheckOut < unavailableDate.CheckOut;
+                if (checkOutIsInRange || containsUnavailableDates)
+                {
+                    _candidatesForDeletion.Add(availableDate);
+                }
+            }
+
+        }
+
+        public void CheckLastBoundaryCase(DateRanges unavailableDate)
+        {
+            bool checkInIsInRange, containsUnavailableDates;
+            foreach (DateRanges availableDate in _availableDates)
+            {
+                checkInIsInRange = unavailableDate.CheckIn >= availableDate.CheckIn && unavailableDate.CheckIn < availableDate.CheckOut;
+                containsUnavailableDates = availableDate.CheckIn > unavailableDate.CheckIn && availableDate.CheckOut > unavailableDate.CheckIn;
+                if (checkInIsInRange || containsUnavailableDates)
+                {
+                    _candidatesForDeletion.Add(availableDate);
+                }
+            }
+        }
+
+        public void CheckIsInRangeCase(DateRanges unavailableDate)
+        {
+            bool checkInIsInRange, checkOutIsInRange, containsUnavailableDates;
+            foreach (DateRanges availableDate in _availableDates)
+            {
+                checkInIsInRange = unavailableDate.CheckIn >= availableDate.CheckIn && unavailableDate.CheckIn < availableDate.CheckOut;
+                checkOutIsInRange = unavailableDate.CheckOut > availableDate.CheckIn && unavailableDate.CheckOut <= availableDate.CheckOut;
+                containsUnavailableDates = availableDate.CheckIn > unavailableDate.CheckIn && availableDate.CheckOut < unavailableDate.CheckOut;
+                if (checkInIsInRange || checkOutIsInRange || containsUnavailableDates)
+                {
+                    _candidatesForDeletion.Add(availableDate);
+                }
+            }
         }
 
         // calculates all possible dates, for given date range
@@ -190,6 +217,50 @@ namespace ProjectSims.ModelDAO
         {
             return date >= _lastDate;
         }
+
+        public void FindAlternativeDates(int daysNumber)
+        {
+            DateOnly startDateBefore = _firstDate.AddDays(-1);
+            DateOnly endDateBefore = startDateBefore.AddDays(daysNumber);
+
+            DateOnly endDateAfter = _lastDate.AddDays(1);
+            DateOnly startDateAfter = endDateAfter.AddDays(-daysNumber);
+
+            while (_availableDates.Count != 4)
+            {
+                if (IsAlternativeDateAvailible(startDateBefore, endDateBefore))
+                {
+                    _availableDates.Add(new DateRanges(startDateBefore, endDateBefore));
+                }
+                startDateBefore = startDateBefore.AddDays(-1);
+                endDateBefore = endDateBefore.AddDays(-1);
+
+                if (IsAlternativeDateAvailible(startDateAfter, endDateAfter))
+                {
+                    _availableDates.Add(new DateRanges(startDateAfter, endDateAfter));
+                }
+                startDateAfter = startDateAfter.AddDays(1);
+                endDateAfter= endDateAfter.AddDays(1);
+            }
+        }
+
+        public bool IsAlternativeDateAvailible(DateOnly checkIn, DateOnly checkOut)
+        {
+            bool checkInIsInRange, checkOutIsInRange, containsUnavailableDates;
+            foreach (DateRanges unavailableDate in _unavailableDates)
+            {
+                checkInIsInRange = unavailableDate.CheckIn >= checkIn && unavailableDate.CheckIn < checkOut;
+                checkOutIsInRange = unavailableDate.CheckOut > checkIn && unavailableDate.CheckOut <= checkOut;
+                containsUnavailableDates = checkIn > unavailableDate.CheckIn && checkOut < unavailableDate.CheckOut;
+                if (checkInIsInRange || checkOutIsInRange || containsUnavailableDates)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
 
         public void Subscribe(IObserver observer)
         {
