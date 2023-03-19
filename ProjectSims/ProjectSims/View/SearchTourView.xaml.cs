@@ -27,7 +27,9 @@ namespace ProjectSims
 
         public  ObservableCollection<Tour> ListTour { get; }
         public Tour SelectedTour { get; set; }
-        public SearchTourView()
+
+        public Guest2 guest2 { get; set; }
+        public SearchTourView(Guest2 user)
         {
             InitializeComponent();
             DataContext = this;
@@ -35,6 +37,7 @@ namespace ProjectSims
             tourController = new TourController();
             tourController.Subscribe(this);           
             ListTour = new ObservableCollection<Tour>(tourController.GetAllTours());
+            guest2 = user;
             
 
         }
@@ -57,7 +60,7 @@ namespace ProjectSims
         {
             if (SelectedTour != null)
             {
-                var see_more = new DetailsAndReservationTourView(SelectedTour);
+                var see_more = new DetailsAndReservationTourView(SelectedTour,guest2);
                 see_more.Show();
             }
             else

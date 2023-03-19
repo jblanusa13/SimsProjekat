@@ -71,7 +71,7 @@ namespace ProjectSims
                     Guest2 guest2 = guest2File.GetByUserId(user.Id);
                     if(guest2 != null)
                     {
-                        SearchTourView guest2View = new SearchTourView();
+                        SearchTourView guest2View = new SearchTourView(guest2);
                         guest2View.Show();
                     }
                 }

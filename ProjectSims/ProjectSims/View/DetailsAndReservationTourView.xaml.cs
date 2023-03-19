@@ -36,13 +36,14 @@ namespace ProjectSims
 
         public ObservableCollection<Tour> TourList { get; set; }
         public Tour SelectedTour { get; set; }
-
         public Image image { get; set; }
-        public DetailsAndReservationTourView(Tour tourSelected)
+        public Guest2 guest2 { get; set; }
+        public DetailsAndReservationTourView(Tour tourSelected, Guest2 g2)
         {
             InitializeComponent();
             DataContext = this;
             tour = tourSelected;
+            guest2 = g2;
             keyPointController = new KeyPointController();
             
             NameTextBox.Text = tourSelected.Name;
@@ -128,18 +129,19 @@ namespace ProjectSims
                 return;
             }
 
-
+            MessageReservationBox.Text = "";
             if (numberGuests > tour.AvailableSeats)
             {
                 MessageReservationBox.Text = "There are no available seats on this tour for the entered number of people. \nThe number of available seats is " + tour.AvailableSeats + "!";
             }
             else 
             {
-                ReservationTour reservation = new ReservationTour(tour.Id, (int)numberGuests);
+                ReservationTour reservation = new ReservationTour(tour.Id, (int)numberGuests, guest2.Id);
                 reservationController.Create(reservation);
                 tour.AvailableSeats -= (int)numberGuests;
                 tourController.Update(tour);
-                MessageReservationBox.Text = "Reservation successful!";
+                MessageBox.Show("Reservation successful! \nUser " + guest2.Name + " " + guest2.Surname + 
+                    " has made a reservation for " + numberGuests.ToString() + " people on the tour " + tour.Name + ".");
                 NumberGuestsTextBox.Clear();
                 return;
             }
@@ -151,28 +153,26 @@ namespace ProjectSims
 
                 if (SelectedTour != null)
                 {
+                    MessageBlock.Text = "";
                     if (numberGuests > SelectedTour.AvailableSeats)
                     {
                         MessageBlock.Text = "The number of available seats is " + SelectedTour.AvailableSeats + "!";
                     }
                     else
                     {
-                        ReservationTour reservationAlternative = new ReservationTour(SelectedTour.Id, (int)numberGuests);
+                        ReservationTour reservationAlternative = new ReservationTour(SelectedTour.Id, (int)numberGuests, guest2.Id);
                         reservationController.Create(reservationAlternative);
                         SelectedTour.AvailableSeats -= (int)numberGuests;
                         tourController.Update(SelectedTour);
-                        MessageBlock.Text = "Reservation successful!";
+                        MessageBox.Show("Reservation successful! \nUser " + guest2.Name + " " + guest2.Surname +
+                                 " has made a reservation for " + numberGuests.ToString() + " people on the tour " + SelectedTour.Name + ".");
                         NumberGuestsTextBox.Clear();
                         return;
                     }
                 }
-
-
             }
 
-
-
-
         }
+
     }
 }
