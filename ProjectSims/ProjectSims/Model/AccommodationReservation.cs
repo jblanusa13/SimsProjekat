@@ -18,7 +18,7 @@ namespace ProjectSims.Model
 
         public AccommodationReservation() { }
 
-        public AccommodationReservation(int id, int guestId, int accommodationId, DateOnly checkInDate, DateOnly checkOutDate, int guestNumber)
+        public AccommodationReservation(int id, int accommodationId, int guestId,  DateOnly checkInDate, DateOnly checkOutDate, int guestNumber)
         {
             Id = id;
             AccommodationId = accommodationId;

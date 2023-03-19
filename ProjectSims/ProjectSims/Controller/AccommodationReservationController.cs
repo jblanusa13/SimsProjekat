@@ -32,9 +32,9 @@ namespace ProjectSims.Controller
              return _reservations.FindAvailableDates(firstDate, lastDate, daysNumber, accommodationId);
         }
 
-        public List<DateRanges> FindDates(DateOnly firstDate, DateOnly lastDate, int accommodationId)
+        public void CreateReservation(string username, int accommodationId, int guestId, DateOnly checkIn, DateOnly checkOut, int guestNumber)
         {
-            return _reservations.FindDates(firstDate,lastDate, accommodationId);
+            _reservations.Add(username, accommodationId, guestId, checkIn, checkOut, guestNumber);
         }
 
         public void Subscribe(IObserver observer)

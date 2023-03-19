@@ -169,6 +169,7 @@ namespace ProjectSims.View
 
         
         public ObservableCollection<DateRanges> AvailableDates { get; set; }
+        public DateRanges SelectedDates;
 
         private AccommodationReservationController _reservationController;
 
@@ -213,16 +214,22 @@ namespace ProjectSims.View
                 {
                  AvailableDates.Add(dateRange);
                 }
-                //buttonFind.IsEnabled = false;
-                //UpdateDates(availableDates);
             }
         }
+
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
+            SelectedDates = (DateRanges)DatesTable.SelectedItem;
+            if (IsValid && SelectedDates != null)
+            {
+                Guest1 guest = _reservationController.GetGuestByUsername(Username);
+                DateRanges dates = (DateRanges)DatesTable.SelectedItem;
+                int guestNumber = Convert.ToInt32(GuestNumber);
 
+                _reservationController.CreateReservation(Username, _accommodationId, guest.Id, dates.CheckIn, dates.CheckOut, guestNumber);
+                Close();
+            }
         }
-
-
 
         public void Update()
         {
@@ -266,10 +273,12 @@ namespace ProjectSims.View
                     if (!match.Success)
                         return "Datum je u formatu: DD.MM.YYYY";
 
+
                     if (DateOnly.Parse(LastDate) <= DateOnly.Parse(FirstDate))
                     {
                         return "Mora biti veci od pocetnog datuma!";
                     }
+
                 }
                 else if(columnName == "DaysNumber")
                 {

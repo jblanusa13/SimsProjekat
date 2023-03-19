@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using ProjectSims.FileHandler;
 using ProjectSims.Model;
 using ProjectSims.Observer;
@@ -56,13 +57,17 @@ namespace ProjectSims.ModelDAO
             return _reservations;
         }
 
-        public List<DateRanges> FindDates(DateOnly firstDate, DateOnly lastDate, int accommodationId)
+        public int NextId()
         {
-            _availableDates.Clear();
-            _availableDates.Add(new DateRanges(firstDate,lastDate));
-            _availableDates.Add(new DateRanges(firstDate.AddDays(accommodationId), lastDate.AddDays(accommodationId)));
+            return _reservations.Max(r => r.Id) + 1;
+        }
 
-            return _availableDates;
+        public void Add(string username, int accommodationId, int guestId, DateOnly checkIn, DateOnly checkOut, int guestNumber)
+        {
+            int id = NextId();
+            AccommodationReservation reservation = new AccommodationReservation(id, accommodationId, guestId, checkIn, checkOut, guestNumber);
+            _reservations.Add(reservation);
+            _reservationFileHandler.Save(_reservations);
         }
 
         // finds available dates for chosen accommodation in given date range
@@ -206,8 +211,8 @@ namespace ProjectSims.ModelDAO
             }
 
             return true;
-
         }
+
         public bool IsBefore(DateOnly date)
         {
             return date <= _firstDate;
@@ -218,6 +223,7 @@ namespace ProjectSims.ModelDAO
             return date >= _lastDate;
         }
 
+        // finds first available dates outside of the given date range
         public void FindAlternativeDates(int daysNumber)
         {
             DateOnly startDateBefore = _firstDate.AddDays(-1);
@@ -228,14 +234,14 @@ namespace ProjectSims.ModelDAO
 
             while (_availableDates.Count != 4)
             {
-                if (IsAlternativeDateAvailible(startDateBefore, endDateBefore))
+                if (IsAlternativeDateAvailable(startDateBefore, endDateBefore))
                 {
                     _availableDates.Add(new DateRanges(startDateBefore, endDateBefore));
                 }
                 startDateBefore = startDateBefore.AddDays(-1);
                 endDateBefore = endDateBefore.AddDays(-1);
 
-                if (IsAlternativeDateAvailible(startDateAfter, endDateAfter))
+                if (IsAlternativeDateAvailable(startDateAfter, endDateAfter))
                 {
                     _availableDates.Add(new DateRanges(startDateAfter, endDateAfter));
                 }
@@ -244,7 +250,8 @@ namespace ProjectSims.ModelDAO
             }
         }
 
-        public bool IsAlternativeDateAvailible(DateOnly checkIn, DateOnly checkOut)
+        // checks if given date ranges are available
+        public bool IsAlternativeDateAvailable(DateOnly checkIn, DateOnly checkOut)
         {
             bool checkInIsInRange, checkOutIsInRange, containsUnavailableDates;
             foreach (DateRanges unavailableDate in _unavailableDates)
@@ -257,7 +264,6 @@ namespace ProjectSims.ModelDAO
                     return false;
                 }
             }
-
             return true;
         }
 
