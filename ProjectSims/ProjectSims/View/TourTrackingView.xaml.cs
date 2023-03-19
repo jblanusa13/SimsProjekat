@@ -32,18 +32,19 @@ namespace ProjectSims.View
         public KeyPoint SelectedKeyPoint { get; set; }
         private Tour tour { get; set; }
         private int expectedId { get; set; }
-        public TourTrackingView(Tour selectedTour)
+        public TourTrackingView(Tour startedTour)
         {
             InitializeComponent();
             DataContext = this;
 
+            tourController = new TourController();
             keyPointController = new KeyPointController();
             keyPointController.Subscribe(this);
-            tourController = new TourController();
-            tour = selectedTour;
+            tour = startedTour;
             UnFinishedKeyPoints = new ObservableCollection<KeyPoint>(keyPointController.FindUnFinishedKeyPointsByIds(tour.KeyPointIds));
             FinishedKeyPoints = new ObservableCollection<KeyPoint>(keyPointController.FindFinishedKeyPointsByIds(tour.KeyPointIds));
             expectedId = tour.KeyPointIds[1];
+            TourInfoTextBox.Text = tour.Name + "," + tour.StartOfTheTour.ToString("dd.MM.yyyy HH:mm");
         }
         
         
@@ -71,6 +72,12 @@ namespace ProjectSims.View
                 }
 
             }
+        }
+
+        private void FinishTour_Click(object sender, RoutedEventArgs e)
+        {
+            tourController.FinishTour(tour);
+            Close();
         }
         private void UpdateKeyPointList()
         {
