@@ -23,22 +23,28 @@ using ProjectSims.Observer;
 namespace ProjectSims
 {
     /// <summary>
-    /// Interaction logic for DetailsTourWindow.xaml
+    /// Interaction logic for DetailsAndReservationTourView.xaml
     /// </summary>
-    public partial class DetailsTourWindow : Window
+    public partial class DetailsAndReservationTourView : Window
     {
         private TourController tourController;
 
         private ReservationTourController reservationController;
+
+        private KeyPointController keyPointController;
         public Tour tour { get; set; }
 
         public ObservableCollection<Tour> TourList { get; set; }
         public Tour SelectedTour { get; set; }
-        public DetailsTourWindow(Tour tourSelected)
+        public Image image { get; set; }
+        public Guest2 guest2 { get; set; }
+        public DetailsAndReservationTourView(Tour tourSelected, Guest2 g)
         {
             InitializeComponent();
             DataContext = this;
             tour = tourSelected;
+            guest2 = g;
+            keyPointController = new KeyPointController();
             
             NameTextBox.Text = tourSelected.Name;
             LocationTextBox.Text = tourSelected.Location;
@@ -46,8 +52,8 @@ namespace ProjectSims
             LanguageTextBox.Text = tourSelected.Language;
             MaxGuestsTextBox.Text = tourSelected.MaxNumberGuests.ToString();
 
-            
-            foreach(KeyPoint keyPoint in tourSelected.KeyPoints) 
+
+            /*foreach(KeyPoint keyPoint in tourSelected.KeyPoints) 
             {
                 if (keyPoint.Equals(tourSelected.KeyPoints.Last()))
                 {
@@ -58,39 +64,48 @@ namespace ProjectSims
                     KeyPointTextBox.Text += keyPoint.Name + ", ";
                 }
                 
+            }*/
+            foreach(int id in tourSelected.KeyPointIds) 
+            {
+                if (id.Equals(tourSelected.KeyPointIds.Last()))
+                {
+                    KeyPointTextBox.Text += keyPointController.FindNameById(id);
+                }
+                else
+                {
+                    KeyPointTextBox.Text += keyPointController.FindNameById(id) + ", ";
+                }
+
             }
-            
+
             DateStartTextBox.Text = tourSelected.StartOfTheTour.ToString();
             DurationTextBox.Text = tourSelected.Duration.ToString();
 
-
-            //dodavanje slike uz pomoc url-a
-            /*
-            WebClient w = new WebClient();
-            byte[] imageByte = w.DownloadData(tourSelected.Images);
-            MemoryStream stream = new MemoryStream(imageByte);
-
-            Image im = Image.FromStream(stream);
-            */
-
-            
-            /*var image = new Image();
-
+            //show picture in listview
             foreach (var fullFilePath in tourSelected.Images)
             {
                 BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
-                bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
-                bitmap.EndInit();
+                if(Uri.IsWellFormedUriString(fullFilePath, UriKind.Absolute))
+                {
+                    bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
+                    bitmap.EndInit();
 
-                image.Source = bitmap;
+                    image = new Image();
 
-                image.Width = 100;
-                image.Height = 80;
+                    image.Source = bitmap;
 
-                ImageList.Items.Add(bitmap);
-            }*/
-            
+                    image.Width = 350;
+                    image.Height = 200;
+
+                    ImageList.Items.Add(image);
+                }
+                else
+                {
+                    ImageList.Items.Add("The format of the URL could not be determined.");
+                }
+            }
+           
             tourController = new TourController();
             TourList = new ObservableCollection<Tour>(tourController.GetAllToursWithSameLocation(tourSelected));
 
@@ -114,18 +129,19 @@ namespace ProjectSims
                 return;
             }
 
-
+            MessageReservationBox.Text = "";
             if (numberGuests > tour.AvailableSeats)
             {
                 MessageReservationBox.Text = "There are no available seats on this tour for the entered number of people. \nThe number of available seats is " + tour.AvailableSeats + "!";
             }
             else 
             {
-                ReservationTour reservation = new ReservationTour(tour.Id, (int)numberGuests);
+                ReservationTour reservation = new ReservationTour(tour.Id, (int)numberGuests, guest2.Id);
                 reservationController.Create(reservation);
                 tour.AvailableSeats -= (int)numberGuests;
                 tourController.Update(tour);
-                MessageReservationBox.Text = "Reservation successful!";
+                MessageBox.Show("Reservation successful! \nUser " + guest2.Name + " " + guest2.Surname + 
+                    " has made a reservation for " + numberGuests.ToString() + " people on the tour " + tour.Name + ".");
                 NumberGuestsTextBox.Clear();
                 return;
             }
@@ -137,28 +153,26 @@ namespace ProjectSims
 
                 if (SelectedTour != null)
                 {
+                    MessageBlock.Text = "";
                     if (numberGuests > SelectedTour.AvailableSeats)
                     {
                         MessageBlock.Text = "The number of available seats is " + SelectedTour.AvailableSeats + "!";
                     }
                     else
                     {
-                        ReservationTour reservationAlternative = new ReservationTour(SelectedTour.Id, (int)numberGuests);
+                        ReservationTour reservationAlternative = new ReservationTour(SelectedTour.Id, (int)numberGuests, guest2.Id);
                         reservationController.Create(reservationAlternative);
                         SelectedTour.AvailableSeats -= (int)numberGuests;
                         tourController.Update(SelectedTour);
-                        MessageBlock.Text = "Reservation successful!";
+                        MessageBox.Show("Reservation successful! \nUser " + guest2.Name + " " + guest2.Surname +
+                                 " has made a reservation for " + numberGuests.ToString() + " people on the tour " + SelectedTour.Name + ".");
                         NumberGuestsTextBox.Clear();
                         return;
                     }
                 }
-
-
             }
 
-
-
-
         }
+
     }
 }

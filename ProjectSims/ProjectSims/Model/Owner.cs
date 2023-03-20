@@ -14,18 +14,19 @@ namespace ProjectSims.Model
         public string Surname { get; set; }
         public string Adress { get; set; }
         public string Email { get; set; }
+        public int UserId { get; set; }
 
         public Owner() { }
 
-        public Owner(int id, string name, string surname, string adress, string email)
+        public Owner(int id, string name, string surname, string adress, string email, int userId)
         {
             Id = id;
             Name = name;
-            Surname = Surname;
+            Surname = surname;
             Adress = adress;
-            Email=email;
+            Email = email;
+            UserId = userId;
         }
-
 
         public void FromCSV(string[] values)
         {
@@ -34,11 +35,12 @@ namespace ProjectSims.Model
             Surname = values[2];
             Adress = values[3];
             Email = values[4];
+            UserId = Convert.ToInt32(values[5]);
         }
 
         public string[] ToCSV()
         {
-            string[] csvvalues = { Id.ToString(), Name, Surname, Adress, Email };
+            string[] csvvalues = { Id.ToString(), Name, Surname, Adress, Email, UserId.ToString() };
             return csvvalues;
         }
     }
