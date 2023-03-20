@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims.View"
         mc:Ignorable="d"
-        Title="GuestRatingtView" Height="450" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Ocjenjivanje gosta" Height="450" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Margin="25,25,25,25">
         <Label Content="Ocjenjujete gosta:" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" Height="26"/>
         <Label Content="Smjestaj u kom je odsjeo:" HorizontalAlignment="Left" Margin="20,50,0,0" VerticalAlignment="Top" Height="26"/>

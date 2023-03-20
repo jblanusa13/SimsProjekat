@@ -134,18 +134,12 @@ namespace ProjectSims.View
             AccommodationName = selectedGuestAccommodation.Name;
             Type = selectedGuestAccommodation.Type;
             CheckInDate = selectedGuestAccommodation.CheckInDate;
-            CheckOutDate = selectedGuestAccommodation.CheckOutDate;
-
-            // CheckInDate = DateOnly.ParseExact(selectedGuestAccommodation.CheckInDate.ToString(), "MM/dd/yyyy");
-            //CheckOutDate = selectedGuestAccommodation.CheckOutDate;
-            CheckOutDateTextBox.Text = selectedGuestAccommodation.CheckOutDate.ToString();
             CheckInDateTextBox.Text = selectedGuestAccommodation.CheckInDate.ToString();
-            //DateOnly.TryParseExact(CheckInDateTextBox.Text, "MM/dd/yyyy", out DateOnly result);
-            //CheckInDate = result;
+            CheckOutDate = selectedGuestAccommodation.CheckOutDate;
+            CheckOutDateTextBox.Text = selectedGuestAccommodation.CheckOutDate.ToString();
 
             _guestAccommodationController = guestAccommodationController;
             _guestAccommodationController.Subscribe(this);
-
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
