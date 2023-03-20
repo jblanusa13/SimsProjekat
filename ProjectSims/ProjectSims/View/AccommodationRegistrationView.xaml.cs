@@ -119,7 +119,7 @@ namespace ProjectSims.View
             }
         }
 
-        private int dismissalDays;
+        private int dismissalDays = 1;
         public int DismissalDays
         {
             get => dismissalDays;
@@ -244,9 +244,9 @@ namespace ProjectSims.View
                     {
                         return "Unesite vrijednost!";
                     }
-                    else if (!Regex.IsMatch(Location, @"^[a-zA-Z0-9,. ]*$"))
+                    else if (!Regex.IsMatch(Location, @"^[a-zA-Z,]*$"))
                     {
-                        return "Iskljucivo: slova[a-z] i brojevi[0-9]!";
+                        return "Iskljucivo: slova[a-z] u formatu Grad,Drzava!";
                     }
                 }
                 else if (columnName == "GuestsMaximum")

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims.View"
         mc:Ignorable="d"
-        Title="Registracija smjestaja" Height="500" Width="580" SizeToContent="Manual" ResizeMode="CanResizeWithGrip" WindowStyle="ThreeDBorderWindow" WindowStartupLocation="CenterScreen">
+        Title="Registracija smjestaja" Height="500" Width="600" SizeToContent="Manual" ResizeMode="CanResizeWithGrip" WindowStyle="ThreeDBorderWindow" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <ControlTemplate x:Key="ValidationTemplate">
             <!--  <Border BorderBrush="Red" BorderThickness="0.5" Height="22" Width="136"> -->
