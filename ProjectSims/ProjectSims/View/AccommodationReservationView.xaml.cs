@@ -173,10 +173,17 @@ namespace ProjectSims.View
 
         private AccommodationReservationController _reservationController;
 
-        public AccommodationReservationView(Accommodation SelectedAccommodation)
+        private Guest1 _guest;
+
+        public AccommodationReservationView(Accommodation SelectedAccommodation, Guest1 guest)
         {
             InitializeComponent();
             DataContext = this;
+
+            _guest = guest;
+
+            _reservationController = new AccommodationReservationController();
+            _reservationController.Subscribe(this);
 
             _accommodationId = SelectedAccommodation.Id;
             AccommodationName = SelectedAccommodation.Name;
@@ -185,8 +192,8 @@ namespace ProjectSims.View
             MaxGuests = SelectedAccommodation.GuestMaximum.ToString();
             MinDays = SelectedAccommodation.MinimumReservationDays.ToString();
 
-            _reservationController = new AccommodationReservationController();
-            _reservationController.Subscribe(this);
+            User user = _reservationController.GetUser(_guest.UserId);
+            Username = user.Username;
 
             AvailableDates = new ObservableCollection<DateRanges>();
         }
@@ -201,14 +208,10 @@ namespace ProjectSims.View
         private void FindDates_Click(object sender, RoutedEventArgs e)
         {
             if(!string.IsNullOrEmpty(TexboxFirstDate.Text) && !string.IsNullOrEmpty(TexboxLastDate.Text) && !string.IsNullOrEmpty(TexboxDaysNumber.Text))
-            //if (FirstDate != null && LastDate != null && DaysNumber != null)
             {
                 List<DateRanges> availableDates = new List<DateRanges>();
                 availableDates = _reservationController.FindAvailableDates(DateOnly.Parse(TexboxFirstDate.Text), DateOnly.Parse(TexboxLastDate.Text), Convert.ToInt32(TexboxDaysNumber.Text), _accommodationId);
-                //AvailableDates = new ObservableCollection<DateRanges>(_reservationController.FindAvailableDates(DateOnly.Parse(FirstDate), DateOnly.Parse(LastDate), Convert.ToInt32(DaysNumber), _accommodationId));
-                //AvailableDates = new ObservableCollection<DateRanges>(_reservationController.FindDates());
 
-                //availableDates = _reservationController.FindDates(prviDatum, drugiDatum, _accommodationId);
                 AvailableDates.Clear();
                 foreach (DateRanges dateRange in availableDates)
                 {
@@ -222,11 +225,10 @@ namespace ProjectSims.View
             SelectedDates = (DateRanges)DatesTable.SelectedItem;
             if (IsValid && SelectedDates != null)
             {
-                Guest1 guest = _reservationController.GetGuestByUsername(Username);
                 DateRanges dates = (DateRanges)DatesTable.SelectedItem;
                 int guestNumber = Convert.ToInt32(GuestNumber);
 
-                _reservationController.CreateReservation(Username, _accommodationId, guest.Id, dates.CheckIn, dates.CheckOut, guestNumber);
+                _reservationController.CreateReservation(_accommodationId, _guest.Id, dates.CheckIn, dates.CheckOut, guestNumber);
                 Close();
             }
         }
@@ -245,17 +247,7 @@ namespace ProjectSims.View
         {
             get
             {
-                if(columnName == "Username")
-                {
-                    if (string.IsNullOrEmpty(Username))
-                        return "Obavezno polje";
-
-                    if (_reservationController.GetGuestByUsername(Username) == null)
-                    {
-                        return "Korisnicko ime ne postoji";
-                    }
-                }
-                else if(columnName == "FirstDate")
+                if(columnName == "FirstDate")
                 {
                     if (string.IsNullOrEmpty(FirstDate))
                         return "Obavezno polje";
@@ -312,7 +304,7 @@ namespace ProjectSims.View
             }
         }
 
-        private readonly string[] _validiranaObelezja = { "Username", "FirstDate" , "LastDate", "DaysNumber", "GuestNumber" };
+        private readonly string[] _validiranaObelezja = { "FirstDate" , "LastDate", "DaysNumber", "GuestNumber" };
 
 
         public bool IsValid

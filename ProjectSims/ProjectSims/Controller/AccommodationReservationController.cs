@@ -22,6 +22,11 @@ namespace ProjectSims.Controller
             return _reservations.GetGuestByUsername(username);
         }
 
+        public User GetUser(int userId)
+        {
+            return _reservations.GetUser(userId);
+        }
+
         public List<AccommodationReservation> GetAllReservations()
         {
             return _reservations.GetAll();
@@ -32,9 +37,9 @@ namespace ProjectSims.Controller
              return _reservations.FindAvailableDates(firstDate, lastDate, daysNumber, accommodationId);
         }
 
-        public void CreateReservation(string username, int accommodationId, int guestId, DateOnly checkIn, DateOnly checkOut, int guestNumber)
+        public void CreateReservation(int accommodationId, int guestId, DateOnly checkIn, DateOnly checkOut, int guestNumber)
         {
-            _reservations.Add(username, accommodationId, guestId, checkIn, checkOut, guestNumber);
+            _reservations.Add(accommodationId, guestId, checkIn, checkOut, guestNumber);
         }
 
         public void Subscribe(IObserver observer)

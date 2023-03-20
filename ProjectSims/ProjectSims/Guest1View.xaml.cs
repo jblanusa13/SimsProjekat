@@ -27,6 +27,7 @@ namespace ProjectSims
         private readonly AccommodationController _accomodationController;
         public ObservableCollection<Accommodation> Accommodations { get; set; }
         public Accommodation SelectedAccommodation { get; set; }
+        public Guest1 Guest { get; set; }
         public string NameSearch { get; set; }
         //public string CitySearch { get; set; }
         //public string CountrySearch { get; set; }
@@ -36,7 +37,7 @@ namespace ProjectSims
         public string DaysNumberSearch { get; set; }
         
         
-        public Guest1View()
+        public Guest1View(Guest1 guest)
         {
             InitializeComponent();
             DataContext = this;
@@ -44,6 +45,8 @@ namespace ProjectSims
             _accomodationController = new AccommodationController();
             _accomodationController.Subscribe(this);
             Accommodations = new ObservableCollection<Accommodation>(_accomodationController.GetAllAccommodations());
+
+            Guest = guest;
         }
 
         public void TextboxName_TextChanged(object sender, TextChangedEventArgs e)
@@ -115,7 +118,7 @@ namespace ProjectSims
             SelectedAccommodation = (Accommodation)AccommodationsTable.SelectedItem;
             if (SelectedAccommodation != null)
             {
-                AccommodationReservationView reservation = new AccommodationReservationView(SelectedAccommodation);
+                AccommodationReservationView reservation = new AccommodationReservationView(SelectedAccommodation, Guest);
                 reservation.Show();
             }
         }

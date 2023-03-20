@@ -19,6 +19,8 @@ namespace ProjectSims.ModelDAO
         private Guest1FileHandler _guest1FileHandler;
         private List<Guest1> _guests;
 
+        private UserFileHandler _userFileHandler;
+
         private List<DateRanges> _availableDates;
         private List<DateRanges> _unavailableDates;
         private List<DateRanges> _candidatesForDeletion;
@@ -28,7 +30,6 @@ namespace ProjectSims.ModelDAO
         private readonly List<IObserver> _observers;
 
 
-
         public AccommodationReservationDAO()
         {
             _reservationFileHandler = new AccommodationReservationFileHandler();
@@ -36,6 +37,8 @@ namespace ProjectSims.ModelDAO
 
             _guest1FileHandler = new Guest1FileHandler();
             _guests = _guest1FileHandler.Load();
+
+            _userFileHandler = new UserFileHandler();
 
             _availableDates = new List<DateRanges>();
             _unavailableDates = new List<DateRanges>();
@@ -47,11 +50,21 @@ namespace ProjectSims.ModelDAO
             _lastDate = new DateOnly();
         }
 
-        public Guest1 GetGuestByUsername(string username)
+        public User GetUserByUsername(string username)
         {
-            return _guests.Find(g => g.Username == username);       
+            return _userFileHandler.GetByUsername(username);
         }
 
+        public Guest1 GetGuestByUsername(string username)
+        {
+            User user = GetUserByUsername(username);
+            return _guests.Find(g => g.UserId == user.Id);       
+        }
+
+        public User GetUser(int id)
+        {
+            return _userFileHandler.Get(id);
+        }
         public List<AccommodationReservation> GetAll()
         {
             return _reservations;
@@ -62,7 +75,7 @@ namespace ProjectSims.ModelDAO
             return _reservations.Max(r => r.Id) + 1;
         }
 
-        public void Add(string username, int accommodationId, int guestId, DateOnly checkIn, DateOnly checkOut, int guestNumber)
+        public void Add(int accommodationId, int guestId, DateOnly checkIn, DateOnly checkOut, int guestNumber)
         {
             int id = NextId();
             AccommodationReservation reservation = new AccommodationReservation(id, accommodationId, guestId, checkIn, checkOut, guestNumber);

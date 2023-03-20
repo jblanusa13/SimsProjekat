@@ -2,14 +2,7 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-<<<<<<< HEAD
-    <Compile Update="CreateTour.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="DetailsTourWindow.xaml.cs">
-=======
     <Compile Update="View\CreateTourView.xaml.cs">
->>>>>>> develop
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\DetailsAndReservationTourView.xaml.cs">
@@ -32,14 +25,5 @@
     <Page Update="View\CreateTourView.xaml">
       <SubType>Designer</SubType>
     </Page>
-<<<<<<< HEAD
-    <Page Update="CreateTour.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="View\AccommodationReservationView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-=======
->>>>>>> develop
   </ItemGroup>
 </Project>
