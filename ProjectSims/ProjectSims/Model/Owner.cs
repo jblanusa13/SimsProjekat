@@ -15,21 +15,21 @@ namespace ProjectSims.Model
         public string Surname { get; set; }
         public string Address { get; set; }
         public string Email { get; set; }
-        public int UserId { get; set; }
         public List<Accommodation> OwnersAccommodations { get; set; }
+        public int UserId { get; set; }
 
         public Owner() 
         {
             OwnersAccommodations = new List<Accommodation>();
         }
-
         public Owner(int id, string name, string surname, string address, string email, int userId)
         {
             Id = id;
             Name = name;
-            Surname = Surname;
+            Surname = surname;
             Address = address;
-            Email=email;
+            Email = email;
+            UserId = userId;
             OwnersAccommodations = new List<Accommodation>();
         }
 
