@@ -2,35 +2,32 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ProjectSims.Model
 {
-    public class Owner : ISerializable
+    public class Guide : ISerializable
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string Address { get; set; }
+        public string Adress { get; set; }
         public string Email { get; set; }
         public int UserId { get; set; }
-        public List<Accommodation> OwnersAccommodations { get; set; }
 
-        public Owner() 
+        public Guide()
         {
-            OwnersAccommodations = new List<Accommodation>();
-        }
 
-        public Owner(int id, string name, string surname, string address, string email, int userId)
+        }
+        public Guide(int id, string name, string surname, string adress, string email, int userId)
         {
             Id = id;
             Name = name;
-            Surname = Surname;
-            Address = address;
-            Email=email;
-            OwnersAccommodations = new List<Accommodation>();
+            Surname = surname;
+            Adress = adress;
+            Email = email;
+            UserId = userId;
         }
 
         public void FromCSV(string[] values)
@@ -38,14 +35,14 @@ namespace ProjectSims.Model
             Id = Convert.ToInt32(values[0]);
             Name = values[1];
             Surname = values[2];
-            Address = values[3];
+            Adress = values[3];
             Email = values[4];
             UserId = Convert.ToInt32(values[5]);
         }
 
         public string[] ToCSV()
         {
-            string[] csvvalues = { Id.ToString(), Name, Surname, Address, Email, UserId.ToString() };
+            string[] csvvalues = { Id.ToString(), Name, Surname, Adress, Email, UserId.ToString() };
             return csvvalues;
         }
     }

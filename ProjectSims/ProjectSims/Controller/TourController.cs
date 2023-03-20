@@ -77,19 +77,21 @@ namespace ProjectSims.Controller
             tours.Subscribe(observer);
         }
 
-        public List<Tour> SearchTours(String location, int duration, String language, int numberGuests)
+        public List<Tour> SearchTours(String location, double durationStart, double durationEnd, String language, int numberGuests)
         {
             List<Tour> tours = GetAllTours();
             List<Tour> wantedTours = new List<Tour>();
 
-
+            //durationStart and durationEnd always go together (both are -1 or both aren't -1)
+            /*
             if (location != "")
             {
-                if (duration != -1 && language == "" && numberGuests != -1)    //1
+                if (durationStart != -1 && language == "" && numberGuests != -1)    //1
                 {
                     foreach (Tour tour in tours)
                     {
-                        if ((tour.Location.ToLower()).Contains(location.ToLower()) && tour.MaxNumberGuests >= numberGuests)
+                        if ((tour.Location.ToLower()).Contains(location.ToLower()) && tour.AvailableSeats >= numberGuests
+                            && tour.Duration >= durationStart && tour.Duration <= durationEnd)
                         {
                             wantedTours.Add(tour);
                         }
@@ -97,11 +99,12 @@ namespace ProjectSims.Controller
 
                     return wantedTours;
                 }
-                else if (duration != -1 && language == "" && numberGuests == -1)   //2
+                else if (durationStart != -1 && language == "" && numberGuests == -1)   //2
                 {
                     foreach (Tour tour in tours)
                     {
-                        if ((tour.Location.ToLower()).Contains(location.ToLower()) && tour.Duration >= duration)
+                        if ((tour.Location.ToLower()).Contains(location.ToLower()) && tour.Duration >= durationStart
+                            && tour.Duration <= durationEnd)
                         {
                             wantedTours.Add(tour);
                         }
@@ -109,12 +112,12 @@ namespace ProjectSims.Controller
 
                     return wantedTours;
                 }
-                else if (duration != -1 && language != "" && numberGuests == -1)    //3
+                else if (durationStart != -1 && language != "" && numberGuests == -1)    //3
                 {
                     foreach (Tour tour in tours)
                     {
-                        if ((tour.Location.ToLower()).Contains(location.ToLower()) && tour.Duration >= duration
-                            && (tour.Language.ToLower()).Contains(language.ToLower()))
+                        if ((tour.Location.ToLower()).Contains(location.ToLower()) && tour.Duration >= durationStart
+                            && tour.Duration <= durationEnd && (tour.Language.ToLower()).Contains(language.ToLower()))
                         {
                             wantedTours.Add(tour);
                         }
@@ -122,12 +125,12 @@ namespace ProjectSims.Controller
 
                     return wantedTours;
                 }
-                else if (duration != -1 && language != "" && numberGuests != -1)      //4
+                else if (durationStart != -1 && language != "" && numberGuests != -1)      //4
                 {
                     foreach (Tour tour in tours)
                     {
-                        if ((tour.Location.ToLower()).Contains(location.ToLower()) && tour.Duration >= duration
-                            && (tour.Language.ToLower()).Contains(language.ToLower()) && tour.MaxNumberGuests >= numberGuests)
+                        if ((tour.Location.ToLower()).Contains(location.ToLower()) && tour.Duration >= durationStart && tour.Duration <= durationEnd
+                            && (tour.Language.ToLower()).Contains(language.ToLower()) && tour.AvailableSeats >= numberGuests)
                         {
                             wantedTours.Add(tour);
                         }
@@ -135,12 +138,12 @@ namespace ProjectSims.Controller
 
                     return wantedTours;
                 }
-                else if (duration == -1 && language != "" && numberGuests != -1)      //5
+                else if (durationStart == -1 && language != "" && numberGuests != -1)      //5
                 {
                     foreach (Tour tour in tours)
                     {
                         if ((tour.Location.ToLower()).Contains(location.ToLower()) &&
-                           (tour.Language.ToLower()).Contains(language.ToLower()) && tour.MaxNumberGuests >= numberGuests)
+                           (tour.Language.ToLower()).Contains(language.ToLower()) && tour.AvailableSeats >= numberGuests)
                         {
                             wantedTours.Add(tour);
                         }
@@ -148,11 +151,11 @@ namespace ProjectSims.Controller
 
                     return wantedTours;
                 }
-                else if (duration == -1 && language == "" && numberGuests != -1)      //6
+                else if (durationStart == -1 && language == "" && numberGuests != -1)      //6
                 {
                     foreach (Tour tour in tours)
                     {
-                        if ((tour.Location.ToLower()).Contains(location.ToLower()) && tour.MaxNumberGuests >= numberGuests)
+                        if ((tour.Location.ToLower()).Contains(location.ToLower()) && tour.AvailableSeats >= numberGuests)
                         {
                             wantedTours.Add(tour);
                         }
@@ -160,7 +163,7 @@ namespace ProjectSims.Controller
 
                     return wantedTours;
                 }
-                else if (duration == -1 && language != "" && numberGuests == -1)         //7
+                else if (durationStart == -1 && language != "" && numberGuests == -1)         //7
                 {
                     foreach (Tour tour in tours)
                     {
@@ -172,7 +175,7 @@ namespace ProjectSims.Controller
 
                     return wantedTours;
                 }
-                else if (duration == -1 && language == "" && numberGuests == -1)         //8
+                else if (durationStart == -1 && language == "" && numberGuests == -1)         //8
                 {
                     foreach (Tour tour in tours)
                     {
@@ -187,11 +190,11 @@ namespace ProjectSims.Controller
             }
             else if (location == "")
             {
-                if (duration != -1 && language == "" && numberGuests != -1)    //9
+                if (durationStart != -1 && language == "" && numberGuests != -1)    //9
                 {
                     foreach (Tour tour in tours)
                     {
-                        if (tour.MaxNumberGuests >= numberGuests && tour.Duration >= duration)
+                        if (tour.AvailableSeats >= numberGuests && tour.Duration >= durationStart && tour.Duration <= durationEnd)
                         {
                             wantedTours.Add(tour);
                         }
@@ -199,11 +202,11 @@ namespace ProjectSims.Controller
 
                     return wantedTours;
                 }
-                else if (duration != -1 && language == "" && numberGuests == -1)   //10
+                else if (durationStart != -1 && language == "" && numberGuests == -1)   //10
                 {
                     foreach (Tour tour in tours)
                     {
-                        if (tour.Duration >= duration)
+                        if (tour.Duration >= durationStart && tour.Duration <= durationEnd)
                         {
                             wantedTours.Add(tour);
                         }
@@ -211,11 +214,11 @@ namespace ProjectSims.Controller
 
                     return wantedTours;
                 }
-                else if (duration != -1 && language != "" && numberGuests == -1)    //11
+                else if (durationStart != -1 && language != "" && numberGuests == -1)    //11
                 {
                     foreach (Tour tour in tours)
                     {
-                        if (tour.Duration >= duration
+                        if (tour.Duration >= durationStart && tour.Duration <= durationEnd
                             && (tour.Language.ToLower()).Contains(language.ToLower()))
                         {
                             wantedTours.Add(tour);
@@ -223,35 +226,23 @@ namespace ProjectSims.Controller
                     }
                     return wantedTours;
                 }
-                else if (duration != -1 && language != "" && numberGuests != -1)      //12
+                else if (durationStart != -1 && language != "" && numberGuests != -1)      //12
                 {
                     foreach (Tour tour in tours)
                     {
-                        if (tour.Duration >= duration && (tour.Language.ToLower()).Contains(language.ToLower())
-                            && tour.MaxNumberGuests >= numberGuests)
+                        if (tour.Duration >= durationStart && tour.Duration <= durationEnd
+                            && (tour.Language.ToLower()).Contains(language.ToLower()) && tour.AvailableSeats >= numberGuests)
                         {
                             wantedTours.Add(tour);
                         }
                     }
                     return wantedTours;
                 }
-                else if (duration == -1 && language != "" && numberGuests != -1)      //13
+                else if (durationStart == -1 && language != "" && numberGuests != -1)      //13
                 {
                     foreach (Tour tour in tours)
                     {
-                        if ((tour.Language.ToLower()).Contains(language.ToLower()) && tour.MaxNumberGuests >= numberGuests)
-                        {
-                            wantedTours.Add(tour);
-                        }
-                    }
-
-                    return wantedTours;
-                }
-                else if (duration == -1 && language == "" && numberGuests != -1)      //14
-                {
-                    foreach (Tour tour in tours)
-                    {
-                        if (tour.MaxNumberGuests >= numberGuests)
+                        if ((tour.Language.ToLower()).Contains(language.ToLower()) && tour.AvailableSeats >= numberGuests)
                         {
                             wantedTours.Add(tour);
                         }
@@ -259,7 +250,19 @@ namespace ProjectSims.Controller
 
                     return wantedTours;
                 }
-                else if (duration == -1 && language != "" && numberGuests == -1)         //15
+                else if (durationStart == -1 && language == "" && numberGuests != -1)      //14
+                {
+                    foreach (Tour tour in tours)
+                    {
+                        if (tour.AvailableSeats >= numberGuests)
+                        {
+                            wantedTours.Add(tour);
+                        }
+                    }
+
+                    return wantedTours;
+                }
+                else if (durationStart == -1 && language != "" && numberGuests == -1)         //15
                 {
                     foreach (Tour tour in tours)
                     {
@@ -272,8 +275,73 @@ namespace ProjectSims.Controller
                     return wantedTours;
                 }
             }
+            */
 
+            foreach (Tour tour in tours)
+            {
+                if (CheckSearchConditions(tour, location, durationStart, durationEnd, language, numberGuests))
+                {
+                    wantedTours.Add(tour);
+                }
+            }
             return wantedTours;
+        }
+
+        public bool CheckSearchConditions(Tour tour, string location, double durationStart, double durationEnd, string language, int numberGuests)
+        {
+            bool ContainsLocation, ContainsLanguage, NumberGuestsIsLower, DurationBetween;
+
+            ContainsLocation = (location == "") ? true : (tour.Location.ToLower()).Contains(location.ToLower());
+            ContainsLanguage = (language == "") ? true : (tour.Language.ToLower()).Contains(language.ToLower());
+            NumberGuestsIsLower = (numberGuests == -1) ? true : numberGuests <= tour.AvailableSeats;
+            DurationBetween = (durationStart == -1) ? true : durationStart <= tour.Duration && tour.Duration <= durationEnd;
+
+            return ContainsLocation && ContainsLanguage && NumberGuestsIsLower && DurationBetween;
+        }
+
+        //if text empty return -1
+        //if text isn't integer or < 0 return -2
+        public int ConvertToInt(String text)
+        {
+            int number;
+            if (string.IsNullOrEmpty(text))
+            {
+                number = -1;
+            }
+            else if (!int.TryParse(text, out number))
+            {
+                MessageBox.Show("Wrong input! Number guests on tour must be a integer!");
+                return -2;
+            }
+            else if (number < 0)
+            {
+                MessageBox.Show("The number of people on the tour can't be negative!");
+                return -2;
+            }
+
+            return number;
+        }
+
+        //if text empty return -1
+        //if text isn't double or < 0 return -2
+        public double ConvertToDouble(String text)
+        {
+            double number;
+            if (string.IsNullOrEmpty(text))
+            {
+                number = -1;
+            }
+            else if (!double.TryParse(text, out number))
+            {
+                MessageBox.Show("Wrong input! Duration tour must be a double!");
+                return -2;
+            }
+            else if (number < 0)
+            {
+                MessageBox.Show("The tour duration search fields cannot have a negative value");
+                return -2;
+            }
+            return number;
         }
 
     }
