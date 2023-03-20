@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="Tour Tracking View" Height="500" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
-        <TextBox x:Name="TourInfoTextBox" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" Width="750" Height="30" Foreground="Black" FontSize="20" FontWeight="Bold" BorderThickness="0" IsEnabled="False"/>
-        <ListView  ItemsSource="{Binding FinishedKeyPoints}" Margin="20,55,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="150" Background="LightBlue" FontWeight="Bold">
+        <TextBox x:Name="TourInfoTextBox" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" Width="750" Height="30" Foreground="Black" FontSize="20" FontWeight="Bold" BorderThickness="0" IsEnabled="False"/>
+        <ListView  ItemsSource="{Binding FinishedKeyPoints}" Margin="20,55,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="350" Height="150" Background="LightBlue" FontWeight="Bold">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="400" Header="Završene stanice">
@@ -21,10 +21,36 @@
                 </GridView>
             </ListView.View> 
         </ListView>
-        <ListView x:Name="KeyPointListView" ItemsSource="{Binding UnFinishedKeyPoints}"  SelectedItem="{Binding Path=SelectedKeyPoint}" Background="White" Foreground="DarkRed" FontWeight="Bold" SelectionMode="Single" SelectionChanged="KeyPointSelected_SelectionChanged" Margin="20,210,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="150">
+        <ListView x:Name="KeyPointListView" ItemsSource="{Binding UnFinishedKeyPoints}"  SelectedItem="{Binding Path=SelectedKeyPoint}" Background="White" Foreground="DarkRed" FontWeight="Bold" SelectionMode="Single" SelectionChanged="KeyPointSelected_SelectionChanged" Margin="10,210,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="350" Height="150">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Nezavršene stanice" Width="400">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox  Content="{Binding Name}" IsChecked="False" IsEnabled="False"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView  ItemsSource="{Binding PresentGuests}" Margin="400,55,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="350" Height="150" Background="DarkBlue" FontWeight="Bold">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="400" Header="Prisutni gosti">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox  Content="{Binding Name}" IsChecked="True" IsEnabled="False"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="WaitingGuestsListView" ItemsSource="{Binding WaitingGuests}"  SelectedItem="{Binding Path=SelectedGuest}" FontWeight="Bold" SelectionMode="Single" SelectionChanged="GuestSelected_SelectionChanged" Margin="400,210,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="350" Height="150">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Gosti na čekanju" Width="400">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox  Content="{Binding Name}" IsChecked="False" IsEnabled="False"/>

@@ -33,6 +33,10 @@ namespace ProjectSims
         {
             InitializeComponent();
             DataContext = this;
+            if(g.State == Guest2State.Waiting)
+            {
+                MessageBox.Show("Potvrdite prisustvo!");
+            }
             
             tourController = new TourController();
             tourController.Subscribe(this);           

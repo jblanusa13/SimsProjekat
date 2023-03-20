@@ -18,7 +18,7 @@ namespace ProjectSims.Controller
             reservations = new ReservationTourDAO();
         }
 
-        public List<ReservationTour> GetAllTours()
+        public List<ReservationTour> GetAllReservations()
         {
             return reservations.GetAll();
         }
@@ -31,6 +31,18 @@ namespace ProjectSims.Controller
         public void Delete(ReservationTour reservation)
         {
             reservations.Remove(reservation);
+        }
+        public List<int> FindGuestIdsByTourId(int tourId)
+        {
+            List<int> guestIds = new List<int>();
+            foreach (ReservationTour reservation in GetAllReservations())
+            {
+                if (reservation.TourId == tourId)
+                {
+                    guestIds.Add(reservation.Guest2Id);
+                }
+            }
+            return guestIds;
         }
 
         public void Update(ReservationTour reserevation)
