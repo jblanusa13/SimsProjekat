@@ -42,21 +42,35 @@ namespace ProjectSims.View
         {
             if(SelectedTour != null)
             {
-                Tour startedTour = (Tour)SelectedTour;
+                Tour selectedTour = (Tour)SelectedTour;
                 if (tourController.StartTour(SelectedTour))
                 {
-                    TourTrackingView tourTrackingView = new TourTrackingView(startedTour);
+                    TourTrackingView tourTrackingView = new TourTrackingView(selectedTour);
                     tourTrackingView.Show();
                 }
                 else
                 {
-                    MessageBox.Show("Već postoji započeta tura!");
+                    MessageBox.Show("Već postoji započeta tura");                   
                 }
             }
             else
             {
                 MessageBox.Show("Odaberite turu!");
             }
+        }
+        private void StartedTour_Click(Object sender, RoutedEventArgs e)
+        {
+            Tour startedTour = tourController.FindStartedTour();
+            if(startedTour != null)
+            {
+                TourTrackingView tourTrackingView = new TourTrackingView(startedTour);
+                tourTrackingView.Show();
+            }
+            else
+            {
+                MessageBox.Show("Nijedna tura nije zapoceta!");
+            }
+
         }
         private void UpdateAvailableTours()
         {

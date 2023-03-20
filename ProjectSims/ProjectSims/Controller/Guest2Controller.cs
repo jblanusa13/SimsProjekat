@@ -48,12 +48,6 @@ namespace ProjectSims.Controller
             return guests.FindById(id);
         }
 
-        public void CheckGuest(Guest2 guest)
-        {
-            guest.State = Guest2State.Waiting;
-            guests.Update(guest);
-        }
-
     }
 }
 

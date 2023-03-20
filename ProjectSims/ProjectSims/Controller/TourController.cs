@@ -122,6 +122,17 @@ namespace ProjectSims.Controller
             }            
              return false;           
         }
+        public Tour FindStartedTour()
+        {
+            foreach (Tour availableTour in GetAllTours())
+            {
+                if (availableTour.State == TourState.Active)
+                {
+                    return availableTour;
+                }
+            }
+            return null;
+        }
         public void FinishTour(Tour tour)
         {
             tour.State = TourState.Finished;

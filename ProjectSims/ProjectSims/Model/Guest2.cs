@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace ProjectSims.Model
 {
-    public enum Guest2State { InActiveTour, Waiting, Present, NotPresent }
     public class Guest2 : ISerializable
     {
         public int Id { get; set; }
@@ -16,7 +15,6 @@ namespace ProjectSims.Model
         public string Adress { get; set; }
         public string Email { get; set; }
         public int UserId { get; set; }
-        public Guest2State State { get; set; }
 
         public Guest2()
         {
@@ -30,7 +28,6 @@ namespace ProjectSims.Model
             Adress = adress;
             Email = email;
             UserId = userId;
-            State=Guest2State.InActiveTour;
         }
 
         public void FromCSV(string[] values)
@@ -41,12 +38,11 @@ namespace ProjectSims.Model
             Adress = values[3];
             Email = values[4];
             UserId = Convert.ToInt32(values[5]);
-            State= (Guest2State)Enum.Parse(typeof(Guest2State), values[6]);
         }
 
         public string[] ToCSV()
         {
-            string[] csvvalues = { Id.ToString(), Name, Surname, Adress, Email, UserId.ToString(),State.ToString() };
+            string[] csvvalues = { Id.ToString(), Name, Surname, Adress, Email, UserId.ToString()};
             return csvvalues;
         }
     }

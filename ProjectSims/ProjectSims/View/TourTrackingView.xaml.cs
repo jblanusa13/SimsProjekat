@@ -31,9 +31,9 @@ namespace ProjectSims.View
         private ReservationTourController reservationTourController;
         public ObservableCollection<KeyPoint> UnFinishedKeyPoints { get; set; }
         public ObservableCollection<KeyPoint> FinishedKeyPoints { get; set; }
-        public ObservableCollection<Guest2> PresentGuests { get; set; }
         public ObservableCollection<Guest2> WaitingGuests { get; set; }
         public KeyPoint SelectedKeyPoint { get; set; }
+        public Guest2 SelectedGuest { get; set; }
         private Tour tour { get; set; }
         private int expectedId { get; set; }
         public TourTrackingView(Tour startedTour)
@@ -45,22 +45,24 @@ namespace ProjectSims.View
             keyPointController = new KeyPointController();
             keyPointController.Subscribe(this);
             guest2Controller= new Guest2Controller();
-            guest2Controller.Subscribe(this);
             reservationTourController= new ReservationTourController();
+            reservationTourController.Subscribe(this);
             
             tour = startedTour;
             expectedId = tour.KeyPointIds[1];
+            reservationTourController.InviteGuests(tour.Id);
 
             UnFinishedKeyPoints = new ObservableCollection<KeyPoint>(keyPointController.FindUnFinishedKeyPointsByIds(tour.KeyPointIds));
             FinishedKeyPoints = new ObservableCollection<KeyPoint>(keyPointController.FindFinishedKeyPointsByIds(tour.KeyPointIds));
-            List<int> GuestIds=reservationTourController.FindGuestIdsByTourId(tour.Id);
             WaitingGuests = new ObservableCollection<Guest2>();
-            foreach(int id in GuestIds)
+            foreach(int id in reservationTourController.FindGuestIdsByTourIdAndState(tour.Id,Guest2State.Invited))
             {
                 WaitingGuests.Add(guest2Controller.FindGuest2ById(id));
             }
-
-            PresentGuests= new ObservableCollection<Guest2>();            
+            foreach (int id in reservationTourController.FindGuestIdsByTourIdAndState(tour.Id, Guest2State.Waiting))
+            {
+                WaitingGuests.Add(guest2Controller.FindGuest2ById(id));
+            }
             TourInfoTextBox.Text = tour.Name + "," + tour.StartOfTheTour.ToString("dd.MM.yyyy HH:mm");
         }
         
@@ -90,18 +92,30 @@ namespace ProjectSims.View
 
             }
         }
-        private void GuestSelected_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void GuestSelect_Click(object sender, RoutedEventArgs e)
         {
-            var guest2 = WaitingGuestsListView.SelectedItem as Guest2;
-            if (guest2 != null)
+            Guest2 guest = (Guest2)SelectedGuest;
+            if (guest != null)
             {
-                guest2Controller.CheckGuest(guest2);
+                reservationTourController.NotifyGuest(guest.Id, tour.Id);             
+            }
+            else
+            {
+                MessageBox.Show("Odaberite gosta!");
             }
         }
 
         private void FinishTour_Click(object sender, RoutedEventArgs e)
         {
             tourController.FinishTour(tour);
+            //reservationTourController.FinishTour(tour.Id);
+            Close();
+
+        }
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            var startView = new MainWindow();
+            startView.Show();
             Close();
         }
         private void UpdateKeyPointList()
@@ -120,20 +134,13 @@ namespace ProjectSims.View
         private void UpdateGuestList()
         {
             WaitingGuests.Clear();
-            PresentGuests.Clear();
-            List<int> GuestIds = reservationTourController.FindGuestIdsByTourId(tour.Id);
-            WaitingGuests = new ObservableCollection<Guest2>();
-            foreach(int id in GuestIds)
+            foreach (int id in reservationTourController.FindGuestIdsByTourIdAndState(tour.Id,Guest2State.Waiting))
             {
-                var guest2 = guest2Controller.FindGuest2ById(id);
-                if(guest2.State == Guest2State.Present)
-                {
-                    PresentGuests.Add(guest2);
-                }
-                else
-                {
-                    WaitingGuests.Add(guest2);
-                }
+                WaitingGuests.Add(guest2Controller.FindGuest2ById(id));
+            }
+            foreach (int id in reservationTourController.FindGuestIdsByTourIdAndState(tour.Id, Guest2State.Invited))
+            {
+                WaitingGuests.Add(guest2Controller.FindGuest2ById(id));
             }
         }
 

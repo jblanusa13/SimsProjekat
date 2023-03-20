@@ -18,6 +18,7 @@
                 </DataGrid.Columns>
              </DataGrid>
         <Button Click="StartTour_Click" Content="Započni turu" HorizontalAlignment="Left" Margin="550,300,0,0" VerticalAlignment="Top" Height="30" Width="100" Background="#061950" Foreground="White" FontWeight="Bold"/>
+        <Button Click="StartedTour_Click" Content="Vidi detaljnije započetu turu" HorizontalAlignment="Left" Margin="10,370,0,0" VerticalAlignment="Top" Height="30" Width="200" Background="SkyBlue" Foreground="MidnightBlue" FontWeight="Bold"/>
     </Grid>
  
 
