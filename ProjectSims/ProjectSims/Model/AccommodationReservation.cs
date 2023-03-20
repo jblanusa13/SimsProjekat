@@ -18,11 +18,11 @@ namespace ProjectSims.Model
 
         public AccommodationReservation() { }
 
-        public AccommodationReservation(int id, int guestId, int accommodationId, DateOnly checkInDate, DateOnly checkOutDate, int guestNumber)
+        public AccommodationReservation(int id, int accommodationId, int guestId,  DateOnly checkInDate, DateOnly checkOutDate, int guestNumber)
         {
             Id = id;
-            GuestId = guestId;
             AccommodationId = accommodationId;
+            GuestId = guestId;
             CheckInDate = checkInDate;
             CheckOutDate = checkOutDate;
             GuestNumber = guestNumber;
@@ -31,8 +31,8 @@ namespace ProjectSims.Model
         public void FromCSV(string[] values)
         {
             Id = Convert.ToInt32(values[0]);
-            GuestId = Convert.ToInt32(values[1]);
-            AccommodationId = Convert.ToInt32(values[2]);
+            AccommodationId = Convert.ToInt32(values[1]);
+            GuestId = Convert.ToInt32(values[2]);
             CheckInDate = DateOnly.Parse(values[3]);
             CheckOutDate = DateOnly.Parse(values[4]);
             GuestNumber = Convert.ToInt32(values[5]);
@@ -41,9 +41,9 @@ namespace ProjectSims.Model
         public string[] ToCSV()
         {
             string[] csvvalues = { 
-                Id.ToString(), 
-                GuestId.ToString(),
+                Id.ToString(),
                 AccommodationId.ToString(),
+                GuestId.ToString(),
                 CheckInDate.ToString(),
                 CheckOutDate.ToString(),
                 GuestNumber.ToString()  

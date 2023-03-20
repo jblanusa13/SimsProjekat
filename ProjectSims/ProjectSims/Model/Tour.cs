@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjectSims.Model
 {
+    public enum TourState { Inactive, Active, Finished}
     public class Tour : ISerializable
     {
         public int Id { get; set; }
@@ -21,6 +22,7 @@ namespace ProjectSims.Model
         public double Duration { get; set; }
         public List<string> Images { get; set; }
         public int AvailableSeats { get; set; }
+        public TourState State { get; set; }
 
 
         public Tour() 
@@ -42,6 +44,7 @@ namespace ProjectSims.Model
             Duration = duration;
             Images = images;
             AvailableSeats = availableSeats;
+            State = TourState.Inactive;
         }
         public void FromCSV(string[] values)
         {
@@ -63,6 +66,7 @@ namespace ProjectSims.Model
                 Images.Add(image);
             }
             AvailableSeats = Convert.ToInt32(values[10]);
+            State = (TourState)Enum.Parse(typeof(TourState), values[11]);
         }
 
         public string[] ToCSV()
@@ -87,7 +91,7 @@ namespace ProjectSims.Model
             }
             ImageString += Images.Last();
 
-            string[] csvvalues = { Id.ToString(), Name, Location, Description, Language, MaxNumberGuests.ToString(), KeyPointIdArray, StartOfTheTour.ToString(), Duration.ToString(), ImageString, AvailableSeats.ToString()};
+            string[] csvvalues = { Id.ToString(), Name, Location, Description, Language, MaxNumberGuests.ToString(), KeyPointIdArray, StartOfTheTour.ToString(), Duration.ToString(), ImageString, AvailableSeats.ToString(),State.ToString()};
             return csvvalues;
         }
     }

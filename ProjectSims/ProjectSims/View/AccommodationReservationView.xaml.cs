@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,8 +24,10 @@ namespace ProjectSims.View
     /// <summary>
     /// Interaction logic for AccommodationReservationView.xaml
     /// </summary>
-    public partial class AccommodationReservationView : Window, INotifyPropertyChanged, IObserver
+    public partial class AccommodationReservationView : Window, INotifyPropertyChanged, IObserver, IDataErrorInfo
     {
+        private int _accommodationId;
+
         private string _accommodationName;
         public string AccommodationName
         {
@@ -107,22 +111,91 @@ namespace ProjectSims.View
             }
         }
 
+        private string _firstDate;
+        public string FirstDate
+        {
+            get => _firstDate;
+            set
+            {
+                if (value != _firstDate)
+                {
+                    _firstDate = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
-        private AccommodationController _accommodationController;
+        private string _lastDate;
+        public string LastDate
+        {
+            get => _lastDate;
+            set
+            {
+                if (value != _lastDate)
+                {
+                    _lastDate = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
-        public AccommodationReservationView(Accommodation SelectedAccommodation, AccommodationController accommodationController)
+        private string _guestNumber;
+        public string GuestNumber
+        {
+            get => _guestNumber;
+            set
+            {
+                if (value != _guestNumber)
+                {
+                    _guestNumber = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string _daysNumber;
+        public string DaysNumber
+        {
+            get => _daysNumber;
+            set
+            {
+                if (value != _daysNumber)
+                {
+                    _daysNumber = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        
+        public ObservableCollection<DateRanges> AvailableDates { get; set; }
+        public DateRanges SelectedDates;
+
+        private AccommodationReservationController _reservationController;
+
+        private Guest1 _guest;
+
+        public AccommodationReservationView(Accommodation SelectedAccommodation, Guest1 guest)
         {
             InitializeComponent();
             DataContext = this;
 
+            _guest = guest;
+
+            _reservationController = new AccommodationReservationController();
+            _reservationController.Subscribe(this);
+
+            _accommodationId = SelectedAccommodation.Id;
             AccommodationName = SelectedAccommodation.Name;
             Location = SelectedAccommodation.Location;
             Type = SelectedAccommodation.Type.ToString();
             MaxGuests = SelectedAccommodation.GuestMaximum.ToString();
             MinDays = SelectedAccommodation.MinimumReservationDays.ToString();
 
-            _accommodationController = accommodationController;
-            _accommodationController.Subscribe(this);
+            User user = _reservationController.GetUser(_guest.UserId);
+            Username = user.Username;
+
+            AvailableDates = new ObservableCollection<DateRanges>();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -131,14 +204,120 @@ namespace ProjectSims.View
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
 
+        private void FindDates_Click(object sender, RoutedEventArgs e)
+        {
+            if(!string.IsNullOrEmpty(TexboxFirstDate.Text) && !string.IsNullOrEmpty(TexboxLastDate.Text) && !string.IsNullOrEmpty(TexboxDaysNumber.Text))
+            {
+                List<DateRanges> availableDates = new List<DateRanges>();
+                availableDates = _reservationController.FindAvailableDates(DateOnly.Parse(TexboxFirstDate.Text), DateOnly.Parse(TexboxLastDate.Text), Convert.ToInt32(TexboxDaysNumber.Text), _accommodationId);
+
+                AvailableDates.Clear();
+                foreach (DateRanges dateRange in availableDates)
+                {
+                 AvailableDates.Add(dateRange);
+                }
+            }
+        }
+
+        private void Confirm_Click(object sender, RoutedEventArgs e)
+        {
+            SelectedDates = (DateRanges)DatesTable.SelectedItem;
+            if (IsValid && SelectedDates != null)
+            {
+                DateRanges dates = (DateRanges)DatesTable.SelectedItem;
+                int guestNumber = Convert.ToInt32(GuestNumber);
+
+                _reservationController.CreateReservation(_accommodationId, _guest.Id, dates.CheckIn, dates.CheckOut, guestNumber);
+                Close();
+            }
         }
 
         public void Update()
         {
             throw new NotImplementedException();
+        }
+
+        // validation
+        private Regex _DateRegex = new Regex("(0?[1-9]|[12][0-9]|3[01])\\.(0?[1-9]|1[012])\\.[1-2][0-9]{3}\\.?$");
+        private Regex _NumberRegex = new Regex("[1-9]+");
+
+        public string Error => null;
+        public string this[string columnName]
+        {
+            get
+            {
+                if(columnName == "FirstDate")
+                {
+                    if (string.IsNullOrEmpty(FirstDate))
+                        return "Obavezno polje";
+
+                    Match match = _DateRegex.Match(FirstDate);
+                    if (!match.Success)
+                        return "Datum je u formatu: DD.MM.YYYY";
+                }
+                else if (columnName == "LastDate")
+                {
+                    if (string.IsNullOrEmpty(LastDate))
+                        return "Obavezno polje";
+
+                    Match match = _DateRegex.Match(LastDate);
+                    if (!match.Success)
+                        return "Datum je u formatu: DD.MM.YYYY";
+
+
+                    if (DateOnly.Parse(LastDate) <= DateOnly.Parse(FirstDate))
+                    {
+                        return "Mora biti veci od pocetnog datuma!";
+                    }
+
+                }
+                else if(columnName == "DaysNumber")
+                {
+                    if (string.IsNullOrEmpty(DaysNumber))
+                        return "Obavezno polje";
+
+                    Match match = _NumberRegex.Match(DaysNumber);
+                    if (!match.Success)
+                        return "Broj dana je prirodan broj";
+
+                    if(Convert.ToInt32(DaysNumber) < Convert.ToInt32(MinDays))
+                    {
+                        return "Mora biti veci od min dozvoljenog broja dana";
+                    }
+                }
+                else if(columnName == "GuestNumber")
+                {
+                    if (string.IsNullOrEmpty(GuestNumber))
+                        return "Obavezno polje";
+
+                    Match match = _NumberRegex.Match(GuestNumber);
+                    if (!match.Success)
+                        return "Broj gostiju je prirodan broj";
+
+                    if(Convert.ToInt32(GuestNumber) > Convert.ToInt32(MaxGuests))
+                    {
+                        return "Mora biti manji od maks dozvoljenog broja gostiju";
+                    }
+                }
+                return null;
+            }
+        }
+
+        private readonly string[] _validiranaObelezja = { "FirstDate" , "LastDate", "DaysNumber", "GuestNumber" };
+
+
+        public bool IsValid
+        {
+            get
+            {
+                foreach (var obelezje in _validiranaObelezja)
+                {
+                    if (this[obelezje] != null)
+                        return false;
+                }
+                return true;
+            }
         }
     }
 }

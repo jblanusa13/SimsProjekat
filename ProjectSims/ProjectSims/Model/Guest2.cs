@@ -42,7 +42,7 @@ namespace ProjectSims.Model
 
         public string[] ToCSV()
         {
-            string[] csvvalues = { Id.ToString(), Name, Surname, Adress, Email, UserId.ToString() };
+            string[] csvvalues = { Id.ToString(), Name, Surname, Adress, Email, UserId.ToString()};
             return csvvalues;
         }
     }

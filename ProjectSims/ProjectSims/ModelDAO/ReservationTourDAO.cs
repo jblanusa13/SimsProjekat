@@ -58,8 +58,6 @@ namespace ProjectSims.ModelDAO
             reservationFile.Save(reservations);
             NotifyObservers();
         }
-
-
         public List<ReservationTour> GetAll()
         {
             return reservations;
