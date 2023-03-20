@@ -76,6 +76,10 @@ namespace ProjectSims.ModelDAO
                     observer.Update();
                 }
             }
+            public GuestAccommodation FindById(int id)
+            {
+                return _guestAccommodations.Find(g => g.Id == id);
+            }
 
-        }
+    }
 }

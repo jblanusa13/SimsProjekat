@@ -19,6 +19,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Collections.ObjectModel;
 
 namespace ProjectSims.View
 {
@@ -28,12 +29,16 @@ namespace ProjectSims.View
     public partial class AccommodationRegistrationView : Window, INotifyPropertyChanged, IDataErrorInfo
     {
         private readonly AccommodationController accommodationController;
+        private readonly OwnerController ownerController;
+        public ObservableCollection<Accommodation> accommodations;
         public AccommodationRegistrationView()
         {
             InitializeComponent();
             DataContext = this;
 
             accommodationController = new AccommodationController();
+            ownerController = new OwnerController();
+            accommodations = new ObservableCollection<Accommodation>();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -213,6 +218,7 @@ namespace ProjectSims.View
             {
                 Accommodation accommodation = new Accommodation(-1, AccommodationName, Location, Type, GuestsMaximum, MinimumReservationDays, DismissalDays, Images, null, -1);
                 accommodationController.Create(accommodation);
+                //accommodations.Add(accommodation);
                 MessageBox.Show("Uspješno registrovan smještaj!", "Registracija smještaja", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Close();
             }

@@ -4,6 +4,7 @@ using ProjectSims.Model;
 using ProjectSims.Observer;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
@@ -122,8 +123,11 @@ namespace ProjectSims.View
                 }
             }
         }
-        
-        private GuestAccommodationController _guestAccommodationController;
+        public GuestAccommodation SelectedGuestAccommodation { get; set; }
+
+        public  GuestAccommodationController _guestAccommodationController;
+        public ObservableCollection<GuestAccommodation> GuestAccommodations { get; set; }
+
         public GuestRatingtView(GuestAccommodation selectedGuestAccommodation, GuestAccommodationController guestAccommodationController)
         {
             InitializeComponent();
@@ -140,6 +144,12 @@ namespace ProjectSims.View
 
             _guestAccommodationController = guestAccommodationController;
             _guestAccommodationController.Subscribe(this);
+            SelectedGuestAccommodation = selectedGuestAccommodation;
+        
+            Rated = selectedGuestAccommodation.Rated;
+
+            GuestAccommodations = new ObservableCollection<GuestAccommodation>(_guestAccommodationController.GetAllGuestAccommodations());
+        
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -151,7 +161,23 @@ namespace ProjectSims.View
 
         public void Update()
         {
-            
+            GuestAccommodations.Clear();
+            foreach (GuestAccommodation guestAccommodation in _guestAccommodationController.GetAllGuestAccommodations())
+            {
+                GuestAccommodations.Add(guestAccommodation);
+            }
+        }
+
+        private void RateGuest_Click(object sender, RoutedEventArgs e)
+        {
+            SelectedGuestAccommodation.Rated = true;
+            UpdateLayout();
+            this.Close();
+        }
+
+        private void CancelRateGuest_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

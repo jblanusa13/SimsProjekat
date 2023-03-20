@@ -7,10 +7,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Configuration;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +21,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Tulpep.NotificationWindow;
 
 namespace ProjectSims.View
 {
@@ -27,6 +30,7 @@ namespace ProjectSims.View
     /// </summary>
     public partial class OwnerView : Window, INotifyPropertyChanged, IObserver
     {
+        static Timer timer;
         private readonly GuestAccommodationController _guestAccommodationController;
         public ObservableCollection<GuestAccommodation> GuestAccommodations { get; set; }
         public GuestAccommodation SelectedGuestAccommodation { get; set; }
@@ -38,88 +42,53 @@ namespace ProjectSims.View
             _guestAccommodationController = new GuestAccommodationController();
             _guestAccommodationController.Subscribe(this);
             GuestAccommodations = new ObservableCollection<GuestAccommodation>(_guestAccommodationController.GetAllGuestAccommodations());
-        }
 
+            //NotifyOwner();
+        }
         /*
-        private string _name;
-        public string Name
+        DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+
+        private int DateDifference(DateOnly dateOnly1, DateOnly dateOnly2)
         {
-            get => _name;
-            set
+            return (new DateTime(dateOnly1.Year, dateOnly1.Month, dateOnly1.Day) - new DateTime(dateOnly2.Year, dateOnly2.Month, dateOnly2.Day)).Days;
+        }
+
+        private void NotifyOwner() 
+        {
+            foreach (var item in GuestAccommodations)
             {
-                if (value != _name)
+                if (item.Rated == false) 
                 {
-                    _name = value;
-                    OnPropertyChanged();
-                }
+                    if (today.CompareTo(item.CheckOutDate) > 0)    //Guest left 
+                    {
+                        int interval = DateDifference(today, item.CheckOutDate);
+                        if (interval >= 0 && interval <= 5)
+                        { 
+                            DateTime nowTime = DateTime.Now;    //Timer started
+                            DateTime scheduledTime = nowTime.AddDays(5-interval); //Specify your scheduled time HH,MM,SS
+                            
+                            var totalMilliSecondsPerDay = (5-interval)*TimeSpan.FromDays(1).TotalMilliseconds;
+                            var timer = new Timer(totalMilliSecondsPerDay);
+                            // double tickTime = (double)(scheduledTime - DateTime.Now).TotalMilliseconds;
+                            // timer = new Timer(tickTime);
+                            timer.Start();
+                            timer.Elapsed += new ElapsedEventHandler(Notification_Click) ;
+                        } 
+                    }
+                }   
             }
         }
 
-        private string _firstName;
-        public string FirstName
+        private void Notification_Click(object? sender, EventArgs e)
         {
-            get => _firstName;
-            set
-            {
-                if (value != _firstName)
-                {
-                    _firstName = value;
-                    OnPropertyChanged();
-                }
-            }
+            PopupNotifier notification = new PopupNotifier();
+            notification.AnimationDuration = 10;
+            notification.ContentText = "Niste ocijenili ";// + _guestAccommodationController.GetAllGuestAccommodations().Find().FirstName + " " + item.LastName + "!";
+            notification.TitleText = "Ocjenjivanje gosta";
+            notification.Click += Notification_Click;
+            notification.Popup();
         }
-        private string _lastName;
-        public string LastName
-        {
-            get => _lastName;
-            set
-            {
-                if (value != _lastName)
-                {
-                    _lastName = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-        private DateOnly _checkInDate;
-        public DateOnly CheckInDate
-        {
-            get => _checkInDate;
-            set
-            {
-                if (value != _checkInDate)
-                {
-                    _checkInDate = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-        private DateOnly _checkOutDate;
-        public DateOnly CheckOutDate
-        {
-            get => _checkOutDate;
-            set
-            {
-                if (value != _checkOutDate)
-                {
-                    _checkOutDate = value;
-                    OnPropertyChanged();
-                }
-            }
-        }*/
-        private bool _rated;
-        public bool Rated
-        {
-            get => _rated;
-            set
-            {
-                if (value != _rated)
-                {
-                    _rated = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
+        */
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -142,43 +111,6 @@ namespace ProjectSims.View
                 MessageBox.Show(message, "Ocjenjivanje gosta", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
-
-
-        /*
-        private IEnumerable<DataGridRow> GetDataGridRowsForButtons(DataGrid grid)
-        {
-            //IQueryable
-            if (!(grid.ItemsSource is IEnumerable GuestAccommodations))
-                yield return null;
-
-            foreach (var item in GuestAccommodations)
-            {
-                var row = grid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
-                if (null != row & row.IsSelected)
-                    yield return row;
-            }
-        }
-
-        private void RowButton_Click(object sender, RoutedEventArgs e)
-        {
-            for (var vis = sender as Visual; vis != null; vis = VisualTreeHelper.GetParent(vis) as Visual)
-                if (vis is DataGridRow)
-                {
-                    // var row = (DataGrid)vis;
-
-                    var rows = GetDataGridRowsForButtons(dgv_Students);
-
-                    string id;
-                    foreach (DataGridRow dr in rows)
-                    {
-                        id = (dr.Item as tbl_student).Identification_code;
-                        MessageBox.Show(id);
-                        break;
-                    }
-
-                    break;
-                }
-        }*/
 
         private void RegistrateAccommodation_Click(object sender, RoutedEventArgs e)
         {

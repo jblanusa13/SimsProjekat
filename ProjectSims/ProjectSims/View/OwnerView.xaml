@@ -28,7 +28,7 @@
                         </DataGridTextColumn>
                         <DataGridTextColumn x:Name="CheckInDateColumn" Header="Datum dolaska" Binding="{Binding CheckInDate}" Width="95" IsReadOnly="True"/>
                         <DataGridTextColumn x:Name="CheckOutDateColumn" Header="Datum odlaska" Binding="{Binding CheckOutDate}" Width="95" IsReadOnly="True"/>
-                        <DataGridCheckBoxColumn Header="Ocijenjen" Binding="{Binding Rated}" Width="*" IsReadOnly="True"/>
+                        <DataGridCheckBoxColumn Header="Ocijenjen" Binding="{Binding Rated, Mode=TwoWay}"  Width="*" IsReadOnly="True"/>
                        <!-- <DataGridTextColumn Header="Dodijeli ocjenu" Width="*" IsReadOnly="True"/>-->
                         <!--<DataGridTemplateColumn Header="Dodijeli ocjenu">
                             <DataGridTemplateColumn.CellTemplate>

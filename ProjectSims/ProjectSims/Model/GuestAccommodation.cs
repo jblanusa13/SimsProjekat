@@ -64,5 +64,10 @@ namespace ProjectSims.Model
             };
             return csvvalues;
         }
+
+        public static explicit operator GuestAccommodation(List<GuestAccommodation> v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
