@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using ProjectSims.Controller;
 using ProjectSims.Model;
 using ProjectSims.Observer;
+using ProjectSims.View;
 
 namespace ProjectSims
 {
@@ -25,6 +26,8 @@ namespace ProjectSims
     {
         private readonly AccommodationController _accomodationController;
         public ObservableCollection<Accommodation> Accommodations { get; set; }
+        public Accommodation SelectedAccommodation { get; set; }
+        public Guest1 Guest { get; set; }
         public string NameSearch { get; set; }
         //public string CitySearch { get; set; }
         //public string CountrySearch { get; set; }
@@ -34,7 +37,7 @@ namespace ProjectSims
         public string DaysNumberSearch { get; set; }
         
         
-        public Guest1View()
+        public Guest1View(Guest1 guest)
         {
             InitializeComponent();
             DataContext = this;
@@ -42,6 +45,8 @@ namespace ProjectSims
             _accomodationController = new AccommodationController();
             _accomodationController.Subscribe(this);
             Accommodations = new ObservableCollection<Accommodation>(_accomodationController.GetAllAccommodations());
+
+            Guest = guest;
         }
 
         public void TextboxName_TextChanged(object sender, TextChangedEventArgs e)
@@ -101,11 +106,21 @@ namespace ProjectSims
             //ContainsCity = string.IsNullOrEmpty(CitySearch) ? true : _accomodationController.FindLocation(accommodation.LocationId).City.ToLower().Contains(CitySearch.ToLower());
             //ContainsCountry = string.IsNullOrEmpty(CountrySearch) ? true : _accomodationController.FindLocation(accommodation.LocationId).Country.ToLower().Contains(CountrySearch.ToLower());
             ContainsType = string.IsNullOrEmpty(TypeSearch) ? true : accommodation.Type.ToString().ToLower().Contains(TypeSearch.ToLower());
-            GuestsNumberIsLower = string.IsNullOrEmpty(GuestsNumberSearch) ? true : Convert.ToInt32(GuestsNumberSearch) <= accommodation.GuestMaximum;
+            GuestsNumberIsLower = string.IsNullOrEmpty(GuestsNumberSearch) ? true : Convert.ToInt32(GuestsNumberSearch) <= accommodation.GuestMaximum && Convert.ToInt32(GuestsNumberSearch) >= 0;
             DaysNumberIsGreater = string.IsNullOrEmpty(DaysNumberSearch) ? true : Convert.ToInt32(DaysNumberSearch) >= accommodation.DismissalDays;
 
 
             return ContainsName && ContainsLocation && ContainsType && GuestsNumberIsLower && DaysNumberIsGreater;
+        }
+
+        public void Reservation_Click(object sender, RoutedEventArgs e)
+        {
+            SelectedAccommodation = (Accommodation)AccommodationsTable.SelectedItem;
+            if (SelectedAccommodation != null)
+            {
+                AccommodationReservationView reservation = new AccommodationReservationView(SelectedAccommodation, Guest);
+                reservation.Show();
+            }
         }
 
         public void Update()

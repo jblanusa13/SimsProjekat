@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using ProjectSims.Serializer;
 
 namespace ProjectSims.Model
 {
@@ -16,10 +18,7 @@ namespace ProjectSims.Model
         public string Email { get; set; }
         public int UserId { get; set; }
 
-        public Guest1()
-        {
-
-        }
+        public Guest1() { }
         public Guest1(int id, string name, string surname, string adress, string email, int userId)
         {
             Id = id;
@@ -42,7 +41,15 @@ namespace ProjectSims.Model
 
         public string[] ToCSV()
         {
-            string[] csvvalues = { Id.ToString(), Name, Surname, Adress, Email, UserId.ToString() };
+            string[] csvvalues = 
+            { 
+                Id.ToString(), 
+                Name, 
+                Surname, 
+                Adress, 
+                Email, 
+                UserId.ToString() 
+            };
             return csvvalues;
         }
     }
