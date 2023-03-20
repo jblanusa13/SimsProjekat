@@ -22,9 +22,7 @@ namespace ProjectSims.Model
         public string Images { get; set; }
         public Owner Owner { get; set; }
         public int IdOwner { get; set; }
-        public Accommodation() {
-            DismissalDays = 1;
-        }
+        public Accommodation() { }
 
         public Accommodation(int id, string name, string location, AccommodationType type, int guestsMaximum, int minimumReservationDays, int dismissalDays, string images, Owner owner, int idOwner) {
             //Id = id;

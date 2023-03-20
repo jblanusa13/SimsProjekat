@@ -244,6 +244,30 @@ namespace ProjectSims.View
                     {
                         return "Unesite vrijednost!";
                     }
+                    else if (Location.Contains(" "))
+                    {
+                        LocationTextBox.Text = LocationTextBox.Text.Trim();
+                        LocationTextBox.UpdateLayout();
+                        return "Iskljucivo bez razmaka!";
+                    }
+                    else if (Location.Contains(",")) 
+                    {
+                        int count = 0;
+                        foreach (char character in LocationTextBox.Text)
+                        {
+                            if (character == ',') 
+                            {
+                                count++;
+                                LocationTextBox.UpdateLayout();
+                            }
+
+                            if (count>1) 
+                            {
+                                LocationTextBox.UpdateLayout();
+                                return "Iskljucivo jedna zapeta!";
+                            }
+                        }
+                    }
                     else if (!Regex.IsMatch(Location, @"^[a-zA-Z,]*$"))
                     {
                         return "Iskljucivo: slova[a-z] u formatu Grad,Drzava!";
@@ -259,6 +283,12 @@ namespace ProjectSims.View
                     {
                         return "Iskljucivo brojevi veci od 0!";
                     }
+                    else if (GuestsMaximum.ToString().Contains(" "))
+                    {
+                        GuestsMaximumTextBox.Text = GuestsMaximumTextBox.Text.Trim();
+                        GuestsMaximumTextBox.UpdateLayout();
+                        return "Iskljucivo bez razmaka!";
+                    }
                 }
 
                 else if (columnName == "MinimumReservationDays")
@@ -266,6 +296,12 @@ namespace ProjectSims.View
                     if (string.IsNullOrEmpty(Convert.ToString(MinimumReservationDays)))
                     {
                         return "Unesite vrijednost!";
+                    }
+                    else if (MinimumReservationDays.ToString().Contains(" "))
+                    {
+                        MinimumReservationDaysTextBox.Text = MinimumReservationDaysTextBox.Text.Trim();
+                        MinimumReservationDaysTextBox.UpdateLayout();
+                        return "Iskljucivo bez razmaka!";
                     }
                     else
                     {
@@ -281,14 +317,19 @@ namespace ProjectSims.View
                             return "Iskljucivo brojevi veci od 0!";
                         }
                     }
-
                 }
-
+            
                 else if (columnName == "DismissalDays")
                 {
                     if (string.IsNullOrEmpty(Convert.ToString(DismissalDays)))
                     {
                         return "Unesite vrijednost!";
+                    }
+                    else if (DismissalDays.ToString().Contains(" "))
+                    {
+                        DismissalDaysTextBox.Text = DismissalDaysTextBox.Text.Trim();
+                        DismissalDaysTextBox.UpdateLayout();
+                        return "Iskljucivo bez razmaka!";
                     }
                     else
                     {
@@ -305,11 +346,24 @@ namespace ProjectSims.View
                         }
                     }
                 }
+                else if (columnName == "Images")
+                {
+                    if (string.IsNullOrEmpty(Images))
+                    {
+                        return "Unesite vrijednost!";
+                    }
+                    else if(Images.Contains(" ")) 
+                    {
+                        ImagesTextBox.Text = ImagesTextBox.Text.Trim();
+                        ImagesTextBox.UpdateLayout();
+                        return "Iskljucivo bez razmaka!";
+                    }
+                }
                 return null;
             }
         }
 
-        private readonly string[] validatedProperties = { "AccommodationName", "Location", "GuestsMaximum", "MinimumReservationDays", "DismissalDays" };
+        private readonly string[] validatedProperties = { "AccommodationName", "Location", "GuestsMaximum", "MinimumReservationDays", "DismissalDays", "Images" };
 
         public bool IsValid
         {
@@ -341,6 +395,7 @@ namespace ProjectSims.View
         {
             e.Handled = !IsValidGuestsMaximumTextBox(((TextBox)sender).Text + e.Text);
         }
+        
         public static bool IsValidGuestsMaximumTextBox(string str)
         {
             int temp;
@@ -348,16 +403,44 @@ namespace ProjectSims.View
                 MessageBox.Show("Iskljucivo brojevi veci od 0!", "Maksimalan broj gostiju", MessageBoxButton.OK, MessageBoxImage.Error);
             return int.TryParse(str, out temp) && temp >= 1;
         }
+        
         private void DismissalDaysTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !IsValidDismissalDaysTextBox(((TextBox)sender).Text + e.Text);
         }
+         
         public static bool IsValidDismissalDaysTextBox(string str)
         {
             int temp;
             if (!(int.TryParse(str, out temp) && temp >= 0))
                 MessageBox.Show("Iskljucivo nenegativni brojevi!", "Dani za otkaz", MessageBoxButton.OK, MessageBoxImage.Error);
             return int.TryParse(str, out temp) && temp >= 0;
+        }
+        
+        private void ImagesTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //e.Handled = !IsValidImagesTextBox(((TextBox)sender).Text + e.Text);
+        }/*
+        public static bool IsValidImagesTextBox(string str)
+        {
+            if (str.Contains(" "))  
+            {
+                return false;
+            }
+            return true;
+            /* if(!Regex.IsMatch(str, @"^[a-zA-Z0-9,.!]*$"))
+                 MessageBox.Show("Iskljucivo bez razmak!", "Slike", MessageBoxButton.OK, MessageBoxImage.Error);
+             return Regex.IsMatch(str, @"^[a-zA-Z0-9,.!]*$");
+        }*/
+
+        private void AccommodationNameTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //e.Handled = !IsValidDismissalDaysTextBox(((TextBox)sender).Text + e.Text);
+        }
+
+        private void LocationTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+           // e.Handled = !IsValidDismissalDaysTextBox(((TextBox)sender).Text + e.Text);
         }
     }
 }
