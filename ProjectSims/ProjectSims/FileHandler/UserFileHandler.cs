@@ -12,7 +12,6 @@ namespace ProjectSims.FileHandler
     {
         private const string FilePath = "../../../Resources/Data/user.csv";
 
-
         private Serializer<User> _serializer;
 
         private List<User> users;
@@ -27,6 +26,11 @@ namespace ProjectSims.FileHandler
         {
             users = _serializer.FromCSV(FilePath);
             return users.FirstOrDefault(u => u.Username == username);
+        }
+        public User Get(int id)
+        {
+            users = _serializer.FromCSV(FilePath);
+            return users.FirstOrDefault(u => u.Id == id);
         }
     }
 }

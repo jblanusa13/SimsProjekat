@@ -22,7 +22,9 @@ namespace ProjectSims.Model
         public string Images { get; set; }
         public Owner Owner { get; set; }
         public int IdOwner { get; set; }
-        public Accommodation() { }
+        public Accommodation() {
+            DismissalDays = 1;
+        }
 
         public Accommodation(int id, string name, string location, AccommodationType type, int guestsMaximum, int minimumReservationDays, int dismissalDays, string images, Owner owner, int idOwner) {
             //Id = id;
@@ -51,7 +53,18 @@ namespace ProjectSims.Model
         }
         public string[] ToCSV()
         {
-            string[] csvValues ={ Id.ToString(), Name, Location, Type.ToString(), GuestsMaximum.ToString(), MinimumReservationDays.ToString(), DismissalDays.ToString(), Images, IdOwner.ToString() };
+            string[] csvValues =
+            { 
+                Id.ToString(), 
+                Name, 
+                Location,
+                Type.ToString(),
+                GuestMaximum.ToString(),
+                MinimumReservationDays.ToString(),
+                DismissalDays.ToString(),
+                Images,
+                IdOwner.ToString() 
+            };
             return csvValues;
         }
     }
