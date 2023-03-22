@@ -59,7 +59,7 @@ namespace ProjectSims.Model
                 Name, 
                 Location,
                 Type.ToString(),
-                GuestMaximum.ToString(),
+                GuestsMaximum.ToString(),
                 MinimumReservationDays.ToString(),
                 DismissalDays.ToString(),
                 Images,
