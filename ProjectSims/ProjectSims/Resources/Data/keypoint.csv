@@ -28,16 +28,6 @@
 27|Vojni muzej|False|Intermediate
 28|Pobednik|False|Intermediate
 29|Jakšićeva kula|False|Last
-<<<<<<< HEAD
-30|fsd|True|First
-31|dfsd|False|Intermediate
-32|dfsdfd|False|Intermediate
-33|gfgd|False|Last
-34|fsd|True|First
-35|dfsd|False|Intermediate
-36|dfsdfd|False|Intermediate
-37|gfgd|False|Last
-=======
 30|s|True|First
 31|s|False|Intermediate
 32|s|False|Last
@@ -47,4 +37,3 @@
 36|s|True|First
 37|s|False|Intermediate
 38|s|False|Last
->>>>>>> afa2aca6cf6a15f9ee90368d37240d692e89dcdd
