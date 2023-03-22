@@ -5,10 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-<<<<<<<<< Temporary merge branch 1
-using ProjectSims.Model;
-using ProjectSims.Serializer;
-<<<<<<<<< Temporary merge branch 1
 using ProjectSims.Model;
 using ProjectSims.Serializer;
 
