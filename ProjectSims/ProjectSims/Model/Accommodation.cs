@@ -26,7 +26,8 @@ namespace ProjectSims.Model
             DismissalDays = 1;
         }
 
-        public Accommodation(int id, string name, string location, AccommodationType type, int guestsMaximum, int minimumReservationDays, int dismissalDays, string images, Owner owner, int idOwner) {
+        public Accommodation(int id, string name, string location, AccommodationType type, int guestsMaximum, 
+            int minimumReservationDays, int dismissalDays, string images, Owner owner, int idOwner) {
             //Id = id;
             Name = name;
             Location = location;
@@ -59,7 +60,7 @@ namespace ProjectSims.Model
                 Name, 
                 Location,
                 Type.ToString(),
-                GuestMaximum.ToString(),
+                GuestsMaximum.ToString(),
                 MinimumReservationDays.ToString(),
                 DismissalDays.ToString(),
                 Images,

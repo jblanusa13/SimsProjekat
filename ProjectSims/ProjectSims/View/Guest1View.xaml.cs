@@ -43,9 +43,9 @@ namespace ProjectSims
             InitializeComponent();
             DataContext = this;
 
-            _accomodationController = new AccommodationController();
-            _accomodationController.Subscribe(this);
-            Accommodations = new ObservableCollection<Accommodation>(_accomodationController.GetAllAccommodations());
+            _accommodationController = new AccommodationController();
+            _accommodationController.Subscribe(this);
+            Accommodations = new ObservableCollection<Accommodation>(_accommodationController.GetAllAccommodations());
 
             Guest = guest;
         }
@@ -107,7 +107,7 @@ namespace ProjectSims
             //ContainsCity = string.IsNullOrEmpty(CitySearch) ? true : _accomodationController.FindLocation(accommodation.LocationId).City.ToLower().Contains(CitySearch.ToLower());
             //ContainsCountry = string.IsNullOrEmpty(CountrySearch) ? true : _accomodationController.FindLocation(accommodation.LocationId).Country.ToLower().Contains(CountrySearch.ToLower());
             ContainsType = string.IsNullOrEmpty(TypeSearch) ? true : accommodation.Type.ToString().ToLower().Contains(TypeSearch.ToLower());
-            GuestsNumberIsLower = string.IsNullOrEmpty(GuestsNumberSearch) ? true : Convert.ToInt32(GuestsNumberSearch) <= accommodation.GuestMaximum && Convert.ToInt32(GuestsNumberSearch) >= 0;
+            GuestsNumberIsLower = string.IsNullOrEmpty(GuestsNumberSearch) ? true : Convert.ToInt32(GuestsNumberSearch) <= accommodation.GuestsMaximum && Convert.ToInt32(GuestsNumberSearch) >= 0;
             DaysNumberIsGreater = string.IsNullOrEmpty(DaysNumberSearch) ? true : Convert.ToInt32(DaysNumberSearch) >= accommodation.DismissalDays;
 
 

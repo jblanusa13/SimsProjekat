@@ -20,7 +20,8 @@ namespace ProjectSims.Model
         public DateOnly CheckOutDate { get; set; }
         public bool Rated { get; set; }
         public GuestAccommodation() { }
-        public GuestAccommodation(int id, int accommodationId, string name, AccommodationType type, int guestId, string firstName, string lastName, DateOnly checkInDate, DateOnly checkOutDate, bool rated) 
+        public GuestAccommodation(int id, int accommodationId, string name, AccommodationType type, int guestId, 
+            string firstName, string lastName, DateOnly checkInDate, DateOnly checkOutDate, bool rated) 
         {
             Id = id;
             AccommodationId = accommodationId;

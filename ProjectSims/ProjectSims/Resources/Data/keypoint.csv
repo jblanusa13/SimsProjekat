@@ -1,7 +1,7 @@
 0|Knez Mihailova|True|First
-1|Kalemegdan park|False|Intermediate
-2|Vojni muzej|False|Intermediate
-3|Pobednik|False|Intermediate
+1|Kalemegdan park|True|Intermediate
+2|Vojni muzej|True|Intermediate
+3|Pobednik|True|Intermediate
 4|Jakšićeva kula|False|Last
 5|Knez Mihailova|True|First
 6|Kalemegdan park|False|Intermediate
@@ -28,3 +28,11 @@
 27|Vojni muzej|False|Intermediate
 28|Pobednik|False|Intermediate
 29|Jakšićeva kula|False|Last
+30|fsd|True|First
+31|dfsd|False|Intermediate
+32|dfsdfd|False|Intermediate
+33|gfgd|False|Last
+34|fsd|True|First
+35|dfsd|False|Intermediate
+36|dfsdfd|False|Intermediate
+37|gfgd|False|Last
