@@ -245,7 +245,7 @@ namespace ProjectSims.ModelDAO
             DateOnly endDateAfter = _lastDate.AddDays(1);
             DateOnly startDateAfter = endDateAfter.AddDays(-daysNumber);
 
-            while (_availableDates.Count != 4)
+            while (_availableDates.Count() < 4)
             {
                 if (IsAlternativeDateAvailable(startDateBefore, endDateBefore))
                 {

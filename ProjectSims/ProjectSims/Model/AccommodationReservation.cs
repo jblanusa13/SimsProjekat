@@ -33,8 +33,8 @@ namespace ProjectSims.Model
             Id = Convert.ToInt32(values[0]);
             AccommodationId = Convert.ToInt32(values[1]);
             GuestId = Convert.ToInt32(values[2]);
-            CheckInDate = DateOnly.Parse(values[3]);
-            CheckOutDate = DateOnly.Parse(values[4]);
+            CheckInDate = DateOnly.ParseExact(values[3], "dd.MM.yyyy");
+            CheckOutDate = DateOnly.ParseExact(values[4], "dd.MM.yyyy");
             GuestNumber = Convert.ToInt32(values[5]);
         }
 
@@ -44,8 +44,8 @@ namespace ProjectSims.Model
                 Id.ToString(),
                 AccommodationId.ToString(),
                 GuestId.ToString(),
-                CheckInDate.ToString(),
-                CheckOutDate.ToString(),
+                CheckInDate.ToString("dd.MM.yyyy"),
+                CheckOutDate.ToString("dd.MM.yyyy"),
                 GuestNumber.ToString()  
             };
             return csvvalues;

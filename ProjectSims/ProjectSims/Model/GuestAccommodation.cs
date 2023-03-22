@@ -20,7 +20,8 @@ namespace ProjectSims.Model
         public DateOnly CheckOutDate { get; set; }
         public bool Rated { get; set; }
         public GuestAccommodation() { }
-        public GuestAccommodation(int id, int accommodationId, string name, AccommodationType type, int guestId, string firstName, string lastName, DateOnly checkInDate, DateOnly checkOutDate, bool rated) 
+        public GuestAccommodation(int id, int accommodationId, string name, AccommodationType type, int guestId, 
+            string firstName, string lastName, DateOnly checkInDate, DateOnly checkOutDate, bool rated) 
         {
             Id = id;
             AccommodationId = accommodationId;
@@ -43,8 +44,8 @@ namespace ProjectSims.Model
             GuestId = Convert.ToInt32(values[4]);
             FirstName = Convert.ToString(values[5]);
             LastName = Convert.ToString(values[6]);
-            CheckInDate = DateOnly.Parse(values[7]);
-            CheckOutDate = DateOnly.Parse(values[8]);
+            CheckInDate = DateOnly.ParseExact(values[7], "MM/dd/yyyy");
+            CheckOutDate = DateOnly.ParseExact(values[8], "MM/dd/yyyy");
             Rated = bool.Parse(values[9]);
         }
 
@@ -58,8 +59,8 @@ namespace ProjectSims.Model
                 GuestId.ToString(),
                 FirstName,
                 LastName,
-                CheckInDate.ToString(),
-                CheckOutDate.ToString(),
+                CheckInDate.ToString("MM/dd/yyyy"),
+                CheckOutDate.ToString("MM/dd/yyyy"),
                 Rated.ToString()
             };
             return csvvalues;

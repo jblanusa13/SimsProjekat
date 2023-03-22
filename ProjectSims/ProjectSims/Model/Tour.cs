@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,7 +60,7 @@ namespace ProjectSims.Model
                  int keyPointId = Convert.ToInt32(keyPoint);
                  KeyPointIds.Add(keyPointId);
             }         
-            StartOfTheTour = DateTime.Parse(values[7]);
+            StartOfTheTour = DateTime.ParseExact(values[7], "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
             Duration = Convert.ToDouble(values[8]);
             foreach(string image in values[9].Split(","))
             {
@@ -91,7 +92,7 @@ namespace ProjectSims.Model
             }
             ImageString += Images.Last();
 
-            string[] csvvalues = { Id.ToString(), Name, Location, Description, Language, MaxNumberGuests.ToString(), KeyPointIdArray, StartOfTheTour.ToString(), Duration.ToString(), ImageString, AvailableSeats.ToString(),State.ToString()};
+            string[] csvvalues = { Id.ToString(), Name, Location, Description, Language, MaxNumberGuests.ToString(), KeyPointIdArray, StartOfTheTour.ToString("MM/dd/yyyy HH:mm:ss"), Duration.ToString(), ImageString, AvailableSeats.ToString(),State.ToString()};
             return csvvalues;
         }
     }

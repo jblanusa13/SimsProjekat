@@ -3,7 +3,6 @@ C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\ProjectSims.deps.json
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\ProjectSims.runtimeconfig.json
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ProjectSims.csproj.AssemblyReference.cache
-C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\Guest1View.g.cs
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\MainWindow.g.cs
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\View\AccommodationRegistrationView.g.cs
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\View\CreateTourView.g.cs
@@ -12,7 +11,6 @@ C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\App.g.cs
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ProjectSims_MarkupCompile.cache
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ProjectSims_MarkupCompile.lref
-C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\Guest1View.baml
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\MainWindow.baml
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\View\AccommodationRegistrationView.baml
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\View\CreateTourView.baml
@@ -44,3 +42,5 @@ C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\View\OwnerView.baml
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\View\TourTrackingView.baml
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ProjectSims.csproj.CopyComplete
+C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\View\Guest1View.g.cs
+C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\View\Guest1View.baml
