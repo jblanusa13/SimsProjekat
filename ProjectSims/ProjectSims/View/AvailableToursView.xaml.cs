@@ -47,6 +47,7 @@ namespace ProjectSims.View
                 {
                     TourTrackingView tourTrackingView = new TourTrackingView(selectedTour);
                     tourTrackingView.Show();
+                    Close();
                 }
                 else
                 {

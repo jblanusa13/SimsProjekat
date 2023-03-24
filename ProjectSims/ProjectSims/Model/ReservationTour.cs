@@ -14,18 +14,17 @@ namespace ProjectSims.Model
         public int TourId { get; set; }
         public int NumberGuest { get; set; }
         public int Guest2Id { get; set; }
-        public Guest2State State { get; set; }
-
-       
-
+        public Guest2State State { get; set; }    
+        public int KeyPointWhereGuestArrivedId { get; set; }
         public ReservationTour() { }
 
-        public ReservationTour( int tourId, int numberGuest, int guest2Id)
+        public ReservationTour( int tourId, int numberGuest, int guest2Id, int keyPointWhereGuestArrivedId)
         {
             TourId = tourId;
             NumberGuest = numberGuest;
             Guest2Id = guest2Id;
             State = Guest2State.InactiveTour;
+            KeyPointWhereGuestArrivedId = keyPointWhereGuestArrivedId;
         }
 
         public void FromCSV(string[] values)
@@ -35,11 +34,12 @@ namespace ProjectSims.Model
             NumberGuest = Convert.ToInt32(values[2]);  
             Guest2Id = Convert.ToInt32(values[3]);
             State = (Guest2State)Enum.Parse(typeof(Guest2State), values[4]);
+            KeyPointWhereGuestArrivedId = Convert.ToInt32(values[5]);
         }
 
         public string[] ToCSV()
         {
-            string[] csvvalues = { Id.ToString(), TourId.ToString(), NumberGuest.ToString(), Guest2Id.ToString() ,State.ToString()};
+            string[] csvvalues = { Id.ToString(), TourId.ToString(), NumberGuest.ToString(), Guest2Id.ToString() ,State.ToString(), KeyPointWhereGuestArrivedId.ToString()};
             return csvvalues;
         }
     }

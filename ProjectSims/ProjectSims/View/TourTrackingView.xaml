@@ -47,7 +47,7 @@
         </DataGrid>
         <Button Click="FinishTour_Click" Content="Završi turu" HorizontalAlignment="Left" Margin="550,420,0,0" VerticalAlignment="Top" Height="40" Width="200" Background="#061950"  Foreground="White" FontSize="30" FontWeight="Bold"/>
         <Button  Click="GuestSelect_Click" Content="Pozovi gosta" HorizontalAlignment="Left" Margin="650,320,0,0" VerticalAlignment="Top" Height="30" Width="100" Background="LightSteelBlue"  Foreground="#061950" FontSize="15" FontWeight="Bold"/>
-        <Button  Click="Logout_Click" Content="Izloguj se" HorizontalAlignment="Left" Margin="720,10,0,0" VerticalAlignment="Top" Height="20" Width="50" Background="PaleVioletRed"  Foreground="White" FontSize="10" FontWeight="Bold"/>
+        <Button  Click="Logout_Click" Content="Nazad" HorizontalAlignment="Left" Margin="720,10,0,0" VerticalAlignment="Top" Height="20" Width="50" Background="PaleVioletRed"  Foreground="White" FontSize="10" FontWeight="Bold"/>
         <Label Content="Gosti koji još uvek nisu prisutni" HorizontalAlignment="Left" Margin="480,60,0,0" VerticalAlignment="Top" FontWeight="Bold" FontStyle="Italic"/>
     </Grid>
 </Window>

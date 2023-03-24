@@ -27,11 +27,13 @@ namespace ProjectSims.View
         {
             CreateTourView createTourView = new CreateTourView();
             createTourView.Show();
+            Close();
         }
         private void TrackTour_Click(object sender, RoutedEventArgs e)
         {
             AvailableToursView availableToursView = new AvailableToursView();
             availableToursView.Show();
+            Close();
         }
     }
 }

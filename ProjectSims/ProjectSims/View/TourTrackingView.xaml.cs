@@ -46,15 +46,12 @@ namespace ProjectSims.View
             keyPointController.Subscribe(this);
             guest2Controller= new Guest2Controller();
             reservationTourController= new ReservationTourController();
-            reservationTourController.Subscribe(this);
-            
-            tour = startedTour;
-
-           
+            reservationTourController.Subscribe(this);          
+            tour = startedTour;          
             UnFinishedKeyPoints = new ObservableCollection<KeyPoint>(keyPointController.FindUnFinishedKeyPointsByIds(tour.KeyPointIds));
             FinishedKeyPoints = new ObservableCollection<KeyPoint>(keyPointController.FindFinishedKeyPointsByIds(tour.KeyPointIds));
             WaitingGuests = new ObservableCollection<Guest2>();
-            expectedId = tour.KeyPointIds[1];
+            expectedId = tourController.FindExpectedKeyPointId(tour);
             reservationTourController.InviteGuests(tour.Id);
 
             foreach (int id in reservationTourController.FindGuestIdsByTourIdAndState(tour.Id,Guest2State.Invited))
@@ -74,11 +71,12 @@ namespace ProjectSims.View
             var keyPoint = KeyPointListView.SelectedItem as KeyPoint;
             if (keyPoint != null)
             {
-                if(expectedId == keyPoint.Id)
+                if(keyPoint.Id == expectedId)
                 {
                     if(keyPoint.Type != KeyPointType.Last)
                     {
                         keyPointController.Finish(SelectedKeyPoint);
+                        tourController.UpdateActiveKeyPoint(tour.Id, expectedId);
                         expectedId++;
                     }
                     else

@@ -12,6 +12,7 @@ namespace ProjectSims.Controller
     public class ReservationTourController
     {
         private ReservationTourDAO reservations;
+        
 
         public ReservationTourController()
         {
@@ -81,10 +82,11 @@ namespace ProjectSims.Controller
             }
             return false;
         }
-        public void ConfirmPresence(int guest2Id)
+        public void ConfirmPresence(int guest2Id,Tour tour)
         {
-            ReservationTour reservation = GetAllReservations().Find(r => r.Guest2Id == guest2Id);
+            ReservationTour reservation = GetAllReservations().Find(r => r.Guest2Id == guest2Id && r.TourId == tour.Id);
             reservation.State = Guest2State.Present;
+            reservation.KeyPointWhereGuestArrivedId = tour.ActiveKeyPointId;
             reservations.Update(reservation);
         }
         public void FinishTour(int tourId)
@@ -95,6 +97,7 @@ namespace ProjectSims.Controller
                 if(reservation.TourId == tourId && reservation.State != Guest2State.Present)
                 {
                     reservation.State = Guest2State.NotPresent;
+                    reservation.KeyPointWhereGuestArrivedId = -1;
                 }
                 rezervacije.Add(reservation);
 

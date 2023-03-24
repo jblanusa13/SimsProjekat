@@ -108,7 +108,7 @@ namespace ProjectSims.Controller
                 {
                     imageList.Add(image);
                 }
-                Tour newTour =  new Tour(-1, name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPointIds, DateTime.Parse(tourStart), Convert.ToDouble(duration), imageList, Convert.ToInt32(maxNumberGuests));
+                Tour newTour =  new Tour(-1, name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPointIds, DateTime.Parse(tourStart), Convert.ToDouble(duration), imageList, Convert.ToInt32(maxNumberGuests),TourState.Inactive,-1);
                 tours.Add(newTour);
         }
 
@@ -117,6 +117,7 @@ namespace ProjectSims.Controller
             if(!ExistsActiveTour())
             {
                 tour.State = TourState.Active;
+                tour.ActiveKeyPointId = tour.KeyPointIds.First();
                 tours.Update(tour);
                 return true;
             }            
@@ -133,9 +134,28 @@ namespace ProjectSims.Controller
             }
             return null;
         }
+        public void UpdateActiveKeyPoint(int tourId,int keyPointId)
+        {
+            Tour tour = GetAllTours().Find(t => t.Id == tourId);
+            tour.ActiveKeyPointId = keyPointId;
+            tours.Update(tour);
+        }
+
+        public int FindExpectedKeyPointId(Tour tour)
+        {
+            foreach(KeyPoint keyPoint in GetTourKeyPoints(tour))
+            {
+                if(keyPoint.Finished == false)
+                {
+                    return keyPoint.Id;
+                }
+            }
+            return 0;
+        }
         public void FinishTour(Tour tour)
         {
             tour.State = TourState.Finished;
+            tour.ActiveKeyPointId = -1;
             tours.Update(tour);
         }
         public void Delete(Tour tour)
