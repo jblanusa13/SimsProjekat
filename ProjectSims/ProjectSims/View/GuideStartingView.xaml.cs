@@ -34,7 +34,7 @@ namespace ProjectSims.View
         }
         private void TrackTour_Click(object sender, RoutedEventArgs e)
         {
-            AvailableToursView availableToursView = new AvailableToursView();
+            AvailableToursView availableToursView = new AvailableToursView(guide);
             availableToursView.Show();
             Close();
         }

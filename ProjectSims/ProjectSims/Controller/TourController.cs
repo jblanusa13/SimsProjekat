@@ -63,13 +63,13 @@ namespace ProjectSims.Controller
             }
             return false;
         }
-        public List<Tour> GetAvailableTours()
+        public List<Tour> GetAvailableTours(int guideId)
         {
             List<Tour> availableTours = new List<Tour>();
 
             foreach (Tour tour in tours.GetAll())
             {
-                if (IsInactive(tour) && IsToday(tour))
+                if (IsInactive(tour) && IsToday(tour) && tour.GuideId == guideId)
                 {
                     availableTours.Add(tour);
                 }
