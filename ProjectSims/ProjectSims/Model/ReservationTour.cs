@@ -16,6 +16,8 @@ namespace ProjectSims.Model
         public int Guest2Id { get; set; }
         public Guest2State State { get; set; }
 
+       
+
         public ReservationTour() { }
 
         public ReservationTour( int tourId, int numberGuest, int guest2Id)

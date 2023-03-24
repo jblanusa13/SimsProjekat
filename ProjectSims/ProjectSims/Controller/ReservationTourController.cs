@@ -46,13 +46,22 @@ namespace ProjectSims.Controller
         }
         public void InviteGuests(int tourId)
         {
+            List<ReservationTour> rezervacije = new List<ReservationTour>();
+            
             foreach(ReservationTour reservation in GetAllReservations())
             {
-                if(reservation.TourId == tourId)
+                if(reservation.TourId == tourId && (int)reservation.State <= 1 )
                 {
                     reservation.State = Guest2State.Invited;
                 }
+                rezervacije.Add(reservation);                  
             }
+
+            foreach(ReservationTour reservation in rezervacije)
+            {
+                reservations.Update(reservation);
+            }
+            
         }
         public void NotifyGuest(int guestId,int tourId)
         {
@@ -78,17 +87,23 @@ namespace ProjectSims.Controller
             reservation.State = Guest2State.Present;
             reservations.Update(reservation);
         }
-        /*public void FinishTour(int tourId)
+        public void FinishTour(int tourId)
         {
+            List<ReservationTour> rezervacije = new List<ReservationTour>();
             foreach(ReservationTour reservation in reservations.GetAll())
             {
                 if(reservation.TourId == tourId && reservation.State != Guest2State.Present)
                 {
                     reservation.State = Guest2State.NotPresent;
-                    reservations.Update(reservation);
                 }
+                rezervacije.Add(reservation);
+
             }
-        }*/
+            foreach(ReservationTour reservation in rezervacije)
+            {
+                reservations.Update(reservation);
+            }
+        }
         public void Update(ReservationTour reserevation)
         {
             reservations.Update(reserevation);

@@ -49,13 +49,15 @@ namespace ProjectSims.View
             reservationTourController.Subscribe(this);
             
             tour = startedTour;
-            expectedId = tour.KeyPointIds[1];
-            reservationTourController.InviteGuests(tour.Id);
 
+           
             UnFinishedKeyPoints = new ObservableCollection<KeyPoint>(keyPointController.FindUnFinishedKeyPointsByIds(tour.KeyPointIds));
             FinishedKeyPoints = new ObservableCollection<KeyPoint>(keyPointController.FindFinishedKeyPointsByIds(tour.KeyPointIds));
             WaitingGuests = new ObservableCollection<Guest2>();
-            foreach(int id in reservationTourController.FindGuestIdsByTourIdAndState(tour.Id,Guest2State.Invited))
+            expectedId = tour.KeyPointIds[1];
+            reservationTourController.InviteGuests(tour.Id);
+
+            foreach (int id in reservationTourController.FindGuestIdsByTourIdAndState(tour.Id,Guest2State.Invited))
             {
                 WaitingGuests.Add(guest2Controller.FindGuest2ById(id));
             }
@@ -81,7 +83,9 @@ namespace ProjectSims.View
                     }
                     else
                     {
+                        keyPointController.Finish(SelectedKeyPoint);
                         tourController.FinishTour(tour);
+                        reservationTourController.FinishTour(tour.Id);
                         Close();
                     }
                 }
@@ -108,7 +112,7 @@ namespace ProjectSims.View
         private void FinishTour_Click(object sender, RoutedEventArgs e)
         {
             tourController.FinishTour(tour);
-            //reservationTourController.FinishTour(tour.Id);
+            reservationTourController.FinishTour(tour.Id);
             Close();
 
         }
@@ -147,7 +151,7 @@ namespace ProjectSims.View
         public void Update()
         {
             UpdateKeyPointList();
-            UpdateGuestList();
+            //UpdateGuestList();
         }
 
     }
