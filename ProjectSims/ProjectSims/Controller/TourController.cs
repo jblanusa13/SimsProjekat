@@ -90,7 +90,9 @@ namespace ProjectSims.Controller
             }
             return tourKeyPoints;
         }
-        public void Create(string name, string location, string description, string language, string maxNumberGuests, string startKeyPoint, string finishKeyPoint, List<string> otherKeyPoints, string tourStart, string duration, string images)
+        public void Create(int idGuide, string name, string location, string description, string language, string maxNumberGuests, 
+            string startKeyPoint, string finishKeyPoint, List<string> otherKeyPoints,
+            string tourStart, string duration, string images)
         {
                 List<int> keyPointIds = new List<int>();
                 int startId = keyPointDAO.Add(new KeyPoint(-1, startKeyPoint, KeyPointType.First,true));
@@ -108,7 +110,7 @@ namespace ProjectSims.Controller
                 {
                     imageList.Add(image);
                 }
-                Tour newTour =  new Tour(-1, name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPointIds, DateTime.Parse(tourStart), Convert.ToDouble(duration), imageList, Convert.ToInt32(maxNumberGuests),TourState.Inactive,-1);
+                Tour newTour =  new Tour(-1, idGuide, name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPointIds, DateTime.Parse(tourStart), Convert.ToDouble(duration), imageList, Convert.ToInt32(maxNumberGuests),TourState.Inactive,-1);
                 tours.Add(newTour);
         }
 

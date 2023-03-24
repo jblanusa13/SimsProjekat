@@ -64,7 +64,7 @@ namespace ProjectSims
                     Guide guide = guideFile.GetByUserId(user.Id);
                     if(guide!= null)
                     {
-                        GuideStartingView startingView = new GuideStartingView();
+                        GuideStartingView startingView = new GuideStartingView(guide);
                         startingView.Show();
                     }
 

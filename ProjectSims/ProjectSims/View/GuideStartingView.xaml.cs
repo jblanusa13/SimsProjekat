@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectSims.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,13 +20,15 @@ namespace ProjectSims.View
     /// </summary>
     public partial class GuideStartingView : Window
     {
-        public GuideStartingView()
+        public Guide guide { get; set; }
+        public GuideStartingView(Guide g)
         {
             InitializeComponent();
+            guide = g;
         }
         private void CreateTour_Click(object sender, RoutedEventArgs e)
         {
-            CreateTourView createTourView = new CreateTourView();
+            CreateTourView createTourView = new CreateTourView(guide);
             createTourView.Show();
             Close();
         }

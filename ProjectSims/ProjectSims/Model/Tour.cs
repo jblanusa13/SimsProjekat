@@ -13,6 +13,7 @@ namespace ProjectSims.Model
     public class Tour : ISerializable
     {
         public int Id { get; set; }
+        public int GuideId { get; set; }
         public string Name { get; set; }
         public string Location { get; set; }
         public string Description { get; set; }
@@ -33,9 +34,10 @@ namespace ProjectSims.Model
             Images = new List<string>();
         }
 
-        public Tour(int id, string name, string location, string description, string language, int maxNumberGuests,List<int> keyPointIds, DateTime startOfTheTour, double duration, List<String> images, int availableSeats, TourState state,int activeKeyPointId)
+        public Tour(int id, int guideId, string name, string location, string description, string language, int maxNumberGuests,List<int> keyPointIds, DateTime startOfTheTour, double duration, List<String> images, int availableSeats, TourState state,int activeKeyPointId)
         {
             Id = id;
+            GuideId = guideId;
             Name = name;
             Location = location;
             Description = description;
@@ -52,25 +54,26 @@ namespace ProjectSims.Model
         public void FromCSV(string[] values)
         {
             Id = Convert.ToInt32(values[0]);
-            Name = values[1];
-            Location = values[2];
-            Description = values[3];
-            Language = values[4];
-            MaxNumberGuests = Convert.ToInt32(values[5]);
-            foreach(string keyPoint in values[6].Split(","))
+            GuideId = Convert.ToInt32(values[1]);
+            Name = values[2];
+            Location = values[3];
+            Description = values[4];
+            Language = values[5];
+            MaxNumberGuests = Convert.ToInt32(values[6]);
+            foreach(string keyPoint in values[7].Split(","))
             {
                  int keyPointId = Convert.ToInt32(keyPoint);
                  KeyPointIds.Add(keyPointId);
             }         
-            StartOfTheTour = DateTime.ParseExact(values[7], "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
-            Duration = Convert.ToDouble(values[8]);
-            foreach(string image in values[9].Split(","))
+            StartOfTheTour = DateTime.ParseExact(values[8], "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+            Duration = Convert.ToDouble(values[9]);
+            foreach(string image in values[10].Split(","))
             {
                 Images.Add(image);
             }
-            AvailableSeats = Convert.ToInt32(values[10]);
-            State = (TourState)Enum.Parse(typeof(TourState), values[11]);
-            ActiveKeyPointId = Convert.ToInt32(values[12]);
+            AvailableSeats = Convert.ToInt32(values[11]);
+            State = (TourState)Enum.Parse(typeof(TourState), values[12]);
+            ActiveKeyPointId = Convert.ToInt32(values[13]);
         }
 
         public string[] ToCSV()
@@ -95,7 +98,7 @@ namespace ProjectSims.Model
             }
             ImageString += Images.Last();
 
-            string[] csvvalues = { Id.ToString(), Name, Location, Description, Language, MaxNumberGuests.ToString(), KeyPointIdArray, StartOfTheTour.ToString("MM/dd/yyyy HH:mm:ss"), Duration.ToString(), ImageString, AvailableSeats.ToString(),State.ToString(),ActiveKeyPointId.ToString()};
+            string[] csvvalues = { Id.ToString(), GuideId.ToString(), Name, Location, Description, Language, MaxNumberGuests.ToString(), KeyPointIdArray, StartOfTheTour.ToString("MM/dd/yyyy HH:mm:ss"), Duration.ToString(), ImageString, AvailableSeats.ToString(),State.ToString(),ActiveKeyPointId.ToString()};
             return csvvalues;
         }
     }
