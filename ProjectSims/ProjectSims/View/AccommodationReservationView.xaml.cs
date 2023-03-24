@@ -130,7 +130,7 @@ namespace ProjectSims.View
         {
             get => _lastDate;
             set
-            {
+           {
                 if (value != _lastDate)
                 {
                     _lastDate = value;

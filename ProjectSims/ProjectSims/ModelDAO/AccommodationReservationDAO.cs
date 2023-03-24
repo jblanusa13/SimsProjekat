@@ -203,37 +203,9 @@ namespace ProjectSims.ModelDAO
             {
                 if(reservation.AccommodationId == accommodationId)
                 {
-                    if(IsUnavailable(reservation.CheckInDate, reservation.CheckOutDate))
-                    {
-                        _unavailableDates.Add(new DateRanges(reservation.CheckInDate, reservation.CheckOutDate));
-                    }
+                    _unavailableDates.Add(new DateRanges(reservation.CheckInDate, reservation.CheckOutDate));
                 }
             }
-        }
-
-        // checks if given date ranges are unavailable
-        public bool IsUnavailable(DateOnly checkIn, DateOnly checkOut)
-        {
-            if(IsBefore(checkIn) && IsBefore(checkOut))
-            {
-                return false;
-            }
-            else if(IsAfter(checkIn) && IsAfter(checkOut))
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        public bool IsBefore(DateOnly date)
-        {
-            return date <= _firstDate;
-        }
-
-        public bool IsAfter(DateOnly date)
-        {
-            return date >= _lastDate;
         }
 
         // finds first available dates outside of the given date range
