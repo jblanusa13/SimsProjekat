@@ -8,6 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\draganovi_konaci1.jpg" />
+    <None Remove="Images\filipovic1.jpg" />
+    <None Remove="Images\filipovic2.jpg" />
+    <None Remove="Images\jovanovic1.jpg" />
+    <None Remove="Images\jovanovic2.jpg" />
+    <None Remove="Images\kod_labuda.jpg" />
+    <None Remove="Images\kod_labuda1.jpg" />
+    <None Remove="Images\kod_labuda2.jpg" />
+    <None Remove="Images\mladenovic.jpg" />
+    <None Remove="Images\mladenovic1.jpg" />
+    <None Remove="Images\mladenovic2.jpg" />
+    <None Remove="Images\visnjin_dom1.jpg" />
+    <None Remove="Images\visnjin_dom2.jpg" />
     <None Remove="Resources\Data\questionGuestRating.csv" />
   </ItemGroup>
 
@@ -25,7 +38,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\filipovic2.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Tulpep.NotificationWindow" Version="1.1.38" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\draganovi_konaci1.jpg" />
+    <Resource Include="Images\filipovic1.jpg" />
+    <Resource Include="Images\jovanovic1.jpg" />
+    <Resource Include="Images\jovanovic2.jpg" />
+    <Resource Include="Images\kod_labuda.jpg" />
+    <Resource Include="Images\kod_labuda1.jpg" />
+    <Resource Include="Images\mladenovic.jpg" />
+    <Resource Include="Images\mladenovic2.jpg" />
+    <Resource Include="Images\visnjin_dom1.jpg" />
+    <Resource Include="Images\visnjin_dom2.jpg" />
   </ItemGroup>
 
 </Project>

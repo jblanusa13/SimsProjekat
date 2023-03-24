@@ -20,6 +20,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Collections.ObjectModel;
+using System.IO;
+using Microsoft.Win32;
 
 namespace ProjectSims.View
 {
@@ -31,6 +33,18 @@ namespace ProjectSims.View
         private readonly AccommodationController accommodationController;
         private readonly OwnerController ownerController;
         public ObservableCollection<Accommodation> accommodations;
+        private List<ListBoxItem> SelectedImages { get; set; }
+        public class Img
+        {
+            public String ImagePath { get; set; }
+            public String Title { get; set; }
+
+            public static explicit operator Img(ListBoxItem v)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public AccommodationRegistrationView()
         {
             InitializeComponent();
@@ -39,6 +53,29 @@ namespace ProjectSims.View
             accommodationController = new AccommodationController();
             ownerController = new OwnerController();
             accommodations = new ObservableCollection<Accommodation>();
+            SelectedImages = new List<ListBoxItem>();
+            /*List<string> lista = new List<string>();
+            lista.Add("Images/filipovic1.jpg");
+            lista.Add("Images/filipovic2.jpg");
+            lista.Add("Images/jovanovic1.jpg");
+            lista.Add("Images/jovanovic2.jpg");
+            lista.Add("Images/draganovi_konaci1.jpg");
+            lista.Add("Images/visnjin_dom1.jpg");
+            lista.Add("Images/visnjin_dom2.jpg");
+            ListBox.ItemsSource = lista;
+            */
+            ListBox.Items.Add(new Img() { ImagePath = "/Images/jovanovic1.jpg", Title = "Jovanovic" });
+            ListBox.Items.Add(new Img() { ImagePath = "/Images/jovanovic2.jpg", Title = "Jovanovic" });
+            ListBox.Items.Add(new Img() { ImagePath = "/Images/draganovi_konaci1.jpg", Title = "Draganovi konaci" });
+            ListBox.Items.Add(new Img() { ImagePath = "/Images/filipovic1.jpg", Title = "Filipovic" });
+            ListBox.Items.Add(new Img() { ImagePath = "/Images/filipovic2.jpg", Title = "Filipovic" });
+            ListBox.Items.Add(new Img() { ImagePath = "/Images/kod_labuda1.jpg", Title = "Kod labuda" });
+            ListBox.Items.Add(new Img() { ImagePath = "/Images/kod_labuda.jpg", Title = "Kod labuda" });
+            ListBox.Items.Add(new Img() { ImagePath = "/Images/mladenovic.jpg", Title = "Mladenovic" }); 
+            ListBox.Items.Add(new Img() { ImagePath = "/Images/mladenovic2.jpg", Title = "Mladenovic" });
+            ListBox.Items.Add(new Img() { ImagePath = "/Images/visnjin_dom1.jpg", Title = "Visnjin dom" });
+            ListBox.Items.Add(new Img() { ImagePath = "/Images/visnjin_dom2.jpg", Title = "Visnjin dom" });
+        
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -350,24 +387,11 @@ namespace ProjectSims.View
                         }
                     }
                 }
-                else if (columnName == "Images")
-                {
-                    if (string.IsNullOrEmpty(Images))
-                    {
-                        return "Unesite vrijednost!";
-                    }
-                    else if(Images.Contains(" ")) 
-                    {
-                        ImagesTextBox.Text = ImagesTextBox.Text.Trim();
-                        ImagesTextBox.UpdateLayout();
-                        return "Iskljucivo bez razmaka!";
-                    }
-                }
                 return null;
             }
         }
 
-        private readonly string[] validatedProperties = { "AccommodationName", "Location", "GuestsMaximum", "MinimumReservationDays", "DismissalDays", "Images" };
+        private readonly string[] validatedProperties = { "AccommodationName", "Location", "GuestsMaximum", "MinimumReservationDays", "DismissalDays" };
 
         public bool IsValid
         {
@@ -421,22 +445,6 @@ namespace ProjectSims.View
             return int.TryParse(str, out temp) && temp >= 0;
         }
         
-        private void ImagesTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            //e.Handled = !IsValidImagesTextBox(((TextBox)sender).Text + e.Text);
-        }/*
-        public static bool IsValidImagesTextBox(string str)
-        {
-            if (str.Contains(" "))  
-            {
-                return false;
-            }
-            return true;
-            /* if(!Regex.IsMatch(str, @"^[a-zA-Z0-9,.!]*$"))
-                 MessageBox.Show("Iskljucivo bez razmak!", "Slike", MessageBoxButton.OK, MessageBoxImage.Error);
-             return Regex.IsMatch(str, @"^[a-zA-Z0-9,.!]*$");
-        }*/
-
         private void AccommodationNameTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             //e.Handled = !IsValidDismissalDaysTextBox(((TextBox)sender).Text + e.Text);
@@ -445,6 +453,26 @@ namespace ProjectSims.View
         private void LocationTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
            // e.Handled = !IsValidDismissalDaysTextBox(((TextBox)sender).Text + e.Text);
+        }
+
+        private void ChooseImage_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedImages != null)
+            {
+                string[] paths = null;
+                string[] titles = null;
+
+                foreach(ListBoxItem image in SelectedImages)
+                {
+                    int count = SelectedImages.Count;
+                    Img newImage = (Img)image;
+
+                }
+            }
+            else 
+            {
+                MessageBox.Show("Izaberite sliku!", "Slike", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
         }
     }
 }
