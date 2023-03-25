@@ -56,5 +56,18 @@ namespace ProjectSims
             }
             return toursFinished;
         }
+
+        private void ButtonRatingTour(object sender, RoutedEventArgs e)
+        {
+            if (SelectedTour != null)
+            {
+                var ratingTourWindow = new RatingTourView(SelectedTour);
+                ratingTourWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("You must select a tour for rating!");
+            }
+        }
     }
 }

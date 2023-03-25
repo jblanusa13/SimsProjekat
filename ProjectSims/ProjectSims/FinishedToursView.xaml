@@ -31,10 +31,11 @@
                     <DataGridTextColumn Header="Jezik" Binding="{Binding Language}" Width="70"/>
                     <DataGridTextColumn Header="Datum pocetka ture" Binding="{Binding StartOfTheTour}" Width="*"/>
                 </DataGrid.Columns>
-                
+
             </DataGrid>
+            <Button Grid.Column="1" Content="Oceni turu i vodica" HorizontalAlignment="Left" Margin="694,338,0,0" VerticalAlignment="Top" Height="31" Width="145" Click="ButtonRatingTour"/>
         </Grid>
-        
+
 
 
 

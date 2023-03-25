@@ -5,6 +5,9 @@
     <Compile Update="FinishedToursView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="RatingTourView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\Guest2\Guest2StartingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -38,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="FinishedToursView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="RatingTourView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Guest2\Guest2StartingView.xaml">

@@ -21,7 +21,7 @@
             </Grid.RowDefinitions>
 
             <Button Content="Prikaz i pretraga tura" Cursor="Hand" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Height="70" Width="200" Click="ButtonSearchTour"/>
-            <Button Content="Ture na kojima si bio" Cursor="Hand"  HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Height="70" Width="200" Click="Button_Click"/>
+            <Button Content="Ture na kojima si bio" Cursor="Hand"  HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Height="70" Width="200" Click="ButtonShowFinishedTours"/>
             <Button Content="Odjavi se!" Cursor="Hand" HorizontalAlignment="Center" Margin="0,431,0,0" Grid.Row="3" VerticalAlignment="Top" Height="31" Width="106" Click="LogOut"/>
         </Grid>
 

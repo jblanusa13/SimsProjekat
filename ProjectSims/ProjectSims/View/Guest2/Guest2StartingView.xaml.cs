@@ -50,7 +50,7 @@ namespace ProjectSims
             ChangeTab(0);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonShowFinishedTours(object sender, RoutedEventArgs e)
         {
             ChangeTab(1);
         }
