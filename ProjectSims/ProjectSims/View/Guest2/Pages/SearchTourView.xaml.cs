@@ -14,6 +14,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ProjectSims
@@ -21,34 +22,26 @@ namespace ProjectSims
     /// <summary>
     /// Interaction logic for SearchTourView.xaml
     /// </summary>
-    public partial class SearchTourView : Window , IObserver
+    public partial class SearchTourView : Page, IObserver
     {
         private TourController tourController;
         private ReservationTourController reservationTourController;
 
-        public  ObservableCollection<Tour> ListTour { get; }
+        public ObservableCollection<Tour> ListTour { get; }
         public Tour SelectedTour { get; set; }
 
         public Guest2 guest2 { get; set; }
+
         public SearchTourView(Guest2 g)
         {
             InitializeComponent();
             DataContext = this;
-            
+
             tourController = new TourController();
-            tourController.Subscribe(this);    
+            tourController.Subscribe(this);
             reservationTourController = new ReservationTourController();
             ListTour = new ObservableCollection<Tour>(tourController.GetAllTours());
-            guest2 = g;           
-            if(reservationTourController.IsWaiting(guest2.Id))
-            {
-                Tour tour = tourController.FindStartedTour();
-                MessageBoxResult answer = MessageBox.Show("Da li ste prisutni na turi " + tour.Name + "?", "", MessageBoxButton.YesNo);
-                if (answer == MessageBoxResult.Yes)
-                {
-                    reservationTourController.ConfirmPresence(guest2.Id, tour);
-                }
-            }
+            guest2 = g;
 
         }
         private void UpdateTourList()
@@ -69,7 +62,7 @@ namespace ProjectSims
         {
             if (SelectedTour != null)
             {
-                var see_more = new DetailsAndReservationTourView(SelectedTour,guest2);
+                var see_more = new DetailsAndReservationTourView(SelectedTour, guest2);
                 see_more.Show();
             }
             else
@@ -85,20 +78,21 @@ namespace ProjectSims
             String language = LanguageTextBox.Text;
 
             double durationStart = tourController.ConvertToDouble(DurationStartTextBox.Text);
-            if(durationStart == -2) return;    
-            
+            if (durationStart == -2) return;
+
             double durationEnd = tourController.ConvertToDouble(DurationEndTextBox.Text);
-            if(durationEnd == -2) return;
-                       
+            if (durationEnd == -2) return;
+
             //both duration fields must be entered
-            if((durationStart == -1 && durationEnd != -1) || (durationStart != -1 && durationEnd == -1))
+            if ((durationStart == -1 && durationEnd != -1) || (durationStart != -1 && durationEnd == -1))
             {
                 MessageBox.Show("Both duration fields must be entered for search tours!");
                 return;
-            }else if(durationStart != -1 && durationEnd != -1)
+            }
+            else if (durationStart != -1 && durationEnd != -1)
             //if both fields are entered the first must be less than the second
             {
-                if(durationStart > durationEnd)
+                if (durationStart > durationEnd)
                 {
                     MessageBox.Show("The first duration fields must be less than the second!");
                     return;
@@ -107,7 +101,7 @@ namespace ProjectSims
 
             int numberGuests = tourController.ConvertToInt(NumberGuestsTextBox.Text);
             if (numberGuests == -2) return;
-            
+
             if (location == "" && durationStart == -1 && language == "" && numberGuests == -1)         //16. case (nothing entered)
             {
                 MessageBox.Show("You must enter some information for search!");
@@ -118,19 +112,13 @@ namespace ProjectSims
                 }
                 return;
             }
-            List<Tour> wantedTours = tourController.SearchTours(location,durationStart,durationEnd,language,numberGuests);
+            List<Tour> wantedTours = tourController.SearchTours(location, durationStart, durationEnd, language, numberGuests);
             ListTour.Clear();
             foreach (Tour tour in wantedTours)
             {
                 ListTour.Add(tour);
             }
         }
-
-        private void LogOut(object sender, RoutedEventArgs e)
-        {
-            var startView = new MainWindow();
-            startView.Show();
-            Close();
-        }
+        
     }
 }
