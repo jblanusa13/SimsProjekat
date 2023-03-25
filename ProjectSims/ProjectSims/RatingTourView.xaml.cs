@@ -1,4 +1,5 @@
-﻿using ProjectSims.Model;
+﻿using ProjectSims.Controller;
+using ProjectSims.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +21,16 @@ namespace ProjectSims
     /// </summary>
     public partial class RatingTourView : Window
     {
+        public GuideController guideController { get; set; }
         public Guide guide { get; set; }
         public RatingTourView(Tour tour)
         {
             InitializeComponent();
             DataContext = this;
+
+            guideController = new GuideController();
+            guide = guideController.FindGuideById(tour.GuideId);
+            GuideTextBox.Text = guide.Name + " " + guide.Surname;
 
         }
     }
