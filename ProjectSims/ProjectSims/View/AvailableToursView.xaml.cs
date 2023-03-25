@@ -29,7 +29,6 @@ namespace ProjectSims.View
         private TourController tourController;
         public ObservableCollection<Tour> AvailableTours { get; set; }
         public Tour SelectedTour { get; set; }
-
         public Guide guide { get; set; }
         public AvailableToursView(Guide g)
         {
@@ -48,7 +47,7 @@ namespace ProjectSims.View
                 Tour selectedTour = (Tour)SelectedTour;
                 if (tourController.StartTour(SelectedTour))
                 {
-                    TourTrackingView tourTrackingView = new TourTrackingView(selectedTour);
+                    TourTrackingView tourTrackingView = new TourTrackingView(selectedTour,guide);
                     tourTrackingView.Show();
                     Close();
                 }
@@ -67,7 +66,7 @@ namespace ProjectSims.View
             Tour startedTour = tourController.FindStartedTour();
             if(startedTour != null)
             {
-                TourTrackingView tourTrackingView = new TourTrackingView(startedTour);
+                TourTrackingView tourTrackingView = new TourTrackingView(startedTour,guide);
                 tourTrackingView.Show();
             }
             else

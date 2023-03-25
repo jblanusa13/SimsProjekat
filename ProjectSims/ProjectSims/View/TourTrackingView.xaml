@@ -5,13 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims.View"
         mc:Ignorable="d"
-        Title="Tour Tracking View" Height="500" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Tour Tracking View" Height="650" Width="1000" WindowStartupLocation="CenterScreen">
     <Grid>
-        <TextBox x:Name="TourInfoTextBox" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" Width="650" Height="30" Foreground="Black" FontSize="20" FontWeight="Bold" BorderThickness="0" IsEnabled="False"/>
-        <ListView  ItemsSource="{Binding FinishedKeyPoints}" Margin="20,55,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="350" Height="150" Background="LightBlue" FontWeight="Bold">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/Images/background.jpg" Opacity="0.7"/>
+        </Grid.Background>
+        <ToolBar HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" Height="30" Width="1000" Background="Gray">
+            <Button Click="Back_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="40">
+                <Image Source="\Resources\Images\leftarrow.png"/>
+            </Button>
+            <Button Click="Forward_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="40">
+                <Image Source="\Resources\Images\rightarrow.png"/>
+            </Button>
+            <Button Click="Home_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="40">
+                <Image Source="\Resources\Images\home.png"/>
+            </Button>
+        </ToolBar>
+        <TextBox x:Name="TourInfoTextBox" HorizontalAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Top" Width="900" Height="50" Foreground="Black" FontSize="30" FontWeight="UltraBold" FontFamily="Broadway" BorderBrush="Transparent" Background="Transparent" IsEnabled="False"/>
+        <GroupBox Header="Pracenje stanica" FontSize="25" Foreground="White" FontWeight="UltraBold" FontFamily="Georgia" Margin="650,100,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="320" Height="520" BorderBrush="Black" Background="Transparent"/>
+        <ListView  ItemsSource="{Binding FinishedKeyPoints}" Margin="670,130,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="200" Background="Transparent" FontWeight="Bold" FontFamily="Georgia" BorderBrush="Transparent">
             <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="400" Header="Završene stanice">
+                <GridView >
+                    <GridViewColumn Width="280" Header="Završene" >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox  Content="{Binding Name}" IsChecked="True" IsEnabled="False"/>
@@ -19,12 +34,12 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                 </GridView>
-            </ListView.View> 
+            </ListView.View>
         </ListView>
-        <ListView x:Name="KeyPointListView" ItemsSource="{Binding UnFinishedKeyPoints}"  SelectedItem="{Binding Path=SelectedKeyPoint}" Background="White" Foreground="DarkRed" FontWeight="Bold" SelectionMode="Single" SelectionChanged="KeyPointSelected_SelectionChanged" Margin="20,210,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="350" Height="150">
+        <ListView x:Name="KeyPointListView" ItemsSource="{Binding UnFinishedKeyPoints}"  SelectedItem="{Binding Path=SelectedKeyPoint}" SelectionMode="Single" SelectionChanged="KeyPointSelected_SelectionChanged" Margin="670,340,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="200" Background="{x:Null}" FontWeight="Bold" FontFamily="Georgia" BorderBrush="Transparent">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Nezavršene stanice" Width="400">
+                    <GridViewColumn Header="Nezavršene stanice" Width="280">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox  Content="{Binding Name}" IsChecked="False" IsEnabled="False"/>
@@ -33,21 +48,52 @@
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource PreviousData}}" Value="{x:Null}">
+                            <Setter Property="Background" Value="#D2FBA4" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
         </ListView>
-        <DataGrid  x:Name="WaitingGuestsDataGrid" Width="350" 
+        <Image Source="\Resources\Images\mappin.png" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="940,360,0,0"/>
+        <Image Source="\Resources\Images\guests.png" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,110,0,0"/>
+        <ListView  ItemsSource="{Binding PresentGuests}" Margin="30,150,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="280" Height="200" Background="Transparent" FontWeight="Bold" FontFamily="Georgia" BorderBrush="Transparent">
+            <ListView.View>
+                <GridView >
+                    <GridViewColumn Width="140" Header="Ime" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox  Text="{Binding Name}" IsEnabled="False"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="140" Header="Prezime" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox  Text="{Binding Surame}" IsEnabled="False"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <DataGrid  x:Name="WaitingGuestsDataGrid" Width="280" 
                        ItemsSource="{Binding WaitingGuests}"
                        SelectionMode="Single" 
                        SelectedItem="{Binding Path=SelectedGuest}" IsReadOnly="True" Height="200" 
-                       AutoGenerateColumns="False" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="400,100,0,0">
+                        Background="Transparent" BorderBrush="Transparent"
+                       AutoGenerateColumns="False" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="320,150,0,0">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="30" />
-                <DataGridTextColumn Header="Ime" Binding="{Binding Name}" Width="150" />
-                <DataGridTextColumn Header="Prezime" Binding="{Binding Surname}" Width="200" />
+                <DataGridTextColumn Header="Ime" FontFamily="Georgia" Binding="{Binding Name}" Width="150" />
+                <DataGridTextColumn Header="Prezime" FontFamily="Georgia" Binding="{Binding Surname}" Width="150" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button Click="FinishTour_Click" Content="Završi turu" HorizontalAlignment="Left" Margin="550,420,0,0" VerticalAlignment="Top" Height="40" Width="200" Background="#061950"  Foreground="White" FontSize="30" FontWeight="Bold"/>
-        <Button  Click="GuestSelect_Click" Content="Pozovi gosta" HorizontalAlignment="Left" Margin="650,320,0,0" VerticalAlignment="Top" Height="30" Width="100" Background="LightSteelBlue"  Foreground="#061950" FontSize="15" FontWeight="Bold"/>
-        <Button  Click="Logout_Click" Content="Nazad" HorizontalAlignment="Left" Margin="720,10,0,0" VerticalAlignment="Top" Height="20" Width="50" Background="PaleVioletRed"  Foreground="White" FontSize="10" FontWeight="Bold"/>
-        <Label Content="Gosti koji još uvek nisu prisutni" HorizontalAlignment="Left" Margin="480,60,0,0" VerticalAlignment="Top" FontWeight="Bold" FontStyle="Italic"/>
+        <Button Click="FinishTour_Click" Content="Završi turu" HorizontalAlignment="Left" Margin="20,550,0,0" VerticalAlignment="Top" Height="50" Width="200" Background="#061950"  Foreground="White" FontSize="30" FontWeight="Bold"/>
+        <Button  Click="GuestSelect_Click" Content="Pozovi gosta" HorizontalAlignment="Left" Margin="500,370,0,0" VerticalAlignment="Top" Height="30" Width="100" Background="LightSteelBlue"  Foreground="#061950" FontSize="15" FontWeight="Bold"/>
+        <Label Content="Gosti koji još uvek nisu prisutni" HorizontalAlignment="Left" Margin="370,120,0,0" VerticalAlignment="Top" FontWeight="Bold" FontStyle="Italic"/>
+        <Label Content="Prisutni gosti" HorizontalAlignment="Left" Margin="100,120,0,0" VerticalAlignment="Top" FontWeight="Bold" FontStyle="Italic"/>
     </Grid>
 </Window>

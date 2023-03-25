@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims.View"
         mc:Ignorable="d"
-        Title="Tour Tracking View" Height="450" Width="700" WindowStartupLocation="CenterScreen">
+        Title="Tour Tracking View" Height="650" Width="1000" WindowStartupLocation="CenterScreen">
         <Grid>
             <DataGrid  x:Name="AvailableTour" Width="600" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0"
                        ItemsSource="{Binding AvailableTours}"
