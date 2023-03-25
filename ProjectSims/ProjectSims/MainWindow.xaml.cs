@@ -5,6 +5,7 @@ using ProjectSims.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,6 +25,7 @@ namespace ProjectSims
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static int CurrentUserId { get; set; }
         private readonly UserFileHandler userFile;
 
         private readonly OwnerFileHandler ownerFile;
@@ -50,6 +52,7 @@ namespace ProjectSims
                     Owner owner = ownerFile.GetByUserId(user.Id);
                     if(owner != null)
                     {
+                        CurrentUserId = owner.UserId;
                         AccommodationRegistrationView accommodationRegistrationView = new AccommodationRegistrationView();
                         accommodationRegistrationView.Show();
                     }

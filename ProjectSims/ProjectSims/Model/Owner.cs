@@ -15,14 +15,14 @@ namespace ProjectSims.Model
         public string Surname { get; set; }
         public string Address { get; set; }
         public string Email { get; set; }
-        public List<Accommodation> OwnersAccommodations { get; set; }
         public int UserId { get; set; }
+        public List<int> AccommodationIds { get; set; }
 
         public Owner() 
         {
-            OwnersAccommodations = new List<Accommodation>();
+            AccommodationIds = new List<int>();
         }
-        public Owner(int id, string name, string surname, string address, string email, int userId)
+        public Owner(int id, string name, string surname, string address, string email, int userId, List<int> accommodationIds)
         {
             Id = id;
             Name = name;
@@ -30,7 +30,7 @@ namespace ProjectSims.Model
             Address = address;
             Email = email;
             UserId = userId;
-            OwnersAccommodations = new List<Accommodation>();
+            AccommodationIds = accommodationIds;
         }
 
         public void FromCSV(string[] values)
@@ -41,11 +41,34 @@ namespace ProjectSims.Model
             Address = values[3];
             Email = values[4];
             UserId = Convert.ToInt32(values[5]);
+            List<int> accommodationIds = new List<int>();
+            foreach (string value in values[6].Split(",")) 
+            {
+                accommodationIds.Add(Convert.ToInt32(value)); 
+            }
+            AccommodationIds = accommodationIds;
         }
 
         public string[] ToCSV()
         {
-            string[] csvvalues = { Id.ToString(), Name, Surname, Address, Email, UserId.ToString() };
+            string AccommodationIdsString = "";
+            foreach (int id in AccommodationIds)
+            {
+                if (id != AccommodationIds.Last())
+                {
+                    AccommodationIdsString += id.ToString() + ",";
+                }
+            }
+            AccommodationIdsString += AccommodationIds.Last();
+            string[] csvvalues = { 
+                Id.ToString(), 
+                Name,
+                Surname,
+                Address,
+                Email,
+                UserId.ToString(),
+                AccommodationIdsString
+            };
             return csvvalues;
         }
     }
