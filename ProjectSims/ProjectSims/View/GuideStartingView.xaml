@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="Guide Starting View" Height="300" Width="400" WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/Images/background.jpg" Opacity="0.7"/>
+        </Grid.Background>
         <StackPanel Margin="0,20,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="100" Width="400" Orientation="Horizontal">
             <Button Click ="CreateTour_Click" Content="Kreiraj turu" Height="100" Width="190" Background="Transparent" BorderBrush="#050A30" BorderThickness="10" Foreground="#050A30" FontSize="30" FontWeight="UltraBold" />
             <Button Click ="TrackTour_Click" Content="Prati turu" Height="100" Width="190" Background="Transparent" BorderBrush="#050A30" BorderThickness="10" Foreground="#050A30" FontSize="30" FontWeight="UltraBold" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>

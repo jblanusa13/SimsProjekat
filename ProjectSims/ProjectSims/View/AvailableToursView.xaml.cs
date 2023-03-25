@@ -68,12 +68,28 @@ namespace ProjectSims.View
             {
                 TourTrackingView tourTrackingView = new TourTrackingView(startedTour,guide);
                 tourTrackingView.Show();
+                Close();
             }
             else
             {
                 MessageBox.Show("Nijedna tura nije zapoceta!");
             }
 
+        }
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+            GuideStartingView guideStartingView = new GuideStartingView(guide);
+            guideStartingView.Show();
+        }
+        private void Forward_Click(object sender, RoutedEventArgs e)
+        {
+        }
+        private void Home_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+            GuideStartingView guideStartingView = new GuideStartingView(guide);
+            guideStartingView.Show();
         }
         private void UpdateAvailableTours()
         {

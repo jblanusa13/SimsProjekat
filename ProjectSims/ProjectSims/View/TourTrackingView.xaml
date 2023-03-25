@@ -22,7 +22,7 @@
             </Button>
         </ToolBar>
         <TextBox x:Name="TourInfoTextBox" HorizontalAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Top" Width="900" Height="50" Foreground="Black" FontSize="30" FontWeight="UltraBold" FontFamily="Broadway" BorderBrush="Transparent" Background="Transparent" IsEnabled="False"/>
-        <GroupBox Header="Pracenje stanica" FontSize="25" Foreground="White" FontWeight="UltraBold" FontFamily="Georgia" Margin="650,100,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="320" Height="520" BorderBrush="Black" Background="Transparent"/>
+        <GroupBox Header="Pracenje stanica" FontSize="25" Foreground="Black" FontWeight="UltraBold" FontFamily="Georgia" Margin="650,100,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="320" Height="520" BorderBrush="Black" Background="Transparent"/>
         <ListView  ItemsSource="{Binding FinishedKeyPoints}" Margin="670,130,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="200" Background="Transparent" FontWeight="Bold" FontFamily="Georgia" BorderBrush="Transparent">
             <ListView.View>
                 <GridView >
@@ -60,17 +60,17 @@
         </ListView>
         <Image Source="\Resources\Images\mappin.png" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="940,360,0,0"/>
         <Image Source="\Resources\Images\guests.png" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,110,0,0"/>
-        <ListView  ItemsSource="{Binding PresentGuests}" Margin="30,150,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="280" Height="200" Background="Transparent" FontWeight="Bold" FontFamily="Georgia" BorderBrush="Black">
+        <ListView  ItemsSource="{Binding PresentGuests}" Margin="30,150,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="280" Height="200" Background="#C8E1CC" Opacity="0.8" FontWeight="Bold" FontFamily="Georgia" BorderBrush="Black">
             <ListView.View>
                 <GridView >
-                    <GridViewColumn Width="140" Header="Ime" >
+                    <GridViewColumn Width="135" Header="Ime" >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBox  Text="{Binding Name}" IsEnabled="False"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Width="140" Header="Prezime" >
+                    <GridViewColumn Width="135" Header="Prezime" >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBox  Text="{Binding Surname}" IsEnabled="False"/>
@@ -91,9 +91,9 @@
                 <DataGridTextColumn Header="Prezime" FontFamily="Georgia" Binding="{Binding Surname}" Width="140" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button Click="FinishTour_Click" Content="Završi turu" HorizontalAlignment="Left" Margin="20,550,0,0" VerticalAlignment="Top" Height="50" Width="200" Background="#061950"  Foreground="White" FontSize="30" FontWeight="Bold"/>
-        <Button  Click="GuestSelect_Click" Content="Pozovi gosta" HorizontalAlignment="Left" Margin="500,370,0,0" VerticalAlignment="Top" Height="30" Width="100" Background="LightSteelBlue"  Foreground="#061950" FontSize="15" FontWeight="Bold"/>
-        <Label Content="Gosti koji još uvek nisu prisutni" HorizontalAlignment="Left" Margin="370,120,0,0" VerticalAlignment="Top" FontWeight="Bold" FontStyle="Italic"/>
-        <Label Content="Prisutni gosti" HorizontalAlignment="Left" Margin="100,120,0,0" VerticalAlignment="Top" FontWeight="Bold" FontStyle="Italic"/>
+        <Button Click="FinishTour_Click" Content="Završi turu" HorizontalAlignment="Left" Margin="20,550,0,0" VerticalAlignment="Top" Height="50" Width="200" Background="#C8E1CC"  Foreground="DarkGreen" FontSize="30" FontWeight="Bold" FontFamily="Georgia"/>
+        <Button  Click="GuestSelect_Click" Content="Pozovi gosta" HorizontalAlignment="Left" Margin="500,370,0,0" VerticalAlignment="Top" Height="30" Width="100" Background="#061950"  Foreground="White" FontSize="15" FontWeight="Bold" FontFamily="Georgia"/>
+        <Label Content="Gosti koji još uvek nisu prisutni" HorizontalAlignment="Left" Margin="370,120,0,0" VerticalAlignment="Top" FontWeight="ExtraBold" FontFamily="Georgia"/>
+        <Label Content="Prisutni gosti" HorizontalAlignment="Left" Margin="100,120,0,0" VerticalAlignment="Top" FontWeight="ExtraBold" FontFamily="Georgia"/>
     </Grid>
 </Window>

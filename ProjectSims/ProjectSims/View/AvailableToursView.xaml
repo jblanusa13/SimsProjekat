@@ -6,19 +6,34 @@
         xmlns:local="clr-namespace:ProjectSims.View"
         mc:Ignorable="d"
         Title="Tour Tracking View" Height="650" Width="1000" WindowStartupLocation="CenterScreen">
-        <Grid>
-            <DataGrid  x:Name="AvailableTour" Width="600" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0"
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/Images/background.jpg" Opacity="0.7"/>
+        </Grid.Background>
+        <ToolBar HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" Height="30" Width="1000" Background="Gray">
+            <Button Click="Back_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="40">
+                <Image Source="\Resources\Images\leftarrow.png"/>
+            </Button>
+            <Button Click="Forward_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="40">
+                <Image Source="\Resources\Images\rightarrow.png"/>
+            </Button>
+            <Button Click="Home_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="40">
+                <Image Source="\Resources\Images\home.png"/>
+            </Button>
+        </ToolBar>
+        <DataGrid  x:Name="AvailableTour" Width="700" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,60,0,0"
                        ItemsSource="{Binding AvailableTours}"
                        SelectionMode="Single" 
-                       SelectedItem="{Binding Path=SelectedTour}" IsReadOnly="True" Height="254" 
+                        Background="Transparent"
+                       SelectedItem="{Binding Path=SelectedTour}" IsReadOnly="True" Height="400" 
                        AutoGenerateColumns="False" >
                  <DataGrid.Columns>
                     <DataGridTextColumn Header="Dostupne ture" Binding="{Binding Name}" Width="400"/>
                     <DataGridTextColumn Header="Početak" Binding="{Binding StartOfTheTour}" Width="200"/> 
                 </DataGrid.Columns>
              </DataGrid>
-        <Button Click="StartTour_Click" Content="Započni turu" HorizontalAlignment="Left" Margin="550,300,0,0" VerticalAlignment="Top" Height="30" Width="100" Background="#061950" Foreground="White" FontWeight="Bold"/>
-        <Button Click="StartedTour_Click" Content="Vidi detaljnije započetu turu" HorizontalAlignment="Left" Margin="10,370,0,0" VerticalAlignment="Top" Height="30" Width="200" Background="SkyBlue" Foreground="MidnightBlue" FontWeight="Bold"/>
+        <Button Click="StartTour_Click" Content="Započni turu" HorizontalAlignment="Left" Margin="200,500,0,0" VerticalAlignment="Top" Height="30" Width="200" Background="#061950" Foreground="White" FontWeight="Bold"/>
+        <Button Click="StartedTour_Click" Content="Vidi detaljnije započetu turu" HorizontalAlignment="Left" Margin="500,500,0,0" VerticalAlignment="Top" Height="30" Width="200" Background="#061950" Foreground="White" FontWeight="Bold"/>
     </Grid>
  
 

@@ -121,6 +121,7 @@ namespace ProjectSims.View
         {
             Close();
             AvailableToursView availableToursView = new AvailableToursView(guide);
+            availableToursView.Show();
         }
         private void Forward_Click(object sender, RoutedEventArgs e)
         {
@@ -129,6 +130,7 @@ namespace ProjectSims.View
         {
             Close();
             GuideStartingView guideStartingView = new GuideStartingView(guide);
+            guideStartingView.Show();
         }
         private void UpdateKeyPointList()
         {
