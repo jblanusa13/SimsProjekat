@@ -5,13 +5,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims"
       mc:Ignorable="d" 
-      d:DesignHeight="450"
-      Title="SearchTourView" Height="500" Width="1100" Foreground="#FFFAF6F6">
+      d:DesignHeight="500"
+      Title="SearchTourView" Width="1100" Foreground="#FFFAF6F6">
     <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="850"/>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="950"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>

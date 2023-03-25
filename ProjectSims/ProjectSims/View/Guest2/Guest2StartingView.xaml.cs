@@ -47,7 +47,12 @@ namespace ProjectSims
 
         private void ButtonSearchTour(object sender, RoutedEventArgs e)
         {
-            this.ChangeTab(0);
+            ChangeTab(0);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeTab(1);
         }
 
         public void ChangeTab(int tabNum)
@@ -57,6 +62,11 @@ namespace ProjectSims
                 case 0:
                     {
                         SelectedTab.Content = new SearchTourView(guest2);
+                        break;
+                    }
+                case 1:
+                    {
+                        SelectedTab.Content = new FinishedToursView(guest2);
                         break;
                     }
             }

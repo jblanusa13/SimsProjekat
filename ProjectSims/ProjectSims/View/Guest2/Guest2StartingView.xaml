@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims"
         mc:Ignorable="d"
-        Title="Guest2StartingView" Height="800" Width="1400" ResizeMode="CanResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        Title="Guest2StartingView" Height="800" Width="1400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -21,7 +21,7 @@
             </Grid.RowDefinitions>
 
             <Button Content="Prikaz i pretraga tura" Cursor="Hand" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Height="70" Width="200" Click="ButtonSearchTour"/>
-            <Button Content="Ocjeni zavrsene ture" Cursor="Hand"  HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Height="70" Width="200"/>
+            <Button Content="Ture na kojima si bio" Cursor="Hand"  HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Height="70" Width="200" Click="Button_Click"/>
             <Button Content="Odjavi se!" Cursor="Hand" HorizontalAlignment="Center" Margin="0,431,0,0" Grid.Row="3" VerticalAlignment="Top" Height="31" Width="106" Click="LogOut"/>
         </Grid>
 
