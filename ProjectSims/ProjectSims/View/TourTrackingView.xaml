@@ -60,7 +60,7 @@
         </ListView>
         <Image Source="\Resources\Images\mappin.png" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="940,360,0,0"/>
         <Image Source="\Resources\Images\guests.png" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,110,0,0"/>
-        <ListView  ItemsSource="{Binding PresentGuests}" Margin="30,150,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="280" Height="200" Background="Transparent" FontWeight="Bold" FontFamily="Georgia" BorderBrush="Transparent">
+        <ListView  ItemsSource="{Binding PresentGuests}" Margin="30,150,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="280" Height="200" Background="Transparent" FontWeight="Bold" FontFamily="Georgia" BorderBrush="Black">
             <ListView.View>
                 <GridView >
                     <GridViewColumn Width="140" Header="Ime" >
@@ -73,7 +73,7 @@
                     <GridViewColumn Width="140" Header="Prezime" >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBox  Text="{Binding Surame}" IsEnabled="False"/>
+                                <TextBox  Text="{Binding Surname}" IsEnabled="False"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -84,11 +84,11 @@
                        ItemsSource="{Binding WaitingGuests}"
                        SelectionMode="Single" 
                        SelectedItem="{Binding Path=SelectedGuest}" IsReadOnly="True" Height="200" 
-                        Background="Transparent" BorderBrush="Transparent"
+                        Background="Transparent" BorderBrush="Black"
                        AutoGenerateColumns="False" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="320,150,0,0">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Ime" FontFamily="Georgia" Binding="{Binding Name}" Width="150" />
-                <DataGridTextColumn Header="Prezime" FontFamily="Georgia" Binding="{Binding Surname}" Width="150" />
+                <DataGridTextColumn Header="Ime" FontFamily="Georgia" Binding="{Binding Name}" Width="140" />
+                <DataGridTextColumn Header="Prezime" FontFamily="Georgia" Binding="{Binding Surname}" Width="140" />
             </DataGrid.Columns>
         </DataGrid>
         <Button Click="FinishTour_Click" Content="Završi turu" HorizontalAlignment="Left" Margin="20,550,0,0" VerticalAlignment="Top" Height="50" Width="200" Background="#061950"  Foreground="White" FontSize="30" FontWeight="Bold"/>

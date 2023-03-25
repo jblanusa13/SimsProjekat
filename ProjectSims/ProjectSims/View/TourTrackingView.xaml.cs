@@ -59,15 +59,11 @@ namespace ProjectSims.View
             expectedId = keyPointController.FindUnFinishedKeyPointsByIds(tour.KeyPointIds).First().Id;
             reservationTourController.InviteGuests(tour.Id);
 
-            foreach (int id in reservationTourController.FindGuestIdsByTourIdAndState(tour.Id, Guest2State.Invited))
+            foreach (int id in reservationTourController.FindWaitingAndInvitedGuestIdsByTourId(tour.Id))
             {
                 WaitingGuests.Add(guest2Controller.FindGuest2ById(id));
             }
-            foreach (int id in reservationTourController.FindGuestIdsByTourIdAndState(tour.Id, Guest2State.Waiting))
-            {
-                WaitingGuests.Add(guest2Controller.FindGuest2ById(id));
-            }
-            foreach (int id in reservationTourController.FindGuestIdsByTourIdAndState(tour.Id, Guest2State.Present))
+            foreach (int id in reservationTourController.FindPresentGuestIdsByTourId(tour.Id))
             {
                 PresentGuests.Add(guest2Controller.FindGuest2ById(id));
             }
@@ -147,29 +143,9 @@ namespace ProjectSims.View
                 UnFinishedKeyPoints.Add(keyPoint);
             }
         }
-        private void UpdateGuestList()
-        {
-            WaitingGuests.Clear();
-            foreach (int id in reservationTourController.FindGuestIdsByTourIdAndState(tour.Id,Guest2State.Waiting))
-            {
-                WaitingGuests.Add(guest2Controller.FindGuest2ById(id));
-            }
-            foreach (int id in reservationTourController.FindGuestIdsByTourIdAndState(tour.Id, Guest2State.Invited))
-            {
-                WaitingGuests.Add(guest2Controller.FindGuest2ById(id));
-            }
-            PresentGuests.Clear();
-            foreach (int id in reservationTourController.FindGuestIdsByTourIdAndState(tour.Id, Guest2State.Present))
-            {
-                WaitingGuests.Add(guest2Controller.FindGuest2ById(id));
-            }
-
-        }
-
         public void Update()
         {
             UpdateKeyPointList();
-            UpdateGuestList();
         }
 
     }
