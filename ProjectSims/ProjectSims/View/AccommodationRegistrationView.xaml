@@ -17,7 +17,7 @@
         </ControlTemplate>
     </Window.Resources>
     <Grid>
-        <Label Content="Naziv:" HorizontalAlignment="Left" Margin="104,50,251,0" VerticalAlignment="Top" Width="225"/>
+     <Label Content="Naziv:" HorizontalAlignment="Left" Margin="104,50,251,0" VerticalAlignment="Top" Width="225"/>
         <Label Content="Lokacija(Grad,Drzava):" HorizontalAlignment="Left" Margin="104,95,251,0" VerticalAlignment="Top" Height="30" Width="225"/>
         <Label Content="Tip:" HorizontalAlignment="Left" Margin="104,140,251,0" VerticalAlignment="Top" Width="225"/>
         <Label Content="Maksimalan broj gostiju:" HorizontalAlignment="Left" Margin="104,185,251,0" VerticalAlignment="Top" Width="225"/>

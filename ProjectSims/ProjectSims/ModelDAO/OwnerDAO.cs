@@ -25,7 +25,7 @@ namespace ProjectSims.ModelDAO
 
         public int NextId()
         {
-            return owners.Max(t => t.Id) + 1;
+            return owners.Max(owner => owner.Id) + 1;
         }
 
         public void Add(Owner owner)
@@ -45,7 +45,7 @@ namespace ProjectSims.ModelDAO
 
         public void Update(Owner owner)
         {
-            int index = owners.FindIndex(o => owner.Id == o.Id);
+            int index = owners.FindIndex(owner => owner.Id == owner.Id);
             if (index != -1)
             {
                 owners[index] = owner;

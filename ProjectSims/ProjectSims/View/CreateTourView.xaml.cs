@@ -28,6 +28,8 @@ namespace ProjectSims
     /// </summary>
     public partial class CreateTourView : Window, INotifyPropertyChanged, IDataErrorInfo
     {
+        public Guide guide { get; set; }
+
         private readonly TourController _controller;
 
         private string _tourName;
@@ -241,9 +243,9 @@ namespace ProjectSims
                     if (string.IsNullOrEmpty(TourStarts))
                         return "Unesite datum i vreme početka ture!";
                     DateTime result;
-                    foreach(string tourStart in TourStarts.Split(',')){
+                    foreach (string tourStart in TourStarts.Split(',')){
                         if (!DateTime.TryParse(tourStart, out result))
-                            return "Format nije ispravan!";
+                            return "Format nije ispravan!";                         
                     }
                 }
                 else if (columnName == "StartKeyPoint")
@@ -291,12 +293,13 @@ namespace ProjectSims
                 return true;
             }
         }
-        public CreateTourView()
+        public CreateTourView(Guide g)
         {
             InitializeComponent();
             DataContext = this;
             _controller = new TourController();
             OtherKeyPoints = new List<string>();
+            guide = g;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -306,13 +309,13 @@ namespace ProjectSims
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void CreateTourClick(object sender, RoutedEventArgs e)
+        private void CreateTour_Click(object sender, RoutedEventArgs e)
         {
             if (IsValid)
             {
                 foreach(string TourStart in TourStarts.Split(','))
                 {
-                    _controller.Create(TourName, Location, Description, TourLanguage, MaxNumberGuests, StartKeyPoint, FinishKeyPoint, OtherKeyPoints, TourStart, Duration, Images);
+                    _controller.Create(guide.Id, TourName, Location, Description, TourLanguage, MaxNumberGuests, StartKeyPoint, FinishKeyPoint, OtherKeyPoints, TourStart, Duration, Images);
                 }
                 Close();
             }
@@ -321,7 +324,7 @@ namespace ProjectSims
             
         }
 
-        private void AddKeyPoint(object sender, RoutedEventArgs e)
+        private void AddKeyPoint_Click(object sender, RoutedEventArgs e)
         {
             if (OtherKeyPoint != "")
             {

@@ -24,6 +24,7 @@ namespace ProjectSims
     public partial class SearchTourView : Window , IObserver
     {
         private TourController tourController;
+        private ReservationTourController reservationTourController;
 
         public  ObservableCollection<Tour> ListTour { get; }
         public Tour SelectedTour { get; set; }
@@ -35,12 +36,21 @@ namespace ProjectSims
             DataContext = this;
             
             tourController = new TourController();
-            tourController.Subscribe(this);           
+            tourController.Subscribe(this);    
+            reservationTourController = new ReservationTourController();
             ListTour = new ObservableCollection<Tour>(tourController.GetAllTours());
-            guest2 = g;
+            guest2 = g;           
+            if(reservationTourController.IsWaiting(guest2.Id))
+            {
+                Tour tour = tourController.FindStartedTour();
+                MessageBoxResult answer = MessageBox.Show("Da li ste prisutni na turi " + tour.Name + "?", "", MessageBoxButton.YesNo);
+                if (answer == MessageBoxResult.Yes)
+                {
+                    reservationTourController.ConfirmPresence(guest2.Id, tour);
+                }
+            }
 
         }
-
         private void UpdateTourList()
         {
             ListTour.Clear();
@@ -121,7 +131,6 @@ namespace ProjectSims
             var startView = new MainWindow();
             startView.Show();
             Close();
-
         }
     }
 }

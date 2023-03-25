@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="600" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="450" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

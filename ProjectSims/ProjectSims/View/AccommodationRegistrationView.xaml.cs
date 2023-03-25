@@ -50,135 +50,135 @@ namespace ProjectSims.View
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private string accommodationName;
+        private string _accommodationName;
         public string AccommodationName
         {
-            get => accommodationName;
+            get => _accommodationName;
 
             set
             {
-                if (value != accommodationName)
+                if (value != _accommodationName)
                 {
-                    accommodationName = value;
+                    _accommodationName = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private string location;
+        private string _location;
         public string Location
         {
-            get => location;
+            get => _location;
 
             set
             {
-                if (value != location)
+                if (value != _location)
                 {
-                    location = value;
+                    _location = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private AccommodationType type;
+        private AccommodationType _type;
         public AccommodationType Type
         {
-            get => type;
+            get => _type;
 
             set
             {
-                if (value != type)
+                if (value != _type)
                 {
-                    type = value;
+                    _type = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private int guestsMaximum;
+        private int _guestsMaximum;
         public int GuestsMaximum
         {
-            get => guestsMaximum;
+            get => _guestsMaximum;
 
             set
             {
-                if (value != guestsMaximum)
+                if (value != _guestsMaximum)
                 {
-                    guestsMaximum = value;
+                    _guestsMaximum = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private int minimumReservationDays;
+        private int _minimumReservationDays;
         public int MinimumReservationDays
         {
-            get => minimumReservationDays;
+            get => _minimumReservationDays;
 
             set
             {
-                if (value != minimumReservationDays)
+                if (value != _minimumReservationDays)
                 {
-                    minimumReservationDays = value;
+                    _minimumReservationDays = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private int dismissalDays = 1;
+        private int _dismissalDays = 1;
         public int DismissalDays
         {
-            get => dismissalDays;
+            get => _dismissalDays;
 
             set
             {
-                if (value != dismissalDays)
+                if (value != _dismissalDays)
                 {
-                    dismissalDays = value;
+                    _dismissalDays = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private string images;
+        private string _images;
         public string Images
         {
-            get => images;
+            get => _images;
 
             set
             {
-                if (value != images)
+                if (value != _images)
                 {
-                    images = value;
+                    _images = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private string ownerName;
+        private string _ownerName;
         public string OwnerName
         {
-            get => ownerName;
+            get => _ownerName;
 
             set
             {
-                if (value != ownerName)
+                if (value != _ownerName)
                 {
-                    ownerName = value;
+                    _ownerName = value;
                     OnPropertyChanged();
                 }
             }
         }
-        private string ownerSurname;
-        public string OwnerSurname
+        private string _ownerSurname;
+        public string _OwnerSurname
         {
-            get => ownerSurname;
+            get => _ownerSurname;
 
             set
             {
-                if (value != ownerSurname)
+                if (value != _ownerSurname)
                 {
-                    ownerSurname = value;
+                    _ownerSurname = value;
                     OnPropertyChanged();
                 }
             }
@@ -197,16 +197,16 @@ namespace ProjectSims.View
                 }
             }
         }
-        private string email;
+        private string _email;
         public string Email
         {
-            get => email;
+            get => _email;
 
             set
             {
-                if (value != email)
+                if (value != _email)
                 {
-                    email = value;
+                    _email = value;
                     OnPropertyChanged();
                 }
             }
@@ -298,6 +298,7 @@ namespace ProjectSims.View
                             return "Iskljucivo brojevi veci od 0!";
                         }
                     }
+
                 }
                 else if (columnName == "DismissalDays")
                 {

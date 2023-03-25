@@ -1,0 +1,48 @@
+﻿<Window x:Class="ProjectSims.View.OwnerView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectSims.View"
+        mc:Ignorable="d"
+        Title="Vlasnik" Height="450" Width="820" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </Window.Resources>
+    <Grid>
+        <Label Margin="40 20 20 20" FontSize="14" FontWeight="DemiBold">Rezervisani smjestaji:</Label>
+        <StackPanel Orientation="Horizontal" Margin="20,56,20,100">
+            <Grid>
+                <DataGrid x:Name="GuestAccommodationsTable"  ItemsSource="{Binding GuestAccommodations, UpdateSourceTrigger=PropertyChanged}"
+                    AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" Height="277" Width="760">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Naziv smjestaja" Binding="{Binding Name}" Width="150" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Tip smjestaja" Binding="{Binding Type}" Width="110" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Gost" Width="155" IsReadOnly="True">
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="FirstName"/>
+                                    <Binding Path="LastName"/>
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="CheckInDateColumn" Header="Datum dolaska" Binding="{Binding CheckInDate}" Width="95" IsReadOnly="True"/>
+                        <DataGridTextColumn x:Name="CheckOutDateColumn" Header="Datum odlaska" Binding="{Binding CheckOutDate}" Width="95" IsReadOnly="True"/>
+                        <DataGridCheckBoxColumn Header="Ocijenjen" Binding="{Binding Rated, Mode=TwoWay}"  Width="*" IsReadOnly="True"/>
+                       <!-- <DataGridTextColumn Header="Dodijeli ocjenu" Width="*" IsReadOnly="True"/>-->
+                        <!--<DataGridTemplateColumn Header="Dodijeli ocjenu">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button x:Name="RateButton"  HorizontalAlignment="Center" HorizontalContentAlignment="Center" TextElement.FontSize="10" Width="75" TextElement.FontStretch="Expanded" Click="RateGuest_Click">OCIJENI</Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>-->
+                    </DataGrid.Columns>
+				</DataGrid>
+            </Grid>
+        </StackPanel>
+        <Button Margin="60 0 0 40" Click="RegistrateAccommodation_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" TextElement.FontSize="12" TextElement.FontStretch="UltraExpanded" TextElement.FontWeight="DemiBold" Height="30" Width="190" Content="Registracija novog smjestaja"/>
+        <Button x:Name="RateGuestButton" Margin="300 0 0 40" Click="RateGuest_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" TextElement.FontSize="12" TextElement.FontStretch="UltraExpanded" TextElement.FontWeight="DemiBold" Height="30" Width="190" Content="Ocijeni gosta"/>
+        <!--Visibility="{Binding Rated, Converter={StaticResource BoolToVisibilityConverter}}"-->
+    </Grid>
+</Window>

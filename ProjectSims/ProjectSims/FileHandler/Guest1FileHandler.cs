@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectSims.Model;
+using ProjectSims.Serializer;
 
 namespace ProjectSims.FileHandler
 {
@@ -22,7 +24,15 @@ namespace ProjectSims.FileHandler
             _serializer = new Serializer<Guest1>();
             guests1 = _serializer.FromCSV(FilePath);
         }
+        public List<Guest1> Load()
+        {
+            return _serializer.FromCSV(FilePath);
+        }
 
+        public void Save(List<Guest1> guests1)
+        {
+            _serializer.ToCSV(FilePath, guests1);
+        }
         public Guest1 GetByUserId(int id)
         {
             guests1 = _serializer.FromCSV(FilePath);

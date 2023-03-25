@@ -41,11 +41,11 @@
         <TextBox  Text="{Binding Path=TourStarts, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged ,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="35,230,0,0"  VerticalAlignment="Top" Width="1000" Height="25"/>
         <TextBox Text="{Binding Path=StartKeyPoint, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged ,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="130,270,0,0"  VerticalAlignment="Top" Width="600" Height="25"/>
         <TextBox Text="{Binding Path=FinishKeyPoint, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged ,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="130,350,0,0"  VerticalAlignment="Top" Width="600" Height="25"/>
-        <Button Click="AddKeyPoint" Content="Dodaj stanicu" HorizontalAlignment="Left" Margin="800,310,0,0"  VerticalAlignment="Top" Width="90" Height="30"/>
+        <Button Click="AddKeyPoint_Click" Content="Dodaj stanicu" HorizontalAlignment="Left" Margin="800,310,0,0"  VerticalAlignment="Top" Width="90" Height="30"/>
         <TextBox Name="OtherKeyPointTextBox" Text="{Binding Path=OtherKeyPoint, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged ,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="130,310,0,0"  VerticalAlignment="Top" Width="600" Height="25"/>
         <TextBox Text="{Binding Path=Description, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged ,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="35,400,0,0"  VerticalAlignment="Top" Width="1000" Height="110"/>
         <TextBox Text="{Binding Path=Images, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged ,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="35,540,0,0"  VerticalAlignment="Top" Width="1000" Height="35"/>
-        <Button  Click="CreateTourClick" Content="Kreiraj turu" HorizontalAlignment="Left" Margin="950,580,0,0"  VerticalAlignment="Top" Width="80" Height="25" Background="LightSteelBlue"/>
+        <Button  Click="CreateTour_Click" Content="Kreiraj turu" HorizontalAlignment="Left" Margin="950,580,0,0"  VerticalAlignment="Top" Width="80" Height="25" Background="LightSteelBlue"/>
 
     </Grid>
 </Window>

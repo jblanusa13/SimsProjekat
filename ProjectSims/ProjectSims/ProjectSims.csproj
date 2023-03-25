@@ -7,4 +7,43 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Resources\Data\questionGuestRating.csv" />
+    <None Remove="Resources\Images\background.jpg" />
+    <None Remove="Resources\Images\bckgrnd.jpg" />
+    <None Remove="Resources\Images\checkmark.png" />
+    <None Remove="Resources\Images\guests.png" />
+    <None Remove="Resources\Images\home.png" />
+    <None Remove="Resources\Images\leftarrow.png" />
+    <None Remove="Resources\Images\mappin.png" />
+    <None Remove="Resources\Images\rightarrow.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Resources\Data\questionGuestRating.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <COMReference Include="{215d64d2-031c-33c7-96e3-61794cd1ee61}">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>4</VersionMinor>
+      <VersionMajor>2</VersionMajor>
+      <Guid>215d64d2-031c-33c7-96e3-61794cd1ee61</Guid>
+    </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Tulpep.NotificationWindow" Version="1.1.38" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\background.jpg" />
+    <Resource Include="Resources\Images\checkmark.png" />
+    <Resource Include="Resources\Images\guests.png" />
+    <Resource Include="Resources\Images\home.png" />
+    <Resource Include="Resources\Images\leftarrow.png" />
+    <Resource Include="Resources\Images\mappin.png" />
+    <Resource Include="Resources\Images\rightarrow.png" />
+  </ItemGroup>
+
 </Project>
