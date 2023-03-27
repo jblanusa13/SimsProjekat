@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims.View"
         mc:Ignorable="d"
-        Title="Rezervacija smestaja" Height="540" Width="700"
+        Title="Rezervacija smestaja" Height="540" Width="955"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <ControlTemplate x:Key="ValidationTemplate">
@@ -41,12 +41,19 @@
 
         <DataGrid Name="DatesTable" ItemsSource="{Binding AvailableDates, UpdateSourceTrigger=PropertyChanged}" Margin="434,230,37,108" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Dolazak" Binding="{Binding CheckIn}" Width="100"></DataGridTextColumn>
-                <DataGridTextColumn Header="Odlazak"  Binding="{Binding CheckOut}" Width="*"></DataGridTextColumn> 
+                <DataGridTextColumn Header="Dolazak" Binding="{Binding CheckIn}" Width="250"></DataGridTextColumn>
+                <DataGridTextColumn Header="Odlazak"  Binding="{Binding CheckOut}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Potvrdi rezervaciju" Click="Confirm_Click" HorizontalAlignment="Left" Margin="478,434,0,0" VerticalAlignment="Top" Width="140" Height="43"/>
+        <Button Content="Potvrdi rezervaciju" Click="Confirm_Click" HorizontalAlignment="Left" Margin="606,443,0,0" VerticalAlignment="Top" Width="140" Height="43"/>
         <Label Content="Slobodni datumi:" HorizontalAlignment="Left" Margin="434,199,0,0" VerticalAlignment="Top" FontStyle="Italic"/>
         <Button Name="buttonFind" Content="Pretrazi datume" Click="FindDates_Click" HorizontalAlignment="Left" Margin="244,405,0,0" VerticalAlignment="Top" Width="112" Height="29"/>
+        <ListView Margin="696,20,37,337">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>

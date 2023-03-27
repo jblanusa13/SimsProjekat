@@ -196,6 +196,7 @@ namespace ProjectSims.View
             Username = user.Username;
 
             AvailableDates = new ObservableCollection<DateRanges>();
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
