@@ -15,11 +15,11 @@ namespace ProjectSims.Model
         public string Adress { get; set; }
         public string Email { get; set; }
         public int UserId { get; set; }
-        public int Vouchers { get; set; }
+        public List<int> VoucherIds { get; set; }
 
         public Guest2()
         {
-
+            VoucherIds = new List<int>();
         }
         public Guest2(int id, string name, string surname, string adress, string email, int userId)
         {
@@ -29,7 +29,7 @@ namespace ProjectSims.Model
             Adress = adress;
             Email = email;
             UserId = userId;
-            Vouchers = 0;
+            VoucherIds = new List<int>();
         }
 
         public void FromCSV(string[] values)
@@ -40,12 +40,31 @@ namespace ProjectSims.Model
             Adress = values[3];
             Email = values[4];
             UserId = Convert.ToInt32(values[5]);
-            Vouchers = Convert.ToInt32(values[6]);
+            if (values[6] != "")
+            {
+                foreach (string voucher in values[6].Split(","))
+                {
+                    int voucherId = Convert.ToInt32(voucher);
+                    VoucherIds.Add(voucherId);
+                }
+            }
         }
 
         public string[] ToCSV()
         {
-            string[] csvvalues = { Id.ToString(), Name, Surname, Adress, Email, UserId.ToString(),Vouchers.ToString()};
+            string VoucherString = "";
+            if(VoucherIds.Count > 0)
+            {
+                foreach (int voucherId in VoucherIds)
+                {
+                    if (voucherId != VoucherIds.Last())
+                    {
+                        VoucherString += voucherId.ToString() + ",";
+                    }
+                }
+                VoucherString += VoucherIds.Last();
+            }
+            string[] csvvalues = { Id.ToString(), Name, Surname, Adress, Email, UserId.ToString(),VoucherString};
             return csvvalues;
         }
     }

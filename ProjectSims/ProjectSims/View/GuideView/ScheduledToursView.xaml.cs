@@ -26,6 +26,7 @@ namespace ProjectSims.View
         private TourController tourController;
         private ReservationTourController reservationTourController;
         private Guest2Controller guest2Controller;
+        private VoucherController voucherController;
         public ObservableCollection<Tour> ScheduledTours { get; set; }
         public Tour SelectedTour { get; set; }
         public Guide guide { get; set; }
@@ -35,7 +36,7 @@ namespace ProjectSims.View
             DataContext = this;
             tourController = new TourController();
             reservationTourController = new ReservationTourController();
-            guest2Controller = new Guest2Controller(); 
+            guest2Controller = new Guest2Controller();
             tourController.Subscribe(this);
             guide = g;
             ScheduledTours = new ObservableCollection<Tour>(tourController.GetScheduledTours(guide.Id));

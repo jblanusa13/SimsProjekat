@@ -12,10 +12,12 @@ namespace ProjectSims.Controller
     public class Guest2Controller
     {
         private Guest2DAO guests;
+        private VoucherController voucherController;
 
         public Guest2Controller()
         {
             guests = new Guest2DAO();
+            voucherController = new VoucherController();
         }
 
         public List<Guest2> GetAllGuests()
@@ -50,7 +52,9 @@ namespace ProjectSims.Controller
         public void GiveVoucher(int id)
         {
             Guest2 guest = guests.FindById(id);
-            guest.Vouchers ++;
+            Voucher voucher = new Voucher(-1, DateTime.Now.AddYears(1));
+            voucherController.Create(voucher);
+            guest.VoucherIds.Add(voucher.Id);
             Update(guest);
         }
 
