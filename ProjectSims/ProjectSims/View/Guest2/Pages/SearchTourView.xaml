@@ -62,6 +62,6 @@
 
             <Button Content="Trazi" HorizontalAlignment="Left" Width="86" Margin="20,0,0,0" FontSize="18" Click="Search_Click" />
         </WrapPanel>
-        
+
     </Grid>
 </Page>
