@@ -79,6 +79,21 @@ namespace ProjectSims.Controller
 
             return availableTours;
         }
+
+        public List<Tour> GetScheduledTours(int guideId)
+        {
+            List<Tour> scheduledTours = new List<Tour>();
+
+            foreach (Tour tour in tours.GetAll())
+            {
+                if (IsInactive(tour) && tour.GuideId == guideId)
+                {
+                    scheduledTours.Add(tour);
+                }
+            }
+
+            return scheduledTours;
+        }
         public List<KeyPoint> GetTourKeyPoints(Tour tour)
         {
             List<KeyPoint> allKeyPoints = keyPointDAO.GetAll();
@@ -155,6 +170,10 @@ namespace ProjectSims.Controller
                 }
             }
             return 0;
+        }
+        public bool StartsInLessThan48Hours(Tour tour)
+        {
+            return(tour.StartOfTheTour - DateTime.Now).TotalHours < 48;
         }
         public void FinishTour(Tour tour)
         {

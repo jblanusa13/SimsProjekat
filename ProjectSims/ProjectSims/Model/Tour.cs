@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProjectSims.Model
 {
-    public enum TourState { Inactive, Active, Finished}
+    public enum TourState { Inactive, Active, Finished, Cancelled}
     public class Tour : ISerializable
     {
         public int Id { get; set; }

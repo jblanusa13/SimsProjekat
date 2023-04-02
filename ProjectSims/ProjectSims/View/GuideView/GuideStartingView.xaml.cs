@@ -38,5 +38,12 @@ namespace ProjectSims.View
             availableToursView.Show();
             Close();
         }
+
+        private void CancelTour_Click(object sender, RoutedEventArgs e)
+        {
+            ScheduledToursView scheduledToursView = new ScheduledToursView(guide);
+            scheduledToursView.Show();
+            Close();
+        }
     }
 }

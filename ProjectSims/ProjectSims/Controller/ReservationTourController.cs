@@ -45,6 +45,18 @@ namespace ProjectSims.Controller
             }
             return guestIds;
         }
+        public List<int> FindTourGuestIds(int tourId)
+        {
+            List<int> guestIds = new List<int>();
+            foreach (ReservationTour reservation in GetAllReservations())
+            {
+                if (reservation.TourId == tourId)
+                {
+                    guestIds.Add(reservation.Guest2Id);
+                }
+            }
+            return guestIds;
+        }
         public List<int> FindPresentGuestIdsByTourId(int tourId)
         {
             List<int> guestIds = new List<int>();

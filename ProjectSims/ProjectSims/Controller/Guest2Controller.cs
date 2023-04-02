@@ -47,6 +47,12 @@ namespace ProjectSims.Controller
         {
             return guests.FindById(id);
         }
+        public void GiveVoucher(int id)
+        {
+            Guest2 guest = guests.FindById(id);
+            guest.Vouchers ++;
+            Update(guest);
+        }
 
     }
 }

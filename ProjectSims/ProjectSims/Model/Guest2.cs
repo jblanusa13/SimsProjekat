@@ -15,6 +15,7 @@ namespace ProjectSims.Model
         public string Adress { get; set; }
         public string Email { get; set; }
         public int UserId { get; set; }
+        public int Vouchers { get; set; }
 
         public Guest2()
         {
@@ -28,6 +29,7 @@ namespace ProjectSims.Model
             Adress = adress;
             Email = email;
             UserId = userId;
+            Vouchers = 0;
         }
 
         public void FromCSV(string[] values)
@@ -38,11 +40,12 @@ namespace ProjectSims.Model
             Adress = values[3];
             Email = values[4];
             UserId = Convert.ToInt32(values[5]);
+            Vouchers = Convert.ToInt32(values[6]);
         }
 
         public string[] ToCSV()
         {
-            string[] csvvalues = { Id.ToString(), Name, Surname, Adress, Email, UserId.ToString()};
+            string[] csvvalues = { Id.ToString(), Name, Surname, Adress, Email, UserId.ToString(),Vouchers.ToString()};
             return csvvalues;
         }
     }
