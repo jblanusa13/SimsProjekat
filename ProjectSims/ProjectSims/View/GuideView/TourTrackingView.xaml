@@ -58,8 +58,8 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
-        <Image Source="\Resources\Images\mappin.png" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="940,360,0,0"/>
-        <Image Source="\Resources\Images\guests.png" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,110,0,0"/>
+        <Image Source="/Resources/Images/background.jpg" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="940,360,0,0"/>
+        <Image Source="/Resources/Images/checkmark.png" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,110,0,0"/>
         <ListView  ItemsSource="{Binding PresentGuests}" Margin="30,150,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="280" Height="200" Background="#C8E1CC" Opacity="0.8" FontWeight="Bold" FontFamily="Georgia" BorderBrush="Black">
             <ListView.View>
                 <GridView >

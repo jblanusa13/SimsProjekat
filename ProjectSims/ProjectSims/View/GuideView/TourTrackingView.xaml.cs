@@ -32,8 +32,8 @@ namespace ProjectSims.View
         private ReservationTourController reservationTourController;
         public ObservableCollection<KeyPoint> UnFinishedKeyPoints { get; set; }
         public ObservableCollection<KeyPoint> FinishedKeyPoints { get; set; }
-        public ObservableCollection<Guest2> WaitingGuests { get; set; }
-        public ObservableCollection<Guest2> PresentGuests { get; set; }
+        public List<Guest2> WaitingGuests { get; set; }
+        public List<Guest2> PresentGuests { get; set; }
         public KeyPoint SelectedKeyPoint { get; set; }
         public Guest2 SelectedGuest { get; set; }
         private Tour tour { get; set; }
@@ -54,8 +54,8 @@ namespace ProjectSims.View
             guide = g;
             UnFinishedKeyPoints = new ObservableCollection<KeyPoint>(keyPointController.FindUnFinishedKeyPointsByIds(tour.KeyPointIds));
             FinishedKeyPoints = new ObservableCollection<KeyPoint>(keyPointController.FindFinishedKeyPointsByIds(tour.KeyPointIds));
-            WaitingGuests = new ObservableCollection<Guest2>();
-            PresentGuests = new ObservableCollection<Guest2>();
+            WaitingGuests = new List<Guest2>();
+            PresentGuests = new List<Guest2>();
             expectedId = keyPointController.FindUnFinishedKeyPointsByIds(tour.KeyPointIds).First().Id;
             reservationTourController.InviteGuests(tour.Id);
 
@@ -85,7 +85,7 @@ namespace ProjectSims.View
                     else
                     {
                         keyPointController.Finish(SelectedKeyPoint);
-                        tourController.FinishTour(tour);
+                        tourController.FinishTour(tour, PresentGuests);
                         reservationTourController.FinishTour(tour.Id);
                         Close();
                     }
@@ -112,7 +112,7 @@ namespace ProjectSims.View
 
         private void FinishTour_Click(object sender, RoutedEventArgs e)
         {
-            tourController.FinishTour(tour);
+            tourController.FinishTour(tour,PresentGuests);
             reservationTourController.FinishTour(tour.Id);
             Close();
 

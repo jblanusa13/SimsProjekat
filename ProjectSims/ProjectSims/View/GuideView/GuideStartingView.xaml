@@ -14,6 +14,7 @@
             <Button Click ="CreateTour_Click" Content="Kreiraj turu" Height="100" Width="190" Background="Transparent" BorderBrush="#050A30" BorderThickness="10" Foreground="#050A30" FontSize="30" FontWeight="UltraBold" />
             <Button Click ="TrackTour_Click" Content="Prati turu" Height="100" Width="190" Background="Transparent" BorderBrush="#050A30" BorderThickness="10" Foreground="#050A30" FontSize="30" FontWeight="UltraBold" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Button Click ="CancelTour_Click" Content="Otkazi turu" Background="Transparent" BorderBrush="#050A30" BorderThickness="10" Foreground="#050A30" FontSize="30" FontWeight="UltraBold" Margin="5,0,0,0"/>
+            <Button Click ="Statistics_Click" Content="Statistika" Background="Transparent" BorderBrush="#050A30" BorderThickness="10" Foreground="#050A30" FontSize="30" FontWeight="UltraBold" Margin="5,0,0,0"/>
         </StackPanel>
 
     </Grid>

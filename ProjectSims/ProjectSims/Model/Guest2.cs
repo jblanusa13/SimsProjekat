@@ -1,6 +1,7 @@
 ﻿using ProjectSims.Serializer;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,12 +17,13 @@ namespace ProjectSims.Model
         public string Email { get; set; }
         public int UserId { get; set; }
         public List<int> VoucherIds { get; set; }
+        public DateTime BirthDate { get; set; }
 
         public Guest2()
         {
             VoucherIds = new List<int>();
         }
-        public Guest2(int id, string name, string surname, string adress, string email, int userId)
+        public Guest2(int id, string name, string surname, string adress, string email, int userId, DateTime birthDate)
         {
             Id = id;
             Name = name;
@@ -30,6 +32,7 @@ namespace ProjectSims.Model
             Email = email;
             UserId = userId;
             VoucherIds = new List<int>();
+            BirthDate = birthDate;
         }
 
         public void FromCSV(string[] values)
@@ -48,6 +51,7 @@ namespace ProjectSims.Model
                     VoucherIds.Add(voucherId);
                 }
             }
+            BirthDate = DateTime.ParseExact(values[7], "MM/dd/yyyy", CultureInfo.InvariantCulture);
         }
 
         public string[] ToCSV()
@@ -64,7 +68,7 @@ namespace ProjectSims.Model
                 }
                 VoucherString += VoucherIds.Last();
             }
-            string[] csvvalues = { Id.ToString(), Name, Surname, Adress, Email, UserId.ToString(),VoucherString};
+            string[] csvvalues = { Id.ToString(), Name, Surname, Adress, Email, UserId.ToString(),VoucherString,BirthDate.ToString("MM/dd/yyyy")};
             return csvvalues;
         }
     }

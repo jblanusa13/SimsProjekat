@@ -45,5 +45,10 @@ namespace ProjectSims.View
             scheduledToursView.Show();
             Close();
         }
+
+        private void Statistics_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

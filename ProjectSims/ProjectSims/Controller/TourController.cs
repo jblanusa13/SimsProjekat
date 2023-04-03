@@ -175,9 +175,27 @@ namespace ProjectSims.Controller
         {
             return(tour.StartOfTheTour - DateTime.Now).TotalHours < 48;
         }
-        public void FinishTour(Tour tour)
+        public void FinishTour(Tour tour,List<Guest2> PresentGuests)
         {
             tour.State = TourState.Finished;
+            tour.NumberOfPresentGuests = PresentGuests.Count;
+            foreach(Guest2 guest2 in PresentGuests)
+            {
+                double days = (DateTime.Now - guest2.BirthDate).TotalDays;
+                int age = Convert.ToInt32(days)/365;
+                if(age<18)
+                {
+                    tour.NumberOfPresentGuestsUnder18++;
+                }
+                else if(age >=18 && age < 50)
+                {
+                    tour.NumberOfPresentGuestsBetween18And50++;
+                }
+                else
+                {
+                    tour.NumberOfPresentGuestsOver50++;
+                }
+            }
             tour.ActiveKeyPointId = -1;
             tours.Update(tour);
         }
