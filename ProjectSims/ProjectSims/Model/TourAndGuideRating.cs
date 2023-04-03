@@ -23,9 +23,8 @@ namespace ProjectSims.Model
             Images = new List<string>();
         }
 
-        public TourAndGuideRating(int id, int guestId, int guideId, int knowledgeGuide, int languageGuide, int interestingTour, string addedComment, List<string> images)
+        public TourAndGuideRating(int guestId, int guideId, int knowledgeGuide, int languageGuide, int interestingTour, string addedComment, List<string> images)
         {
-            Id = id;
             GuestId = guestId;
             GuideId = guideId;
             KnowledgeGuide = knowledgeGuide;

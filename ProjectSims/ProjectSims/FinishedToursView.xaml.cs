@@ -61,7 +61,7 @@ namespace ProjectSims
         {
             if (SelectedTour != null)
             {
-                var ratingTourWindow = new RatingTourView(SelectedTour);
+                var ratingTourWindow = new RatingTourView(SelectedTour,guest2);
                 ratingTourWindow.Show();
             }
             else

@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <None Remove="Resources\Data\questionGuestRating.csv" />
-    <None Remove="View\Guest2\Pages\World-tour-n-travel.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,7 +29,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="View\Guest2\Pages\World-tour-n-travel.jpg" />
+    <Folder Include="Resources\Icons\Guest2\" />
+    <Folder Include="Resources\Images\Guest2\" />
   </ItemGroup>
 
 </Project>

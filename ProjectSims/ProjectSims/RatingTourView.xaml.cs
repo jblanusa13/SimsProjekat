@@ -23,7 +23,9 @@ namespace ProjectSims
     {
         public GuideController guideController { get; set; }
         public Guide guide { get; set; }
-        public RatingTourView(Tour tour)
+        public Guest2 guest2 { get; set; }
+        private TourRatingController tourRatingController { get; set; }
+        public RatingTourView(Tour tour,Guest2 g)
         {
             InitializeComponent();
             DataContext = this;
@@ -31,7 +33,134 @@ namespace ProjectSims
             guideController = new GuideController();
             guide = guideController.FindGuideById(tour.GuideId);
             GuideTextBox.Text = guide.Name + " " + guide.Surname;
+            guest2 = g;
+            tourRatingController = new TourRatingController();
+        }
 
+        private void Rating_Click(object sender, RoutedEventArgs e)
+        {            
+            int knowledgeGuide = FindRatingKnowledgeGuide();
+            if(knowledgeGuide == 0)
+            {
+                MessageBox.Show("Morate ocijeniti znanje vodica!");
+                return;
+            }
+            int languageGuide = FindRatinLanguageGuide();
+            if (languageGuide == 0)
+            {
+                MessageBox.Show("Morate ocijeniti jezik vodica!");
+                return;
+            }
+            int interestingTour = FindRatingInterestingTour();
+            if (interestingTour == 0)
+            {
+                MessageBox.Show("Morate ocijeniti zanimljivost ture!");
+                return;
+            }
+
+            string images = ImagesBox.Text.Remove(ImagesBox.Text.Length - 1, 1);
+            List<string> imageList = new List<string>();
+            foreach (string image in images.Split(','))
+            {
+                imageList.Add(image);
+            }
+            TourAndGuideRating tourRating = new TourAndGuideRating(guest2.Id,guide.Id,knowledgeGuide,languageGuide,interestingTour,
+                AddedComentBox.Text, imageList);
+            tourRatingController.Create(tourRating);
+            Close();           
+        }
+        
+        private int FindRatingKnowledgeGuide()
+        {
+            if ((bool)RadioButton1.IsChecked)
+            {
+                return 1;   
+            }else if ((bool)RadioButton2.IsChecked)
+            {
+                return 2;
+            }
+            else if ((bool)RadioButton3.IsChecked)
+            {
+                return 3;
+            }
+            else if ((bool)RadioButton4.IsChecked)
+            {
+                return 4;
+            }
+            else if ((bool)RadioButton5.IsChecked)
+            {
+                return 5;
+            }
+            return 0;
+        }
+
+        private int FindRatinLanguageGuide()
+        {
+            if ((bool)RadioButton6.IsChecked)
+            {
+                return 1;
+            }
+            else if ((bool)RadioButton7.IsChecked)
+            {
+                return 2;
+            }
+            else if ((bool)RadioButton8.IsChecked)
+            {
+                return 3;
+            }
+            else if ((bool)RadioButton9.IsChecked)
+            {
+                return 4;
+            }
+            else if ((bool)RadioButton10.IsChecked)
+            {
+                return 5;
+            }
+            return 0;
+        }
+
+        private int FindRatingInterestingTour()
+        {
+            if ((bool)RadioButton11.IsChecked)
+            {
+                return 1;
+            }
+            else if ((bool)RadioButton12.IsChecked)
+            {
+                return 2;
+            }
+            else if ((bool)RadioButton13.IsChecked)
+            {
+                return 3;
+            }
+            else if ((bool)RadioButton14.IsChecked)
+            {
+                return 4;
+            }
+            else if ((bool)RadioButton15.IsChecked)
+            {
+                return 5;
+            }
+            return 0;
+        }
+
+        private void BrowseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
+            Nullable<bool> result = openFileDlg.ShowDialog();
+
+            string apsolutePath = "";
+            if (result == true)
+            {
+                apsolutePath = openFileDlg.FileName;
+            }
+            ImagesBox.Text += GetRelativePath(apsolutePath) + ",";
+        }
+
+        private string GetRelativePath(string apsolutePath)
+        {
+            string nameFile = apsolutePath.Remove(0, 94);
+            return "../../../Resources/Images/Guest2/" + nameFile;
         }
     }
 }
