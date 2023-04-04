@@ -33,12 +33,24 @@ namespace ProjectSims.Controller
         {
             reservations.Remove(reservation);
         }
-        public List<int> FindGuestIdsByTourIdAndState(int tourId,Guest2State state)
+        public List<int> FindWaitingAndInvitedGuestIdsByTourId(int tourId)
         {
             List<int> guestIds = new List<int>();
             foreach (ReservationTour reservation in GetAllReservations())
             {
-                if (reservation.TourId == tourId && reservation.State == state)
+                if (reservation.TourId == tourId && (reservation.State == Guest2State.Waiting || reservation.State == Guest2State.Invited))
+                {
+                    guestIds.Add(reservation.Guest2Id);
+                }
+            }
+            return guestIds;
+        }
+        public List<int> FindPresentGuestIdsByTourId(int tourId)
+        {
+            List<int> guestIds = new List<int>();
+            foreach (ReservationTour reservation in GetAllReservations())
+            {
+                if (reservation.TourId == tourId && reservation.State == Guest2State.Present)
                 {
                     guestIds.Add(reservation.Guest2Id);
                 }

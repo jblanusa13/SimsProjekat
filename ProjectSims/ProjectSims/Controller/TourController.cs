@@ -19,11 +19,13 @@ namespace ProjectSims.Controller
 
         private TourDAO tours;
         private KeyPointDAO keyPointDAO;
+        private KeyPointController keyPointController;
 
         public TourController()
         {
             tours = new TourDAO();
             keyPointDAO = new KeyPointDAO();
+            keyPointController = new KeyPointController();
         }
         public List<Tour> GetAllTours()
         {
@@ -95,7 +97,7 @@ namespace ProjectSims.Controller
             string tourStart, string duration, string images)
         {
                 List<int> keyPointIds = new List<int>();
-                int startId = keyPointDAO.Add(new KeyPoint(-1, startKeyPoint, KeyPointType.First,true));
+                int startId = keyPointDAO.Add(new KeyPoint(-1, startKeyPoint, KeyPointType.First,false));
                 keyPointIds.Add(startId);
                 foreach (string keyPoint in otherKeyPoints)
                 {
@@ -145,9 +147,9 @@ namespace ProjectSims.Controller
 
         public int FindExpectedKeyPointId(Tour tour)
         {
-            foreach(KeyPoint keyPoint in GetTourKeyPoints(tour))
+            foreach (KeyPoint keyPoint in GetTourKeyPoints(tour))
             {
-                if(keyPoint.Finished == false)
+                if (keyPoint.Finished == false)
                 {
                     return keyPoint.Id;
                 }

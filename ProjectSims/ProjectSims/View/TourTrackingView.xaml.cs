@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -32,11 +33,13 @@ namespace ProjectSims.View
         public ObservableCollection<KeyPoint> UnFinishedKeyPoints { get; set; }
         public ObservableCollection<KeyPoint> FinishedKeyPoints { get; set; }
         public ObservableCollection<Guest2> WaitingGuests { get; set; }
+        public ObservableCollection<Guest2> PresentGuests { get; set; }
         public KeyPoint SelectedKeyPoint { get; set; }
         public Guest2 SelectedGuest { get; set; }
         private Tour tour { get; set; }
+        public Guide guide { get; set; }
         private int expectedId { get; set; }
-        public TourTrackingView(Tour startedTour)
+        public TourTrackingView(Tour startedTour, Guide g)
         {
             InitializeComponent();
             DataContext = this;
@@ -44,28 +47,28 @@ namespace ProjectSims.View
             tourController = new TourController();
             keyPointController = new KeyPointController();
             keyPointController.Subscribe(this);
-            guest2Controller= new Guest2Controller();
-            reservationTourController= new ReservationTourController();
-            reservationTourController.Subscribe(this);          
-            tour = startedTour;          
+            guest2Controller = new Guest2Controller();
+            reservationTourController = new ReservationTourController();
+            reservationTourController.Subscribe(this);
+            tour = startedTour;
+            guide = g;
             UnFinishedKeyPoints = new ObservableCollection<KeyPoint>(keyPointController.FindUnFinishedKeyPointsByIds(tour.KeyPointIds));
             FinishedKeyPoints = new ObservableCollection<KeyPoint>(keyPointController.FindFinishedKeyPointsByIds(tour.KeyPointIds));
             WaitingGuests = new ObservableCollection<Guest2>();
-            expectedId = tourController.FindExpectedKeyPointId(tour);
+            PresentGuests = new ObservableCollection<Guest2>();
+            expectedId = keyPointController.FindUnFinishedKeyPointsByIds(tour.KeyPointIds).First().Id;
             reservationTourController.InviteGuests(tour.Id);
 
-            foreach (int id in reservationTourController.FindGuestIdsByTourIdAndState(tour.Id,Guest2State.Invited))
+            foreach (int id in reservationTourController.FindWaitingAndInvitedGuestIdsByTourId(tour.Id))
             {
                 WaitingGuests.Add(guest2Controller.FindGuest2ById(id));
             }
-            foreach (int id in reservationTourController.FindGuestIdsByTourIdAndState(tour.Id, Guest2State.Waiting))
+            foreach (int id in reservationTourController.FindPresentGuestIdsByTourId(tour.Id))
             {
-                WaitingGuests.Add(guest2Controller.FindGuest2ById(id));
+                PresentGuests.Add(guest2Controller.FindGuest2ById(id));
             }
             TourInfoTextBox.Text = tour.Name + "," + tour.StartOfTheTour.ToString("dd.MM.yyyy HH:mm");
         }
-        
-        
         private void KeyPointSelected_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var keyPoint = KeyPointListView.SelectedItem as KeyPoint;
@@ -75,9 +78,9 @@ namespace ProjectSims.View
                 {
                     if(keyPoint.Type != KeyPointType.Last)
                     {
+                        expectedId++;
                         keyPointController.Finish(SelectedKeyPoint);
                         tourController.UpdateActiveKeyPoint(tour.Id, expectedId);
-                        expectedId++;
                     }
                     else
                     {
@@ -114,11 +117,20 @@ namespace ProjectSims.View
             Close();
 
         }
-        private void Logout_Click(object sender, RoutedEventArgs e)
+        private void Back_Click(object sender, RoutedEventArgs e)
         {
-            var startView = new MainWindow();
-            startView.Show();
             Close();
+            AvailableToursView availableToursView = new AvailableToursView(guide);
+            availableToursView.Show();
+        }
+        private void Forward_Click(object sender, RoutedEventArgs e)
+        {
+        }
+        private void Home_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+            GuideStartingView guideStartingView = new GuideStartingView(guide);
+            guideStartingView.Show();
         }
         private void UpdateKeyPointList()
         {
@@ -133,23 +145,9 @@ namespace ProjectSims.View
                 UnFinishedKeyPoints.Add(keyPoint);
             }
         }
-        private void UpdateGuestList()
-        {
-            WaitingGuests.Clear();
-            foreach (int id in reservationTourController.FindGuestIdsByTourIdAndState(tour.Id,Guest2State.Waiting))
-            {
-                WaitingGuests.Add(guest2Controller.FindGuest2ById(id));
-            }
-            foreach (int id in reservationTourController.FindGuestIdsByTourIdAndState(tour.Id, Guest2State.Invited))
-            {
-                WaitingGuests.Add(guest2Controller.FindGuest2ById(id));
-            }
-        }
-
         public void Update()
         {
             UpdateKeyPointList();
-            //UpdateGuestList();
         }
 
     }
