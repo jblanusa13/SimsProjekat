@@ -52,19 +52,6 @@ namespace ProjectSims
             LanguageTextBox.Text = tourSelected.Language;
             MaxGuestsTextBox.Text = tourSelected.MaxNumberGuests.ToString();
 
-
-            /*foreach(KeyPoint keyPoint in tourSelected.KeyPoints) 
-            {
-                if (keyPoint.Equals(tourSelected.KeyPoints.Last()))
-                {
-                    KeyPointTextBox.Text += keyPoint.Name;
-                }
-                else
-                {
-                    KeyPointTextBox.Text += keyPoint.Name + ", ";
-                }
-                
-            }*/
             foreach(int id in tourSelected.KeyPointIds) 
             {
                 if (id.Equals(tourSelected.KeyPointIds.Last()))
@@ -105,7 +92,6 @@ namespace ProjectSims
                     ImageList.Items.Add("The format of the URL could not be determined.");
                 }
             }
-           
             tourController = new TourController();
             TourList = new ObservableCollection<Tour>(tourController.GetAllToursWithSameLocation(tourSelected));
 

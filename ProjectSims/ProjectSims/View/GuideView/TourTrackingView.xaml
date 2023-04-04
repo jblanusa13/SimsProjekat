@@ -8,17 +8,17 @@
         Title="Tour Tracking View" Height="650" Width="1000" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Resources/Images/background.jpg" Opacity="0.7"/>
+            <ImageBrush ImageSource="/Resources/Images/Guide/background.jpg" Opacity="0.7"/>
         </Grid.Background>
         <ToolBar HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" Height="30" Width="1000" Background="Gray">
             <Button Click="Back_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="40">
-                <Image Source="\Resources\Images\leftarrow.png"/>
+                <Image Source="\Resources\Icons\Guide\leftarrow.png"/>
             </Button>
             <Button Click="Forward_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="40">
-                <Image Source="\Resources\Images\rightarrow.png"/>
+                <Image Source="\Resources\Icons\Guide\rightarrow.png"/>
             </Button>
             <Button Click="Home_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="40">
-                <Image Source="\Resources\Images\home.png"/>
+                <Image Source="\Resources\Icons\Guide\home.png"/>
             </Button>
         </ToolBar>
         <TextBox x:Name="TourInfoTextBox" HorizontalAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Top" Width="900" Height="50" Foreground="Black" FontSize="30" FontWeight="UltraBold" FontFamily="Broadway" BorderBrush="Transparent" Background="Transparent" IsEnabled="False"/>
@@ -58,8 +58,8 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
-        <Image Source="/Resources/Images/background.jpg" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="940,360,0,0"/>
-        <Image Source="/Resources/Images/checkmark.png" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,110,0,0"/>
+        <Image Source="/Resources/Icons/Guide/mappin.png" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="940,360,0,0"/>
+        <Image Source="/Resources/Icons/Guide/checkmark.png" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,110,0,0"/>
         <ListView  ItemsSource="{Binding PresentGuests}" Margin="30,150,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="280" Height="200" Background="#C8E1CC" Opacity="0.8" FontWeight="Bold" FontFamily="Georgia" BorderBrush="Black">
             <ListView.View>
                 <GridView >

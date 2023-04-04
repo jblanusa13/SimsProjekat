@@ -8,19 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\Data\questionGuestRating.csv" />
+    <None Remove="Resources\Icons\Guest2\icons8-add-file-60.png" />
     <None Remove="Resources\Images\background.jpg" />
-    <None Remove="Resources\Images\bckgrnd.jpg" />
     <None Remove="Resources\Images\checkmark.png" />
+    <None Remove="Resources\Images\Guest2\download.jpg" />
+    <None Remove="Resources\Images\Guest2\images.jpg" />
+    <None Remove="Resources\Images\Guest2\park-kalemegdan-1184267749.jpg" />
     <None Remove="Resources\Images\guests.png" />
     <None Remove="Resources\Images\home.png" />
     <None Remove="Resources\Images\leftarrow.png" />
     <None Remove="Resources\Images\mappin.png" />
     <None Remove="Resources\Images\rightarrow.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Resources\Data\questionGuestRating.csv" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,17 +31,43 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Tulpep.NotificationWindow" Version="1.1.38" />
+    <Content Include="Resources\Icons\Guest2\icons8-add-file-60.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guide\background.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\checkmark.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest2\download.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest2\images.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest2\park-kalemegdan-1184267749.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\guests.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\home.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\leftarrow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\mappin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\rightarrow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\Images\background.jpg" />
-    <Resource Include="Resources\Images\checkmark.png" />
-    <Resource Include="Resources\Images\guests.png" />
-    <Resource Include="Resources\Images\home.png" />
-    <Resource Include="Resources\Images\leftarrow.png" />
-    <Resource Include="Resources\Images\mappin.png" />
-    <Resource Include="Resources\Images\rightarrow.png" />
+    <PackageReference Include="Tulpep.NotificationWindow" Version="1.1.38" />
   </ItemGroup>
 
 </Project>
