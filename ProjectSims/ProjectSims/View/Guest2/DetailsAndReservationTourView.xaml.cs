@@ -92,7 +92,6 @@ namespace ProjectSims
                     ImageList.Items.Add("The format of the URL could not be determined.");
                 }
             }
-           
             tourController = new TourController();
             TourList = new ObservableCollection<Tour>(tourController.GetAllToursWithSameLocation(tourSelected));
 

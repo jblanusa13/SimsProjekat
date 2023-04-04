@@ -11,7 +11,7 @@ namespace ProjectSims.Model
     {
         public int Id { get; set; }
         public int GuestId { get; set; }
-        public int GuideId { get; set; }
+        public int TourId { get; set; }
         public int KnowledgeGuide { get; set; }
         public int LanguageGuide { get; set; }
         public int InterestingTour { get; set; }
@@ -23,10 +23,10 @@ namespace ProjectSims.Model
             Images = new List<string>();
         }
 
-        public TourAndGuideRating(int guestId, int guideId, int knowledgeGuide, int languageGuide, int interestingTour, string addedComment, List<string> images)
+        public TourAndGuideRating(int guestId, int tourId, int knowledgeGuide, int languageGuide, int interestingTour, string addedComment, List<string> images)
         {
             GuestId = guestId;
-            GuideId = guideId;
+            TourId = tourId;
             KnowledgeGuide = knowledgeGuide;
             LanguageGuide = languageGuide;
             InterestingTour = interestingTour;
@@ -46,7 +46,7 @@ namespace ProjectSims.Model
             }
             ImageString += Images.Last();
 
-            string[] csvvalues = { Id.ToString(), GuestId.ToString(), GuideId.ToString(), KnowledgeGuide.ToString(),
+            string[] csvvalues = { Id.ToString(), GuestId.ToString(), TourId.ToString(), KnowledgeGuide.ToString(),
                 LanguageGuide.ToString(), InterestingTour.ToString(), AddedComment, ImageString};
             return csvvalues;
         }
@@ -55,7 +55,7 @@ namespace ProjectSims.Model
         {
             Id = Convert.ToInt32(values[0]);
             GuestId = Convert.ToInt32(values[1]);
-            GuideId = Convert.ToInt32(values[2]);
+            TourId = Convert.ToInt32(values[2]);
             KnowledgeGuide = Convert.ToInt32(values[3]);
             LanguageGuide = Convert.ToInt32(values[4]);
             InterestingTour = Convert.ToInt32(values[5]);

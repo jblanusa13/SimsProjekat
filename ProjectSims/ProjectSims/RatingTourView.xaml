@@ -42,9 +42,9 @@
         <Label Content="Dodatan komentar:" HorizontalAlignment="Left" Margin="39,205,0,0" Grid.Row="1" VerticalAlignment="Top" Width="117" HorizontalContentAlignment="Right"/>
         <TextBox x:Name="AddedComentBox" HorizontalAlignment="Left" Height="68" Margin="171,205,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="270" Background="#FFB9BDF9"/>
         <Label Content="Mozete ostaviti slike:" HorizontalAlignment="Left" Margin="36,293,0,0" Grid.Row="1" VerticalAlignment="Top" HorizontalContentAlignment="Right"/>
-        <TextBox x:Name="ImagesBox" HorizontalAlignment="Left" Margin="171,293,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="270" Height="68" Background="#FFB9BDF9"/>
+        <TextBox x:Name="ImagesBox" IsEnabled="False" HorizontalAlignment="Left" Margin="171,293,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="270" Height="68" Background="#FFB9BDF9"/>
 
-        <Button Content="Oceni" HorizontalAlignment="Left" Margin="196,381,0,0" Grid.Row="1" VerticalAlignment="Top" Height="36" Width="127" Background="Blue" Foreground="White" Click="Rating_Click"/>
+        <Button Content="Ocjeni" HorizontalAlignment="Left" Margin="196,381,0,0" Grid.Row="1" VerticalAlignment="Top" Height="36" Width="127" Background="Blue" Foreground="White" Click="Rating_Click"/>
         <Button HorizontalAlignment="Left" Margin="446,322,0,0" Grid.Row="1" VerticalAlignment="Top" Height="39" Width="40" Click="BrowseButton_Click" Background="#FF9A9CE8">
             <Image Source="/Resources/Icons/Guest2/icons8-add-file-60.png" Height="29"/>
         </Button>

@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="Resources\Data\questionGuestRating.csv" />
+    <None Remove="Resources\Icons\Guest2\icons8-add-file-60.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,8 +30,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Icons\Guest2\" />
     <Folder Include="Resources\Images\Guest2\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Icons\Guest2\icons8-add-file-60.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

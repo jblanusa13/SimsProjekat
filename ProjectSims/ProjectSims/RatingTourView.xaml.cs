@@ -24,6 +24,8 @@ namespace ProjectSims
         public GuideController guideController { get; set; }
         public Guide guide { get; set; }
         public Guest2 guest2 { get; set; }
+
+        public Tour tourRate { get; set; }
         private TourRatingController tourRatingController { get; set; }
         public RatingTourView(Tour tour,Guest2 g)
         {
@@ -34,6 +36,7 @@ namespace ProjectSims
             guide = guideController.FindGuideById(tour.GuideId);
             GuideTextBox.Text = guide.Name + " " + guide.Surname;
             guest2 = g;
+            tourRate = tour;
             tourRatingController = new TourRatingController();
         }
 
@@ -64,7 +67,7 @@ namespace ProjectSims
             {
                 imageList.Add(image);
             }
-            TourAndGuideRating tourRating = new TourAndGuideRating(guest2.Id,guide.Id,knowledgeGuide,languageGuide,interestingTour,
+            TourAndGuideRating tourRating = new TourAndGuideRating(guest2.Id, tourRate.Id,knowledgeGuide,languageGuide,interestingTour,
                 AddedComentBox.Text, imageList);
             tourRatingController.Create(tourRating);
             Close();           
@@ -153,6 +156,10 @@ namespace ProjectSims
             if (result == true)
             {
                 apsolutePath = openFileDlg.FileName;
+            }
+            else
+            {
+                return;
             }
             ImagesBox.Text += GetRelativePath(apsolutePath) + ",";
         }
