@@ -2,10 +2,10 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="FinishedToursView.xaml.cs">
+    <Compile Update="View\Guest2\Pages\FinishedToursView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="RatingTourView.xaml.cs">
+    <Compile Update="View\Guest2\RatingTourView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\Guest2\Guest2StartingView.xaml.cs">
@@ -40,10 +40,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="FinishedToursView.xaml">
+    <Page Update="View\Guest2\Pages\FinishedToursView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="RatingTourView.xaml">
+    <Page Update="View\Guest2\RatingTourView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Guest2\Guest2StartingView.xaml">
