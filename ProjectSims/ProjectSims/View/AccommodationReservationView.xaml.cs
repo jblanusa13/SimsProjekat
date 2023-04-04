@@ -187,7 +187,7 @@ namespace ProjectSims.View
 
             _accommodationId = SelectedAccommodation.Id;
             AccommodationName = SelectedAccommodation.Name;
-            Location = SelectedAccommodation.Location;
+        //    Location = SelectedAccommodation.Location;
             Type = SelectedAccommodation.Type.ToString();
             MaxGuests = SelectedAccommodation.GuestsMaximum.ToString();
             MinDays = SelectedAccommodation.MinimumReservationDays.ToString();

@@ -11,6 +11,9 @@
     <Compile Update="View\GuideStartingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\Page1.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\SearchTourView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -18,10 +21,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\TourTrackingView.xaml.cs">
-		<SubType>Code</SubType>
-	</Compile>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\AccommodationReservationView.xaml.cs">
-        <SubType>Code</SubType>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\GuestRatingtView.xaml.cs">
       <SubType>Code</SubType>
@@ -37,6 +40,9 @@
     <Page Update="View\GuideStartingView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="View\Page1.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\SearchTourView.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -44,14 +50,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\AvailableToursView.xaml">
-		<SubType>Designer</SubType>
-	</Page>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\GuestRatingtView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\TourTrackingView.xaml">
-		<SubType>Designer</SubType>
-	</Page>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\OwnerView.xaml">
       <SubType>Designer</SubType>
     </Page>

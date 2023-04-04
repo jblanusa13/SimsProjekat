@@ -30,7 +30,6 @@ namespace ProjectSims.View
     /// </summary>
     public partial class OwnerView : Window, INotifyPropertyChanged, IObserver
     {
-        static Timer timer;
         private readonly GuestAccommodationController _guestAccommodationController;
         public ObservableCollection<GuestAccommodation> GuestAccommodations { get; set; }
         public GuestAccommodation SelectedGuestAccommodation { get; set; }
@@ -42,53 +41,8 @@ namespace ProjectSims.View
             _guestAccommodationController = new GuestAccommodationController();
             _guestAccommodationController.Subscribe(this);
             GuestAccommodations = new ObservableCollection<GuestAccommodation>(_guestAccommodationController.GetAllGuestAccommodations());
-
-            //NotifyOwner();
         }
-        /*
-        DateOnly today = DateOnly.FromDateTime(DateTime.Now);
-
-        private int DateDifference(DateOnly dateOnly1, DateOnly dateOnly2)
-        {
-            return (new DateTime(dateOnly1.Year, dateOnly1.Month, dateOnly1.Day) - new DateTime(dateOnly2.Year, dateOnly2.Month, dateOnly2.Day)).Days;
-        }
-
-        private void NotifyOwner() 
-        {
-            foreach (var item in GuestAccommodations)
-            {
-                if (item.Rated == false) 
-                {
-                    if (today.CompareTo(item.CheckOutDate) > 0)    //Guest left 
-                    {
-                        int interval = DateDifference(today, item.CheckOutDate);
-                        if (interval >= 0 && interval <= 5)
-                        { 
-                            DateTime nowTime = DateTime.Now;    //Timer started
-                            DateTime scheduledTime = nowTime.AddDays(5-interval); //Specify your scheduled time HH,MM,SS
-                            
-                            var totalMilliSecondsPerDay = (5-interval)*TimeSpan.FromDays(1).TotalMilliseconds;
-                            var timer = new Timer(totalMilliSecondsPerDay);
-                            // double tickTime = (double)(scheduledTime - DateTime.Now).TotalMilliseconds;
-                            // timer = new Timer(tickTime);
-                            timer.Start();
-                            timer.Elapsed += new ElapsedEventHandler(Notification_Click) ;
-                        } 
-                    }
-                }   
-            }
-        }
-
-        private void Notification_Click(object? sender, EventArgs e)
-        {
-            PopupNotifier notification = new PopupNotifier();
-            notification.AnimationDuration = 10;
-            notification.ContentText = "Niste ocijenili ";// + _guestAccommodationController.GetAllGuestAccommodations().Find().FirstName + " " + item.LastName + "!";
-            notification.TitleText = "Ocjenjivanje gosta";
-            notification.Click += Notification_Click;
-            notification.Popup();
-        }
-        */
+       
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -104,6 +58,7 @@ namespace ProjectSims.View
             {
                 GuestRatingtView guestRatingtView = new GuestRatingtView(SelectedGuestAccommodation, _guestAccommodationController);
                 guestRatingtView.Show();
+                
             }
             else
             {

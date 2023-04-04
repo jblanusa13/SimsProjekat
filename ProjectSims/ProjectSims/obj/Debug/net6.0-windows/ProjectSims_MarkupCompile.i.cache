@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\App.xaml
-12-1381156320
+13996241174
 
-671660343282
+68-1970853798
 1951759482539
-MainWindow.xaml;View\AccommodationRegistrationView.xaml;View\AccommodationReservationView.xaml;View\AvailableToursView.xaml;View\CreateTourView.xaml;View\DetailsAndReservationTourView.xaml;View\Guest1View.xaml;View\GuestRatingtView.xaml;View\GuideStartingView.xaml;View\OwnerView.xaml;View\SearchTourView.xaml;View\TourTrackingView.xaml;
+MainWindow.xaml;View\AccommodationRegistrationView.xaml;View\AccommodationReservationView.xaml;View\AvailableToursView.xaml;View\CreateTourView.xaml;View\DetailsAndReservationTourView.xaml;View\Guest1View.xaml;View\GuestRatingtView.xaml;View\GuideStartingView.xaml;View\OwnerView.xaml;View\Page1.xaml;View\SearchTourView.xaml;View\TourTrackingView.xaml;
 
-True
+False
 

@@ -9,7 +9,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -21,6 +20,8 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using ProjectSims.ModelDAO;
 using ProjectSims.FileHandler;
+using Microsoft.Win32;
+using System.Security;
 
 namespace ProjectSims.View
 {
@@ -235,7 +236,7 @@ namespace ProjectSims.View
                 _ownerController.Update(_ownerDAO.FindById(idCurrentOwner));
                 MessageBox.Show("Uspješno registrovan smještaj!", "Registracija smještaja", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Close();
-            } 
+            }
         }
 
         public string Error => null;
@@ -323,12 +324,12 @@ namespace ProjectSims.View
                 }
                 else if (columnName == "Images")
                 {
-                    if (string.IsNullOrWhiteSpace(Images)) 
+                    if (string.IsNullOrWhiteSpace(Images))
                     {
                         return "Unesite slike!";
                     }
                 }
-                    return null;
+                return null;
             }
         }
 
@@ -345,6 +346,31 @@ namespace ProjectSims.View
                 }
                 return true;
             }
-        }        
-    }
+        }
+
+        private void LoadImages_Click(object sender, RoutedEventArgs e)
+        {
+            InitializeOpenFileDialog();
+        }
+
+        private void InitializeOpenFileDialog()
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            bool? success = fileDialog.ShowDialog();
+
+            fileDialog.Multiselect = true;
+            fileDialog.Title = "My Image Browser";
+
+            if (success == true)
+            {
+                string path = fileDialog.FileName;
+                ImagesTextBox.Text = path;
+
+            }
+            else
+            {
+                //didnt pick anything
+            }
+
+        }
 }
