@@ -15,6 +15,7 @@ namespace ProjectSims.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public int IdLocation { get; set; }
+        public Location Location { get; set; }
         public AccommodationType Type { get; set; }
         public int GuestsMaximum { get; set; }
         public int MinimumReservationDays { get; set; }
@@ -27,12 +28,13 @@ namespace ProjectSims.Model
             Images = new List<string>();    
         }
 
-        public Accommodation(int id, string name, int idLocation, AccommodationType type, 
+        public Accommodation(int id, string name, int idLocation, Location location, AccommodationType type, 
             int guestsMaximum, int minimumReservationDays, int dismissalDays, 
             List<string> images, int idOwner) {
             Id = id;
             Name = name;
             IdLocation = idLocation;
+            Location = location;
             Type = type;
             GuestsMaximum = guestsMaximum;
             MinimumReservationDays = minimumReservationDays;

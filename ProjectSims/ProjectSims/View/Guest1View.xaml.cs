@@ -30,9 +30,9 @@ namespace ProjectSims
         public Accommodation SelectedAccommodation { get; set; }
         public Guest1 Guest { get; set; }
         public string NameSearch { get; set; }
-        //public string CitySearch { get; set; }
-        //public string CountrySearch { get; set; }
-        public string LocationSearch { get; set; }
+        public string CitySearch { get; set; }
+        public string CountrySearch { get; set; }
+        //public string LocationSearch { get; set; }
         public string TypeSearch { get; set; }
         public string GuestsNumberSearch { get; set; }
         public string DaysNumberSearch { get; set; }
@@ -55,19 +55,19 @@ namespace ProjectSims
             NameSearch = TextboxName.Text;
         }
 
-        //public void TextboxCity_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-        //   CitySearch = TextboxCity.Text;
-        //}
-
-        //ublic void TextboxCountry_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-        //  CountrySearch = TextboxCountry.Text;
-        //}
-        public void TextboxLocation_TextChanged(object sender, TextChangedEventArgs e)
+        public void TextboxCity_TextChanged(object sender, TextChangedEventArgs e)
         {
-            LocationSearch = TextboxLocation.Text;
+           CitySearch = TextboxCity.Text;
         }
+
+        public void TextboxCountry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CountrySearch = TextboxCountry.Text;
+        }
+        //public void TextboxLocation_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+        //    LocationSearch = TextboxLocation.Text;
+        //}
 
         public void TextboxType_TextChanged(object sender, TextChangedEventArgs e)
         {

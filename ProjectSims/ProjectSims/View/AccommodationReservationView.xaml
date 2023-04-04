@@ -17,12 +17,14 @@
     </Window.Resources>
     <Grid>
         <Label Content="Naziv:" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" Height="26"/>
-        <Label Content="Lokacija:" HorizontalAlignment="Left" Margin="20,50,0,0" VerticalAlignment="Top" Height="26"/>
+        <Label Content="Grad:" HorizontalAlignment="Left" Margin="20,50,0,0" VerticalAlignment="Top" Height="26"/>
+        <Label Content="Drzava:" HorizontalAlignment="Left" Margin="300,51,0,0" VerticalAlignment="Top" Height="26"/>
         <Label Content="Tip smestaja:" HorizontalAlignment="Left" Margin="20,80,0,0" VerticalAlignment="Top" Height="26"/>
         <Label Content="Maksimalan broj gostiju:" HorizontalAlignment="Left" Margin="20,110,0,0" VerticalAlignment="Top" Height="26"/>
         <Label Content="Minimalan broj dana za rezervaciju:" HorizontalAlignment="Left" Margin="20,140,0,0" VerticalAlignment="Top" Height="26"/>
         <TextBox Text="{Binding Path=AccommodationName}" HorizontalAlignment="Left" Margin="300,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="348" Height="26" IsEnabled="False" Foreground="#FF6E6E6E"/>
-        <TextBox Text="{Binding Path=Location}" HorizontalAlignment="Left" Margin="300,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="348" Height="26" IsEnabled="False" Foreground="#FF6E6E6E"/>
+        <TextBox Text="{Binding Path=City}" HorizontalAlignment="Left" Margin="131,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" Height="26" IsEnabled="False" Foreground="#FF6E6E6E"/>
+        <TextBox Text="{Binding Path=Country}" HorizontalAlignment="Left" Margin="371,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" Height="26" IsEnabled="False" Foreground="#FF6E6E6E"/>
         <TextBox Text="{Binding Path=Type}" HorizontalAlignment="Left" Margin="300,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="348" Height="26" IsEnabled="False" Foreground="#FF6E6E6E"/>
         <TextBox Text="{Binding Path=MaxGuests}" HorizontalAlignment="Left" Margin="300,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="348" Height="26" IsEnabled="False" Foreground="#FF6E6E6E"/>
         <TextBox Text="{Binding Path=MinDays}" HorizontalAlignment="Left" Margin="300,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="348" Height="26" IsEnabled="False" Foreground="#FF6E6E6E"/>
@@ -42,11 +44,12 @@
         <DataGrid Name="DatesTable" ItemsSource="{Binding AvailableDates, UpdateSourceTrigger=PropertyChanged}" Margin="434,230,37,108" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Dolazak" Binding="{Binding CheckIn}" Width="100"></DataGridTextColumn>
-                <DataGridTextColumn Header="Odlazak"  Binding="{Binding CheckOut}" Width="*"></DataGridTextColumn> 
+                <DataGridTextColumn Header="Odlazak"  Binding="{Binding CheckOut}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Potvrdi rezervaciju" Click="Confirm_Click" HorizontalAlignment="Left" Margin="478,434,0,0" VerticalAlignment="Top" Width="140" Height="43"/>
         <Label Content="Slobodni datumi:" HorizontalAlignment="Left" Margin="434,199,0,0" VerticalAlignment="Top" FontStyle="Italic"/>
         <Button Name="buttonFind" Content="Pretrazi datume" Click="FindDates_Click" HorizontalAlignment="Left" Margin="244,405,0,0" VerticalAlignment="Top" Width="112" Height="29"/>
+        
     </Grid>
 </Window>
