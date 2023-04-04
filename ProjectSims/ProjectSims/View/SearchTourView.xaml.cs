@@ -42,10 +42,11 @@ namespace ProjectSims
             guest2 = g;           
             if(reservationTourController.IsWaiting(guest2.Id))
             {
-                MessageBoxResult answer = MessageBox.Show("Da li ste prisutni na turi?", "", MessageBoxButton.YesNo);
+                Tour tour = tourController.FindStartedTour();
+                MessageBoxResult answer = MessageBox.Show("Da li ste prisutni na turi " + tour.Name + "?", "", MessageBoxButton.YesNo);
                 if (answer == MessageBoxResult.Yes)
                 {
-                    reservationTourController.ConfirmPresence(guest2.Id);
+                    reservationTourController.ConfirmPresence(guest2.Id, tour);
                 }
             }
 

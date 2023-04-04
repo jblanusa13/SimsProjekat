@@ -8,7 +8,7 @@
         Title="Guest1CurrentReservations" Height="450" Width="800">
     <Grid>
         <DataGrid Margin="45,109,207,32" />
-        <Button Content="Pomeranje rezervacije" HorizontalAlignment="Left" Margin="632,109,0,0" VerticalAlignment="Top" Height="33" Width="142" Click="Button_Click"/>
+        <Button Content="Pomeranje rezervacije" HorizontalAlignment="Left" Margin="632,109,0,0" VerticalAlignment="Top" Height="33" Width="142" Click="DateChange_Click"/>
 
     </Grid>
 </Window>

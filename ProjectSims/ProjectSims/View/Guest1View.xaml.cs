@@ -103,7 +103,7 @@ namespace ProjectSims
             bool ContainsName, ContainsLocation, ContainsType, GuestsNumberIsLower, DaysNumberIsGreater;
 
             ContainsName = string.IsNullOrEmpty(NameSearch) ? true : accommodation.Name.ToLower().Contains(NameSearch.ToLower());
-            ContainsLocation = string.IsNullOrEmpty(LocationSearch) ? true : accommodation.Location.ToLower().Contains(LocationSearch.ToLower());
+            ContainsLocation = true;// string.IsNullOrEmpty(LocationSearch) ? true : accommodation.Location.ToLower().Contains(LocationSearch.ToLower());
             //ContainsCity = string.IsNullOrEmpty(CitySearch) ? true : _accomodationController.FindLocation(accommodation.LocationId).City.ToLower().Contains(CitySearch.ToLower());
             //ContainsCountry = string.IsNullOrEmpty(CountrySearch) ? true : _accomodationController.FindLocation(accommodation.LocationId).Country.ToLower().Contains(CountrySearch.ToLower());
             ContainsType = string.IsNullOrEmpty(TypeSearch) ? true : accommodation.Type.ToString().ToLower().Contains(TypeSearch.ToLower());

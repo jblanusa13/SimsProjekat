@@ -14,7 +14,7 @@ namespace ProjectSims.Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Location { get; set; }
+        public int IdLocation { get; set; }
         public AccommodationType Type { get; set; }
         public int GuestsMaximum { get; set; }
         public int MinimumReservationDays { get; set; }
@@ -22,30 +22,31 @@ namespace ProjectSims.Model
         public List<string> Images { get; set; }
         public Owner Owner { get; set; }
         public int IdOwner { get; set; }
-        public Accommodation() {
+        public Accommodation() 
+        {
             DismissalDays = 1;
-            Images = new List<string>();
+            Images = new List<string>();    
         }
 
-        public Accommodation(int id, string name, string location, AccommodationType type, int guestsMaximum, 
-            int minimumReservationDays, int dismissalDays, List<string> images, Owner owner, int idOwner) {
-            //Id = id;
+        public Accommodation(int id, string name, int idLocation, AccommodationType type, 
+            int guestsMaximum, int minimumReservationDays, int dismissalDays, 
+            List<string> images, int idOwner) {
+            Id = id;
             Name = name;
-            Location = location;
+            IdLocation = idLocation;
             Type = type;
             GuestsMaximum = guestsMaximum;
             MinimumReservationDays = minimumReservationDays;
             DismissalDays = dismissalDays;
             Images = images;
-            Owner = owner;
-            //IdOwner = idOwner;
+            IdOwner = idOwner;
         }
 
         public void FromCSV(string[] values)
         {
             Id = Convert.ToInt32(values[0]);
             Name = values[1];
-            Location = values[2];
+            IdLocation = Convert.ToInt32(values[2]);
             Type = Enum.Parse<AccommodationType>(values[3]);
             GuestsMaximum = Convert.ToInt32(values[4]);
             MinimumReservationDays = Convert.ToInt32(values[5]);
@@ -61,23 +62,22 @@ namespace ProjectSims.Model
             string ImageString = "";
             foreach (string image in Images)
             {
-                if (image != Images.Last())
+                if (image != Images.Last()) 
                 {
                     ImageString += image + ",";
                 }
             }
             ImageString += Images.Last();
-
             string[] csvValues =
             { 
                 Id.ToString(), 
                 Name, 
-                Location,
-                Type.ToString(),
-                GuestsMaximum.ToString(),
-                MinimumReservationDays.ToString(),
-                DismissalDays.ToString(),
-                ImageString,
+                IdLocation.ToString(), 
+                Type.ToString(), 
+                GuestsMaximum.ToString(), 
+                MinimumReservationDays.ToString(), 
+                DismissalDays.ToString(), 
+                ImageString, 
                 IdOwner.ToString() 
             };
             return csvValues;

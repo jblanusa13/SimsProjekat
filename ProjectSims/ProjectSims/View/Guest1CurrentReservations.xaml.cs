@@ -24,9 +24,10 @@ namespace ProjectSims.View
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void DateChange_Click(object sender, RoutedEventArgs e)
         {
-
+            DateChangeRequest request = new DateChangeRequest();
+            request.Show();
         }
     }
 }

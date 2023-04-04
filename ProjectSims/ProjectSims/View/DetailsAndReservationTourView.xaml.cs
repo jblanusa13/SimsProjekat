@@ -136,7 +136,7 @@ namespace ProjectSims
             }
             else 
             {
-                ReservationTour reservation = new ReservationTour(tour.Id, (int)numberGuests, guest2.Id);
+                ReservationTour reservation = new ReservationTour(tour.Id, (int)numberGuests, guest2.Id,-1);
                 reservationController.Create(reservation);
                 tour.AvailableSeats -= (int)numberGuests;
                 tourController.Update(tour);
@@ -160,7 +160,7 @@ namespace ProjectSims
                     }
                     else
                     {
-                        ReservationTour reservationAlternative = new ReservationTour(SelectedTour.Id, (int)numberGuests, guest2.Id);
+                        ReservationTour reservationAlternative = new ReservationTour(SelectedTour.Id, (int)numberGuests, guest2.Id,-1);
                         reservationController.Create(reservationAlternative);
                         SelectedTour.AvailableSeats -= (int)numberGuests;
                         tourController.Update(SelectedTour);

@@ -28,6 +28,8 @@ namespace ProjectSims
     /// </summary>
     public partial class CreateTourView : Window, INotifyPropertyChanged, IDataErrorInfo
     {
+        public Guide guide { get; set; }
+
         private readonly TourController _controller;
 
         private string _tourName;
@@ -291,12 +293,13 @@ namespace ProjectSims
                 return true;
             }
         }
-        public CreateTourView()
+        public CreateTourView(Guide g)
         {
             InitializeComponent();
             DataContext = this;
             _controller = new TourController();
             OtherKeyPoints = new List<string>();
+            guide = g;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -312,7 +315,7 @@ namespace ProjectSims
             {
                 foreach(string TourStart in TourStarts.Split(','))
                 {
-                    _controller.Create(TourName, Location, Description, TourLanguage, MaxNumberGuests, StartKeyPoint, FinishKeyPoint, OtherKeyPoints, TourStart, Duration, Images);
+                    _controller.Create(guide.Id, TourName, Location, Description, TourLanguage, MaxNumberGuests, StartKeyPoint, FinishKeyPoint, OtherKeyPoints, TourStart, Duration, Images);
                 }
                 Close();
             }

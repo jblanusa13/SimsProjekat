@@ -1,30 +1,30 @@
-0|Knez Mihailova|True|First
-1|Kalemegdan park|True|Intermediate
-2|Vojni muzej|True|Intermediate
-3|Pobednik|True|Intermediate
-4|Jakšićeva kula|False|Last
-5|Knez Mihailova|True|First
+0|Knez Mihailova|False|First
+1|Kalemegdan park|False|Intermediate
+2|Vojni muzej|False|Intermediate
+3|Pobednik|False|Intermediate
+4|Jaksiceva kula|False|Last
+5|Knez Mihailova|False|First
 6|Kalemegdan park|False|Intermediate
 7|Vojni muzej|False|Intermediate
 8|Pobednik|False|Intermediate
-9|Jakšićeva kula|False|Last
-10|Knez Mihailova|True|First
+9|Jaksiceva kula|False|Last
+10|Knez Mihailova|False|First
 11|Kalemegdan park|False|Intermediate
 12|Vojni muzej|False|Intermediate
 13|Pobednik|False|Intermediate
-14|Jakšićeva kula|False|Last
-15|Knez Mihailova|True|First
-16|Kalemegdan park|False|Intermediate
-17|Vojni muzej|False|Intermediate
-18|Pobednik|False|Intermediate
-19|Jakšićeva kula|False|Last
-20|Knez Mihailova|True|First
-21|Kalemegdan park|False|Intermediate
-22|Vojni muzej|False|Intermediate
-23|Pobednik|False|Intermediate
-24|Jakšićeva kula|False|Last
-25|Knez Mihailova|True|First
-26|Kalemegdan park|False|Intermediate
-27|Vojni muzej|False|Intermediate
-28|Pobednik|False|Intermediate
-29|Jakšićeva kula|False|Last
+14|Jaksiceva kula|False|Last
+15|Dugin most|False|First
+16|Muzej|False|Intermediate
+17|Katakombe|False|Intermediate
+18|Sat|False|Intermediate
+19|Galerija|False|Last
+20|Dugin most|False|First
+21|Muzej|False|Intermediate
+22|Katakombe|False|Intermediate
+23|Sat|False|Intermediate
+24|Galerija|False|Last
+25|Dugin most|False|First
+26|Muzej|False|Intermediate
+27|Katakombe|False|Intermediate
+28|Sat|False|Intermediate
+29|Galerija|False|Last

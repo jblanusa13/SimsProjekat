@@ -19,11 +19,13 @@ namespace ProjectSims.Controller
 
         private TourDAO tours;
         private KeyPointDAO keyPointDAO;
+        private KeyPointController keyPointController;
 
         public TourController()
         {
             tours = new TourDAO();
             keyPointDAO = new KeyPointDAO();
+            keyPointController = new KeyPointController();
         }
         public List<Tour> GetAllTours()
         {
@@ -63,13 +65,13 @@ namespace ProjectSims.Controller
             }
             return false;
         }
-        public List<Tour> GetAvailableTours()
+        public List<Tour> GetAvailableTours(int guideId)
         {
             List<Tour> availableTours = new List<Tour>();
 
             foreach (Tour tour in tours.GetAll())
             {
-                if (IsInactive(tour) && IsToday(tour))
+                if (IsInactive(tour) && IsToday(tour) && tour.GuideId == guideId)
                 {
                     availableTours.Add(tour);
                 }
@@ -90,10 +92,12 @@ namespace ProjectSims.Controller
             }
             return tourKeyPoints;
         }
-        public void Create(string name, string location, string description, string language, string maxNumberGuests, string startKeyPoint, string finishKeyPoint, List<string> otherKeyPoints, string tourStart, string duration, string images)
+        public void Create(int idGuide, string name, string location, string description, string language, string maxNumberGuests, 
+            string startKeyPoint, string finishKeyPoint, List<string> otherKeyPoints,
+            string tourStart, string duration, string images)
         {
                 List<int> keyPointIds = new List<int>();
-                int startId = keyPointDAO.Add(new KeyPoint(-1, startKeyPoint, KeyPointType.First,true));
+                int startId = keyPointDAO.Add(new KeyPoint(-1, startKeyPoint, KeyPointType.First,false));
                 keyPointIds.Add(startId);
                 foreach (string keyPoint in otherKeyPoints)
                 {
@@ -108,7 +112,7 @@ namespace ProjectSims.Controller
                 {
                     imageList.Add(image);
                 }
-                Tour newTour =  new Tour(-1, name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPointIds, DateTime.Parse(tourStart), Convert.ToDouble(duration), imageList, Convert.ToInt32(maxNumberGuests));
+                Tour newTour =  new Tour(-1, idGuide, name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPointIds, DateTime.Parse(tourStart), Convert.ToDouble(duration), imageList, Convert.ToInt32(maxNumberGuests),TourState.Inactive,-1);
                 tours.Add(newTour);
         }
 
@@ -117,6 +121,7 @@ namespace ProjectSims.Controller
             if(!ExistsActiveTour())
             {
                 tour.State = TourState.Active;
+                tour.ActiveKeyPointId = tour.KeyPointIds.First();
                 tours.Update(tour);
                 return true;
             }            
@@ -133,9 +138,28 @@ namespace ProjectSims.Controller
             }
             return null;
         }
+        public void UpdateActiveKeyPoint(int tourId,int keyPointId)
+        {
+            Tour tour = GetAllTours().Find(t => t.Id == tourId);
+            tour.ActiveKeyPointId = keyPointId;
+            tours.Update(tour);
+        }
+
+        public int FindExpectedKeyPointId(Tour tour)
+        {
+            foreach (KeyPoint keyPoint in GetTourKeyPoints(tour))
+            {
+                if (keyPoint.Finished == false)
+                {
+                    return keyPoint.Id;
+                }
+            }
+            return 0;
+        }
         public void FinishTour(Tour tour)
         {
             tour.State = TourState.Finished;
+            tour.ActiveKeyPointId = -1;
             tours.Update(tour);
         }
         public void Delete(Tour tour)
