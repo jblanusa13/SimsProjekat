@@ -1,4 +1,4 @@
-﻿using ProjectSims.Model;
+﻿using ProjectSims.Domain.Model;
 using ProjectSims.Serializer;
 using System;
 using System.Collections.Generic;
@@ -13,21 +13,21 @@ namespace ProjectSims.FileHandler
         private const string FilePath = "../../../Resources/Data/tourrating.csv";
 
 
-        private Serializer<TourAndGuideRating> serializer;
+        private Serializer<TourAndGuideRating> _serializer;
 
         public TourRatingFileHandler()
         {
-            serializer = new Serializer<TourAndGuideRating>();
+            _serializer = new Serializer<TourAndGuideRating>();
         }
 
         public List<TourAndGuideRating> Load()
         {
-            return serializer.FromCSV(FilePath);
+            return _serializer.FromCSV(FilePath);
         }
 
         public void Save(List<TourAndGuideRating> toursRating)
         {
-            serializer.ToCSV(FilePath, toursRating);
+            _serializer.ToCSV(FilePath, toursRating);
         }
     }
 }
