@@ -1,4 +1,6 @@
-﻿using ProjectSims.Serializer;
+﻿using ProjectSims.FileHandler;
+using ProjectSims.ModelDAO;
+using ProjectSims.Serializer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +12,7 @@ using System.Windows.Media;
 namespace ProjectSims.Model
 {
     public enum AccommodationType { Kuca, Apartman, Koliba };
-    public class Accommodation : ISerializable
+    public class Accommodation : ISerializable 
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -22,11 +24,18 @@ namespace ProjectSims.Model
         public int DismissalDays { get; set; }
         public List<string> Images { get; set; }
         public int IdOwner { get; set; }
+
+        private LocationFileHandler locations;
+
         public Accommodation() 
         {
             DismissalDays = 1;
-            Images = new List<string>();    
+            Images = new List<string>();
+
+            locations = new LocationFileHandler();
         }
+
+        
 
         public Accommodation(int id, string name, int idLocation, Location location, AccommodationType type, 
             int guestsMaximum, int minimumReservationDays, int dismissalDays, 
@@ -41,7 +50,12 @@ namespace ProjectSims.Model
             DismissalDays = dismissalDays;
             Images = images;
             IdOwner = idOwner;
+
+            locations = new LocationFileHandler();
         }
+
+
+        
 
         public void FromCSV(string[] values)
         {
@@ -57,6 +71,8 @@ namespace ProjectSims.Model
                 Images.Add(image);
             }
             IdOwner = Convert.ToInt32(values[8]);
+            List<Location> locationsList = locations.Load();
+            Location = locationsList.Find(l => l.Id == IdLocation);
         }
         public string[] ToCSV()
         {
