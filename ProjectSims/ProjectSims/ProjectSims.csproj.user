@@ -11,9 +11,6 @@
     <Compile Update="View\GuideStartingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\Page1.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="View\SearchTourView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -38,9 +35,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\GuideStartingView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="View\Page1.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\SearchTourView.xaml">

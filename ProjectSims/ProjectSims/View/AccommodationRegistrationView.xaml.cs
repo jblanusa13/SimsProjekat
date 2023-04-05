@@ -228,14 +228,15 @@ namespace ProjectSims.View
                 {
                     Images.Add(image);
                 }
-                int idCurrentOwner = MainWindow.CurrentUserId;
-                Accommodation accommodation = new Accommodation(-1, AccommodationName, IdLocation, Type, GuestsMaximum, MinimumReservationDays, DismissalDays, Images, idCurrentOwner);
+                int idCurrentOwner = MainWindow.CurrentUserId;                
+                Location location = new Location(IdLocation, Location.ToString().Split(",")[0], Location.ToString().Split(",")[1]);
+                Accommodation accommodation = new Accommodation(-1, AccommodationName, IdLocation, location, Type, GuestsMaximum, MinimumReservationDays, DismissalDays, Images, idCurrentOwner);
                 _accommodationController.Create(accommodation);
                 Owner owner = _ownerDAO.FindById(idCurrentOwner);
                 _ownerDAO.AddAccommodationId(owner, accommodation.Id);
                 _ownerController.Update(_ownerDAO.FindById(idCurrentOwner));
                 MessageBox.Show("Uspješno registrovan smještaj!", "Registracija smještaja", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.Close();
+                
             }
         }
 
@@ -347,7 +348,6 @@ namespace ProjectSims.View
                 return true;
             }
         }
-
         private void LoadImages_Click(object sender, RoutedEventArgs e)
         {
             InitializeOpenFileDialog();
@@ -373,4 +373,5 @@ namespace ProjectSims.View
             }
 
         }
+    }
 }

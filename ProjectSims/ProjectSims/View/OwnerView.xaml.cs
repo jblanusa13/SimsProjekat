@@ -58,6 +58,10 @@ namespace ProjectSims.View
             {
                 GuestRatingtView guestRatingtView = new GuestRatingtView(SelectedGuestAccommodation, _guestAccommodationController);
                 guestRatingtView.Show();
+
+            }
+            else if(SelectedGuestAccommodation == null)
+            {
                 
             }
             else

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\
+C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\
 ProjectSims
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\App.xaml
-13996241174
+12-1381156320
 
-66-543840482
+65-1207610698
 1951759482539
-MainWindow.xaml;View\AccommodationRegistrationView.xaml;View\AccommodationReservationView.xaml;View\AvailableToursView.xaml;View\CreateTourView.xaml;View\DetailsAndReservationTourView.xaml;View\Guest1View.xaml;View\GuestRatingtView.xaml;View\GuideStartingView.xaml;View\OwnerView.xaml;View\Page1.xaml;View\SearchTourView.xaml;View\TourTrackingView.xaml;
+MainWindow.xaml;View\AccommodationRegistrationView.xaml;View\AccommodationReservationView.xaml;View\AvailableToursView.xaml;View\CreateTourView.xaml;View\DetailsAndReservationTourView.xaml;View\Guest1View.xaml;View\GuestRatingtView.xaml;View\GuideStartingView.xaml;View\OwnerView.xaml;View\SearchTourView.xaml;View\TourTrackingView.xaml;
 
 False
 
