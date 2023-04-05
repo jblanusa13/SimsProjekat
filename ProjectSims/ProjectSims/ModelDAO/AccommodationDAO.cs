@@ -61,6 +61,11 @@ namespace ProjectSims.ModelDAO
             NotifyObservers();
         }
 
+       // public Location FindLocationById(int id)
+        //{
+          //  return _locations.Find(l => l.Id == id);
+        //}
+
 
         public List<Accommodation> GetAll()
         {

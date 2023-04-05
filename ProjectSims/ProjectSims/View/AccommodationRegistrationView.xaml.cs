@@ -9,7 +9,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -21,6 +20,8 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using ProjectSims.ModelDAO;
 using ProjectSims.FileHandler;
+using Microsoft.Win32;
+using System.Security;
 
 namespace ProjectSims.View
 {
@@ -227,15 +228,16 @@ namespace ProjectSims.View
                 {
                     Images.Add(image);
                 }
-                int idCurrentOwner = MainWindow.CurrentUserId;
-                Accommodation accommodation = new Accommodation(-1, AccommodationName, IdLocation, Type, GuestsMaximum, MinimumReservationDays, DismissalDays, Images, idCurrentOwner);
+                int idCurrentOwner = MainWindow.CurrentUserId;                
+                Location location = new Location(IdLocation, Location.ToString().Split(",")[0], Location.ToString().Split(",")[1]);
+                Accommodation accommodation = new Accommodation(-1, AccommodationName, IdLocation, location, Type, GuestsMaximum, MinimumReservationDays, DismissalDays, Images, idCurrentOwner);
                 _accommodationController.Create(accommodation);
                 Owner owner = _ownerDAO.FindById(idCurrentOwner);
                 _ownerDAO.AddAccommodationId(owner, accommodation.Id);
                 _ownerController.Update(_ownerDAO.FindById(idCurrentOwner));
                 MessageBox.Show("Uspješno registrovan smještaj!", "Registracija smještaja", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.Close();
-            } 
+                
+            }
         }
 
         public string Error => null;
@@ -323,12 +325,12 @@ namespace ProjectSims.View
                 }
                 else if (columnName == "Images")
                 {
-                    if (string.IsNullOrWhiteSpace(Images)) 
+                    if (string.IsNullOrWhiteSpace(Images))
                     {
                         return "Unesite slike!";
                     }
                 }
-                    return null;
+                return null;
             }
         }
 
@@ -345,6 +347,31 @@ namespace ProjectSims.View
                 }
                 return true;
             }
-        }        
+        }
+        private void LoadImages_Click(object sender, RoutedEventArgs e)
+        {
+            InitializeOpenFileDialog();
+        }
+
+        private void InitializeOpenFileDialog()
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            bool? success = fileDialog.ShowDialog();
+
+            fileDialog.Multiselect = true;
+            fileDialog.Title = "My Image Browser";
+
+            if (success == true)
+            {
+                string path = fileDialog.FileName;
+                ImagesTextBox.Text = path;
+
+            }
+            else
+            {
+                //didnt pick anything
+            }
+
+        }
     }
 }

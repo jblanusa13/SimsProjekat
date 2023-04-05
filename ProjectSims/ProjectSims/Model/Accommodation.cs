@@ -1,4 +1,6 @@
-﻿using ProjectSims.Serializer;
+﻿using ProjectSims.FileHandler;
+using ProjectSims.ModelDAO;
+using ProjectSims.Serializer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +12,12 @@ using System.Windows.Media;
 namespace ProjectSims.Model
 {
     public enum AccommodationType { Kuca, Apartman, Koliba };
-    public class Accommodation : ISerializable
+    public class Accommodation : ISerializable 
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public int IdLocation { get; set; }
+        public Location Location { get; set; }
         public AccommodationType Type { get; set; }
         public int GuestsMaximum { get; set; }
         public int MinimumReservationDays { get; set; }
@@ -22,25 +25,38 @@ namespace ProjectSims.Model
         public List<string> Images { get; set; }
         public Owner Owner { get; set; }
         public int IdOwner { get; set; }
+
+        private LocationFileHandler locations;
+
         public Accommodation() 
         {
             DismissalDays = 1;
-            Images = new List<string>();    
+            Images = new List<string>();
+
+            locations = new LocationFileHandler();
         }
 
-        public Accommodation(int id, string name, int idLocation, AccommodationType type, 
+        
+
+        public Accommodation(int id, string name, int idLocation, Location location, AccommodationType type, 
             int guestsMaximum, int minimumReservationDays, int dismissalDays, 
             List<string> images, int idOwner) {
             Id = id;
             Name = name;
             IdLocation = idLocation;
+            Location = location;
             Type = type;
             GuestsMaximum = guestsMaximum;
             MinimumReservationDays = minimumReservationDays;
             DismissalDays = dismissalDays;
             Images = images;
             IdOwner = idOwner;
+
+            locations = new LocationFileHandler();
         }
+
+
+        
 
         public void FromCSV(string[] values)
         {
@@ -56,6 +72,8 @@ namespace ProjectSims.Model
                 Images.Add(image);
             }
             IdOwner = Convert.ToInt32(values[8]);
+            List<Location> locationsList = locations.Load();
+            Location = locationsList.Find(l => l.Id == IdLocation);
         }
         public string[] ToCSV()
         {
