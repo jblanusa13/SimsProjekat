@@ -57,6 +57,11 @@ namespace ProjectSims.Repository
         {
             return vouchers;
         }
+
+        public Voucher GetVoucherById(int id)
+        {
+            return vouchers.Find(v => v.Id == id);
+        }
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);

@@ -28,7 +28,7 @@ namespace ProjectSims.View.Guest2View.Pages
         private TourService tourService;
         private ReservationTourService reservationTourService;
 
-        public ObservableCollection<Tour> ListTour { get; }
+        public ObservableCollection<Tour> ListTour { get; set; }
         public Tour SelectedTour { get; set; }
 
         public Guest2 guest2 { get; set; }

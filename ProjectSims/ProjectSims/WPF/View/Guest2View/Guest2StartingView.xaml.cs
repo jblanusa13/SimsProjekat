@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ProjectSims.WPF.View.Guest2View.Pages;
 
 namespace ProjectSims.View.Guest2View
 {
@@ -56,6 +57,11 @@ namespace ProjectSims.View.Guest2View
             ChangeTab(1);
         }
 
+        private void ButtonShowVouchers(object sender, RoutedEventArgs e)
+        {
+            ChangeTab(2);
+        }
+
         public void ChangeTab(int tabNum)
         {
             switch (tabNum)
@@ -70,6 +76,11 @@ namespace ProjectSims.View.Guest2View
                         SelectedTab.Content = new FinishedToursView(guest2);
                         break;
                     }
+                case 2:
+                    {
+                        SelectedTab.Content = new ShowVouchersView(guest2);
+                        break;
+                    }                   
             }
         }
 
