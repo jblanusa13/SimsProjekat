@@ -5,10 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims.View"
         mc:Ignorable="d"
-        Title="Guest1CurrentReservations" Height="450" Width="800">
-    <Grid>
-        <DataGrid Margin="45,109,207,32" />
-        <Button Content="Pomeranje rezervacije" HorizontalAlignment="Left" Margin="632,109,0,0" VerticalAlignment="Top" Height="33" Width="142" Click="DateChange_Click"/>
-
+        Title="Guest1CurrentReservations" Height="720" Width="1280
+        ">
+    <Grid RenderTransformOrigin="0.496,0.519">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Grid.Row="1" Grid.Column="0" Margin="50" Name="ReservationsTable" 
+                  ItemsSource="{Binding Path=Reservations}"
+                  AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" FontSize="16">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Naziv" Width="130"></DataGridTextColumn>
+                <DataGridTextColumn Header="Grad" Width="115"></DataGridTextColumn>
+                <DataGridTextColumn Header="Drzava" Width="100"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tip smestaja" Width="100"></DataGridTextColumn>
+                <DataGridTextColumn Header="Dolazak" Width="90"></DataGridTextColumn>
+                <DataGridTextColumn Header="Odlazak" Width="90"></DataGridTextColumn>
+                <DataGridTextColumn Header="Broj gostiju" Width="90"></DataGridTextColumn>
+                <DataGridTextColumn Header="Rok za otkazivanje" Width="*"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" Margin="70,50" Content="Pomeranje rezervacije"
+                    HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="200"
+                    Click="DateChange_Click" FontSize="16"/>
+        </Grid>
     </Grid>
 </Window>

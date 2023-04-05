@@ -132,5 +132,11 @@ namespace ProjectSims
                 Accommodations.Add(accommodation);
             }
         }
+
+        private void MyReservations_Click(object sender, RoutedEventArgs e)
+        {
+            Guest1CurrentReservations reservations = new Guest1CurrentReservations();
+            reservations.Show();
+        }
     }
 }
