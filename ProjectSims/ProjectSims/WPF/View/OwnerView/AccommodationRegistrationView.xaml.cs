@@ -1,7 +1,6 @@
 ﻿using System;
 using ProjectSims.Service;
-using ProjectSims.Domain.Model;
-using System;
+using ProjectSims.Repository;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -18,10 +17,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using ProjectSims.ModelDAO;
 using ProjectSims.FileHandler;
 using Microsoft.Win32;
 using System.Security;
+using System.Collections.ObjectModel;
 
 namespace ProjectSims.View.OwnerView
 {
@@ -33,14 +32,16 @@ namespace ProjectSims.View.OwnerView
         private readonly AccommodationService accommodationService;
         private AccommodationRepository accommodationRepository;
         private readonly OwnerService ownerService;
+        private readonly OwnerRepository ownerRepository;
         public ObservableCollection<Accommodation> accommodations;
         public AccommodationRegistrationView()
         {
             InitializeComponent();
             DataContext = this;
 
-            accommodationController = new AccommodationService();
+            accommodationService = new AccommodationService();
             ownerService = new OwnerService();
+            ownerRepository = new OwnerRepository();
             accommodations = new ObservableCollection<Accommodation>();
         }
 

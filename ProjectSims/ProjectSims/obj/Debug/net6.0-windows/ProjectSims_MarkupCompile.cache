@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\App.xaml
-12-1381156320
-
-65-1207610698
+16384937326
+11-831775590
+78543572348
 1951759482539
-MainWindow.xaml;View\AccommodationRegistrationView.xaml;View\AccommodationReservationView.xaml;View\AvailableToursView.xaml;View\CreateTourView.xaml;View\DetailsAndReservationTourView.xaml;View\Guest1View.xaml;View\GuestRatingtView.xaml;View\GuideStartingView.xaml;View\OwnerView.xaml;View\SearchTourView.xaml;View\TourTrackingView.xaml;
+MainWindow.xaml;WPF\View\Guest1View\AccommodationReservationView.xaml;WPF\View\Guest1View\Guest1View.xaml;WPF\View\Guest2View\DetailsAndReservationTourView.xaml;WPF\View\Guest2View\Guest2StartingView.xaml;WPF\View\Guest2View\Pages\FinishedToursView.xaml;WPF\View\Guest2View\Pages\SearchTourView.xaml;WPF\View\Guest2View\RatingTourView.xaml;WPF\View\GuideView\AvailableToursView.xaml;WPF\View\GuideView\CreateTourView.xaml;WPF\View\GuideView\GuideStartingView.xaml;WPF\View\GuideView\ScheduledToursView.xaml;WPF\View\GuideView\TourTrackingView.xaml;WPF\View\OwnerView\AccommodationRegistrationView.xaml;WPF\View\OwnerView\GuestRatingtView.xaml;WPF\View\OwnerView\OwnerView.xaml;
 
-False
+True
 
