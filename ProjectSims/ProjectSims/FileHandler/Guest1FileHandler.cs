@@ -1,11 +1,10 @@
-﻿using ProjectSims.Model;
+﻿using ProjectSims.Domain.Model;
 using ProjectSims.Serializer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ProjectSims.Model;
 using ProjectSims.Serializer;
 
 namespace ProjectSims.FileHandler

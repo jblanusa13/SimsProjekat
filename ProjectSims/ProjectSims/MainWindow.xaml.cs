@@ -1,7 +1,11 @@
-﻿using ProjectSims.Controller;
+﻿using ProjectSims.Service;
 using ProjectSims.FileHandler;
-using ProjectSims.Model;
+using ProjectSims.Domain.Model;
 using ProjectSims.View;
+using ProjectSims.View.Guest1View;
+using ProjectSims.View.Guest2View;
+using ProjectSims.View.GuideView;
+using ProjectSims.View.OwnerView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -74,7 +78,7 @@ namespace ProjectSims
                     Guest2 guest2 = guest2File.GetByUserId(user.Id);
                     if(guest2 != null)
                     {
-                        SearchTourView guest2View = new SearchTourView(guest2);
+                        Guest2StartingView guest2View = new Guest2StartingView(guest2);
                         guest2View.Show();
                         Close();
                     }
