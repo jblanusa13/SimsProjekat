@@ -1,4 +1,5 @@
 ﻿using System;
+using ProjectSims.Domain.Model;
 using ProjectSims.Service;
 using ProjectSims.Repository;
 using System.Collections.Generic;

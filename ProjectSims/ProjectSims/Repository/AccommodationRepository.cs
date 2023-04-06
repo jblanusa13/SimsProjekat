@@ -11,82 +11,82 @@ namespace ProjectSims.Repository
 {
     class AccommodationRepository : ISubject
     {
-        private AccommodationFileHandler _accommodationFileHandler;
-        private LocationFileHandler _locationFileHandler;
-        private List<Accommodation> _accommodations;
-        private List<Location> _locations;
+        private AccommodationFileHandler accommodationFileHandler;
+        private LocationFileHandler locationFileHandler;
+        private List<Accommodation> accommodations;
+        private List<Location> locations;
         private readonly OwnerFileHandler _ownerFileHandler;
         private readonly List<Owner> _owners;
-        private List<IObserver> _observers;
+        private List<IObserver> observers;
 
-        public OwnerRepository OwnerDao { get; set; }
+        public OwnerRepository ownerRepository { get; set; }
 
         public AccommodationRepository()
         {
-            _accommodationFileHandler = new AccommodationFileHandler();
-            _accommodations = _accommodationFileHandler.Load();
-            _locationFileHandler = new LocationFileHandler();
-            _locations = _locationFileHandler.Load();
-            _observers = new List<IObserver>();
+            accommodationFileHandler = new AccommodationFileHandler();
+            accommodations = accommodationFileHandler.Load();
+            locationFileHandler = new LocationFileHandler();
+            locations = locationFileHandler.Load();
+            observers = new List<IObserver>();
         }
 
         public int NextId()
         {
-            return _accommodations.Max(a => a.Id) + 1;
+            return accommodations.Max(a => a.Id) + 1;
         }
 
         public void Add(Accommodation accommodation)
         {
             accommodation.Id = NextId();
-            _accommodations.Add(accommodation);
-            _accommodationFileHandler.Save(_accommodations);
+            accommodations.Add(accommodation);
+            accommodationFileHandler.Save(accommodations);
             NotifyObservers();
         }
 
         public void Remove(Accommodation accommodation)
         {
-            _accommodations.Remove(accommodation);
-            _accommodationFileHandler.Save(_accommodations);
+            accommodations.Remove(accommodation);
+            accommodationFileHandler.Save(accommodations);
             NotifyObservers();
         }
 
         public void Update(Accommodation accommodation)
         {
-            int index = _accommodations.FindIndex(a => accommodation.Id == a.Id);
+            int index = accommodations.FindIndex(a => accommodation.Id == a.Id);
             if (index != -1)
             {
-                _accommodations[index] = accommodation;
+                accommodations[index] = accommodation;
             }
-            _accommodationFileHandler.Save(_accommodations);
+            accommodationFileHandler.Save(accommodations);
             NotifyObservers();
         }
 
 
         public List<Accommodation> GetAll()
         {
-            return _accommodations;
+            return accommodations;
         }
 
         public void Subscribe(IObserver observer)
         {
-            _observers.Add(observer);
+            observers.Add(observer);
         }
 
         public void Unsubscribe(IObserver observer)
         {
-            _observers.Remove(observer);
+            observers.Remove(observer);
         }
 
         public void NotifyObservers()
         {
-            foreach (var observer in _observers)
+            foreach (var observer in observers)
             {
                 observer.Update();
             }
         }
         public int NextLocationId() 
         {
-            return _locations.Max(l => l.Id) + 1; 
+            return locations.Max(l => l.Id) + 1; 
         }
         
         public int Add(string location) 
@@ -96,8 +96,8 @@ namespace ProjectSims.Repository
             {
                 id = NextLocationId();
                 Location loc = new Location(id, location.Split(",")[0], location.Split(",")[1]);
-                _locations.Add(loc);
-                _locationFileHandler.Save(_locations);
+                locations.Add(loc);
+                locationFileHandler.Save(locations);
                 NotifyObservers();
             }
             return id;
@@ -108,7 +108,7 @@ namespace ProjectSims.Repository
             string city = location.Split(",")[0];
             string country = location.Split(",")[1];
 
-            foreach (Location l in _locations)
+            foreach (Location l in locations)
             {
                 if (city == l.City && country == l.Country)
                 {
@@ -123,7 +123,7 @@ namespace ProjectSims.Repository
             string city = location.Split(",")[0];
             string country = location.Split(",")[1];
 
-            foreach (Location l in _locations)
+            foreach (Location l in locations)
             {
                 if (city == l.City && country == l.Country)
                 {

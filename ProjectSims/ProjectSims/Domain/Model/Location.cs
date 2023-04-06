@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Documents;
 using System.Xml.Linq;
 
-namespace ProjectSims.Model
+namespace ProjectSims.Domain.Model
 {
     public class Location : ISerializable
     {

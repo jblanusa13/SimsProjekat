@@ -80,7 +80,7 @@ namespace ProjectSims.View.OwnerView
         public void Update()
         {
             GuestAccommodations.Clear();
-            foreach (GuestAccommodation guestAccommodation in _guestAccommodationController.GetAllGuestAccommodations()) 
+            foreach (GuestAccommodation guestAccommodation in guestAccommodationService.GetAllGuestAccommodations()) 
             {
                 GuestAccommodations.Add(guestAccommodation);
             }
