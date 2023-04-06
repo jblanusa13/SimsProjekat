@@ -17,9 +17,9 @@
                        AutoGenerateColumns="False" Margin="95,149,583,251"  >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Broj vaucera" Binding="{Binding Id}" Width="100" />
-                <DataGridTextColumn Header="Datum kreiranja" Width="150" />
+                <DataGridTextColumn Header="Datum kreiranja" Binding="{Binding CreationDate}" Width="150" />
                 <DataGridTextColumn Header="Datum do kada vazi" Binding="{Binding ExpirationDate}" Width="150" />
-                <DataGridTextColumn Header="Iskoriscen" Width="*" />
+                <DataGridCheckBoxColumn Header="Iskoriscen" Binding="{Binding Used}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Kako se sticu vauceri &#10;i cemu sluze?" HorizontalAlignment="Left" Margin="744,69,0,0" VerticalAlignment="Top" Width="287" Height="86" FontSize="28"/>

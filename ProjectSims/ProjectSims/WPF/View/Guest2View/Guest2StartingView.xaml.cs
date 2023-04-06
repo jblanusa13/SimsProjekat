@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ProjectSims.WPF.View.Guest2View.Pages;
+using System.Windows.Threading;
 
 namespace ProjectSims.View.Guest2View
 {
@@ -30,8 +31,10 @@ namespace ProjectSims.View.Guest2View
         public Guest2StartingView(Guest2 g)
         {
             InitializeComponent();
+            DataContext = this;
+            SetStatusBarClock();
             guest2 = g;
-            UserBox.Text = "Korisnik : " + guest2.Name + " " + guest2.Surname;
+            UserBox.Text = guest2.Name + " " + guest2.Surname;
 
             reservationTourService = new ReservationTourService();
             tourService = new TourService();
@@ -45,6 +48,17 @@ namespace ProjectSims.View.Guest2View
                     reservationTourService.ConfirmPresence(guest2.Id, tour);
                 }
             }
+        }
+
+        private void SetStatusBarClock()
+        {
+            //Tred za prikazivanje sata i datuma
+            this.dateAndTime.Content = DateTime.Now.ToString("HH:mm │ dd.MM.yyyy.");
+
+            DispatcherTimer timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
+            {
+                this.dateAndTime.Content = DateTime.Now.ToString("HH:mm │ dd.MM.yyyy.");
+            }, this.Dispatcher);
         }
 
         private void ButtonSearchTour(object sender, RoutedEventArgs e)

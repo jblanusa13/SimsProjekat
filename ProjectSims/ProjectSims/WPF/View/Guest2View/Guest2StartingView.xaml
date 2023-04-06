@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims.View.Guest2View"
         mc:Ignorable="d"
-        Title="Guest2StartingView" Height="800" Width="1400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" >
+        Title="Pocetni prozor" Height="800" Width="1400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Normal" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Border Background="#FF3B3378" CornerRadius="0,50,50,0" />
+        <Border Background="#FF3B3378" />
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="150"/>
@@ -36,7 +36,26 @@
             <Grid Grid.Row="1">
                 <Frame x:Name="SelectedTab" NavigationUIVisibility="Hidden" />
             </Grid>
-            <TextBox x:Name="UserBox" HorizontalAlignment="Left" Margin="53,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="305" Height="50" IsEnabled="False" FontSize="22" FontWeight="Bold" Background="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FFF8F8FA"/>
+            <Grid Grid.Row="0" Background="#FF455DF6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="700"/>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox x:Name="UserBox" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="50" IsEnabled="False" FontSize="30" FontWeight="Bold" Background="#FF455DF6" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderBrush="#FF455DF6" SelectionTextBrush="Black"/>
+                <Image Grid.Column="2" Source="/Resources/Icons/Guest2/icons8-male-user-48.png" Margin="22,10,22,10" />
+                <Image Grid.Column="3" Source="/Resources/Icons/Guest2/icons8-bell-48.png" Margin="0,10,30,10" />
+            </Grid>
+
+            <Grid Grid.Row="2" Background="#FF455DF6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="900"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="11:18 │ 05/04/2023" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontSize="28" Name="dateAndTime" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="280" Height="44" FontWeight="Bold"/>
+            </Grid>
         </Grid>
 
     </Grid>
