@@ -34,18 +34,9 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
             guest2 = g;
             voucherRepository = new VoucherRepository();
 
-            ListVoucher = new ObservableCollection<Voucher>(GetVouchersWithIds(guest2.VoucherIds));
+            ListVoucher = new ObservableCollection<Voucher>(voucherRepository.GetVouchersWithIds(guest2.VoucherIds));
         }
 
-        private List<Voucher> GetVouchersWithIds(List<int> ids)
-        {
-            List<Voucher> vouchers = new List<Voucher>();
-            foreach(int id in ids)
-            {
-                vouchers.Add(voucherRepository.GetVoucherById(id));
-            }
-
-            return vouchers;
-        }
+       
     }
 }

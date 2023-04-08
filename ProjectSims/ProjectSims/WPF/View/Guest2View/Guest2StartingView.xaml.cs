@@ -1,6 +1,5 @@
 ﻿using ProjectSims.Service;
 using ProjectSims.Domain.Model;
-using ProjectSims.View.Guest2View.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
