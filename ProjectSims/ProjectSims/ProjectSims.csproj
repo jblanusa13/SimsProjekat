@@ -72,7 +72,6 @@
 
   <ItemGroup>
     <Folder Include="Domain\RepositoryInterface\" />
-    <Folder Include="WPF\ViewModel\" />
   </ItemGroup>
 
 </Project>

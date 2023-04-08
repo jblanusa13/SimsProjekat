@@ -30,6 +30,11 @@ namespace ProjectSims.Repository
             observers = new List<IObserver>();
         }
 
+        public Accommodation Get(int id)
+        {
+            return _accommodations.Find(a => a.Id == id);
+        }
+
         public int NextId()
         {
             return accommodations.Max(a => a.Id) + 1;
@@ -60,6 +65,11 @@ namespace ProjectSims.Repository
             accommodationFileHandler.Save(accommodations);
             NotifyObservers();
         }
+
+       // public Location FindLocationById(int id)
+        //{
+          //  return _locations.Find(l => l.Id == id);
+        //}
 
 
         public List<Accommodation> GetAll()

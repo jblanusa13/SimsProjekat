@@ -23,6 +23,11 @@ namespace ProjectSims.Service
             return accommodations.GetAll();
         }
 
+        public Accommodation GetAccommodation(int id)
+        {
+            return accommodations.Get(id);
+        }
+
         public void Create(Accommodation accommodation)
         {
             accommodations.Add(accommodation);

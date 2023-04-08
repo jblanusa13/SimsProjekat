@@ -33,7 +33,8 @@ namespace ProjectSims.View.OwnerView
         private readonly GuestAccommodationService guestAccommodationService;
         public ObservableCollection<GuestAccommodation> GuestAccommodations { get; set; }
         public GuestAccommodation SelectedGuestAccommodation { get; set; }
-        public OwnerView()
+        
+        public OwnerView(Owner owner)
         {
             InitializeComponent();
             DataContext = this;

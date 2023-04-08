@@ -1,4 +1,7 @@
-﻿using ProjectSims.Serializer;
+﻿using ProjectSims.FileHandler;
+using ProjectSims.Repository;
+using ProjectSims.Serializer;
+using ProjectSims.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +13,7 @@ using System.Windows.Media;
 namespace ProjectSims.Domain.Model
 {
     public enum AccommodationType { Kuca, Apartman, Koliba };
-    public class Accommodation : ISerializable
+    public class Accommodation : ISerializable 
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -21,11 +24,14 @@ namespace ProjectSims.Domain.Model
         public int MinimumReservationDays { get; set; }
         public int DismissalDays { get; set; }
         public List<string> Images { get; set; }
+        public Owner Owner { get; set; }
         public int IdOwner { get; set; }
+
+
         public Accommodation() 
         {
             DismissalDays = 1;
-            Images = new List<string>();    
+            Images = new List<string>();
         }
 
         public Accommodation(int id, string name, int idLocation, Location location, AccommodationType type, 
@@ -43,6 +49,7 @@ namespace ProjectSims.Domain.Model
             IdOwner = idOwner;
         }
 
+
         public void FromCSV(string[] values)
         {
             Id = Convert.ToInt32(values[0]);
@@ -57,6 +64,7 @@ namespace ProjectSims.Domain.Model
                 Images.Add(image);
             }
             IdOwner = Convert.ToInt32(values[8]);
+            InitializeData();
         }
         public string[] ToCSV()
         {
@@ -82,6 +90,12 @@ namespace ProjectSims.Domain.Model
                 IdOwner.ToString() 
             };
             return csvValues;
+        }
+
+        public void InitializeData()
+        {
+            LocationService locationService = new LocationService();
+            Location = locationService.GetLocation(IdLocation);
         }
     }
 }

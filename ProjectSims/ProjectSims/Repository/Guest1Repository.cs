@@ -60,6 +60,11 @@ namespace ProjectSims.Repository
                 return guests;
             }
 
+            public Guest1 Get(int id)
+            {
+                return guests.Find(g => g.Id == id);
+            }
+
             public void Subscribe(IObserver observer)
             {
                 observers.Add(observer);
