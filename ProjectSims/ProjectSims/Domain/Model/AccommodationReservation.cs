@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Serializer;
+using ProjectSims.Service;
 
 namespace ProjectSims.Domain.Model
 {
@@ -11,7 +12,9 @@ namespace ProjectSims.Domain.Model
     {
         public int Id { get; set; }
         public int AccommodationId { get; set; }
+        public Accommodation Accommodation { get; set; }
         public int GuestId { get; set; }
+        public Guest1 Guest { get; set; }
         public DateOnly CheckInDate { get; set; }
         public DateOnly CheckOutDate { get; set; }
         public int GuestNumber { get; set; }
@@ -36,6 +39,7 @@ namespace ProjectSims.Domain.Model
             CheckInDate = DateOnly.ParseExact(values[3], "dd.MM.yyyy");
             CheckOutDate = DateOnly.ParseExact(values[4], "dd.MM.yyyy");
             GuestNumber = Convert.ToInt32(values[5]);
+            InitializeData();
         }
 
         public string[] ToCSV()
@@ -49,6 +53,15 @@ namespace ProjectSims.Domain.Model
                 GuestNumber.ToString()  
             };
             return csvvalues;
+        }
+
+        public void InitializeData()
+        {
+            AccommodationService accommodationService = new AccommodationService();
+            Guest1Service guest1Service = new Guest1Service();
+
+            Accommodation = accommodationService.GetAccommodation(AccommodationId);
+            Guest = guest1Service.GetGuest1(GuestId);
         }
     }
 }

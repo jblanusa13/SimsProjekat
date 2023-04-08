@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using ProjectSims.Serializer;
+using ProjectSims.Service;
 
 namespace ProjectSims.Domain.Model
 {
@@ -17,6 +18,7 @@ namespace ProjectSims.Domain.Model
         public string Adress { get; set; }
         public string Email { get; set; }
         public int UserId { get; set; }
+        public User User { get; set; }
 
         public Guest1() { }
         public Guest1(int id, string name, string surname, string adress, string email, int userId)
@@ -37,6 +39,7 @@ namespace ProjectSims.Domain.Model
             Adress = values[3];
             Email = values[4];
             UserId = Convert.ToInt32(values[5]);
+            InitalizeData();
         }
 
         public string[] ToCSV()
@@ -51,6 +54,12 @@ namespace ProjectSims.Domain.Model
                 UserId.ToString() 
             };
             return csvvalues;
+        }
+
+        public void InitalizeData()
+        {
+            UserService userService = new UserService();
+            User = userService.GetUser(UserId);
         }
     }
 }

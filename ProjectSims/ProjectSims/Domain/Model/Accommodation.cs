@@ -1,6 +1,7 @@
 ﻿using ProjectSims.FileHandler;
 using ProjectSims.Repository;
 using ProjectSims.Serializer;
+using ProjectSims.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,17 +27,12 @@ namespace ProjectSims.Domain.Model
         public Owner Owner { get; set; }
         public int IdOwner { get; set; }
 
-        private LocationFileHandler locations;
 
         public Accommodation() 
         {
             DismissalDays = 1;
             Images = new List<string>();
-
-            locations = new LocationFileHandler();
         }
-
-        
 
         public Accommodation(int id, string name, int idLocation, Location location, AccommodationType type, 
             int guestsMaximum, int minimumReservationDays, int dismissalDays, 
@@ -51,12 +47,8 @@ namespace ProjectSims.Domain.Model
             DismissalDays = dismissalDays;
             Images = images;
             IdOwner = idOwner;
-
-            locations = new LocationFileHandler();
         }
 
-
-        
 
         public void FromCSV(string[] values)
         {
@@ -72,8 +64,7 @@ namespace ProjectSims.Domain.Model
                 Images.Add(image);
             }
             IdOwner = Convert.ToInt32(values[8]);
-            List<Location> locationsList = locations.Load();
-            Location = locationsList.Find(l => l.Id == IdLocation);
+            InitializeData();
         }
         public string[] ToCSV()
         {
@@ -99,6 +90,12 @@ namespace ProjectSims.Domain.Model
                 IdOwner.ToString() 
             };
             return csvValues;
+        }
+
+        public void InitializeData()
+        {
+            LocationService locationService = new LocationService();
+            Location = locationService.GetLocation(IdLocation);
         }
     }
 }

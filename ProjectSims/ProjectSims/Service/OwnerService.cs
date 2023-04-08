@@ -12,15 +12,29 @@ namespace ProjectSims.Service
     public class OwnerService
     {
         private OwnerRepository owners;
+        private RequestService requestService;
 
         public OwnerService()
         {
             owners = new OwnerRepository();
+            requestService = new RequestService();
         }
 
         public List<Owner> GetAllOwners()
         {
             return owners.GetAll();
+        }
+
+        public bool HasWaitingRequests(int ownerId)
+        {
+            foreach(Request request in requestService.GetAllRequestByOwner(ownerId))
+            {
+                if (request.State.Equals(RequestState.Waiting))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void Create(Owner owner)

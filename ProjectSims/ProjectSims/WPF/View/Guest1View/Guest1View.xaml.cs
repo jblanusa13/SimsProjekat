@@ -25,7 +25,7 @@ namespace ProjectSims.View.Guest1View
     /// </summary>
     public partial class Guest1View : Window, IObserver
     {
-        private readonly AccommodationService _accommodationController;
+        private readonly AccommodationService accommodationService;
         public ObservableCollection<Accommodation> Accommodations { get; set; }
         public Accommodation SelectedAccommodation { get; set; }
         public Guest1 Guest { get; set; }
@@ -42,9 +42,9 @@ namespace ProjectSims.View.Guest1View
             InitializeComponent();
             DataContext = this;
 
-            _accommodationController = new AccommodationService();
-            _accommodationController.Subscribe(this);
-            Accommodations = new ObservableCollection<Accommodation>(_accommodationController.GetAllAccommodations());
+            accommodationService = new AccommodationService();
+            accommodationService.Subscribe(this);
+            Accommodations = new ObservableCollection<Accommodation>(accommodationService.GetAllAccommodations());
 
             Guest = guest;
         }
@@ -84,7 +84,7 @@ namespace ProjectSims.View.Guest1View
             Accommodations.Clear();
 
 
-            foreach (Accommodation accommodation in _accommodationController.GetAllAccommodations())
+            foreach (Accommodation accommodation in accommodationService.GetAllAccommodations())
             {
                 if (CheckSearchConditions(accommodation))
                 {
@@ -121,7 +121,7 @@ namespace ProjectSims.View.Guest1View
         public void Update()
         {
             Accommodations.Clear();
-            foreach(var accommodation in _accommodationController.GetAllAccommodations())
+            foreach(var accommodation in accommodationService.GetAllAccommodations())
             {
                 Accommodations.Add(accommodation);
             }
@@ -129,7 +129,7 @@ namespace ProjectSims.View.Guest1View
 
         private void MyReservations_Click(object sender, RoutedEventArgs e)
         {
-            Guest1CurrentReservations reservations = new Guest1CurrentReservations();
+            Guest1CurrentReservations reservations = new Guest1CurrentReservations(Guest);
             reservations.Show();
         }
     }

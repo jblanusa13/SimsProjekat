@@ -57,8 +57,9 @@ namespace ProjectSims
                     if(owner != null)
                     {
                         CurrentUserId = owner.UserId;
-                        OwnerView ownerView = new OwnerView();
+                        OwnerView ownerView = new OwnerView(owner);
                         ownerView.Show();
+                        Close();
                     }
 
                     Guest1 guest1 = guest1File.GetByUserId(user.Id);
@@ -66,6 +67,7 @@ namespace ProjectSims
                     {
                         Guest1View guest1View = new Guest1View(guest1);
                         guest1View.Show();
+                        Close();
                     }
 
                     Guide guide = guideFile.GetByUserId(user.Id);

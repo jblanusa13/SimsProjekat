@@ -30,6 +30,11 @@ namespace ProjectSims.Repository
             _observers = new List<IObserver>();
         }
 
+        public Accommodation Get(int id)
+        {
+            return _accommodations.Find(a => a.Id == id);
+        }
+
         public int NextId()
         {
             return _accommodations.Max(a => a.Id) + 1;

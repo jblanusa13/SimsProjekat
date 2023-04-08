@@ -31,10 +31,13 @@ namespace ProjectSims.View.OwnerView
     public partial class OwnerView : Window, INotifyPropertyChanged, IObserver
     {
         static Timer timer;
+        private Owner owner;
+        private OwnerService ownerService;
         private readonly GuestAccommodationService _guestAccommodationController;
         public ObservableCollection<GuestAccommodation> GuestAccommodations { get; set; }
         public GuestAccommodation SelectedGuestAccommodation { get; set; }
-        public OwnerView()
+        
+        public OwnerView(Owner owner)
         {
             InitializeComponent();
             DataContext = this;
@@ -42,6 +45,13 @@ namespace ProjectSims.View.OwnerView
             _guestAccommodationController = new GuestAccommodationService();
             _guestAccommodationController.Subscribe(this);
             GuestAccommodations = new ObservableCollection<GuestAccommodation>(_guestAccommodationController.GetAllGuestAccommodations());
+
+            this.owner = owner;
+            ownerService = new OwnerService();
+            if (ownerService.HasWaitingRequests(owner.Id))
+            {
+                MessageBox.Show("Imate zahteve na cekanju!");
+            }
         }
        
         public event PropertyChangedEventHandler PropertyChanged;
