@@ -1,10 +1,10 @@
-﻿using System;
+﻿using ProjectSims.Domain.Model;
+using ProjectSims.Service;
+using ProjectSims.View.GuideView;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,17 +14,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ProjectSims.Service;
-using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 
-namespace ProjectSims.View.GuideView
+namespace ProjectSims.WPF.View.GuideView.Pages
 {
     /// <summary>
     /// Interaction logic for TourTrackingView.xaml
     /// </summary>
-    public partial class TourTrackingView : Window, IObserver
+    public partial class TourTrackingView : Page,IObserver
     {
         private KeyPointService keyPointService;
         private TourService tourService;
@@ -74,9 +73,9 @@ namespace ProjectSims.View.GuideView
             var keyPoint = KeyPointListView.SelectedItem as KeyPoint;
             if (keyPoint != null)
             {
-                if(keyPoint.Id == expectedId)
+                if (keyPoint.Id == expectedId)
                 {
-                    if(keyPoint.Type != KeyPointType.Last)
+                    if (keyPoint.Type != KeyPointType.Last)
                     {
                         expectedId++;
                         keyPointService.Finish(SelectedKeyPoint);
@@ -87,7 +86,7 @@ namespace ProjectSims.View.GuideView
                         keyPointService.Finish(SelectedKeyPoint);
                         tourService.FinishTour(tour, PresentGuests);
                         reservationTourService.FinishTour(tour.Id);
-                        Close();
+                        //zatvori
                     }
                 }
                 else
@@ -102,7 +101,7 @@ namespace ProjectSims.View.GuideView
             Guest2 guest = (Guest2)SelectedGuest;
             if (guest != null)
             {
-                reservationTourService.NotifyGuest(guest.Id, tour.Id);             
+                reservationTourService.NotifyGuest(guest.Id, tour.Id);
             }
             else
             {
@@ -112,23 +111,23 @@ namespace ProjectSims.View.GuideView
 
         private void FinishTour_Click(object sender, RoutedEventArgs e)
         {
-            tourService.FinishTour(tour,PresentGuests);
+            tourService.FinishTour(tour, PresentGuests);
             reservationTourService.FinishTour(tour.Id);
-            Close();
+           // Close();
 
         }
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+          //  Close();
             AvailableToursView availableToursView = new AvailableToursView(guide);
-            availableToursView.Show();
+            //availableToursView.Show();
         }
         private void Forward_Click(object sender, RoutedEventArgs e)
         {
         }
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+           // Close();
             GuideStartingView guideStartingView = new GuideStartingView(guide);
             guideStartingView.Show();
         }

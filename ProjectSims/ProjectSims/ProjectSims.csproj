@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <None Remove="Resources\Icons\Guest2\icons8-add-file-60.png" />
+    <None Remove="Resources\Icons\Guide\close.png" />
+    <None Remove="Resources\Icons\Guide\start.png" />
     <None Remove="Resources\Images\background.jpg" />
     <None Remove="Resources\Images\checkmark.png" />
     <None Remove="Resources\Images\Guest2\download.jpg" />
@@ -32,6 +34,12 @@
 
   <ItemGroup>
     <Content Include="Resources\Icons\Guest2\icons8-add-file-60.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\close.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\start.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Guide\background.jpg">

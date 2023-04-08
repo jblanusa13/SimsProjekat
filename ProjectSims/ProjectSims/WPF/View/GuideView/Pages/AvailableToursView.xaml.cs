@@ -1,9 +1,10 @@
-﻿using System;
+﻿using ProjectSims.Domain.Model;
+using ProjectSims.Service;
+using ProjectSims.View.GuideView;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,18 +14,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ProjectSims.Service;
-using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
+using System.Data;
+using System.Xml.Linq;
 
-
-namespace ProjectSims.View.GuideView
+namespace ProjectSims.WPF.View.GuideView.Pages
 {
     /// <summary>
-    /// Interaction logic for TourTrackingView.xaml
+    /// Interaction logic for AvailableToursView.xaml
     /// </summary>
-    public partial class AvailableToursView : Window, IObserver
+    public partial class AvailableToursView : Page, IObserver
     {
         private TourService tourService;
         public ObservableCollection<Tour> AvailableTours { get; set; }
@@ -42,54 +43,33 @@ namespace ProjectSims.View.GuideView
         }
         private void StartTour_Click(object sender, RoutedEventArgs e)
         {
-            if(SelectedTour != null)
+            Tour selectedTour = ((FrameworkElement)sender).DataContext as Tour;
+            if (tourService.StartTour(selectedTour))
             {
-                Tour selectedTour = (Tour)SelectedTour;
-                if (tourService.StartTour(SelectedTour))
-                {
-                    TourTrackingView tourTrackingView = new TourTrackingView(selectedTour,guide);
-                    tourTrackingView.Show();
-                    Close();
-                }
-                else
-                {
-                    MessageBox.Show("Već postoji započeta tura");                   
-                }
+                //TourTrackingView tourTrackingView = new TourTrackingView(sel, guide);
+                //tourTrackingView.Show();
+                //Close();
             }
             else
             {
-                MessageBox.Show("Odaberite turu!");
+                MessageBox.Show("Već postoji započeta tura");
             }
+                 
         }
         private void StartedTour_Click(Object sender, RoutedEventArgs e)
         {
             Tour startedTour = tourService.FindStartedTour();
-            if(startedTour != null)
+            if (startedTour != null)
             {
-                TourTrackingView tourTrackingView = new TourTrackingView(startedTour,guide);
-                tourTrackingView.Show();
-                Close();
+                TourTrackingView tourTrackingView = new TourTrackingView(startedTour, guide);
+                //tourTrackingView.Show();
+               // Close();
             }
             else
             {
                 MessageBox.Show("Nijedna tura nije zapoceta!");
             }
 
-        }
-        private void Back_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-            GuideStartingView guideStartingView = new GuideStartingView(guide);
-            guideStartingView.Show();
-        }
-        private void Forward_Click(object sender, RoutedEventArgs e)
-        {
-        }
-        private void Home_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-            GuideStartingView guideStartingView = new GuideStartingView(guide);
-            guideStartingView.Show();
         }
         private void UpdateAvailableTours()
         {

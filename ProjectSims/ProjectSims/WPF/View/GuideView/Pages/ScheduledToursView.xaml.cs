@@ -1,5 +1,5 @@
-﻿using ProjectSims.Service;
-using ProjectSims.Domain.Model;
+﻿using ProjectSims.Domain.Model;
+using ProjectSims.Service;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,15 +13,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ProjectSims.Observer;
 
-namespace ProjectSims.View.GuideView
+namespace ProjectSims.WPF.View.GuideView.Pages
 {
     /// <summary>
     /// Interaction logic for ScheduledToursView.xaml
     /// </summary>
-    public partial class ScheduledToursView : Window, IObserver
+    public partial class ScheduledToursView : Page, IObserver
     {
         private TourService tourService;
         private ReservationTourService reservationTourService;
@@ -42,39 +43,32 @@ namespace ProjectSims.View.GuideView
             ScheduledTours = new ObservableCollection<Tour>(tourService.GetScheduledTours(guide.Id));
             SelectedTour = new Tour();
         }
-       
+
         private void CancelTour_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedTour != null)
+
+            SelectedTour = ((FrameworkElement)sender).DataContext as Tour;
+            if (tourService.StartsInLessThan48Hours(SelectedTour))
             {
-                if (tourService.StartsInLessThan48Hours(SelectedTour))
-                {
-                    MessageBox.Show("Tura pocinje za manje od 48 sati i ne moze se otkazati!");
-                    return;
-                }
-
-                MessageBoxResult answer = MessageBox.Show("Da li ste sigurni da zelite da otkazete turu?", "", MessageBoxButton.YesNo);
-                if (answer == MessageBoxResult.Yes)
-                {
-                    {
-                        SelectedTour.State = TourState.Cancelled;
-                        List<int> guestIds = reservationTourService.FindTourGuestIds(SelectedTour.Id);
-                        if(guestIds.Count > 0)
-                        {
-                            foreach (int guest2Id in guestIds)
-                            {
-                                guest2Controller.GiveVoucher(guest2Id);
-                            }
-                        }
-                        tourService.Update(SelectedTour);
-
-                    }
-
-                }
+                MessageBox.Show("Tura pocinje za manje od 48 sati i ne moze se otkazati!");
+                return;
             }
-            else
+
+            MessageBoxResult answer = MessageBox.Show("Da li ste sigurni da zelite da otkazete turu?", "", MessageBoxButton.YesNo);
+            if (answer == MessageBoxResult.Yes)
             {
-                MessageBox.Show("Odaberite turu!");
+                
+                SelectedTour = ((FrameworkElement)sender).DataContext as Tour;
+                SelectedTour.State = TourState.Cancelled;
+                List<int> guestIds = reservationTourService.FindTourGuestIds(SelectedTour.Id);
+                if (guestIds.Count > 0)
+                {
+                    foreach (int guest2Id in guestIds)
+                    {
+                        guest2Controller.GiveVoucher(guest2Id);
+                    }
+                }
+                tourService.Update(SelectedTour);
             }
         }
 
@@ -87,5 +81,5 @@ namespace ProjectSims.View.GuideView
             }
         }
     }
-
 }
+

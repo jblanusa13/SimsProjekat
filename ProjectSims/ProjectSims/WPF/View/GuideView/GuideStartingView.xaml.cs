@@ -1,4 +1,5 @@
 ﻿using ProjectSims.Domain.Model;
+using ProjectSims.WPF.View.GuideView.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,29 +27,40 @@ namespace ProjectSims.View.GuideView
             InitializeComponent();
             guide = g;
         }
-        private void CreateTour_Click(object sender, RoutedEventArgs e)
+
+        private void Back_Click(object sender, RoutedEventArgs e)
         {
-            CreateTourView createTourView = new CreateTourView(guide);
-            createTourView.Show();
+            
+        }
+        private void Home_Click(object sender, RoutedEventArgs e)
+        {
+           // GuideFrame.Content = this.Content;
+        }
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
             Close();
+            Window login = new MainWindow();
+            login.Show();
         }
         private void TrackTour_Click(object sender, RoutedEventArgs e)
         {
-            AvailableToursView availableToursView = new AvailableToursView(guide);
-            availableToursView.Show();
-            Close();
+          //  Page tourTrackingPage = new TourTrackingView(guide);
+           // GuideFrame.Content = tourTrackingPage;
         }
-
-        private void CancelTour_Click(object sender, RoutedEventArgs e)
+        private void AvailableTours_Click(object sender, RoutedEventArgs e)
         {
-            ScheduledToursView scheduledToursView = new ScheduledToursView(guide);
-            scheduledToursView.Show();
-            Close();
+            Page availableToursPage = new AvailableToursView(guide);
+            GuideFrame.Content = availableToursPage;
         }
-
-        private void Statistics_Click(object sender, RoutedEventArgs e)
+        private void CreateTour_Click(object sender, RoutedEventArgs e)
         {
-            
+            Page createTourView = new CreateTourView(guide);
+            GuideFrame.Content = createTourView;
+        }
+        private void ScheduledTours_Click(object sender, RoutedEventArgs e)
+        {
+            Page scheduledToursView = new ScheduledToursView(guide);
+            GuideFrame.Content = scheduledToursView;
         }
     }
 }
