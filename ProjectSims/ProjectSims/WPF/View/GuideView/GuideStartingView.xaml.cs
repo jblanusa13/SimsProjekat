@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ProjectSims.Service;
 
 namespace ProjectSims.View.GuideView
 {
@@ -22,10 +23,12 @@ namespace ProjectSims.View.GuideView
     public partial class GuideStartingView : Window
     {
         public Guide guide { get; set; }
+        public TourService tourService { get; set; }
         public GuideStartingView(Guide g)
         {
             InitializeComponent();
             guide = g;
+            tourService = new TourService();
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -44,8 +47,13 @@ namespace ProjectSims.View.GuideView
         }
         private void TrackTour_Click(object sender, RoutedEventArgs e)
         {
-          //  Page tourTrackingPage = new TourTrackingView(guide);
-           // GuideFrame.Content = tourTrackingPage;
+            if (tourService.ExistsActiveTour() != null)
+            {
+                Tour activeTour = tourService.ExistsActiveTour();
+                Page tourTrackingPage = new TourTrackingView(activeTour,guide);
+                GuideFrame.Content = tourTrackingPage;
+            }
+     
         }
         private void AvailableTours_Click(object sender, RoutedEventArgs e)
         {

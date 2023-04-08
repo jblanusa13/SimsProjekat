@@ -54,16 +54,16 @@ namespace ProjectSims.Service
         {
             return (tour.State == TourState.Inactive);
         }
-        public bool ExistsActiveTour()
+        public Tour ExistsActiveTour()
         {
             foreach(Tour availableTour in GetAllTours())
             {
                 if(availableTour.State == TourState.Active)
                 {
-                    return true;
+                    return availableTour;
                 }
             }
-            return false;
+            return null;
         }
         public List<Tour> GetAvailableTours(int guideId)
         {
@@ -133,7 +133,7 @@ namespace ProjectSims.Service
 
         public bool StartTour(Tour tour)
         {
-            if(!ExistsActiveTour())
+            if(ExistsActiveTour() == null)
             {
                 tour.State = TourState.Active;
                 tour.ActiveKeyPointId = tour.KeyPointIds.First();

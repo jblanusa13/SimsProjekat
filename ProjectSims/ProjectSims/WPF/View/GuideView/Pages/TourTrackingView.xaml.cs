@@ -86,7 +86,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                         keyPointService.Finish(SelectedKeyPoint);
                         tourService.FinishTour(tour, PresentGuests);
                         reservationTourService.FinishTour(tour.Id);
-                        //zatvori
+                        NavigationService.Navigate(null);
                     }
                 }
                 else
@@ -113,23 +113,8 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         {
             tourService.FinishTour(tour, PresentGuests);
             reservationTourService.FinishTour(tour.Id);
-           // Close();
+            NavigationService.Navigate(null);
 
-        }
-        private void Back_Click(object sender, RoutedEventArgs e)
-        {
-          //  Close();
-            AvailableToursView availableToursView = new AvailableToursView(guide);
-            //availableToursView.Show();
-        }
-        private void Forward_Click(object sender, RoutedEventArgs e)
-        {
-        }
-        private void Home_Click(object sender, RoutedEventArgs e)
-        {
-           // Close();
-            GuideStartingView guideStartingView = new GuideStartingView(guide);
-            guideStartingView.Show();
         }
         private void UpdateKeyPointList()
         {

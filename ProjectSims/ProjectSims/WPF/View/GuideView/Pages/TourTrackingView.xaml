@@ -6,8 +6,8 @@
       xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="0" d:DesignWidth="1280"
-      Title="TourTrackingView">
-    <Grid>
+      Title="TourTrackingView" Background="White">
+    <ScrollViewer>
         <Grid>
             <TextBox x:Name="TourInfoTextBox" HorizontalAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Top" Width="900" Height="50" Foreground="Black" FontSize="30" FontWeight="UltraBold" FontFamily="Broadway" BorderBrush="Transparent" Background="Transparent" IsEnabled="False"/>
             <GroupBox Header="Pracenje stanica" FontSize="25" Foreground="Black" FontWeight="UltraBold" FontFamily="Georgia" Margin="650,100,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="320" Height="520" BorderBrush="Black" Background="Transparent"/>
@@ -84,5 +84,5 @@
             <Label Content="Gosti koji još uvek nisu prisutni" HorizontalAlignment="Left" Margin="370,120,0,0" VerticalAlignment="Top" FontWeight="ExtraBold" FontFamily="Georgia"/>
             <Label Content="Prisutni gosti" HorizontalAlignment="Left" Margin="100,120,0,0" VerticalAlignment="Top" FontWeight="ExtraBold" FontFamily="Georgia"/>
         </Grid>
-    </Grid>
+    </ScrollViewer>
 </Page>
