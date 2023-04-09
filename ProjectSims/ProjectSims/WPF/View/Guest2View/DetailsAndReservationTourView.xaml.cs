@@ -93,6 +93,29 @@ namespace ProjectSims.View.Guest2View
                     ImageList.Items.Add("The format of the URL could not be determined.");
                 }
             }
+            //kad se ubaci filepicker kod kreiranja tura i kad se u tour.csv budu cuvale relativne putanje
+            /*
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            if (Uri.IsWellFormedUriString(@"/Resources/Images/Guide/slika.jpg", UriKind.RelativeOrAbsolute))
+            {
+                bitmap.UriSource = new Uri(@"../../../Resources/Images/Guide/slika.jpg", UriKind.RelativeOrAbsolute);
+                bitmap.EndInit();
+
+                image = new Image();
+
+                image.Source = bitmap;
+
+                image.Width = 350;
+                image.Height = 200;
+
+                ImageList.Items.Add(image);
+            }
+            else
+            {
+                ImageList.Items.Add("The format of the URL could not be determined.");
+            }
+            */
             tourService = new TourService();
             reservationService = new ReservationTourService();
             TourList = new ObservableCollection<Tour>(tourService.GetAllToursWithSameLocation(tourSelected));
@@ -100,19 +123,8 @@ namespace ProjectSims.View.Guest2View
 
         private void Reservation_Click(object sender, RoutedEventArgs e)
         {
-            uint numberGuests;
-
-            if (!uint.TryParse(NumberGuestsTextBox.Text, out numberGuests))
-            {
-                MessageBox.Show("Wrong input! Number people on tour must be a positive number!");
-                return;
-            }
-
-            if(numberGuests == 0)
-            {
-                MessageBox.Show("Wrong input! Number people on tour can't be a zero!");
-                return;
-            }
+            int numberGuests = CheckNumberGuestTextBox(NumberGuestsTextBox.Text);
+            if (numberGuests == -1) return;
 
             MessageReservationBox.Text = "";
             if (numberGuests > tour.AvailableSeats)
@@ -146,6 +158,24 @@ namespace ProjectSims.View.Guest2View
                 }
             }
 
+        }
+
+        private int CheckNumberGuestTextBox(string text)
+        {
+            uint numberGuests;
+
+            if (!uint.TryParse(text, out numberGuests))
+            {
+                MessageBox.Show("Wrong input! Number people on tour must be a positive number!");
+                return -1;
+            }
+
+            if (numberGuests == 0)
+            {
+                MessageBox.Show("Wrong input! Number people on tour can't be a zero!");
+                return -1;
+            }
+            return (int)numberGuests;
         }
 
     }
