@@ -123,6 +123,11 @@ namespace ProjectSims.View.Guest2View
 
         private void Reservation_Click(object sender, RoutedEventArgs e)
         {
+            if (tour.State != 0)
+            {
+                MessageBox.Show("Za turu koju ste odabrali ne mozete izvrisiti rezervaciju jer je zapoceta,zavrsena ili otkazna!");
+                return;
+            }
             int numberGuests = CheckNumberGuestTextBox(NumberGuestsTextBox.Text);
             if (numberGuests == -1) return;
 
@@ -145,6 +150,11 @@ namespace ProjectSims.View.Guest2View
 
                 if (SelectedTour != null)
                 {
+                    if (SelectedTour.State != 0)
+                    {
+                        MessageBox.Show("Za turu koju ste odabrali ne mozete izvrisiti rezervaciju jer je zapoceta,zavrsena ili otkazna!");
+                        return;
+                    }
                     MessageBlock.Text = "";
                     if (numberGuests > SelectedTour.AvailableSeats)
                     {

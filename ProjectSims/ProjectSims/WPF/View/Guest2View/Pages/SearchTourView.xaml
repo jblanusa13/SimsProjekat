@@ -32,11 +32,12 @@
                        AutoGenerateColumns="False" Margin="40,42,81,41" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" Width="220" />
-                    <DataGridTextColumn Header="Lokacija" Binding="{Binding Location}" Width="130" />
+                    <DataGridTextColumn Header="Lokacija" Binding="{Binding Location}" Width="60" />
                     <DataGridTextColumn Header="Jezik" Binding="{Binding Language}" Width="70" />
                     <DataGridTextColumn Header="Maksimalan broj ljudi" Binding="{Binding MaxNumberGuests}" Width="130" />
                     <DataGridTextColumn Header="Pocetak ture" Binding="{Binding StartOfTheTour}" Width="150" />
-                    <DataGridTextColumn Header="Trajanje (sati)" Binding="{Binding Duration}" Width="*" />
+                    <DataGridTextColumn Header="Trajanje (sati)" Binding="{Binding Duration}" Width="80" />
+                    <DataGridTextColumn Header="Status ture" Binding="{Binding State}" Width="*" />
                 </DataGrid.Columns>
             </DataGrid>
             <Border BorderBrush="#FF455DF6" BorderThickness="1" HorizontalAlignment="Center" Height="343" Margin="0,36,0,0" VerticalAlignment="Top" Width="180" CornerRadius="8,8,8,8" Background="#FF455DF6"/>
