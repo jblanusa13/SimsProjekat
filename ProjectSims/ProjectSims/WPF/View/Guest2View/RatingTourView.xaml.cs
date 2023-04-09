@@ -13,6 +13,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ProjectSims.Repository;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using ProjectSims.WPF.View.Guest2View.Pages;
 
 namespace ProjectSims.View.Guest2View
 {
@@ -21,22 +25,25 @@ namespace ProjectSims.View.Guest2View
     /// </summary>
     public partial class RatingTourView : Window
     {
-        public GuideService guideController { get; set; }
+        public GuideService guideService { get; set; }
         public Guide guide { get; set; }
         public Guest2 guest2 { get; set; }
 
         public Tour tourRate { get; set; }
         private TourRatingService tourRatingService { get; set; }
-        public RatingTourView(Tour tour,Guest2 g)
+        private ReservationTourService reservationTourService { get; set; }
+        public RatingTourView(Tour tour,Guest2 g,ReservationTourService rts)
         {
             InitializeComponent();
             DataContext = this;
 
-            guideController = new GuideService();
-            guide = guideController.FindGuideById(tour.GuideId);
+            guideService = new GuideService();
+            guide = guideService.FindGuideById(tour.GuideId);
             GuideTextBox.Text = guide.Name + " " + guide.Surname;
             guest2 = g;
             tourRate = tour;
+            reservationTourService = rts;
+
             tourRatingService = new TourRatingService();
         }
 
@@ -67,9 +74,12 @@ namespace ProjectSims.View.Guest2View
             {
                 imageList.Add(image);
             }
-            TourAndGuideRating tourRating = new TourAndGuideRating(guest2.Id, tourRate.Id,knowledgeGuide,languageGuide,interestingTour,
-                AddedComentBox.Text, imageList);
+            TourAndGuideRating tourRating = new TourAndGuideRating(guest2.Id, tourRate.Id,knowledgeGuide,languageGuide,
+                interestingTour, AddedComentBox.Text, imageList);
             tourRatingService.Create(tourRating);
+            ReservationTour reservation= reservationTourService.GetReservationByGuestAndTour(tourRate, guest2);
+            reservation.RatedTour = true;
+            reservationTourService.Update(reservation);
             Close();           
         }
         

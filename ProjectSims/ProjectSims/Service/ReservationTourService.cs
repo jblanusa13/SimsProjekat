@@ -24,6 +24,11 @@ namespace ProjectSims.Service
             return reservations.GetAll();
         }
 
+        public ReservationTour GetReservationByGuestAndTour(Tour tour, Guest2 guest2)
+        {
+            return reservations.GetReservationByGuestAndTour(tour, guest2);
+        }
+
         public void Create(ReservationTour reservation)
         {
             reservations.Add(reservation);
@@ -75,7 +80,7 @@ namespace ProjectSims.Service
             List<int> tourIds = new List<int>();
             foreach(ReservationTour reservation in GetAllReservations())
             {
-                if(reservation.Guest2Id == guestId && reservation.State == Guest2State.Present)
+                if(reservation.Guest2Id == guestId && reservation.State == Guest2State.Present && reservation.RatedTour != true)
                 {
                     tourIds.Add(reservation.TourId);
                 }

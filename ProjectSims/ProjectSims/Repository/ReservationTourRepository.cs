@@ -63,6 +63,20 @@ namespace ProjectSims.Repository
             return reservations;
         }
 
+        public ReservationTour GetReservationByGuestAndTour(Tour tour, Guest2 guest2)
+        {
+            ReservationTour reservationTour = new ReservationTour();
+
+            foreach (var reservation in GetAll())
+            {
+                if(reservation.Guest2Id == guest2.Id && reservation.TourId == tour.Id)
+                {
+                    reservationTour = reservation;
+                }
+            }
+                return reservationTour;
+        }
+
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);

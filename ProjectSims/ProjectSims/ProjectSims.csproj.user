@@ -8,6 +8,9 @@
     <Compile Update="WPF\View\Guest2View\Pages\FinishedToursView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WPF\View\Guest2View\Pages\ShowVouchersView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\Guest2View\RatingTourView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -18,6 +21,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\Guest2View\DetailsAndReservationTourView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest2View\UseVoucherView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\GuideView\GuideStartingView.xaml.cs">
@@ -52,6 +58,9 @@
     <Page Update="WPF\View\Guest2View\Pages\FinishedToursView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="WPF\View\Guest2View\Pages\ShowVouchersView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="WPF\View\Guest2View\RatingTourView.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -62,6 +71,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\Guest2View\DetailsAndReservationTourView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest2View\UseVoucherView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\GuideView\GuideStartingView.xaml">

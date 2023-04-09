@@ -1,6 +1,5 @@
 ﻿using ProjectSims.Service;
 using ProjectSims.Domain.Model;
-using ProjectSims.View.Guest2View.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ProjectSims.WPF.View.Guest2View.Pages;
+using System.Windows.Threading;
 
 namespace ProjectSims.View.Guest2View
 {
@@ -29,8 +30,10 @@ namespace ProjectSims.View.Guest2View
         public Guest2StartingView(Guest2 g)
         {
             InitializeComponent();
+            DataContext = this;
+            SetStatusBarClock();
             guest2 = g;
-            UserBox.Text = "Korisnik : " + guest2.Name + " " + guest2.Surname;
+            UserBox.Text = guest2.Name + " " + guest2.Surname;
 
             reservationTourService = new ReservationTourService();
             tourService = new TourService();
@@ -46,6 +49,17 @@ namespace ProjectSims.View.Guest2View
             }
         }
 
+        private void SetStatusBarClock()
+        {
+            //Tred za prikazivanje sata i datuma
+            this.dateAndTime.Content = DateTime.Now.ToString("HH:mm │ dd.MM.yyyy.");
+
+            DispatcherTimer timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
+            {
+                this.dateAndTime.Content = DateTime.Now.ToString("HH:mm │ dd.MM.yyyy.");
+            }, this.Dispatcher);
+        }
+
         private void ButtonSearchTour(object sender, RoutedEventArgs e)
         {
             ChangeTab(0);
@@ -54,6 +68,11 @@ namespace ProjectSims.View.Guest2View
         private void ButtonShowFinishedTours(object sender, RoutedEventArgs e)
         {
             ChangeTab(1);
+        }
+
+        private void ButtonShowVouchers(object sender, RoutedEventArgs e)
+        {
+            ChangeTab(2);
         }
 
         public void ChangeTab(int tabNum)
@@ -70,6 +89,11 @@ namespace ProjectSims.View.Guest2View
                         SelectedTab.Content = new FinishedToursView(guest2);
                         break;
                     }
+                case 2:
+                    {
+                        SelectedTab.Content = new ShowVouchersView(guest2);
+                        break;
+                    }                   
             }
         }
 
