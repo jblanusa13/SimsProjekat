@@ -28,9 +28,10 @@ namespace ProjectSims.WPF.View.GuideView.Pages
     public partial class AvailableToursView : Page, IObserver
     {
         private TourService tourService;
-        public ObservableCollection<Tour> AvailableTours { get; set; }
+        private ReservationTourService reservationService;
+        public ObservableCollection<Tour> TodayTours { get; set; }
         public Tour SelectedTour { get; set; }
-        public Guide guide { get; set; }
+        public Guide Guide { get; set; }
         public AvailableToursView(Guide g)
         {
             InitializeComponent();
@@ -38,45 +39,24 @@ namespace ProjectSims.WPF.View.GuideView.Pages
 
             tourService = new TourService();
             tourService.Subscribe(this);
-            guide = g;
-            AvailableTours = new ObservableCollection<Tour>(tourService.GetAvailableTours(guide.Id));
+            reservationService = new ReservationTourService();
+            Guide = g;
+            TodayTours = new ObservableCollection<Tour>(tourService.GetTodayTours(Guide.Id));
         }
         private void StartTour_Click(object sender, RoutedEventArgs e)
         {
-            Tour selectedTour = ((FrameworkElement)sender).DataContext as Tour;
-            if (tourService.StartTour(selectedTour))
-            {
-                //TourTrackingView tourTrackingView = new TourTrackingView(sel, guide);
-                //tourTrackingView.Show();
-                //Close();
-            }
-            else
-            {
-                MessageBox.Show("Već postoji započeta tura");
-            }
-                 
-        }
-        private void StartedTour_Click(Object sender, RoutedEventArgs e)
-        {
-            Tour startedTour = tourService.FindStartedTour();
-            if (startedTour != null)
-            {
-                TourTrackingView tourTrackingView = new TourTrackingView(startedTour, guide);
-                //tourTrackingView.Show();
-               // Close();
-            }
-            else
-            {
-                MessageBox.Show("Nijedna tura nije zapoceta!");
-            }
-
+            SelectedTour = ((FrameworkElement)sender).DataContext as Tour;
+            tourService.UpdateTourState(SelectedTour, TourState.Active);
+            reservationService.UpdateGuestsState(SelectedTour,Guest2State.ActiveTour);
+            Page tourTrackingView = new TourTrackingView(SelectedTour, Guide);
+            //otvori novi page i onemoguci da se pritiska na dugmad ako postoji aktivna tura
         }
         private void UpdateAvailableTours()
         {
-            AvailableTours.Clear();
-            foreach (var tour in tourService.GetAvailableTours(guide.Id))
+            TodayTours.Clear();
+            foreach (var tour in tourService.GetTodayTours(Guide.Id))
             {
-                AvailableTours.Add(tour);
+                TodayTours.Add(tour);
             }
         }
         public void Update()

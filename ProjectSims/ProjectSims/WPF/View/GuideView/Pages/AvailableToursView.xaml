@@ -9,7 +9,7 @@
       Title="AvailableToursView">
     <ScrollViewer>
         <Grid>
-            <ListView  x:Name="AvailableTour" ItemsSource="{Binding AvailableTours}" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single" SelectedItem="{Binding Path=SelectedTour}">
+            <ListView  x:Name="AvailableTour" ItemsSource="{Binding TodayTours}" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single" SelectedItem="{Binding Path=SelectedTour}">
                 <ListView.View>
                     <GridView >
                         <GridViewColumn Header="Naziv" Width="500">

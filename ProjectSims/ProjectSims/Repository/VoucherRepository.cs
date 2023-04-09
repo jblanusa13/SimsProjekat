@@ -22,7 +22,7 @@ namespace ProjectSims.Repository
             vouchers = voucherFile.Load();
             observers = new List<IObserver>();
         }
-        public int NextId()
+        public int GetNextId()
         {
             if (vouchers.Count == 0)
             {
@@ -30,9 +30,8 @@ namespace ProjectSims.Repository
             }
             return vouchers.Max(t => t.Id) + 1;
         }
-        public void Add(Voucher voucher)
+        public void Create(Voucher voucher)
         {
-            voucher.Id = NextId();
             vouchers.Add(voucher);
             voucherFile.Save(vouchers);
             NotifyObservers();

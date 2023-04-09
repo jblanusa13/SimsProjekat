@@ -22,7 +22,7 @@ namespace ProjectSims.Repository
             keyPoints = keyPointFile.Load();
             observers = new List<IObserver>();
         }
-        public int NextId()
+        public int GetNextId()
         {
             if (keyPoints.Count == 0)
             {
@@ -30,13 +30,11 @@ namespace ProjectSims.Repository
             }
             return keyPoints.Max(k => k.Id) + 1;
         }
-        public int Add(KeyPoint keyPoint)
+        public void Create(KeyPoint keyPoint)
         {
-            keyPoint.Id = NextId();
             keyPoints.Add(keyPoint);
             keyPointFile.Save(keyPoints);
             NotifyObservers();
-            return keyPoint.Id;
         }
         public void Remove(KeyPoint keyPoint)
         {
@@ -57,6 +55,14 @@ namespace ProjectSims.Repository
         public List<KeyPoint> GetAll()
         {
             return keyPoints;
+        }
+        public KeyPoint GetKeyPointById(int id)
+        {
+            return keyPoints.Find(k => k.Id == id);
+        }
+        public List<KeyPoint> GetKeyPointsByStateAndIds(List<int> ids,bool state)
+        {
+          return keyPoints.Where(k=> ids.Contains(k.Id) && k.Finished == state).ToList();
         }
         public void Subscribe(IObserver observer)
         {

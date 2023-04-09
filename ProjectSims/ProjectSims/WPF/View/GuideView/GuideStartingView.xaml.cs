@@ -37,7 +37,7 @@ namespace ProjectSims.View.GuideView
         }
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-           // GuideFrame.Content = this.Content;
+
         }
         private void Close_Click(object sender, RoutedEventArgs e)
         {
@@ -47,13 +47,12 @@ namespace ProjectSims.View.GuideView
         }
         private void TrackTour_Click(object sender, RoutedEventArgs e)
         {
-            if (tourService.ExistsActiveTour() != null)
+            Tour activeTour = tourService.GetToursByStateAndGuideId(TourState.Active, guide.Id).FirstOrDefault();
+            if (activeTour != null)
             {
-                Tour activeTour = tourService.ExistsActiveTour();
                 Page tourTrackingPage = new TourTrackingView(activeTour,guide);
                 GuideFrame.Content = tourTrackingPage;
-            }
-     
+            }    
         }
         private void AvailableTours_Click(object sender, RoutedEventArgs e)
         {

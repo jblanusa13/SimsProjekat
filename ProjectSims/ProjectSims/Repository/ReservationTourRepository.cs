@@ -32,22 +32,19 @@ namespace ProjectSims.Repository
             }
             return reservations.Max(r => r.Id) + 1;
         }
-
-        public void Add(ReservationTour reservation)
+        public void Create(ReservationTour reservation)
         {
             reservation.Id = NextId();
             reservations.Add(reservation);
             reservationFile.Save(reservations);
             NotifyObservers();
         }
-
         public void Remove(ReservationTour reservation)
         {
             reservations.Remove(reservation);
             reservationFile.Save(reservations);
             NotifyObservers();
         }
-
         public void Update(ReservationTour reservation)
         {
             int index = reservations.FindIndex(r => reservation.Id == r.Id);
@@ -62,7 +59,22 @@ namespace ProjectSims.Repository
         {
             return reservations;
         }
-
+        public List<ReservationTour> GetReservationsByTourId(Tour tour)
+        {
+            return reservations.Where(r=>r.TourId == tour.Id).ToList();
+        }
+        public List<int> GetGuestIdsByStateAndTourId(Tour tour, Guest2State state)
+        {
+            List<ReservationTour> wantedReservations = reservations.Where(r=> r.State == state && r.TourId == tour.Id).ToList();
+            List<int> guestIds = new List<int>();
+            wantedReservations.ForEach(r => guestIds.Add(r.Guest2Id));  
+            return guestIds;
+        }
+        public int GetTourIdWhereGuestIsWaiting(Guest2 guest)
+        {
+            ReservationTour reservation = reservations.Find(r=> r.Guest2Id == guest.Id && r.State == Guest2State.Waiting);
+            return reservation.TourId;
+        }
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);

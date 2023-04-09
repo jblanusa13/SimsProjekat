@@ -1,9 +1,6 @@
-0|0|10|13|NotPresent|-1
-1|3|4|13|InactiveTour|-1
-2|0|3|16|NotPresent|-1
-3|0|4|14|NotPresent|-1
-4|4|10|14|InactiveTour|-1
-5|5|12|16|InactiveTour|-1
-7|1|5|13|InactiveTour|-1
-8|1|2|15|InactiveTour|-1
-9|2|10|15|NotPresent|-1
+0|0|8|13|Present|-1
+1|2|3|13|InactiveTour|-1
+2|0|10|16|Present|-1
+3|7|12|16|InactiveTour|-1
+4|3|13|14|InactiveTour|-1
+5|0|10|14|Waiting|-1

@@ -49,12 +49,16 @@ namespace ProjectSims.Service
         {
             return guests.FindById(id);
         }
+        public int GetAge(Guest2 guest)
+        {
+            double totalDays = (DateTime.Now - guest.BirthDate).TotalDays;
+            return Convert.ToInt32(totalDays) / 365;
+        }
         public void GiveVoucher(int id)
         {
             Guest2 guest = guests.FindById(id);
-            Voucher voucher = new Voucher(-1, DateTime.Now.AddYears(1));
-            voucherService.Create(voucher);
-            guest.VoucherIds.Add(voucher.Id);
+            int voucherId = voucherService.CreateAndReturnId();
+            guest.VoucherIds.Add(voucherId);
             Update(guest);
         }
 

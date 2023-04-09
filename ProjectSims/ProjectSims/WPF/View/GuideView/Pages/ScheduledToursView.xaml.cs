@@ -26,56 +26,47 @@ namespace ProjectSims.WPF.View.GuideView.Pages
     {
         private TourService tourService;
         private ReservationTourService reservationTourService;
-        private Guest2Service guest2Controller;
-        private VoucherService voucherController;
+        private Guest2Service guest2Service;
         public ObservableCollection<Tour> ScheduledTours { get; set; }
         public Tour SelectedTour { get; set; }
-        public Guide guide { get; set; }
-        public ScheduledToursView(Guide g)
+        public Guide Guide { get; set; }
+        public ScheduledToursView(Guide guide)
         {
             InitializeComponent();
             DataContext = this;
             tourService = new TourService();
             reservationTourService = new ReservationTourService();
-            guest2Controller = new Guest2Service();
+            guest2Service = new Guest2Service();
             tourService.Subscribe(this);
-            guide = g;
-            ScheduledTours = new ObservableCollection<Tour>(tourService.GetScheduledTours(guide.Id));
+            Guide = guide;
+            ScheduledTours = new ObservableCollection<Tour>(tourService.GetToursByStateAndGuideId(TourState.Inactive,Guide.Id));
             SelectedTour = new Tour();
         }
 
         private void CancelTour_Click(object sender, RoutedEventArgs e)
         {
-
             SelectedTour = ((FrameworkElement)sender).DataContext as Tour;
-            if (tourService.StartsInLessThan48Hours(SelectedTour))
+            if ((SelectedTour.StartOfTheTour - DateTime.Now).TotalHours < 48)
             {
                 MessageBox.Show("Tura pocinje za manje od 48 sati i ne moze se otkazati!");
                 return;
             }
-
             MessageBoxResult answer = MessageBox.Show("Da li ste sigurni da zelite da otkazete turu?", "", MessageBoxButton.YesNo);
             if (answer == MessageBoxResult.Yes)
-            {
-                
+            {               
                 SelectedTour = ((FrameworkElement)sender).DataContext as Tour;
-                SelectedTour.State = TourState.Cancelled;
-                List<int> guestIds = reservationTourService.FindTourGuestIds(SelectedTour.Id);
+                tourService.UpdateTourState(SelectedTour,TourState.Cancelled);
+                List<int> guestIds = reservationTourService.GetGuestIdsByStateAndTourId(SelectedTour,Guest2State.InactiveTour);
                 if (guestIds.Count > 0)
                 {
-                    foreach (int guest2Id in guestIds)
-                    {
-                        guest2Controller.GiveVoucher(guest2Id);
-                    }
+                    guestIds.ForEach(id => guest2Service.GiveVoucher(id));
                 }
-                tourService.Update(SelectedTour);
             }
         }
-
         public void Update()
         {
             ScheduledTours.Clear();
-            foreach (var tour in tourService.GetScheduledTours(guide.Id))
+            foreach (var tour in tourService.GetToursByStateAndGuideId(TourState.Inactive, Guide.Id))
             {
                 ScheduledTours.Add(tour);
             }
