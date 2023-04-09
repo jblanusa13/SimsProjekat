@@ -17,8 +17,8 @@
         </Grid.RowDefinitions>
         <Label Content="Ture na kojima ste prisustvovali a niste ih ocjenili:" Grid.Row="1" Margin="50,0,234,0" VerticalAlignment="Center" Height="80" FontSize="40" />
 
-        <DataGrid Grid.Row="2" ItemsSource="{Binding ListTour}"
-                      SelectedItem="{Binding Path=SelectedTour}" SelectionMode="Single"
+        <DataGrid Grid.Row="2" ItemsSource="{Binding ListTour, UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding Path=SelectedTour, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single"
                       IsReadOnly="True" AutoGenerateColumns="False" Margin="128,0,234,149">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" Width="220"/>

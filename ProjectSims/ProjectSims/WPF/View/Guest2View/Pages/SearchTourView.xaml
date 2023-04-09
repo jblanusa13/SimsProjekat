@@ -55,7 +55,7 @@
         </Grid>
 
         <Grid Grid.Row="4" Grid.Column="1">
-            <Button Content="Vidi vise detalja o ture i izvrsi rezervaciju" FontSize="18" Click="See_More_Click" Margin="682,10,78,25"/>
+            <Button Content="Vidi vise detalja o turi i izvrsi rezervaciju" FontSize="18" Click="See_More_Click" Margin="682,10,78,25"/>
         </Grid>
 
     </Grid>

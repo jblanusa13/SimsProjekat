@@ -55,11 +55,11 @@ namespace ProjectSims.WPF.View.Guest2View
             {
                 SelectedVoucher.Used = true;
                 voucherRepository.Update(SelectedVoucher);
-                reservation = new ReservationTour(tour.Id, numberGuests, guest2.Id, -1, true);
+                reservation = new ReservationTour(tour.Id, numberGuests, guest2.Id, -1, true, false);
             }
             else
             {
-                reservation = new ReservationTour(tour.Id, numberGuests, guest2.Id, -1, false);
+                reservation = new ReservationTour(tour.Id, numberGuests, guest2.Id, -1, false, false);
             }
             reservationTourService.Create(reservation);
             tour.AvailableSeats -= numberGuests;

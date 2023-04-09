@@ -16,13 +16,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ProjectSims.Observer;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace ProjectSims.WPF.View.Guest2View.Pages
 {
     /// <summary>
     /// Interaction logic for FinishedToursView.xaml
     /// </summary>
-    public partial class FinishedToursView : Page
+    public partial class FinishedToursView : Page, IObserver
     {
         private TourService tourService;
         private ReservationTourService reservationTourService;
@@ -37,10 +40,9 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
             DataContext = this;
             guest2 = g;
             tourService = new TourService();
+            tourService.Subscribe(this);
             reservationTourService = new ReservationTourService();
-
-            
-
+            reservationTourService.Subscribe(this);
             ListTour = new ObservableCollection<Tour>(GetToursWhichFinishedWhereGuestPresent());
         }
 
@@ -62,13 +64,25 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
         {
             if (SelectedTour != null)
             {
-                var ratingTourWindow = new RatingTourView(SelectedTour,guest2);
+                var ratingTourWindow = new RatingTourView(SelectedTour,guest2,reservationTourService);
                 ratingTourWindow.Show();
             }
             else
             {
                 MessageBox.Show("You must select a tour for rating!");
             }
+        }
+        private void UpdateListTour()
+        {
+            ListTour.Clear();
+            foreach (var tour in GetToursWhichFinishedWhereGuestPresent())
+            {
+                ListTour.Add(tour);
+            }
+        }
+        public void Update()
+        {
+            UpdateListTour();
         }
     }
 }
