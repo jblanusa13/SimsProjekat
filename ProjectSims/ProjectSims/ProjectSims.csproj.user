@@ -5,6 +5,9 @@
     <Compile Update="WPF\View\Guest1View\MyRequests.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WPF\View\Guest2View\Guest2TrackingTourView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\Guest2View\Pages\FinishedToursView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -53,6 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="WPF\View\Guest1View\MyRequests.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest2View\Guest2TrackingTourView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\Guest2View\Pages\FinishedToursView.xaml">
