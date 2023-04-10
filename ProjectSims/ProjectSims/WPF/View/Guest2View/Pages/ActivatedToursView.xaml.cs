@@ -58,7 +58,7 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
         {
             if (SelectedTour != null)
             {
-                var ratingTourWindow = new Guest2TrackingTourView();
+                var ratingTourWindow = new Guest2TrackingTourView(SelectedTour);
                 ratingTourWindow.Show();
             }
             else

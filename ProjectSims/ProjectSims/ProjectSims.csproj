@@ -16,6 +16,7 @@
     <None Remove="Resources\Images\Guest2\download.jpg" />
     <None Remove="Resources\Images\Guest2\images.jpg" />
     <None Remove="Resources\Images\Guest2\park-kalemegdan-1184267749.jpg" />
+    <None Remove="Resources\Images\Guest2\travel-tour-logo.png" />
     <None Remove="Resources\Images\guests.png" />
     <None Remove="Resources\Images\home.png" />
     <None Remove="Resources\Images\leftarrow.png" />
@@ -40,6 +41,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guest2\icons8-male-user-48.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest2\travel-tour-logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Guide\background.jpg">
