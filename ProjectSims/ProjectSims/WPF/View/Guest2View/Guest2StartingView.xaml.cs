@@ -70,9 +70,14 @@ namespace ProjectSims.View.Guest2View
             ChangeTab(1);
         }
 
-        private void ButtonShowVouchers(object sender, RoutedEventArgs e)
+        private void ButtonShowActiveTour(object sender, RoutedEventArgs e)
         {
             ChangeTab(2);
+        }
+
+        private void ButtonShowVouchers(object sender, RoutedEventArgs e)
+        {
+            ChangeTab(3);
         }
 
         public void ChangeTab(int tabNum)
@@ -90,6 +95,11 @@ namespace ProjectSims.View.Guest2View
                         break;
                     }
                 case 2:
+                    {
+                        SelectedTab.Content = new ActivatedToursView(guest2);
+                        break;
+                    }
+                case 3:
                     {
                         SelectedTab.Content = new ShowVouchersView(guest2);
                         break;
