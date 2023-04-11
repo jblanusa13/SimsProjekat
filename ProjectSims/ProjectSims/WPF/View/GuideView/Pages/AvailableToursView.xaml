@@ -29,7 +29,7 @@
                         <GridViewColumn Header="Zapocni" Width="270">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Height="20" Width="20" Background="Transparent" Click="StartTour_Click">
+                                    <Button Name="StartButton" Height="20" Width="20" Background="Transparent" Click="StartTour_Click">
                                         <Image Source="/Resources/Icons/Guide/start.png"/>
                                     </Button>
                                 </DataTemplate>

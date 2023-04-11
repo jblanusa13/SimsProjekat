@@ -14,13 +14,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ProjectSims.Service;
+using ProjectSims.Observer;
 
 namespace ProjectSims.View.GuideView
 {
     /// <summary>
     /// Interaction logic for GuideStartingView.xaml
     /// </summary>
-    public partial class GuideStartingView : Window
+    public partial class GuideStartingView : Window, IObserver
     {
         public TourService tourService { get; set; }
         public Guide Guide { get; set; }
@@ -31,6 +32,7 @@ namespace ProjectSims.View.GuideView
             tourService = new TourService();
             Guide = g;
             ActiveTour = tourService.GetTourByStateAndGuideId(TourState.Active, Guide.Id);
+
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -49,12 +51,12 @@ namespace ProjectSims.View.GuideView
         }
         private void TrackTour_Click(object sender, RoutedEventArgs e)
         {
-            ActiveTour = tourService.GetTourByStateAndGuideId(TourState.Active, Guide.Id);
+            //ActiveTour = tourService.GetTourByStateAndGuideId(TourState.Active, Guide.Id);
             if (ActiveTour != null)
             {
                 Page tourTrackingPage = new TourTrackingView(ActiveTour,Guide);
                 GuideFrame.Content = tourTrackingPage;
-            }    
+            }
         }
         private void AvailableTours_Click(object sender, RoutedEventArgs e)
         {
@@ -63,13 +65,17 @@ namespace ProjectSims.View.GuideView
         }
         private void CreateTour_Click(object sender, RoutedEventArgs e)
         {
-            Page createTourView = new CreateTourView(Guide);
-            GuideFrame.Content = createTourView;
+            Page createTourPage = new CreateTourView(Guide);
+            GuideFrame.Content = createTourPage;
         }
         private void ScheduledTours_Click(object sender, RoutedEventArgs e)
         {
             Page scheduledToursView = new ScheduledToursView(Guide);
             GuideFrame.Content = scheduledToursView;
+        }
+        public void Update()
+        {
+            ActiveTour = tourService.GetTourByStateAndGuideId(TourState.Active, Guide.Id);
         }
     }
 }

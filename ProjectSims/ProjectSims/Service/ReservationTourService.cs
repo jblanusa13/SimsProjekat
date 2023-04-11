@@ -62,7 +62,7 @@ namespace ProjectSims.Service
             }
             Update(reservation);
         }
-        public int GetTourIdWhereGuestIsWaiting(Guest2 guest)
+        public ReservationTour GetTourIdWhereGuestIsWaiting(Guest2 guest)
         {
             return reservations.GetTourIdWhereGuestIsWaiting(guest);
         }

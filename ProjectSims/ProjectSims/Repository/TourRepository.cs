@@ -42,7 +42,7 @@ namespace ProjectSims.Repository
         {
             tours.Remove(tour);
             tourFile.Save(tours);
-            NotifyObservers() ;
+            NotifyObservers();
         }
         public void Update(Tour tour)
         {

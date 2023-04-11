@@ -82,10 +82,7 @@ namespace ProjectSims.Service
         public void UpdateTourState(Tour tour,TourState state)
         {
             tour.State = state;
-            if(state == TourState.Active)
-                tour.ActiveKeyPointId = tour.KeyPointIds.First();
-            else
-                tour.ActiveKeyPointId = -1;
+            tour.ActiveKeyPointId = (state == TourState.Active) ? tour.KeyPointIds.First() : -1;
             Update(tour);         
         }     
         public void UpdateActiveKeyPoint(Tour tour,int keyPointId)

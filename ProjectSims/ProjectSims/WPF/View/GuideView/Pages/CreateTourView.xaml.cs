@@ -315,7 +315,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 {
                     _controller.Create(guide.Id, TourName, Location, Description, TourLanguage, MaxNumberGuests, StartKeyPoint, FinishKeyPoint, OtherKeyPoints, TourStart, Duration, Images);
                 }
-               // Close();
+                this.NavigationService.GoBack();
             }
             else
                 MessageBox.Show("Nisu validno popunjena polja!");

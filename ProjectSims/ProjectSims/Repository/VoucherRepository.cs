@@ -56,7 +56,6 @@ namespace ProjectSims.Repository
         {
             return vouchers;
         }
-
         public Voucher GetVoucherById(int id)
         {
             return vouchers.Find(v => v.Id == id);
@@ -68,7 +67,6 @@ namespace ProjectSims.Repository
             {
                 vouchers.Add(GetVoucherById(id));
             }
-
             return vouchers;
         }
         public List<Voucher> GetActiveVouchersWithIds(List<int> ids)
@@ -81,10 +79,8 @@ namespace ProjectSims.Repository
                     vouchers.Add(voucher);
                 }
             }
-
             return vouchers;
         }
-
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);

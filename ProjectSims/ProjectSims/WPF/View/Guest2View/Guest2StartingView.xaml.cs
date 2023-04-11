@@ -37,9 +37,9 @@ namespace ProjectSims.View.Guest2View
             reservationTourService = new ReservationTourService();
             tourService = new TourService();
 
-            int tourId = reservationTourService.GetTourIdWhereGuestIsWaiting(guest2);
-            if (tourId != null)
+            if (reservationTourService.GetTourIdWhereGuestIsWaiting(guest2) != null)
             {
+                int tourId = reservationTourService.GetTourIdWhereGuestIsWaiting(guest2).TourId;
                 Tour tour = tourService.GetTourById(tourId);
                 MessageBoxResult answer = MessageBox.Show("Da li ste prisutni na turi " + tour.Name + "?", "", MessageBoxButton.YesNo);
                 if (answer == MessageBoxResult.Yes)

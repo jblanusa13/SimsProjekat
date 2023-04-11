@@ -41,15 +41,22 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             tourService.Subscribe(this);
             reservationService = new ReservationTourService();
             Guide = g;
-            TodayTours = new ObservableCollection<Tour>(tourService.GetTodayTours(Guide.Id));
+            TodayTours = new ObservableCollection<Tour>(tourService.GetTodayTours(Guide.Id));          
         }
         private void StartTour_Click(object sender, RoutedEventArgs e)
         {
-            SelectedTour = ((FrameworkElement)sender).DataContext as Tour;
-            tourService.UpdateTourState(SelectedTour, TourState.Active);
-            reservationService.UpdateGuestsState(SelectedTour,Guest2State.ActiveTour);
-            Page tourTrackingView = new TourTrackingView(SelectedTour, Guide);
-            
+            if(tourService.GetTourByStateAndGuideId(TourState.Active,Guide.Id) == null)
+            {
+                SelectedTour = ((FrameworkElement)sender).DataContext as Tour;
+                tourService.UpdateTourState(SelectedTour, TourState.Active);
+                reservationService.UpdateGuestsState(SelectedTour, Guest2State.ActiveTour);
+                this.NavigationService.Navigate(new TourTrackingView(SelectedTour, Guide));
+            }
+            else
+            {
+                MessageBox.Show("Vec postoji aktivna tura!");
+            }
+           
         }
         private void UpdateAvailableTours()
         {
