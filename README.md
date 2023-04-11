@@ -3,14 +3,14 @@ Grupa 4, Tim C:
 Vlasnik - Marina Kicanovic
   Korisnici za logovanje:
     Username    Password
-    Marina      marina123
+    m           m
     Marija      marija123
     Nikola      nikola123
     Bojan       bojan123
 Gost 1 - Jelene Blanusa
   Korisnici za logovanje:
     Username    Password
-    Jelena      jelena123
+    jelena      j
     Sara        sara123
     Luka        luka123
     Nikolina    nikolina123

@@ -1,0 +1,21 @@
+﻿<Window x:Class="ProjectSims.View.GuideView.GuideStartingView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectSims.View.GuideView"
+        mc:Ignorable="d"
+        Title="Guide Starting View" Height="700" Width="1000" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/Images/Guide/background.jpg" Opacity="0.7"/>
+        </Grid.Background>
+        <StackPanel Margin="0,20,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="100" Width="1000" Orientation="Horizontal">
+            <Button Click ="CreateTour_Click" Content="Kreiraj turu" Height="100" Width="190" Background="Transparent" BorderBrush="#050A30" BorderThickness="10" Foreground="#050A30" FontSize="30" FontWeight="UltraBold" />
+            <Button Click ="TrackTour_Click" Content="Prati turu" Height="100" Width="190" Background="Transparent" BorderBrush="#050A30" BorderThickness="10" Foreground="#050A30" FontSize="30" FontWeight="UltraBold" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Button Click ="CancelTour_Click" Content="Otkazi turu" Background="Transparent" BorderBrush="#050A30" BorderThickness="10" Foreground="#050A30" FontSize="30" FontWeight="UltraBold" Margin="5,0,0,0"/>
+            <Button Click ="Statistics_Click" Content="Statistika" Background="Transparent" BorderBrush="#050A30" BorderThickness="10" Foreground="#050A30" FontSize="30" FontWeight="UltraBold" Margin="5,0,0,0"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

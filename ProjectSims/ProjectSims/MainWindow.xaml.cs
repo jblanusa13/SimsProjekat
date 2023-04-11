@@ -1,10 +1,15 @@
-﻿using ProjectSims.Controller;
+﻿using ProjectSims.Service;
 using ProjectSims.FileHandler;
-using ProjectSims.Model;
+using ProjectSims.Domain.Model;
 using ProjectSims.View;
+using ProjectSims.View.Guest1View;
+using ProjectSims.View.Guest2View;
+using ProjectSims.View.GuideView;
+using ProjectSims.View.OwnerView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,6 +29,7 @@ namespace ProjectSims
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static int CurrentUserId { get; set; }
         private readonly UserFileHandler userFile;
 
         private readonly OwnerFileHandler ownerFile;
@@ -50,8 +56,10 @@ namespace ProjectSims
                     Owner owner = ownerFile.GetByUserId(user.Id);
                     if(owner != null)
                     {
-                        OwnerView ownerView = new OwnerView();
+                        CurrentUserId = owner.UserId;
+                        OwnerView ownerView = new OwnerView(owner);
                         ownerView.Show();
+                        Close();
                     }
 
                     Guest1 guest1 = guest1File.GetByUserId(user.Id);
@@ -59,19 +67,20 @@ namespace ProjectSims
                     {
                         Guest1View guest1View = new Guest1View(guest1);
                         guest1View.Show();
+                        Close();
                     }
 
                     Guide guide = guideFile.GetByUserId(user.Id);
                     if(guide!= null)
                     {
-                        GuideStartingView startingView = new GuideStartingView();
+                        GuideStartingView startingView = new GuideStartingView(guide);
                         startingView.Show();
                     }
 
                     Guest2 guest2 = guest2File.GetByUserId(user.Id);
                     if(guest2 != null)
                     {
-                        SearchTourView guest2View = new SearchTourView(guest2);
+                        Guest2StartingView guest2View = new Guest2StartingView(guest2);
                         guest2View.Show();
                         Close();
                     }

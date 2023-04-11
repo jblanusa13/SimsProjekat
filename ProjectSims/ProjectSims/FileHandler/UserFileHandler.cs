@@ -1,4 +1,4 @@
-﻿using ProjectSims.Model;
+﻿using ProjectSims.Domain.Model;
 using ProjectSims.Serializer;
 using System;
 using System.Collections.Generic;
@@ -19,7 +19,17 @@ namespace ProjectSims.FileHandler
         public UserFileHandler()
         {
             _serializer = new Serializer<User>();
-            users = _serializer.FromCSV(FilePath);
+            //users = _serializer.FromCSV(FilePath);
+        }
+
+        public List<User> Load()
+        {
+            return _serializer.FromCSV(FilePath);
+        }
+
+        public void Save(List<User> users)
+        {
+            _serializer.ToCSV(FilePath, users);
         }
 
         public User GetByUsername(string username)

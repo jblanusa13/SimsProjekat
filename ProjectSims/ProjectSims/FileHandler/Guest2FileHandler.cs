@@ -1,4 +1,4 @@
-﻿using ProjectSims.Model;
+﻿using ProjectSims.Domain.Model;
 using ProjectSims.Serializer;
 using System;
 using System.Collections.Generic;
