@@ -12,7 +12,9 @@ namespace ProjectSims.Repository
     class AccommodationRepository : ISubject
     {
         private AccommodationFileHandler _accommodationFileHandler;
+        private LocationFileHandler _locationFileHandler;
         private List<Accommodation> _accommodations;
+        private List<Location> _locations;
         private readonly OwnerFileHandler _ownerFileHandler;
         private readonly List<Owner> _owners;
         private List<IObserver> _observers;
@@ -23,7 +25,14 @@ namespace ProjectSims.Repository
         {
             _accommodationFileHandler = new AccommodationFileHandler();
             _accommodations = _accommodationFileHandler.Load();
+            _locationFileHandler = new LocationFileHandler();
+            _locations = _locationFileHandler.Load();
             _observers = new List<IObserver>();
+        }
+
+        public Accommodation Get(int id)
+        {
+            return _accommodations.Find(a => a.Id == id);
         }
 
         public int NextId()
@@ -57,6 +66,11 @@ namespace ProjectSims.Repository
             NotifyObservers();
         }
 
+       // public Location FindLocationById(int id)
+        //{
+          //  return _locations.Find(l => l.Id == id);
+        //}
+
 
         public List<Accommodation> GetAll()
         {
@@ -80,18 +94,53 @@ namespace ProjectSims.Repository
                 observer.Update();
             }
         }
-        public void ConnectAccommodationWithOwner() 
+        public int NextLocationId() 
         {
-            foreach (Accommodation accommodation in _accommodations)
+            return _locations.Max(l => l.Id) + 1; 
+        }
+        
+        public int Add(string location) 
+        {
+            int id = -1;
+            if (!ExistLocation(location)) 
             {
-                Owner owner = OwnerDao.FindById(accommodation.IdOwner);
-                if (owner != null) 
+                id = NextLocationId();
+                Location loc = new Location(id, location.Split(",")[0], location.Split(",")[1]);
+                _locations.Add(loc);
+                _locationFileHandler.Save(_locations);
+                NotifyObservers();
+            }
+            return id;
+        }
+        
+        public bool ExistLocation(string location)
+        {
+            string city = location.Split(",")[0];
+            string country = location.Split(",")[1];
+
+            foreach (Location l in _locations)
+            {
+                if (city == l.City && country == l.Country)
                 {
-                    owner.OwnersAccommodations.Add(accommodation);
-                    accommodation.Owner = owner;
+                    return true;
                 }
             }
+            return false;
         }
 
-    }
+        public int GetLocationId(string location) 
+        {
+            string city = location.Split(",")[0];
+            string country = location.Split(",")[1];
+
+            foreach (Location l in _locations)
+            {
+                if (city == l.City && country == l.Country)
+                {
+                    return l.Id;
+                }
+            }
+            return -1;
+        }
+    }   
 }

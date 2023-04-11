@@ -19,6 +19,7 @@ using System.Windows.Interop;
 using ProjectSims.Service;
 using System.Collections.ObjectModel;
 using ProjectSims.Observer;
+using ProjectSims.WPF.View.Guest2View;
 
 namespace ProjectSims.View.Guest2View
 {
@@ -29,7 +30,7 @@ namespace ProjectSims.View.Guest2View
     {
         private TourService tourService;
 
-        private ReservationTourService reservationController;
+        private ReservationTourService reservationService;
 
         private KeyPointService keyPointService;
         public Tour tour { get; set; }
@@ -45,14 +46,14 @@ namespace ProjectSims.View.Guest2View
             tour = tourSelected;
             guest2 = g;
             keyPointService = new KeyPointService();
-            
+
             NameTextBox.Text = tourSelected.Name;
             LocationTextBox.Text = tourSelected.Location;
             DescriptionTextBox.Text = tourSelected.Description;
             LanguageTextBox.Text = tourSelected.Language;
             MaxGuestsTextBox.Text = tourSelected.MaxNumberGuests.ToString();
 
-            foreach(int id in tourSelected.KeyPointIds) 
+            foreach (int id in tourSelected.KeyPointIds)
             {
                 if (id.Equals(tourSelected.KeyPointIds.Last()))
                 {
@@ -92,46 +93,56 @@ namespace ProjectSims.View.Guest2View
                     ImageList.Items.Add("The format of the URL could not be determined.");
                 }
             }
-            tourService = new TourService();
-            TourList = new ObservableCollection<Tour>(tourService.GetAllToursWithSameLocation(tourSelected));
+            //kad se ubaci filepicker kod kreiranja tura i kad se u tour.csv budu cuvale relativne putanje
+            /*
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            if (Uri.IsWellFormedUriString(@"/Resources/Images/Guide/slika.jpg", UriKind.RelativeOrAbsolute))
+            {
+                bitmap.UriSource = new Uri(@"../../../Resources/Images/Guide/slika.jpg", UriKind.RelativeOrAbsolute);
+                bitmap.EndInit();
 
+                image = new Image();
+
+                image.Source = bitmap;
+
+                image.Width = 350;
+                image.Height = 200;
+
+                ImageList.Items.Add(image);
+            }
+            else
+            {
+                ImageList.Items.Add("The format of the URL could not be determined.");
+            }
+            */
+            tourService = new TourService();
+            reservationService = new ReservationTourService();
+            TourList = new ObservableCollection<Tour>(tourService.GetAllToursWithSameLocation(tourSelected));
         }
 
         private void Reservation_Click(object sender, RoutedEventArgs e)
         {
-            uint numberGuests;
-            reservationController = new ReservationTourService();
-            tourService = new TourService();
-
-            if (!uint.TryParse(NumberGuestsTextBox.Text, out numberGuests))
+            if (tour.State != 0)
             {
-                MessageBox.Show("Wrong input! Number people on tour must be a positive number!");
+                MessageBox.Show("Za turu koju ste odabrali ne mozete izvrisiti rezervaciju jer je zapoceta,zavrsena ili otkazna!");
                 return;
             }
-
-            if(numberGuests == 0)
-            {
-                MessageBox.Show("Wrong input! Number people on tour can't be a zero!");
-                return;
-            }
+            int numberGuests = CheckNumberGuestTextBox(NumberGuestsTextBox.Text);
+            if (numberGuests == -1) return;
 
             MessageReservationBox.Text = "";
             if (numberGuests > tour.AvailableSeats)
             {
-                MessageReservationBox.Text = "There are no available seats on this tour for the entered number of people. \nThe number of available seats is " + tour.AvailableSeats + "!";
+                MessageReservationBox.Text = "There are no available seats on this tour for the entered number of people. " +
+                    "\nThe number of available seats is " + tour.AvailableSeats + "!";
             }
             else 
             {
-                ReservationTour reservation = new ReservationTour(tour.Id, (int)numberGuests, guest2.Id,-1);
-                reservationController.Create(reservation);
-                tour.AvailableSeats -= (int)numberGuests;
-                tourService.Update(tour);
-                MessageBox.Show("Reservation successful! \nUser " + guest2.Name + " " + guest2.Surname + 
-                    " has made a reservation for " + numberGuests.ToString() + " people on the tour " + tour.Name + ".");
-                NumberGuestsTextBox.Clear();
-                return;
-            }
+                var useVoucherView = new UseVoucherView(guest2,tour,(int)numberGuests);
+                useVoucherView.Show();
 
+            }
             if (tour.AvailableSeats == 0)
             {
                 AlternativeTextBlock.Text = "The selected tour is fully booked, some of the alternative tours are:";
@@ -139,6 +150,11 @@ namespace ProjectSims.View.Guest2View
 
                 if (SelectedTour != null)
                 {
+                    if (SelectedTour.State != 0)
+                    {
+                        MessageBox.Show("Za turu koju ste odabrali ne mozete izvrisiti rezervaciju jer je zapoceta,zavrsena ili otkazna!");
+                        return;
+                    }
                     MessageBlock.Text = "";
                     if (numberGuests > SelectedTour.AvailableSeats)
                     {
@@ -146,18 +162,30 @@ namespace ProjectSims.View.Guest2View
                     }
                     else
                     {
-                        ReservationTour reservationAlternative = new ReservationTour(SelectedTour.Id, (int)numberGuests, guest2.Id,-1);
-                        reservationController.Create(reservationAlternative);
-                        SelectedTour.AvailableSeats -= (int)numberGuests;
-                        tourService.Update(SelectedTour);
-                        MessageBox.Show("Reservation successful! \nUser " + guest2.Name + " " + guest2.Surname +
-                                 " has made a reservation for " + numberGuests.ToString() + " people on the tour " + SelectedTour.Name + ".");
-                        NumberGuestsTextBox.Clear();
-                        return;
+                        var useVoucherView = new UseVoucherView(guest2, SelectedTour,(int)numberGuests);
+                        useVoucherView.Show();
                     }
                 }
             }
 
+        }
+
+        private int CheckNumberGuestTextBox(string text)
+        {
+            uint numberGuests;
+
+            if (!uint.TryParse(text, out numberGuests))
+            {
+                MessageBox.Show("Wrong input! Number people on tour must be a positive number!");
+                return -1;
+            }
+
+            if (numberGuests == 0)
+            {
+                MessageBox.Show("Wrong input! Number people on tour can't be a zero!");
+                return -1;
+            }
+            return (int)numberGuests;
         }
 
     }

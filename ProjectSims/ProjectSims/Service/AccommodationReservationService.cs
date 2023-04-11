@@ -6,45 +6,50 @@ using System.Threading.Tasks;
 using ProjectSims.Domain.Model;
 using ProjectSims.Repository;
 using ProjectSims.Observer;
+using ProjectSims.FileHandler;
 
 namespace ProjectSims.Service
 {
     public class AccommodationReservationService
     {
-        private AccommodationReservationRepository reservations;
+        private AccommodationReservationRepository reservationRepository;
+        private List<AccommodationReservation> reservations;
+
         public AccommodationReservationService()
         {
-            reservations = new AccommodationReservationRepository();
+            reservationRepository = new AccommodationReservationRepository();
+            reservations = reservationRepository.GetAll();
         }
 
-        public Guest1 GetGuestByUsername(string username)
+        public AccommodationReservation GetReservation(int id)
         {
-            return reservations.GetGuestByUsername(username);
+            return reservationRepository.Get(id);
         }
 
-        public User GetUser(int userId)
+        public List<AccommodationReservation> GetReservationByGuest(int guestId)
         {
-            return reservations.GetUser(userId);
+            return reservationRepository.GetByGuest(guestId);
         }
-
-        public List<AccommodationReservation> GetAllReservations()
+ 
+        public int NextId()
         {
-            return reservations.GetAll();
+            return reservations.Max(r => r.Id) + 1;
         }
-
-        public List<DateRanges> FindAvailableDates(DateOnly firstDate, DateOnly lastDate, int daysNumber, int accommodationId)
-        {
-             return reservations.FindAvailableDates(firstDate, lastDate, daysNumber, accommodationId);
-        }
-
         public void CreateReservation(int accommodationId, int guestId, DateOnly checkIn, DateOnly checkOut, int guestNumber)
         {
-            reservations.Add(accommodationId, guestId, checkIn, checkOut, guestNumber);
+            int id = NextId();
+            AccommodationReservation reservation = new AccommodationReservation(id, accommodationId, guestId, checkIn, checkOut, guestNumber);
+            reservationRepository.Add(reservation);
+        }
+
+        public void RemoveReservation(AccommodationReservation reservation)
+        {
+            reservationRepository.Remove(reservation);
         }
 
         public void Subscribe(IObserver observer)
         {
-            reservations.Subscribe(observer);
+            reservationRepository.Subscribe(observer);
         }
     }
 }

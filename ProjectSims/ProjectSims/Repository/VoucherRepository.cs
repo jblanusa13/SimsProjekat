@@ -56,6 +56,35 @@ namespace ProjectSims.Repository
         {
             return vouchers;
         }
+
+        public Voucher GetVoucherById(int id)
+        {
+            return vouchers.Find(v => v.Id == id);
+        }
+        public List<Voucher> GetVouchersWithIds(List<int> ids)
+        {
+            List<Voucher> vouchers = new List<Voucher>();
+            foreach (int id in ids)
+            {
+                vouchers.Add(GetVoucherById(id));
+            }
+
+            return vouchers;
+        }
+        public List<Voucher> GetActiveVouchersWithIds(List<int> ids)
+        {
+            List<Voucher> vouchers = new List<Voucher>();
+            foreach (int id in ids)
+            {
+                Voucher voucher = GetVoucherById(id);
+                if (voucher.Used == false) {
+                    vouchers.Add(voucher);
+                }
+            }
+
+            return vouchers;
+        }
+
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);

@@ -24,9 +24,9 @@ namespace ProjectSims.View.Guest1View
     /// <summary>
     /// Interaction logic for AccommodationReservationView.xaml
     /// </summary>
-    public partial class AccommodationReservationView : Window, INotifyPropertyChanged, IObserver, IDataErrorInfo
+    public partial class AccommodationReservationView : Window, INotifyPropertyChanged, IObserver
     {
-        private int _accommodationId;
+        private int accommodationId;
 
         private string _accommodationName;
         public string AccommodationName
@@ -41,22 +41,36 @@ namespace ProjectSims.View.Guest1View
                 }
             }
         }
-        private string _location;
-        public string Location
+        private string _city;
+        public string City
         {
-            get => _location;
+            get => _city;
             set
             {
-                if (value != _location)
+                if (value != _city)
                 {
-                    _location = value;
+                    _city = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private string _type;
-        public string Type
+        private string _country;
+        public string Country
+        {
+            get => _country;
+            set
+            {
+                if (value != _country)
+                {
+                    _country = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private AccommodationType _type;
+        public AccommodationType Type
         {
             get => _type;
             set
@@ -69,8 +83,8 @@ namespace ProjectSims.View.Guest1View
             }
         }
 
-        private string _maxGuests;
-        public string MaxGuests
+        private int _maxGuests;
+        public int MaxGuests
         {
             get => _maxGuests;
             set
@@ -83,8 +97,8 @@ namespace ProjectSims.View.Guest1View
             }
         }
 
-        private string _minDays;
-        public string MinDays
+        private int _minDays;
+        public int MinDays
         {
             get => _minDays;
             set
@@ -111,8 +125,8 @@ namespace ProjectSims.View.Guest1View
             }
         }
 
-        private string _firstDate;
-        public string FirstDate
+        private DateOnly _firstDate;
+        public DateOnly FirstDate
         {
             get => _firstDate;
             set
@@ -125,8 +139,8 @@ namespace ProjectSims.View.Guest1View
             }
         }
 
-        private string _lastDate;
-        public string LastDate
+        private DateOnly _lastDate;
+        public DateOnly LastDate
         {
             get => _lastDate;
             set
@@ -139,8 +153,8 @@ namespace ProjectSims.View.Guest1View
             }
         }
 
-        private string _guestNumber;
-        public string GuestNumber
+        private int _guestNumber;
+        public int GuestNumber
         {
             get => _guestNumber;
             set
@@ -153,8 +167,8 @@ namespace ProjectSims.View.Guest1View
             }
         }
 
-        private string _daysNumber;
-        public string DaysNumber
+        private int _daysNumber;
+        public int DaysNumber
         {
             get => _daysNumber;
             set
@@ -169,33 +183,35 @@ namespace ProjectSims.View.Guest1View
 
         
         public ObservableCollection<DateRanges> AvailableDates { get; set; }
+
         public DateRanges SelectedDates;
 
-        private AccommodationReservationService _reservationController;
+        private AccommodationReservationService reservationService;
 
-        private Guest1 _guest;
+        private Guest1 guest;
 
         public AccommodationReservationView(Accommodation SelectedAccommodation, Guest1 guest)
         {
             InitializeComponent();
             DataContext = this;
 
-            _guest = guest;
+            this.guest = guest;
 
-            _reservationController = new AccommodationReservationService();
-            _reservationController.Subscribe(this);
+            reservationService = new AccommodationReservationService();
+            reservationService.Subscribe(this);
 
-            _accommodationId = SelectedAccommodation.Id;
+            accommodationId = SelectedAccommodation.Id;
             AccommodationName = SelectedAccommodation.Name;
-            Location = SelectedAccommodation.Location;
-            Type = SelectedAccommodation.Type.ToString();
-            MaxGuests = SelectedAccommodation.GuestsMaximum.ToString();
-            MinDays = SelectedAccommodation.MinimumReservationDays.ToString();
+            City = SelectedAccommodation.Location.City;
+            Country = SelectedAccommodation.Location.Country;
+            Type = SelectedAccommodation.Type;
+            MaxGuests = SelectedAccommodation.GuestsMaximum;
+            MinDays = SelectedAccommodation.MinimumReservationDays;
 
-            User user = _reservationController.GetUser(_guest.UserId);
-            Username = user.Username;
+            Username = guest.User.Username;
 
             AvailableDates = new ObservableCollection<DateRanges>();
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -207,15 +223,17 @@ namespace ProjectSims.View.Guest1View
 
         private void FindDates_Click(object sender, RoutedEventArgs e)
         {
-            if(!string.IsNullOrEmpty(TexboxFirstDate.Text) && !string.IsNullOrEmpty(TexboxLastDate.Text) && !string.IsNullOrEmpty(TexboxDaysNumber.Text))
+            DateRangesService dateRangesService = new DateRangesService();
+
+            if(!string.IsNullOrEmpty(TextboxFirstDate.Text) && !string.IsNullOrEmpty(TexboxLastDate.Text) && !string.IsNullOrEmpty(TexboxDaysNumber.Text))
             {
                 List<DateRanges> availableDates = new List<DateRanges>();
-                availableDates = _reservationController.FindAvailableDates(DateOnly.Parse(TexboxFirstDate.Text), DateOnly.Parse(TexboxLastDate.Text), Convert.ToInt32(TexboxDaysNumber.Text), _accommodationId);
+                availableDates = dateRangesService.FindAvailableDates(DateOnly.Parse(TextboxFirstDate.Text), DateOnly.Parse(TexboxLastDate.Text), Convert.ToInt32(TexboxDaysNumber.Text), accommodationId);
 
                 AvailableDates.Clear();
                 foreach (DateRanges dateRange in availableDates)
                 {
-                 AvailableDates.Add(dateRange);
+                    AvailableDates.Add(dateRange);
                 }
             }
         }
@@ -223,12 +241,12 @@ namespace ProjectSims.View.Guest1View
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
             SelectedDates = (DateRanges)DatesTable.SelectedItem;
-            if (IsValid && SelectedDates != null)
+            if (SelectedDates != null)
             {
                 DateRanges dates = (DateRanges)DatesTable.SelectedItem;
                 int guestNumber = Convert.ToInt32(GuestNumber);
 
-                _reservationController.CreateReservation(_accommodationId, _guest.Id, dates.CheckIn, dates.CheckOut, guestNumber);
+                reservationService.CreateReservation(accommodationId, guest.Id, dates.CheckIn, dates.CheckOut, guestNumber);
                 Close();
             }
         }
@@ -238,7 +256,7 @@ namespace ProjectSims.View.Guest1View
             throw new NotImplementedException();
         }
 
-        // validation
+        /* validation
         private Regex _DateRegex = new Regex("(0?[1-9]|[12][0-9]|3[01])\\.(0?[1-9]|1[012])\\.[1-2][0-9]{3}\\.?$");
         private Regex _NumberRegex = new Regex("[1-9]+");
 
@@ -318,6 +336,6 @@ namespace ProjectSims.View.Guest1View
                 }
                 return true;
             }
-        }
+        }*/
     }
 }

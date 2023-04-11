@@ -81,5 +81,25 @@ namespace ProjectSims.Repository
         {
             return owners.Find(owner => owner.Id == id);
         }
+        public bool ExistAccommodation(Owner owner, int accommodationId) 
+        {
+            foreach (int id in owner.AccommodationIds)
+            {
+                if (id == accommodationId)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public void AddAccommodationId(Owner owner, int accommodationId)
+        {
+            if (!ExistAccommodation(owner, accommodationId))
+            {
+                owner.AccommodationIds.Add(accommodationId);
+                Update(owner);
+            }
+        }
+
     }
 }

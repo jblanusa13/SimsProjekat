@@ -57,11 +57,11 @@ namespace ProjectSims.Service
         public void GiveVoucher(int id)
         {
             Guest2 guest = guests.FindById(id);
-            int voucherId = voucherService.CreateAndReturnId();
-            guest.VoucherIds.Add(voucherId);
+            Voucher voucher = new Voucher(-1,DateTime.Now,DateTime.Now.AddYears(1),false);
+            voucherService.Create(voucher);
+            guest.VoucherIds.Add(voucher.Id);
             Update(guest);
         }
-
     }
 }
 

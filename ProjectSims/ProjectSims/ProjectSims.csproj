@@ -9,8 +9,8 @@
 
   <ItemGroup>
     <None Remove="Resources\Icons\Guest2\icons8-add-file-60.png" />
-    <None Remove="Resources\Icons\Guide\close.png" />
-    <None Remove="Resources\Icons\Guide\start.png" />
+    <None Remove="Resources\Icons\Guest2\icons8-bell-48.png" />
+    <None Remove="Resources\Icons\Guest2\icons8-male-user-48.png" />
     <None Remove="Resources\Images\background.jpg" />
     <None Remove="Resources\Images\checkmark.png" />
     <None Remove="Resources\Images\Guest2\download.jpg" />
@@ -36,10 +36,10 @@
     <Content Include="Resources\Icons\Guest2\icons8-add-file-60.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Icons\Guide\close.png">
+    <Content Include="Resources\Icons\Guest2\icons8-bell-48.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Icons\Guide\start.png">
+    <Content Include="Resources\Icons\Guest2\icons8-male-user-48.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Guide\background.jpg">
@@ -80,7 +80,6 @@
 
   <ItemGroup>
     <Folder Include="Domain\RepositoryInterface\" />
-    <Folder Include="WPF\ViewModel\" />
   </ItemGroup>
 
 </Project>

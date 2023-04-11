@@ -25,11 +25,9 @@ namespace ProjectSims.Service
         {
             return vouchers.GetAll();
         }
-        public int CreateAndReturnId()
+        public void Create(Voucher voucher)
         {
-            int id = vouchers.GetNextId();
-            vouchers.Create(new Voucher(id, DateTime.Now.AddYears(1)));
-            return id;
+            vouchers.Create(voucher);
         }
         public void Delete(Voucher voucher)
         {

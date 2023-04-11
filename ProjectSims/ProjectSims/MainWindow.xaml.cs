@@ -9,6 +9,7 @@ using ProjectSims.View.OwnerView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,6 +29,7 @@ namespace ProjectSims
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static int CurrentUserId { get; set; }
         private readonly UserFileHandler userFile;
 
         private readonly OwnerFileHandler ownerFile;
@@ -54,8 +56,10 @@ namespace ProjectSims
                     Owner owner = ownerFile.GetByUserId(user.Id);
                     if(owner != null)
                     {
-                        OwnerView ownerView = new OwnerView();
+                        CurrentUserId = owner.UserId;
+                        OwnerView ownerView = new OwnerView(owner);
                         ownerView.Show();
+                        Close();
                     }
 
                     Guest1 guest1 = guest1File.GetByUserId(user.Id);
@@ -63,6 +67,7 @@ namespace ProjectSims
                     {
                         Guest1View guest1View = new Guest1View(guest1);
                         guest1View.Show();
+                        Close();
                     }
 
                     Guide guide = guideFile.GetByUserId(user.Id);

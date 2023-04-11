@@ -5,25 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims.View.OwnerView"
         mc:Ignorable="d"
-        Title="Ocjenjivanje gosta" Height="450" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
-    <Grid Margin="25,25,25,25">
+        Title="Ocjenjivanje gosta" Height="750" Width="450" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Margin="25,25,25,25" Cursor="Arrow">
         <Label Content="Ocjenjujete gosta:" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" Height="26"/>
         <Label Content="Smjestaj u kom je odsjeo:" HorizontalAlignment="Left" Margin="20,50,0,0" VerticalAlignment="Top" Height="26"/>
         <Label Content="Tip smestaja:" HorizontalAlignment="Left" Margin="20,80,0,0" VerticalAlignment="Top" Height="26"/>
         <Label Content="Datum dolaska:" HorizontalAlignment="Left" Margin="20,110,0,0" VerticalAlignment="Top" Height="26"/>
         <Label Content="Datum odlaska:" HorizontalAlignment="Left" Margin="20,140,0,0" VerticalAlignment="Top" Height="26"/>
-        <TextBox HorizontalAlignment="Left" Margin="225,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False">
+        <TextBox HorizontalAlignment="Left" Margin="215,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False">
             <MultiBinding StringFormat="{}{0} {1}">
                 <Binding Path="FirstName"/>
                 <Binding Path="LastName"/>
             </MultiBinding>
         </TextBox>
-        <TextBox x:Name="AccommodationNameTextBox" Text="{Binding AccommodationName}" HorizontalAlignment="Left" Margin="225,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False"/>
-        <TextBox x:Name="TypeTextBox" Text="{Binding Path=Type}" HorizontalAlignment="Left" Margin="225,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False"/>
+        <TextBox x:Name="AccommodationNameTextBox" Text="{Binding AccommodationName}" HorizontalAlignment="Left" Margin="215,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False"/>
+        <TextBox x:Name="TypeTextBox" Text="{Binding Path=Type}" HorizontalAlignment="Left" Margin="215,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False"/>
         <!--<sdk:DatePicker Grid.Column="0" TabIndex="1" Padding="0" SelectedDate="{Binding EffectiveDate, Mode=TwoWay, Converter={StaticResource DateConverter}}" SelectedDateFormat="Short"/>-->
-        <TextBox x:Name="CheckInDateTextBox" HorizontalAlignment="Left" Margin="225,110,0,0" TextWrapping="Wrap" 
+        <TextBox x:Name="CheckInDateTextBox" HorizontalAlignment="Left" Margin="215,110,0,0" TextWrapping="Wrap" 
                  VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False"/>
-        <TextBox x:Name="CheckOutDateTextBox" HorizontalAlignment="Left" Margin="225,140,0,0" TextWrapping="Wrap" 
+        <TextBox x:Name="CheckOutDateTextBox" HorizontalAlignment="Left" Margin="215,140,0,0" TextWrapping="Wrap" 
                  VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False"/>
         <Label Content="Cistoca:" HorizontalAlignment="Left" Margin="20,199,0,0" VerticalAlignment="Top" Height="26"/>
         <Label Content="Postovanje pravila:" HorizontalAlignment="Left" Margin="20,229,0,0" VerticalAlignment="Top" Height="26"/>
@@ -35,35 +35,36 @@
                 <Binding Path="LastName"/>
             </MultiBinding>
         </TextBox>
-        <ComboBox HorizontalAlignment="Left" Margin="225,199,0,0" VerticalAlignment="Top" Width="183" Height="26">
+        <ComboBox HorizontalAlignment="Left" Margin="215,199,0,0" VerticalAlignment="Top" Width="183" Height="26">
             <ComboBoxItem HorizontalContentAlignment="Center">1</ComboBoxItem>
             <ComboBoxItem HorizontalContentAlignment="Center">2</ComboBoxItem>
             <ComboBoxItem HorizontalContentAlignment="Center">3</ComboBoxItem>
             <ComboBoxItem HorizontalContentAlignment="Center">4</ComboBoxItem>
             <ComboBoxItem HorizontalContentAlignment="Center">5</ComboBoxItem>
         </ComboBox>
-        <ComboBox HorizontalAlignment="Left" Margin="225,229,0,0" VerticalAlignment="Top" Width="183" Height="26">
+        <ComboBox HorizontalAlignment="Left" Margin="215,229,0,0" VerticalAlignment="Top" Width="183" Height="26">
             <ComboBoxItem HorizontalContentAlignment="Center">1</ComboBoxItem>
             <ComboBoxItem HorizontalContentAlignment="Center">2</ComboBoxItem>
             <ComboBoxItem HorizontalContentAlignment="Center">3</ComboBoxItem>
             <ComboBoxItem HorizontalContentAlignment="Center">4</ComboBoxItem>
             <ComboBoxItem HorizontalContentAlignment="Center">5</ComboBoxItem>
         </ComboBox>
-        <ComboBox HorizontalAlignment="Left" Margin="225,259,0,0" VerticalAlignment="Top" Width="183" Height="26">
+        <ComboBox HorizontalAlignment="Left" Margin="215,259,0,0" VerticalAlignment="Top" Width="183" Height="26">
             <ComboBoxItem HorizontalContentAlignment="Center">1</ComboBoxItem>
             <ComboBoxItem HorizontalContentAlignment="Center">2</ComboBoxItem>
             <ComboBoxItem HorizontalContentAlignment="Center">3</ComboBoxItem>
             <ComboBoxItem HorizontalContentAlignment="Center">4</ComboBoxItem>
             <ComboBoxItem HorizontalContentAlignment="Center">5</ComboBoxItem>
         </ComboBox>
-        <ComboBox HorizontalAlignment="Left" Margin="225,289,0,0" VerticalAlignment="Top" Width="183" Height="26">
+        <ComboBox HorizontalAlignment="Left" Margin="215,289,0,0" VerticalAlignment="Top" Width="183" Height="26">
             <ComboBoxItem HorizontalContentAlignment="Center">1</ComboBoxItem>
             <ComboBoxItem HorizontalContentAlignment="Center">2</ComboBoxItem>
             <ComboBoxItem HorizontalContentAlignment="Center">3</ComboBoxItem>
             <ComboBoxItem HorizontalContentAlignment="Center">4</ComboBoxItem>
             <ComboBoxItem HorizontalContentAlignment="Center">5</ComboBoxItem>
         </ComboBox>
+        <TextBox Text="Komentar..." Margin="18,327,0,272" Foreground="#FF6E6E6E"/>
         <Button x:Name="RateButton" Click="RateGuest_Click" Height="20" Width="100" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="Ocijeni" Margin="95,0,0,0"/>
-        <Button x:Name="CancelButton" Click="CancelRateGuest_Click" Height="20" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Content="Odustani" Margin="266,340,0,0"/>
+        <Button x:Name="CancelButton" Click="CancelRateGuest_Click" Height="20" Width="100" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Odustani" Margin="156,410,0,0"/>
     </Grid>
 </Window>

@@ -171,6 +171,20 @@ namespace ProjectSims.View.OwnerView
         private void RateGuest_Click(object sender, RoutedEventArgs e)
         {
             SelectedGuestAccommodation.Rated = true;
+            Button clickedButton = sender as Button;
+
+            if (clickedButton == null)
+                return;
+
+            if (clickedButton == RateButton)
+            {
+                SelectedGuestAccommodation.Rated = true;
+                _guestAccommodationController.Update(SelectedGuestAccommodation);
+            }
+            else if (clickedButton == CancelButton)
+            {
+
+            }
             UpdateLayout();
             this.Close();
         }
