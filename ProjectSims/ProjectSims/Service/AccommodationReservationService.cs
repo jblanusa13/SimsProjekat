@@ -38,13 +38,14 @@ namespace ProjectSims.Service
         public void CreateReservation(int accommodationId, int guestId, DateOnly checkIn, DateOnly checkOut, int guestNumber)
         {
             int id = NextId();
-            AccommodationReservation reservation = new AccommodationReservation(id, accommodationId, guestId, checkIn, checkOut, guestNumber);
+            AccommodationReservation reservation = new AccommodationReservation(id, accommodationId, guestId, checkIn, checkOut, guestNumber, ReservationState.Active);
             reservationRepository.Add(reservation);
         }
 
         public void RemoveReservation(AccommodationReservation reservation)
         {
-            reservationRepository.Remove(reservation);
+            reservation.State = ReservationState.Canceled;
+            reservationRepository.Update(reservation);
         }
 
         public void Subscribe(IObserver observer)

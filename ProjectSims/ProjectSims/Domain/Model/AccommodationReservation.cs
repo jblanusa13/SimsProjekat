@@ -8,6 +8,7 @@ using ProjectSims.Service;
 
 namespace ProjectSims.Domain.Model
 {
+    public enum ReservationState { Active, Canceled }
     public class AccommodationReservation : ISerializable
     {
         public int Id { get; set; }
@@ -18,10 +19,11 @@ namespace ProjectSims.Domain.Model
         public DateOnly CheckInDate { get; set; }
         public DateOnly CheckOutDate { get; set; }
         public int GuestNumber { get; set; }
+        public ReservationState State { get; set; }
 
         public AccommodationReservation() { }
 
-        public AccommodationReservation(int id, int accommodationId, int guestId,  DateOnly checkInDate, DateOnly checkOutDate, int guestNumber)
+        public AccommodationReservation(int id, int accommodationId, int guestId,  DateOnly checkInDate, DateOnly checkOutDate, int guestNumber, ReservationState state)
         {
             Id = id;
             AccommodationId = accommodationId;
@@ -29,6 +31,7 @@ namespace ProjectSims.Domain.Model
             CheckInDate = checkInDate;
             CheckOutDate = checkOutDate;
             GuestNumber = guestNumber;
+            State = state;
         }
 
         public void FromCSV(string[] values)
@@ -39,18 +42,20 @@ namespace ProjectSims.Domain.Model
             CheckInDate = DateOnly.ParseExact(values[3], "dd.MM.yyyy");
             CheckOutDate = DateOnly.ParseExact(values[4], "dd.MM.yyyy");
             GuestNumber = Convert.ToInt32(values[5]);
+            State = Enum.Parse<ReservationState>(values[6]);
             InitializeData();
         }
 
         public string[] ToCSV()
         {
-            string[] csvvalues = { 
+            string[] csvvalues = {
                 Id.ToString(),
                 AccommodationId.ToString(),
                 GuestId.ToString(),
                 CheckInDate.ToString("dd.MM.yyyy"),
                 CheckOutDate.ToString("dd.MM.yyyy"),
-                GuestNumber.ToString()  
+                GuestNumber.ToString(),  
+                State.ToString()
             };
             return csvvalues;
         }

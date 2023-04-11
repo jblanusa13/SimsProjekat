@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,24 +11,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 using ProjectSims.Service;
-using ProjectSims.WPF.View.Guest1View;
+using ProjectSims.View;
 
-namespace ProjectSims.View
+namespace ProjectSims.WPF.View.Guest1View.Pages
 {
     /// <summary>
-    /// Interaction logic for Guest1CurrentReservations.xaml
+    /// Interaction logic for MyReservations.xaml
     /// </summary>
-    public partial class Guest1CurrentReservations : Window, IObserver
+    public partial class MyReservations : Page, IObserver
     {
-        public ObservableCollection<AccommodationReservation> MyReservations { get; set; }   
+        public ObservableCollection<AccommodationReservation> Reservations { get; set; }
         public AccommodationReservation SelectedReservation { get; set; }
         private Guest1 guest;
         private AccommodationReservationService service;
-        public Guest1CurrentReservations(Guest1 guest)
+
+        public MyReservations(Guest1 guest)
         {
             InitializeComponent();
             DataContext = this;
@@ -40,7 +40,7 @@ namespace ProjectSims.View
             service = new AccommodationReservationService();
             service.Subscribe(this);
 
-            MyReservations = new ObservableCollection<AccommodationReservation>(service.GetReservationByGuest(guest.Id));
+            Reservations = new ObservableCollection<AccommodationReservation>(service.GetReservationByGuest(guest.Id));
         }
 
         private void DateChange_Click(object sender, RoutedEventArgs e)
@@ -61,10 +61,32 @@ namespace ProjectSims.View
 
         public void Update()
         {
-            MyReservations.Clear();
-            foreach(AccommodationReservation reservation in service.GetReservationByGuest(guest.Id))
+            Reservations.Clear();
+            foreach (AccommodationReservation reservation in service.GetReservationByGuest(guest.Id))
             {
-                MyReservations.Add(reservation);
+                Reservations.Add(reservation);
+            }
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CancelReservation_Click(object sender, RoutedEventArgs e)
+        {
+            SelectedReservation = (AccommodationReservation)ReservationsTable.SelectedItem;
+            if(SelectedReservation != null)
+            {
+                if (service.CanCancel(SelectedReservation))
+                {
+                    service.RemoveReservation(SelectedReservation);
+                    MessageBox.Show("Uspesno ste otkazali rezervaciju");
+                }
+                else
+                {
+                    MessageBox.Show("Rok za otkazivanje je prosao, ne mozete otkazati rezervaciju");
+                }
             }
         }
     }

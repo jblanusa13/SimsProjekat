@@ -5,6 +5,12 @@
     <Compile Update="WPF\View\Guest1View\MyRequests.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WPF\View\Guest1View\Pages\GuestAccommodationsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\Pages\MyReservations.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\Guest2View\Pages\FinishedToursView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -53,6 +59,12 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="WPF\View\Guest1View\MyRequests.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\Pages\GuestAccommodationsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\Pages\MyReservations.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\Guest2View\Pages\FinishedToursView.xaml">

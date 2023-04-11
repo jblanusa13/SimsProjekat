@@ -6,28 +6,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ProjectSims.Service;
 using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
-using ProjectSims.View;
+using ProjectSims.Service;
+using ProjectSims.View.Guest1View;
 
-namespace ProjectSims.View.Guest1View
+namespace ProjectSims.WPF.View.Guest1View.Pages
 {
     /// <summary>
-    /// Interaction logic for Guest1View.xaml
+    /// Interaction logic for AccommodationReservationView.xaml
     /// </summary>
-    public partial class Guest1View : Window, IObserver
+    public partial class GuestAccommodationsView : Page, IObserver
     {
         private readonly AccommodationService accommodationService;
         public ObservableCollection<Accommodation> Accommodations { get; set; }
         public Accommodation SelectedAccommodation { get; set; }
+        private Frame selectedTab;
         public Guest1 Guest { get; set; }
         public string NameSearch { get; set; }
         public string CitySearch { get; set; }
@@ -35,9 +36,7 @@ namespace ProjectSims.View.Guest1View
         public string TypeSearch { get; set; }
         public string GuestsNumberSearch { get; set; }
         public string DaysNumberSearch { get; set; }
-        
-        
-        public Guest1View(Guest1 guest)
+        public GuestAccommodationsView(Guest1 guest, Frame selectedTab)
         {
             InitializeComponent();
             DataContext = this;
@@ -47,6 +46,59 @@ namespace ProjectSims.View.Guest1View
             Accommodations = new ObservableCollection<Accommodation>(accommodationService.GetAllAccommodations());
 
             Guest = guest;
+            this.selectedTab = selectedTab;
+        }
+
+        public void Reservation_Click(object sender, RoutedEventArgs e)
+        {
+            SelectedAccommodation = (Accommodation)AccommodationsTable.SelectedItem;
+            if (SelectedAccommodation != null)
+            {
+                AccommodationReservationView accommodationReservationView = new AccommodationReservationView(SelectedAccommodation, Guest);
+                accommodationReservationView.Show();
+            }
+        }
+
+        private void MyReservations_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeTab(1);
+        }
+
+        public void ChangeTab(int tabNum)
+        {
+            switch (tabNum)
+            {
+                case 0:
+                    {
+                        break;
+                    }
+                case 1:
+                    {
+                        selectedTab.Content = new MyReservations(Guest);
+                        break;
+                    }
+                case 2:
+                    {
+                        break;
+                    }
+                case 3:
+                    {
+                        break;
+                    }
+                case 4:
+                    {
+                        break;
+                    }
+                case 5:
+                    {
+                        break;
+                    }
+                case 6:
+                    {
+                        //selectedTab.Content = new AccommodationReservationView(SelectedAccommodation, Guest);
+                        break;
+                    }
+            }
         }
 
         public void TextboxName_TextChanged(object sender, TextChangedEventArgs e)
@@ -56,7 +108,7 @@ namespace ProjectSims.View.Guest1View
 
         public void TextboxCity_TextChanged(object sender, TextChangedEventArgs e)
         {
-           CitySearch = TextboxCity.Text;
+            CitySearch = TextboxCity.Text;
         }
 
         public void TextboxCountry_TextChanged(object sender, TextChangedEventArgs e)
@@ -108,29 +160,16 @@ namespace ProjectSims.View.Guest1View
             return ContainsName && ContainsCity && ContainsCountry && ContainsType && GuestsNumberIsLower && DaysNumberIsGreater;
         }
 
-        public void Reservation_Click(object sender, RoutedEventArgs e)
-        {
-            SelectedAccommodation = (Accommodation)AccommodationsTable.SelectedItem;
-            if (SelectedAccommodation != null)
-            {
-                AccommodationReservationView reservation = new AccommodationReservationView(SelectedAccommodation, Guest);
-                reservation.Show();
-            }
-        }
 
         public void Update()
         {
             Accommodations.Clear();
-            foreach(var accommodation in accommodationService.GetAllAccommodations())
+            foreach (var accommodation in accommodationService.GetAllAccommodations())
             {
                 Accommodations.Add(accommodation);
             }
         }
-
-        private void MyReservations_Click(object sender, RoutedEventArgs e)
-        {
-            Guest1CurrentReservations reservations = new Guest1CurrentReservations(Guest);
-            reservations.Show();
-        }
     }
+
 }
+
