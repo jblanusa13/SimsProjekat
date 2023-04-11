@@ -37,6 +37,10 @@ namespace ProjectSims.Service
         {
             return tours.GetToursByStateAndGuideId(state,guideId);          
         }
+        public Tour GetTourByStateAndGuideId(TourState state, int guideId)
+        {
+            return tours.GetTourByStateAndGuideId(state, guideId);
+        }
         public List<KeyPoint> GetTourKeyPoints(Tour tour)
         {
             List<KeyPoint> tourKeyPoints = new List<KeyPoint>();

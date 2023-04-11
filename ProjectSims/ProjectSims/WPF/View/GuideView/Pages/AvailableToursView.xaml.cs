@@ -49,7 +49,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             tourService.UpdateTourState(SelectedTour, TourState.Active);
             reservationService.UpdateGuestsState(SelectedTour,Guest2State.ActiveTour);
             Page tourTrackingView = new TourTrackingView(SelectedTour, Guide);
-            //otvori novi page i onemoguci da se pritiska na dugmad ako postoji aktivna tura
+            G
         }
         private void UpdateAvailableTours()
         {

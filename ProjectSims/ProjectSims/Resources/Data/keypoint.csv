@@ -8,11 +8,11 @@
 7|Jaksiceva kula|False|Intermediate
 8|Pobednik|False|Intermediate
 9|Knez Mihailova|False|Last
-10|Kalemegdan park|False|First
-11|Vojni muzej|False|Intermediate
-12|Jaksiceva kula|False|Intermediate
-13|Pobednik|False|Intermediate
-14|Knez Mihailova|False|Last
+10|Kalemegdan park|True|First
+11|Vojni muzej|True|Intermediate
+12|Jaksiceva kula|True|Intermediate
+13|Pobednik|True|Intermediate
+14|Knez Mihailova|True|Last
 15|Kalemegdan park|False|First
 16|Vojni muzej|False|Intermediate
 17|Jaksiceva kula|False|Intermediate

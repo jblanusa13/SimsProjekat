@@ -22,13 +22,15 @@ namespace ProjectSims.View.GuideView
     /// </summary>
     public partial class GuideStartingView : Window
     {
-        public Guide guide { get; set; }
         public TourService tourService { get; set; }
+        public Guide Guide { get; set; }
+        public Tour ActiveTour { get; set; }
         public GuideStartingView(Guide g)
         {
             InitializeComponent();
-            guide = g;
             tourService = new TourService();
+            Guide = g;
+            ActiveTour = tourService.GetTourByStateAndGuideId(TourState.Active, Guide.Id);
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -47,26 +49,26 @@ namespace ProjectSims.View.GuideView
         }
         private void TrackTour_Click(object sender, RoutedEventArgs e)
         {
-            Tour activeTour = tourService.GetToursByStateAndGuideId(TourState.Active, guide.Id).FirstOrDefault();
-            if (activeTour != null)
+            ActiveTour = tourService.GetTourByStateAndGuideId(TourState.Active, Guide.Id);
+            if (ActiveTour != null)
             {
-                Page tourTrackingPage = new TourTrackingView(activeTour,guide);
+                Page tourTrackingPage = new TourTrackingView(ActiveTour,Guide);
                 GuideFrame.Content = tourTrackingPage;
             }    
         }
         private void AvailableTours_Click(object sender, RoutedEventArgs e)
         {
-            Page availableToursPage = new AvailableToursView(guide);
+            Page availableToursPage = new AvailableToursView(Guide);
             GuideFrame.Content = availableToursPage;
         }
         private void CreateTour_Click(object sender, RoutedEventArgs e)
         {
-            Page createTourView = new CreateTourView(guide);
+            Page createTourView = new CreateTourView(Guide);
             GuideFrame.Content = createTourView;
         }
         private void ScheduledTours_Click(object sender, RoutedEventArgs e)
         {
-            Page scheduledToursView = new ScheduledToursView(guide);
+            Page scheduledToursView = new ScheduledToursView(Guide);
             GuideFrame.Content = scheduledToursView;
         }
     }

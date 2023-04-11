@@ -66,6 +66,10 @@ namespace ProjectSims.Repository
         {
             return tours.Where(t => t.State == state && t.GuideId == guideId).ToList();
         }
+        public Tour GetTourByStateAndGuideId(TourState state, int guideId)
+        {
+            return tours.Find(t=> t.State == state && t.GuideId == guideId);
+        }
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);
