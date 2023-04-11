@@ -23,6 +23,7 @@ using Microsoft.Win32;
 using System.Security;
 using System.Collections.ObjectModel;
 using ProjectSims.Repository;
+using System.IO;
 
 namespace ProjectSims.View.OwnerView
 {
@@ -43,6 +44,7 @@ namespace ProjectSims.View.OwnerView
 
             accommodationService = new AccommodationService();
             ownerService = new OwnerService();
+            accommodationRepository = new AccommodationRepository();
             ownerRepository = new OwnerRepository();
             accommodations = new ObservableCollection<Accommodation>();
         }
@@ -143,8 +145,8 @@ namespace ProjectSims.View.OwnerView
             }
         }
 
-        private string _images;
-        public string Images
+        private Image _images;
+        public Image Images
         {
             get => _images;
 
@@ -214,32 +216,77 @@ namespace ProjectSims.View.OwnerView
                 }
             }
         }
+        public List<string> paths = new List<string>();
+
         private void RegisterAccommodation_Click(object sender, RoutedEventArgs e)
         {
             if (IsValid && !string.IsNullOrEmpty(AccommodationNameTextBox.Text)
                         && !string.IsNullOrEmpty(LocationTextBox.Text)
                         && !string.IsNullOrEmpty(GuestsMaximumTextBox.Text)
                         && !string.IsNullOrEmpty(MinimumReservationDaysTextBox.Text)
-                        && !string.IsNullOrEmpty(DismissalDaysTextBox.Text)
-                        && !string.IsNullOrWhiteSpace(ImagesTextBox.Text))
+                        && !string.IsNullOrEmpty(DismissalDaysTextBox.Text))
             {
-                accommodationRepository.Add(Location);
+                accommodationRepository.Add(LocationTextBox.Text);
                 int IdLocation = accommodationRepository.GetLocationId(Location);
-                List<string> Images = new List<string>();
-                foreach (string image in ImagesTextBox.Text.Split(","))
+                List<string> Pics = new List<string>();
+                foreach (string path in paths)
                 {
-                    Images.Add(image);
-                }
+                    Pics.Add(path);
+                } 
                 int idCurrentOwner = MainWindow.CurrentUserId;                
                 Location location = new Location(IdLocation, Location.ToString().Split(",")[0], Location.ToString().Split(",")[1]);
-                Accommodation accommodation = new Accommodation(-1, AccommodationName, IdLocation, location, Type, GuestsMaximum, MinimumReservationDays, DismissalDays, Images, idCurrentOwner);
+                Accommodation accommodation = new Accommodation(-1, AccommodationName, IdLocation, location, Type, GuestsMaximum, MinimumReservationDays, DismissalDays, Pics, idCurrentOwner);
                 accommodationService.Create(accommodation);
                 Owner owner = ownerRepository.FindById(idCurrentOwner);
                 ownerRepository.AddAccommodationId(owner, accommodation.Id);
                 ownerService.Update(ownerRepository.FindById(idCurrentOwner));
                 MessageBox.Show("Uspješno registrovan smještaj!", "Registracija smještaja", MessageBoxButton.OK, MessageBoxImage.Information);
-                
+                this.Close();
             }
+        }
+
+        private void LoadImages_Click(object sender, RoutedEventArgs e)
+        {
+            InitializeOpenFileDialog();
+        }
+
+        private void InitializeOpenFileDialog()
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Multiselect = true;
+            bool? success = fileDialog.ShowDialog();
+            fileDialog.Title = "My Image Browser";
+
+            if (success == true)
+            {
+                foreach (var filename in fileDialog.FileNames)
+                {
+                    paths.Add(filename);
+                }
+                foreach (var path in paths)
+                {
+                    AddImagesToImageList(path);
+                }
+            }
+            else
+            {
+                //didnt pick anything
+            }
+        }
+
+        private void AddImagesToImageList(string path) 
+        {
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(path, UriKind.Absolute);
+            bitmap.EndInit();
+            Images = new Image();
+
+            Images.Source = bitmap;
+
+            Images.Width = 170;
+            Images.Height = 100;
+            ImageList.Items.Add(Images);
         }
 
         public string Error => null;
@@ -325,18 +372,11 @@ namespace ProjectSims.View.OwnerView
                         }
                     }
                 }
-                else if (columnName == "Images")
-                {
-                    if (string.IsNullOrWhiteSpace(Images))
-                    {
-                        return "Unesite slike!";
-                    }
-                }
                 return null;
             }
         }
 
-        private readonly string[] validatedProperties = { "AccommodationName", "Location", "GuestsMaximum", "MinimumReservationDays", "DismissalDays", "Images" };
+        private readonly string[] validatedProperties = { "AccommodationName", "Location", "GuestsMaximum", "MinimumReservationDays", "DismissalDays" };
 
         public bool IsValid
         {
@@ -349,31 +389,6 @@ namespace ProjectSims.View.OwnerView
                 }
                 return true;
             }
-        }
-        private void LoadImages_Click(object sender, RoutedEventArgs e)
-        {
-            InitializeOpenFileDialog();
-        }
-
-        private void InitializeOpenFileDialog()
-        {
-            OpenFileDialog fileDialog = new OpenFileDialog();
-            bool? success = fileDialog.ShowDialog();
-
-            fileDialog.Multiselect = true;
-            fileDialog.Title = "My Image Browser";
-
-            if (success == true)
-            {
-                string path = fileDialog.FileName;
-                ImagesTextBox.Text = path;
-
-            }
-            else
-            {
-                //didnt pick anything
-            }
-
         }
     }
 }

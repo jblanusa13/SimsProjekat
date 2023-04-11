@@ -32,7 +32,7 @@ namespace ProjectSims.Repository
 
         public Accommodation Get(int id)
         {
-            return _accommodations.Find(a => a.Id == id);
+            return accommodations.Find(a => a.Id == id);
         }
 
         public int NextId()
