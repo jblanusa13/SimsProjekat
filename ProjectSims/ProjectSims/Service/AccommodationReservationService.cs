@@ -47,6 +47,15 @@ namespace ProjectSims.Service
             reservation.State = ReservationState.Canceled;
             reservationRepository.Update(reservation);
         }
+        public bool CanCancel(AccommodationReservation reservation)
+        {
+            int dismissalDays = reservation.Accommodation.DismissalDays;
+            if(DateOnly.FromDateTime(DateTime.Today) <= reservation.CheckInDate.AddDays(-dismissalDays))
+            {
+                return true;
+            }
+            return false;
+        }
 
         public void Subscribe(IObserver observer)
         {

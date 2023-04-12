@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ProjectSims.View.Guest1View"
         mc:Ignorable="d"
         MinHeight="600" MinWidth="1067"
-        Title="Smestaji" Height="600" Width="1067" ResizeMode="NoResize"
+        Title="Smestaji" Height="600" Width="1067"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
