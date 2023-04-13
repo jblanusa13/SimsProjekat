@@ -8,9 +8,12 @@
     <Compile Update="WPF\View\Guest2View\Pages\FinishedToursView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\FinishedToursStatisticsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\GuideView\Pages\ScheduledToursView.xaml.cs">
-		<SubType>Code</SubType>
-	</Compile>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\Guest2View\Pages\ShowVouchersView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -38,6 +41,9 @@
     <Compile Update="WPF\View\GuideView\Pages\CreateTourView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\TourDetailsAndStatisticsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\GuideView\Pages\TourTrackingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -58,9 +64,12 @@
     <Page Update="WPF\View\Guest2View\Pages\FinishedToursView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="WPF\View\GuideView\Pages\FinishedToursStatisticsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="WPF\View\GuideView\Pages\ScheduledToursView.xaml">
-		<SubType>Designer</SubType>
-	</Page>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="WPF\View\Guest2View\Pages\ShowVouchersView.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -86,6 +95,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\GuideView\Pages\CreateTourView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\GuideView\Pages\TourDetailsAndStatisticsView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\GuideView\Pages\TourTrackingView.xaml">

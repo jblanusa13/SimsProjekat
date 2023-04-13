@@ -73,6 +73,11 @@ namespace ProjectSims.View.GuideView
             Page scheduledToursView = new ScheduledToursView(Guide);
             GuideFrame.Content = scheduledToursView;
         }
+        private void FinishedTour_Click(object sender, RoutedEventArgs e)
+        {
+            Page finishedToursView = new FinishedToursStatisticsView(Guide);
+            GuideFrame.Content = finishedToursView;
+        }
         public void Update()
         {
             ActiveTour = tourService.GetTourByStateAndGuideId(TourState.Active, Guide.Id);
