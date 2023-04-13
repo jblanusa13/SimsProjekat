@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
-using System.Text.RegularExpressions;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,17 +14,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ProjectSims.Service;
 using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
+using ProjectSims.Service;
+using ProjectSims.WPF.View.Guest1View;
 
-namespace ProjectSims.View.Guest1View
+namespace ProjectSims.WPF.View.Guest1View.Pages
 {
     /// <summary>
-    /// Interaction logic for AccommodationReservationView.xaml
+    /// Interaction logic for AccommodationReservation.xaml
     /// </summary>
-    public partial class AccommodationReservationView : Window, INotifyPropertyChanged, IObserver
+    public partial class AccommodationReservationView : Page, INotifyPropertyChanged, IObserver
     {
         private int accommodationId;
 
@@ -144,7 +146,7 @@ namespace ProjectSims.View.Guest1View
         {
             get => _lastDate;
             set
-           {
+            {
                 if (value != _lastDate)
                 {
                     _lastDate = value;
@@ -181,7 +183,7 @@ namespace ProjectSims.View.Guest1View
             }
         }
 
-        
+
         public ObservableCollection<DateRanges> AvailableDates { get; set; }
 
         public DateRanges SelectedDates;
@@ -189,7 +191,6 @@ namespace ProjectSims.View.Guest1View
         private AccommodationReservationService reservationService;
 
         private Guest1 guest;
-
         public AccommodationReservationView(Accommodation SelectedAccommodation, Guest1 guest)
         {
             InitializeComponent();
@@ -211,7 +212,6 @@ namespace ProjectSims.View.Guest1View
             Username = guest.User.Username;
 
             AvailableDates = new ObservableCollection<DateRanges>();
-
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -224,11 +224,13 @@ namespace ProjectSims.View.Guest1View
         private void FindDates_Click(object sender, RoutedEventArgs e)
         {
             DateRangesService dateRangesService = new DateRangesService();
+            FirstDate = DateOnly.FromDateTime((DateTime)FirstDatePicker.SelectedDate);
+            LastDate = DateOnly.FromDateTime((DateTime)LastDatePicker.SelectedDate);
 
-            if(!string.IsNullOrEmpty(TextboxFirstDate.Text) && !string.IsNullOrEmpty(TexboxLastDate.Text) && !string.IsNullOrEmpty(TexboxDaysNumber.Text))
+            if (FirstDate != null && LastDate != null && !string.IsNullOrEmpty(TextboxDaysNumber.Text))
             {
                 List<DateRanges> availableDates = new List<DateRanges>();
-                availableDates = dateRangesService.FindAvailableDates(DateOnly.Parse(TextboxFirstDate.Text), DateOnly.Parse(TexboxLastDate.Text), Convert.ToInt32(TexboxDaysNumber.Text), accommodationId);
+                availableDates = dateRangesService.FindAvailableDates(FirstDate, LastDate, DaysNumber, accommodationId);
 
                 AvailableDates.Clear();
                 foreach (DateRanges dateRange in availableDates)
@@ -247,95 +249,17 @@ namespace ProjectSims.View.Guest1View
                 int guestNumber = Convert.ToInt32(GuestNumber);
 
                 reservationService.CreateReservation(accommodationId, guest.Id, dates.CheckIn, dates.CheckOut, guestNumber);
-                Close();
             }
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         public void Update()
         {
             throw new NotImplementedException();
         }
-
-        /* validation
-        private Regex _DateRegex = new Regex("(0?[1-9]|[12][0-9]|3[01])\\.(0?[1-9]|1[012])\\.[1-2][0-9]{3}\\.?$");
-        private Regex _NumberRegex = new Regex("[1-9]+");
-
-        public string Error => null;
-        public string this[string columnName]
-        {
-            get
-            {
-                if(columnName == "FirstDate")
-                {
-                    if (string.IsNullOrEmpty(FirstDate))
-                        return "Obavezno polje";
-
-                    Match match = _DateRegex.Match(FirstDate);
-                    if (!match.Success)
-                        return "Datum je u formatu: DD.MM.YYYY";
-                }
-                else if (columnName == "LastDate")
-                {
-                    if (string.IsNullOrEmpty(LastDate))
-                        return "Obavezno polje";
-
-                    Match match = _DateRegex.Match(LastDate);
-                    if (!match.Success)
-                        return "Datum je u formatu: DD.MM.YYYY";
-
-
-                    if (DateOnly.Parse(LastDate) <= DateOnly.Parse(FirstDate))
-                    {
-                        return "Mora biti veci od pocetnog datuma!";
-                    }
-
-                }
-                else if(columnName == "DaysNumber")
-                {
-                    if (string.IsNullOrEmpty(DaysNumber))
-                        return "Obavezno polje";
-
-                    Match match = _NumberRegex.Match(DaysNumber);
-                    if (!match.Success)
-                        return "Broj dana je prirodan broj";
-
-                    if(Convert.ToInt32(DaysNumber) < Convert.ToInt32(MinDays))
-                    {
-                        return "Mora biti veci od min dozvoljenog broja dana";
-                    }
-                }
-                else if(columnName == "GuestNumber")
-                {
-                    if (string.IsNullOrEmpty(GuestNumber))
-                        return "Obavezno polje";
-
-                    Match match = _NumberRegex.Match(GuestNumber);
-                    if (!match.Success)
-                        return "Broj gostiju je prirodan broj";
-
-                    if(Convert.ToInt32(GuestNumber) > Convert.ToInt32(MaxGuests))
-                    {
-                        return "Mora biti manji od maks dozvoljenog broja gostiju";
-                    }
-                }
-                return null;
-            }
-        }
-
-        private readonly string[] _validiranaObelezja = { "FirstDate" , "LastDate", "DaysNumber", "GuestNumber" };
-
-
-        public bool IsValid
-        {
-            get
-            {
-                foreach (var obelezje in _validiranaObelezja)
-                {
-                    if (this[obelezje] != null)
-                        return false;
-                }
-                return true;
-            }
-        }*/
     }
 }

@@ -5,7 +5,7 @@
     <Compile Update="WPF\View\Guest1View\MyRequests.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WPF\View\Guest1View\Pages\AccommodationReservation.xaml.cs">
+    <Compile Update="WPF\View\Guest1View\Pages\AccommodationReservationView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\Guest1View\Pages\GuestAccommodationsView.xaml.cs">
@@ -50,9 +50,6 @@
     <Compile Update="WPF\View\GuideView\TourTrackingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WPF\View\Guest1View\AccommodationReservationView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="WPF\View\OwnerView\GuestRatingtView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -64,7 +61,7 @@
     <Page Update="WPF\View\Guest1View\MyRequests.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WPF\View\Guest1View\Pages\AccommodationReservation.xaml">
+    <Page Update="WPF\View\Guest1View\Pages\AccommodationReservationView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\Guest1View\Pages\GuestAccommodationsView.xaml">

@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 using ProjectSims.Service;
-using ProjectSims.View;
+using ProjectSims.View.Guest1View;
 
 namespace ProjectSims.WPF.View.Guest1View.Pages
 {
@@ -45,7 +45,7 @@ namespace ProjectSims.WPF.View.Guest1View.Pages
 
         private void DateChange_Click(object sender, RoutedEventArgs e)
         {
-            SelectedReservation = (AccommodationReservation)ReservationsTable.SelectedItem;
+            //1SelectedReservation = (AccommodationReservation)ReservationsTable.SelectedItem;
 
             if (SelectedReservation != null)
             {

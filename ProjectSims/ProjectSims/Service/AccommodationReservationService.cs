@@ -7,6 +7,7 @@ using ProjectSims.Domain.Model;
 using ProjectSims.Repository;
 using ProjectSims.Observer;
 using ProjectSims.FileHandler;
+using ProjectSims.WPF.View.Guest1View;
 
 namespace ProjectSims.Service
 {

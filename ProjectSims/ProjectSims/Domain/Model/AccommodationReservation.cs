@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Serializer;
 using ProjectSims.Service;
+using ProjectSims.WPF.View.Guest1View;
 
 namespace ProjectSims.Domain.Model
 {

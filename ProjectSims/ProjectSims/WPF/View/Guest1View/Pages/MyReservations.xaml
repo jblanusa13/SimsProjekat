@@ -22,8 +22,9 @@
 
             <Grid Grid.Row="0"/>
 
-            <DataGrid Grid.Row="1" Margin="35,40" Name="ReservationsTable" 
+            <DataGrid Grid.Row="1" Margin="35,40" x:Name="ReservationsTable"
                   ItemsSource="{Binding Path=Reservations}"
+                  SelectedItem="{Binding Path=SelectedReservation}"
                   AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" FontSize="12">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv" Binding="{Binding Accommodation.Name}" Width="120"></DataGridTextColumn>

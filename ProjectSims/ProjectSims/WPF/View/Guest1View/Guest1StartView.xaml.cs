@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 using ProjectSims.Service;
 using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
-using ProjectSims.View;
+using ProjectSims.WPF.View.Guest1View;
 using ProjectSims.WPF.View.Guest1View.Pages;
 
 namespace ProjectSims.View.Guest1View

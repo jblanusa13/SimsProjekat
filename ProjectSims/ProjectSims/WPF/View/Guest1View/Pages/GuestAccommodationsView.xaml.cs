@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 using ProjectSims.Service;
-using ProjectSims.View.Guest1View;
+using ProjectSims.WPF.View.Guest1View;
 
 namespace ProjectSims.WPF.View.Guest1View.Pages
 {
@@ -54,8 +54,7 @@ namespace ProjectSims.WPF.View.Guest1View.Pages
             SelectedAccommodation = (Accommodation)AccommodationsTable.SelectedItem;
             if (SelectedAccommodation != null)
             {
-                AccommodationReservationView accommodationReservationView = new AccommodationReservationView(SelectedAccommodation, Guest);
-                accommodationReservationView.Show();
+                ChangeTab(6);
             }
         }
 
@@ -95,7 +94,7 @@ namespace ProjectSims.WPF.View.Guest1View.Pages
                     }
                 case 6:
                     {
-                        //selectedTab.Content = new AccommodationReservationView(SelectedAccommodation, Guest);
+                        selectedTab.Content = new AccommodationReservationView(SelectedAccommodation, Guest);
                         break;
                     }
             }
