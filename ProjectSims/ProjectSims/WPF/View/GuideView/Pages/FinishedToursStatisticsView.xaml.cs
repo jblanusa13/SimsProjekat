@@ -1,6 +1,7 @@
 ﻿using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 using ProjectSims.Service;
+using ProjectSims.WPF.View.Guest2View.Pages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,7 +40,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             SelectedTour = ((FrameworkElement)sender).DataContext as Tour;
             if(SelectedTour != null) 
             { 
-
+                this.NavigationService.Navigate(new TourDetailsAndStatisticsView(SelectedTour));
             }
 
             
