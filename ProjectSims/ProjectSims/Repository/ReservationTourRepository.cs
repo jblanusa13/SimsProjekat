@@ -88,6 +88,12 @@ namespace ProjectSims.Repository
             }
                 return reservationTour;
         }
+        public int GetNumberOfGuestsWhoUsedVoucher(Tour tour)
+        {
+            int numberOfGuestsWhoUsedVoucher = 0;
+            reservations.ForEach(r => { if (r.TourId == tour.Id && r.UsedVoucher) numberOfGuestsWhoUsedVoucher++; });
+            return numberOfGuestsWhoUsedVoucher;
+        }
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);

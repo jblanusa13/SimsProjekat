@@ -25,6 +25,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
     {
         private KeyPointService keyPointService;
         private TourService tourService;
+        private ReservationTourService reservationTourService;
         private Tour Tour { get; set; }
         public List<KeyPoint> KeyPoints { get; set; }
         public TourDetailsAndStatisticsView(Tour selectedTour)
@@ -33,6 +34,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             DataContext = this;
             keyPointService = new KeyPointService();
             tourService = new TourService();
+            reservationTourService = new ReservationTourService();
             Tour = selectedTour;
             TitleTextBox.Text = Tour.Name + "," + Tour.StartOfTheTour.ToString("dd/MM/yyyy HH:mm");
             LocationTextBox.Text = Tour.Location;
@@ -47,7 +49,8 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             GuestsUnder18TextBox.Text = Tour.NumberOfPresentGuestsUnder18.ToString();
             GuestsBetween18And50TextBox.Text = Tour.NumberOfPresentGuestsBetween18And50.ToString();
             GuestsOver50TextBox.Text = Tour.NumberOfPresentGuestsOver50.ToString();
-
+            GuestsWithVoucherTextBox.Text = reservationTourService.GetNumberOfGuestsWhoUsedVoucher(Tour).ToString();
+            GuestsWithoutVoucherTextBox.Text = (Int32.Parse(PresenceGuestsTextBox.Text) - Int32.Parse(GuestsWithVoucherTextBox.Text)).ToString();
         }
     }
 }

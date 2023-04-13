@@ -37,6 +37,10 @@ namespace ProjectSims.Service
         {
             return reservations.GetReservationByGuestAndTour(tour, guest2);
         }
+        public int  GetNumberOfGuestsWhoUsedVoucher(Tour tour)
+        {
+            return reservations.GetNumberOfGuestsWhoUsedVoucher(tour);
+        }
         public void Create(ReservationTour reservation)
         {
             reservations.Create(reservation);
