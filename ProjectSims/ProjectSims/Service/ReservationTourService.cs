@@ -58,12 +58,16 @@ namespace ProjectSims.Service
         }
         public double GetPercentageOfPresentGuestsWithVoucher(Tour tour)
         {
-            int numberOfPresentGuestsWithVoucher = GetNumberOfPresentGuestsWithVoucher(tour);
-            int numberOfPresentGuests = GetNumberOfPresentGuests(tour);
-            if(numberOfPresentGuests != 0)
-                return (numberOfPresentGuestsWithVoucher / numberOfPresentGuests)*100;
-            else 
+            double numberOfPresentGuestsWithVoucher = (double)GetNumberOfPresentGuestsWithVoucher(tour);
+            double numberOfPresentGuests = (double)GetNumberOfPresentGuests(tour);
+            if (numberOfPresentGuestsWithVoucher != 0)
+            {
+                double percentage = (numberOfPresentGuestsWithVoucher /numberOfPresentGuests) *100;
+                return Math.Round(percentage, 2);
+            }
+            else
                 return 0;
+
         }
         public int GetNumberOfPresentGuestsByAgeLimit(Tour tour,int lowerLimit)
         {
