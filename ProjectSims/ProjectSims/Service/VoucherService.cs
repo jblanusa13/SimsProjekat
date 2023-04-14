@@ -17,15 +17,18 @@ namespace ProjectSims.Service
         {
             vouchers = new VoucherRepository();
         }
+        public int GetNextId()
+        {
+            return vouchers.GetNextId();
+        }
         public List<Voucher> GetAllVouchers()
         {
             return vouchers.GetAll();
         }
         public void Create(Voucher voucher)
         {
-             vouchers.Add(voucher);
+            vouchers.Create(voucher);
         }
-
         public void Delete(Voucher voucher)
         {
             vouchers.Remove(voucher);

@@ -25,7 +25,6 @@ namespace ProjectSims.View.Guest2View
     {
         private TourService tourService;
         private ReservationTourService reservationTourService;
-
         public Guest2 guest2 { get; set; }
         public Guest2StartingView(Guest2 g)
         {
@@ -38,13 +37,14 @@ namespace ProjectSims.View.Guest2View
             reservationTourService = new ReservationTourService();
             tourService = new TourService();
 
-            if (reservationTourService.IsWaiting(guest2.Id))
+            if (reservationTourService.GetTourIdWhereGuestIsWaiting(guest2) != null)
             {
-                Tour tour = tourService.FindStartedTour();
+                int tourId = reservationTourService.GetTourIdWhereGuestIsWaiting(guest2).TourId;
+                Tour tour = tourService.GetTourById(tourId);
                 MessageBoxResult answer = MessageBox.Show("Da li ste prisutni na turi " + tour.Name + "?", "", MessageBoxButton.YesNo);
                 if (answer == MessageBoxResult.Yes)
                 {
-                    reservationTourService.ConfirmPresence(guest2.Id, tour);
+                    reservationTourService.UpdateGuestState(guest2,tour,Guest2State.Present);
                 }
             }
         }

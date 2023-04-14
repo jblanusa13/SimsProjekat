@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjectSims.Domain.Model
 {
-    public enum Guest2State { InactiveTour, Invited, Waiting, Present, NotPresent}
+    public enum Guest2State { InactiveTour, ActiveTour, Waiting, Present, NotPresent}
     public class ReservationTour : ISerializable
     {
         public int Id { get; set; }

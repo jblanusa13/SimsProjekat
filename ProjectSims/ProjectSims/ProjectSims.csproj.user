@@ -17,6 +17,9 @@
     <Compile Update="WPF\View\Guest2View\Pages\FinishedToursView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\ScheduledToursView.xaml.cs">
+		<SubType>Code</SubType>
+	</Compile>
     <Compile Update="WPF\View\Guest2View\Pages\ShowVouchersView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -38,16 +41,13 @@
     <Compile Update="WPF\View\GuideView\GuideStartingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WPF\View\GuideView\ScheduledToursView.xaml.cs">
+    <Compile Update="WPF\View\GuideView\Pages\AvailableToursView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WPF\View\GuideView\AvailableToursView.xaml.cs">
+    <Compile Update="WPF\View\GuideView\Pages\CreateTourView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WPF\View\GuideView\CreateTourView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="WPF\View\GuideView\TourTrackingView.xaml.cs">
+    <Compile Update="WPF\View\GuideView\Pages\TourTrackingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\OwnerView\GuestRatingtView.xaml.cs">
@@ -73,6 +73,9 @@
     <Page Update="WPF\View\Guest2View\Pages\FinishedToursView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="WPF\View\GuideView\Pages\ScheduledToursView.xaml">
+		<SubType>Designer</SubType>
+	</Page>
     <Page Update="WPF\View\Guest2View\Pages\ShowVouchersView.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -94,19 +97,16 @@
     <Page Update="WPF\View\GuideView\GuideStartingView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WPF\View\GuideView\ScheduledToursView.xaml">
+    <Page Update="WPF\View\GuideView\Pages\AvailableToursView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WPF\View\GuideView\CreateTourView.xaml">
+    <Page Update="WPF\View\GuideView\Pages\CreateTourView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WPF\View\GuideView\AvailableToursView.xaml">
+    <Page Update="WPF\View\GuideView\Pages\TourTrackingView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\OwnerView\GuestRatingtView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="WPF\View\GuideView\TourTrackingView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\OwnerView\OwnerView.xaml">

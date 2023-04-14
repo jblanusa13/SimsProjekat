@@ -57,11 +57,11 @@ namespace ProjectSims.View.Guest2View
             {
                 if (id.Equals(tourSelected.KeyPointIds.Last()))
                 {
-                    KeyPointTextBox.Text += keyPointService.FindNameById(id);
+                    KeyPointTextBox.Text += keyPointService.GetKeyPointById(id).Name;
                 }
                 else
                 {
-                    KeyPointTextBox.Text += keyPointService.FindNameById(id) + ", ";
+                    KeyPointTextBox.Text += keyPointService.GetKeyPointById(id).Name + ", ";
                 }
 
             }

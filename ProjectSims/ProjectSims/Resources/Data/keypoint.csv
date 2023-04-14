@@ -1,35 +1,43 @@
-0|Knez Mihailova|True|First
-1|Kalemegdan park|True|Intermediate
-2|Vojni muzej|True|Intermediate
+0|Kalemegdan park|True|First
+1|Vojni muzej|True|Intermediate
+2|Jaksiceva kula|True|Intermediate
 3|Pobednik|True|Intermediate
-4|Jaksiceva kula|False|Last
-5|Knez Mihailova|False|First
-6|Kalemegdan park|False|Intermediate
-7|Vojni muzej|False|Intermediate
-8|Pobednik|False|Intermediate
-9|Jaksiceva kula|False|Last
-10|Knez Mihailova|True|First
-11|Kalemegdan park|False|Intermediate
-12|Vojni muzej|False|Intermediate
+4|Knez Mihailova|True|Last
+5|Kalemegdan park|True|First
+6|Vojni muzej|True|Intermediate
+7|Jaksiceva kula|True|Intermediate
+8|Pobednik|True|Intermediate
+9|Knez Mihailova|True|Last
+10|Kalemegdan park|False|First
+11|Vojni muzej|False|Intermediate
+12|Jaksiceva kula|False|Intermediate
 13|Pobednik|False|Intermediate
-14|Jaksiceva kula|False|Last
-15|Dugin most|False|First
-16|Muzej|False|Intermediate
-17|Katakombe|False|Intermediate
-18|Sat|False|Intermediate
-19|Galerija|False|Last
-20|Dugin most|False|First
-21|Muzej|False|Intermediate
-22|Katakombe|False|Intermediate
-23|Sat|False|Intermediate
-24|Galerija|False|Last
+14|Knez Mihailova|False|Last
+15|Kalemegdan park|False|First
+16|Vojni muzej|False|Intermediate
+17|Jaksiceva kula|False|Intermediate
+18|Pobednik|False|Intermediate
+19|Knez Mihailova|False|Last
+20|Kalemegdan park|False|First
+21|Vojni muzej|False|Intermediate
+22|Jaksiceva kula|False|Intermediate
+23|Pobednik|False|Intermediate
+24|Knez Mihailova|False|Last
 25|Dugin most|False|First
 26|Muzej|False|Intermediate
-27|Katakombe|False|Intermediate
-28|Sat|False|Intermediate
-29|Galerija|False|Last
-30|kp1|False|First
-31|kp2|False|Intermediate
-32|kp3|False|Intermediate
-33|kp4|False|Intermediate
-34|kp5|False|Last
+27|Sat|False|Intermediate
+28|Galeija|False|Last
+29|Dugin most|False|First
+30|Muzej|False|Intermediate
+31|Sat|False|Intermediate
+32|Galerija|False|Last
+33|Dugin most|False|First
+34|Muzej|False|Intermediate
+35|Sat|False|Intermediate
+36|Galerija|False|Last
+37|Kalemegdan park|False|First
+38|Vojni muzej|False|Intermediate
+39|Jaksiceva kula|False|Last
+40|Kalemegdan park|False|First
+41|Vojni muzej|False|Intermediate
+42|Jaksiceva kula|False|Last

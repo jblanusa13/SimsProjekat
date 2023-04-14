@@ -22,7 +22,7 @@ namespace ProjectSims.Repository
             vouchers = voucherFile.Load();
             observers = new List<IObserver>();
         }
-        public int NextId()
+        public int GetNextId()
         {
             if (vouchers.Count == 0)
             {
@@ -30,9 +30,8 @@ namespace ProjectSims.Repository
             }
             return vouchers.Max(t => t.Id) + 1;
         }
-        public void Add(Voucher voucher)
+        public void Create(Voucher voucher)
         {
-            voucher.Id = NextId();
             vouchers.Add(voucher);
             voucherFile.Save(vouchers);
             NotifyObservers();
@@ -57,7 +56,6 @@ namespace ProjectSims.Repository
         {
             return vouchers;
         }
-
         public Voucher GetVoucherById(int id)
         {
             return vouchers.Find(v => v.Id == id);
@@ -69,7 +67,6 @@ namespace ProjectSims.Repository
             {
                 vouchers.Add(GetVoucherById(id));
             }
-
             return vouchers;
         }
         public List<Voucher> GetActiveVouchersWithIds(List<int> ids)
@@ -82,10 +79,8 @@ namespace ProjectSims.Repository
                     vouchers.Add(voucher);
                 }
             }
-
             return vouchers;
         }
-
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);
