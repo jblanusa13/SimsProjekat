@@ -19,11 +19,13 @@ namespace ProjectSims.Service
         private TourRepository tours;
         private KeyPointService keyPointService;
         private Guest2Service guestService;
+        private ReservationTourService reservationService;
         public TourService()
         {
             tours = new TourRepository();
             keyPointService = new KeyPointService();
             guestService = new Guest2Service();
+            reservationService = new ReservationTourService();
         }
         public List<Tour> GetAllTours()
         {
@@ -53,7 +55,20 @@ namespace ProjectSims.Service
         public List<Tour> GetTodayTours(int guideId)
         {
            return tours.GetTodayTours(guideId);
-        }   
+        }
+       public Tour GetMostVisitedTour(int guideId,bool thisYear)
+        {
+            List<Tour> wantedTours = GetToursByStateAndGuideId(TourState.Finished, guideId);
+            if(thisYear)
+                wantedTours = wantedTours.Where(t=> t.StartOfTheTour.Year == DateTime.Now.Year).ToList();
+            Dictionary<int, int> numberOfGuestsOnTour = new Dictionary<int, int>();
+            foreach (Tour t in wantedTours)
+            {
+                numberOfGuestsOnTour.Add(t.Id, reservationService.GetNumberOfPresentGuests(t));
+            }
+            int mostVisitedTourId = numberOfGuestsOnTour.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
+            return GetTourById(mostVisitedTourId);
+        }
         public void Create(int guideId, string name, string location, string description, string language, string maxNumberGuests,string startKeyPointName, string finishKeyPointName, 
             List<string> otherKeyPointsNames, string tourStart, string duration, string images)
         {

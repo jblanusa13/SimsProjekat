@@ -13,13 +13,11 @@ namespace ProjectSims.Service
     public class ReservationTourService
     {
         private ReservationTourRepository reservations;
-        private TourService tourService;
         private Guest2Service guestService;
 
         public ReservationTourService()
         {
             reservations = new ReservationTourRepository();
-            tourService = new TourService();
             guestService = new Guest2Service();
         }
         public List<ReservationTour> GetAllReservations()
