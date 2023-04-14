@@ -28,90 +28,7 @@ namespace ProjectSims.WPF.View.Guest1View.Pages
     /// </summary>
     public partial class AccommodationReservationView : Page, INotifyPropertyChanged, IObserver
     {
-        private int accommodationId;
-
-        private string _accommodationName;
-        public string AccommodationName
-        {
-            get => _accommodationName;
-            set
-            {
-                if (value != _accommodationName)
-                {
-                    _accommodationName = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-        private string _city;
-        public string City
-        {
-            get => _city;
-            set
-            {
-                if (value != _city)
-                {
-                    _city = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private string _country;
-        public string Country
-        {
-            get => _country;
-            set
-            {
-                if (value != _country)
-                {
-                    _country = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private AccommodationType _type;
-        public AccommodationType Type
-        {
-            get => _type;
-            set
-            {
-                if (value != _type)
-                {
-                    _type = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private int _maxGuests;
-        public int MaxGuests
-        {
-            get => _maxGuests;
-            set
-            {
-                if (value != _maxGuests)
-                {
-                    _maxGuests = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private int _minDays;
-        public int MinDays
-        {
-            get => _minDays;
-            set
-            {
-                if (value != _minDays)
-                {
-                    _minDays = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
+        public Accommodation Accommodation { get; set; }
 
         private string _username;
         public string Username
@@ -191,7 +108,9 @@ namespace ProjectSims.WPF.View.Guest1View.Pages
         private AccommodationReservationService reservationService;
 
         private Guest1 guest;
-        public AccommodationReservationView(Accommodation SelectedAccommodation, Guest1 guest)
+
+        private Frame selectedTab;
+        public AccommodationReservationView(Accommodation SelectedAccommodation, Guest1 guest, Frame selectedTab)
         {
             InitializeComponent();
             DataContext = this;
@@ -201,17 +120,13 @@ namespace ProjectSims.WPF.View.Guest1View.Pages
             reservationService = new AccommodationReservationService();
             reservationService.Subscribe(this);
 
-            accommodationId = SelectedAccommodation.Id;
-            AccommodationName = SelectedAccommodation.Name;
-            City = SelectedAccommodation.Location.City;
-            Country = SelectedAccommodation.Location.Country;
-            Type = SelectedAccommodation.Type;
-            MaxGuests = SelectedAccommodation.GuestsMaximum;
-            MinDays = SelectedAccommodation.MinimumReservationDays;
+            Accommodation = SelectedAccommodation;
 
             Username = guest.User.Username;
 
             AvailableDates = new ObservableCollection<DateRanges>();
+
+            this.selectedTab = selectedTab;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -224,13 +139,14 @@ namespace ProjectSims.WPF.View.Guest1View.Pages
         private void FindDates_Click(object sender, RoutedEventArgs e)
         {
             DateRangesService dateRangesService = new DateRangesService();
-            FirstDate = DateOnly.FromDateTime((DateTime)FirstDatePicker.SelectedDate);
-            LastDate = DateOnly.FromDateTime((DateTime)LastDatePicker.SelectedDate);
-
-            if (FirstDate != null && LastDate != null && !string.IsNullOrEmpty(TextboxDaysNumber.Text))
+            if (FirstDatePicker.SelectedDate != null && LastDatePicker.SelectedDate != null && !string.IsNullOrEmpty(TextboxDaysNumber.Text))
             {
+                FirstDate = DateOnly.FromDateTime((DateTime)FirstDatePicker.SelectedDate);
+                LastDate = DateOnly.FromDateTime((DateTime)LastDatePicker.SelectedDate);
+                DaysNumber = Convert.ToInt32(TextboxDaysNumber.Text);
+
                 List<DateRanges> availableDates = new List<DateRanges>();
-                availableDates = dateRangesService.FindAvailableDates(FirstDate, LastDate, DaysNumber, accommodationId);
+                availableDates = dateRangesService.FindAvailableDates(FirstDate, LastDate, DaysNumber, Accommodation.Id);
 
                 AvailableDates.Clear();
                 foreach (DateRanges dateRange in availableDates)
@@ -248,13 +164,18 @@ namespace ProjectSims.WPF.View.Guest1View.Pages
                 DateRanges dates = (DateRanges)DatesTable.SelectedItem;
                 int guestNumber = Convert.ToInt32(GuestNumber);
 
-                reservationService.CreateReservation(accommodationId, guest.Id, dates.CheckIn, dates.CheckOut, guestNumber);
+                reservationService.CreateReservation(Accommodation.Id, guest.Id, dates.CheckIn, dates.CheckOut, guestNumber);
             }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            selectedTab.Content = new GuestAccommodationsView(guest, selectedTab);
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            selectedTab.Content = new GuestAccommodationsView(guest, selectedTab);
         }
 
         public void Update()

@@ -73,7 +73,7 @@ namespace ProjectSims.WPF.View.Guest1View.Pages
                     }
                 case 1:
                     {
-                        selectedTab.Content = new MyReservations(Guest);
+                        selectedTab.Content = new MyReservations(Guest, selectedTab);
                         break;
                     }
                 case 2:
@@ -94,7 +94,7 @@ namespace ProjectSims.WPF.View.Guest1View.Pages
                     }
                 case 6:
                     {
-                        selectedTab.Content = new AccommodationReservationView(SelectedAccommodation, Guest);
+                        selectedTab.Content = new AccommodationReservationView(SelectedAccommodation, Guest, selectedTab);
                         break;
                     }
             }

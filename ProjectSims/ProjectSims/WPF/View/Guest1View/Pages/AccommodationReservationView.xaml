@@ -10,9 +10,13 @@
 
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="70"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Button Margin="10,20,990,20" Click="Back_Click">Nazad</Button>
+        </Grid>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -38,7 +42,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Margin="20,5" FontSize="14">Grad:</Label>
-                    <Label Grid.Column="1" Margin="0,5"></Label>
+                    <Label Grid.Column="1" Margin="0,5" Content="{Binding Accommodation.Location.City}"></Label>
                 </Grid>
 
                 <Grid Grid.Row="1">
@@ -48,7 +52,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Margin="20,5" FontSize="14">Drzava:</Label>
-                    <Label Grid.Column="1" Margin="0,5"></Label>
+                    <Label Grid.Column="1" Margin="0,5" Content="{Binding Accommodation.Location.Country}"></Label>
                 </Grid>
 
                 <Grid Grid.Row="2">
@@ -58,7 +62,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Margin="20,5" FontSize="14">Tip smestaja:</Label>
-                    <Label Grid.Column="1" Margin="0,5"></Label>
+                    <Label Grid.Column="1" Margin="0,5" Content="{Binding Accommodation.Type}"></Label>
                 </Grid>
 
                 <Grid Grid.Row="3">
@@ -68,7 +72,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Margin="20,5" FontSize="14">Maksimalan broj gostiju:</Label>
-                    <Label Grid.Column="1" Margin="0,5"></Label>
+                    <Label Grid.Column="1" Margin="0,5" Content="{Binding Accommodation.GuestsMaximum}"></Label>
                 </Grid>
 
                 <Grid Grid.Row="4">
@@ -78,7 +82,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Margin="20,5" FontSize="14">Minimalan broj dana:</Label>
-                    <Label Grid.Column="1" Margin="0,5"></Label>
+                    <Label Grid.Column="1" Margin="0,5" Content="{Binding Accommodation.MinimumReservationDays}"></Label>
                 </Grid>
 
                 <Grid Grid.Row="5">
@@ -88,7 +92,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Margin="20,5,5,5" FontSize="14">Rok za otkazivanje (broj dana):</Label>
-                    <Label Grid.Column="1" Margin="0,5"></Label>
+                    <Label Grid.Column="1" Margin="0,5" Content="{Binding Accommodation.DismissalDays}"></Label>
                 </Grid>
 
                 <Grid Grid.Row="6">

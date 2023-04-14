@@ -29,8 +29,9 @@ namespace ProjectSims.WPF.View.Guest1View.Pages
         public AccommodationReservation SelectedReservation { get; set; }
         private Guest1 guest;
         private AccommodationReservationService service;
+        private Frame selectedTab;
 
-        public MyReservations(Guest1 guest)
+        public MyReservations(Guest1 guest, Frame selectedTab)
         {
             InitializeComponent();
             DataContext = this;
@@ -41,6 +42,8 @@ namespace ProjectSims.WPF.View.Guest1View.Pages
             service.Subscribe(this);
 
             Reservations = new ObservableCollection<AccommodationReservation>(service.GetReservationByGuest(guest.Id));
+
+            this.selectedTab = selectedTab;
         }
 
         private void DateChange_Click(object sender, RoutedEventArgs e)
@@ -64,13 +67,16 @@ namespace ProjectSims.WPF.View.Guest1View.Pages
             Reservations.Clear();
             foreach (AccommodationReservation reservation in service.GetReservationByGuest(guest.Id))
             {
-                Reservations.Add(reservation);
+                if (reservation.State == ReservationState.Active)
+                {
+                    Reservations.Add(reservation);
+                }
             }
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-
+            selectedTab.Content = new GuestAccommodationsView(guest, selectedTab);
         }
 
         private void CancelReservation_Click(object sender, RoutedEventArgs e)

@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="1">
-            <Frame x:Name="SelectedTab"></Frame>
+            <Frame x:Name="SelectedTab" NavigationUIVisibility="Hidden" ></Frame>
         </Grid>
         
     </Grid>

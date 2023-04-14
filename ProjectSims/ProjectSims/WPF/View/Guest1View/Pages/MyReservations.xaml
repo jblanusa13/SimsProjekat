@@ -20,7 +20,9 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0"/>
+            <Grid Grid.Row="0">
+                <Button Margin="10,60,760,60" Click="Back_Click">Nazad</Button>
+            </Grid>
 
             <DataGrid Grid.Row="1" Margin="35,40" x:Name="ReservationsTable"
                   ItemsSource="{Binding Path=Reservations}"
