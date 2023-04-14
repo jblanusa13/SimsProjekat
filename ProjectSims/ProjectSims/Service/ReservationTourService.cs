@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics.Eventing.Reader;
 
 namespace ProjectSims.Service
 {
@@ -25,21 +26,56 @@ namespace ProjectSims.Service
         {
             return reservations.GetAll();
         }
-        public List<ReservationTour> GetReservationsByTourId(Tour tour)
+        public List<ReservationTour> GetReservationsByTour(Tour tour)
         {
-            return reservations.GetReservationsByTourId(tour);
+            return reservations.GetReservationsByTour(tour);
         }
-        public List<int> GetGuestIdsByStateAndTourId(Tour tour, Guest2State state)
+        public List<ReservationTour> GetReservationsByTourAndState(Tour tour,Guest2State state)
         {
-            return reservations.GetGuestIdsByStateAndTourId(tour, state);
+            return reservations.GetReservationsByTourAndState(tour, state);
+        }
+        public List<int> GetGuestIdsByTourAndState(Tour tour, Guest2State state)
+        {
+            return reservations.GetGuestIdsByTourAndState(tour, state);
         }
         public ReservationTour GetReservationByGuestAndTour(Tour tour, Guest2 guest2)
         {
             return reservations.GetReservationByGuestAndTour(tour, guest2);
         }
-        public int  GetNumberOfGuestsWhoUsedVoucher(Tour tour)
+        public int GetNumberOfPresentGuests(Tour tour)
         {
-            return reservations.GetNumberOfGuestsWhoUsedVoucher(tour);
+            int numberOfPresentGuests = 0;
+            List<ReservationTour> wantedReservations = GetReservationsByTourAndState(tour, Guest2State.Present);
+            wantedReservations.ForEach(r => numberOfPresentGuests += r.NumberGuest);
+            return numberOfPresentGuests;
+        }
+        public int GetNumberOfPresentGuestsWithVoucher(Tour tour)
+        {
+            int numberOfPresentGuestsWithVoucher = 0;
+            List<ReservationTour> wantedReservations = GetReservationsByTourAndState(tour, Guest2State.Present);
+            wantedReservations.ForEach(r => { if (r.UsedVoucher) numberOfPresentGuestsWithVoucher += r.NumberGuest; });
+            return numberOfPresentGuestsWithVoucher;
+        }
+        public double GetPercentageOfPresentGuestsWithVoucher(Tour tour)
+        {
+            int numberOfPresentGuestsWithVoucher = GetNumberOfPresentGuestsWithVoucher(tour);
+            int numberOfPresentGuests = GetNumberOfPresentGuests(tour);
+            if(numberOfPresentGuests != 0)
+                return (numberOfPresentGuestsWithVoucher / numberOfPresentGuests)*100;
+            else 
+                return 0;
+        }
+        public int GetNumberOfPresentGuestsByAgeLimit(Tour tour,int lowerLimit)
+        {
+            int numberOfPresentGuestsThatAge = 0;
+            List<ReservationTour> wantedReservations = GetReservationsByTourAndState(tour, Guest2State.Present);
+            if (lowerLimit == 0)
+                wantedReservations.ForEach(r => { if (r.GuestAgeOnTour <18 ) numberOfPresentGuestsThatAge += r.NumberGuest; });
+            else if(lowerLimit == 18)
+                wantedReservations.ForEach(r => { if (r.GuestAgeOnTour >= 18 && r.GuestAgeOnTour <=50 ) numberOfPresentGuestsThatAge += r.NumberGuest; });
+            else
+                wantedReservations.ForEach(r => { if (r.GuestAgeOnTour > 50) numberOfPresentGuestsThatAge += r.NumberGuest; });
+            return numberOfPresentGuestsThatAge;
         }
         public void Create(ReservationTour reservation)
         {
@@ -51,19 +87,16 @@ namespace ProjectSims.Service
         }  
         public void UpdateGuestsState(Tour tour,Guest2State state)
         {
-            List<ReservationTour> tourReservations = GetReservationsByTourId(tour);
+            List<ReservationTour> tourReservations = GetReservationsByTour(tour);
             tourReservations.ForEach(r => r.State = state);
             tourReservations.ForEach(r => Update(r));
         }
         public void UpdateGuestState(Guest2 guest,Tour tour,Guest2State state)
         {
-            ReservationTour reservation = GetReservationsByTourId(tour).Find(r=>r.Guest2Id == guest.Id);
+            ReservationTour reservation = GetReservationsByTour(tour).Find(r=>r.Guest2Id == guest.Id);
             reservation.State = state;
             if(state == Guest2State.Present)
-            {
                 reservation.KeyPointWhereGuestArrivedId = tour.ActiveKeyPointId;
-                tourService.UpdateNumberOfGuests(guestService.GetAge(guest),tour);
-            }
             Update(reservation);
         }
         public ReservationTour GetTourIdWhereGuestIsWaiting(Guest2 guest)

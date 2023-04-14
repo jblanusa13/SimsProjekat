@@ -56,7 +56,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             {               
                 SelectedTour = ((FrameworkElement)sender).DataContext as Tour;
                 tourService.UpdateTourState(SelectedTour,TourState.Cancelled);
-                List<int> guestIds = reservationTourService.GetGuestIdsByStateAndTourId(SelectedTour,Guest2State.InactiveTour);
+                List<int> guestIds = reservationTourService.GetGuestIdsByTourAndState(SelectedTour,Guest2State.InactiveTour);
                 if (guestIds.Count > 0)
                 {
                     guestIds.ForEach(id => guest2Service.GiveVoucher(id));

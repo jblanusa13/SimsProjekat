@@ -23,7 +23,6 @@ namespace ProjectSims.Repository
             reservations = reservationFile.Load();
             observers = new List<IObserver>();
         }
-
         public int NextId()
         {
             if(reservations.Count == 0)
@@ -59,15 +58,18 @@ namespace ProjectSims.Repository
         {
             return reservations;
         }
-        public List<ReservationTour> GetReservationsByTourId(Tour tour)
+        public List<ReservationTour> GetReservationsByTour(Tour tour)
         {
             return reservations.Where(r=>r.TourId == tour.Id).ToList();
         }
-        public List<int> GetGuestIdsByStateAndTourId(Tour tour, Guest2State state)
+        public List<ReservationTour> GetReservationsByTourAndState(Tour tour, Guest2State state)
+        {
+            return reservations.Where(r=>r.State == state && r.TourId == tour.Id).ToList();
+        }
+        public List<int> GetGuestIdsByTourAndState(Tour tour, Guest2State state)
         {
             List<ReservationTour> wantedReservations = reservations.Where(r=> r.State == state && r.TourId == tour.Id).ToList();
-            List<int> guestIds = new List<int>();
-            wantedReservations.ForEach(r => guestIds.Add(r.Guest2Id));  
+            List<int> guestIds = wantedReservations.Select(r => r.Guest2Id).ToList();
             return guestIds;
         }
         public ReservationTour GetTourIdWhereGuestIsWaiting(Guest2 guest)
@@ -77,33 +79,17 @@ namespace ProjectSims.Repository
         }
         public ReservationTour GetReservationByGuestAndTour(Tour tour, Guest2 guest2)
         {
-            ReservationTour reservationTour = new ReservationTour();
-
-            foreach (var reservation in GetAll())
-            {
-                if(reservation.Guest2Id == guest2.Id && reservation.TourId == tour.Id)
-                {
-                    reservationTour = reservation;
-                }
-            }
-                return reservationTour;
+            ReservationTour reservationTour = reservations.Find(r => r.Guest2Id == guest2.Id && r.TourId == tour.Id);
+            return reservationTour;
         }
-        public int GetNumberOfGuestsWhoUsedVoucher(Tour tour)
-        {
-            int numberOfGuestsWhoUsedVoucher = 0;
-            reservations.ForEach(r => { if (r.TourId == tour.Id && r.UsedVoucher) numberOfGuestsWhoUsedVoucher++; });
-            return numberOfGuestsWhoUsedVoucher;
-        }
-        public void Subscribe(IObserver observer)
+    public void Subscribe(IObserver observer)
         {
             observers.Add(observer);
         }
-
         public void Unsubscribe(IObserver observer)
         {
             observers.Remove(observer);
         }
-
         public void NotifyObservers()
         {
             foreach (var observer in observers)

@@ -53,17 +53,17 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             FinishedKeyPoints = new ObservableCollection<KeyPoint>(keyPointService.GetKeyPointsByStateAndIds(Tour.KeyPointIds, true));
             WaitingGuests = new List<Guest2>();
             PresentGuests = new List<Guest2>();
-            foreach (int id in reservationTourService.GetGuestIdsByStateAndTourId(Tour,Guest2State.Waiting))
+            foreach (int id in reservationTourService.GetGuestIdsByTourAndState(Tour,Guest2State.Waiting))
             {
-                WaitingGuests.Add(guest2Controller.FindGuest2ById(id));
+                WaitingGuests.Add(guest2Controller.GetGuestById(id));
             }
-            foreach (int id in reservationTourService.GetGuestIdsByStateAndTourId(Tour, Guest2State.ActiveTour))
+            foreach (int id in reservationTourService.GetGuestIdsByTourAndState(Tour, Guest2State.ActiveTour))
             {
-                WaitingGuests.Add(guest2Controller.FindGuest2ById(id));
+                WaitingGuests.Add(guest2Controller.GetGuestById(id));
             }
-            foreach (int id in reservationTourService.GetGuestIdsByStateAndTourId(Tour, Guest2State.Present))
+            foreach (int id in reservationTourService.GetGuestIdsByTourAndState(Tour, Guest2State.Present))
             {
-                PresentGuests.Add(guest2Controller.FindGuest2ById(id));
+                PresentGuests.Add(guest2Controller.GetGuestById(id));
             }
             TourInfoTextBox.Text = Tour.Name + "," + Tour.StartOfTheTour.ToString("dd.MM.yyyy HH:mm");
         }

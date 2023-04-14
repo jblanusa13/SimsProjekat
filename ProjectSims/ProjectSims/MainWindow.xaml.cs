@@ -75,6 +75,7 @@ namespace ProjectSims
                     {
                         GuideStartingView startingView = new GuideStartingView(guide);
                         startingView.Show();
+                        Close();
                     }
 
                     Guest2 guest2 = guest2File.GetByUserId(user.Id);

@@ -9,7 +9,11 @@
       Title="FinishedToursView">
     <ScrollViewer>
         <Grid>
-            <ListView  x:Name="FinishedToursListView" ItemsSource="{Binding FinishedTours}" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single">
+            <Label Content="Najposecenija tura ikada:" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalAlignment="Top" Width="250" Height="40" Foreground="White" FontSize="16" FontFamily="Broadway"/>
+            <TextBox x:Name="MostVisitedTourTextBox" HorizontalAlignment="Left" Margin="300,50,0,0" VerticalAlignment="Top" Width="500" Height="40" Foreground="Black" FontSize="16" FontFamily="Broadway" Background="White" IsReadOnly="True" BorderThickness="0" />
+            <Label Content="Najposecenija tura ove godine:" HorizontalAlignment="Left" Margin="0,100,0,0" VerticalAlignment="Top" Width="290" Height="40" Foreground="White" FontSize="16" FontFamily="Broadway"/>
+            <TextBox x:Name="MostVisitedTourThisYearTextBox" HorizontalAlignment="Left" Margin="300,100,0,0" VerticalAlignment="Top" Width="500" Height="40" Foreground="Black" FontSize="16" FontFamily="Broadway" Background="White" IsReadOnly="True" BorderThickness="0" />
+            <ListView  x:Name="FinishedToursListView" ItemsSource="{Binding FinishedTours}" Margin="0,200,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single">
                 <ListView.View>
                     <GridView >
                         <GridViewColumn Header="Naziv" Width="500">

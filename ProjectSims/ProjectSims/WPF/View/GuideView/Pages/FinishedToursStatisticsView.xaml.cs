@@ -25,6 +25,8 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         private TourService tourService;
         public ObservableCollection<Tour> FinishedTours { get; set; }
         public Tour SelectedTour { get; set; }
+        public Tour MostVisitedTour { get; set; }
+        public Tour MostVisitedTourThisYear { get; set; }
         public Guide Guide { get; set; }
         public FinishedToursStatisticsView(Guide guide)
         {
@@ -34,6 +36,10 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             tourService.Subscribe(this);
             Guide = guide;
             FinishedTours = new ObservableCollection<Tour>(tourService.GetToursByStateAndGuideId(TourState.Finished, Guide.Id));
+           // MostVisitedTour = tourService.GetMostVisitedTourEver(guide.Id);
+           // MostVisitedTourThisYear = tourService.GetMostVisitedTourThisYear(guide.Id);
+           // MostVisitedTourTextBox.Text = MostVisitedTour.Name + "," + MostVisitedTour.StartOfTheTour.ToString("dd/MM/yyyy HH:mm"); ;
+           // MostVisitedTourThisYearTextBox.Text = MostVisitedTourThisYear.Name + "," + MostVisitedTourThisYear.StartOfTheTour.ToString("dd/MM/yyyy HH:mm"); ;
         }
         private void TourInfo_Click(object sender, RoutedEventArgs e)
         {

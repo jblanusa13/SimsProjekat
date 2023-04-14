@@ -52,9 +52,8 @@ namespace ProjectSims.Service
         }
         public List<Tour> GetTodayTours(int guideId)
         {
-            List<Tour> inactiveTours = tours.GetToursByStateAndGuideId(TourState.Inactive, guideId);
-            return inactiveTours.Where(t => t.StartOfTheTour.Date == DateTime.Today).ToList();
-        }
+           return tours.GetTodayTours(guideId);
+        }   
         public void Create(int guideId, string name, string location, string description, string language, string maxNumberGuests,string startKeyPointName, string finishKeyPointName, 
             List<string> otherKeyPointsNames, string tourStart, string duration, string images)
         {
@@ -88,16 +87,6 @@ namespace ProjectSims.Service
         public void UpdateActiveKeyPoint(Tour tour,int keyPointId)
         {
             tour.ActiveKeyPointId = keyPointId;
-            Update(tour);
-        }
-        public void UpdateNumberOfGuests(int guestAge,Tour tour)
-        {
-            if (guestAge < 18)
-                tour.NumberOfPresentGuestsUnder18++;
-            else if(guestAge >=18 && guestAge<50)
-                tour.NumberOfPresentGuestsBetween18And50++;
-            else
-                tour.NumberOfPresentGuestsOver50++;
             Update(tour);
         }
         public void Remove(Tour tour)

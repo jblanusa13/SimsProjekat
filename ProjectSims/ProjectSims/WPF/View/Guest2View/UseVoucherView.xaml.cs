@@ -34,6 +34,7 @@ namespace ProjectSims.WPF.View.Guest2View
         private TourService tourService;
 
         private ReservationTourService reservationTourService;
+        private Guest2Service guest2Service;
         public UseVoucherView(Guest2 g, Tour t, int numGuests)
         {
             InitializeComponent();
@@ -44,6 +45,7 @@ namespace ProjectSims.WPF.View.Guest2View
             voucherRepository = new VoucherRepository();
             tourService = new TourService();
             reservationTourService = new ReservationTourService();
+            guest2Service = new Guest2Service();
 
             ListVoucher = new ObservableCollection<Voucher>(voucherRepository.GetActiveVouchersWithIds(guest2.VoucherIds));
         }
@@ -51,15 +53,16 @@ namespace ProjectSims.WPF.View.Guest2View
         private void ReservationClick(object sender, RoutedEventArgs e)
         {
             ReservationTour reservation = new ReservationTour();
+            int guestAgeOnTour = guest2Service.GetAgeOnTour(guest2, tour);
             if (SelectedVoucher != null)
             {
                 SelectedVoucher.Used = true;
                 voucherRepository.Update(SelectedVoucher);
-                reservation = new ReservationTour(tour.Id, numberGuests, guest2.Id, -1, true, false);
+                reservation = new ReservationTour(tour.Id, numberGuests, guest2.Id, -1, true, false,guestAgeOnTour);
             }
             else
             {
-                reservation = new ReservationTour(tour.Id, numberGuests, guest2.Id, -1, false, false);
+                reservation = new ReservationTour(tour.Id, numberGuests, guest2.Id, -1, false, false, guestAgeOnTour);
             }
             reservationTourService.Create(reservation);
             tour.AvailableSeats -= numberGuests;

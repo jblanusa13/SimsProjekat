@@ -70,6 +70,11 @@ namespace ProjectSims.Repository
         {
             return tours.Find(t=> t.State == state && t.GuideId == guideId);
         }
+        public List<Tour> GetTodayTours(int guideId)
+        {
+            List<Tour> inactiveTours = GetToursByStateAndGuideId(TourState.Inactive, guideId);
+            return inactiveTours.Where(t => t.StartOfTheTour.Date == DateTime.Today).ToList();
+        }
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);
