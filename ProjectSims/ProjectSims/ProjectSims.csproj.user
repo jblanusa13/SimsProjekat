@@ -2,6 +2,9 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="WPF\View\Guest1View\AccommodationRating.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\Guest1View\MyRequests.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -18,8 +21,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\GuideView\Pages\ScheduledToursView.xaml.cs">
-		<SubType>Code</SubType>
-	</Compile>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\Guest2View\Pages\ShowVouchersView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -58,6 +61,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="WPF\View\Guest1View\AccommodationRating.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="WPF\View\Guest1View\MyRequests.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -74,8 +80,8 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\GuideView\Pages\ScheduledToursView.xaml">
-		<SubType>Designer</SubType>
-	</Page>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="WPF\View\Guest2View\Pages\ShowVouchersView.xaml">
       <SubType>Designer</SubType>
     </Page>

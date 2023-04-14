@@ -1,0 +1,121 @@
+﻿<Window x:Class="ProjectSims.WPF.View.Guest1View.AccommodationRating"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View"
+        mc:Ignorable="d"
+        MinHeight="700" MinWidth="800"
+        Title="AccommodationRating" Height="700" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <TextBlock Margin="20,20,200,70" FontSize="40">Ocenjivanje smestaja</TextBlock>
+            <Label Margin="20,80,200,20" FontSize="28">Ime</Label>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="400"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="110"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" Margin="20,25" FontSize="14">Cistoca:</Label>
+                    <TextBox Grid.Column="1" Margin="10,20,50,20"></TextBox>
+                </Grid>
+                
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" Margin="20,25" FontSize="14">Korektnost vlasnika:</Label>
+                    <TextBox Grid.Column="1" Margin="10,20,50,20"></TextBox>
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" Margin="20,25" FontSize="14">Lokacija:</Label>
+                    <TextBox Grid.Column="1" Margin="10,20,50,20"></TextBox>
+                </Grid>
+
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" Margin="20,25" FontSize="14">Vrednost za novac:</Label>
+                    <TextBox Grid.Column="1" Margin="10,20,50,20"></TextBox>
+                </Grid>
+
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" Margin="20,20" FontSize="14">Komentar:</Label>
+                    <TextBox Grid.Column="1" Margin="10,20,50,20"></TextBox>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Label Grid.Column="0" Margin="30,20,20,20" FontSize="14">Dodajte slike smestaja:</Label>
+                    <Button Grid.Column="1" Margin="10,20,90,20">Uvezi</Button>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <ListView Margin="40,10,100,10"></ListView>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Margin="20,20,270,20">Odustani</Button>
+            <Button Grid.Column="1" Margin="270,20,20,20">Potvrdi</Button>
+        </Grid>
+    </Grid>
+</Window>
