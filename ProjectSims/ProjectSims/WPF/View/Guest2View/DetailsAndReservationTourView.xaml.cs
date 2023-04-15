@@ -72,7 +72,7 @@ namespace ProjectSims.View.Guest2View
             //show picture in listview
             foreach (var fullFilePath in tourSelected.Images)
             {
-                BitmapImage bitmap = new BitmapImage();
+                /*BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
                 if(Uri.IsWellFormedUriString(fullFilePath, UriKind.Absolute))
                 {
@@ -91,31 +91,32 @@ namespace ProjectSims.View.Guest2View
                 else
                 {
                     ImageList.Items.Add("The format of the URL could not be determined.");
+                }*/
+
+                //kad se ubaci filepicker kod kreiranja tura i kad se u tour.csv budu cuvale relativne putanje
+
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                if (Uri.IsWellFormedUriString(@"/Resources/Images/Guide/slika.jpg", UriKind.RelativeOrAbsolute))
+                {
+                    bitmap.UriSource = new Uri(@"../../../Resources/Images/Guide/slika.jpg", UriKind.RelativeOrAbsolute);
+                    bitmap.EndInit();
+
+                    image = new Image();
+
+                    image.Source = bitmap;
+
+                    image.Width = 350;
+                    image.Height = 200;
+
+                    ImageList.Items.Add(image);
+                }
+                else
+                {
+                    ImageList.Items.Add("The format of the URL could not be determined.");
                 }
             }
-            //kad se ubaci filepicker kod kreiranja tura i kad se u tour.csv budu cuvale relativne putanje
-            /*
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            if (Uri.IsWellFormedUriString(@"/Resources/Images/Guide/slika.jpg", UriKind.RelativeOrAbsolute))
-            {
-                bitmap.UriSource = new Uri(@"../../../Resources/Images/Guide/slika.jpg", UriKind.RelativeOrAbsolute);
-                bitmap.EndInit();
-
-                image = new Image();
-
-                image.Source = bitmap;
-
-                image.Width = 350;
-                image.Height = 200;
-
-                ImageList.Items.Add(image);
-            }
-            else
-            {
-                ImageList.Items.Add("The format of the URL could not be determined.");
-            }
-            */
+            
             tourService = new TourService();
             reservationService = new ReservationTourService();
             TourList = new ObservableCollection<Tour>(tourService.GetAllToursWithSameLocation(tourSelected));

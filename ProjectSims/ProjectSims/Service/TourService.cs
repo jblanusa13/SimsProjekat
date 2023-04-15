@@ -55,15 +55,20 @@ namespace ProjectSims.Service
        public Tour GetMostVisitedTour(int guideId,bool thisYear)
         {
             List<Tour> wantedTours = GetToursByStateAndGuideId(TourState.Finished, guideId);
-            if(thisYear)
-                wantedTours = wantedTours.Where(t=> t.StartOfTheTour.Year == DateTime.Now.Year).ToList();
-            Dictionary<int, int> numberOfGuestsOnTour = new Dictionary<int, int>();
-            foreach (Tour t in wantedTours)
+            if (wantedTours.Count != 0)
             {
-                numberOfGuestsOnTour.Add(t.Id, reservationService.GetNumberOfPresentGuests(t));
+                if (thisYear)
+                    wantedTours = wantedTours.Where(t => t.StartOfTheTour.Year == DateTime.Now.Year).ToList();
+                Dictionary<int, int> numberOfGuestsOnTour = new Dictionary<int, int>();
+                foreach (Tour t in wantedTours)
+                {
+                    numberOfGuestsOnTour.Add(t.Id, reservationService.GetNumberOfPresentGuests(t));
+                }
+                int mostVisitedTourId = numberOfGuestsOnTour.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
+                return GetTourById(mostVisitedTourId);
             }
-            int mostVisitedTourId = numberOfGuestsOnTour.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
-            return GetTourById(mostVisitedTourId);
+            else
+                return null;
         }
         public void Create(int guideId, string name, string location, string description, string language, string maxNumberGuests,string startKeyPointName, string finishKeyPointName, 
             List<string> otherKeyPointsNames, string tourStart, string duration, string images)

@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="400" d:DesignWidth="1280"
+      d:DesignHeight="1000" d:DesignWidth="1280"
       Title="CreateTourView">
     <Page.Resources>
         <ControlTemplate x:Key="ValidationTemplate">
@@ -27,7 +27,6 @@
             <Label Content="Sledeća stanica" HorizontalAlignment="Left" Margin="35,310,0,0" VerticalAlignment="Top" Height="25" Foreground="White" FontFamily="Broadway" FontSize="16"/>
             <Label Content="Krajnja stanica" HorizontalAlignment="Left" Margin="35,350,0,0" VerticalAlignment="Top" Height="25" Foreground="White" FontFamily="Broadway" FontSize="16"/>
             <Label Content="Opis ture" HorizontalAlignment="Left" Margin="35,375,0,0" VerticalAlignment="Top" Height="25" Foreground="White" FontFamily="Broadway" FontSize="16"/>
-            <Label Content="URL slike(odvojeni zarezom ako ih je više)" HorizontalAlignment="Left" Margin="35,520,0,0" VerticalAlignment="Top" Height="25" Foreground="White" FontFamily="Broadway" FontSize="16"/>
             <TextBox Text="{Binding Path=TourName, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged ,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="240,5,0,0"  VerticalAlignment="Top" Width="600" Height="25"/>
             <TextBox Text="{Binding Path=Location, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged ,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="240,45,0,0"  VerticalAlignment="Top" Width="500" Height="25"/>
             <ComboBox Text="{Binding Path=TourLanguage, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged ,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="240,85,0,0" VerticalAlignment="Top" Width="300">
@@ -46,8 +45,10 @@
             <Button Click="AddKeyPoint_Click" Content="Dodaj stanicu" HorizontalAlignment="Left" Margin="900,310,0,0"  VerticalAlignment="Top" Width="100" Height="30" Background="White" Foreground="#FF050518" FontFamily="Broadway"/>
             <TextBox Name="OtherKeyPointTextBox" Text="{Binding Path=OtherKeyPoint, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged ,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="240,310,0,0"  VerticalAlignment="Top" Width="600" Height="25"/>
             <TextBox Text="{Binding Path=Description, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged ,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="35,400,0,0"  VerticalAlignment="Top" Width="1000" Height="110"/>
-            <TextBox Text="{Binding Path=Images, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged ,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="35,540,0,0"  VerticalAlignment="Top" Width="1000" Height="35"/>
-            <Button  Click="CreateTour_Click" Content="Kreiraj turu" HorizontalAlignment="Left" Margin="1166,545,0,0"  VerticalAlignment="Top" Width="80" Height="25" Background="White" Foreground="#FF050518" FontFamily="Broadway"/>
+            <Button  Click="BrowseImage_Click" HorizontalAlignment="Left" Margin="35,545,0,0"  VerticalAlignment="Top" Width="50" Height="50" Background="Transparent">
+                <Image Source="/Resources/Icons/Guide/addPhoto.png"/>
+            </Button>
+            <Button  Click="CreateTour_Click" Content="Kreiraj turu" HorizontalAlignment="Left" Margin="1050,550,0,0"  VerticalAlignment="Top" Width="150" Height="50" Background="White" Foreground="#FF050518" FontFamily="Broadway" FontSize="20"/>
         </Grid>
     </ScrollViewer>
 </Page>

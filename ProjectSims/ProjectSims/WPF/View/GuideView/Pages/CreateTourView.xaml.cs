@@ -306,7 +306,27 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        private void BrowseImage_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
+            Nullable<bool> result = openFileDlg.ShowDialog();
 
+            string apsolutePath = "";
+            if (result == true)
+            {
+                apsolutePath = openFileDlg.FileName;
+            }
+            else
+            {
+                return;
+            }
+            Images += GetRelativePath(apsolutePath) + ",";
+        }
+        private string GetRelativePath(string apsolutePath)
+        {
+            string nameFile = apsolutePath.Remove(0, 90);
+            return "../../../Resources/Images/Guide/" + nameFile;
+        }
         private void CreateTour_Click(object sender, RoutedEventArgs e)
         {
             if (IsValid)
@@ -315,7 +335,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 {
                     _controller.Create(guide.Id, TourName, Location, Description, TourLanguage, MaxNumberGuests, StartKeyPoint, FinishKeyPoint, OtherKeyPoints, TourStart, Duration, Images);
                 }
-                this.NavigationService.GoBack();
+                //this.NavigationService.GoBack();
             }
             else
                 MessageBox.Show("Nisu validno popunjena polja!");
