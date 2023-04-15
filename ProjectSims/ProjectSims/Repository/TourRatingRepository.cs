@@ -56,6 +56,10 @@ namespace ProjectSims.Repository
         {
             return toursRating;
         }
+        public List<TourAndGuideRating> GetAllRatingsByTour(Tour tour)
+        {
+            return toursRating.Where(r => r.TourId == tour.Id).ToList();
+        }
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);

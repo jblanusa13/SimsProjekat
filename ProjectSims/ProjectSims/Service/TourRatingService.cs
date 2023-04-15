@@ -18,9 +18,13 @@ namespace ProjectSims.Service
             tourRatings = new TourRatingRepository();
         }
 
-        public List<TourAndGuideRating> GetAllTourRaitngs()
+        public List<TourAndGuideRating> GetAll()
         {
             return tourRatings.GetAll();
+        }
+        public List<TourAndGuideRating> GetAllRatingsByTour(Tour tour)
+        {
+            return tourRatings.GetAllRatingsByTour(tour);
         }
 
         public void Create(TourAndGuideRating tourRaitng)

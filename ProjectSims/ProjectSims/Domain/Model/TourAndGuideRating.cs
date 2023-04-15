@@ -1,4 +1,5 @@
 ﻿using ProjectSims.Serializer;
+using ProjectSims.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace ProjectSims.Domain.Model
     {
         public int Id { get; set; }
         public int GuestId { get; set; }
+        public Guest2 Guest { get; set; }
         public int TourId { get; set; }
         public int KnowledgeGuide { get; set; }
         public int LanguageGuide { get; set; }
@@ -21,11 +23,13 @@ namespace ProjectSims.Domain.Model
         public TourAndGuideRating()
         {
             Images = new List<string>();
+            Guest = new Guest2();
         }
 
-        public TourAndGuideRating(int guestId, int tourId, int knowledgeGuide, int languageGuide, int interestingTour, string addedComment, List<string> images)
+        public TourAndGuideRating(int guestId, Guest2 guest, int tourId, int knowledgeGuide, int languageGuide, int interestingTour, string addedComment, List<string> images)
         {
             GuestId = guestId;
+            Guest = guest;
             TourId = tourId;
             KnowledgeGuide = knowledgeGuide;
             LanguageGuide = languageGuide;
@@ -64,6 +68,12 @@ namespace ProjectSims.Domain.Model
             {
                 Images.Add(image);
             }
+            InitializeData();
+        }
+        public void InitializeData()
+        {
+            Guest2Service guestService = new Guest2Service();
+            Guest = guestService.GetGuestById(GuestId);
         }
     }
 }

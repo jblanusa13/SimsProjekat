@@ -36,8 +36,8 @@
             </MenuItem>
             <MenuItem Header="Zakazane ture" Click="ScheduledTours_Click" Height="120"  Width="240" FontSize="32" Foreground="#FF050518" FontFamily="TGaramond" FontWeight="UltraBold"/>
             <MenuItem Header="Zavrsene ture" Height="120"  Width="240" FontSize="32" Foreground="#FF050518" FontFamily="TGaramond" FontWeight="UltraBold">
-                <MenuItem Header="Statistika" Click="FinishedTour_Click"/>
-                <MenuItem Header="Ocene i recenzije"/>
+                <MenuItem Header="Statistika" Click="FinishedToursStatistics_Click"/>
+                <MenuItem Header="Ocene i recenzije" Click="FinishedToursRatings_Click"/>
             </MenuItem>
             <MenuItem Header="Zahtevi" Height="120"  Width="150" FontSize="32" Foreground="#FF050518" FontFamily="TGaramond" FontWeight="UltraBold">
                 <MenuItem Header="Zahtevi za ture"/>
