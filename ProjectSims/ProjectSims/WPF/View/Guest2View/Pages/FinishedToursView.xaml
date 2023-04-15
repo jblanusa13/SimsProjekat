@@ -21,7 +21,7 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
             <Image Source="/Resources/Icons/Guest2/icons8-home-page-64.png" Cursor="Hand" HorizontalAlignment="Left" Height="54" VerticalAlignment="Center" Width="56"/>
-            <Label Content="/Pretraga tura" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <Label Content="/Ocjeni ture" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
         </StackPanel>
         <Label Content="Ture na kojima ste prisustvovali a niste ih ocjenili:" Grid.Row="1" Grid.Column="1" Margin="0,0,184,0" VerticalAlignment="Center" Height="80" FontSize="40" />
