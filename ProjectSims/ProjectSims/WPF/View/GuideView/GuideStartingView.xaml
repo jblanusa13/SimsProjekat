@@ -43,7 +43,11 @@
             </MenuItem>
         </Menu>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,260,0,0" Height="444" Width="1280" Background="#FF050518">
-            <Frame Name="GuideFrame" HorizontalAlignment="Center" VerticalAlignment="Top" Height="400" Width="1280" NavigationUIVisibility="Hidden"/>
+            <Frame Name="GuideFrame" HorizontalAlignment="Center" VerticalAlignment="Top" Height="420" Width="1280" NavigationUIVisibility="Hidden">
+                <Frame.Background>
+                    <ImageBrush ImageSource="/Resources/Images/Guide/background.jpg"/>
+                </Frame.Background>
+            </Frame>
         </Grid>
     </Grid>
 </Window>

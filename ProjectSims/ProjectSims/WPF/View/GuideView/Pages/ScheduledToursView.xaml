@@ -8,8 +8,8 @@
       d:DesignHeight="400" d:DesignWidth="1280"
       Title="ScheduledToursView">
     <ScrollViewer>
-        <Grid>
-            <ListView  x:Name="ScheduledTour" ItemsSource="{Binding ScheduledTours}" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single">
+        <Grid Background="#FF050518">
+            <ListView  x:Name="ScheduledTour" ItemsSource="{Binding ScheduledTours}" Margin="0,50,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single">
                 <ListView.View>
                     <GridView >
                         <GridViewColumn Header="Naziv" Width="500">

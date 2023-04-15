@@ -65,7 +65,6 @@ namespace ProjectSims.Service
             }
             else
                 return 0;
-
         }
         public int GetNumberOfPresentGuestsByAgeLimit(Tour tour,int lowerLimit)
         {
@@ -126,6 +125,5 @@ namespace ProjectSims.Service
         {
             reservations.Subscribe(observer);
         }
-
     }
 }

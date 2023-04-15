@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ProjectSims.Service;
 using ProjectSims.Observer;
+using System.Windows.Navigation;
 
 namespace ProjectSims.View.GuideView
 {
@@ -37,11 +38,9 @@ namespace ProjectSims.View.GuideView
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            
         }
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-
         }
         private void Close_Click(object sender, RoutedEventArgs e)
         {
@@ -51,7 +50,7 @@ namespace ProjectSims.View.GuideView
         }
         private void TrackTour_Click(object sender, RoutedEventArgs e)
         {
-            //ActiveTour = tourService.GetTourByStateAndGuideId(TourState.Active, Guide.Id);
+            ActiveTour = tourService.GetTourByStateAndGuideId(TourState.Active, Guide.Id);
             if (ActiveTour != null)
             {
                 Page tourTrackingPage = new TourTrackingView(ActiveTour,Guide);

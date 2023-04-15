@@ -45,12 +45,8 @@ namespace ProjectSims.Service
         }
         public List<KeyPoint> GetTourKeyPoints(Tour tour)
         {
-            List<KeyPoint> tourKeyPoints = new List<KeyPoint>();
-            foreach (int keyPointId in tour.KeyPointIds)
-            {
-                tourKeyPoints.Add(keyPointService.GetKeyPointById(keyPointId));
-            }
-            return tourKeyPoints;
+            List<int> keyPointIds = tour.KeyPointIds;
+            return keyPointIds.Select(id => keyPointService.GetKeyPointById(id)).ToList();
         }
         public List<Tour> GetTodayTours(int guideId)
         {

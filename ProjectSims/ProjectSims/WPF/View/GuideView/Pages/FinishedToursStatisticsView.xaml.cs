@@ -59,5 +59,10 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 FinishedTours.Add(tour);
             }
         }
+
+        private void FinishedToursListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
