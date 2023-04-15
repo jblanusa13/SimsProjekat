@@ -7,6 +7,7 @@ using ProjectSims.Domain.Model;
 using ProjectSims.Repository;
 using ProjectSims.Observer;
 using ProjectSims.FileHandler;
+using ProjectSims.WPF.View.Guest1View;
 
 namespace ProjectSims.Service
 {
@@ -38,13 +39,23 @@ namespace ProjectSims.Service
         public void CreateReservation(int accommodationId, int guestId, DateOnly checkIn, DateOnly checkOut, int guestNumber)
         {
             int id = NextId();
-            AccommodationReservation reservation = new AccommodationReservation(id, accommodationId, guestId, checkIn, checkOut, guestNumber);
+            AccommodationReservation reservation = new AccommodationReservation(id, accommodationId, guestId, checkIn, checkOut, guestNumber, ReservationState.Active);
             reservationRepository.Add(reservation);
         }
 
         public void RemoveReservation(AccommodationReservation reservation)
         {
-            reservationRepository.Remove(reservation);
+            reservation.State = ReservationState.Canceled;
+            reservationRepository.Update(reservation);
+        }
+        public bool CanCancel(AccommodationReservation reservation)
+        {
+            int dismissalDays = reservation.Accommodation.DismissalDays;
+            if(DateOnly.FromDateTime(DateTime.Today) <= reservation.CheckInDate.AddDays(-dismissalDays))
+            {
+                return true;
+            }
+            return false;
         }
 
         public void Subscribe(IObserver observer)

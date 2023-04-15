@@ -1,8 +1,10 @@
 ﻿using ProjectSims.Domain.Model;
 using ProjectSims.Service;
+using ProjectSims.View.GuideView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -198,7 +200,6 @@ namespace ProjectSims.WPF.View.GuideView.Pages
 
         private Regex _durationRegex = new Regex("^([0-9]*\\.)?[0-9]+$");
         private Regex _maxNumberGuestsRegex = new Regex("^[1-9][0-9]*$");
-        //private Regex _imageRegex
         public String Error => null;
         public string this[string columnName]
         {
@@ -261,24 +262,12 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                     if (string.IsNullOrEmpty(Description))
                         return "Unesite opis!";
                 }
-                else if (columnName == "Images")
-                {
-                    if (string.IsNullOrEmpty(Images))
-                        return "Unesite URL slike!";
-                    foreach (string image in Images.Split(','))
-                    {
-                        /*Match match = _imageRegex.Match(image);
-                        if (!match.Success)
-                            return "Format nije ispravan!";*/
-                    }
-
-                }
                 return null;
 
             }
         }
 
-        private readonly string[] _validatedProperties = { "TourName", "Location", "TourLanguage", "MaxNumberGuests", "Duration", "TourStarts", "StartKeyPoint", "FinishKeyPoint", "Description", "Images" };
+        private readonly string[] _validatedProperties = { "TourName", "Location", "TourLanguage", "MaxNumberGuests", "Duration", "TourStarts", "StartKeyPoint", "FinishKeyPoint", "Description"};
         public bool IsValid
         {
             get
@@ -333,9 +322,10 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             {
                 foreach (string TourStart in TourStarts.Split(','))
                 {
+                    Images.Remove(Images.Length - 1, 1);
                     _controller.Create(guide.Id, TourName, Location, Description, TourLanguage, MaxNumberGuests, StartKeyPoint, FinishKeyPoint, OtherKeyPoints, TourStart, Duration, Images);
                 }
-                //this.NavigationService.GoBack();
+                this.NavigationService.Navigate(new ScheduledToursView(guide));
             }
             else
                 MessageBox.Show("Nisu validno popunjena polja!");

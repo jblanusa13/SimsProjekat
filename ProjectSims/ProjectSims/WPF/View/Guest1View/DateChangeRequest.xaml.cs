@@ -16,13 +16,14 @@ using System.Windows.Shapes;
 using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 using ProjectSims.Service;
+using ProjectSims.WPF.View.Guest1View;
 
-namespace ProjectSims.View
+namespace ProjectSims.WPF.View.Guest1View
 {
     /// <summary>
     /// Interaction logic for DateChangeRequest.xaml
     /// </summary>
-    public partial class DateChangeRequest : Window, IObserver, INotifyPropertyChanged
+    public partial class DateChangeRequest : Window, IObserver
     {
         private RequestService requestService;
         private AccommodationReservationService reservationService;
@@ -52,18 +53,11 @@ namespace ProjectSims.View
             GuestNumber = selectedReservation.GuestNumber;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         private void SendRequest_Click(object sender, RoutedEventArgs e)
         {
-            DateChange = DateOnly.FromDateTime((DateTime)DateChangePicker.SelectedDate);
-            if (DateChange != null)
+            if (DateChangePicker.SelectedDate != null)
             {
+                DateChange = DateOnly.FromDateTime((DateTime)DateChangePicker.SelectedDate);
                 requestService.CreateRequest(reservationId, DateChange);
                 Close();
             }

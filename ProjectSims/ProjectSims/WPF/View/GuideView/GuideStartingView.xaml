@@ -21,7 +21,9 @@
                 <Image Source="\Resources\Icons\Guide\close.png"/>
             </Button>
         </ToolBar>
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,40,0,0" Height="100" Width="1280" Background="#FF050518"/>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,40,0,0" Height="100" Width="1280" Background="#FF050518">
+            <Image Source="/Resources/Icons/Guide/travel-tour-logo.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Grid>
         <Menu Margin="0,140,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="120" Width="1280" Background="White">
             <MenuItem Header="Pocetna" Click="Home_Click" Height="120" Width="140" FontSize="32" Foreground="#FF050518" FontFamily="TGaramond" FontWeight="UltraBold"/>
             <MenuItem Header="Pracenje ture" Height="120" Width="220"  FontSize="32" Foreground="#FF050518" FontFamily="TGaramond" FontWeight="UltraBold">

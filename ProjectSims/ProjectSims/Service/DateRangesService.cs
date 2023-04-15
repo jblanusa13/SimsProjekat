@@ -149,7 +149,7 @@ namespace ProjectSims.Service
 
             foreach (AccommodationReservation reservation in reservationRepository.GetAll())
             {
-                if (reservation.AccommodationId == accommodationId)
+                if (reservation.AccommodationId == accommodationId && reservation.State == ReservationState.Active)
                 {
                     unavailableDates.Add(new DateRanges(reservation.CheckInDate, reservation.CheckOutDate));
                 }

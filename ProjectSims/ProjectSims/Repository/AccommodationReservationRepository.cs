@@ -57,11 +57,15 @@ namespace ProjectSims.Repository
             reservationFileHandler.Save(reservations);
             NotifyObservers();
         }
-        public void Remove(AccommodationReservation reservation)
+        public void Update(AccommodationReservation reservation)
         {
-            reservations.Remove(reservation);
+            int index = reservations.FindIndex(a => reservation.Id == a.Id);
+            if (index != -1)
+            {
+                reservations[index] = reservation;
+            }
             reservationFileHandler.Save(reservations);
-            NotifyObservers();
+            NotifyObservers();          
         }
 
         

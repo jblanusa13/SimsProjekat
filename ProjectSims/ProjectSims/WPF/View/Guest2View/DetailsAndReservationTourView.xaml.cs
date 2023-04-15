@@ -97,9 +97,9 @@ namespace ProjectSims.View.Guest2View
 
                 BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
-                if (Uri.IsWellFormedUriString(@"/Resources/Images/Guide/slika.jpg", UriKind.RelativeOrAbsolute))
+                if (Uri.IsWellFormedUriString(fullFilePath, UriKind.RelativeOrAbsolute))
                 {
-                    bitmap.UriSource = new Uri(@"../../../Resources/Images/Guide/slika.jpg", UriKind.RelativeOrAbsolute);
+                    bitmap.UriSource = new Uri(fullFilePath, UriKind.RelativeOrAbsolute);
                     bitmap.EndInit();
 
                     image = new Image();

@@ -121,6 +121,5 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
                 ListTour.Add(tour);
             }
         }
-        
     }
 }
