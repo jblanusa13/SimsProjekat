@@ -1,4 +1,4 @@
-﻿<Page x:Class="ProjectSims.WPF.View.Guest2View.Pages.FinishedToursView"
+﻿<Page x:Class="ProjectSims.WPF.View.Guest2View.Pages.ActivatedToursView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest2View.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="1200"
-      Title="FinishedToursView">
+      Title="ActivatedToursView">
 
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -19,15 +19,17 @@
             <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
             <Image Source="/Resources/Icons/Guest2/icons8-home-page-64.png" Cursor="Hand" HorizontalAlignment="Left" Height="54" VerticalAlignment="Center" Width="56"/>
             <Label Content="/Pretraga tura" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
         </StackPanel>
-        <Label Content="Ture na kojima ste prisustvovali a niste ih ocjenili:" Grid.Row="1" Grid.Column="1" Margin="0,0,184,0" VerticalAlignment="Center" Height="80" FontSize="40" />
 
-        <DataGrid Grid.Row="2" Grid.Column="1" ItemsSource="{Binding ListTour, UpdateSourceTrigger=PropertyChanged}"
-                      SelectedItem="{Binding Path=SelectedTour, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single"
+        <Label Content="Prikaz trenutno aktivnih tura na kojima ste prisutni:" Grid.Row="1" Grid.Column="1" Margin="0,0,234,0" VerticalAlignment="Center" Height="80" FontSize="40" />
+
+        <DataGrid Grid.Row="2" Grid.Column="1" ItemsSource="{Binding ListTour}"
+                      SelectedItem="{Binding Path=SelectedTour}" SelectionMode="Single"
                       IsReadOnly="True" AutoGenerateColumns="False" Margin="128,0,234,149">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" Width="220"/>
@@ -38,7 +40,11 @@
             </DataGrid.Columns>
 
         </DataGrid>
-        <Button Grid.Row="2" Grid.Column="1" Content="Ocjeni turu" FontSize="18" HorizontalAlignment="Left" Margin="821,335,0,0" VerticalAlignment="Top" Height="31" Width="145" Click="ButtonRatingTour"/>
+        <Button Grid.Row="2" Grid.Column="1" Content="Prati turu" FontSize="18" HorizontalAlignment="Left" Margin="821,335,0,0" VerticalAlignment="Top" Height="31" Width="145" Click="ButtonTrackingTour"/>
+
+
+
+
 
     </Grid>
 </Page>

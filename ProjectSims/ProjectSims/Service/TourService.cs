@@ -208,10 +208,27 @@ namespace ProjectSims.Service
             }
             return null;
         }
+        public Tour GetActivatedTourById(int id)
+        {
+            foreach (Tour tour in tours.GetAll())
+            {
+                if (tour.Id == id && IsActivated(tour))
+                {
+                    return tour;
+
+                }
+            }
+            return null;
+        }
 
         public bool IsFinished(Tour tour)
         {
             return (tour.State == TourState.Finished);
         }
+        public bool IsActivated(Tour tour)
+        {
+            return (tour.State == TourState.Active);
+        }
+
     }
 }
