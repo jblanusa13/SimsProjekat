@@ -59,5 +59,10 @@
             <Button Content="Vidi vise detalja o turi i izvrsi rezervaciju" FontSize="18" Click="See_More_Click" Margin="682,10,78,25"/>
         </Grid>
 
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+            <Image Source="/Resources/Icons/Guest2/icons8-home-page-64.png" Cursor="Hand" HorizontalAlignment="Left" Height="54" VerticalAlignment="Center" Width="56"/>
+            <Label Content="/Pretraga tura" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+        </StackPanel>
     </Grid>
 </Page>
