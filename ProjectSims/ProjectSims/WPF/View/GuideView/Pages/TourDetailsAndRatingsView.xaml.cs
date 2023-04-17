@@ -28,6 +28,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         private TourRatingService ratingService;
         private int NumberOfPresentGuests { get; set; }
         private Tour Tour { get; set; }
+        private TourAndGuideRating SelectedTourRating { get; set; }
         public List<KeyPoint> KeyPoints { get; set; }
         public List<TourAndGuideRating> TourRatings { get; set; }
         public TourDetailsAndRatingsView(Tour selectedTour)
@@ -55,7 +56,11 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         }
         public void ViewComment_Click(object sender, EventArgs e)
         {
-
+            SelectedTourRating = ((FrameworkElement)sender).DataContext as TourAndGuideRating;
+            if (SelectedTourRating != null)
+            {
+                this.NavigationService.Navigate(new CommentAndRatingsView(SelectedTourRating));
+            }
         }
     }
 }

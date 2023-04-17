@@ -36,9 +36,9 @@ namespace ProjectSims.Service
         {
             return reservations.GetGuestIdsByTourAndState(tour, state);
         }
-        public ReservationTour GetReservationByGuestAndTour(Tour tour, Guest2 guest2)
+        public ReservationTour GetReservationByGuestAndTourId(int tourId, int guestId)
         {
-            return reservations.GetReservationByGuestAndTour(tour, guest2);
+            return reservations.GetReservationByGuestAndTourId(tourId, guestId);
         }
         public int GetNumberOfPresentGuests(Tour tour)
         {

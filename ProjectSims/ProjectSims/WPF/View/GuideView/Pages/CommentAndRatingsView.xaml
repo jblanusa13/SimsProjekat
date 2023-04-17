@@ -1,0 +1,39 @@
+﻿<Page x:Class="ProjectSims.WPF.View.GuideView.Pages.CommentAndRatingsView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="420" d:DesignWidth="1280"
+      Title="CommentAndRatingsView">
+    <ScrollViewer>
+        <Grid Background="#FF050518">
+            <TextBox x:Name="UserTextBox" HorizontalAlignment="Left" Margin="110,40,0,0" VerticalAlignment="Top" Width="500" Height="60" Foreground="White" FontSize="24" FontFamily="Broadway"  Background="Transparent" IsReadOnly="True" BorderThickness="0" />
+            <Image Source="/Resources/Icons/Guide/user.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,20,0,0" Height="80" Width="80"/>
+            <Image Source="/Resources/Icons/Guide/pin.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="650,50,0,0" Height="40" Width="40"/>
+            <Label Content="Pojavio se na kljucnoj tacki:" Margin="680,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="20" FontFamily="Broadway"/>
+            <TextBox x:Name="KeyPointTextBox" HorizontalAlignment="Left" Margin="1000,50,0,0" VerticalAlignment="Top" Width="250" Height="40" Foreground="White" FontSize="20" FontFamily="Broadway"  Background="Transparent" IsReadOnly="True" BorderThickness="0" />
+            <Label Content="Znanje vodica:" Margin="100,150,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="20" FontFamily="Broadway"/>
+            <TextBox x:Name="KnowledgeTextBox" HorizontalAlignment="Left" Margin="280,150,0,0" VerticalAlignment="Top" Width="100" Height="40" Foreground="White" FontSize="20" FontFamily="Broadway"  Background="Transparent" IsReadOnly="True" BorderThickness="0" />
+            <Label Content="Jezik vodica:" Margin="100,200,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="20" FontFamily="Broadway"/>
+            <TextBox x:Name="LanguageTextBox" HorizontalAlignment="Left" Margin="280,200,0,0" VerticalAlignment="Top" Width="100" Height="40" Foreground="White" FontSize="20" FontFamily="Broadway"  Background="Transparent" IsReadOnly="True" BorderThickness="0" />
+            <Label Content="Zanimljivost ture:" Margin="100,250,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="20" FontFamily="Broadway"/>
+            <TextBox x:Name="InterestingTextBox" HorizontalAlignment="Left" Margin="310,250,0,0" VerticalAlignment="Top" Width="100" Height="40" Foreground="White" FontSize="20" FontFamily="Broadway"  Background="Transparent" IsReadOnly="True" BorderThickness="0" />
+            <TextBlock x:Name="CommentTextBox" HorizontalAlignment="Left" Margin="600,150,0,0" VerticalAlignment="Top" Width="600" Height="130" Foreground="White" FontSize="20" FontFamily="Broadway"  Background="Transparent"/>
+            <Button Click="AcceptComment_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="400,320,0,0" Height="50" Width="130" Background="Transparent" BorderBrush="LightGreen" BorderThickness="3">
+                <Grid Height="50" Width="130" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="/Resources/Icons/Guide/checkmark.png"  HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Width="30" Margin="0,5,0,0"/>
+                    <Label Content="Prihvati komentar" FontSize="10" HorizontalAlignment="Center" Foreground="LightGreen" FontFamily="Broadway" Margin="0,29,0,0"/>
+                </Grid>
+            </Button>
+            <Button Click="ReportComment_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="700,320,0,0" Height="50" Width="130" Background="Transparent" BorderBrush="Red" BorderThickness="3">
+                <Grid Height="50" Width="130" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="/Resources/Icons/Guide/close.png"  HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Width="30" Margin="0,5,0,0"/>
+                    <Label Content="Prijavi komentar" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="Red" FontFamily="Broadway"/>
+                </Grid>
+            </Button>
+
+        </Grid>
+    </ScrollViewer>
+</Page>

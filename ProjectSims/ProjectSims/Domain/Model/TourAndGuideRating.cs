@@ -19,6 +19,7 @@ namespace ProjectSims.Domain.Model
         public int InterestingTour { get; set; }
         public string AddedComment { get; set; }
         public List<string> Images { get; set; }
+        public bool IsValid { get; set; }
 
         public TourAndGuideRating()
         {
@@ -36,6 +37,7 @@ namespace ProjectSims.Domain.Model
             InterestingTour = interestingTour;
             AddedComment = addedComment;
             Images = images;
+            IsValid = true;
         }
 
         public string[] ToCSV()
@@ -51,7 +53,7 @@ namespace ProjectSims.Domain.Model
             ImageString += Images.Last();
 
             string[] csvvalues = { Id.ToString(), GuestId.ToString(), TourId.ToString(), KnowledgeGuide.ToString(),
-                LanguageGuide.ToString(), InterestingTour.ToString(), AddedComment, ImageString};
+                LanguageGuide.ToString(), InterestingTour.ToString(), AddedComment, ImageString,IsValid.ToString()};
             return csvvalues;
         }
 
@@ -68,6 +70,7 @@ namespace ProjectSims.Domain.Model
             {
                 Images.Add(image);
             }
+            IsValid = Convert.ToBoolean(values[8]);
             InitializeData();
         }
         public void InitializeData()

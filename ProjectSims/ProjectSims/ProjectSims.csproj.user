@@ -23,6 +23,9 @@
     <Compile Update="WPF\View\Guest2View\Pages\FinishedToursView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\CommentAndRatingsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\GuideView\Pages\FinishedToursRatingsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -98,6 +101,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\Guest2View\Pages\FinishedToursView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\GuideView\Pages\CommentAndRatingsView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\GuideView\Pages\FinishedToursRatingsView.xaml">

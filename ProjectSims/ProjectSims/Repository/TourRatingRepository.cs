@@ -52,6 +52,11 @@ namespace ProjectSims.Repository
             tourRatingFile.Save(toursRating);
             NotifyObservers();
         }
+        public void ReportRating(TourAndGuideRating tourRating)
+        {
+            tourRating.IsValid = false;
+            Update(tourRating);
+        }
         public List<TourAndGuideRating> GetAll()
         {
             return toursRating;

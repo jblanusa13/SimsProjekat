@@ -13,27 +13,27 @@
             <TextBox x:Name="MostVisitedTourTextBox" HorizontalAlignment="Left" Margin="300,55,0,0" VerticalAlignment="Top" Width="700" Height="40" Foreground="White" FontSize="20" FontFamily="Broadway" Background="Transparent" IsReadOnly="True" BorderThickness="0" />
             <Label Content="Najposecenija tura ove godine:" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" Width="350" Height="40" Foreground="White" FontSize="20" FontFamily="Broadway"/>
             <TextBox x:Name="MostVisitedTourThisYearTextBox" HorizontalAlignment="Left" Margin="350,105,0,0" VerticalAlignment="Top" Width="700" Height="40" Foreground="White" FontSize="20" FontFamily="Broadway" Background="Transparent" IsReadOnly="True" BorderThickness="0" />
-            <ListView  x:Name="FinishedToursListView" ItemsSource="{Binding FinishedTours}" Margin="0,150,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single">
+            <ListView  x:Name="FinishedToursListView" ItemsSource="{Binding FinishedTours}" Margin="0,150,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single" Background="#9457EB">
                 <ListView.View>
                     <GridView >
                         <GridViewColumn Header="Naziv" Width="500">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox  Text="{Binding Name}" IsReadOnly="True"/>
+                                    <TextBox  Text="{Binding Name}" IsReadOnly="True" BorderThickness="0" Background="Transparent"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Pocetak" Width="300">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox  Text="{Binding StartOfTheTour}" IsReadOnly="True"/>
+                                    <TextBox  Text="{Binding StartOfTheTour}" IsReadOnly="True" BorderThickness="0" Background="Transparent"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Detalji i statistika" Width="270">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Height="20" Width="20" Background="Transparent" Click="TourInfo_Click">
+                                    <Button Height="20" Width="20" Background="Transparent" Click="TourInfo_Click" BorderThickness="0">
                                         <Image Source="/Resources/Icons/Guide/info.png"/>
                                     </Button>
                                 </DataTemplate>
