@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
+      xmlns:conv="clr-namespace:CalcBinding;assembly=CalcBinding"
       mc:Ignorable="d" 
      d:DesignHeight="720" d:DesignWidth="1280"
       Title="TourDetailsAndStatisticsView">
@@ -19,21 +20,21 @@
             <Image Source="/Resources/Icons/Guide/guests.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,240,0,0" Height="40" Width="40"/>
             <TextBox x:Name="PresentGuestsTextBox" HorizontalAlignment="Left" Margin="100,250,0,0" VerticalAlignment="Top" Width="100" Height="40" Foreground="White" FontSize="20" FontFamily="Broadway"  Background="Transparent" IsReadOnly="True" BorderThickness="0" />
             <Image Source="/Resources/Icons/Guide/pin.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,300,0,0" Height="40" Width="40"/>
-            <ListView  ItemsSource="{Binding KeyPoints}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,300,10,10" Width="300" Background="White" FontSize="20" FontFamily="Broadway" BorderBrush="Transparent">
+            <ListView  ItemsSource="{Binding KeyPoints}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,300,10,10" Width="300" Background="LightBlue" FontSize="20" FontFamily="Broadway" BorderBrush="Transparent">
                 <ListView.View>
                     <GridView >
                         <GridViewColumn Header="Stanice" Width="280">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox  Text="{Binding Name}" IsReadOnly="True" BorderThickness="0" />
+                                    <TextBox  Text="{Binding Name}" IsReadOnly="True" BorderThickness="0" Background="Transparent"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Label Content="Ocene i komentari" HorizontalAlignment="Center" Margin="0,500,0,0" VerticalAlignment="Top" Width="300" Height="40" Foreground="White" FontSize="28" FontFamily="Broadway" FontWeight="UltraBold"/>
-            <ListView  ItemsSource="{Binding TourRatings}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,550,0,50" Width="1200" Background="#9457EB" FontSize="20" FontFamily="Broadway" BorderBrush="Transparent">
+            <Label Content="Ocene i komentari" HorizontalAlignment="Left" Margin="30,500,0,0" VerticalAlignment="Top" Width="300" Height="40" Foreground="White" FontSize="28" FontFamily="Broadway" FontWeight="UltraBold"/>
+            <ListView  ItemsSource="{Binding TourRatings}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,550,0,50" Width="1200" Background="White" FontSize="20" FontFamily="Broadway" BorderBrush="Transparent">
                 <ListView.View>
                     <GridView >
                         <GridViewColumn Width="70">
@@ -43,28 +44,28 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn  Width="200">
+                        <GridViewColumn  Width="170">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBox  Text="{Binding Guest.Name}" IsReadOnly="True" BorderThickness="0"  Background="Transparent"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn  Width="200">
+                        <GridViewColumn  Width="180">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBox  Text="{Binding Guest.Surname}" IsReadOnly="True" BorderThickness="0" Background="Transparent"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Znanje" Width="150">
+                        <GridViewColumn Header="Znanje" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBox  Text="{Binding KnowledgeGuide}" IsReadOnly="True" BorderThickness="0" Background="Transparent"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Jezik" Width="150">
+                        <GridViewColumn Header="Jezik" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBox  Text="{Binding LanguageGuide}" IsReadOnly="True" BorderThickness="0" Background="Transparent"/>
@@ -81,7 +82,14 @@
                         <GridViewColumn Width="200">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Vidi komentar" Click="ViewComment_Click" Background="Transparent" BorderThickness="0" Foreground="#FF050518"/>
+                                    <Button Content="Vidi komentar" Click="ViewComment_Click" IsEnabled="{Binding IsValid}" Background="Transparent" BorderThickness="0" Foreground="#FF050518"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text= "{conv:Binding (IsValid?\'\':\'Nije validan\')}" Foreground="Red" IsEnabled="False" Background="Transparent" BorderThickness="0"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

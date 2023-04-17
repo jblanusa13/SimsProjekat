@@ -13,7 +13,7 @@
             <TextBox x:Name="MostVisitedTourTextBox" HorizontalAlignment="Left" Margin="300,55,0,0" VerticalAlignment="Top" Width="700" Height="40" Foreground="White" FontSize="20" FontFamily="Broadway" Background="Transparent" IsReadOnly="True" BorderThickness="0" />
             <Label Content="Najposecenija tura ove godine:" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" Width="350" Height="40" Foreground="White" FontSize="20" FontFamily="Broadway"/>
             <TextBox x:Name="MostVisitedTourThisYearTextBox" HorizontalAlignment="Left" Margin="350,105,0,0" VerticalAlignment="Top" Width="700" Height="40" Foreground="White" FontSize="20" FontFamily="Broadway" Background="Transparent" IsReadOnly="True" BorderThickness="0" />
-            <ListView  x:Name="FinishedToursListView" ItemsSource="{Binding FinishedTours}" Margin="0,150,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single" Background="#9457EB">
+            <ListView  x:Name="FinishedToursListView" ItemsSource="{Binding FinishedTours}" Margin="0,150,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single" Background="White">
                 <ListView.View>
                     <GridView >
                         <GridViewColumn Header="Naziv" Width="500">

@@ -11,10 +11,10 @@
         <Grid Background="#FF050518">
             <Image Source="/Resources/Icons/Guide/star.png" HorizontalAlignment="Left" Margin="380,25,0,0" VerticalAlignment="Top" Width="60" Height="60"/>
             <Label Content="Ocene i recenzije zavrsenih tura" HorizontalAlignment="Center" Margin="0,35,0,0" VerticalAlignment="Top" Width="400" Height="40" Foreground="White" FontSize="20" FontFamily="Broadway"/>
-            <ListView  x:Name="FinishedToursListView" ItemsSource="{Binding FinishedTours}" Margin="0,100,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single" Width="1200" Background="#9457EB">
+            <ListView  x:Name="FinishedToursListView" ItemsSource="{Binding FinishedTours}" Margin="0,100,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single" Width="1200" Background="White">
                 <ListView.View>
                     <GridView >
-                        <GridViewColumn Header="Naziv" Width="400">
+                        <GridViewColumn Header="Naziv" Width="500">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBox  Text="{Binding Name}" IsReadOnly="True" BorderThickness="0" Background="Transparent"/>
@@ -28,21 +28,14 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Lokacija" Width="300">
+                        <GridViewColumn Header="Lokacija" Width="350">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBox  Text="{Binding Location}" IsReadOnly="True" BorderThickness="0" Background="Transparent"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Prosecna ocena" Width="150">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBox   IsReadOnly="True"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Detalji i recenzije" Width="100">
+                        <GridViewColumn Header="Detalji i recenzije">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Height="20" Width="20" Background="Transparent" Click="TourInfo_Click" BorderThickness="0">

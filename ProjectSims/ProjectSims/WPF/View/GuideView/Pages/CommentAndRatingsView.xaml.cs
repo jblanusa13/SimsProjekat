@@ -51,15 +51,15 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             InterestingTextBox.Text = TourRating.InterestingTour.ToString();
             CommentTextBox.Text = TourRating.AddedComment;
 
-
         }
         public void ReportComment_Click(object sender, RoutedEventArgs e)
         {
-
+            ratingService.ReportRating(TourRating);
+            this.NavigationService.GoBack();
         }
         public void AcceptComment_Click(object sender, RoutedEventArgs e)
         {
-
+            this.NavigationService.GoBack();
         }
     }
 }
