@@ -1,7 +1,9 @@
 ﻿using ProjectSims.Domain.Model;
+using ProjectSims.Observer;
 using ProjectSims.Service;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +16,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ProjectSims.Observer;
+using System.Runtime.CompilerServices;
+using System.Collections.ObjectModel;
 
 namespace ProjectSims.WPF.View.GuideView.Pages
 {
@@ -59,7 +64,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             SelectedTourRating = ((FrameworkElement)sender).DataContext as TourAndGuideRating;
             if (SelectedTourRating != null)
             {
-                this.NavigationService.Navigate(new CommentAndRatingsView(SelectedTourRating));
+                this.NavigationService.Navigate(new CommentAndRatingsView(SelectedTourRating,Tour));
             }
         }
     }

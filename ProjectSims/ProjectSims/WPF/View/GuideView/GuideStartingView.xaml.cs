@@ -42,11 +42,15 @@ namespace ProjectSims.View.GuideView
         private void Home_Click(object sender, RoutedEventArgs e)
         {
         }
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            Window login = new MainWindow();
+            login.Show();
+            Close();
+        }
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             Close();
-            Window login = new MainWindow();
-            login.Show();
         }
         private void TrackTour_Click(object sender, RoutedEventArgs e)
         {

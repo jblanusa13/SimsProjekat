@@ -15,21 +15,21 @@
                         <GridViewColumn Header="Naziv" Width="500">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox  Text="{Binding Name}" IsReadOnly="True"/>
+                                    <TextBox  Text="{Binding Name}" IsReadOnly="True" BorderThickness="0"  Background="Transparent"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Pocetak" Width="300">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox  Text="{Binding StartOfTheTour}" IsReadOnly="True"/>
+                                    <TextBox  Text="{Binding StartOfTheTour}" IsReadOnly="True" BorderThickness="0"  Background="Transparent"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Zapocni" Width="270">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Name="StartButton" Height="20" Width="20" Background="Transparent" Click="StartTour_Click">
+                                    <Button Name="StartButton" Height="20" Width="20" Background="Transparent" Click="StartTour_Click" BorderThickness="0">
                                         <Image Source="/Resources/Icons/Guide/start.png"/>
                                     </Button>
                                 </DataTemplate>

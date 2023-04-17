@@ -33,6 +33,7 @@
                     <Label Content="Prijavi" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="Black" FontFamily="Broadway" Margin="0,40,0,0"/>
                 </Grid>
             </Button>
+            <Border BorderBrush="White" BorderThickness="6" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="90,100,0,0" Width="1280" Height="2"/>
         </Grid>
     </ScrollViewer>
 </Page>

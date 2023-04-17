@@ -7,7 +7,7 @@
       xmlns:conv="clr-namespace:CalcBinding;assembly=CalcBinding"
       mc:Ignorable="d" 
      d:DesignHeight="720" d:DesignWidth="1280"
-      Title="TourDetailsAndStatisticsView">
+      Title="TourDetailsAndRatingsView">
     <ScrollViewer>
         <Grid Background="#FF050518">
             <TextBox x:Name="TitleTextBox" HorizontalAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Top" Width="900" Height="60" Foreground="White" FontSize="30" FontWeight="UltraBold" FontFamily="Broadway"  Background="Transparent" IsReadOnly="True" BorderThickness="0" />

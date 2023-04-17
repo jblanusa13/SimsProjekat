@@ -19,6 +19,7 @@
     <None Remove="Resources\Icons\Guide\Globe.png" />
     <None Remove="Resources\Icons\Guide\guests.png" />
     <None Remove="Resources\Icons\Guide\info.png" />
+    <None Remove="Resources\Icons\Guide\logout.png" />
     <None Remove="Resources\Icons\Guide\mapPin.png" />
     <None Remove="Resources\Icons\Guide\pin.png" />
     <None Remove="Resources\Icons\Guide\report.png" />
@@ -73,6 +74,9 @@
 	<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\checkmark.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\logout.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\report.png">
@@ -165,6 +169,7 @@
 
   <ItemGroup>
     <Folder Include="Domain\RepositoryInterface\" />
+    <Folder Include="WPF\ViewModel\GuideViewModel\" />
   </ItemGroup>
 
 </Project>

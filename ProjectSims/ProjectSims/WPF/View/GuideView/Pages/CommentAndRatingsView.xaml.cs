@@ -30,8 +30,9 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         private Guest2 Guest { get; set; }
         private ReservationTour ReservationTour { get; set; }
         private KeyPoint KeyPoint { get; set; }
+        private Tour Tour { get; set; }
 
-        public CommentAndRatingsView(TourAndGuideRating tourRating)
+        public CommentAndRatingsView(TourAndGuideRating tourRating,Tour tour)
         {
             InitializeComponent();
             DataContext = this;
@@ -40,8 +41,9 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             reservationTourService = new ReservationTourService();
             ratingService = new TourRatingService();
             TourRating = tourRating;
-            ReservationTour = reservationTourService.GetReservationByGuestAndTourId(TourRating.TourId, TourRating.GuestId);
+            Tour = tour;
             Guest = guestService.GetGuestById(tourRating.GuestId);
+            ReservationTour = reservationTourService.GetReservationByGuestAndTour(Tour, Guest);
             KeyPoint = keyPointService.GetKeyPointById(ReservationTour.KeyPointWhereGuestArrivedId);
 
             UserTextBox.Text = Guest.Name + " " + Guest.Surname;
@@ -55,7 +57,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         public void ReportComment_Click(object sender, RoutedEventArgs e)
         {
             ratingService.ReportRating(TourRating);
-            this.NavigationService.GoBack();
+            this.NavigationService.Navigate(new TourDetailsAndRatingsView(Tour));
         }
         public void AcceptComment_Click(object sender, RoutedEventArgs e)
         {
