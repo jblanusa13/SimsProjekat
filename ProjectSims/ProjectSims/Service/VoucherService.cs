@@ -25,6 +25,18 @@ namespace ProjectSims.Service
         {
             return vouchers.GetAll();
         }
+        public Voucher GetVoucherById(int id)
+        {
+            return vouchers.GetById(id);
+        }
+        public List<Voucher> GetVouchersWithIds(List<int> ids)
+        {
+            return vouchers.GetWithIds(ids);
+        }
+        public List<Voucher> GetActiveVouchersWithIds(List<int> ids)
+        {
+            return vouchers.GetActiveVouchers(ids);
+        }
         public void Create(Voucher voucher)
         {
             vouchers.Create(voucher);

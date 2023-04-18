@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ProjectSims.WPF.View.Guest2View.Pages;
 using System.Windows.Threading;
+using ProjectSims.WPF.ViewModel.Guest2ViewModel;
 
 namespace ProjectSims.View.Guest2View
 {
@@ -110,7 +111,8 @@ namespace ProjectSims.View.Guest2View
                     }
                 case 4:
                     {
-                        SelectedTab.Content = new ShowVouchersView(guest2);
+                        ShowVouchersViewModel vouchersViewModel = new ShowVouchersViewModel(guest2);
+                        SelectedTab.Content = new ShowVouchersView(vouchersViewModel);
                         break;
                     }                   
             }
