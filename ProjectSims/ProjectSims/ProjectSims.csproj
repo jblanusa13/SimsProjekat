@@ -169,7 +169,6 @@
 
   <ItemGroup>
     <Folder Include="Domain\RepositoryInterface\" />
-    <Folder Include="WPF\ViewModel\GuideViewModel\" />
   </ItemGroup>
 
 </Project>
