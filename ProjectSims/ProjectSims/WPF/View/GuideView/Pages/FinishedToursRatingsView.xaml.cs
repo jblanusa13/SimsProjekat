@@ -1,6 +1,6 @@
 ﻿using ProjectSims.Domain.Model;
-using ProjectSims.Observer;
 using ProjectSims.Service;
+using ProjectSims.WPF.ViewModel.GuideViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,20 +22,13 @@ namespace ProjectSims.WPF.View.GuideView.Pages
     /// <summary>
     /// Interaction logic for FinishedToursRatingsView.xaml
     /// </summary>
-    public partial class FinishedToursRatingsView : Page, IObserver
+    public partial class FinishedToursRatingsView : Page
     {
-        private TourService tourService;
-        public ObservableCollection<Tour> FinishedTours { get; set; }
         public Tour SelectedTour { get; set; }
-        public Guide Guide { get; set; }
         public FinishedToursRatingsView(Guide guide)
         {
             InitializeComponent();
-            DataContext = this;
-            tourService = new TourService();
-            tourService.Subscribe(this);
-            Guide = guide;
-            FinishedTours = new ObservableCollection<Tour>(tourService.GetToursByStateAndGuideId(TourState.Finished, Guide.Id));
+            this.DataContext = new FinishedToursRatingsViewModel(guide);
         }
         private void TourInfo_Click(object sender, RoutedEventArgs e)
         {
@@ -43,14 +36,6 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             if (SelectedTour != null)
             {
                this.NavigationService.Navigate(new TourDetailsAndRatingsView(SelectedTour));
-            }
-        }
-        public void Update()
-        {
-            FinishedTours.Clear();
-            foreach (var tour in tourService.GetToursByStateAndGuideId(TourState.Finished, Guide.Id))
-            {
-                FinishedTours.Add(tour);
             }
         }
     }
