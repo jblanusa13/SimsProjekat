@@ -38,7 +38,7 @@ namespace ProjectSims.View.Guest2View
             DataContext = this;
 
             guideService = new GuideService();
-            guide = guideService.FindGuideById(tour.GuideId);
+            guide = guideService.GetGuideById(tour.GuideId);
             GuideTextBox.Text = guide.Name + " " + guide.Surname;
             guest2 = g;
             tourRate = tour;

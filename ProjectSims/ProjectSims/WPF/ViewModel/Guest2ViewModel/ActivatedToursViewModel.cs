@@ -30,7 +30,8 @@ namespace ProjectSims.WPF.ViewModel.Guest2ViewModel
         {
             if (SelectedTour != null)
             {
-                var ratingTourWindow = new Guest2TrackingTourView(SelectedTour);
+                Guest2TrackingTourViewModel guest2TrackingTourViewModel = new Guest2TrackingTourViewModel(SelectedTour);
+                var ratingTourWindow = new Guest2TrackingTourView(guest2TrackingTourViewModel);
                 ratingTourWindow.Show();
             }
             else
