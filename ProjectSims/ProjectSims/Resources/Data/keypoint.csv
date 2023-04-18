@@ -14,9 +14,9 @@
 13|Vojni muzej|True|Intermediate
 14|Pobednik|True|Intermediate
 15|Knez Mihailova|True|Last
-16|Kalemegdan park|False|First
-17|Vojni muzej|False|Intermediate
-18|Pobednik|False|Intermediate
+16|Kalemegdan park|True|First
+17|Vojni muzej|True|Intermediate
+18|Pobednik|True|Intermediate
 19|Knez Mihailova|False|Last
 20|Kalemegdan park|True|First
 21|Vojni muzej|True|Intermediate

@@ -238,6 +238,21 @@ namespace ProjectSims.Service
             return null;
         }
 
+        public List<Tour> GetToursWhichActivatedWhereGuestPresent(int guest2Id)
+        {
+            List<Tour> toursActivated = new List<Tour>();
+            ReservationTourService reservationTourService = new ReservationTourService();
+            foreach (int id in reservationTourService.FindTourIdsWhereGuestPresent(guest2Id))
+            {
+                Tour tour = GetActivatedTourById(id);
+                if (tour != null)
+                {
+                    toursActivated.Add(tour);
+                }
+            }
+            return toursActivated;
+        }
+
         public bool IsFinished(Tour tour)
         {
             return (tour.State == TourState.Finished);

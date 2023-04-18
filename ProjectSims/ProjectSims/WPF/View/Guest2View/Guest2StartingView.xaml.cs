@@ -106,7 +106,8 @@ namespace ProjectSims.View.Guest2View
                     }
                 case 3:
                     {
-                        SelectedTab.Content = new ActivatedToursView(guest2);
+                        ActivatedToursViewModel activatedToursViewModel = new ActivatedToursViewModel(guest2);
+                        SelectedTab.Content = new ActivatedToursView(activatedToursViewModel);
                         break;
                     }
                 case 4:
