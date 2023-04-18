@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Animation;
-
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Repository
 {
-    class TourRepository : ISubject
+    class TourRepository : ISubject, ITourRepository
     {
 
         private TourFileHandler tourFile;

@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Repository
 {
-    class ReservationTourRepository : ISubject
+    class ReservationTourRepository : ISubject, IReservationTourRepository
     {
 
         private ReservationTourFileHandler reservationFile;
