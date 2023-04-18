@@ -43,21 +43,7 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
             tourService.Subscribe(this);
             reservationTourService = new ReservationTourService();
             reservationTourService.Subscribe(this);
-            ListTour = new ObservableCollection<Tour>(GetToursWhichFinishedWhereGuestPresent());
-        }
-
-        public List<Tour> GetToursWhichFinishedWhereGuestPresent()
-        {
-            List<Tour> toursFinished = new List<Tour>();
-            foreach (int id in reservationTourService.FindTourIdsWhereGuestPresent(guest2.Id))
-            {
-                Tour tour = tourService.GetFinishedTourById(id);
-                if (tour != null)
-                {
-                    toursFinished.Add(tour);
-                }
-            }
-            return toursFinished;
+            ListTour = new ObservableCollection<Tour>(tourService.GetToursWhichFinishedWhereGuestPresent(guest2.Id));
         }
 
         private void ButtonRatingTour(object sender, RoutedEventArgs e)
@@ -75,7 +61,7 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
         private void UpdateListTour()
         {
             ListTour.Clear();
-            foreach (var tour in GetToursWhichFinishedWhereGuestPresent())
+            foreach (var tour in tourService.GetToursWhichFinishedWhereGuestPresent(guest2.Id))
             {
                 ListTour.Add(tour);
             }

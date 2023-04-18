@@ -68,11 +68,18 @@ namespace ProjectSims.View.Guest2View
                 return;
             }
 
-            string images = ImagesBox.Text.Remove(ImagesBox.Text.Length - 1, 1);
             List<string> imageList = new List<string>();
-            foreach (string image in images.Split(','))
+            if (!string.IsNullOrEmpty(ImagesBox.Text))
             {
-                imageList.Add(image);
+                string images = ImagesBox.Text.Remove(ImagesBox.Text.Length - 1, 1);
+                foreach (string image in images.Split(','))
+                {
+                    imageList.Add(image);
+                }
+            }
+            else
+            {
+                imageList.Add("");
             }
             TourAndGuideRating tourRating = new TourAndGuideRating(guest2.Id, tourRate.Id,knowledgeGuide,languageGuide,
                 interestingTour, AddedComentBox.Text, imageList);
