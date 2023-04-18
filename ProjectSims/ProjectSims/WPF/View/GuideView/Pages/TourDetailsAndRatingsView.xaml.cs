@@ -16,9 +16,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ProjectSims.Observer;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
+using ProjectSims.WPF.ViewModel.GuideViewModel;
 
 namespace ProjectSims.WPF.View.GuideView.Pages
 {
@@ -27,44 +27,21 @@ namespace ProjectSims.WPF.View.GuideView.Pages
     /// </summary>
     public partial class TourDetailsAndRatingsView : Page
     {
-        private KeyPointService keyPointService;
-        private TourService tourService;
-        private ReservationTourService reservationTourService;
-        private TourRatingService ratingService;
-        private int NumberOfPresentGuests { get; set; }
-        private Tour Tour { get; set; }
-        private TourAndGuideRating SelectedTourRating { get; set; }
-        public List<KeyPoint> KeyPoints { get; set; }
-        public List<TourAndGuideRating> TourRatings { get; set; }
+        public TourAndGuideRating TourRating { get; set; }
+        public Tour SelectedTour;
         public TourDetailsAndRatingsView(Tour selectedTour)
         {
             InitializeComponent();
-            DataContext = this;
-            keyPointService = new KeyPointService();
-            tourService = new TourService();
-            reservationTourService = new ReservationTourService();
-            ratingService = new TourRatingService();
-            Tour = selectedTour;
-            NumberOfPresentGuests = reservationTourService.GetNumberOfPresentGuests(Tour);
-            TitleTextBox.Text = Tour.Name + "," + Tour.StartOfTheTour.ToString("dd/MM/yyyy HH:mm");
-            LocationTextBox.Text = Tour.Location;
-            LanguageTextBox.Text = Tour.Language;
-            DurationTextBox.Text = Tour.Duration.ToString();
-            PresentGuestsTextBox.Text = NumberOfPresentGuests.ToString();
-            KeyPoints = new List<KeyPoint>();
-            foreach (int keyPointId in Tour.KeyPointIds)
-            {
-                KeyPoints.Add(keyPointService.GetKeyPointById(keyPointId));
-            }
-            TourRatings = ratingService.GetAllRatingsByTour(Tour);
+            SelectedTour = selectedTour;
+            this.DataContext = new TourDetailsAndRatingsViewModel(selectedTour);
 
         }
         public void ViewComment_Click(object sender, EventArgs e)
         {
-            SelectedTourRating = ((FrameworkElement)sender).DataContext as TourAndGuideRating;
-            if (SelectedTourRating != null)
+            TourRating = ((FrameworkElement)sender).DataContext as TourAndGuideRating;
+            if (TourRating != null)
             {
-                this.NavigationService.Navigate(new CommentAndRatingsView(SelectedTourRating,Tour));
+                this.NavigationService.Navigate(new CommentAndRatingsView(TourRating,SelectedTour));
             }
         }
     }

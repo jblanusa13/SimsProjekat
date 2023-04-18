@@ -8,74 +8,99 @@
       mc:Ignorable="d" 
      d:DesignHeight="720" d:DesignWidth="1280"
       Title="TourDetailsAndRatingsView">
+    <Page.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Broadway"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
+        <Style TargetType="Image">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
+    </Page.Resources>
     <ScrollViewer>
         <Grid Background="#FF050518">
-            <TextBox x:Name="TitleTextBox" HorizontalAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Top" Width="900" Height="60" Foreground="White" FontSize="30" FontWeight="UltraBold" FontFamily="Broadway"  Background="Transparent" IsReadOnly="True" BorderThickness="0" />
-            <Image Source="/Resources/Icons/Guide/mapPin.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,90,0,0" Height="40" Width="40"/>
-            <TextBox x:Name="LocationTextBox" HorizontalAlignment="Left" Margin="100,90,0,0" VerticalAlignment="Top" Width="400" Height="40" Foreground="White" FontSize="20" FontFamily="Broadway"  Background="Transparent" IsReadOnly="True" BorderThickness="0" />
-            <Image Source="/Resources/Icons/Guide/Globe.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,140,0,0" Height="40" Width="40"/>
-            <TextBox x:Name="LanguageTextBox" HorizontalAlignment="Left" Margin="100,140,0,0" VerticalAlignment="Top" Width="300" Height="40" Foreground="White" FontSize="20" FontFamily="Broadway"  Background="Transparent" IsReadOnly="True" BorderThickness="0" />
-            <Image Source="/Resources/Icons/Guide/duration.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,190,0,0" Height="40" Width="40"/>
-            <TextBox x:Name="DurationTextBox" HorizontalAlignment="Left" Margin="100,190,0,0" VerticalAlignment="Top" Width="100" Height="40" Foreground="White" FontSize="20" FontFamily="Broadway"  Background="Transparent" IsReadOnly="True" BorderThickness="0" />
-            <Image Source="/Resources/Icons/Guide/guests.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,240,0,0" Height="40" Width="40"/>
-            <TextBox x:Name="PresentGuestsTextBox" HorizontalAlignment="Left" Margin="100,250,0,0" VerticalAlignment="Top" Width="100" Height="40" Foreground="White" FontSize="20" FontFamily="Broadway"  Background="Transparent" IsReadOnly="True" BorderThickness="0" />
-            <Image Source="/Resources/Icons/Guide/pin.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,300,0,0" Height="40" Width="40"/>
-            <ListView  ItemsSource="{Binding KeyPoints}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,300,10,10" Width="300" Background="LightBlue" FontSize="20" FontFamily="Broadway" BorderBrush="Transparent">
+            <Label Content="{Binding SelectedTour.Name}"  Margin="0,40,0,0" Width="500" Height="60" FontSize="30" FontWeight="UltraBold"/>
+            <Label Content="{Binding SelectedTour.StartOfTheTour}"  Margin="520,40,0,0" Width="400" Height="60" FontSize="30" FontWeight="UltraBold"/>
+            <Image Source="/Resources/Icons/Guide/mapPin.png" Margin="50,90,0,0"/>
+            <Label Content="{Binding SelectedTour.Location}" Margin="100,90,0,0" Width="400" Height="40" FontSize="20"/>
+            <Image Source="/Resources/Icons/Guide/Globe.png" Margin="50,140,0,0"/>
+            <Label Content="{Binding SelectedTour.Language}" Margin="100,140,0,0" Width="300" Height="40" FontSize="20"/>
+            <Image Source="/Resources/Icons/Guide/duration.png" Margin="50,190,0,0"/>
+            <Label Content="{Binding SelectedTour.Duration}" Margin="100,190,0,0" Width="100" Height="40" FontSize="20"/>
+            <Image Source="/Resources/Icons/Guide/guests.png" Margin="50,240,0,0"/>
+            <Label Content="{Binding NumberOfPresentGuests}" Margin="100,250,0,0" Width="100" Height="40" FontSize="20"/>
+            <Image Source="/Resources/Icons/Guide/pin.png" Margin="50,300,0,0"/>
+            <ListView  ItemsSource="{Binding KeyPoints}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,300,10,10" Width="300" Background="LightGreen" FontSize="20" FontFamily="Broadway" BorderBrush="Transparent">
+                <ListView.Resources>
+                    <Style TargetType="Label">
+                        <Setter Property="Foreground" Value="Black"/>
+                    </Style>
+                </ListView.Resources>
                 <ListView.View>
                     <GridView >
                         <GridViewColumn Header="Stanice" Width="280">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox  Text="{Binding Name}" IsReadOnly="True" BorderThickness="0" Background="Transparent"/>
+                                    <Label Content="{Binding Name}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Label Content="Ocene i komentari" HorizontalAlignment="Left" Margin="30,500,0,0" VerticalAlignment="Top" Width="300" Height="40" Foreground="White" FontSize="28" FontFamily="Broadway" FontWeight="UltraBold"/>
-            <ListView  ItemsSource="{Binding TourRatings}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,550,0,50" Width="1200" Background="White" FontSize="20" FontFamily="Broadway" BorderBrush="Transparent">
+            <Label Content="Ocene i komentari" Margin="30,600,0,0" Width="300" Height="40"  FontSize="28" FontWeight="UltraBold"/>
+            <ListView  ItemsSource="{Binding TourRatings}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,650,0,50" Width="1200" Background="#D0D5F7" FontSize="20" FontFamily="Broadway" BorderBrush="Transparent">
+                <ListView.Resources>
+                    <Style TargetType="Label">
+                        <Setter Property="Foreground" Value="Black"/>
+                    </Style>
+                </ListView.Resources>
                 <ListView.View>
                     <GridView >
                         <GridViewColumn Width="70">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Image Source="/Resources/Icons/Guide/user.png" Height="45" Width="45"/>
+                                    <Image Source="/Resources/Icons/Guide/user.png"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn  Width="170">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox  Text="{Binding Guest.Name}" IsReadOnly="True" BorderThickness="0"  Background="Transparent"/>
+                                    <Label Content="{Binding Guest.Name}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn  Width="180">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox  Text="{Binding Guest.Surname}" IsReadOnly="True" BorderThickness="0" Background="Transparent"/>
+                                    <Label Content="{Binding Guest.Surname}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Znanje" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox  Text="{Binding KnowledgeGuide}" IsReadOnly="True" BorderThickness="0" Background="Transparent"/>
+                                    <Label Content="{Binding KnowledgeGuide}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Jezik" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox  Text="{Binding LanguageGuide}" IsReadOnly="True" BorderThickness="0" Background="Transparent"/>
+                                    <Label Content="{Binding LanguageGuide}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Zanimljivost" Width="150">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox  Text="{Binding InterestingTour}" IsReadOnly="True" Background="Transparent" BorderThickness="0"  />
+                                    <Label Content="{Binding InterestingTour}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -89,7 +114,7 @@
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox Text= "{conv:Binding (IsValid?\'\':\'Nije validan\')}" Foreground="Red" IsEnabled="False" Background="Transparent" BorderThickness="0"/>
+                                    <TextBox Text = "{conv:Binding (IsValid?\'\':\'Nije validan\')}" Foreground="Red" IsEnabled="False" Background="Transparent" BorderThickness="0"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
