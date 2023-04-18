@@ -1,6 +1,7 @@
 ﻿using ProjectSims.Domain.Model;
 using ProjectSims.Repository;
 using ProjectSims.Service;
+using ProjectSims.WPF.ViewModel.Guest2ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,24 +24,10 @@ namespace ProjectSims.WPF.View.Guest2View
     /// </summary>
     public partial class Guest2TrackingTourView : Window
     {
-        private KeyPointService keyPointService;
-        public GuideRepository guideRepository;
-        public ObservableCollection<KeyPoint> UnFinishedKeyPoints { get; set; }
-        public ObservableCollection<KeyPoint> FinishedKeyPoints { get; set; }
-        public string CurentlyActiveStation { get; set; }
-        public Tour tour { get; set; }
-        public Guest2TrackingTourView(Tour t)
+        public Guest2TrackingTourView(Guest2TrackingTourViewModel trackingTourViewModel)
         {
             InitializeComponent();
-            DataContext = this;
-            tour = t;
-            keyPointService = new KeyPointService();
-            guideRepository = new GuideRepository();
-            UnFinishedKeyPoints = new ObservableCollection<KeyPoint>(keyPointService.GetKeyPointsByStateAndIds(tour.KeyPointIds, false));
-            FinishedKeyPoints = new ObservableCollection<KeyPoint>(keyPointService.GetKeyPointsByStateAndIds(tour.KeyPointIds, true));
-            CurentlyActiveStation = UnFinishedKeyPoints.First().Name;
-            Guide guide = guideRepository.FindById(tour.GuideId);
-            GuideTextBox.Text = guide.Name + " " + guide.Surname;
+            this.DataContext = trackingTourViewModel;
         }
 
         private void ButtonBackStartWindow(object sender, RoutedEventArgs e)

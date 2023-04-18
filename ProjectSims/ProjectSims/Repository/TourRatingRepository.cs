@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Repository
 {
-    class TourRatingRepository : ISubject
+    class TourRatingRepository : ISubject, ITourRatingRepository
     {
         private TourRatingFileHandler tourRatingFile;
         private List<TourAndGuideRating> toursRating;
@@ -21,7 +22,7 @@ namespace ProjectSims.Repository
             toursRating = tourRatingFile.Load();
             observers = new List<IObserver>();
         }
-        public int NextId()
+        public int GetNextId()
         {
             if (toursRating.Count == 0)
             {
@@ -29,9 +30,9 @@ namespace ProjectSims.Repository
             }
             return toursRating.Max(t => t.Id) + 1;
         }
-        public void Add(TourAndGuideRating tourRating)
+        public void Create(TourAndGuideRating tourRating)
         {
-            tourRating.Id = NextId();
+            tourRating.Id = GetNextId();
             toursRating.Add(tourRating);
             tourRatingFile.Save(toursRating);
             NotifyObservers();

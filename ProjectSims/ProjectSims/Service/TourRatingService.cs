@@ -29,7 +29,7 @@ namespace ProjectSims.Service
 
         public void Create(TourAndGuideRating tourRating)
         {
-            tourRatings.Add(tourRating);
+            tourRatings.Create(tourRating);
         }
 
         public void Delete(TourAndGuideRating tourRating)

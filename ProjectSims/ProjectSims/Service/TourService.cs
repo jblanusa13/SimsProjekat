@@ -155,8 +155,6 @@ namespace ProjectSims.Service
 
             return wantedTours;
         }
-
-
         //if text empty return -1
         //if text isn't integer or < 0 return -2
         public int ConvertToInt(String text)
@@ -213,6 +211,20 @@ namespace ProjectSims.Service
             }
             return null;
         }
+        public List<Tour> GetToursWhichFinishedWhereGuestPresent(int guest2Id)
+        {
+            List<Tour> toursFinished = new List<Tour>();
+            ReservationTourService reservationTourService = new ReservationTourService();
+            foreach (int id in reservationTourService.FindTourIdsWhereGuestPresent(guest2Id))
+            {
+                Tour tour = GetFinishedTourById(id);
+                if (tour != null)
+                {
+                    toursFinished.Add(tour);
+                }
+            }
+            return toursFinished;
+        }
         public Tour GetActivatedTourById(int id)
         {
             foreach (Tour tour in tours.GetAll())
@@ -224,6 +236,21 @@ namespace ProjectSims.Service
                 }
             }
             return null;
+        }
+
+        public List<Tour> GetToursWhichActivatedWhereGuestPresent(int guest2Id)
+        {
+            List<Tour> toursActivated = new List<Tour>();
+            ReservationTourService reservationTourService = new ReservationTourService();
+            foreach (int id in reservationTourService.FindTourIdsWhereGuestPresent(guest2Id))
+            {
+                Tour tour = GetActivatedTourById(id);
+                if (tour != null)
+                {
+                    toursActivated.Add(tour);
+                }
+            }
+            return toursActivated;
         }
 
         public bool IsFinished(Tour tour)
