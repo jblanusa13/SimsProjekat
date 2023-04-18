@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\App.xaml
-24-1211399856
-13-280613615
-100-664240953
-196-948587177
-MainWindow.xaml;WPF\View\Guest1View\AccommodationReservationView.xaml;WPF\View\Guest1View\DateChangeRequest.xaml;WPF\View\Guest1View\Guest1CurrentReservations.xaml;WPF\View\Guest1View\Guest1View.xaml;WPF\View\Guest1View\MyRequests.xaml;WPF\View\Guest2View\DetailsAndReservationTourView.xaml;WPF\View\Guest2View\Guest2StartingView.xaml;WPF\View\Guest2View\Pages\FinishedToursView.xaml;WPF\View\Guest2View\Pages\SearchTourView.xaml;WPF\View\Guest2View\Pages\ShowVouchersView.xaml;WPF\View\Guest2View\RatingTourView.xaml;WPF\View\Guest2View\UseVoucherView.xaml;WPF\View\GuideView\AvailableToursView.xaml;WPF\View\GuideView\CreateTourView.xaml;WPF\View\GuideView\GuideStartingView.xaml;WPF\View\GuideView\ScheduledToursView.xaml;WPF\View\GuideView\TourTrackingView.xaml;WPF\View\OwnerView\OwnerStartingView.xaml;WPF\View\OwnerView\Pages\AccommodationRegistrationView.xaml;WPF\View\OwnerView\Pages\AccommodationsDisplay.xaml;WPF\View\OwnerView\Pages\GuestRatingView.xaml;WPF\View\OwnerView\Pages\HomePage.xaml;WPF\View\OwnerView\Pages\SideMenu.xaml;
+34186492602
+341548495718
+111755552851
+198-73779465
+MainWindow.xaml;WPF\View\Guest1View\DateChangeRequest.xaml;WPF\View\Guest1View\Guest1StartView.xaml;WPF\View\Guest1View\MyRequests.xaml;WPF\View\Guest1View\Pages\AccommodationReservationView.xaml;WPF\View\Guest1View\Pages\GuestAccommodationsView.xaml;WPF\View\Guest1View\Pages\MyReservations.xaml;WPF\View\Guest2View\DetailsAndReservationTourView.xaml;WPF\View\Guest2View\Guest2StartingView.xaml;WPF\View\Guest2View\Guest2TrackingTourView.xaml;WPF\View\Guest2View\Pages\ActivatedToursView.xaml;WPF\View\Guest2View\Pages\FinishedToursView.xaml;WPF\View\Guest2View\Pages\SearchTourView.xaml;WPF\View\Guest2View\Pages\ShowVouchersView.xaml;WPF\View\Guest2View\Pages\StartView.xaml;WPF\View\Guest2View\RatingTourView.xaml;WPF\View\Guest2View\UseVoucherView.xaml;WPF\View\GuideView\GuideStartingView.xaml;WPF\View\GuideView\Pages\AvailableToursView.xaml;WPF\View\GuideView\Pages\CommentAndRatingsView.xaml;WPF\View\GuideView\Pages\CreateTourView.xaml;WPF\View\GuideView\Pages\FinishedToursRatingsView.xaml;WPF\View\GuideView\Pages\FinishedToursStatisticsView.xaml;WPF\View\GuideView\Pages\ScheduledToursView.xaml;WPF\View\GuideView\Pages\TourDetailsAndRatingsView.xaml;WPF\View\GuideView\Pages\TourDetailsAndStatisticsView.xaml;WPF\View\GuideView\Pages\TourTrackingView.xaml;WPF\View\OwnerView\OwnerStartingView.xaml;WPF\View\OwnerView\OwnerUI.xaml;WPF\View\OwnerView\Pages\AccommodationRegistrationView.xaml;WPF\View\OwnerView\Pages\AccommodationsDisplay.xaml;WPF\View\OwnerView\Pages\GuestRatingView.xaml;WPF\View\OwnerView\Pages\HomePage.xaml;WPF\View\OwnerView\Pages\SideMenu.xaml;
 
 False
 

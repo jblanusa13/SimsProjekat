@@ -1,11 +1,14 @@
-﻿using ProjectSims.Service;
-using ProjectSims.FileHandler;
+﻿using ProjectSims.Domain.Model;
+using ProjectSims.Service;
+using ProjectSims.View.GuideView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,19 +17,15 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Xml.Linq;
-using ProjectSims.Domain.Model;
-using ProjectSims.Observer;
-using System.Media;
-using System.Text.RegularExpressions;
 
-namespace ProjectSims.View.GuideView
+namespace ProjectSims.WPF.View.GuideView.Pages
 {
     /// <summary>
-    /// Interaction logic for CreateTour.xaml
+    /// Interaction logic for CreateTourView.xaml
     /// </summary>
-    public partial class CreateTourView : Window, INotifyPropertyChanged, IDataErrorInfo
+    public partial class CreateTourView : Page,INotifyPropertyChanged, IDataErrorInfo
     {
         public Guide guide { get; set; }
 
@@ -201,7 +200,6 @@ namespace ProjectSims.View.GuideView
 
         private Regex _durationRegex = new Regex("^([0-9]*\\.)?[0-9]+$");
         private Regex _maxNumberGuestsRegex = new Regex("^[1-9][0-9]*$");
-        //private Regex _imageRegex
         public String Error => null;
         public string this[string columnName]
         {
@@ -234,7 +232,7 @@ namespace ProjectSims.View.GuideView
                 {
                     if (string.IsNullOrEmpty(Duration))
                         return "Unesite trajanje ture!";
-                    Match match =_durationRegex.Match(Duration);
+                    Match match = _durationRegex.Match(Duration);
                     if (!match.Success)
                         return "Format nije ispravan!";
                 }
@@ -243,9 +241,10 @@ namespace ProjectSims.View.GuideView
                     if (string.IsNullOrEmpty(TourStarts))
                         return "Unesite datum i vreme početka ture!";
                     DateTime result;
-                    foreach (string tourStart in TourStarts.Split(',')){
+                    foreach (string tourStart in TourStarts.Split(','))
+                    {
                         if (!DateTime.TryParse(tourStart, out result))
-                            return "Format nije ispravan!";                         
+                            return "Format nije ispravan!";
                     }
                 }
                 else if (columnName == "StartKeyPoint")
@@ -263,24 +262,12 @@ namespace ProjectSims.View.GuideView
                     if (string.IsNullOrEmpty(Description))
                         return "Unesite opis!";
                 }
-                else if (columnName == "Images")
-                {
-                    if (string.IsNullOrEmpty(Images))
-                        return "Unesite URL slike!";
-                    foreach (string image in Images.Split(','))
-                    {
-                        /*Match match = _imageRegex.Match(image);
-                        if (!match.Success)
-                            return "Format nije ispravan!";*/
-                    }
-
-                }
                 return null;
 
             }
         }
 
-        private readonly string[] _validatedProperties = { "TourName", "Location", "TourLanguage", "MaxNumberGuests", "Duration", "TourStarts", "StartKeyPoint", "FinishKeyPoint", "Description", "Images"};
+        private readonly string[] _validatedProperties = { "TourName", "Location", "TourLanguage", "MaxNumberGuests", "Duration", "TourStarts", "StartKeyPoint", "FinishKeyPoint", "Description"};
         public bool IsValid
         {
             get
@@ -308,20 +295,41 @@ namespace ProjectSims.View.GuideView
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        private void BrowseImage_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
+            Nullable<bool> result = openFileDlg.ShowDialog();
 
+            string apsolutePath = "";
+            if (result == true)
+            {
+                apsolutePath = openFileDlg.FileName;
+            }
+            else
+            {
+                return;
+            }
+            Images += GetRelativePath(apsolutePath) + ",";
+        }
+        private string GetRelativePath(string apsolutePath)
+        {
+            string nameFile = apsolutePath.Remove(0, 90);
+            return "../../../Resources/Images/Guide/" + nameFile;
+        }
         private void CreateTour_Click(object sender, RoutedEventArgs e)
         {
             if (IsValid)
             {
-                foreach(string TourStart in TourStarts.Split(','))
+                foreach (string TourStart in TourStarts.Split(','))
                 {
+                    Images.Remove(Images.Length - 1, 1);
                     _controller.Create(guide.Id, TourName, Location, Description, TourLanguage, MaxNumberGuests, StartKeyPoint, FinishKeyPoint, OtherKeyPoints, TourStart, Duration, Images);
                 }
-                Close();
+                this.NavigationService.Navigate(new ScheduledToursView(guide));
             }
             else
                 MessageBox.Show("Nisu validno popunjena polja!");
-            
+
         }
 
         private void AddKeyPoint_Click(object sender, RoutedEventArgs e)

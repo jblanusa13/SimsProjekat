@@ -17,7 +17,6 @@ namespace ProjectSims.Repository
         private TourFileHandler tourFile;
         private List<Tour> tours;
         private List<IObserver> observers;
-
         public TourRepository()
         {
             tourFile = new TourFileHandler();
@@ -32,7 +31,7 @@ namespace ProjectSims.Repository
             }
             return tours.Max(t => t.Id) + 1;
         }
-        public void Add(Tour tour)
+        public void Create(Tour tour)
         {
             tour.Id = NextId();
             tours.Add(tour);
@@ -43,7 +42,7 @@ namespace ProjectSims.Repository
         {
             tours.Remove(tour);
             tourFile.Save(tours);
-            NotifyObservers() ;
+            NotifyObservers();
         }
         public void Update(Tour tour)
         {
@@ -58,6 +57,23 @@ namespace ProjectSims.Repository
         public List<Tour> GetAll()
         {
             return tours;
+        }
+        public Tour GetTourById(int id)
+        {
+            return tours.Find(t=>t.Id == id);
+        }
+        public List<Tour> GetToursByStateAndGuideId(TourState state,int guideId)
+        {
+            return tours.Where(t => t.State == state && t.GuideId == guideId).ToList();
+        }
+        public Tour GetTourByStateAndGuideId(TourState state, int guideId)
+        {
+            return tours.Find(t=> t.State == state && t.GuideId == guideId);
+        }
+        public List<Tour> GetTodayTours(int guideId)
+        {
+            List<Tour> inactiveTours = GetToursByStateAndGuideId(TourState.Inactive, guideId);
+            return inactiveTours.Where(t => t.StartOfTheTour.Date == DateTime.Today).ToList();
         }
         public void Subscribe(IObserver observer)
         {

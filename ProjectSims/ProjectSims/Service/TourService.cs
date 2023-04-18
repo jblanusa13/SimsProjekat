@@ -16,194 +16,99 @@ namespace ProjectSims.Service
 {
     public class TourService
     {
-
         private TourRepository tours;
-        private KeyPointRepository keyPoints;
         private KeyPointService keyPointService;
-
+        private Guest2Service guestService;
+        private ReservationTourService reservationService;
         public TourService()
         {
             tours = new TourRepository();
-            keyPoints = new KeyPointRepository();
             keyPointService = new KeyPointService();
+            guestService = new Guest2Service();
+            reservationService = new ReservationTourService();
         }
         public List<Tour> GetAllTours()
         {
             return tours.GetAll();
         }
-        public List<Tour> GetAllToursWithSameLocation(Tour t)
+        public Tour GetTourById(int id)
         {
-            List<Tour> wantedTours = new List<Tour>();
-
-            foreach(Tour tour in tours.GetAll())
-            {
-                if(tour.Location == t.Location && tour.Id != t.Id)
-                {
-                    wantedTours.Add(tour);
-                }
-            }
-
-            return wantedTours;
+            return tours.GetTourById(id);
         }
-        public bool IsToday(Tour tour)
+        public List<Tour> GetToursByStateAndGuideId(TourState state, int guideId)
         {
-            DateTime tourDate = tour.StartOfTheTour.Date;
-            return (DateTime.Today == tourDate);
+            return tours.GetToursByStateAndGuideId(state,guideId);          
         }
-        public bool IsInactive(Tour tour)
+        public Tour GetTourByStateAndGuideId(TourState state, int guideId)
         {
-            return (tour.State == TourState.Inactive);
-        }
-        public bool ExistsActiveTour()
-        {
-            foreach(Tour availableTour in GetAllTours())
-            {
-                if(availableTour.State == TourState.Active)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-        public List<Tour> GetAvailableTours(int guideId)
-        {
-            List<Tour> availableTours = new List<Tour>();
-
-            foreach (Tour tour in tours.GetAll())
-            {
-                if (IsInactive(tour) && IsToday(tour) && tour.GuideId == guideId)
-                {
-                    availableTours.Add(tour);
-                }
-            }
-
-            return availableTours;
-        }
-
-        public List<Tour> GetScheduledTours(int guideId)
-        {
-            List<Tour> scheduledTours = new List<Tour>();
-
-            foreach (Tour tour in tours.GetAll())
-            {
-                if (IsInactive(tour) && tour.GuideId == guideId)
-                {
-                    scheduledTours.Add(tour);
-                }
-            }
-
-            return scheduledTours;
+            return tours.GetTourByStateAndGuideId(state, guideId);
         }
         public List<KeyPoint> GetTourKeyPoints(Tour tour)
         {
-            List<KeyPoint> allKeyPoints = keyPoints.GetAll();
-            List<KeyPoint> tourKeyPoints = new List<KeyPoint>();
-            foreach (KeyPoint keyPoint in allKeyPoints)
-            {
-                if (tour.KeyPointIds.Contains(keyPoint.Id))
-                {
-                    tourKeyPoints.Add(keyPoint);
-                }
-            }
-            return tourKeyPoints;
+            List<int> keyPointIds = tour.KeyPointIds;
+            return keyPointIds.Select(id => keyPointService.GetKeyPointById(id)).ToList();
         }
-        public void Create(int idGuide, string name, string location, string description, string language, string maxNumberGuests, 
-            string startKeyPoint, string finishKeyPoint, List<string> otherKeyPoints,
-            string tourStart, string duration, string images)
+        public List<Tour> GetTodayTours(int guideId)
+        {
+           return tours.GetTodayTours(guideId);
+        }
+       public Tour GetMostVisitedTour(int guideId,bool thisYear)
+        {
+            List<Tour> wantedTours = GetToursByStateAndGuideId(TourState.Finished, guideId);
+            if (wantedTours.Count != 0)
+            {
+                if (thisYear)
+                    wantedTours = wantedTours.Where(t => t.StartOfTheTour.Year == DateTime.Now.Year).ToList();
+                Dictionary<int, int> numberOfGuestsOnTour = new Dictionary<int, int>();
+                foreach (Tour t in wantedTours)
+                {
+                    numberOfGuestsOnTour.Add(t.Id, reservationService.GetNumberOfPresentGuests(t));
+                }
+                int mostVisitedTourId = numberOfGuestsOnTour.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
+                return GetTourById(mostVisitedTourId);
+            }
+            else
+                return null;
+        }
+        public void Create(int guideId, string name, string location, string description, string language, string maxNumberGuests,string startKeyPointName, string finishKeyPointName, 
+            List<string> otherKeyPointsNames, string tourStart, string duration, string images)
         {
                 List<int> keyPointIds = new List<int>();
-                int startId = keyPoints.Add(new KeyPoint(-1, startKeyPoint, KeyPointType.First,false));
-                keyPointIds.Add(startId);
-                foreach (string keyPoint in otherKeyPoints)
+                int startKeyPointId = keyPointService.GetNextId();
+                keyPointService.Create(startKeyPointId, startKeyPointName,KeyPointType.First);
+                keyPointIds.Add(startKeyPointId);
+                foreach (string keyPointName in otherKeyPointsNames)
                 {
-                    int otherKeyPointId = keyPoints.Add(new KeyPoint(-1, keyPoint, KeyPointType.Intermediate,false));
+                    int otherKeyPointId = keyPointService.GetNextId();
+                    keyPointService.Create(otherKeyPointId, keyPointName, KeyPointType.Intermediate);
                     keyPointIds.Add(otherKeyPointId);
                 }
-                int finishId = keyPoints.Add(new KeyPoint(-1, finishKeyPoint, KeyPointType.Last,false));
-                keyPointIds.Add(finishId);
-
+                int finishKeyPointId = keyPointService.GetNextId();
+                keyPointService.Create(finishKeyPointId, finishKeyPointName, KeyPointType.Last);
+                keyPointIds.Add(finishKeyPointId);
                 List<string> imageList = new List<string>();
                 foreach (string image in images.Split(','))
                 {
                     imageList.Add(image);
                 }
-                Tour newTour =  new Tour(-1, idGuide, name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPointIds, DateTime.Parse(tourStart), Convert.ToDouble(duration), imageList, Convert.ToInt32(maxNumberGuests),TourState.Inactive,-1);
-                tours.Add(newTour);
+                Tour newTour =  new Tour(-1, guideId, name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPointIds, DateTime.Parse(tourStart), Convert.ToDouble(duration), imageList, Convert.ToInt32(maxNumberGuests),TourState.Inactive,-1);
+                tours.Create(newTour);
         }
-
-        public bool StartTour(Tour tour)
+        public void UpdateTourState(Tour tour,TourState state)
         {
-            if(!ExistsActiveTour())
-            {
-                tour.State = TourState.Active;
-                tour.ActiveKeyPointId = tour.KeyPointIds.First();
-                tours.Update(tour);
-                return true;
-            }            
-             return false;           
-        }
-        public Tour FindStartedTour()
+            tour.State = state;
+            tour.ActiveKeyPointId = (state == TourState.Active) ? tour.KeyPointIds.First() : -1;
+            Update(tour);         
+        }     
+        public void UpdateActiveKeyPoint(Tour tour,int keyPointId)
         {
-            foreach (Tour availableTour in GetAllTours())
-            {
-                if (availableTour.State == TourState.Active)
-                {
-                    return availableTour;
-                }
-            }
-            return null;
-        }
-        public void UpdateActiveKeyPoint(int tourId,int keyPointId)
-        {
-            Tour tour = GetAllTours().Find(t => t.Id == tourId);
             tour.ActiveKeyPointId = keyPointId;
-            tours.Update(tour);
+            Update(tour);
         }
-
-        public int FindExpectedKeyPointId(Tour tour)
-        {
-            foreach (KeyPoint keyPoint in GetTourKeyPoints(tour))
-            {
-                if (keyPoint.Finished == false)
-                {
-                    return keyPoint.Id;
-                }
-            }
-            return 0;
-        }
-        public bool StartsInLessThan48Hours(Tour tour)
-        {
-            return(tour.StartOfTheTour - DateTime.Now).TotalHours < 48;
-        }
-        public void FinishTour(Tour tour,List<Guest2> PresentGuests)
-        {
-            tour.State = TourState.Finished;
-            tour.NumberOfPresentGuests = PresentGuests.Count;
-            foreach(Guest2 guest2 in PresentGuests)
-            {
-                double days = (DateTime.Now - guest2.BirthDate).TotalDays;
-                int age = Convert.ToInt32(days)/365;
-                if(age<18)
-                {
-                    tour.NumberOfPresentGuestsUnder18++;
-                }
-                else if(age >=18 && age < 50)
-                {
-                    tour.NumberOfPresentGuestsBetween18And50++;
-                }
-                else
-                {
-                    tour.NumberOfPresentGuestsOver50++;
-                }
-            }
-            tour.ActiveKeyPointId = -1;
-            tours.Update(tour);
-        }
-        public void Delete(Tour tour)
+        public void Remove(Tour tour)
         {
             tours.Remove(tour);
         }
-
         public void Update(Tour tour)
         {
             tours.Update(tour);
@@ -212,7 +117,6 @@ namespace ProjectSims.Service
         {
             tours.Subscribe(observer);
         }
-
         public List<Tour> SearchTours(String location, double durationStart, double durationEnd, String language, int numberGuests)
         {
             List<Tour> tours = GetAllTours();
@@ -226,7 +130,6 @@ namespace ProjectSims.Service
             }
             return wantedTours;
         }
-
         public bool CheckSearchConditions(Tour tour, string location, double durationStart, double durationEnd, string language, int numberGuests)
         {
             bool ContainsLocation, ContainsLanguage, NumberGuestsIsLower, DurationBetween;
@@ -238,6 +141,21 @@ namespace ProjectSims.Service
 
             return ContainsLocation && ContainsLanguage && NumberGuestsIsLower && DurationBetween;
         }
+        public List<Tour> GetAllToursWithSameLocation(Tour t)
+        {
+            List<Tour> wantedTours = new List<Tour>();
+
+            foreach (Tour tour in tours.GetAll())
+            {
+                if (tour.Location == t.Location && tour.Id != t.Id)
+                {
+                    wantedTours.Add(tour);
+                }
+            }
+
+            return wantedTours;
+        }
+
 
         //if text empty return -1
         //if text isn't integer or < 0 return -2
@@ -283,15 +201,26 @@ namespace ProjectSims.Service
             }
             return number;
         }
-
-       public Tour GetFinishedTourById(int id)
+        public Tour GetFinishedTourById(int id)
         {
             foreach (Tour tour in tours.GetAll())
             {
                 if (tour.Id == id && IsFinished(tour))
                 {
                     return tour;
-                    
+
+                }
+            }
+            return null;
+        }
+        public Tour GetActivatedTourById(int id)
+        {
+            foreach (Tour tour in tours.GetAll())
+            {
+                if (tour.Id == id && IsActivated(tour))
+                {
+                    return tour;
+
                 }
             }
             return null;
@@ -300,6 +229,10 @@ namespace ProjectSims.Service
         public bool IsFinished(Tour tour)
         {
             return (tour.State == TourState.Finished);
+        }
+        public bool IsActivated(Tour tour)
+        {
+            return (tour.State == TourState.Active);
         }
 
     }

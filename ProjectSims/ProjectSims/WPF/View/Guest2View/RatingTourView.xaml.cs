@@ -74,7 +74,7 @@ namespace ProjectSims.View.Guest2View
             {
                 imageList.Add(image);
             }
-            TourAndGuideRating tourRating = new TourAndGuideRating(guest2.Id, tourRate.Id,knowledgeGuide,languageGuide,
+            TourAndGuideRating tourRating = new TourAndGuideRating(guest2.Id,guest2, tourRate.Id,knowledgeGuide,languageGuide,
                 interestingTour, AddedComentBox.Text, imageList);
             tourRatingService.Create(tourRating);
             ReservationTour reservation= reservationTourService.GetReservationByGuestAndTour(tourRate, guest2);

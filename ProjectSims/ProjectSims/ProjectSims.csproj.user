@@ -29,21 +29,6 @@
     <Compile Update="WPF\View\GuideView\GuideStartingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WPF\View\GuideView\ScheduledToursView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="WPF\View\GuideView\AvailableToursView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="WPF\View\GuideView\CreateTourView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="WPF\View\GuideView\TourTrackingView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="WPF\View\Guest1View\AccommodationReservationView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="WPF\View\OwnerView\Pages\GuestRatingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -88,19 +73,7 @@
     <Page Update="WPF\View\GuideView\GuideStartingView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WPF\View\GuideView\ScheduledToursView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="WPF\View\GuideView\CreateTourView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="WPF\View\GuideView\AvailableToursView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="WPF\View\OwnerView\Pages\GuestRatingView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="WPF\View\GuideView\TourTrackingView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\OwnerView\OwnerStartingView.xaml">

@@ -17,68 +17,34 @@ namespace ProjectSims.Service
         {
             keyPoints= new KeyPointRepository();
         }
+        public int GetNextId()
+        {
+            return keyPoints.GetNextId();
+        }
         public List<KeyPoint> GetAllKeyPoints()
         {
             return keyPoints.GetAll();
         }
-        public void Create(KeyPoint keyPoint)
+        public void Create(int id, string name, KeyPointType type)
         {
-            keyPoints.Add(keyPoint);
+            keyPoints.Create(new KeyPoint(id,name,type,false));
         }
-
-        public void Delete(KeyPoint keyPoint)
+        public void Remove(KeyPoint keyPoint)
         {
             keyPoints.Remove(keyPoint);
+        }
+        public KeyPoint GetKeyPointById(int id)
+        {
+            return keyPoints.GetKeyPointById(id);
+        }
+        public List<KeyPoint> GetKeyPointsByStateAndIds(List<int> ids,bool state)
+        {
+            return keyPoints.GetKeyPointsByStateAndIds(ids, state);
         }
         public void Finish(KeyPoint keyPoint)
         {
             keyPoint.Finished = true;
             keyPoints.Update(keyPoint);
-        }
-        public string FindNameById(int id)
-        {
-            List<KeyPoint> allKeyPoints = keyPoints.GetAll();
-            return allKeyPoints.Find(k => k.Id == id).Name;
-        }
-        public List<KeyPoint> FindKeyPointsByIds(List<int> ids)
-        {
-            List<KeyPoint> returnkeyPoints = new List<KeyPoint>();
-            foreach (KeyPoint keyPoint in keyPoints.GetAll())
-            {
-                foreach (int id in ids)
-                {
-                    if (keyPoint.Id == id)
-                    {
-                        returnkeyPoints.Add(keyPoint);
-                    }
-                }
-            }
-            return returnkeyPoints;
-        }
-
-        public List<KeyPoint> FindFinishedKeyPointsByIds(List<int> ids)
-        {
-            List<KeyPoint> keyPoints = new List<KeyPoint>();
-            foreach (KeyPoint keyPoint in FindKeyPointsByIds(ids))
-            { 
-                    if (keyPoint.Finished)
-                    {
-                        keyPoints.Add(keyPoint);
-                    }
-            }
-            return keyPoints;
-        }
-        public List<KeyPoint> FindUnFinishedKeyPointsByIds(List<int> ids)
-        {
-            List<KeyPoint> keyPoints = new List<KeyPoint>();
-            foreach (KeyPoint keyPoint in FindKeyPointsByIds(ids))
-            {
-                if (!keyPoint.Finished)
-                {
-                    keyPoints.Add(keyPoint);
-                }
-            }
-            return keyPoints;
         }
         public void Update(KeyPoint keyPoint)
         {
@@ -88,7 +54,5 @@ namespace ProjectSims.Service
         {
             keyPoints.Subscribe(observer);
         }
-
-
     }
 }

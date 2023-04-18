@@ -18,24 +18,32 @@ namespace ProjectSims.Service
             tourRatings = new TourRatingRepository();
         }
 
-        public List<TourAndGuideRating> GetAllTourRaitngs()
+        public List<TourAndGuideRating> GetAll()
         {
             return tourRatings.GetAll();
         }
-
-        public void Create(TourAndGuideRating tourRaitng)
+        public List<TourAndGuideRating> GetAllRatingsByTour(Tour tour)
         {
-            tourRatings.Add(tourRaitng);
+            return tourRatings.GetAllRatingsByTour(tour);
         }
 
-        public void Delete(TourAndGuideRating tourRaitng)
+        public void Create(TourAndGuideRating tourRating)
         {
-            tourRatings.Remove(tourRaitng);
+            tourRatings.Add(tourRating);
         }
 
-        public void Update(TourAndGuideRating tourRaitng)
+        public void Delete(TourAndGuideRating tourRating)
         {
-            tourRatings.Update(tourRaitng);
+            tourRatings.Remove(tourRating);
+        }
+
+        public void Update(TourAndGuideRating tourRating)
+        {
+            tourRatings.Update(tourRating);
+        }
+        public void ReportRating(TourAndGuideRating tourRaitng)
+        {
+            tourRatings.ReportRating(tourRaitng);
         }
 
         public void Subscribe(IObserver observer)

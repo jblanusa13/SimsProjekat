@@ -15,9 +15,18 @@
             <RowDefinition Height="420"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Content="Ture na kojima ste prisustvovali a niste ih ocjenili:" Grid.Row="1" Margin="50,0,234,0" VerticalAlignment="Center" Height="80" FontSize="40" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+            <Image Source="/Resources/Icons/Guest2/icons8-home-page-64.png" Cursor="Hand" HorizontalAlignment="Left" Height="54" VerticalAlignment="Center" Width="56"/>
+            <Label Content="/Ocjeni ture" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
-        <DataGrid Grid.Row="2" ItemsSource="{Binding ListTour, UpdateSourceTrigger=PropertyChanged}"
+        </StackPanel>
+        <Label Content="Ture na kojima ste prisustvovali a niste ih ocjenili:" Grid.Row="1" Grid.Column="1" Margin="0,0,184,0" VerticalAlignment="Center" Height="80" FontSize="40" />
+
+        <DataGrid Grid.Row="2" Grid.Column="1" ItemsSource="{Binding ListTour, UpdateSourceTrigger=PropertyChanged}"
                       SelectedItem="{Binding Path=SelectedTour, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single"
                       IsReadOnly="True" AutoGenerateColumns="False" Margin="128,0,234,149">
             <DataGrid.Columns>
@@ -29,11 +38,7 @@
             </DataGrid.Columns>
 
         </DataGrid>
-        <Button Grid.Row="2" Content="Ocjeni turu" FontSize="18" HorizontalAlignment="Left" Margin="821,335,0,0" VerticalAlignment="Top" Height="31" Width="145" Click="ButtonRatingTour"/>
-
-
-
-
+        <Button Grid.Row="2" Grid.Column="1" Content="Ocjeni turu" FontSize="18" HorizontalAlignment="Left" Margin="821,335,0,0" VerticalAlignment="Top" Height="31" Width="145" Click="ButtonRatingTour"/>
 
     </Grid>
 </Page>

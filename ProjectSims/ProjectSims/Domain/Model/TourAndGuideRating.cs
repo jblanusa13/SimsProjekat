@@ -1,4 +1,5 @@
 ﻿using ProjectSims.Serializer;
+using ProjectSims.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,27 +12,32 @@ namespace ProjectSims.Domain.Model
     {
         public int Id { get; set; }
         public int GuestId { get; set; }
+        public Guest2 Guest { get; set; }
         public int TourId { get; set; }
         public int KnowledgeGuide { get; set; }
         public int LanguageGuide { get; set; }
         public int InterestingTour { get; set; }
         public string AddedComment { get; set; }
         public List<string> Images { get; set; }
+        public bool IsValid { get; set; }
 
         public TourAndGuideRating()
         {
             Images = new List<string>();
+            Guest = new Guest2();
         }
 
-        public TourAndGuideRating(int guestId, int tourId, int knowledgeGuide, int languageGuide, int interestingTour, string addedComment, List<string> images)
+        public TourAndGuideRating(int guestId, Guest2 guest, int tourId, int knowledgeGuide, int languageGuide, int interestingTour, string addedComment, List<string> images)
         {
             GuestId = guestId;
+            Guest = guest;
             TourId = tourId;
             KnowledgeGuide = knowledgeGuide;
             LanguageGuide = languageGuide;
             InterestingTour = interestingTour;
             AddedComment = addedComment;
             Images = images;
+            IsValid = true;
         }
 
         public string[] ToCSV()
@@ -47,7 +53,7 @@ namespace ProjectSims.Domain.Model
             ImageString += Images.Last();
 
             string[] csvvalues = { Id.ToString(), GuestId.ToString(), TourId.ToString(), KnowledgeGuide.ToString(),
-                LanguageGuide.ToString(), InterestingTour.ToString(), AddedComment, ImageString};
+                LanguageGuide.ToString(), InterestingTour.ToString(), AddedComment, ImageString,IsValid.ToString()};
             return csvvalues;
         }
 
@@ -64,6 +70,13 @@ namespace ProjectSims.Domain.Model
             {
                 Images.Add(image);
             }
+            IsValid = Convert.ToBoolean(values[8]);
+            InitializeData();
+        }
+        public void InitializeData()
+        {
+            Guest2Service guestService = new Guest2Service();
+            Guest = guestService.GetGuestById(GuestId);
         }
     }
 }

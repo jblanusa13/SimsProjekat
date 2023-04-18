@@ -65,13 +65,6 @@ namespace ProjectSims.Repository
             accommodationFileHandler.Save(accommodations);
             NotifyObservers();
         }
-
-       // public Location FindLocationById(int id)
-        //{
-          //  return _locations.Find(l => l.Id == id);
-        //}
-
-
         public List<Accommodation> GetAll()
         {
             return accommodations;

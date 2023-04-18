@@ -66,7 +66,7 @@ namespace ProjectSims
                     Guest1 guest1 = guest1File.GetByUserId(user.Id);
                     if(guest1 != null)
                     {
-                        Guest1View guest1View = new Guest1View(guest1);
+                        Guest1StartView guest1View = new Guest1StartView(guest1);
                         guest1View.Show();
                         Close();
                     }
@@ -76,6 +76,7 @@ namespace ProjectSims
                     {
                         GuideStartingView startingView = new GuideStartingView(guide);
                         startingView.Show();
+                        Close();
                     }
 
                     Guest2 guest2 = guest2File.GetByUserId(user.Id);
