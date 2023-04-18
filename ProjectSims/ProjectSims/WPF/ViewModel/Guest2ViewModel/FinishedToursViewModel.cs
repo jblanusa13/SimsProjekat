@@ -12,7 +12,7 @@ using System.Windows;
 
 namespace ProjectSims.WPF.ViewModel.Guest2ViewModel
 {
-    public class FinishedToursViewModel:IObserver
+    public class FinishedToursViewModel : IObserver
     {
         private TourService tourService;
         private ReservationTourService reservationTourService;

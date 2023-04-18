@@ -28,7 +28,7 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
     /// </summary>
     public partial class FinishedToursView : Page
     {
-        private FinishedToursViewModel viewModel;
+        public FinishedToursViewModel viewModel;
         public FinishedToursView(FinishedToursViewModel finishedToursViewModel)
         {
             InitializeComponent();

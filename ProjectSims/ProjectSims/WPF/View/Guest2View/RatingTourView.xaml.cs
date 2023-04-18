@@ -43,14 +43,13 @@ namespace ProjectSims.View.Guest2View
             guest2 = g;
             tourRate = tour;
             reservationTourService = rts;
-
             tourRatingService = new TourRatingService();
         }
 
         private void Rating_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             int knowledgeGuide = FindRatingKnowledgeGuide();
-            if(knowledgeGuide == 0)
+            if (knowledgeGuide == 0)
             {
                 MessageBox.Show("Morate ocijeniti znanje vodica!");
                 return;
@@ -81,21 +80,21 @@ namespace ProjectSims.View.Guest2View
             {
                 imageList.Add("");
             }
-            TourAndGuideRating tourRating = new TourAndGuideRating(guest2.Id, tourRate.Id,knowledgeGuide,languageGuide,
+            TourAndGuideRating tourRating = new TourAndGuideRating(guest2.Id, tourRate.Id, knowledgeGuide, languageGuide,
                 interestingTour, AddedComentBox.Text, imageList);
             tourRatingService.Create(tourRating);
-            ReservationTour reservation= reservationTourService.GetReservationByGuestAndTour(tourRate, guest2);
+            ReservationTour reservation = reservationTourService.GetReservationByGuestAndTour(tourRate, guest2);
             reservation.RatedTour = true;
             reservationTourService.Update(reservation);
-            Close();           
+            Close();
         }
-        
         private int FindRatingKnowledgeGuide()
         {
             if ((bool)RadioButton1.IsChecked)
             {
-                return 1;   
-            }else if ((bool)RadioButton2.IsChecked)
+                return 1;
+            }
+            else if ((bool)RadioButton2.IsChecked)
             {
                 return 2;
             }
@@ -113,7 +112,6 @@ namespace ProjectSims.View.Guest2View
             }
             return 0;
         }
-
         private int FindRatinLanguageGuide()
         {
             if ((bool)RadioButton6.IsChecked)
@@ -138,7 +136,6 @@ namespace ProjectSims.View.Guest2View
             }
             return 0;
         }
-
         private int FindRatingInterestingTour()
         {
             if ((bool)RadioButton11.IsChecked)
@@ -163,7 +160,6 @@ namespace ProjectSims.View.Guest2View
             }
             return 0;
         }
-
         private void BrowseButton_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
@@ -180,7 +176,6 @@ namespace ProjectSims.View.Guest2View
             }
             ImagesBox.Text += GetRelativePath(apsolutePath) + ",";
         }
-
         private string GetRelativePath(string apsolutePath)
         {
             string nameFile = apsolutePath.Remove(0, 94);
