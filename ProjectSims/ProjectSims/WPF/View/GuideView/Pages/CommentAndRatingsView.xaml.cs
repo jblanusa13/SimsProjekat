@@ -1,5 +1,6 @@
 ﻿using ProjectSims.Domain.Model;
 using ProjectSims.Service;
+using ProjectSims.WPF.ViewModel.GuideViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,41 +23,18 @@ namespace ProjectSims.WPF.View.GuideView.Pages
     /// </summary>
     public partial class CommentAndRatingsView : Page
     {
-        private KeyPointService keyPointService;
-        private ReservationTourService reservationTourService;
-        private TourRatingService ratingService;
-        private Guest2Service guestService;
-        private TourAndGuideRating TourRating { get; set; }
-        private Guest2 Guest { get; set; }
-        private ReservationTour ReservationTour { get; set; }
-        private KeyPoint KeyPoint { get; set; }
-        private Tour Tour { get; set; }
-
+        private CommentAndRatingsViewModel viewModel { get; set; }
+        public Tour Tour { get; set; }
         public CommentAndRatingsView(TourAndGuideRating tourRating,Tour tour)
         {
             InitializeComponent();
-            DataContext = this;
-            keyPointService = new KeyPointService();
-            guestService = new Guest2Service();
-            reservationTourService = new ReservationTourService();
-            ratingService = new TourRatingService();
-            TourRating = tourRating;
+            viewModel = new CommentAndRatingsViewModel(tourRating, tour);
             Tour = tour;
-            Guest = guestService.GetGuestById(tourRating.GuestId);
-            ReservationTour = reservationTourService.GetReservationByGuestAndTour(Tour, Guest);
-            KeyPoint = keyPointService.GetKeyPointById(ReservationTour.KeyPointWhereGuestArrivedId);
-
-            UserTextBox.Text = Guest.Name + " " + Guest.Surname;
-            KeyPointTextBox.Text = KeyPoint.Name;
-            KnowledgeTextBox.Text = TourRating.KnowledgeGuide.ToString();
-            LanguageTextBox.Text = TourRating.LanguageGuide.ToString();
-            InterestingTextBox.Text = TourRating.InterestingTour.ToString();
-            CommentTextBox.Text = TourRating.AddedComment;
-
+            this.DataContext = viewModel;
         }
         public void ReportComment_Click(object sender, RoutedEventArgs e)
         {
-            ratingService.ReportRating(TourRating);
+            viewModel.ReportComment();
             this.NavigationService.Navigate(new TourDetailsAndRatingsView(Tour));
         }
         public void AcceptComment_Click(object sender, RoutedEventArgs e)

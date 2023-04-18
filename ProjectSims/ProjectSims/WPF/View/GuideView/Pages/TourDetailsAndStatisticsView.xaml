@@ -7,43 +7,63 @@
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1280"
       Title="TourDetailsAndStatisticsView">
+    <Page.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Broadway"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
+        <Style TargetType="Image">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
+    </Page.Resources>
     <ScrollViewer>
         <Grid Background="#FF050518">
-            <TextBox x:Name="TitleTextBox" HorizontalAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Top" Width="900" Height="60" Foreground="White" FontSize="30" FontWeight="UltraBold" FontFamily="Broadway"  Background="Transparent" IsReadOnly="True" BorderThickness="0" />
-            <Image Source="/Resources/Icons/Guide/mapPin.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,90,0,0" Height="40" Width="40"/>
-            <TextBox x:Name="LocationTextBox" HorizontalAlignment="Left" Margin="100,90,0,0" VerticalAlignment="Top" Width="400" Height="40" Foreground="White" FontSize="20" FontFamily="Broadway"  Background="Transparent" IsReadOnly="True" BorderThickness="0" />
-            <Image Source="/Resources/Icons/Guide/Globe.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,140,0,0" Height="40" Width="40"/>
-            <TextBox x:Name="LanguageTextBox" HorizontalAlignment="Left" Margin="100,140,0,0" VerticalAlignment="Top" Width="300" Height="40" Foreground="White" FontSize="20" FontFamily="Broadway"  Background="Transparent" IsReadOnly="True" BorderThickness="0" />
-            <Image Source="/Resources/Icons/Guide/duration.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,190,0,0" Height="40" Width="40"/>
-            <TextBox x:Name="DurationTextBox" HorizontalAlignment="Left" Margin="100,190,0,0" VerticalAlignment="Top" Width="100" Height="40" Foreground="White" FontSize="20" FontFamily="Broadway"  Background="Transparent" IsReadOnly="True" BorderThickness="0" />
-            <Image Source="/Resources/Icons/Guide/guests.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,240,0,0" Height="40" Width="40"/>
-            <TextBox x:Name="PresentGuestsTextBox" HorizontalAlignment="Left" Margin="100,250,0,0" VerticalAlignment="Top" Width="100" Height="40" Foreground="White" FontSize="20" FontFamily="Broadway"  Background="Transparent" IsReadOnly="True" BorderThickness="0" />
-            <Image Source="/Resources/Icons/Guide/pin.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,300,0,0" Height="40" Width="40"/>
-            <ListView  ItemsSource="{Binding KeyPoints}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,300,0,0" Width="300" Background="LightBlue" FontSize="20" FontFamily="Broadway" BorderBrush="Transparent">
+            <Label Content="{Binding SelectedTour.Name}" Margin="0,40,0,0" Width="500" Height="60" FontSize="30" FontWeight="UltraBold"/>
+            <Label Content="{Binding SelectedTour.StartOfTheTour}" Margin="510,40,0,0" Width="400" Height="60" FontSize="30" FontWeight="UltraBold"/>
+            <Image Source="/Resources/Icons/Guide/mapPin.png" Margin="50,90,0,0"/>
+            <Label Content="{Binding SelectedTour.Location}" Margin="100,90,0,0" Width="400" Height="40" FontSize="20"/>
+            <Image Source="/Resources/Icons/Guide/Globe.png" Margin="50,140,0,0"/>
+            <Label Content="{Binding SelectedTour.Language}" Margin="100,140,0,0" Width="300" Height="40" FontSize="20"/>
+            <Image Source="/Resources/Icons/Guide/duration.png" Margin="50,190,0,0"/>
+            <Label Content="{Binding SelectedTour.Duration}" Margin="100,190,0,0" Width="100" Height="40" FontSize="20"/>
+            <Image Source="/Resources/Icons/Guide/guests.png" Margin="50,240,0,0"/>
+            <Label Content="{Binding NumberOfPresentGuests}" Margin="100,250,0,0" Width="100" Height="40" FontSize="20"/>
+            <Image Source="/Resources/Icons/Guide/pin.png" Margin="50,300,0,0"/>
+            <ListView  ItemsSource="{Binding KeyPoints}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,300,0,0" Width="300" Background="LightGreen" FontSize="20" FontFamily="Broadway" BorderBrush="Transparent">
+                <ListView.Resources>
+                    <Style TargetType="Label">
+                        <Setter Property="Foreground" Value="Black"/>
+                    </Style>
+                </ListView.Resources>
                 <ListView.View>
                     <GridView >
                         <GridViewColumn Header="Stanice" Width="280">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox  Text="{Binding Name}" IsReadOnly="True" BorderThickness="0" />
+                                    <Label Content="{Binding Name}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Label Content="Procenat gostiju sa vaucerom i bez" HorizontalAlignment="Left" Margin="50,500,0,0" VerticalAlignment="Top" Width="390" Height="40" Foreground="White" FontSize="20" FontFamily="Broadway"/>
-            <TextBox x:Name="GuestsWithVoucherTextBox" HorizontalAlignment="Left" Margin="50,555,0,0" VerticalAlignment="Top" Width="50" Height="40" Foreground="White" FontSize="16" FontFamily="Broadway" Background="Transparent" IsReadOnly="True" BorderThickness="0" />
-            <Label Content=" % sa vaucerom" HorizontalAlignment="Left" Margin="95,550,0,0" VerticalAlignment="Top" Width="150" Height="40" Foreground="White" FontSize="16" FontFamily="Broadway"/>
-            <TextBox x:Name="GuestsWithoutVoucherTextBox" HorizontalAlignment="Left" Margin="50,605,0,0" VerticalAlignment="Top" Width="50" Height="40" Foreground="White" FontSize="16" FontFamily="Broadway" Background="Transparent" IsReadOnly="True" BorderThickness="0" />
-            <Label Content=" % bez vaucera" HorizontalAlignment="Left" Margin="100,600,0,0" VerticalAlignment="Top" Width="240" Height="40" Foreground="White" FontSize="16" FontFamily="Broadway"/>
-            <Label Content="Broj gostiju na osnovu godina" HorizontalAlignment="Left" Margin="500,500,0,0" VerticalAlignment="Top" Width="350" Height="40" Foreground="White" FontSize="20" FontFamily="Broadway"/>
-            <TextBox x:Name="GuestsUnder18TextBox" HorizontalAlignment="Left" Margin="500,550,0,0" VerticalAlignment="Top" Width="100" Height="40" Foreground="White" FontSize="16" FontFamily="Broadway" Background="Transparent" IsReadOnly="True" BorderThickness="0" />
-            <Label Content="ispod 18 godina" HorizontalAlignment="Left" Margin="600,550,0,0" VerticalAlignment="Top" Width="150" Height="40" Foreground="White" FontSize="16" FontFamily="Broadway"/>
-            <TextBox x:Name="GuestsBetween18And50TextBox" HorizontalAlignment="Left" Margin="500,600,0,0" VerticalAlignment="Top" Width="100" Height="40" Foreground="White" FontSize="16" FontFamily="Broadway" Background="Transparent" IsReadOnly="True" BorderThickness="0" />
-            <Label Content="izmedju 18 i 50" HorizontalAlignment="Left" Margin="600,600,0,0" VerticalAlignment="Top" Width="150" Height="40" Foreground="White" FontSize="16" FontFamily="Broadway"/>
-            <TextBox x:Name="GuestsOver50TextBox" HorizontalAlignment="Left" Margin="500,650,0,0" VerticalAlignment="Top" Width="100" Height="40" Foreground="White" FontSize="16" FontFamily="Broadway" Background="Transparent" IsReadOnly="True" BorderThickness="0" />
-            <Label Content="preko 50" HorizontalAlignment="Left" Margin="600,650,0,0" VerticalAlignment="Top" Width="150" Height="40" Foreground="White" FontSize="16" FontFamily="Broadway"/>
+            <Label Content="Procenat gostiju sa vaucerom i bez" Margin="50,600,0,0" Width="390" Height="40" FontSize="20"/>
+            <Label Content="{Binding PercentageOfGuestsWithVoucher}" Margin="50,655,0,0" Width="60" Height="40" FontSize="16"/>
+            <Label Content=" % sa vaucerom" Margin="110,655,0,0" Width="150" Height="40" FontSize="16"/>
+            <Label Content="{Binding PercentageOfGuestsWithoutVoucher}" Margin="50,705,0,0" Width="60" Height="40" FontSize="16"/>
+            <Label Content=" % bez vaucera" Margin="110,705,0,0"  Width="240" Height="40" FontSize="16"/>
+            <Label Content="Broj gostiju na osnovu godina" Margin="500,600,0,0" Width="390" Height="40" FontSize="20"/>
+            <Label Content="{Binding NumberOfPresentGuestsUnder18}" Margin="500,655,0,0" Width="60" Height="40" FontSize="16"/>
+            <Label Content=" mladji od 18" Margin="555,655,0,0" Width="150" Height="40" FontSize="16"/>
+            <Label Content="{Binding NumberOfPresentGuestsBetween18And50}" Margin="500,705,0,0" Width="60" Height="40" FontSize="16"/>
+            <Label Content=" izmedju 18 i 50" Margin="555,705,0,0" Width="150" Height="40" FontSize="16"/>
+            <Label Content="{Binding NumberOfPresentGuestsOver50}" Margin="500,755,0,0" Width="60" Height="40" FontSize="16"/>
+            <Label Content=" stariji od 50" Margin="555,755,0,0" Width="150" Height="40" FontSize="16"/>
         </Grid>
     </ScrollViewer>
 </Page>

@@ -9,20 +9,20 @@
       Title="ScheduledToursView">
     <ScrollViewer>
         <Grid Background="#FF050518">
-            <ListView  x:Name="ScheduledTour" ItemsSource="{Binding ScheduledTours}" Margin="0,50,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single">
+            <ListView  x:Name="ScheduledTour" ItemsSource="{Binding ScheduledTours}" Margin="0,50,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single" Background="#D0D5F7">
                 <ListView.View>
                     <GridView >
                         <GridViewColumn Header="Naziv" Width="500">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox  Text="{Binding Name}" IsReadOnly="True" BorderThickness="0"  Background="Transparent"/>
+                                    <Label  Content="{Binding Name}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Pocetak" Width="300">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox  Text="{Binding StartOfTheTour}" IsReadOnly="True" BorderThickness="0"  Background="Transparent"/>
+                                    <Label  Content="{Binding StartOfTheTour}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
