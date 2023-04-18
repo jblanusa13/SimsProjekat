@@ -13,11 +13,10 @@ using ProjectSims.Observer;
 
 namespace ProjectSims.WPF.ViewModel.GuideViewModel
 {
-    public class FinishedToursStatisticsViewModel : IObserver
+    public partial class FinishedToursStatisticsViewModel : IObserver
     {
         private TourService tourService;
         public ObservableCollection<Tour> FinishedTours { get; set; }
-        public Tour SelectedTour { get; set; }
         public Tour MostVisitedTour { get; set; }
         public Tour MostVisitedTourThisYear { get; set; }
         public Guide Guide { get; set; }
