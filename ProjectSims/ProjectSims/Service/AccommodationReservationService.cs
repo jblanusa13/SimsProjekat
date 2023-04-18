@@ -57,6 +57,23 @@ namespace ProjectSims.Service
             }
             return false;
         }
+        public List<AccommodationReservation> GetAccommodationsForRating(Guest1 guest)
+        {
+            List<AccommodationReservation> guestReservations = new List<AccommodationReservation>();
+            List<AccommodationReservation> accommodationsForRating = new List<AccommodationReservation>();
+
+
+            guestReservations = GetReservationByGuest(guest.Id);
+            foreach (AccommodationReservation reservation in guestReservations)
+            {
+                if(DateOnly.FromDateTime(DateTime.Today) <= reservation.CheckOutDate.AddDays(5))
+                {
+                    accommodationsForRating.Add(reservation);
+                }
+            }
+
+            return accommodationsForRating;
+        }
 
         public void Subscribe(IObserver observer)
         {

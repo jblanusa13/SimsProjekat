@@ -5,16 +5,19 @@
     <Compile Update="WPF\View\Guest1View\AccommodationRating.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WPF\View\Guest1View\AccommodationsForRating.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\Guest1View\MyRequests.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WPF\View\Guest1View\Pages\AccommodationReservationView.xaml.cs">
+    <Compile Update="WPF\View\Guest1View\MainPages\AccommodationReservationView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WPF\View\Guest1View\Pages\GuestAccommodationsView.xaml.cs">
+    <Compile Update="WPF\View\Guest1View\MainPages\GuestAccommodationsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WPF\View\Guest1View\Pages\MyReservations.xaml.cs">
+    <Compile Update="WPF\View\Guest1View\MainPages\MyReservations.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\Guest2View\Pages\FinishedToursView.xaml.cs">
@@ -64,16 +67,19 @@
     <Page Update="WPF\View\Guest1View\AccommodationRating.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="WPF\View\Guest1View\AccommodationsForRating.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="WPF\View\Guest1View\MyRequests.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WPF\View\Guest1View\Pages\AccommodationReservationView.xaml">
+    <Page Update="WPF\View\Guest1View\MainPages\AccommodationReservationView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WPF\View\Guest1View\Pages\GuestAccommodationsView.xaml">
+    <Page Update="WPF\View\Guest1View\MainPages\GuestAccommodationsView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WPF\View\Guest1View\Pages\MyReservations.xaml">
+    <Page Update="WPF\View\Guest1View\MainPages\MyReservations.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\Guest2View\Pages\FinishedToursView.xaml">

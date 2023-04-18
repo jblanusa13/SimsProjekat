@@ -18,7 +18,7 @@ using ProjectSims.Observer;
 using ProjectSims.Service;
 using ProjectSims.View.Guest1View;
 
-namespace ProjectSims.WPF.View.Guest1View.Pages
+namespace ProjectSims.WPF.View.Guest1View.MainPages
 {
     /// <summary>
     /// Interaction logic for MyReservations.xaml

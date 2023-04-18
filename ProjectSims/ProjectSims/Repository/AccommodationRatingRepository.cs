@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Domain.Model;
 using ProjectSims.FileHandler;
-using ProjectSims.WPF.View.Guest1View.Pages;
+using ProjectSims.WPF.View.Guest1View.MainPages;
 
 namespace ProjectSims.Repository
 {

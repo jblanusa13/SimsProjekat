@@ -1,9 +1,9 @@
-﻿<Page x:Class="ProjectSims.WPF.View.Guest1View.Pages.GuestAccommodationsView"
+﻿<Page x:Class="ProjectSims.WPF.View.Guest1View.MainPages.GuestAccommodationsView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.Pages"
+      xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.MainPages"
       mc:Ignorable="d" 
       d:DesignHeight="540" d:DesignWidth="1067"
       Title="GuestAccommodationsView">
@@ -86,7 +86,7 @@
                          FontSize="14" Click="MyReservations_Click"/>
                 <Button Grid.Row="2" Margin="30,10" Content="Ocenite smestaj"
                         HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="150"
-                         FontSize="14"/>
+                         FontSize="14" Click="RateAccommodation_Click"/>
                 <Button Grid.Row="3" Margin="30,10" Content="Prikaz ocena"
                         HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="150"
                          FontSize="14"/>

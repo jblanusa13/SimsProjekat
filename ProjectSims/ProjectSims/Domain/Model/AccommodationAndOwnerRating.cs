@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Serializer;
+using ProjectSims.Service;
 
 namespace ProjectSims.Domain.Model
 {
@@ -82,6 +83,17 @@ namespace ProjectSims.Domain.Model
             {
                 Images.Add(image);
             }
+
+            InitalizeData();
+        }
+
+        public void InitalizeData()
+        {
+            Guest1Service guest1Service = new Guest1Service();
+            AccommodationService accommodationService = new AccommodationService();
+
+            Guest = guest1Service.GetGuest1(GuestId);
+            Accommodation = accommodationService.GetAccommodation(AccommodationId);
         }
 
     }

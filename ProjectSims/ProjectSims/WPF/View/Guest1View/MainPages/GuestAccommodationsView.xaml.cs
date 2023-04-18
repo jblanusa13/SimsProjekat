@@ -17,8 +17,9 @@ using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 using ProjectSims.Service;
 using ProjectSims.WPF.View.Guest1View;
+using ProjectSims.WPF.View.Guest1View.MainPages;
 
-namespace ProjectSims.WPF.View.Guest1View.Pages
+namespace ProjectSims.WPF.View.Guest1View.MainPages
 {
     /// <summary>
     /// Interaction logic for AccommodationReservationView.xaml
@@ -62,6 +63,11 @@ namespace ProjectSims.WPF.View.Guest1View.Pages
         {
             ChangeTab(1);
         }
+        private void RateAccommodation_Click(object sender, RoutedEventArgs e)
+        {
+            AccommodationsForRating accommodationForRating = new AccommodationsForRating(Guest);
+            accommodationForRating.Show();    
+        }
 
         public void ChangeTab(int tabNum)
         {
@@ -77,10 +83,6 @@ namespace ProjectSims.WPF.View.Guest1View.Pages
                         break;
                     }
                 case 2:
-                    {
-                        break;
-                    }
-                case 3:
                     {
                         break;
                     }
