@@ -19,56 +19,26 @@ using System.Windows.Shapes;
 using ProjectSims.Observer;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using ProjectSims.WPF.ViewModel.Guest2ViewModel;
 
 namespace ProjectSims.WPF.View.Guest2View.Pages
 {
     /// <summary>
     /// Interaction logic for FinishedToursView.xaml
     /// </summary>
-    public partial class FinishedToursView : Page, IObserver
+    public partial class FinishedToursView : Page
     {
-        private TourService tourService;
-        private ReservationTourService reservationTourService;
-
-        public ObservableCollection<Tour> ListTour { get; set; }
-        public Tour SelectedTour { get; set; }
-        public Guest2 guest2 { get; set; }
-
-        public FinishedToursView(Guest2 g)
+        private FinishedToursViewModel viewModel;
+        public FinishedToursView(FinishedToursViewModel finishedToursViewModel)
         {
             InitializeComponent();
-            DataContext = this;
-            guest2 = g;
-            tourService = new TourService();
-            tourService.Subscribe(this);
-            reservationTourService = new ReservationTourService();
-            reservationTourService.Subscribe(this);
-            ListTour = new ObservableCollection<Tour>(tourService.GetToursWhichFinishedWhereGuestPresent(guest2.Id));
+            this.DataContext = finishedToursViewModel;
+            viewModel = finishedToursViewModel;
         }
 
         private void ButtonRatingTour(object sender, RoutedEventArgs e)
         {
-            if (SelectedTour != null)
-            {
-                var ratingTourWindow = new RatingTourView(SelectedTour,guest2,reservationTourService);
-                ratingTourWindow.Show();
-            }
-            else
-            {
-                MessageBox.Show("You must select a tour for rating!");
-            }
-        }
-        private void UpdateListTour()
-        {
-            ListTour.Clear();
-            foreach (var tour in tourService.GetToursWhichFinishedWhereGuestPresent(guest2.Id))
-            {
-                ListTour.Add(tour);
-            }
-        }
-        public void Update()
-        {
-            UpdateListTour();
+            viewModel.ButtonRatingTour(sender);
         }
     }
 }
