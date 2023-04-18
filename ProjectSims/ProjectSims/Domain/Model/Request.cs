@@ -17,7 +17,7 @@ namespace ProjectSims.Domain.Model
         public AccommodationReservation Reservation { get; set; }
         public DateOnly ChangeDate { get; set; }
         public RequestState State { get; set; }
-        public string OwnerComment { get; set; }    
+        public string OwnerComment { get; set; }
 
         public Request() { }
 

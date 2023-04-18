@@ -25,7 +25,7 @@ using System.Collections.ObjectModel;
 using ProjectSims.Repository;
 using System.IO;
 
-namespace ProjectSims.View.OwnerView
+namespace ProjectSims.View.OwnerView.Pages
 {
     /// <summary>
     /// Interaction logic for AccommodationRegistrationView.xaml
@@ -240,7 +240,6 @@ namespace ProjectSims.View.OwnerView
                 Owner owner = ownerRepository.FindById(idCurrentOwner);
                 ownerRepository.AddAccommodationId(owner, accommodation.Id);
                 ownerService.Update(ownerRepository.FindById(idCurrentOwner));
-                MessageBox.Show("Uspješno registrovan smještaj!", "Registracija smještaja", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Close();
             }
         }
@@ -255,7 +254,6 @@ namespace ProjectSims.View.OwnerView
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Multiselect = true;
             bool? success = fileDialog.ShowDialog();
-            fileDialog.Title = "My Image Browser";
 
             if (success == true)
             {

@@ -51,7 +51,7 @@ namespace ProjectSims.Repository
             List<Request> ownerRequests = new List<Request>();
             foreach (Request request in requests)
             {
-                if(request.Reservation.Accommodation.IdOwner == ownerId)
+                if (request.Reservation.Accommodation.IdOwner == ownerId)
                 {
                     ownerRequests.Add(request);
                 }

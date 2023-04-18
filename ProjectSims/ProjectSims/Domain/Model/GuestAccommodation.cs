@@ -12,6 +12,7 @@ namespace ProjectSims.Domain.Model
     {
         public int Id { get; set; }
         public int AccommodationId { get; set; }
+        public int ReservationId { get; set; }
         public string Name { get; set; }
         public AccommodationType Type { get; set; }
         public int GuestId { get; set; }
@@ -25,11 +26,12 @@ namespace ProjectSims.Domain.Model
         {
             Images = new List<string>();
         }
-        public GuestAccommodation(int id, int accommodationId, string name, AccommodationType type, int guestId,
+        public GuestAccommodation(int id, int accommodationId, int reservationId, string name, AccommodationType type, int guestId,
             string firstName, string lastName, DateOnly checkInDate, DateOnly checkOutDate, bool rated, List<string> images)
         {
             Id = id;
             AccommodationId = accommodationId;
+            ReservationId = reservationId;
             Name = name;
             Type = type;
             GuestId = guestId;
@@ -45,14 +47,15 @@ namespace ProjectSims.Domain.Model
         {
             Id = Convert.ToInt32(values[0]);
             AccommodationId = Convert.ToInt32(values[1]);
-            Name = Convert.ToString(values[2]);
-            Type = Enum.Parse<AccommodationType>(values[3]);
-            GuestId = Convert.ToInt32(values[4]);
-            FirstName = Convert.ToString(values[5]);
-            LastName = Convert.ToString(values[6]);
-            CheckInDate = DateOnly.ParseExact(values[7], "dd.MM.yyyy");
-            CheckOutDate = DateOnly.ParseExact(values[8], "dd.MM.yyyy");
-            Rated = bool.Parse(values[9]);
+            ReservationId = Convert.ToInt32(values[2]);
+            Name = Convert.ToString(values[3]);
+            Type = Enum.Parse<AccommodationType>(values[4]);
+            GuestId = Convert.ToInt32(values[5]);
+            FirstName = Convert.ToString(values[6]);
+            LastName = Convert.ToString(values[7]);
+            CheckInDate = DateOnly.ParseExact(values[8], "dd.MM.yyyy");
+            CheckOutDate = DateOnly.ParseExact(values[9], "dd.MM.yyyy");
+            Rated = bool.Parse(values[10]);
             foreach (string image in values[10].Split(","))
             {
                 Images.Add(image);
@@ -73,6 +76,7 @@ namespace ProjectSims.Domain.Model
             string[] csvvalues = {
                 Id.ToString(),
                 AccommodationId.ToString(),
+                ReservationId.ToString(),
                 Name,
                 Type.ToString(),
                 GuestId.ToString(),
@@ -84,11 +88,6 @@ namespace ProjectSims.Domain.Model
                 ImageString
             };
             return csvvalues;
-        }
-
-        public static implicit operator GuestAccommodation((string name, string firstName, string lastName, List<string> images) info)
-        {
-            return new GuestAccommodation { Name = info.name, FirstName = info.firstName, LastName = info.lastName, Images = info.images };
         }
     }
 }

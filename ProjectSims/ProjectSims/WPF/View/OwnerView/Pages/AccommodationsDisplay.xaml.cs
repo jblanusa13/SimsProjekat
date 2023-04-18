@@ -22,19 +22,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Tulpep.NotificationWindow;
+using ProjectSims.WPF.View.OwnerView;
 
-namespace ProjectSims.View.OwnerView
+namespace ProjectSims.View.OwnerView.Pages
 {
     /// <summary>
     /// Interaction logic for OwnerView.xaml
     /// </summary>
-    public partial class OwnerView : Window, INotifyPropertyChanged, IObserver
+    public partial class AccommodationsDisplay : Page, INotifyPropertyChanged, IObserver
     {
         private readonly GuestAccommodationService guestAccommodationService;
+        private Owner owner;
+        private OwnerService ownerService;
         public ObservableCollection<GuestAccommodation> GuestAccommodations { get; set; }
         public GuestAccommodation SelectedGuestAccommodation { get; set; }
         
-        public OwnerView(Owner owner)
+        public AccommodationsDisplay(Owner owner)
         {
             InitializeComponent();
             DataContext = this;
@@ -42,6 +45,13 @@ namespace ProjectSims.View.OwnerView
             guestAccommodationService = new GuestAccommodationService();
             guestAccommodationService.Subscribe(this);
             GuestAccommodations = new ObservableCollection<GuestAccommodation>(guestAccommodationService.GetAllGuestAccommodations());
+
+            this.owner = owner;
+            ownerService = new OwnerService();
+            if (ownerService.HasWaitingRequests(owner.Id))
+            {
+                MessageBox.Show("Imate zahteve na cekanju!");
+            }
         }
        
         public event PropertyChangedEventHandler PropertyChanged;
@@ -57,13 +67,12 @@ namespace ProjectSims.View.OwnerView
 
             if (SelectedGuestAccommodation != null && SelectedGuestAccommodation.Rated == false)
             {
-                GuestRatingtView guestRatingtView = new GuestRatingtView(SelectedGuestAccommodation, guestAccommodationService);
-                guestRatingtView.Show();
-
+                OwnerStartingView ownerStartingView = (OwnerStartingView)Window.GetWindow(this);
+                ownerStartingView.SelectedTab.Content = new GuestRatingView(SelectedGuestAccommodation, guestAccommodationService, owner);
             }
             else if(SelectedGuestAccommodation == null)
             {
-                
+                //Do nothing
             }
             else
             {

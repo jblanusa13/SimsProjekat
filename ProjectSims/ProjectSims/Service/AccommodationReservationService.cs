@@ -30,7 +30,20 @@ namespace ProjectSims.Service
         {
             return reservationRepository.GetByGuest(guestId);
         }
- 
+        public AccommodationReservation GetReservation(int guestId, int accommodationId, DateOnly checkInDate, DateOnly checkOutDate)
+        {
+            AccommodationReservation reservation = null;
+            List<AccommodationReservation> reservations = reservationRepository.GetByGuest(guestId);
+            foreach (var item in reservations)
+            {
+                if (item.CheckInDate==checkInDate && item.CheckOutDate==checkOutDate && item.AccommodationId==accommodationId) 
+                {
+                    reservation = item;                    
+                }
+            }
+            return reservation;
+        }
+
         public int NextId()
         {
             return reservations.Max(r => r.Id) + 1;

@@ -44,10 +44,19 @@
     <Compile Update="WPF\View\Guest1View\AccommodationReservationView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WPF\View\OwnerView\GuestRatingtView.xaml.cs">
+    <Compile Update="WPF\View\OwnerView\Pages\GuestRatingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WPF\View\OwnerView\OwnerView.xaml.cs">
+    <Compile Update="WPF\View\OwnerView\OwnerStartingView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\OwnerView\Pages\AccommodationsDisplay.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\OwnerView\Pages\HomePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\OwnerView\Pages\SideMenu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -88,13 +97,22 @@
     <Page Update="WPF\View\GuideView\AvailableToursView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WPF\View\OwnerView\GuestRatingtView.xaml">
+    <Page Update="WPF\View\OwnerView\Pages\GuestRatingView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\GuideView\TourTrackingView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WPF\View\OwnerView\OwnerView.xaml">
+    <Page Update="WPF\View\OwnerView\OwnerStartingView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\OwnerView\Pages\AccommodationsDisplay.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\OwnerView\Pages\HomePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\OwnerView\Pages\SideMenu.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
