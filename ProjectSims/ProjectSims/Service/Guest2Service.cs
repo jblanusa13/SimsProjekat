@@ -25,7 +25,7 @@ namespace ProjectSims.Service
         }
         public void Create(Guest2 guest)
         {
-            guests.Add(guest);
+            guests.Create(guest);
         }
         public void Delete(Guest2 guest)
         {

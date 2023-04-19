@@ -8,10 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Cache;
 using System.Windows.Controls;
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Repository
 {
-    class Guest2Repository : ISubject
+    class Guest2Repository : ISubject, IGuest2Repository
     {
         private Guest2FileHandler guest2FileHandler;
         private List<Guest2> guests;
@@ -26,7 +27,7 @@ namespace ProjectSims.Repository
         {
             return guests.Max(t => t.Id) + 1;
         }
-        public void Add(Guest2 guest)
+        public void Create(Guest2 guest)
         {
             guest.Id = NextId();
             guests.Add(guest);

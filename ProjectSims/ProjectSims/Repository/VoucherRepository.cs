@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Repository
 {
-    class VoucherRepository : ISubject
+    class VoucherRepository : ISubject, IVoucherRepository
     {
 
         private VoucherFileHandler voucherFile;
@@ -56,25 +57,25 @@ namespace ProjectSims.Repository
         {
             return vouchers;
         }
-        public Voucher GetVoucherById(int id)
+        public Voucher GetById(int id)
         {
             return vouchers.Find(v => v.Id == id);
         }
-        public List<Voucher> GetVouchersWithIds(List<int> ids)
+        public List<Voucher> GetWithIds(List<int> ids)
         {
             List<Voucher> vouchers = new List<Voucher>();
             foreach (int id in ids)
             {
-                vouchers.Add(GetVoucherById(id));
+                vouchers.Add(GetById(id));
             }
             return vouchers;
         }
-        public List<Voucher> GetActiveVouchersWithIds(List<int> ids)
+        public List<Voucher> GetActiveVouchers(List<int> ids)
         {
             List<Voucher> vouchers = new List<Voucher>();
             foreach (int id in ids)
             {
-                Voucher voucher = GetVoucherById(id);
+                Voucher voucher = GetById(id);
                 if (voucher.Used == false) {
                     vouchers.Add(voucher);
                 }

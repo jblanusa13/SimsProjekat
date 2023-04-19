@@ -1,5 +1,6 @@
 ﻿using ProjectSims.Domain.Model;
 using ProjectSims.Service;
+using ProjectSims.WPF.ViewModel.Guest2ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,48 +24,17 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
     /// </summary>
     public partial class ActivatedToursView : Page
     {
-        private TourService tourService;
-        private ReservationTourService reservationTourService;
-
-        public ObservableCollection<Tour> ListTour { get; set; }
-        public Tour SelectedTour { get; set; }
-        public Guest2 guest2 { get; set; }
-        public ActivatedToursView(Guest2 g)
+        public ActivatedToursViewModel viewModel;
+        public ActivatedToursView(ActivatedToursViewModel activatedToursViewModel)
         {
             InitializeComponent();
-            DataContext = this;
-            guest2 = g;
-            tourService = new TourService();
-            reservationTourService = new ReservationTourService();
-            ListTour = new ObservableCollection<Tour>(GetToursWhichActivatedWhereGuestPresent());
-
-        }
-
-        public List<Tour> GetToursWhichActivatedWhereGuestPresent()
-        {
-            List<Tour> toursActivated = new List<Tour>();
-            foreach (int id in reservationTourService.FindTourIdsWhereGuestPresent(guest2.Id))
-            {
-                Tour tour = tourService.GetActivatedTourById(id);
-                if (tour != null)
-                {
-                    toursActivated.Add(tour);
-                }
-            }
-            return toursActivated;
+            this.DataContext = activatedToursViewModel;
+            viewModel = activatedToursViewModel;
         }
 
         private void ButtonTrackingTour(object sender, RoutedEventArgs e)
         {
-            if (SelectedTour != null)
-            {
-                var ratingTourWindow = new Guest2TrackingTourView(SelectedTour);
-                ratingTourWindow.Show();
-            }
-            else
-            {
-                MessageBox.Show("Morate izabrati turu koju zelite da pratite!");
-            }
+            viewModel.ButtonTrackingTour(sender);
         }
     }
 }

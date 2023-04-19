@@ -53,13 +53,14 @@ namespace ProjectSims.Repository
             guideFileHandler.Save(guides);
             NotifyObservers();
         }
-
-
         public List<Guide> GetAll()
         {
             return guideFileHandler.Load();
         }
-
+        public Guide GetById(int id)
+        {
+            return guides.Find(guide => guide.Id == id);
+        }
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);
@@ -76,10 +77,6 @@ namespace ProjectSims.Repository
             {
                 observer.Update();
             }
-        }
-        public Guide FindById(int id)
-        {
-            return guides.Find(guide => guide.Id == id);
         }
     }
 }

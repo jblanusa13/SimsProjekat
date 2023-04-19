@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjectSims.Domain.Model
 {
-    public class TourAndGuideRating:ISerializable
+    public class TourAndGuideRating : ISerializable
     {
         public int Id { get; set; }
         public int GuestId { get; set; }
