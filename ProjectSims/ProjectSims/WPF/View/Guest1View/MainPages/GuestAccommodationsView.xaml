@@ -38,12 +38,12 @@
                 <Label Grid.Column="3" Content="Tip smestaja:" HorizontalAlignment="Left" Margin="17,17,0,0" VerticalAlignment="Top"/>
                 <Label Grid.Column="4" Content="Broj gostiju:" HorizontalAlignment="Left" Margin="17,17,0,0" VerticalAlignment="Top"/>
                 <Label Grid.Column="5" Content="Broj dana:" HorizontalAlignment="Left" Margin="17,17,0,0" VerticalAlignment="Top"/>
-                <TextBox Grid.Column="0" Name="TextboxName" TextChanged="TextboxName_TextChanged" HorizontalAlignment="Left" Margin="25,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Height="25"/>
-                <TextBox Grid.Column="1" Name="TextboxCity" TextChanged="TextboxCity_TextChanged" HorizontalAlignment="Left" Margin="17,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Height="25"/>
-                <TextBox Grid.Column="2" Name="TextboxCountry" TextChanged="TextboxCountry_TextChanged" HorizontalAlignment="Left" Margin="17,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Height="25"/>
-                <TextBox Grid.Column="3" Name="TextboxType" TextChanged="TextboxType_TextChanged" HorizontalAlignment="Left" Margin="17,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Height="25"/>
-                <TextBox Grid.Column="4" Name="TextboxGuests" TextChanged="TextboxGuests_TextChanged" HorizontalAlignment="Left" Margin="17,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Height="25"/>
-                <TextBox Grid.Column="5" Name="TextboxDays" TextChanged="TextboxDays_TextChanged" HorizontalAlignment="Left" Margin="17,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Height="25"/>
+                <TextBox Grid.Column="0" Name="TextboxName"  HorizontalAlignment="Left" Margin="25,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Height="25"/>
+                <TextBox Grid.Column="1" Name="TextboxCity" HorizontalAlignment="Left" Margin="17,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Height="25"/>
+                <TextBox Grid.Column="2" Name="TextboxCountry" HorizontalAlignment="Left" Margin="17,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Height="25"/>
+                <TextBox Grid.Column="3" Name="TextboxType" HorizontalAlignment="Left" Margin="17,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Height="25"/>
+                <TextBox Grid.Column="4" Name="TextboxGuests" HorizontalAlignment="Left" Margin="17,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Height="25"/>
+                <TextBox Grid.Column="5" Name="TextboxDays" HorizontalAlignment="Left" Margin="17,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Height="25"/>
                 <Button Grid.Column="6" Content="Pretraga" Click="Search_Click" HorizontalAlignment="Center" Margin="0,45,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
 
             </Grid>

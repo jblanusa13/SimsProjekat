@@ -116,13 +116,10 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             DataContext = this;
 
             this.guest = guest;
-
             reservationService = new AccommodationReservationService();
 
             Accommodation = SelectedAccommodation;
-
             Username = guest.User.Username;
-
             AvailableDates = new ObservableCollection<DateRanges>();
 
             this.selectedTab = selectedTab;
@@ -165,7 +162,6 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             if (SelectedDates != null)
             {
                 DateRanges dates = (DateRanges)DatesTable.SelectedItem;
-                //int guestNumber = Convert.ToInt32(GuestNumber);
 
                 reservationService.CreateReservation(Accommodation.Id, guest.Id, dates.CheckIn, dates.CheckOut, GuestNumber);
                 selectedTab.Content = new GuestAccommodationsView(guest, selectedTab);

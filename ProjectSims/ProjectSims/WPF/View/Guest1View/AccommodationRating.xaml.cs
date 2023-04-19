@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ProjectSims.Domain.Model;
 using ProjectSims.Service;
+using ProjectSims.WPF.ViewModel.Guest1ViewModel;
 
 namespace ProjectSims.WPF.View.Guest1View
 {
@@ -21,25 +22,13 @@ namespace ProjectSims.WPF.View.Guest1View
     /// </summary>
     public partial class AccommodationRating : Window
     {
-        public AccommodationReservation AccommodationReservation { get; set; }
+        public AccommodationRatingViewModel ViewModel { get; set; }
         public Guest1 Guest { get; set; }
-        public int Cleanliness { get; set; }
-        public int Fairness { get; set; }
-        public int Location { get; set; }
-        public int ValueForMoney { get; set; }
-        public string Comment { get; set; }
-
-        private AccommodationRatingService ratingService;
-        private AccommodationReservationService reservationService;
         public AccommodationRating(AccommodationReservation accommodationReservation, Guest1 guest)
         {
             InitializeComponent();
-
-            AccommodationReservation = accommodationReservation;
+            ViewModel = new AccommodationRatingViewModel(accommodationReservation, guest);
             Guest = guest;
-
-            ratingService = new AccommodationRatingService();
-            reservationService = new AccommodationReservationService();
         }
 
         private void Browse_Click(object sender, RoutedEventArgs e)
@@ -68,37 +57,7 @@ namespace ProjectSims.WPF.View.Guest1View
         {
             if(!string.IsNullOrEmpty(CleanlinessTb.Text) && !string.IsNullOrEmpty(FairnessTb.Text) && !string.IsNullOrEmpty(LocationTb.Text) && !string.IsNullOrEmpty(ValueForMoneyTb.Text))
             {
-                Cleanliness = Convert.ToInt32(CleanlinessTb.Text);
-                Fairness = Convert.ToInt32(FairnessTb.Text);
-                Location = Convert.ToInt32(LocationTb.Text);
-                ValueForMoney = Convert.ToInt32(ValueForMoneyTb.Text);
-
-                
-                List<string> imageList = new List<string>();
-                if (!string.IsNullOrEmpty(Images.Text))
-                {
-                    string images = Images.Text.Remove(Images.Text.Length - 2, 2);
-                    foreach (string image in images.Split(",\n"))
-                    {
-                        imageList.Add(image);
-                    }
-                }
-                else
-                {
-                    imageList.Add("");
-                }
-
-                if (string.IsNullOrEmpty(CommentTb.Text))
-                {
-                    Comment = "";
-                }
-                else
-                {
-                    Comment = CommentTb.Text;
-                }
-
-                ratingService.CreateRating(Guest.Id, Guest, AccommodationReservation.Accommodation.Id, AccommodationReservation.Accommodation, Cleanliness, Fairness, Location, ValueForMoney, Comment, imageList);
-                reservationService.ChangeReservationRatedState(AccommodationReservation);
+                ViewModel.Confirm(CleanlinessTb.Text, FairnessTb.Text, LocationTb.Text, ValueForMoneyTb.Text, CommentTb.Text, Images.Text);
             }
             Close();
         }
