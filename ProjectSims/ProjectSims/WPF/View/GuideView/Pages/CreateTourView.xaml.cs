@@ -313,8 +313,9 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         }
         private string GetRelativePath(string apsolutePath)
         {
-            string nameFile = apsolutePath.Remove(0, 90);
-            return "../../../Resources/Images/Guide/" + nameFile;
+            string[] helpString = apsolutePath.Split('\\');
+            string image = helpString.Last();
+            return "/Resources/Images/Guide/" + image;
         }
         private void CreateTour_Click(object sender, RoutedEventArgs e)
         {
@@ -322,8 +323,8 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             {
                 foreach (string TourStart in TourStarts.Split(','))
                 {
-                    Images.Remove(Images.Length - 1, 1);
-                    _controller.Create(guide.Id, TourName, Location, Description, TourLanguage, MaxNumberGuests, StartKeyPoint, FinishKeyPoint, OtherKeyPoints, TourStart, Duration, Images);
+                    String ImageList = Images.Remove(Images.Length - 1, 1);
+                    _controller.Create(guide.Id, TourName, Location, Description, TourLanguage, MaxNumberGuests, StartKeyPoint, FinishKeyPoint, OtherKeyPoints, TourStart, Duration, ImageList);
                 }
                 this.NavigationService.Navigate(new ScheduledToursView(guide));
             }
