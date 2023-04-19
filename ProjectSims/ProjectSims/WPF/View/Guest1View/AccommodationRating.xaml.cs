@@ -73,11 +73,19 @@ namespace ProjectSims.WPF.View.Guest1View
                 Location = Convert.ToInt32(LocationTb.Text);
                 ValueForMoney = Convert.ToInt32(ValueForMoneyTb.Text);
 
-                string images = Images.Text.Remove(Images.Text.Length - 2, 2);
+                
                 List<string> imageList = new List<string>();
-                foreach(string image in images.Split(",\n"))
+                if (!string.IsNullOrEmpty(Images.Text))
                 {
-                    imageList.Add(image);
+                    string images = Images.Text.Remove(Images.Text.Length - 2, 2);
+                    foreach (string image in images.Split(",\n"))
+                    {
+                        imageList.Add(image);
+                    }
+                }
+                else
+                {
+                    imageList.Add("");
                 }
 
                 if (string.IsNullOrEmpty(CommentTb.Text))
