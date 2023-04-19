@@ -10,15 +10,38 @@
   <ItemGroup>
     <None Remove="Resources\Icons\Guest2\icons8-add-file-60.png" />
     <None Remove="Resources\Icons\Guest2\icons8-bell-48.png" />
+    <None Remove="Resources\Icons\Guest2\icons8-home-page-64.png" />
     <None Remove="Resources\Icons\Guest2\icons8-male-user-48.png" />
+    <None Remove="Resources\Icons\Guide\addPhoto.png" />
+    <None Remove="Resources\Icons\Guide\checkmark.png" />
     <None Remove="Resources\Icons\Guide\close.png" />
+    <None Remove="Resources\Icons\Guide\duration.png" />
+    <None Remove="Resources\Icons\Guide\Globe.png" />
+    <None Remove="Resources\Icons\Guide\guests.png" />
+    <None Remove="Resources\Icons\Guide\info.png" />
+    <None Remove="Resources\Icons\Guide\logout.png" />
+    <None Remove="Resources\Icons\Guide\mapPin.png" />
+    <None Remove="Resources\Icons\Guide\pin.png" />
+    <None Remove="Resources\Icons\Guide\report.png" />
+    <None Remove="Resources\Icons\Guide\star.png" />
     <None Remove="Resources\Icons\Guide\start.png" />
+    <None Remove="Resources\Icons\Guide\travel-tour-logo.png" />
+    <None Remove="Resources\Icons\Guide\user.png" />
     <None Remove="Resources\Images\background.jpg" />
     <None Remove="Resources\Images\checkmark.png" />
     <None Remove="Resources\Images\Guest2\download.jpg" />
     <None Remove="Resources\Images\Guest2\images.jpg" />
+    <None Remove="Resources\Images\Guest2\kofer.jpg" />
     <None Remove="Resources\Images\Guest2\park-kalemegdan-1184267749.jpg" />
+    <None Remove="Resources\Images\Guest2\travel-tour-logo.png" />
     <None Remove="Resources\Images\guests.png" />
+    <None Remove="Resources\Images\Guide\background.jpg" />
+    <None Remove="Resources\Images\Guide\JaksicevaKula.jpg" />
+    <None Remove="Resources\Images\Guide\kalemegdan1.jpg" />
+    <None Remove="Resources\Images\Guide\petrovaradin.jpg" />
+    <None Remove="Resources\Images\Guide\Pobednik.jpg" />
+    <None Remove="Resources\Images\Guide\sat.jpg" />
+    <None Remove="Resources\Images\Guide\VojniMuzej.jpg" />
     <None Remove="Resources\Images\home.png" />
     <None Remove="Resources\Images\leftarrow.png" />
     <None Remove="Resources\Images\mappin.png" />
@@ -41,19 +64,61 @@
     <Content Include="Resources\Icons\Guest2\icons8-bell-48.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Icons\Guest2\icons8-home-page-64.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Icons\Guest2\icons8-male-user-48.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\addPhoto.png">
+	<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\checkmark.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\logout.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\report.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\star.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\travel-tour-logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\user.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest2\kofer.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest2\travel-tour-logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\close.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Icons\Guide\duration.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\Globe.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\guests.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\info.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\mapPin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\pin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Icons\Guide\start.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Guide\background.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Icons\Guide\checkmark.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Guest2\download.jpg">
@@ -65,24 +130,40 @@
     <Content Include="Resources\Images\Guest2\park-kalemegdan-1184267749.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Icons\Guide\guests.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\Icons\Guide\home.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\leftarrow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Icons\Guide\mappin.png">
+    <Content Include="Resources\Icons\Guide\rightarrow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Icons\Guide\rightarrow.png">
+    <Content Include="Resources\Images\Guide\background.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guide\JaksicevaKula.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guide\kalemegdan1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guide\petrovaradin.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guide\Pobednik.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guide\sat.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guide\VojniMuzej.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CalcBinding" Version="2.5.2" />
     <PackageReference Include="Tulpep.NotificationWindow" Version="1.1.38" />
   </ItemGroup>
 

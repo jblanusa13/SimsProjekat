@@ -19,11 +19,13 @@ namespace ProjectSims.Service
         private TourRepository tours;
         private KeyPointService keyPointService;
         private Guest2Service guestService;
+        private ReservationTourService reservationService;
         public TourService()
         {
             tours = new TourRepository();
             keyPointService = new KeyPointService();
             guestService = new Guest2Service();
+            reservationService = new ReservationTourService();
         }
         public List<Tour> GetAllTours()
         {
@@ -43,17 +45,30 @@ namespace ProjectSims.Service
         }
         public List<KeyPoint> GetTourKeyPoints(Tour tour)
         {
-            List<KeyPoint> tourKeyPoints = new List<KeyPoint>();
-            foreach (int keyPointId in tour.KeyPointIds)
-            {
-                tourKeyPoints.Add(keyPointService.GetKeyPointById(keyPointId));
-            }
-            return tourKeyPoints;
+            List<int> keyPointIds = tour.KeyPointIds;
+            return keyPointIds.Select(id => keyPointService.GetKeyPointById(id)).ToList();
         }
         public List<Tour> GetTodayTours(int guideId)
         {
-            List<Tour> inactiveTours = tours.GetToursByStateAndGuideId(TourState.Inactive, guideId);
-            return inactiveTours.Where(t => t.StartOfTheTour.Date == DateTime.Today).ToList();
+           return tours.GetTodayTours(guideId);
+        }
+       public Tour GetMostVisitedTour(int guideId,bool thisYear)
+        {
+            List<Tour> wantedTours = GetToursByStateAndGuideId(TourState.Finished, guideId);
+            if (wantedTours.Count != 0)
+            {
+                if (thisYear)
+                    wantedTours = wantedTours.Where(t => t.StartOfTheTour.Year == DateTime.Now.Year).ToList();
+                Dictionary<int, int> numberOfGuestsOnTour = new Dictionary<int, int>();
+                foreach (Tour t in wantedTours)
+                {
+                    numberOfGuestsOnTour.Add(t.Id, reservationService.GetNumberOfPresentGuests(t));
+                }
+                int mostVisitedTourId = numberOfGuestsOnTour.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
+                return GetTourById(mostVisitedTourId);
+            }
+            else
+                return null;
         }
         public void Create(int guideId, string name, string location, string description, string language, string maxNumberGuests,string startKeyPointName, string finishKeyPointName, 
             List<string> otherKeyPointsNames, string tourStart, string duration, string images)
@@ -88,16 +103,6 @@ namespace ProjectSims.Service
         public void UpdateActiveKeyPoint(Tour tour,int keyPointId)
         {
             tour.ActiveKeyPointId = keyPointId;
-            Update(tour);
-        }
-        public void UpdateNumberOfGuests(int guestAge,Tour tour)
-        {
-            if (guestAge < 18)
-                tour.NumberOfPresentGuestsUnder18++;
-            else if(guestAge >=18 && guestAge<50)
-                tour.NumberOfPresentGuestsBetween18And50++;
-            else
-                tour.NumberOfPresentGuestsOver50++;
             Update(tour);
         }
         public void Remove(Tour tour)
@@ -150,8 +155,6 @@ namespace ProjectSims.Service
 
             return wantedTours;
         }
-
-
         //if text empty return -1
         //if text isn't integer or < 0 return -2
         public int ConvertToInt(String text)
@@ -208,10 +211,56 @@ namespace ProjectSims.Service
             }
             return null;
         }
+        public List<Tour> GetToursWhichFinishedWhereGuestPresent(int guest2Id)
+        {
+            List<Tour> toursFinished = new List<Tour>();
+            ReservationTourService reservationTourService = new ReservationTourService();
+            foreach (int id in reservationTourService.FindTourIdsWhereGuestPresent(guest2Id))
+            {
+                Tour tour = GetFinishedTourById(id);
+                if (tour != null)
+                {
+                    toursFinished.Add(tour);
+                }
+            }
+            return toursFinished;
+        }
+        public Tour GetActivatedTourById(int id)
+        {
+            foreach (Tour tour in tours.GetAll())
+            {
+                if (tour.Id == id && IsActivated(tour))
+                {
+                    return tour;
+
+                }
+            }
+            return null;
+        }
+
+        public List<Tour> GetToursWhichActivatedWhereGuestPresent(int guest2Id)
+        {
+            List<Tour> toursActivated = new List<Tour>();
+            ReservationTourService reservationTourService = new ReservationTourService();
+            foreach (int id in reservationTourService.FindTourIdsWhereGuestPresent(guest2Id))
+            {
+                Tour tour = GetActivatedTourById(id);
+                if (tour != null)
+                {
+                    toursActivated.Add(tour);
+                }
+            }
+            return toursActivated;
+        }
 
         public bool IsFinished(Tour tour)
         {
             return (tour.State == TourState.Finished);
         }
+        public bool IsActivated(Tour tour)
+        {
+            return (tour.State == TourState.Active);
+        }
+
     }
 }

@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ProjectSims.Service;
 using ProjectSims.Observer;
+using System.Windows.Navigation;
 
 namespace ProjectSims.View.GuideView
 {
@@ -37,21 +38,23 @@ namespace ProjectSims.View.GuideView
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            
         }
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-
+        }
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            Window login = new MainWindow();
+            login.Show();
+            Close();
         }
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             Close();
-            Window login = new MainWindow();
-            login.Show();
         }
         private void TrackTour_Click(object sender, RoutedEventArgs e)
         {
-            //ActiveTour = tourService.GetTourByStateAndGuideId(TourState.Active, Guide.Id);
+            ActiveTour = tourService.GetTourByStateAndGuideId(TourState.Active, Guide.Id);
             if (ActiveTour != null)
             {
                 Page tourTrackingPage = new TourTrackingView(ActiveTour,Guide);
@@ -72,6 +75,16 @@ namespace ProjectSims.View.GuideView
         {
             Page scheduledToursView = new ScheduledToursView(Guide);
             GuideFrame.Content = scheduledToursView;
+        }
+        private void FinishedToursStatistics_Click(object sender, RoutedEventArgs e)
+        {
+            Page finishedToursStatisticsView = new FinishedToursStatisticsView(Guide);
+            GuideFrame.Content = finishedToursStatisticsView;
+        }
+        private void FinishedToursRatings_Click(object sender, RoutedEventArgs e)
+        {
+            Page finishedToursRatingsView = new FinishedToursRatingsView(Guide);
+            GuideFrame.Content = finishedToursRatingsView;
         }
         public void Update()
         {

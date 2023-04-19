@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Repository
 {
-    class ReservationTourRepository : ISubject
+    class ReservationTourRepository : ISubject, IReservationTourRepository
     {
 
         private ReservationTourFileHandler reservationFile;
@@ -23,7 +24,6 @@ namespace ProjectSims.Repository
             reservations = reservationFile.Load();
             observers = new List<IObserver>();
         }
-
         public int NextId()
         {
             if(reservations.Count == 0)
@@ -59,15 +59,18 @@ namespace ProjectSims.Repository
         {
             return reservations;
         }
-        public List<ReservationTour> GetReservationsByTourId(Tour tour)
+        public List<ReservationTour> GetReservationsByTour(Tour tour)
         {
             return reservations.Where(r=>r.TourId == tour.Id).ToList();
         }
-        public List<int> GetGuestIdsByStateAndTourId(Tour tour, Guest2State state)
+        public List<ReservationTour> GetReservationsByTourAndState(Tour tour, Guest2State state)
+        {
+            return reservations.Where(r=>r.State == state && r.TourId == tour.Id).ToList();
+        }
+        public List<int> GetGuestIdsByTourAndState(Tour tour, Guest2State state)
         {
             List<ReservationTour> wantedReservations = reservations.Where(r=> r.State == state && r.TourId == tour.Id).ToList();
-            List<int> guestIds = new List<int>();
-            wantedReservations.ForEach(r => guestIds.Add(r.Guest2Id));  
+            List<int> guestIds = wantedReservations.Select(r => r.Guest2Id).ToList();
             return guestIds;
         }
         public ReservationTour GetTourIdWhereGuestIsWaiting(Guest2 guest)
@@ -75,29 +78,19 @@ namespace ProjectSims.Repository
             ReservationTour reservation = reservations.Find(r=> r.Guest2Id == guest.Id && r.State == Guest2State.Waiting);
             return reservation;
         }
-        public ReservationTour GetReservationByGuestAndTour(Tour tour, Guest2 guest2)
+        public ReservationTour GetReservationByGuestAndTour(Tour tour,Guest2 Guest)
         {
-            ReservationTour reservationTour = new ReservationTour();
-
-            foreach (var reservation in GetAll())
-            {
-                if(reservation.Guest2Id == guest2.Id && reservation.TourId == tour.Id)
-                {
-                    reservationTour = reservation;
-                }
-            }
-                return reservationTour;
+            ReservationTour reservationTour = reservations.Find(r => r.Guest2Id == Guest.Id && r.TourId == tour.Id);
+            return reservationTour;
         }
-        public void Subscribe(IObserver observer)
+    public void Subscribe(IObserver observer)
         {
             observers.Add(observer);
         }
-
         public void Unsubscribe(IObserver observer)
         {
             observers.Remove(observer);
         }
-
         public void NotifyObservers()
         {
             foreach (var observer in observers)

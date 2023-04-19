@@ -22,7 +22,10 @@ namespace ProjectSims.Service
         {
             return guides.GetAll();
         }
-
+        public Guide GetGuideById(int id)
+        {
+            return guides.GetById(id);
+        }
         public void Create(Guide guide)
         {
             guides.Add(guide);
@@ -41,11 +44,6 @@ namespace ProjectSims.Service
         public void Subscribe(IObserver observer)
         {
             guides.Subscribe(observer);
-        }
-
-        public Guide FindGuideById(int id)
-        {
-            return guides.FindById(id);
         }
     }
 }

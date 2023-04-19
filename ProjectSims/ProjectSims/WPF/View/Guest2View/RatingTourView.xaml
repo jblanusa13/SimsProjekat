@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims.View.Guest2View"
         mc:Ignorable="d"
-        Title="RatingTourView" Height="600" Width="1100" WindowStartupLocation="CenterScreen">
+        Title="RatingTourView" Height="600" Width="1100" WindowStartupLocation="CenterScreen" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
@@ -13,7 +13,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Content="Vodic:" Grid.Row="0" HorizontalAlignment="Left" Margin="449,10,0,0" VerticalAlignment="Top" FontSize="16" Height="37"/>
-        <TextBox x:Name="GuideTextBox" Grid.Row="0" HorizontalAlignment="Left" Margin="522,10,0,0" TextWrapping="Wrap" Text="" IsEnabled="False" VerticalAlignment="Top" Width="149" Height="36" FontSize="16"/>
+        <TextBox x:Name="GuideTextBox" Grid.Row="0" HorizontalAlignment="Left" Margin="522,10,0,0" TextWrapping="Wrap" Text="{Binding guide.Name}" IsEnabled="False" VerticalAlignment="Top" Width="89" Height="36" FontSize="16"/>
         <Label Content="Ocjenite vodica i turu:" Grid.Row="0" HorizontalAlignment="Left" Margin="55,29,0,0" VerticalAlignment="Top" FontSize="16"/>
 
         <Border BorderThickness="1" HorizontalAlignment="Left" Height="422" Margin="39,7,0,0" Grid.Row="1" VerticalAlignment="Top" Width="465" BorderBrush="Blue" CornerRadius="10,10,10,10" Background="#FF2F97DC"/>
@@ -48,6 +48,7 @@
         <Button HorizontalAlignment="Left" Margin="446,322,0,0" Grid.Row="1" VerticalAlignment="Top" Height="39" Width="40" Click="BrowseButton_Click" Background="#FF9A9CE8">
             <Image Source="/Resources/Icons/Guest2/icons8-add-file-60.png" Height="29"/>
         </Button>
+        <TextBox Grid.Row="0" HorizontalAlignment="Left" Margin="616,10,0,0" TextWrapping="Wrap" Text="{Binding guide.Surname}" IsEnabled="False" VerticalAlignment="Top" Width="89" Height="36" FontSize="16"/>
 
     </Grid>
 </Window>

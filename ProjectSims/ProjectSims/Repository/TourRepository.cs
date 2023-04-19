@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Animation;
-
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Repository
 {
-    class TourRepository : ISubject
+    class TourRepository : ISubject, ITourRepository
     {
 
         private TourFileHandler tourFile;
@@ -69,6 +69,11 @@ namespace ProjectSims.Repository
         public Tour GetTourByStateAndGuideId(TourState state, int guideId)
         {
             return tours.Find(t=> t.State == state && t.GuideId == guideId);
+        }
+        public List<Tour> GetTodayTours(int guideId)
+        {
+            List<Tour> inactiveTours = GetToursByStateAndGuideId(TourState.Inactive, guideId);
+            return inactiveTours.Where(t => t.StartOfTheTour.Date == DateTime.Today).ToList();
         }
         public void Subscribe(IObserver observer)
         {

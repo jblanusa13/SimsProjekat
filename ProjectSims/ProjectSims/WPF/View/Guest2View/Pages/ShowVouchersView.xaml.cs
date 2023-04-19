@@ -1,5 +1,7 @@
 ﻿using ProjectSims.Domain.Model;
 using ProjectSims.Repository;
+using ProjectSims.Service;
+using ProjectSims.WPF.ViewModel.Guest2ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,20 +25,11 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
     /// </summary>
     public partial class ShowVouchersView : Page
     {
-        public Guest2 guest2 { get; set; }
-        public ObservableCollection<Voucher> ListVoucher { get; set; }
-
-        private VoucherRepository voucherRepository;
-        public ShowVouchersView(Guest2 g)
+        public ShowVouchersView(ShowVouchersViewModel vouchersViewModel)
         {
             InitializeComponent();
-            DataContext = this;
-            guest2 = g;
-            voucherRepository = new VoucherRepository();
-
-            ListVoucher = new ObservableCollection<Voucher>(voucherRepository.GetVouchersWithIds(guest2.VoucherIds));
+            this.DataContext = vouchersViewModel;
         }
-
-       
+      
     }
 }

@@ -17,11 +17,16 @@
             <Button Click="Home_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="40">
                 <Image Source="\Resources\Icons\Guide\home.png"/>
             </Button>
-            <Button Click="Close_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="40" Margin="1090,0,0,0">
+            <Button Click="Logout_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="30" Margin="1050,0,0,0">
+                <Image Source="\Resources\Icons\Guide\logout.png"/>
+            </Button>
+            <Button Click="Close_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="40" Margin="10,0,0,0">
                 <Image Source="\Resources\Icons\Guide\close.png"/>
             </Button>
         </ToolBar>
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,40,0,0" Height="100" Width="1280" Background="#FF050518"/>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,40,0,0" Height="100" Width="1280" Background="#FF050518">
+            <Image Source="/Resources/Icons/Guide/travel-tour-logo.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Grid>
         <Menu Margin="0,140,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="120" Width="1280" Background="White">
             <MenuItem Header="Pocetna" Click="Home_Click" Height="120" Width="140" FontSize="32" Foreground="#FF050518" FontFamily="TGaramond" FontWeight="UltraBold"/>
             <MenuItem Header="Pracenje ture" Height="120" Width="220"  FontSize="32" Foreground="#FF050518" FontFamily="TGaramond" FontWeight="UltraBold">
@@ -34,8 +39,8 @@
             </MenuItem>
             <MenuItem Header="Zakazane ture" Click="ScheduledTours_Click" Height="120"  Width="240" FontSize="32" Foreground="#FF050518" FontFamily="TGaramond" FontWeight="UltraBold"/>
             <MenuItem Header="Zavrsene ture" Height="120"  Width="240" FontSize="32" Foreground="#FF050518" FontFamily="TGaramond" FontWeight="UltraBold">
-                <MenuItem Header="Statistika" />
-                <MenuItem Header="Ocene i recenzije"/>
+                <MenuItem Header="Statistika" Click="FinishedToursStatistics_Click"/>
+                <MenuItem Header="Ocene i recenzije" Click="FinishedToursRatings_Click"/>
             </MenuItem>
             <MenuItem Header="Zahtevi" Height="120"  Width="150" FontSize="32" Foreground="#FF050518" FontFamily="TGaramond" FontWeight="UltraBold">
                 <MenuItem Header="Zahtevi za ture"/>
@@ -43,7 +48,11 @@
             </MenuItem>
         </Menu>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,260,0,0" Height="444" Width="1280" Background="#FF050518">
-            <Frame Name="GuideFrame" HorizontalAlignment="Center" VerticalAlignment="Top" Height="400" Width="1280" NavigationUIVisibility="Hidden"/>
+            <Frame Name="GuideFrame" HorizontalAlignment="Center" VerticalAlignment="Top" Height="420" Width="1280" NavigationUIVisibility="Hidden">
+                <Frame.Background>
+                    <ImageBrush ImageSource="/Resources/Images/Guide/background.jpg"/>
+                </Frame.Background>
+            </Frame>
         </Grid>
     </Grid>
 </Window>

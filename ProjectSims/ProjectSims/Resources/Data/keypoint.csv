@@ -1,43 +1,51 @@
 0|Kalemegdan park|True|First
 1|Vojni muzej|True|Intermediate
-2|Jaksiceva kula|True|Intermediate
-3|Pobednik|True|Intermediate
+2|Pobednik|True|Intermediate
+3|Jaksiceva kula|True|Intermediate
 4|Knez Mihailova|True|Last
-5|Kalemegdan park|True|First
-6|Vojni muzej|True|Intermediate
-7|Jaksiceva kula|True|Intermediate
-8|Pobednik|True|Intermediate
-9|Knez Mihailova|True|Last
+5|Kalemegdan park|False|First
+6|Vojni muzej|False|Intermediate
+7|Pobednik|False|Intermediate
+8|Jaksiceva kula|False|Intermediate
+9|Knez Mihailova|False|Last
 10|Kalemegdan park|False|First
 11|Vojni muzej|False|Intermediate
-12|Jaksiceva kula|False|Intermediate
-13|Pobednik|False|Intermediate
+12|Pobednik|False|Intermediate
+13|Jaksiceva kula|False|Intermediate
 14|Knez Mihailova|False|Last
-15|Kalemegdan park|False|First
-16|Vojni muzej|False|Intermediate
-17|Jaksiceva kula|False|Intermediate
-18|Pobednik|False|Intermediate
+15|Kalemegdan park|True|First
+16|Vojni muzej|True|Intermediate
+17|Pobednik|True|Intermediate
+18|Jaksiceva kula|True|Intermediate
 19|Knez Mihailova|False|Last
-20|Kalemegdan park|False|First
-21|Vojni muzej|False|Intermediate
-22|Jaksiceva kula|False|Intermediate
-23|Pobednik|False|Intermediate
-24|Knez Mihailova|False|Last
-25|Dugin most|False|First
-26|Muzej|False|Intermediate
-27|Sat|False|Intermediate
-28|Galeija|False|Last
-29|Dugin most|False|First
-30|Muzej|False|Intermediate
-31|Sat|False|Intermediate
-32|Galerija|False|Last
-33|Dugin most|False|First
-34|Muzej|False|Intermediate
-35|Sat|False|Intermediate
-36|Galerija|False|Last
-37|Kalemegdan park|False|First
-38|Vojni muzej|False|Intermediate
-39|Jaksiceva kula|False|Last
-40|Kalemegdan park|False|First
-41|Vojni muzej|False|Intermediate
-42|Jaksiceva kula|False|Last
+20|Kalemegdan park|True|First
+21|Vojni muzej|True|Intermediate
+22|Pobednik|True|Intermediate
+23|Jaksiceva kula|True|Intermediate
+24|Knez Mihailova|True|Last
+25|Kalemegdan park|False|First
+26|Vojni muzej|False|Intermediate
+27|Pobednik|False|Intermediate
+28|Jaksiceva kula|False|Intermediate
+29|Knez Mihailova|False|Last
+30|Kalemegdan park|False|First
+31|Vojni muzej|False|Intermediate
+32|Pobednik|False|Intermediate
+33|Jaksiceva kula|False|Intermediate
+34|Knez Mihailova|False|Last
+35|Dugin most|True|First
+36|Muzej|True|Intermediate
+37|Sat|True|Intermediate
+38|Galerija|True|Last
+39|Dugin most|False|First
+40|Muzej|False|Intermediate
+41|Sat|False|Intermediate
+42|Galerija|False|Last
+43|Dugin most|False|First
+44|Muzej|False|Intermediate
+45|Sat|False|Intermediate
+46|Galerija|False|Last
+47|Dugin most|False|First
+48|Muzej|False|Intermediate
+49|Sat|False|Intermediate
+50|Galerija|False|Last

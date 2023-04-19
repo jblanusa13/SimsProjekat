@@ -20,6 +20,7 @@ using ProjectSims.Service;
 using System.Collections.ObjectModel;
 using ProjectSims.Observer;
 using ProjectSims.WPF.View.Guest2View;
+using ProjectSims.WPF.ViewModel.Guest2ViewModel;
 
 namespace ProjectSims.View.Guest2View
 {
@@ -72,7 +73,7 @@ namespace ProjectSims.View.Guest2View
             //show picture in listview
             foreach (var fullFilePath in tourSelected.Images)
             {
-                BitmapImage bitmap = new BitmapImage();
+                /*BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
                 if(Uri.IsWellFormedUriString(fullFilePath, UriKind.Absolute))
                 {
@@ -91,31 +92,31 @@ namespace ProjectSims.View.Guest2View
                 else
                 {
                     ImageList.Items.Add("The format of the URL could not be determined.");
+                }*/
+
+                //kad se ubaci filepicker kod kreiranja tura i kad se u tour.csv budu cuvale relativne putanje
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                if (Uri.IsWellFormedUriString(fullFilePath, UriKind.RelativeOrAbsolute))
+                {
+                    bitmap.UriSource = new Uri(fullFilePath, UriKind.RelativeOrAbsolute);
+                    bitmap.EndInit();
+
+                    image = new Image();
+
+                    image.Source = bitmap;
+
+                    image.Width = 350;
+                    image.Height = 200;
+
+                    ImageList.Items.Add(image);
+                }
+                else
+                {
+                    ImageList.Items.Add("The format of the URL could not be determined.");
                 }
             }
-            //kad se ubaci filepicker kod kreiranja tura i kad se u tour.csv budu cuvale relativne putanje
-            /*
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            if (Uri.IsWellFormedUriString(@"/Resources/Images/Guide/slika.jpg", UriKind.RelativeOrAbsolute))
-            {
-                bitmap.UriSource = new Uri(@"../../../Resources/Images/Guide/slika.jpg", UriKind.RelativeOrAbsolute);
-                bitmap.EndInit();
-
-                image = new Image();
-
-                image.Source = bitmap;
-
-                image.Width = 350;
-                image.Height = 200;
-
-                ImageList.Items.Add(image);
-            }
-            else
-            {
-                ImageList.Items.Add("The format of the URL could not be determined.");
-            }
-            */
+            
             tourService = new TourService();
             reservationService = new ReservationTourService();
             TourList = new ObservableCollection<Tour>(tourService.GetAllToursWithSameLocation(tourSelected));
@@ -139,7 +140,8 @@ namespace ProjectSims.View.Guest2View
             }
             else 
             {
-                var useVoucherView = new UseVoucherView(guest2,tour,(int)numberGuests);
+                UseVoucherViewModel useVoucherViewModel = new UseVoucherViewModel(guest2, tour, (int)numberGuests);
+                var useVoucherView = new UseVoucherView(useVoucherViewModel);
                 useVoucherView.Show();
 
             }
@@ -162,7 +164,8 @@ namespace ProjectSims.View.Guest2View
                     }
                     else
                     {
-                        var useVoucherView = new UseVoucherView(guest2, SelectedTour,(int)numberGuests);
+                        UseVoucherViewModel useVoucherViewModel = new UseVoucherViewModel(guest2, tour, (int)numberGuests);
+                        var useVoucherView = new UseVoucherView(useVoucherViewModel);
                         useVoucherView.Show();
                     }
                 }

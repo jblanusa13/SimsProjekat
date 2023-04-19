@@ -1,0 +1,59 @@
+﻿<Page x:Class="ProjectSims.WPF.View.GuideView.Pages.CommentAndRatingsView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="420" d:DesignWidth="1280"
+      Title="CommentAndRatingsView">
+    <Page.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Broadway"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
+        <Style TargetType="Image">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Height" Value="70"/>
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+    </Page.Resources>
+    <ScrollViewer>
+        <Grid Background="#FF050518">
+            <Label Content="{Binding Guest.Name}" Margin="110,40,0,0" Width="250" Height="60" FontSize="26"/>
+            <Label Content="{Binding Guest.Surname}" Margin="360,40,0,0" Width="300" Height="60" FontSize="26"/>
+            <Image Source="/Resources/Icons/Guide/user.png" Margin="20,20,0,0" Height="80" Width="80"/>
+            <Image Source="/Resources/Icons/Guide/pin.png" Margin="670,40,0,0" Height="40" Width="40"/>
+            <Label Content="Pojavio se na kljucnoj tacki:" Margin="700,40,0,0" FontSize="20"/>
+            <Label Content="{Binding KeyPoint.Name}" Margin="1010,40,0,0" Width="250" Height="40" FontSize="20"/>
+            <Label Content="Znanje vodica:" Margin="100,150,0,0" FontSize="20"/>
+            <Label Content="{Binding TourRating.KnowledgeGuide}" Margin="280,150,0,0" Width="100" Height="40" FontSize="20"/>
+            <Label Content="Jezik vodica:" Margin="100,200,0,0" FontSize="20"/>
+            <Label Content="{Binding TourRating.LanguageGuide}" Margin="280,200,0,0" Width="100" Height="40" FontSize="20"/>
+            <Label Content="Zanimljivost ture:" Margin="100,250,0,0" FontSize="20"/>
+            <Label Content="{Binding TourRating.InterestingTour}" Margin="320,250,0,0" Width="100" Height="40" FontSize="20"/>
+            <Label Content="{Binding TourRating.AddedComment}" Margin="500,150,0,0" Width="700" Height="130" FontSize="20"/>
+            <Button Name="AcceptComment" Click="AcceptComment_Click" Margin="400,320,0,0" Background="Green">
+                <Grid Height="70" Width="70" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="/Resources/Icons/Guide/checkmark.png"  HorizontalAlignment="Center" Height="40" Width="40" Margin="0,5,0,0"/>
+                    <Label Content="Prihvati" FontSize="10" HorizontalAlignment="Center" Foreground="Black" Margin="0,40,0,0"/>
+                </Grid>
+            </Button>
+            <Button Name="ReportComment" Click="ReportComment_Click" Margin="700,320,0,0" Background="Red">
+                <Grid Height="70" Width="70" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="/Resources/Icons/Guide/report.png"  HorizontalAlignment="Center" Height="40" Width="40" Margin="0,5,0,0"/>
+                    <Label Content="Prijavi" FontSize="10" HorizontalAlignment="Center" Foreground="Black" Margin="0,40,0,0"/>
+                </Grid>
+            </Button>
+            <Border BorderBrush="White" BorderThickness="6" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="90,100,0,0" Width="1280" Height="2"/>
+        </Grid>
+    </ScrollViewer>
+</Page>

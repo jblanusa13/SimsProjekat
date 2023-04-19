@@ -1,0 +1,35 @@
+﻿<Page x:Class="ProjectSims.WPF.View.Guest2View.Pages.StartView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest2View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="650" d:DesignWidth="1200"
+      Title="StartView" Background="White">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="250"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Center" Height="230" VerticalAlignment="Center" Width="1180" CornerRadius="8,8,8,8"/>
+        <Label Content="Dobro dosli" FontSize="40" HorizontalAlignment="Left" Margin="67,33,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="GuestNameLabel" Content="" FontSize="40" HorizontalAlignment="Left" Margin="289,33,0,0" VerticalAlignment="Top" Width="172" Height="63"/>
+        <Label Content="        Dobro dosli u Travel&amp;Tour aplikaciju. Unutar ove aplikacije mozete traziti i rezervisati                 &#xA;turisticke ture koje su Vam zanimljive, ocjenjivati vodica i ture na kojima ste bili, kreirati                 &#xA;zahtjeve za sopstvene ture i jos mnostvo toga. Uzivajte!"
+              FontSize="20" HorizontalAlignment="Left" Margin="67,99,0,0" VerticalAlignment="Top" Width="805"/>
+        <Image Source="/Resources/Images/Guest2/kofer.jpg" Height="201" Margin="901,33,45,0" VerticalAlignment="Top"/>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="530"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Najposjecenija tura ovog meseca:" FontSize="20" HorizontalAlignment="Left" Margin="70,38,0,0" VerticalAlignment="Top"/>
+            <Label Grid.Column="1" Content="Vase rezervisane ture:" FontSize="20" HorizontalAlignment="Left" Margin="135,38,0,0" VerticalAlignment="Top"/>
+            <Viewbox Grid.Column="1" Width="400" Height="260" Stretch="Fill" StretchDirection="Both"/>
+        </Grid>
+
+
+    </Grid>
+</Page>
