@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View"
         mc:Ignorable="d"
         MinHeight="650" MinWidth="750"
-        Title="AccommodationsForRating" Height="650" Width="750">
+        Title="AccommodationsForRating" Height="650" Width="750"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>
@@ -17,8 +18,8 @@
 
         <Grid Grid.Row="1">
             <DataGrid Name="AccommodationsForRatingTable" Margin="50,20"
-                      ItemsSource="{Binding Accommodations}"
-                      SelectedItem="{Binding SelectedAccommodation}">
+                      ItemsSource="{Binding Accommodations, UpdateSourceTrigger=PropertyChanged}"
+                      AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv" Binding="{Binding Accommodation.Name}" Width="200"></DataGridTextColumn>
                     <DataGridTextColumn Header="Dolazak" Binding="{Binding CheckInDate}" Width="150"></DataGridTextColumn>

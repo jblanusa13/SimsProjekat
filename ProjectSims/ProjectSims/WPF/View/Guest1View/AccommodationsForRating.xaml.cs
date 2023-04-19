@@ -44,8 +44,9 @@ namespace ProjectSims.WPF.View.Guest1View
             if (SelectedAccommodation != null)
             {
                 AccommodationRating accommodationRating = new AccommodationRating(SelectedAccommodation, Guest);
+                accommodationRating.Show();
+                Close();
             }
-            Close();
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)

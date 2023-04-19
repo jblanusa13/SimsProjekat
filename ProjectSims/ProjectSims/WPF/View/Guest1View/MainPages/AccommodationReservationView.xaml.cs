@@ -26,7 +26,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
     /// <summary>
     /// Interaction logic for AccommodationReservation.xaml
     /// </summary>
-    public partial class AccommodationReservationView : Page, INotifyPropertyChanged, IObserver
+    public partial class AccommodationReservationView : Page, INotifyPropertyChanged
     {
         public Accommodation Accommodation { get; set; }
 
@@ -118,7 +118,6 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             this.guest = guest;
 
             reservationService = new AccommodationReservationService();
-            reservationService.Subscribe(this);
 
             Accommodation = SelectedAccommodation;
 
@@ -143,16 +142,20 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             {
                 FirstDate = DateOnly.FromDateTime((DateTime)FirstDatePicker.SelectedDate);
                 LastDate = DateOnly.FromDateTime((DateTime)LastDatePicker.SelectedDate);
-                DaysNumber = Convert.ToInt32(TextboxDaysNumber.Text);
 
                 List<DateRanges> availableDates = new List<DateRanges>();
                 availableDates = dateRangesService.FindAvailableDates(FirstDate, LastDate, DaysNumber, Accommodation.Id);
 
-                AvailableDates.Clear();
-                foreach (DateRanges dateRange in availableDates)
-                {
-                    AvailableDates.Add(dateRange);
-                }
+                UpdateDatesTable(availableDates);
+            }
+        }
+
+        public void UpdateDatesTable(List<DateRanges> availableDates)
+        {
+            AvailableDates.Clear();
+            foreach (DateRanges dateRange in availableDates)
+            {
+                AvailableDates.Add(dateRange);
             }
         }
 
@@ -162,9 +165,10 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             if (SelectedDates != null)
             {
                 DateRanges dates = (DateRanges)DatesTable.SelectedItem;
-                int guestNumber = Convert.ToInt32(GuestNumber);
+                //int guestNumber = Convert.ToInt32(GuestNumber);
 
-                reservationService.CreateReservation(Accommodation.Id, guest.Id, dates.CheckIn, dates.CheckOut, guestNumber);
+                reservationService.CreateReservation(Accommodation.Id, guest.Id, dates.CheckIn, dates.CheckOut, GuestNumber);
+                selectedTab.Content = new GuestAccommodationsView(guest, selectedTab);
             }
         }
 
@@ -176,11 +180,6 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             selectedTab.Content = new GuestAccommodationsView(guest, selectedTab);
-        }
-
-        public void Update()
-        {
-            throw new NotImplementedException();
         }
     }
 }

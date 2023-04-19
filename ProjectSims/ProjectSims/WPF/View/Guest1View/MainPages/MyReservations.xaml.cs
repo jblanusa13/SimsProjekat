@@ -48,8 +48,6 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
 
         private void DateChange_Click(object sender, RoutedEventArgs e)
         {
-            //1SelectedReservation = (AccommodationReservation)ReservationsTable.SelectedItem;
-
             if (SelectedReservation != null)
             {
                 DateChangeRequest request = new DateChangeRequest(SelectedReservation);
@@ -67,10 +65,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             Reservations.Clear();
             foreach (AccommodationReservation reservation in service.GetReservationByGuest(guest.Id))
             {
-                if (reservation.State == ReservationState.Active)
-                {
-                    Reservations.Add(reservation);
-                }
+                Reservations.Add(reservation);
             }
         }
 

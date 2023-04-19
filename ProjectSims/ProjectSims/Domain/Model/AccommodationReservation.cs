@@ -21,10 +21,11 @@ namespace ProjectSims.Domain.Model
         public DateOnly CheckOutDate { get; set; }
         public int GuestNumber { get; set; }
         public ReservationState State { get; set; }
+        public bool Rated { get; set; }
 
         public AccommodationReservation() { }
 
-        public AccommodationReservation(int id, int accommodationId, int guestId,  DateOnly checkInDate, DateOnly checkOutDate, int guestNumber, ReservationState state)
+        public AccommodationReservation(int id, int accommodationId, int guestId,  DateOnly checkInDate, DateOnly checkOutDate, int guestNumber, ReservationState state, bool rated)
         {
             Id = id;
             AccommodationId = accommodationId;
@@ -33,6 +34,7 @@ namespace ProjectSims.Domain.Model
             CheckOutDate = checkOutDate;
             GuestNumber = guestNumber;
             State = state;
+            Rated = rated;
         }
 
         public void FromCSV(string[] values)
@@ -44,6 +46,7 @@ namespace ProjectSims.Domain.Model
             CheckOutDate = DateOnly.ParseExact(values[4], "dd.MM.yyyy");
             GuestNumber = Convert.ToInt32(values[5]);
             State = Enum.Parse<ReservationState>(values[6]);
+            Rated = Convert.ToBoolean(values[7]);
             InitializeData();
         }
 
@@ -56,7 +59,8 @@ namespace ProjectSims.Domain.Model
                 CheckInDate.ToString("dd.MM.yyyy"),
                 CheckOutDate.ToString("dd.MM.yyyy"),
                 GuestNumber.ToString(),  
-                State.ToString()
+                State.ToString(),
+                Rated.ToString()
             };
             return csvvalues;
         }

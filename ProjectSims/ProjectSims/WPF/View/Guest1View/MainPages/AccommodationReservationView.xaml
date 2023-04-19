@@ -136,12 +136,12 @@
 
                             <Grid Grid.Row="3">
                                 <Label Margin="10,5" FontSize="14">Broj dana:</Label>
-                                <TextBox Name="TextboxDaysNumber" Margin="15,35,10,10"></TextBox>
+                                <TextBox Name="TextboxDaysNumber" Text="{Binding Path=DaysNumber, UpdateSourceTrigger=PropertyChanged}" Margin="15,35,10,0" Height="32" VerticalAlignment="Top"></TextBox>
                             </Grid>
 
                             <Grid Grid.Row="4">
                                 <Label Margin="10,5" FontSize="14">Broj gostiju:</Label>
-                                <TextBox Margin="15,35,10,10"></TextBox>
+                                <TextBox Text="{Binding Path=GuestNumber, UpdateSourceTrigger=PropertyChanged}" Margin="15,35,10,10"></TextBox>
                             </Grid>
 
                             <Grid Grid.Row="5">
@@ -155,7 +155,9 @@
                                 <RowDefinition Height="60"/>
                             </Grid.RowDefinitions>
 
-                            <DataGrid Grid.Row="0" Name="DatesTable" ItemsSource="{Binding AvailableDates, UpdateSourceTrigger=PropertyChanged}" Margin="30,80,30,10" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
+                            <DataGrid Grid.Row="0" Name="DatesTable" ItemsSource="{Binding AvailableDates, UpdateSourceTrigger=PropertyChanged}" 
+                                      Margin="30,80,30,10" 
+                                      AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Dolazak" Binding="{Binding CheckIn}" Width="150"></DataGridTextColumn>
                                     <DataGridTextColumn Header="Odlazak"  Binding="{Binding CheckOut}" Width="*"></DataGridTextColumn>

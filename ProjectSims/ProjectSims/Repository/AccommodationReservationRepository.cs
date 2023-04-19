@@ -43,7 +43,7 @@ namespace ProjectSims.Repository
             List<AccommodationReservation> guestReservations = new List<AccommodationReservation>();
             foreach (AccommodationReservation reservation in reservations)
             {
-                if(reservation.GuestId == guestId)
+                if(reservation.GuestId == guestId && reservation.State == ReservationState.Active)
                 {
                     guestReservations.Add(reservation);
                 }

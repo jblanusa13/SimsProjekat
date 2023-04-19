@@ -29,6 +29,10 @@ namespace ProjectSims.Service
         }
         public int NextId()
         {
+            if (requests.Count == 0)
+            {
+                return 0;
+            }
             return requests.Max(r => r.Id) + 1;
         }
         public void CreateRequest(int reservationId, DateOnly dateChange)

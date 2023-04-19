@@ -28,6 +28,10 @@ namespace ProjectSims.Service
 
         public int NextId()
         {
+            if (ratings.Count == 0)
+            {
+                return 0;
+            }
             return ratings.Max(r => r.Id) + 1;
         }
 

@@ -30,6 +30,7 @@ namespace ProjectSims.WPF.View.Guest1View
         public string Comment { get; set; }
 
         private AccommodationRatingService ratingService;
+        private AccommodationReservationService reservationService;
         public AccommodationRating(AccommodationReservation accommodationReservation, Guest1 guest)
         {
             InitializeComponent();
@@ -38,6 +39,7 @@ namespace ProjectSims.WPF.View.Guest1View
             Guest = guest;
 
             ratingService = new AccommodationRatingService();
+            reservationService = new AccommodationReservationService();
         }
 
         private void Browse_Click(object sender, RoutedEventArgs e)
@@ -54,7 +56,7 @@ namespace ProjectSims.WPF.View.Guest1View
             {
                 return;
             }
-            Images.Text += GetRelativePath(fileName) + ",";
+            Images.Text += GetRelativePath(fileName) + ",\n";
         }
 
         private string GetRelativePath(string fileName)
@@ -71,9 +73,9 @@ namespace ProjectSims.WPF.View.Guest1View
                 Location = Convert.ToInt32(LocationTb.Text);
                 ValueForMoney = Convert.ToInt32(ValueForMoneyTb.Text);
 
-                string images = Images.Text.Remove(Images.Text.Length - 1, 1);
+                string images = Images.Text.Remove(Images.Text.Length - 2, 2);
                 List<string> imageList = new List<string>();
-                foreach(string image in images.Split(','))
+                foreach(string image in images.Split(",\n"))
                 {
                     imageList.Add(image);
                 }
@@ -88,6 +90,7 @@ namespace ProjectSims.WPF.View.Guest1View
                 }
 
                 ratingService.CreateRating(Guest.Id, Guest, AccommodationReservation.Accommodation.Id, AccommodationReservation.Accommodation, Cleanliness, Fairness, Location, ValueForMoney, Comment, imageList);
+                reservationService.ChangeReservationRatedState(AccommodationReservation);
             }
             Close();
         }
