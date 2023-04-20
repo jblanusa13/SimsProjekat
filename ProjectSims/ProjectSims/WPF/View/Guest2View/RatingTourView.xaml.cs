@@ -178,8 +178,9 @@ namespace ProjectSims.View.Guest2View
         }
         private string GetRelativePath(string apsolutePath)
         {
-            string nameFile = apsolutePath.Remove(0, 94);
-            return "../../../Resources/Images/Guest2/" + nameFile;
+            string[] helpString = apsolutePath.Split('\\');
+            string nameFile = helpString.Last();
+            return "/Resources/Images/Guest2/" + nameFile;
         }
     }
 }
