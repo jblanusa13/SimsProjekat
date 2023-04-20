@@ -44,7 +44,7 @@ namespace ProjectSims.WPF.View.OwnerView
             List<AccommodationReservation> reservations = accommodationReservationRepository.GetAll();
             foreach (var item in reservations)
             { 
-                if (DateOnly.FromDateTime(DateTime.Today).CompareTo(item.CheckOutDate) > 0) //&& DateOnly.FromDateTime(DateTime.Today).CompareTo(item.CheckOutDate) <= 5)
+                if (DateOnly.FromDateTime(DateTime.Today).CompareTo(item.CheckOutDate) > 0)
                 {
                     if (guestAccommodationRepository.Get(item.Id).Rated == false) 
                     {
@@ -105,7 +105,7 @@ namespace ProjectSims.WPF.View.OwnerView
                     }
                 case 1:
                     {
-                        //SelectedTab.Content = new SideMenu(owner);
+                        SelectedTab.Content = new Requests(owner);
                         break;
                     }
                 case 2:

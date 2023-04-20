@@ -268,7 +268,7 @@ namespace ProjectSims.View.OwnerView.Pages
             }
             else
             {
-                //didnt pick anything
+                //Didn't pick anything
             }
         }
 
@@ -279,9 +279,7 @@ namespace ProjectSims.View.OwnerView.Pages
             bitmap.UriSource = new Uri(path, UriKind.Absolute);
             bitmap.EndInit();
             Images = new Image();
-
             Images.Source = bitmap;
-
             Images.Width = 170;
             Images.Height = 100;
             ImageList.Items.Add(Images);

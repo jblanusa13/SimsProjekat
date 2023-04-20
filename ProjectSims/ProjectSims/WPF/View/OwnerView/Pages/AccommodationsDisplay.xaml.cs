@@ -83,8 +83,8 @@ namespace ProjectSims.View.OwnerView.Pages
 
         private void RegistrateAccommodation_Click(object sender, RoutedEventArgs e)
         {
-                AccommodationRegistrationView accommodationRegistrationView = new AccommodationRegistrationView();
-                accommodationRegistrationView.Show();
+            AccommodationRegistrationView accommodationRegistrationView = new AccommodationRegistrationView();
+            accommodationRegistrationView.Show();
         }
 
         public void Update()

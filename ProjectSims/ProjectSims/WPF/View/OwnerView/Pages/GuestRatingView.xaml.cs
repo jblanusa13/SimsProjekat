@@ -282,11 +282,6 @@ namespace ProjectSims.View.OwnerView.Pages
             ownerStartingView.SelectedTab.Content = new AccommodationsDisplay(owner);
         }
 
-        private void NotifyIfGuestUnrated() 
-        {
-               
-        }
-
         public string Error => null;
         public string this[string columnName]
         {

@@ -70,10 +70,18 @@ namespace ProjectSims.Service
             }
             return false;
         }
-
+        public void Update(AccommodationReservation reservation)
+        {
+            reservationRepository.Update(reservation);
+        }
         public void Subscribe(IObserver observer)
         {
             reservationRepository.Subscribe(observer);
+        }
+
+        public List<AccommodationReservation> GetAllReservations()
+        {
+            return reservationRepository.GetAll();
         }
     }
 }

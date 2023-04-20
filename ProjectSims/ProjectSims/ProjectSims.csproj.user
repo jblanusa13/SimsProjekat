@@ -41,6 +41,9 @@
     <Compile Update="WPF\View\OwnerView\Pages\HomePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WPF\View\OwnerView\Pages\Requests.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\OwnerView\Pages\SideMenu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -83,6 +86,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\OwnerView\Pages\HomePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\OwnerView\Pages\Requests.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\OwnerView\Pages\SideMenu.xaml">
