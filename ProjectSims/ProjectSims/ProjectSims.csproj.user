@@ -2,13 +2,19 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="WPF\View\Guest1View\AccommodationRating.xaml.cs">
+    <Compile Update="WPF\View\Guest1View\RatingStartView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WPF\View\Guest1View\AccommodationsForRating.xaml.cs">
+    <Compile Update="WPF\View\Guest1View\Requests\MyRequests.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WPF\View\Guest1View\MyRequests.xaml.cs">
+    <Compile Update="WPF\View\Guest1View\RatingPages\AccommodationRatingView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\RatingPages\AccommodationsForRatingView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\RatingPages\RenovationRecommendationView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\Guest2View\Guest2TrackingTourView.xaml.cs">
@@ -88,13 +94,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="WPF\View\Guest1View\AccommodationRating.xaml">
+    <Page Update="WPF\View\Guest1View\RatingStartView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WPF\View\Guest1View\AccommodationsForRating.xaml">
+    <Page Update="WPF\View\Guest1View\Requests\MyRequests.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WPF\View\Guest1View\MyRequests.xaml">
+    <Page Update="WPF\View\Guest1View\RatingPages\AccommodationRatingView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\RatingPages\AccommodationsForRatingView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\RatingPages\RenovationRecommendationView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\Guest2View\Guest2TrackingTourView.xaml">

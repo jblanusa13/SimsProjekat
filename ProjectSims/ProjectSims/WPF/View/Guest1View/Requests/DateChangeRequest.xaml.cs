@@ -19,7 +19,7 @@ using ProjectSims.Service;
 using ProjectSims.WPF.View.Guest1View;
 using ProjectSims.WPF.ViewModel.Guest1ViewModel;
 
-namespace ProjectSims.WPF.View.Guest1View
+namespace ProjectSims.WPF.View.Guest1View.Requests
 {
     /// <summary>
     /// Interaction logic for DateChangeRequest.xaml
