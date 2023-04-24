@@ -50,6 +50,14 @@ namespace ProjectSims.Repository
             }
             return guestReservations;
         }
+        public int NextId()
+        {
+            if (reservations.Count == 0)
+            {
+                return 0;
+            }
+            return reservations.Max(r => r.Id) + 1;
+        }
 
         public void Add(AccommodationReservation reservation)
         {

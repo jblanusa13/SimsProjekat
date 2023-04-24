@@ -20,7 +20,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
-            
+
             <Label Grid.Row="0" FontSize="40" Margin="10">Preporuka za renoviranje (opciono)</Label>
 
             <Grid Grid.Row="1">
@@ -30,7 +30,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Column="0" Margin="20,0" FontSize="28">Ime</Label>
-                <Button Grid.Column="1" Margin="70,10,30,10" FontSize="14">Preskoci</Button>
+                <Button Grid.Column="1" Margin="70,10,30,10" FontSize="14" Click="SkipRecommendation_Click">Preskoci</Button>
             </Grid>
         </Grid>
 
@@ -46,27 +46,28 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Margin="20,10" FontSize="17">Nivo hitnosti renoviranja</Label>
-            <RadioButton Grid.Row="1" Margin="30,15" Content="1 - bilo bi lepo renovirati neke sitnice, ali sve funkcioniše kako treba i bez toga" FontSize="15"></RadioButton>
-            <RadioButton Grid.Row="2" Margin="30,15" Content="2 - male zamerke na smeštaj koje kada bi se uklonile bi ga učinile savršenim" FontSize="15"></RadioButton>
-            <RadioButton Grid.Row="3" Margin="30,15" Content="3 - nekoliko stvari koje su baš zasmetale bi trebalo renovirati" FontSize="15"></RadioButton>
-            <RadioButton Grid.Row="4" Margin="30,15" Content="4 - ima dosta loših stvari i renoviranje je stvarno neophodno" FontSize="15"></RadioButton>
-            <RadioButton Grid.Row="5" Margin="30,15" Content="5 - smeštaj je u jako lošem stanju i ne vredi ga uopšte iznajmljivati ukoliko se ne renovira" FontSize="15"></RadioButton>
+            <RadioButton Grid.Row="1" Name="Rb1" Margin="30,15" Content="1 - bilo bi lepo renovirati neke sitnice, ali sve funkcioniše kako treba i bez toga" FontSize="15"></RadioButton>
+            <RadioButton Grid.Row="2" Name="Rb2" Margin="30,15" Content="2 - male zamerke na smeštaj koje kada bi se uklonile bi ga učinile savršenim" FontSize="15"></RadioButton>
+            <RadioButton Grid.Row="3" Name="Rb3" Margin="30,15" Content="3 - nekoliko stvari koje su baš zasmetale bi trebalo renovirati" FontSize="15"></RadioButton>
+            <RadioButton Grid.Row="4" Name="Rb4" Margin="30,15" Content="4 - ima dosta loših stvari i renoviranje je stvarno neophodno" FontSize="15"></RadioButton>
+            <RadioButton Grid.Row="5" Name="Rb5" Margin="30,15" Content="5 - smeštaj je u jako lošem stanju i ne vredi ga uopšte iznajmljivati ukoliko se ne renovira" FontSize="15"></RadioButton>
             <Grid Grid.Row="6">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="220"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Margin="20,0" FontSize="15">Preporuke za renoviranje:</Label>
-                <TextBox Grid.Column="1" Margin="0,5,20,10"></TextBox>
+                <TextBox Name="TbRecommendation" Grid.Column="1" Margin="0,5,20,10"></TextBox>
             </Grid>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="125*"/>
+                <ColumnDefinition Width="54*"/>
+                <ColumnDefinition Width="71*"/>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Margin="30,10,190,20" FontSize="14">Nazad</Button>
-            <Button Grid.Column="1" Margin="190,10,30,20" FontSize="14">Dalje</Button>
+            <Button Grid.Column="2" Margin="28,10,30,20" FontSize="14" Click="RateAcommodation_Click">Dalje</Button>
         </Grid>
     </Grid>
 </Page>

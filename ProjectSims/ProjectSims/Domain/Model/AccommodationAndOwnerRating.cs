@@ -21,13 +21,15 @@ namespace ProjectSims.Domain.Model
         public int ValueForMoney { get; set; }
         public string AddedComment { get; set; }
         public List<string> Images { get; set; }
+        public int RenovationId { get; set; }
+        public RenovationRecommendation RenovationRecommendation { get; set; }
 
         public AccommodationAndOwnerRating()
         {
             Images = new List<string>();
         }
 
-        public AccommodationAndOwnerRating(int id, int guestId, Guest1 guest, int accommodationId, Accommodation accommodation, int cleanliness, int ownerFairness, int location, int valueForMoney, string addedComment, List<string> images)
+        public AccommodationAndOwnerRating(int id, int guestId, Guest1 guest, int accommodationId, Accommodation accommodation, int cleanliness, int ownerFairness, int location, int valueForMoney, string addedComment, List<string> images, int renovationId, RenovationRecommendation renovationRecommendation)
         {
             Id = id;
             GuestId = guestId;
@@ -40,6 +42,8 @@ namespace ProjectSims.Domain.Model
             ValueForMoney = valueForMoney;
             AddedComment = addedComment;
             Images = images;
+            RenovationId = renovationId;
+            RenovationRecommendation = renovationRecommendation;
         }
 
         public string[] ToCSV()
@@ -64,7 +68,8 @@ namespace ProjectSims.Domain.Model
                 Location.ToString(), 
                 ValueForMoney.ToString(),
                 AddedComment, 
-                ImageString
+                ImageString,
+                 RenovationId.ToString()
             };
             return csvvalues;
         }
@@ -83,6 +88,7 @@ namespace ProjectSims.Domain.Model
             {
                 Images.Add(image);
             }
+            RenovationId = Convert.ToInt32(values[9]);
 
             InitalizeData();
         }
@@ -91,9 +97,11 @@ namespace ProjectSims.Domain.Model
         {
             Guest1Service guest1Service = new Guest1Service();
             AccommodationService accommodationService = new AccommodationService();
+            RenovationRecommendationService recommendationService = new RenovationRecommendationService();
 
             Guest = guest1Service.GetGuest1(GuestId);
             Accommodation = accommodationService.GetAccommodation(AccommodationId);
+            RenovationRecommendation = recommendationService.GetRecommendation(RenovationId);
         }
 
     }

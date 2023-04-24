@@ -24,11 +24,13 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
     {
         public AccommodationRatingViewModel ViewModel { get; set; }
         public Guest1 Guest { get; set; }
-        public AccommodationRatingView(AccommodationReservation accommodationReservation, Guest1 guest)
+        private Frame selectedTab;
+        public AccommodationRatingView(AccommodationReservation accommodationReservation, Guest1 guest, Frame selectedTab)
         {
             InitializeComponent();
-            ViewModel = new AccommodationRatingViewModel(accommodationReservation, guest);
+            ViewModel = new AccommodationRatingViewModel(accommodationReservation, guest, selectedTab);
             Guest = guest;
+            this.selectedTab = selectedTab;
         }
 
         private void Browse_Click(object sender, RoutedEventArgs e)
@@ -57,14 +59,13 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
         {
             if (!string.IsNullOrEmpty(CleanlinessTb.Text) && !string.IsNullOrEmpty(FairnessTb.Text) && !string.IsNullOrEmpty(LocationTb.Text) && !string.IsNullOrEmpty(ValueForMoneyTb.Text))
             {
-                ViewModel.Confirm(CleanlinessTb.Text, FairnessTb.Text, LocationTb.Text, ValueForMoneyTb.Text, CommentTb.Text, Images.Text);
+                ViewModel.Confirm(CleanlinessTb.Text, FairnessTb.Text, LocationTb.Text, ValueForMoneyTb.Text, CommentTb.Text, Images.Text, selectedTab);
             }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            AccommodationsForRating accommodationForRating = new AccommodationsForRating(Guest);
-            accommodationForRating.Show();
+            selectedTab.Content = new AccommodationsForRatingView(Guest, selectedTab);
         }
     }
 }

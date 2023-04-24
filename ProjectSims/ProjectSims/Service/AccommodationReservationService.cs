@@ -14,12 +14,10 @@ namespace ProjectSims.Service
     public class AccommodationReservationService
     {
         private AccommodationReservationRepository reservationRepository;
-        private List<AccommodationReservation> reservations;
 
         public AccommodationReservationService()
         {
             reservationRepository = new AccommodationReservationRepository();
-            reservations = reservationRepository.GetAll();
         }
 
         public AccommodationReservation GetReservation(int id)
@@ -34,12 +32,9 @@ namespace ProjectSims.Service
  
         public int NextId()
         {
-            if (reservations.Count == 0)
-            {
-                return 0;
-            }
-            return reservations.Max(r => r.Id) + 1;
+            return reservationRepository.NextId();
         }
+
         public void CreateReservation(int accommodationId, int guestId, DateOnly checkIn, DateOnly checkOut, int guestNumber)
         {
             int id = NextId();

@@ -45,7 +45,7 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
             SelectedAccommodation = (AccommodationReservation)AccommodationsForRatingTable.SelectedItem;
             if (SelectedAccommodation != null)
             {
-                selectedTab.Content = new AccommodationRatingView(SelectedAccommodation, Guest);
+                selectedTab.Content = new AccommodationRatingView(SelectedAccommodation, Guest, selectedTab);
             }
         }
 
