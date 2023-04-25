@@ -24,42 +24,41 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
     /// </summary>
     public partial class AccommodationsForRatingView : Page, IObserver
     {
-        public ObservableCollection<AccommodationReservation> Accommodations { get; set; }
-        public AccommodationReservation SelectedAccommodation { get; set; }
+        public ObservableCollection<AccommodationReservation> Reservations { get; set; }
+        public AccommodationReservation SelectedReservation { get; set; }
         public Guest1 Guest { get; set; }
-        private Frame selectedTab;
         private AccommodationReservationService reservationService;
-        public AccommodationsForRatingView(Guest1 guest, Frame selectedTab)
+        public AccommodationsForRatingView(Guest1 guest)
         {
             InitializeComponent();
             DataContext = this;
 
             reservationService = new AccommodationReservationService();
-            this.selectedTab = selectedTab;
 
             Guest = guest;
-            Accommodations = new ObservableCollection<AccommodationReservation>(reservationService.GetAccommodationsForRating(Guest));
+            Reservations = new ObservableCollection<AccommodationReservation>(reservationService.GetAccommodationsForRating(Guest));
         }
         private void RateAccommodation_Click(object sender, RoutedEventArgs e)
         {
-            SelectedAccommodation = (AccommodationReservation)AccommodationsForRatingTable.SelectedItem;
-            if (SelectedAccommodation != null)
+            SelectedReservation = (AccommodationReservation)AccommodationsForRatingTable.SelectedItem;
+            if (SelectedReservation != null)
             {
-                selectedTab.Content = new AccommodationRatingView(SelectedAccommodation, Guest, selectedTab);
+                NavigationService.Navigate(new AccommodationRatingView(SelectedReservation));
             }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            //Close();
+            RatingStartView startView = (RatingStartView)Window.GetWindow(this);
+            startView.Close();
         }
 
         public void Update()
         {
-            Accommodations.Clear();
+            Reservations.Clear();
             foreach (AccommodationReservation reservation in reservationService.GetAccommodationsForRating(Guest))
             {
-                Accommodations.Add(reservation);
+                Reservations.Add(reservation);
             }
         }
     }

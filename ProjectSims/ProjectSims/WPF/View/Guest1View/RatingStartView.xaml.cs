@@ -27,7 +27,7 @@ namespace ProjectSims.WPF.View.Guest1View
         public RatingStartView(Guest1 guest)
         {
             InitializeComponent();
-            SelectedTab.Content = new AccommodationsForRatingView(guest, SelectedTab);
+            SelectedTab.Content = new AccommodationsForRatingView(guest);
         }
     }
 }

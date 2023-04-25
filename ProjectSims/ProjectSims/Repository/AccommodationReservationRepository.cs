@@ -76,8 +76,6 @@ namespace ProjectSims.Repository
             NotifyObservers();          
         }
 
-        
-
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);

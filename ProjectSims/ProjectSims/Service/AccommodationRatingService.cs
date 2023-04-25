@@ -23,15 +23,20 @@ namespace ProjectSims.Service
             return ratingRepository.Get(id);
         }
 
+        public AccommodationAndOwnerRating GetRatingByReservationId(int reservationId)
+        {
+            return ratingRepository.GetByReservationId(reservationId);
+        }
+
         public int NextId()
         {
             return ratingRepository.NextId();
         }
 
-        public void CreateRating(int guestId, Guest1 guest, int accommodationId, Accommodation accommodation, int cleanliness, int ownerFairness, int location, int valueForMoney, string comment, List<string> imageList, int recommendationId, RenovationRecommendation recommendation)
+        public void CreateRating(int reservationId, AccommodationReservation reservation, int cleanliness, int ownerFairness, int location, int valueForMoney, string comment, List<string> imageList, int recommendationId, RenovationRecommendation recommendation)
         {
             int id = NextId();
-            AccommodationAndOwnerRating rating = new AccommodationAndOwnerRating(id, guestId, guest, accommodationId, accommodation, cleanliness, ownerFairness, location, valueForMoney, comment, imageList, recommendationId, recommendation);
+            AccommodationAndOwnerRating rating = new AccommodationAndOwnerRating(id, reservationId, reservation, cleanliness, ownerFairness, location, valueForMoney, comment, imageList, recommendationId, recommendation);
             ratingRepository.Add(rating);
         }
     }

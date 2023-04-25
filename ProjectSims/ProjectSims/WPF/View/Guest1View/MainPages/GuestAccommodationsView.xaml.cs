@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 using ProjectSims.Service;
+using ProjectSims.WPF.View.Guest1View.RatingPages;
 using ProjectSims.WPF.View.Guest1View;
 using ProjectSims.WPF.View.Guest1View.MainPages;
 using ProjectSims.WPF.ViewModel.Guest1ViewModel;
@@ -28,11 +29,10 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
     public partial class GuestAccommodationsView : Page
     {
         public GuestAccommodationsViewModel ViewModel { get; set; }
-        private Frame selectedTab;
         public Guest1 Guest { get; set; }
         public Accommodation SelectedAccommodation { get; set; }
 
-        public GuestAccommodationsView(Guest1 guest, Frame selectedTab)
+        public GuestAccommodationsView(Guest1 guest)
         {
             InitializeComponent();
 
@@ -40,7 +40,10 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             this.DataContext = ViewModel;
 
             Guest = guest;
-            this.selectedTab = selectedTab;
+        }
+        private void MyReservations_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeTab(2);
         }
 
         public void Reservation_Click(object sender, RoutedEventArgs e)
@@ -52,13 +55,9 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             }
         }
 
-        private void MyReservations_Click(object sender, RoutedEventArgs e)
-        {
-            ChangeTab(1);
-        }
         private void RateAccommodation_Click(object sender, RoutedEventArgs e)
         {
-            AccommodationsForRating accommodationForRating = new AccommodationsForRating(Guest);
+            RatingStartView accommodationForRating = new RatingStartView(Guest);
             accommodationForRating.Show();    
         }
 
@@ -72,11 +71,11 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
                     }
                 case 1:
                     {
-                        selectedTab.Content = new MyReservations(Guest, selectedTab);
                         break;
                     }
                 case 2:
                     {
+                        NavigationService.Navigate(new MyReservations(Guest));
                         break;
                     }
                 case 4:
@@ -89,7 +88,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
                     }
                 case 6:
                     {
-                        selectedTab.Content = new AccommodationReservationView(SelectedAccommodation, Guest, selectedTab);
+                        NavigationService.Navigate(new AccommodationReservationView(SelectedAccommodation, Guest));
                         break;
                     }
             }

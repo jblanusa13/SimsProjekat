@@ -107,22 +107,18 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
 
         private AccommodationReservationService reservationService;
 
-        private Guest1 guest;
-
-        private Frame selectedTab;
-        public AccommodationReservationView(Accommodation SelectedAccommodation, Guest1 guest, Frame selectedTab)
+        public Guest1 Guest { get; set; }
+        public AccommodationReservationView(Accommodation SelectedAccommodation, Guest1 guest)
         {
             InitializeComponent();
             DataContext = this;
 
-            this.guest = guest;
+            Guest = guest;
             reservationService = new AccommodationReservationService();
 
             Accommodation = SelectedAccommodation;
             Username = guest.User.Username;
             AvailableDates = new ObservableCollection<DateRanges>();
-
-            this.selectedTab = selectedTab;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -163,19 +159,19 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             {
                 DateRanges dates = (DateRanges)DatesTable.SelectedItem;
 
-                reservationService.CreateReservation(Accommodation.Id, guest.Id, dates.CheckIn, dates.CheckOut, GuestNumber);
-                selectedTab.Content = new GuestAccommodationsView(guest, selectedTab);
+                reservationService.CreateReservation(Accommodation.Id, Guest.Id, dates.CheckIn, dates.CheckOut, GuestNumber);
+                NavigationService.GoBack();
             }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            selectedTab.Content = new GuestAccommodationsView(guest, selectedTab);
+            NavigationService.GoBack();
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            selectedTab.Content = new GuestAccommodationsView(guest, selectedTab);
+            NavigationService.GoBack();
         }
     }
 }

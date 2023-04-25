@@ -22,15 +22,11 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
     /// </summary>
     public partial class AccommodationRatingView : Page
     {
-        public AccommodationRatingViewModel ViewModel { get; set; }
-        public Guest1 Guest { get; set; }
-        private Frame selectedTab;
-        public AccommodationRatingView(AccommodationReservation accommodationReservation, Guest1 guest, Frame selectedTab)
+        private AccommodationRatingViewModel viewModel;
+        public AccommodationRatingView(AccommodationReservation accommodationReservation)
         {
             InitializeComponent();
-            ViewModel = new AccommodationRatingViewModel(accommodationReservation, guest, selectedTab);
-            Guest = guest;
-            this.selectedTab = selectedTab;
+            viewModel = new AccommodationRatingViewModel(accommodationReservation);
         }
 
         private void Browse_Click(object sender, RoutedEventArgs e)
@@ -59,13 +55,14 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
         {
             if (!string.IsNullOrEmpty(CleanlinessTb.Text) && !string.IsNullOrEmpty(FairnessTb.Text) && !string.IsNullOrEmpty(LocationTb.Text) && !string.IsNullOrEmpty(ValueForMoneyTb.Text))
             {
-                ViewModel.Confirm(CleanlinessTb.Text, FairnessTb.Text, LocationTb.Text, ValueForMoneyTb.Text, CommentTb.Text, Images.Text, selectedTab);
+                viewModel.Confirm(CleanlinessTb.Text, FairnessTb.Text, LocationTb.Text, ValueForMoneyTb.Text, CommentTb.Text, Images.Text);
             }
+            NavigationService.Navigate(new RenovationRecommendationView(viewModel));
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            selectedTab.Content = new AccommodationsForRatingView(Guest, selectedTab);
+            NavigationService.GoBack();
         }
     }
 }

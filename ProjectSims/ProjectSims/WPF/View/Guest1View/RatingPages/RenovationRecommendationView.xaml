@@ -10,7 +10,7 @@
 
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="150"/>
+            <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
@@ -21,7 +21,7 @@
                 <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" FontSize="40" Margin="10">Preporuka za renoviranje (opciono)</Label>
+            <Label Grid.Row="0" FontSize="38" Margin="10">Preporuka za renoviranje (opciono)</Label>
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
@@ -29,14 +29,14 @@
                     <ColumnDefinition Width="250"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" Margin="20,0" FontSize="28">Ime</Label>
+                <Label Grid.Column="0" Margin="20,0" FontSize="27">Ime</Label>
                 <Button Grid.Column="1" Margin="70,10,30,10" FontSize="14" Click="SkipRecommendation_Click">Preskoci</Button>
             </Grid>
         </Grid>
 
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="55"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -45,12 +45,12 @@
                 <RowDefinition Height="70"/>
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Margin="20,10" FontSize="17">Nivo hitnosti renoviranja</Label>
-            <RadioButton Grid.Row="1" Name="Rb1" Margin="30,15" Content="1 - bilo bi lepo renovirati neke sitnice, ali sve funkcioniše kako treba i bez toga" FontSize="15"></RadioButton>
-            <RadioButton Grid.Row="2" Name="Rb2" Margin="30,15" Content="2 - male zamerke na smeštaj koje kada bi se uklonile bi ga učinile savršenim" FontSize="15"></RadioButton>
-            <RadioButton Grid.Row="3" Name="Rb3" Margin="30,15" Content="3 - nekoliko stvari koje su baš zasmetale bi trebalo renovirati" FontSize="15"></RadioButton>
-            <RadioButton Grid.Row="4" Name="Rb4" Margin="30,15" Content="4 - ima dosta loših stvari i renoviranje je stvarno neophodno" FontSize="15"></RadioButton>
-            <RadioButton Grid.Row="5" Name="Rb5" Margin="30,15" Content="5 - smeštaj je u jako lošem stanju i ne vredi ga uopšte iznajmljivati ukoliko se ne renovira" FontSize="15"></RadioButton>
+            <Label Grid.Row="0" Margin="20,10" FontSize="16">Nivo hitnosti renoviranja</Label>
+            <RadioButton Grid.Row="1" Name="Rb1" Margin="30,15" Height="30" Content="1 - bilo bi lepo renovirati neke sitnice, ali sve funkcioniše kako treba i bez toga" FontSize="13"></RadioButton>
+            <RadioButton Grid.Row="2" Name="Rb2" Margin="30,15" Height="30" Content="2 - male zamerke na smeštaj koje kada bi se uklonile bi ga učinile savršenim" FontSize="13"></RadioButton>
+            <RadioButton Grid.Row="3" Name="Rb3" Margin="30,15" Height="30" Content="3 - nekoliko stvari koje su baš zasmetale bi trebalo renovirati" FontSize="13"></RadioButton>
+            <RadioButton Grid.Row="4" Name="Rb4" Margin="30,15" Height="30" Content="4 - ima dosta loših stvari i renoviranje je stvarno neophodno" FontSize="13"></RadioButton>
+            <RadioButton Grid.Row="5" Name="Rb5" Margin="30,15" Height="30" Content="5 - smeštaj je u jako lošem stanju i ne vredi ga uopšte iznajmljivati ukoliko se ne renovira" FontSize="13"></RadioButton>
             <Grid Grid.Row="6">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="220"/>
@@ -66,7 +66,7 @@
                 <ColumnDefinition Width="54*"/>
                 <ColumnDefinition Width="71*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Margin="30,10,190,20" FontSize="14">Nazad</Button>
+            <Button Grid.Column="0" Margin="30,10,190,20" FontSize="14" Click="Back_Click">Nazad</Button>
             <Button Grid.Column="2" Margin="28,10,30,20" FontSize="14" Click="RateAcommodation_Click">Dalje</Button>
         </Grid>
     </Grid>

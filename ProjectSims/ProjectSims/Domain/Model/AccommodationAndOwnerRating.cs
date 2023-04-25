@@ -11,10 +11,8 @@ namespace ProjectSims.Domain.Model
     public class AccommodationAndOwnerRating : ISerializable
     {
         public int Id { get; set; }
-        public int GuestId { get; set; }
-        public Guest1 Guest { get; set; }
-        public int AccommodationId { get; set; }
-        public Accommodation Accommodation { get; set; }
+        public int ReservationId { get; set; }
+        public AccommodationReservation Reservation { get; set; }
         public int Cleanliness { get; set; }
         public int OwnerFairness { get; set; }
         public int Location { get; set; }
@@ -29,13 +27,11 @@ namespace ProjectSims.Domain.Model
             Images = new List<string>();
         }
 
-        public AccommodationAndOwnerRating(int id, int guestId, Guest1 guest, int accommodationId, Accommodation accommodation, int cleanliness, int ownerFairness, int location, int valueForMoney, string addedComment, List<string> images, int renovationId, RenovationRecommendation renovationRecommendation)
+        public AccommodationAndOwnerRating(int id, int reservationId, AccommodationReservation reservation, int cleanliness, int ownerFairness, int location, int valueForMoney, string addedComment, List<string> images, int renovationId, RenovationRecommendation renovationRecommendation)
         {
             Id = id;
-            GuestId = guestId;
-            Guest = guest;
-            AccommodationId = accommodationId;
-            Accommodation = accommodation;
+            ReservationId = reservationId;
+            Reservation = reservation;
             Cleanliness = cleanliness;
             OwnerFairness = ownerFairness;
             Location = location;
@@ -61,15 +57,14 @@ namespace ProjectSims.Domain.Model
             string[] csvvalues = 
             {
                 Id.ToString(), 
-                GuestId.ToString(), 
-                AccommodationId.ToString(), 
+                ReservationId.ToString(), 
                 Cleanliness.ToString(),
                 OwnerFairness.ToString(), 
                 Location.ToString(), 
                 ValueForMoney.ToString(),
                 AddedComment, 
                 ImageString,
-                 RenovationId.ToString()
+                RenovationId.ToString()
             };
             return csvvalues;
         }
@@ -77,30 +72,27 @@ namespace ProjectSims.Domain.Model
         public void FromCSV(string[] values)
         {
             Id = Convert.ToInt32(values[0]);
-            GuestId = Convert.ToInt32(values[1]);
-            AccommodationId = Convert.ToInt32(values[2]);
-            Cleanliness = Convert.ToInt32(values[3]);
-            OwnerFairness = Convert.ToInt32(values[4]);
-            Location = Convert.ToInt32(values[5]);
-            ValueForMoney = Convert.ToInt32(values[6]);
-            AddedComment = values[7];
-            foreach (string image in values[8].Split(","))
+            ReservationId = Convert.ToInt32(values[1]);
+            Cleanliness = Convert.ToInt32(values[2]);
+            OwnerFairness = Convert.ToInt32(values[3]);
+            Location = Convert.ToInt32(values[4]);
+            ValueForMoney = Convert.ToInt32(values[5]);
+            AddedComment = values[6];
+            foreach (string image in values[7].Split(","))
             {
                 Images.Add(image);
             }
-            RenovationId = Convert.ToInt32(values[9]);
+            RenovationId = Convert.ToInt32(values[8]);
 
             InitalizeData();
         }
 
         public void InitalizeData()
         {
-            Guest1Service guest1Service = new Guest1Service();
-            AccommodationService accommodationService = new AccommodationService();
+            AccommodationReservationService reservationService = new AccommodationReservationService();
             RenovationRecommendationService recommendationService = new RenovationRecommendationService();
 
-            Guest = guest1Service.GetGuest1(GuestId);
-            Accommodation = accommodationService.GetAccommodation(AccommodationId);
+            Reservation = reservationService.GetReservation(ReservationId);
             RenovationRecommendation = recommendationService.GetRecommendation(RenovationId);
         }
 

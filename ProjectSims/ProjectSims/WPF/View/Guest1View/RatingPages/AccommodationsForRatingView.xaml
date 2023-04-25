@@ -18,7 +18,7 @@
 
         <Grid Grid.Row="1">
             <DataGrid Name="AccommodationsForRatingTable" Margin="50,20"
-                      ItemsSource="{Binding Accommodations, UpdateSourceTrigger=PropertyChanged}"
+                      ItemsSource="{Binding Reservations, UpdateSourceTrigger=PropertyChanged}"
                       AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv" Binding="{Binding Accommodation.Name}" Width="200"></DataGridTextColumn>

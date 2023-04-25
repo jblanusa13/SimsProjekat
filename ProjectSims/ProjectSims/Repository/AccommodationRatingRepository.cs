@@ -29,6 +29,12 @@ namespace ProjectSims.Repository
         {
             return ratings.Find(r => r.Id == id);
         }
+
+        public AccommodationAndOwnerRating GetByReservationId(int reservationId)
+        {
+            return ratings.Find(r => r.ReservationId == reservationId);
+        }
+
         public int NextId()
         {
             if (ratings.Count == 0)
@@ -41,6 +47,15 @@ namespace ProjectSims.Repository
         public void Add(AccommodationAndOwnerRating rating)
         {
             ratings.Add(rating);
+            ratingFileHandler.Save(ratings);
+        }
+        public void Update(AccommodationAndOwnerRating rating)
+        {
+            int index = ratings.FindIndex(r => rating.Id == r.Id);
+            if (index != -1)
+            {
+                ratings[index] = rating;
+            }
             ratingFileHandler.Save(ratings);
         }
     }

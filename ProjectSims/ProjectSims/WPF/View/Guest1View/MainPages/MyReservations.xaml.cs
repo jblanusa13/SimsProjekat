@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 using ProjectSims.Service;
-using ProjectSims.View.Guest1View;
+using ProjectSims.WPF.View.Guest1View.Requests;
 
 namespace ProjectSims.WPF.View.Guest1View.MainPages
 {
@@ -27,23 +27,20 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
     {
         public ObservableCollection<AccommodationReservation> Reservations { get; set; }
         public AccommodationReservation SelectedReservation { get; set; }
-        private Guest1 guest;
+        public Guest1 Guest { get; set; }
         private AccommodationReservationService service;
-        private Frame selectedTab;
 
-        public MyReservations(Guest1 guest, Frame selectedTab)
+        public MyReservations(Guest1 guest)
         {
             InitializeComponent();
             DataContext = this;
 
-            this.guest = guest;
+            Guest = guest;
 
             service = new AccommodationReservationService();
             service.Subscribe(this);
 
             Reservations = new ObservableCollection<AccommodationReservation>(service.GetReservationByGuest(guest.Id));
-
-            this.selectedTab = selectedTab;
         }
 
         private void DateChange_Click(object sender, RoutedEventArgs e)
@@ -56,14 +53,14 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         }
         private void MyRequests_Click(object sender, RoutedEventArgs e)
         {
-            MyRequests myRequests = new MyRequests(guest);
+            MyRequests myRequests = new MyRequests(Guest);
             myRequests.Show();
         }
 
         public void Update()
         {
             Reservations.Clear();
-            foreach (AccommodationReservation reservation in service.GetReservationByGuest(guest.Id))
+            foreach (AccommodationReservation reservation in service.GetReservationByGuest(Guest.Id))
             {
                 Reservations.Add(reservation);
             }
@@ -71,7 +68,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            selectedTab.Content = new GuestAccommodationsView(guest, selectedTab);
+            NavigationService.GoBack();
         }
 
         private void CancelReservation_Click(object sender, RoutedEventArgs e)

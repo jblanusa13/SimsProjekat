@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Navigation;
 using ProjectSims.Domain.Model;
 using ProjectSims.Service;
 using ProjectSims.WPF.View.Guest1View.RatingPages;
@@ -16,30 +17,25 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         private AccommodationRatingService ratingService;
         private RenovationRecommendationService recommendationService;
         public AccommodationReservation AccommodationReservation { get; set; }
-        public Guest1 Guest { get; set; }
         public int Cleanliness { get; set; }
         public int Fairness { get; set; }
         public int Location { get; set; }
         public int ValueForMoney { get; set; }
         public string Comment { get; set; }
         public List<string> ImageList { get; set; }
-        private Frame selectedTab;
 
-        public AccommodationRatingViewModel(AccommodationReservation accommodationReservation, Guest1 guest, Frame selectedTab)
+        public AccommodationRatingViewModel(AccommodationReservation accommodationReservation)
         {
             reservationService = new AccommodationReservationService();
             ratingService = new AccommodationRatingService();
             recommendationService = new RenovationRecommendationService();
 
             AccommodationReservation = accommodationReservation;
-            Guest = guest;
 
             ImageList = new List<string>();
-
-            this.selectedTab = selectedTab;
         }
 
-        public void Confirm(string cleanliness, string fairness, string location, string valueForMoney, string comment, string imagesString, Frame selectedTab)
+        public void Confirm(string cleanliness, string fairness, string location, string valueForMoney, string comment, string imagesString)
         {
             Cleanliness = Convert.ToInt32(cleanliness);
             Fairness = Convert.ToInt32(fairness);
@@ -67,24 +63,22 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             {
                 Comment = comment;
             }
-
-            selectedTab.Content = new RenovationRecommendationView(AccommodationReservation, Guest, selectedTab);
         }
 
-        public void RateAccommodation(RenovationRecommendation recommendation, int recommendationId)
+        public void RateAcommodation(RenovationRecommendation renovationRecommendation, int recommendationId)
         {
-            ratingService.CreateRating(Guest.Id, Guest, AccommodationReservation.Accommodation.Id, AccommodationReservation.Accommodation, Cleanliness, Fairness, Location, ValueForMoney, Comment, ImageList, recommendationId, recommendation);
+            ratingService.CreateRating(AccommodationReservation.Id, AccommodationReservation, Cleanliness, Fairness, Location, ValueForMoney, Comment, ImageList, recommendationId, renovationRecommendation);
             reservationService.ChangeReservationRatedState(AccommodationReservation);
         }
+
         public void AddRecommendation(int urgency, string recommendation)
         {
             RenovationRecommendation renovationRecommendation = recommendationService.GetNewRecommendation(urgency, recommendation);
-            RateAccommodation(renovationRecommendation, renovationRecommendation.Id);
+            RateAcommodation(renovationRecommendation, renovationRecommendation.Id);
         }
-
         public void SkipRecommendation()
         {
-            RateAccommodation(null, -1);
+            RateAcommodation(null, -1);
         }
     }
 }

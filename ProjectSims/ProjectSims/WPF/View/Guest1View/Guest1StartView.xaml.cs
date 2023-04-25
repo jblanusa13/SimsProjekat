@@ -29,7 +29,7 @@ namespace ProjectSims.View.Guest1View
         public Guest1StartView(Guest1 guest)
         {
             InitializeComponent();
-            SelectedTab.Content = new GuestAccommodationsView(guest, SelectedTab);
+            SelectedTab.Content = new GuestAccommodationsView(guest);
         }
     }
 }

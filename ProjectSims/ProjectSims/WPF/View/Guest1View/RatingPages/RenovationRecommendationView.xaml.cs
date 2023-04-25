@@ -25,12 +25,10 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
     public partial class RenovationRecommendationView : Page
     {
         private AccommodationRatingViewModel viewModel;
-        private Frame selectedTab;
-        public RenovationRecommendationView(AccommodationReservation reservation, Guest1 guest, Frame selectedTab)
+        public RenovationRecommendationView(AccommodationRatingViewModel viewModel)
         {
             InitializeComponent();
-            viewModel = new AccommodationRatingViewModel(reservation, guest, selectedTab);
-            this.selectedTab = selectedTab;
+            this.viewModel = viewModel;
         }
 
         private void RateAcommodation_Click(object sender, RoutedEventArgs e)
@@ -40,6 +38,9 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
             {
                 viewModel.AddRecommendation(urgency, TbRecommendation.Text);
             }
+
+            RatingStartView startView = (RatingStartView)Window.GetWindow(this);
+            startView.Close();
         }
 
         public int FindUrgencyLevel()
@@ -70,7 +71,13 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
         private void SkipRecommendation_Click(object sender, RoutedEventArgs e)
         {
             viewModel.SkipRecommendation();
+            RatingStartView startView = (RatingStartView)Window.GetWindow(this);
+            startView.Close();
         }
 
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }
