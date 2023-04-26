@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectSims.Repository;
 using ProjectSims.Serializer;
 using ProjectSims.Service;
 
@@ -89,11 +90,11 @@ namespace ProjectSims.Domain.Model
 
         public void InitalizeData()
         {
-            AccommodationReservationService reservationService = new AccommodationReservationService();
-            RenovationRecommendationService recommendationService = new RenovationRecommendationService();
+            AccommodationReservationRepository reservationRepository = new AccommodationReservationRepository();
+            RenovationRecommendationRepository recommendationRepository = new RenovationRecommendationRepository();
 
-            Reservation = reservationService.GetReservation(ReservationId);
-            RenovationRecommendation = recommendationService.GetRecommendation(RenovationId);
+            Reservation = reservationRepository.Get(ReservationId);
+            RenovationRecommendation = recommendationRepository.Get(RenovationId);
         }
 
     }

@@ -14,10 +14,12 @@ namespace ProjectSims.Service
     public class AccommodationReservationService
     {
         private AccommodationReservationRepository reservationRepository;
+        private RequestService requestService;
 
         public AccommodationReservationService()
         {
             reservationRepository = new AccommodationReservationRepository();
+            requestService = new RequestService();
         }
 
         public AccommodationReservation GetReservation(int id)
@@ -30,14 +32,9 @@ namespace ProjectSims.Service
             return reservationRepository.GetByGuest(guestId);
         }
  
-        public int NextId()
-        {
-            return reservationRepository.NextId();
-        }
-
         public void CreateReservation(int accommodationId, int guestId, DateOnly checkIn, DateOnly checkOut, int guestNumber)
         {
-            int id = NextId();
+            int id = reservationRepository.NextId();
             AccommodationReservation reservation = new AccommodationReservation(id, accommodationId, guestId, checkIn, checkOut, guestNumber, ReservationState.Active, false);
             reservationRepository.Add(reservation);
         }
@@ -46,7 +43,10 @@ namespace ProjectSims.Service
         {
             reservation.State = ReservationState.Canceled;
             reservationRepository.Update(reservation);
+
+            requestService.UpdateRequestsWhenCancelReservation(reservation);
         }
+
         public bool CanCancel(AccommodationReservation reservation)
         {
             int dismissalDays = reservation.Accommodation.DismissalDays;

@@ -63,6 +63,6 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
-        }
+        } 
     }
 }

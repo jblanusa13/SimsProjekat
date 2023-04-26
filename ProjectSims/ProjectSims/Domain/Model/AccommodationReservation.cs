@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectSims.Repository;
 using ProjectSims.Serializer;
 using ProjectSims.Service;
 using ProjectSims.WPF.View.Guest1View;
@@ -67,11 +68,11 @@ namespace ProjectSims.Domain.Model
 
         public void InitializeData()
         {
-            AccommodationService accommodationService = new AccommodationService();
-            Guest1Service guest1Service = new Guest1Service();
+            AccommodationRepository accommodationRepository = new AccommodationRepository();
+            Guest1Repository guest1Repository = new Guest1Repository();
 
-            Accommodation = accommodationService.GetAccommodation(AccommodationId);
-            Guest = guest1Service.GetGuest1(GuestId);
+            Accommodation = accommodationRepository.Get(AccommodationId);
+            Guest = guest1Repository.Get(GuestId);
         }
     }
 }

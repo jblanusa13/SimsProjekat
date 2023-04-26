@@ -58,12 +58,31 @@ namespace ProjectSims.Repository
             }
             return ownerRequests;
         }
+
+        public Request GetByReservationId(int reservationId)
+        {
+            return requests.Find(r => r.ReservationId == reservationId);
+        }
+        public int NextId()
+        {
+            if (requests.Count == 0)
+            {
+                return 0;
+            }
+            return requests.Max(r => r.Id) + 1;
+        }
         public void Add(Request request)
         {
             requests.Add(request);
             requestFileHandler.Save(requests);
         }
 
+        public void Remove(Request request)
+        {
+            requests.Remove(request);
+            requestFileHandler.Save(requests);
+        }
+  
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);

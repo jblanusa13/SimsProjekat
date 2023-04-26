@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using ProjectSims.Serializer;
 using ProjectSims.Service;
+using ProjectSims.Repository;
 
 namespace ProjectSims.Domain.Model
 {
@@ -58,8 +59,8 @@ namespace ProjectSims.Domain.Model
 
         public void InitalizeData()
         {
-            UserService userService = new UserService();
-            User = userService.GetUser(UserId);
+            UserRepository userRepository = new UserRepository();
+            User = userRepository.Get(UserId);
         }
     }
 }

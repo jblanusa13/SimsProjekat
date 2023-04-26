@@ -12,11 +12,9 @@ namespace ProjectSims.Service
     public class RequestService
     {
         private RequestRepository requestRepository;
-        private List<Request> requests;
         public RequestService()
         {
             requestRepository = new RequestRepository();
-            requests = requestRepository.GetAll();
         }
 
         public List<Request> GetAllRequestByGuest(int guestId)
@@ -27,21 +25,19 @@ namespace ProjectSims.Service
         {
             return requestRepository.GetAllByOwner(ownerId);
         }
-        public int NextId()
-        {
-            if (requests.Count == 0)
-            {
-                return 0;
-            }
-            return requests.Max(r => r.Id) + 1;
-        }
+        
         public void CreateRequest(int reservationId, DateOnly dateChange)
         {
-            int id = NextId();
+            int id = requestRepository.NextId();
             Request request = new Request(id, reservationId, dateChange, RequestState.Waiting, "");
             requestRepository.Add(request);
         }
 
+        public void UpdateRequestsWhenCancelReservation(AccommodationReservation reservation)
+        {
+            Request request = requestRepository.GetByReservationId(reservation.Id);
+            requestRepository.Remove(request);
+        }
         public void Subscribe(IObserver observer)
         {
             requestRepository.Subscribe(observer);

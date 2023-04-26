@@ -26,14 +26,9 @@ namespace ProjectSims.Service
         {
             return recommendationRepository.GetAll();
         }
-        public int NextId()
-        {
-            return recommendationRepository.NextId();
-        }
-
         public void CreateRecommendation(int renovationUrgency, string recommendations)
         {
-            int id = NextId();
+            int id = recommendationRepository.NextId();
             RenovationRecommendation recommendation = new RenovationRecommendation(id, renovationUrgency, recommendations);
             recommendationRepository.Add(recommendation);
         }
