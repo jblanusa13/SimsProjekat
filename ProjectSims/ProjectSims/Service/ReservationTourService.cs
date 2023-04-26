@@ -7,38 +7,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics.Eventing.Reader;
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Service
 {
     public class ReservationTourService
     {
-        private ReservationTourRepository reservations;
+        private IReservationTourRepository reservationTourRepository;
+        //private ReservationTourRepository reservationTourRepository;
         private Guest2Service guestService;
 
         public ReservationTourService()
         {
-            reservations = new ReservationTourRepository();
+           // reservationTourRepository = new ReservationTourRepository();
+           reservationTourRepository = Injector.CreateInstance<IReservationTourRepository>();
             guestService = new Guest2Service();
         }
         public List<ReservationTour> GetAllReservations()
         {
-            return reservations.GetAll();
+            return reservationTourRepository.GetAll();
         }
         public List<ReservationTour> GetReservationsByTour(Tour tour)
         {
-            return reservations.GetReservationsByTour(tour);
+            return reservationTourRepository.GetReservationsByTour(tour);
         }
         public List<ReservationTour> GetReservationsByTourAndState(Tour tour,Guest2State state)
         {
-            return reservations.GetReservationsByTourAndState(tour, state);
+            return reservationTourRepository.GetReservationsByTourAndState(tour, state);
         }
         public List<int> GetGuestIdsByTourAndState(Tour tour, Guest2State state)
         {
-            return reservations.GetGuestIdsByTourAndState(tour, state);
+            return GetReservationsByTourAndState(tour, state).Select(r=> r.Guest2Id).ToList();
         }
         public ReservationTour GetReservationByGuestAndTour(Tour tour, Guest2 guest)
         {
-            return reservations.GetReservationByGuestAndTour(tour, guest);
+            return reservationTourRepository.GetReservationByGuestAndTour(tour, guest);
         }
         public int GetNumberOfPresentGuests(Tour tour)
         {
@@ -80,11 +83,11 @@ namespace ProjectSims.Service
         }
         public void Create(ReservationTour reservation)
         {
-            reservations.Create(reservation);
+            reservationTourRepository.Create(reservation);
         }
         public void Remove(ReservationTour reservation)
         {
-            reservations.Remove(reservation);
+            reservationTourRepository.Remove(reservation);
         }  
         public void UpdateGuestsState(Tour tour,Guest2State state)
         {
@@ -102,7 +105,7 @@ namespace ProjectSims.Service
         }
         public ReservationTour GetTourIdWhereGuestIsWaiting(Guest2 guest)
         {
-            return reservations.GetTourIdWhereGuestIsWaiting(guest);
+            return reservationTourRepository.GetTourIdWhereGuestIsWaiting(guest);
         }
         public List<int> FindTourIdsWhereGuestPresent(int guestId)
         {
@@ -119,11 +122,11 @@ namespace ProjectSims.Service
         }
         public void Update(ReservationTour reserevation)
         {
-            reservations.Update(reserevation);
+            reservationTourRepository.Update(reserevation);
         }
         public void Subscribe(IObserver observer)
         {
-            reservations.Subscribe(observer);
+            reservationTourRepository.Subscribe(observer);
         }
     }
 }

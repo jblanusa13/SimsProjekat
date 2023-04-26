@@ -6,52 +6,55 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Service
 {
     public class VoucherService
     {
-        private VoucherRepository vouchers;
+        private IVoucherRepository voucherRepository;
+        //private VoucherRepository voucherRepository;
 
         public VoucherService()
         {
-            vouchers = new VoucherRepository();
+           voucherRepository = Injector.CreateInstance<IVoucherRepository>();
+           // voucherRepository = new VoucherRepository();
         }
         public int GetNextId()
         {
-            return vouchers.GetNextId();
+            return voucherRepository.GetNextId();
         }
         public List<Voucher> GetAllVouchers()
         {
-            return vouchers.GetAll();
+            return voucherRepository.GetAll();
         }
         public Voucher GetVoucherById(int id)
         {
-            return vouchers.GetById(id);
+            return voucherRepository.GetById(id);
         }
         public List<Voucher> GetVouchersWithIds(List<int> ids)
         {
-            return vouchers.GetWithIds(ids);
+            return voucherRepository.GetWithIds(ids);
         }
         public List<Voucher> GetActiveVouchersWithIds(List<int> ids)
         {
-            return vouchers.GetActiveVouchers(ids);
+            return voucherRepository.GetActiveVouchers(ids);
         }
         public void Create(Voucher voucher)
         {
-            vouchers.Create(voucher);
+            voucherRepository.Create(voucher);
         }
         public void Delete(Voucher voucher)
         {
-            vouchers.Remove(voucher);
+            voucherRepository.Remove(voucher);
         }
         public void Update(Voucher voucher)
         {
-            vouchers.Update(voucher);
+            voucherRepository.Update(voucher);
         }
         public void Subscribe(IObserver observer)
         {
-            vouchers.Subscribe(observer);
+            voucherRepository.Subscribe(observer);
         }
     }
 }

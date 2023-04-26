@@ -1,4 +1,5 @@
 ﻿using ProjectSims.Domain.Model;
+using ProjectSims.Observer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,9 @@ namespace ProjectSims.Domain.RepositoryInterface
         public List<Guest2> GetAll();
         public Guest2 GetGuestById(int id);
         public int NextId();
+        public void Subscribe(IObserver observer);
+        public void Unsubscribe(IObserver observer);
+        public void NotifyObservers();
 
     }
 }

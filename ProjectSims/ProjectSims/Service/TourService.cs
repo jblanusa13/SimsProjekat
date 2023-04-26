@@ -11,37 +11,38 @@ using System.Xml.Linq;
 using ProjectSims.Observer;
 using System.Globalization;
 using ProjectSims.View;
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Service
 {
     public class TourService
     {
-        private TourRepository tours;
+        private ITourRepository tourRepository;
         private KeyPointService keyPointService;
         private Guest2Service guestService;
         private ReservationTourService reservationService;
         public TourService()
         {
-            tours = new TourRepository();
+            tourRepository = Injector.CreateInstance<ITourRepository>();
             keyPointService = new KeyPointService();
             guestService = new Guest2Service();
             reservationService = new ReservationTourService();
         }
         public List<Tour> GetAllTours()
         {
-            return tours.GetAll();
+            return tourRepository.GetAll();
         }
         public Tour GetTourById(int id)
         {
-            return tours.GetTourById(id);
+            return tourRepository.GetTourById(id);
         }
         public List<Tour> GetToursByStateAndGuideId(TourState state, int guideId)
         {
-            return tours.GetToursByStateAndGuideId(state,guideId);          
+            return tourRepository.GetToursByStateAndGuideId(state,guideId);          
         }
         public Tour GetTourByStateAndGuideId(TourState state, int guideId)
         {
-            return tours.GetTourByStateAndGuideId(state, guideId);
+            return tourRepository.GetTourByStateAndGuideId(state, guideId);
         }
         public List<KeyPoint> GetTourKeyPoints(Tour tour)
         {
@@ -50,7 +51,7 @@ namespace ProjectSims.Service
         }
         public List<Tour> GetTodayTours(int guideId)
         {
-           return tours.GetTodayTours(guideId);
+           return tourRepository.GetTodayTours(guideId);
         }
        public Tour GetMostVisitedTour(int guideId,bool thisYear)
         {
@@ -92,7 +93,7 @@ namespace ProjectSims.Service
                     imageList.Add(image);
                 }
                 Tour newTour =  new Tour(-1, guideId, name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPointIds, DateTime.Parse(tourStart), Convert.ToDouble(duration), imageList, Convert.ToInt32(maxNumberGuests),TourState.Inactive,-1);
-                tours.Create(newTour);
+                tourRepository.Create(newTour);
         }
         public void UpdateTourState(Tour tour,TourState state)
         {
@@ -107,15 +108,15 @@ namespace ProjectSims.Service
         }
         public void Remove(Tour tour)
         {
-            tours.Remove(tour);
+            tourRepository.Remove(tour);
         }
         public void Update(Tour tour)
         {
-            tours.Update(tour);
+            tourRepository.Update(tour);
         }
         public void Subscribe(IObserver observer)
         {
-            tours.Subscribe(observer);
+            tourRepository.Subscribe(observer);
         }
         public List<Tour> SearchTours(String location, double durationStart, double durationEnd, String language, int numberGuests)
         {
@@ -145,7 +146,7 @@ namespace ProjectSims.Service
         {
             List<Tour> wantedTours = new List<Tour>();
 
-            foreach (Tour tour in tours.GetAll())
+            foreach (Tour tour in tourRepository.GetAll())
             {
                 if (tour.Location == t.Location && tour.Id != t.Id)
                 {
@@ -201,7 +202,7 @@ namespace ProjectSims.Service
         }
         public Tour GetFinishedTourById(int id)
         {
-            foreach (Tour tour in tours.GetAll())
+            foreach (Tour tour in tourRepository.GetAll())
             {
                 if (tour.Id == id && IsFinished(tour))
                 {
@@ -227,7 +228,7 @@ namespace ProjectSims.Service
         }
         public Tour GetActivatedTourById(int id)
         {
-            foreach (Tour tour in tours.GetAll())
+            foreach (Tour tour in tourRepository.GetAll())
             {
                 if (tour.Id == id && IsActivated(tour))
                 {
