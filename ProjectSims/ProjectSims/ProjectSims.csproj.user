@@ -2,6 +2,9 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="WPF\View\Guest1View\MainPages\RatingsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\Guest1View\RatingStartView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -94,6 +97,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="WPF\View\Guest1View\MainPages\RatingsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="WPF\View\Guest1View\RatingStartView.xaml">
       <SubType>Designer</SubType>
     </Page>

@@ -45,6 +45,10 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         {
             ChangeTab(2);
         }
+        private void ShowRatings_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeTab(4);
+        }
 
         public void Reservation_Click(object sender, RoutedEventArgs e)
         {
@@ -80,6 +84,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
                     }
                 case 4:
                     {
+                        NavigationService.Navigate(new RatingsView());
                         break;
                     }
                 case 5:
