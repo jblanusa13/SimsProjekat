@@ -22,6 +22,7 @@ namespace ProjectSims.Domain.Model
         public int GuestNumber { get; set; }
         public ReservationState State { get; set; }
 
+
         public AccommodationReservation() { }
 
         public AccommodationReservation(int id, int accommodationId, int guestId,  DateOnly checkInDate, DateOnly checkOutDate, int guestNumber, ReservationState state)

@@ -76,8 +76,7 @@ namespace ProjectSims.View.OwnerView.Pages
             }
             else
             {
-                String message = "Gost " + SelectedGuestAccommodation.FirstName + " " + SelectedGuestAccommodation.LastName + " je vec ocijenjen!";
-                MessageBox.Show(message, "Ocjenjivanje gosta", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+               //Guest is rated
             }
         }
 

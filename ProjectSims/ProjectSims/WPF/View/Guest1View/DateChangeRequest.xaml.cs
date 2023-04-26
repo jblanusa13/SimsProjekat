@@ -58,7 +58,7 @@ namespace ProjectSims.WPF.View.Guest1View
             if (DateChangePicker.SelectedDate != null)
             {
                 DateChange = DateOnly.FromDateTime((DateTime)DateChangePicker.SelectedDate);
-                requestService.CreateRequest(reservationId, DateChange);
+                requestService.CreateRequest(reservationId, DateChange, Accommodation.Id);
                 Close();
             }
         }

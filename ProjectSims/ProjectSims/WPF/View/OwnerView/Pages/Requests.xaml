@@ -36,8 +36,8 @@
                                             IsReadOnly="True">
                             <DataGridTextColumn.Binding>
                                 <MultiBinding StringFormat="{}{0} {1}">
-                                    <Binding Path="FirstName"/>
-                                    <Binding Path="LastName"/>
+                                    <Binding Path="Reservation.Guest.Name"/>
+                                    <Binding Path="Reservation.Guest.Surname"/>
                                 </MultiBinding>
                             </DataGridTextColumn.Binding>
                         </DataGridTextColumn>
@@ -51,7 +51,7 @@
                         <!-- <DataGridTextColumn x:Name="CheckOutDateColumn" Header="Datum odlaska" Binding="{Binding CheckOutDate}" Width="95" IsReadOnly="True"/>-->
                         <DataGridCheckBoxColumn Header="Rezervisan"      
                                                 Binding="{Binding Reserved,
-                                                          Mode=OneWay,
+                                                          Mode=TwoWay,
                                                           BindsDirectlyToSource=True, 
                                                           UpdateSourceTrigger=PropertyChanged}"
                                                 Width="*"
@@ -71,7 +71,8 @@
                 Width="162"
                 Content="Odobri"
                 Visibility="Visible"
-                Click="AcceptButton_Click" Grid.Row="1"/>
+                Click="AcceptButton_Click" 
+                Grid.Row="1"/>
         <Button x:Name="RefuseButton"
                 Margin="232,227,0,0"
                 HorizontalAlignment="Left"
@@ -83,6 +84,7 @@
                 Width="162"
                 Content="Odbij"
                 Visibility="Visible"
-                Click="RefuseButton_Click" Grid.Row="1"/>
+                Click="RefuseButton_Click" 
+                Grid.Row="1"/>
     </Grid>
 </Page>
