@@ -15,10 +15,10 @@ namespace ProjectSims
         private static Dictionary<Type, object> implementations = new Dictionary<Type, object>
         {
             { typeof(IGuest2Repository), new Guest2Repository() },
+            { typeof(IVoucherRepository), new VoucherRepository() },
             { typeof(IReservationTourRepository), new ReservationTourRepository() },
             { typeof(ITourRatingRepository), new TourRatingRepository() },
-            { typeof(ITourRepository), new TourRepository() },
-            { typeof(IVoucherRepository), new VoucherRepository() }
+            { typeof(ITourRepository), new TourRepository() }
         };
        public static T CreateInstance<T>()
         {

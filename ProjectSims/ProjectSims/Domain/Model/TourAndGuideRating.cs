@@ -1,4 +1,5 @@
-﻿using ProjectSims.Serializer;
+﻿using ProjectSims.Domain.RepositoryInterface;
+using ProjectSims.Serializer;
 using ProjectSims.Service;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,6 @@ namespace ProjectSims.Domain.Model
         public TourAndGuideRating()
         {
             Images = new List<string>();
-            Guest = new Guest2();
         }
 
         public TourAndGuideRating(int guestId, Guest2 guest, int tourId, int knowledgeGuide, int languageGuide, int interestingTour, string addedComment, List<string> images)
@@ -71,12 +71,12 @@ namespace ProjectSims.Domain.Model
                 Images.Add(image);
             }
             IsValid = Convert.ToBoolean(values[8]);
-            InitializeData();
+            //InitializeData();
         }
-        public void InitializeData()
-        {
-            Guest2Service guestService = new Guest2Service();
-            Guest = guestService.GetGuestById(GuestId);
-        }
+       // public void InitializeData()
+        //{
+           // Guest2Service guest2Service = new Guest2Service();
+           // Guest = guest2Service.GetGuestById(GuestId);
+       // }
     }
 }
