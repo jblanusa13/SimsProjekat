@@ -17,15 +17,11 @@ namespace ProjectSims.Repository
         private List<AccommodationReservation> reservations;
 
         private readonly List<IObserver> observers;
-
-
         public AccommodationReservationRepository()
         {
             reservationFileHandler = new AccommodationReservationFileHandler();
             reservations = reservationFileHandler.Load();
-
             observers = new List<IObserver>();
-
         }
 
         public List<AccommodationReservation> GetAll()

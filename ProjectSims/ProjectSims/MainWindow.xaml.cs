@@ -21,6 +21,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ProjectSims.WPF.View.OwnerView;
 
 namespace ProjectSims
 {
@@ -57,7 +58,7 @@ namespace ProjectSims
                     if(owner != null)
                     {
                         CurrentUserId = owner.UserId;
-                        OwnerView ownerView = new OwnerView(owner);
+                        OwnerStartingView ownerView = new OwnerStartingView(owner);
                         ownerView.Show();
                         Close();
                     }

@@ -22,29 +22,29 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Tulpep.NotificationWindow;
+using ProjectSims.WPF.View.OwnerView;
 
-namespace ProjectSims.View.OwnerView
+namespace ProjectSims.View.OwnerView.Pages
 {
     /// <summary>
     /// Interaction logic for OwnerView.xaml
     /// </summary>
-    public partial class OwnerView : Window, INotifyPropertyChanged, IObserver
+    public partial class AccommodationsDisplay : Page, INotifyPropertyChanged, IObserver
     {
-        static Timer timer;
+        private readonly GuestAccommodationService guestAccommodationService;
         private Owner owner;
         private OwnerService ownerService;
-        private readonly GuestAccommodationService _guestAccommodationController;
         public ObservableCollection<GuestAccommodation> GuestAccommodations { get; set; }
         public GuestAccommodation SelectedGuestAccommodation { get; set; }
         
-        public OwnerView(Owner owner)
+        public AccommodationsDisplay(Owner owner)
         {
             InitializeComponent();
             DataContext = this;
 
-            _guestAccommodationController = new GuestAccommodationService();
-            _guestAccommodationController.Subscribe(this);
-            GuestAccommodations = new ObservableCollection<GuestAccommodation>(_guestAccommodationController.GetAllGuestAccommodations());
+            guestAccommodationService = new GuestAccommodationService();
+            guestAccommodationService.Subscribe(this);
+            GuestAccommodations = new ObservableCollection<GuestAccommodation>(guestAccommodationService.GetAllGuestAccommodations());
 
             this.owner = owner;
             ownerService = new OwnerService();
@@ -67,31 +67,29 @@ namespace ProjectSims.View.OwnerView
 
             if (SelectedGuestAccommodation != null && SelectedGuestAccommodation.Rated == false)
             {
-                GuestRatingtView guestRatingtView = new GuestRatingtView(SelectedGuestAccommodation, _guestAccommodationController);
-                guestRatingtView.Show();
-
+                OwnerStartingView ownerStartingView = (OwnerStartingView)Window.GetWindow(this);
+                ownerStartingView.SelectedTab.Content = new GuestRatingView(SelectedGuestAccommodation, guestAccommodationService, owner);
             }
             else if(SelectedGuestAccommodation == null)
             {
-                
+                //Do nothing
             }
             else
             {
-                String message = "Gost " + SelectedGuestAccommodation.FirstName + " " + SelectedGuestAccommodation.LastName + " je vec ocijenjen!";
-                MessageBox.Show(message, "Ocjenjivanje gosta", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+               //Guest is rated
             }
         }
 
         private void RegistrateAccommodation_Click(object sender, RoutedEventArgs e)
         {
-                AccommodationRegistrationView accommodationRegistrationView = new AccommodationRegistrationView();
-                accommodationRegistrationView.Show();
+            AccommodationRegistrationView accommodationRegistrationView = new AccommodationRegistrationView();
+            accommodationRegistrationView.Show();
         }
 
         public void Update()
         {
             GuestAccommodations.Clear();
-            foreach (GuestAccommodation guestAccommodation in _guestAccommodationController.GetAllGuestAccommodations()) 
+            foreach (GuestAccommodation guestAccommodation in guestAccommodationService.GetAllGuestAccommodations()) 
             {
                 GuestAccommodations.Add(guestAccommodation);
             }

@@ -1,9 +1,9 @@
-﻿<Window x:Class="ProjectSims.View.OwnerView.AccommodationRegistrationView"
+﻿<Window x:Class="ProjectSims.View.OwnerView.Pages.AccommodationRegistrationView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ProjectSims.View.OwnerView"
+        xmlns:local="clr-namespace:ProjectSims.View.OwnerView.Pages"
         mc:Ignorable="d"
         Title="Registracija smjestaja" Height="750" Width="430">
     <Window.Resources>
@@ -29,13 +29,43 @@
         <TextBox x:Name="GuestsMaximumTextBox" Text="{Binding Path=GuestsMaximum, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, TargetNullValue=''}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Height="22" Margin="259,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" IsEnabled="True"/>
         <TextBox x:Name="MinimumReservationDaysTextBox" Text="{Binding Path=MinimumReservationDays, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Height="22" Margin="259,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" IsEnabled="True"/>
         <TextBox x:Name="DismissalDaysTextBox" Text="{Binding Path=DismissalDays, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Height="22" Margin="259,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" IsEnabled="True"/>
-        <TextBox x:Name="ImagesTextBox" Text="{Binding Path=Images, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Height="22" Margin="259,323,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" IsEnabled="True"/>
-        <Button Content="Registruj" Click="RegisterAccommodation_Click" HorizontalAlignment="Center" Height="26" Margin="0,561,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="1.194,0.155" IsDefault="True"/>
-        <ComboBox Text="{Binding Path=Type, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Margin="259,140,0,0" VerticalAlignment="Top" Width="151">
+        <Button Content="Registruj" 
+                Click="RegisterAccommodation_Click" 
+                HorizontalAlignment="Center" 
+                Height="26" 
+                Margin="0,561,0,0" 
+                VerticalAlignment="Top" 
+                Width="80" 
+                RenderTransformOrigin="1.194,0.155" 
+                IsDefault="True"/>
+        <ComboBox Text="{Binding Path=Type, UpdateSourceTrigger=PropertyChanged}"  
+                  HorizontalAlignment="Left" 
+                  Margin="259,140,0,0" 
+                  VerticalAlignment="Top" 
+                  Width="151">
             <ComboBoxItem Content="Kuca"/>
             <ComboBoxItem Content="Apartman"/>
             <ComboBoxItem Content="Koliba"/>
         </ComboBox>
-        <Button Content="Učitaj" Click="LoadImages_Click" HorizontalAlignment="Left" Height="26" Margin="294,367,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="1.194,0.155" IsDefault="True"/>
+        <Button Content="Učitaj" 
+                Click="LoadImages_Click" 
+                HorizontalAlignment="Left" 
+                Height="26" 
+                Margin="294,320,0,0" 
+                VerticalAlignment="Top" 
+                Width="80" 
+                RenderTransformOrigin="1.194,0.155" 
+                IsDefault="True"/>
+        <ListView x:Name="ImageList" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                  ScrollViewer.PanningMode="HorizontalOnly"
+                  Margin="62,402,56,190">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
     </Grid>
 </Window>

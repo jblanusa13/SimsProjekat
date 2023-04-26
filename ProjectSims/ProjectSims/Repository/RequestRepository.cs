@@ -51,7 +51,7 @@ namespace ProjectSims.Repository
             List<Request> ownerRequests = new List<Request>();
             foreach (Request request in requests)
             {
-                if(request.Reservation.Accommodation.IdOwner == ownerId)
+                if (request.Reservation.Accommodation.IdOwner == ownerId)
                 {
                     ownerRequests.Add(request);
                 }
@@ -63,7 +63,22 @@ namespace ProjectSims.Repository
             requests.Add(request);
             requestFileHandler.Save(requests);
         }
-
+        public void Remove(Request request)
+        {
+            requests.Remove(request);
+            requestFileHandler.Save(requests);
+            NotifyObservers();
+        }
+        public void Update(Request request)
+        {
+            int index = requests.FindIndex(k => request.Id == k.Id);
+            if (index != -1)
+            {
+                requests[index] = request;
+            }
+            requestFileHandler.Save(requests);
+            NotifyObservers();
+        }
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);

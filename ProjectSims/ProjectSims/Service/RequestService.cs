@@ -27,6 +27,10 @@ namespace ProjectSims.Service
         {
             return requestRepository.GetAllByOwner(ownerId);
         }
+        public List<Request> GetAllRequests()
+        {
+            return requestRepository.GetAll();
+        }
         public int NextId()
         {
             if (requests.Count == 0)
@@ -41,7 +45,14 @@ namespace ProjectSims.Service
             Request request = new Request(id, reservationId, dateChange, RequestState.Waiting, "");
             requestRepository.Add(request);
         }
-
+        public void Update(Request request)
+        {
+            requestRepository.Update(request);
+        }
+        public void Delete(Request request)
+        {
+            requestRepository.Remove(request);
+        }
         public void Subscribe(IObserver observer)
         {
             requestRepository.Subscribe(observer);
