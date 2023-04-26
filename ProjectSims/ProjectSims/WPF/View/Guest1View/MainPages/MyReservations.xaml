@@ -1,0 +1,72 @@
+﻿<Page x:Class="ProjectSims.WPF.View.Guest1View.MainPages.MyReservations"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.MainPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="540" d:DesignWidth="1067"
+      Title="MyReservations">
+
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="230"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Button Margin="10,60,760,60" Click="Back_Click">Nazad</Button>
+            </Grid>
+
+            <DataGrid Grid.Row="1" Margin="35,40" x:Name="ReservationsTable"
+                  ItemsSource="{Binding Path=Reservations}"
+                  SelectedItem="{Binding Path=SelectedReservation}"
+                  AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" FontSize="12">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Naziv" Binding="{Binding Accommodation.Name}" Width="120"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Grad" Binding="{Binding Accommodation.Location.City}" Width="100"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Drzava" Binding="{Binding Accommodation.Location.Country}" Width="100"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tip smestaja" Binding="{Binding Accommodation.Type}" Width="90"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Dolazak" Binding="{Binding CheckInDate}" Width="80"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Odlazak" Binding="{Binding CheckOutDate}" Width="80"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Broj gostiju" Binding="{Binding GuestNumber}" Width="70"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Rok za otkazivanje" Binding="{Binding Accommodation.DismissalDays}" Width="*"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <Grid  Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Button Grid.Row="1" Margin="30,20" Content="Pomeranje rezervacije"
+                        HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="150"
+                        Click="DateChange_Click" FontSize="14"/>
+                <Button Grid.Row="2" Margin="30,20" Content="Moji zahtevi"
+                        HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="150"
+                         FontSize="14" Click="MyRequests_Click"/>
+                <Button Grid.Row="3" Margin="30,20" Content="Otkazivanje rezervacije"
+                        HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="150"
+                         FontSize="14" Click="CancelReservation_Click"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

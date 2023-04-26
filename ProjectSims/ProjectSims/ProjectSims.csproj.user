@@ -2,57 +2,174 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="View\CreateTourView.xaml.cs">
+    <Compile Update="WPF\View\Guest1View\AccommodationRating.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\DetailsAndReservationTourView.xaml.cs">
+    <Compile Update="WPF\View\Guest1View\AccommodationsForRating.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\GuideStartingView.xaml.cs">
+    <Compile Update="WPF\View\Guest1View\MyRequests.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\SearchTourView.xaml.cs">
+    <Compile Update="WPF\View\Guest2View\Guest2TrackingTourView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\AvailableToursView.xaml.cs">
+    <Compile Update="WPF\View\Guest2View\Pages\ActivatedToursView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\TourTrackingView.xaml.cs">
-		<SubType>Code</SubType>
-	</Compile>
-    <Compile Update="View\AccommodationReservationView.xaml.cs">
-        <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="View\GuestRatingtView.xaml.cs">
+    <Compile Update="WPF\View\Guest1View\MainPages\AccommodationReservationView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\OwnerView.xaml.cs">
+    <Compile Update="WPF\View\Guest1View\MainPages\GuestAccommodationsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\MainPages\MyReservations.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest2View\Pages\FinishedToursView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\CommentAndRatingsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\FinishedToursRatingsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\FinishedToursStatisticsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\ScheduledToursView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest2View\Pages\ShowVouchersView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest2View\Pages\StartView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest2View\RatingTourView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest2View\Guest2StartingView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest2View\Pages\SearchTourView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest2View\DetailsAndReservationTourView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest2View\UseVoucherView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\GuideView\GuideStartingView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\AvailableToursView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\CreateTourView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\TourDetailsAndRatingsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\TourDetailsAndStatisticsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\TourTrackingView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\OwnerView\GuestRatingtView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\OwnerView\OwnerView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="View\DetailsAndReservationTourView.xaml">
+    <Page Update="WPF\View\Guest1View\AccommodationRating.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\GuideStartingView.xaml">
+    <Page Update="WPF\View\Guest1View\AccommodationsForRating.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\SearchTourView.xaml">
+    <Page Update="WPF\View\Guest1View\MyRequests.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\CreateTourView.xaml">
+    <Page Update="WPF\View\Guest2View\Guest2TrackingTourView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\AvailableToursView.xaml">
-		<SubType>Designer</SubType>
-	</Page>
-    <Page Update="View\GuestRatingtView.xaml">
+    <Page Update="WPF\View\Guest2View\Pages\ActivatedToursView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\TourTrackingView.xaml">
-		<SubType>Designer</SubType>
-	</Page>
-    <Page Update="View\OwnerView.xaml">
+    <Page Update="WPF\View\Guest1View\MainPages\AccommodationReservationView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\MainPages\GuestAccommodationsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\MainPages\MyReservations.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest2View\Pages\FinishedToursView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\GuideView\Pages\CommentAndRatingsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\GuideView\Pages\FinishedToursRatingsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\GuideView\Pages\FinishedToursStatisticsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\GuideView\Pages\ScheduledToursView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest2View\Pages\ShowVouchersView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest2View\Pages\StartView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest2View\RatingTourView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest2View\Guest2StartingView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest2View\Pages\SearchTourView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest2View\DetailsAndReservationTourView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest2View\UseVoucherView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\GuideView\GuideStartingView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\GuideView\Pages\AvailableToursView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\GuideView\Pages\CreateTourView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\GuideView\Pages\TourDetailsAndRatingsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\GuideView\Pages\TourDetailsAndStatisticsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\GuideView\Pages\TourTrackingView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\OwnerView\GuestRatingtView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\OwnerView\OwnerView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

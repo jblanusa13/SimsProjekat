@@ -1,0 +1,52 @@
+﻿<Page x:Class="ProjectSims.WPF.View.GuideView.Pages.FinishedToursRatingsView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
+      mc:Ignorable="d" 
+     d:DesignHeight="400" d:DesignWidth="1280"
+      Title="FinishedToursView">
+    <ScrollViewer>
+        <Grid Background="#FF050518">
+            <Image Source="/Resources/Icons/Guide/star.png" HorizontalAlignment="Left" Margin="350,25,0,0" VerticalAlignment="Top" Width="60" Height="60"/>
+            <Label Content="Ocene i recenzije zavrsenih tura" HorizontalAlignment="Center" Margin="0,35,0,0" VerticalAlignment="Top" Width="450" Height="40" Foreground="White" FontSize="25" FontFamily="Broadway"/>
+            <ListView  x:Name="FinishedToursListView" ItemsSource="{Binding FinishedTours}" Margin="0,100,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single" Width="1200" Background="#D0D5F7">
+                <ListView.View>
+                    <GridView >
+                        <GridViewColumn Header="Naziv" Width="500">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding Name}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Pocetak" Width="200">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding StartOfTheTour}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Lokacija" Width="350">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding Location}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Detalji i recenzije">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Height="20" Width="20" Background="Transparent" Click="TourInfo_Click" BorderThickness="0">
+                                        <Image Source="/Resources/Icons/Guide/info.png"/>
+                                    </Button>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </ScrollViewer>
+</Page>

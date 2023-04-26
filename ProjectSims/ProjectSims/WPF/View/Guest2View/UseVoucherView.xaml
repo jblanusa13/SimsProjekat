@@ -1,0 +1,27 @@
+﻿<Window x:Class="ProjectSims.WPF.View.Guest2View.UseVoucherView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest2View"
+        mc:Ignorable="d"
+        Title="Upotrebi vaucer" Height="450" Width="450" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label Content="Ako zelite mozete upotrebiti 
+               &#10;neki od sledecih vaucera (opciono):" HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" FontSize="24" Width="390"/>
+        <DataGrid  x:Name="DataGridVouchers" 
+                       ItemsSource="{Binding ListVoucher}"
+                       SelectedItem="{Binding SelectedVoucher}"
+                       SelectionMode="Single" 
+                       IsReadOnly="True"
+                       AutoGenerateColumns="False" Margin="30,109,30,111"  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Broj vaucera" Binding="{Binding Id}" Width="100" />
+                <DataGridTextColumn Header="Datum kreiranja" Binding="{Binding CreationDate}" Width="140" />
+                <DataGridTextColumn Header="Datum do kada vazi" Binding="{Binding ExpirationDate}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Izvrsi rezervaciju" Click="ReservationClick" HorizontalAlignment="Center" Margin="0,373,0,0" VerticalAlignment="Top" FontSize="18" Width="152" Height="35"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Height="314" Margin="0,30,0,0" VerticalAlignment="Top" Width="430" CornerRadius="8,8,8,8"/>
+    </Grid>
+</Window>

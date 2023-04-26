@@ -1,0 +1,42 @@
+﻿<Page x:Class="ProjectSims.WPF.View.Guest2View.Pages.ShowVouchersView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest2View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="650" d:DesignWidth="1200"
+      Title="ShowVouchersView">
+
+    <Grid Background="White" >
+        <Image Source="/Resources/Icons/Guest2/icons8-home-page-64.png" Cursor="Hand" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="56" Margin="62,12,0,0"/>
+        <Label Content="/Vauceri" FontSize="28" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="121,15,0,0"/>
+        <Label Content="Prikaz svih vasih vaucera:" HorizontalAlignment="Left" Margin="62,66,0,0" VerticalAlignment="Top" FontSize="40"/>
+        <DataGrid  x:Name="DataGridVouchers" 
+                       ItemsSource="{Binding ListVoucher}"
+                       SelectionMode="Single" 
+                       IsReadOnly="True" Height="250"
+                       AutoGenerateColumns="False" Margin="95,149,583,251"  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Broj vaucera" Binding="{Binding Id}" Width="100" />
+                <DataGridTextColumn Header="Datum kreiranja" Binding="{Binding CreationDate}" Width="150" />
+                <DataGridTextColumn Header="Datum do kada vazi" Binding="{Binding ExpirationDate}" Width="150" />
+                <DataGridCheckBoxColumn Header="Iskoriscen" Binding="{Binding Used}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Kako se sticu vauceri &#10;i cemu sluze?" HorizontalAlignment="Left" Margin="744,69,0,0" VerticalAlignment="Top" Width="287" Height="86" FontSize="28"/>
+        <Label Content="  Korisnik moze dobiti vaucer na tri 
+               &#10;nacina:
+               &#10;-ukoliko vodic otkaze turu;
+               &#10;-ukoliko vodic da otkaz;
+               &#10;-ukoliko korisnik osvoji vaucer." HorizontalAlignment="Left" Margin="744,167,0,0" VerticalAlignment="Top" FontSize="16" Width="287"/>
+        <Label Content="  Korisnik osvaja vaucer ukoliko u 
+               &#10;godinu dana ode na najmanje 5 bilo 
+               &#10;kojih tura!
+               &#10;  Korisnik prilikom rezervacije neke
+               &#10;sledece ture moze (a ne mora)
+               &#10;upotrebiti vaucer."            
+               HorizontalAlignment="Left" Margin="744,288,0,0" VerticalAlignment="Top" FontSize="16" Width="287"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="388" Margin="719,66,0,0" VerticalAlignment="Top" Width="361" CornerRadius="8,8,8,8"/>
+    </Grid>
+</Page>
