@@ -166,7 +166,6 @@
     <PackageReference Include="Tulpep.NotificationWindow" Version="1.1.38" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Domain\RepositoryInterface\" />
     <Folder Include="Resources\Images\Guest1\" />
   </ItemGroup>
 </Project>

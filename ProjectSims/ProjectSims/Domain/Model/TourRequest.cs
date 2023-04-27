@@ -18,7 +18,7 @@ namespace ProjectSims.Domain.Model
         public string Description { get; set; }
         public string Language { get; set; }
         public int MaxNumberGuests { get; set; }
-        public DateOnly  DateRangeStart{ get; set; }
+        public DateOnly DateRangeStart { get; set; }
         public DateOnly DateRangeEnd { get; set; }
         public TourRequest()
         {
@@ -47,9 +47,10 @@ namespace ProjectSims.Domain.Model
             DateRangeStart = DateOnly.ParseExact(values[7], "MM/dd/yyyy", CultureInfo.InvariantCulture);
             DateRangeEnd = DateOnly.ParseExact(values[8], "MM/dd/yyyy", CultureInfo.InvariantCulture);
         }
-
         public string[] ToCSV()
         {
             string[] csvvalues = { Id.ToString(), GuideId.ToString(), State.ToString(), Location, Description, Language, MaxNumberGuests.ToString(), DateRangeStart.ToString("MM/dd/yyyy"), DateRangeEnd.ToString("MM/dd/yyyy") };
             return csvvalues;
         }
+    }
+}
