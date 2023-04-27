@@ -19,7 +19,8 @@ namespace ProjectSims
             { typeof(IReservationTourRepository), new ReservationTourRepository() },
             { typeof(ITourRatingRepository), new TourRatingRepository() },
             { typeof(ITourRepository), new TourRepository() },
-            { typeof(IGuideRepository), new GuideRepository() }
+            { typeof(IGuideRepository), new GuideRepository() },
+            { typeof(IKeyPointRepository), new KeyPointRepository() }
         };
        public static T CreateInstance<T>()
         {
