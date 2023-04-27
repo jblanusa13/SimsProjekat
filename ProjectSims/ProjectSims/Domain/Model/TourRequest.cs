@@ -18,12 +18,12 @@ namespace ProjectSims.Domain.Model
         public string Description { get; set; }
         public string Language { get; set; }
         public int MaxNumberGuests { get; set; }
-        public DateTime  DateRangeStart{ get; set; }
-        public DateTime DateRangeEnd { get; set; }
+        public DateOnly  DateRangeStart{ get; set; }
+        public DateOnly DateRangeEnd { get; set; }
         public TourRequest()
         {
         }
-        public TourRequest(int id, int guideId, TourRequestState state, string location, string description, string language, int maxNumberGuests, DateTime dateRangeStart, DateTime dateRangeEnd)
+        public TourRequest(int id, int guideId, TourRequestState state, string location, string description, string language, int maxNumberGuests, DateOnly dateRangeStart, DateOnly dateRangeEnd)
         {
             Id = id;
             GuideId = guideId;
@@ -44,13 +44,13 @@ namespace ProjectSims.Domain.Model
             Description = values[4];
             Language = values[5];
             MaxNumberGuests = Convert.ToInt32(values[6]);
-            DateRangeStart = DateTime.ParseExact(values[7], "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
-            DateRangeEnd = DateTime.ParseExact(values[8], "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+            DateRangeStart = DateOnly.ParseExact(values[7], "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            DateRangeEnd = DateOnly.ParseExact(values[8], "MM/dd/yyyy", CultureInfo.InvariantCulture);
         }
 
         public string[] ToCSV()
         {
-            string[] csvvalues = { Id.ToString(), GuideId.ToString(), State.ToString(), Location, Description, Language, MaxNumberGuests.ToString(), DateRangeStart.ToString("MM/dd/yyyy HH:mm:ss"), DateRangeEnd.ToString("MM/dd/yyyy HH:mm:ss") };
+            string[] csvvalues = { Id.ToString(), GuideId.ToString(), State.ToString(), Location, Description, Language, MaxNumberGuests.ToString(), DateRangeStart.ToString("MM/dd/yyyy"), DateRangeEnd.ToString("MM/dd/yyyy") };
             return csvvalues;
         }
     }
