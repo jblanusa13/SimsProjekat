@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Repository
 {
-    class KeyPointRepository : ISubject
+    class KeyPointRepository : ISubject, IKeyPointRepository
     {
 
         private KeyPointFileHandler keyPointFile;
@@ -56,7 +57,7 @@ namespace ProjectSims.Repository
         {
             return keyPoints;
         }
-        public KeyPoint GetKeyPointById(int id)
+        public KeyPoint GetById(int id)
         {
             return keyPoints.Find(k => k.Id == id);
         }

@@ -58,7 +58,7 @@ namespace ProjectSims.Repository
         {
             return tours;
         }
-        public Tour GetTourById(int id)
+        public Tour GetById(int id)
         {
             return tours.Find(t=>t.Id == id);
         }

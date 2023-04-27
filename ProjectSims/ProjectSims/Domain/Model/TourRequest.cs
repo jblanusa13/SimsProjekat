@@ -53,5 +53,3 @@ namespace ProjectSims.Domain.Model
             string[] csvvalues = { Id.ToString(), GuideId.ToString(), State.ToString(), Location, Description, Language, MaxNumberGuests.ToString(), DateRangeStart.ToString("MM/dd/yyyy"), DateRangeEnd.ToString("MM/dd/yyyy") };
             return csvvalues;
         }
-    }
-}
