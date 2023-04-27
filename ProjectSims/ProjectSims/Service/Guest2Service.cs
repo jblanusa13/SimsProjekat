@@ -44,7 +44,7 @@ namespace ProjectSims.Service
         }
         public Guest2 GetGuestById(int id)
         {
-            return guest2Repository.GetGuestById(id);
+            return guest2Repository.GetById(id);
         }
         public int GetAgeOnTour(Guest2 guest,Tour tour)
         {
@@ -55,7 +55,7 @@ namespace ProjectSims.Service
         }
         public void GiveVoucher(int id)
         {
-            Guest2 guest = guest2Repository.GetGuestById(id);
+            Guest2 guest = guest2Repository.GetById(id);
             Voucher voucher = new Voucher(voucherService.GetNextId(),DateTime.Now,DateTime.Now.AddYears(1),false);
             voucherService.Create(voucher);
             guest.VoucherIds.Add(voucher.Id);

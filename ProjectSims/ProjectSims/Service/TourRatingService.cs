@@ -32,6 +32,11 @@ namespace ProjectSims.Service
         {
             tourRatingRepository.Create(tourRating);
         }
+        public void ReportRating(TourAndGuideRating tourRating)
+        {
+            tourRating.IsValid = false;
+            tourRatingRepository.Update(tourRating);
+        }
         public void Delete(TourAndGuideRating tourRating)
         {
             tourRatingRepository.Remove(tourRating);
@@ -39,10 +44,6 @@ namespace ProjectSims.Service
         public void Update(TourAndGuideRating tourRating)
         {
             tourRatingRepository.Update(tourRating);
-        }
-        public void ReportRating(TourAndGuideRating tourRaitng)
-        {
-            tourRatingRepository.ReportRating(tourRaitng);
         }
         public void Subscribe(IObserver observer)
         {

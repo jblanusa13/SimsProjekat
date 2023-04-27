@@ -34,7 +34,7 @@ namespace ProjectSims.Service
         }
         public Tour GetTourById(int id)
         {
-            return tourRepository.GetTourById(id);
+            return tourRepository.GetById(id);
         }
         public List<Tour> GetToursByStateAndGuideId(TourState state, int guideId)
         {

@@ -9,20 +9,12 @@ using System.Threading.Tasks;
 
 namespace ProjectSims.Domain.RepositoryInterface
 {
-    public interface ITourRepository
+    public interface ITourRepository : IGenericRepository<Tour, int>
     {
-        public void Create(Tour tour);
-        public void Update(Tour tour);
-        public void Remove(Tour tour);
-        public List<Tour> GetAll();
-        public Tour GetTourById(int id);
         public List<Tour> GetToursByStateAndGuideId(TourState state, int guideId);
         public Tour GetTourByStateAndGuideId(TourState state, int guideId);
         public List<Tour> GetTodayTours(int guideId);
         public int NextId();
-        public void Subscribe(IObserver observer);
-        public void Unsubscribe(IObserver observer);
-        public void NotifyObservers();
 
     }
 }

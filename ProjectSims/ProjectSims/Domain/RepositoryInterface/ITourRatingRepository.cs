@@ -9,17 +9,9 @@ using ProjectSims.Repository;
 
 namespace ProjectSims.Domain.RepositoryInterface
 {
-    public interface ITourRatingRepository
+    public interface ITourRatingRepository : IGenericRepository<TourAndGuideRating, int>
     {
-        public void Create(TourAndGuideRating tourRating);
-        public void Update(TourAndGuideRating tourRating);
-        public void Remove(TourAndGuideRating tourRating);
-        public List<TourAndGuideRating> GetAll();
         public List<TourAndGuideRating> GetAllRatingsByTour(Tour tour);
-        public void ReportRating(TourAndGuideRating tourRaitng);
         public int GetNextId();
-        public void Subscribe(IObserver observer);
-        public void Unsubscribe(IObserver observer);
-        public void NotifyObservers();
     }
 }
