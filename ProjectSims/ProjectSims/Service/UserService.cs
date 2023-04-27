@@ -4,21 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Domain.Model;
+using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.Repository;
 
 namespace ProjectSims.Service
 {
     public class UserService
     {
-        private UserRepository userRepository;
+        private IUserRepository userRepository;
         public UserService()
         {
-            userRepository = new UserRepository();
+            userRepository = Injector.CreateInstance<IUserRepository>();
         }
 
         public User GetUser(int id)
         {
-            return userRepository.Get(id);
+            return userRepository.GetById(id);
         }
     }
 }
