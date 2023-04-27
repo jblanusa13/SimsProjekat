@@ -17,7 +17,7 @@ using ProjectSims.Service;
 using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 using ProjectSims.WPF.View.Guest1View;
-using ProjectSims.WPF.View.Guest1View.Pages;
+using ProjectSims.WPF.View.Guest1View.MainPages;
 
 namespace ProjectSims.View.Guest1View
 {

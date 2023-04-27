@@ -17,48 +17,30 @@ using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 using ProjectSims.Service;
 using ProjectSims.WPF.View.Guest1View;
+using ProjectSims.WPF.ViewModel.Guest1ViewModel;
 
 namespace ProjectSims.WPF.View.Guest1View
 {
     /// <summary>
     /// Interaction logic for DateChangeRequest.xaml
     /// </summary>
-    public partial class DateChangeRequest : Window, IObserver
+    public partial class DateChangeRequest : Window
     {
-        private RequestService requestService;
-        private AccommodationReservationService reservationService;
-
-        private int reservationId;
-        public Accommodation Accommodation { get; set; }
-        public DateOnly CheckInDate { get; set; }
-        public DateOnly CheckOutDate { get; set; }
-        public int GuestNumber { get; set; }
-
-        public DateOnly DateChange { get; set; }
-
+        public DateChangeRequestViewModel viewModel { get; set; } 
         public DateChangeRequest(AccommodationReservation selectedReservation)
         {
             InitializeComponent();
-            DataContext = this;
 
-            requestService = new RequestService();
-            reservationService = new AccommodationReservationService();
-
-            reservationService.Subscribe(this);
-
-            reservationId = selectedReservation.Id;
-            Accommodation = selectedReservation.Accommodation;
-            CheckInDate = selectedReservation.CheckInDate;
-            CheckOutDate = selectedReservation.CheckOutDate;
-            GuestNumber = selectedReservation.GuestNumber;
+            viewModel = new DateChangeRequestViewModel(selectedReservation);
+            this.DataContext = viewModel;
         }
 
         private void SendRequest_Click(object sender, RoutedEventArgs e)
         {
             if (DateChangePicker.SelectedDate != null)
             {
-                DateChange = DateOnly.FromDateTime((DateTime)DateChangePicker.SelectedDate);
-                requestService.CreateRequest(reservationId, DateChange);
+                DateOnly dateChange = DateOnly.FromDateTime((DateTime)DateChangePicker.SelectedDate);
+                viewModel.SendRequest(dateChange);
                 Close();
             }
         }
@@ -66,11 +48,6 @@ namespace ProjectSims.WPF.View.Guest1View
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             Close();
-        }
-
-        public void Update()
-        {
-            throw new NotImplementedException();
         }
     }
 }
