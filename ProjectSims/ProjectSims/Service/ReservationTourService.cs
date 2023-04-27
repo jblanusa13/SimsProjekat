@@ -14,13 +14,11 @@ namespace ProjectSims.Service
     public class ReservationTourService
     {
         private IReservationTourRepository reservationTourRepository;
-        //private ReservationTourRepository reservationTourRepository;
         private Guest2Service guestService;
 
         public ReservationTourService()
         {
-           // reservationTourRepository = new ReservationTourRepository();
-           reservationTourRepository = Injector.CreateInstance<IReservationTourRepository>();
+            reservationTourRepository = Injector.CreateInstance<IReservationTourRepository>();
             guestService = new Guest2Service();
         }
         public List<ReservationTour> GetAllReservations()

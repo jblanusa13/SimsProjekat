@@ -18,7 +18,8 @@ namespace ProjectSims
             { typeof(IVoucherRepository), new VoucherRepository() },
             { typeof(IReservationTourRepository), new ReservationTourRepository() },
             { typeof(ITourRatingRepository), new TourRatingRepository() },
-            { typeof(ITourRepository), new TourRepository() }
+            { typeof(ITourRepository), new TourRepository() },
+            { typeof(IGuideRepository), new GuideRepository() }
         };
        public static T CreateInstance<T>()
         {

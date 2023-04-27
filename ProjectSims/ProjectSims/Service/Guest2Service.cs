@@ -13,12 +13,10 @@ namespace ProjectSims.Service
     public class Guest2Service
     {
        private IGuest2Repository guest2Repository;
-      // private Guest2Repository guest2Repository;
        private VoucherService voucherService;
 
         public Guest2Service()
         {
-           // guest2Repository = new Guest2Repository();
             guest2Repository = Injector.CreateInstance<IGuest2Repository>();
             voucherService = new VoucherService();
         }

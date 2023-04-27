@@ -13,12 +13,9 @@ namespace ProjectSims.Service
     public class VoucherService
     {
         private IVoucherRepository voucherRepository;
-       // private VoucherRepository voucherRepository;
-
         public VoucherService()
         {
            voucherRepository = Injector.CreateInstance<IVoucherRepository>();
-            //voucherRepository = new VoucherRepository();
         }
         public int GetNextId()
         {

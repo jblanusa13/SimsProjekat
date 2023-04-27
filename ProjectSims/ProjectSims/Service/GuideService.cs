@@ -6,44 +6,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Service
 {
     public class GuideService
     {
-        private GuideRepository guides;
+        private IGuideRepository guideRepository;
 
         public GuideService()
         {
-            guides = new GuideRepository();
+            guideRepository = Injector.CreateInstance<IGuideRepository>();
         }
 
         public List<Guide> GetAllGuides()
         {
-            return guides.GetAll();
+            return guideRepository.GetAll();
         }
         public Guide GetGuideById(int id)
         {
-            return guides.GetById(id);
+            return guideRepository.GetById(id);
         }
         public void Create(Guide guide)
         {
-            guides.Add(guide);
+            guideRepository.Create(guide);
         }
 
         public void Delete(Guide guide)
         {
-            guides.Remove(guide);
+            guideRepository.Remove(guide);
         }
 
         public void Update(Guide guide)
         {
-            guides.Update(guide);
+            guideRepository.Update(guide);
         }
 
         public void Subscribe(IObserver observer)
         {
-            guides.Subscribe(observer);
+            guideRepository.Subscribe(observer);
         }
     }
 }
