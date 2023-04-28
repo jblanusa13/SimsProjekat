@@ -33,9 +33,7 @@ namespace ProjectSims.View.GuideView
             tourService = new TourService();
             Guide = g;
             ActiveTour = tourService.GetTourByStateAndGuideId(TourState.Active, Guide.Id);
-
         }
-
         private void Back_Click(object sender, RoutedEventArgs e)
         {
         }

@@ -59,6 +59,10 @@ namespace ProjectSims.Repository
         {
             return reservations;
         }
+        public ReservationTour GetById(int id)
+        {
+            return reservations.Find(r => r.Id == id);
+        }
         public List<ReservationTour> GetReservationsByTour(Tour tour)
         {
             return reservations.Where(r=>r.TourId == tour.Id).ToList();
