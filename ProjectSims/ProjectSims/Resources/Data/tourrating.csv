@@ -1,10 +1,9 @@
-0|13|0|5|5|5|Veoma zanimljiva tura|/Resources/Images/Guest2/park-kalemegdan-1184267749.jpg|True
-1|16|0|4|5|2|Tura je bila jako dosadna.Vodic ne drzi paznju|/Resources/Images/Guest2/download.jpg|False
-2|14|0|5|5|5|Odlicna tura|/Resources/Images/Guest2/park-kalemegdan-1184267749.jpg|True
-3|14|7|3|3|2|Jaako dosadna tura|/Resources/Images/Guest2/Jimages.jpg|True
-4|15|0|4|5|5|Tura nije bila zanimljiva ni poucna|/Resources/Images/Guest2/download.jpg|True
-5|15|7|5|4|4|Nista posebno|/Resources/Images/Guest2/images.jpg|True
-6|13|11|5|4|4|Zanimljiva tura|/Resources/Images/Guest2/download.jpg|True
-7|16|11|4|5|5|Nemam komentar|/Resources/Images/Guest2/images.jpg|True
-8|14|11|1|1|1|Jako lose|/Resources/Images/Guest2/park-kalemegdan-1184267749.jpg|False
-9|15|3|5|3|5|Najbolja tura|/Resources/Images/Guest2/images.jpg,/Resources/Images/Guest2/download.jpg|True
+0|13|0|5|5|5|Veoma zanimljiva tura|../../../Resources/Images/Guest2/Kalemegdan1.jpg|False
+1|16|0|4|5|2|Tura je bila jako dosadna.Vodic ne drzi paznju|../../../Resources/Images/Guest2/Pobednik.jpg|False
+2|14|0|5|5|5|Odlicna tura|../../../Resources/Images/Guest2/JaksicevaKula.jpg|False
+3|14|7|3|3|2|Jaako dosadna tura|../../../Resources/Images/Guest2/JaksicevaKula.jpg|True
+4|15|0|4|5|5|Tura nije bila zanimljiva ni poucna|../../../Resources/Images/Guest2/VojniMuzej.jpg|True
+5|15|7|5|4|4|Nista posebno|../../../Resources/Images/Guest2/JaksicevaKula.jpg|True
+6|13|11|5|4|4|Zanimljiva tura|../../../Resources/Images/Guest2/download.jpg|True
+7|16|11|4|5|5|Nemam komentar|../../../Resources/Images/Guest2/images.jpg|True
+8|14|11|1|1|1|Jako lose|../../../Resources/Images/Guest2/park-kalemegdan-1184267749.jpg|False

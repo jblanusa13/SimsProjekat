@@ -6,49 +6,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Service
 {
     public class TourRatingService
     {
-        private TourRatingRepository tourRatings;
-
+        private ITourRatingRepository tourRatingRepository;
         public TourRatingService()
         {
-            tourRatings = new TourRatingRepository();
+            tourRatingRepository = Injector.CreateInstance<ITourRatingRepository>();
         }
-
         public List<TourAndGuideRating> GetAll()
         {
-            return tourRatings.GetAll();
+            return tourRatingRepository.GetAll();
         }
         public List<TourAndGuideRating> GetAllRatingsByTour(Tour tour)
         {
-            return tourRatings.GetAllRatingsByTour(tour);
+            return tourRatingRepository.GetAllRatingsByTour(tour);
         }
-
         public void Create(TourAndGuideRating tourRating)
         {
-            tourRatings.Create(tourRating);
+            tourRatingRepository.Create(tourRating);
         }
-
+        public void ReportRating(TourAndGuideRating tourRating)
+        {
+            tourRating.IsValid = false;
+            tourRatingRepository.Update(tourRating);
+        }
         public void Delete(TourAndGuideRating tourRating)
         {
-            tourRatings.Remove(tourRating);
+            tourRatingRepository.Remove(tourRating);
         }
-
         public void Update(TourAndGuideRating tourRating)
         {
-            tourRatings.Update(tourRating);
+            tourRatingRepository.Update(tourRating);
         }
-        public void ReportRating(TourAndGuideRating tourRaitng)
-        {
-            tourRatings.ReportRating(tourRaitng);
-        }
-
         public void Subscribe(IObserver observer)
         {
-            tourRatings.Subscribe(observer);
+            tourRatingRepository.Subscribe(observer);
         }
     }
 }

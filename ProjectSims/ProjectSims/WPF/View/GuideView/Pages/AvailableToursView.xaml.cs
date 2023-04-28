@@ -41,7 +41,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             tourService.Subscribe(this);
             reservationService = new ReservationTourService();
             Guide = g;
-            TodayTours = new ObservableCollection<Tour>(tourService.GetTodayTours(Guide.Id));          
+            TodayTours = new ObservableCollection<Tour>(tourService.GetTodayTours(Guide.Id));   
         }
         private void StartTour_Click(object sender, RoutedEventArgs e)
         {

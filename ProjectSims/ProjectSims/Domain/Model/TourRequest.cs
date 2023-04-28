@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjectSims.Repository
+namespace ProjectSims.Domain.Model
 {
-    public class RequestService
+    public class TourRequest
     {
+
     }
 }

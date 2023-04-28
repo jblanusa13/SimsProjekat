@@ -54,7 +54,7 @@ namespace ProjectSims.Repository
         {
             return guest2FileHandler.Load();
         }
-        public Guest2 GetGuestById(int id)
+        public Guest2 GetById(int id)
         {
             return guests.Find(guest => guest.Id == id);
         }
