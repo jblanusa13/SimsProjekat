@@ -23,7 +23,8 @@ namespace ProjectSims
             { typeof(ITourRepository), new TourRepository() },
             { typeof(IGuideRepository), new GuideRepository() },
             { typeof(IKeyPointRepository), new KeyPointRepository() },
-            { typeof(IUserRepository), new UserRepository() }            
+            { typeof(IUserRepository), new UserRepository() },
+            { typeof(ITourRequestRepository), new TourRequestRepository() }      
             /*{ typeof(IAccommodationRepository), new AccommodationRepository() },
             { typeof(IAccommodationReservationRepository), new AccommodationReservationRepository() },
             { typeof(IGuest1Repository), new Guest1Repository() },

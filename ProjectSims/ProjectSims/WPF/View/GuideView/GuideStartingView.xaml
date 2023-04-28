@@ -43,7 +43,7 @@
                 <MenuItem Header="Ocene i recenzije" Click="FinishedToursRatings_Click"/>
             </MenuItem>
             <MenuItem Header="Zahtevi" Height="120"  Width="150" FontSize="32" Foreground="#FF050518" FontFamily="TGaramond" FontWeight="UltraBold">
-                <MenuItem Header="Zahtevi za ture"/>
+                <MenuItem Header="Zahtevi za ture" Click="TourRequests_Click"/>
                 <MenuItem Header="Statistika zahteva"/>
             </MenuItem>
         </Menu>

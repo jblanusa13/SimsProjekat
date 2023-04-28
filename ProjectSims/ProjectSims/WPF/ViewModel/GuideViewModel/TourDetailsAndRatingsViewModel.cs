@@ -11,7 +11,7 @@ using System.Windows.Controls;
 
 namespace ProjectSims.WPF.ViewModel.GuideViewModel
 {
-    public partial class TourDetailsAndRatingsViewModel
+    public class TourDetailsAndRatingsViewModel
     {
         private KeyPointService keyPointService;
         private ReservationTourService reservationTourService;
