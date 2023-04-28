@@ -34,7 +34,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public void SendRequest(DateOnly dateChange)
         {
             DateChange = dateChange;
-            requestService.CreateRequest(reservationId, DateChange);
+            requestService.CreateRequest(reservationId, DateChange, "");
         }
     }
 }

@@ -57,32 +57,38 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
 
         private void AcceptButton_Click(object sender, RoutedEventArgs e)
         {
-            requestService.UpdateSelectedRequest(sender, SelectedRequest, RequestsTable);
+            requestService.UpdateSelectedRequest(sender, SelectedRequest, RequestsTable, CommentTextBox.Text);
+            CommentTextBox.Text = "Unesite komentar ukoliko odbijate zahtjev...";
         }
 
         private void RefuseButton_Click(object sender, RoutedEventArgs e)
         {
-            requestService.UpdateSelectedRequest(sender, SelectedRequest, RequestsTable);
+            requestService.UpdateSelectedRequest(sender, SelectedRequest, RequestsTable, CommentTextBox.Text);
+            CommentTextBox.Text = "Unesite komentar ukoliko odbijate zahtjev...";
         }
 
         private void CommentTextBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
+            TextBox source = e.Source as TextBox;
+
             if (CommentTextBox.Text == "Unesite komentar ukoliko odbijate zahtjev...")
             {
-                CommentTextBox.Text = "";
+                source.Background = Brushes.MintCream;
+                source.Foreground = Brushes.Black;
+                source.Clear();
             }
-
-            CommentTextBox.SelectionTextBrush = Brushes.Black;
         }
 
         private void CommentTextBox_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
+            TextBox source = e.Source as TextBox;
+
             if (CommentTextBox.Text == "")
             {
                 CommentTextBox.Text = "Unesite komentar ukoliko odbijate zahtjev...";
+                source.Background = Brushes.White;
+                source.Foreground = Brushes.Gray;
             }
-
-            CommentTextBox.SelectionTextBrush = Brushes.Black;
         }
     }
 }

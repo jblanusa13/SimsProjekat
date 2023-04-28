@@ -24,7 +24,7 @@
                 </Grid.RowDefinitions>
                 <DataGrid x:Name="RequestsTable"  
                           ItemsSource="{Binding RequestList}"
-                          Margin="22,61,22,200" 
+                          Margin="22,61,22,257" 
                           AutoGenerateColumns="False" 
                           IsReadOnly="True" 
                           SelectionMode="Single" 
@@ -40,14 +40,11 @@
                                 </MultiBinding>
                             </DataGridTextColumn.Binding>
                         </DataGridTextColumn>
-                        <!-- <DataGridTextColumn x:Name="CheckInDateColumn" Header="Datum dolaska" Binding="{Binding CheckInDate}" Width="95" IsReadOnly="True"/>-->
-                        <!--<DataGridTextColumn Header="Tip smjestaja" Binding="{Binding Type}" Width="110" IsReadOnly="True"/>-->
                         <DataGridTextColumn Header="Trazeni datum"
                                             Binding="{Binding ChangeDate}"
                                             Width="130"
                                             IsReadOnly="True">
                         </DataGridTextColumn>
-                        <!-- <DataGridTextColumn x:Name="CheckOutDateColumn" Header="Datum odlaska" Binding="{Binding CheckOutDate}" Width="95" IsReadOnly="True"/>-->
                         <DataGridCheckBoxColumn Header="Rezervisan"      
                                                 Binding="{Binding Reserved,
                                                           Mode=TwoWay,
@@ -58,8 +55,8 @@
                 </DataGrid>
                 <TextBox x:Name="CommentTextBox"
                          HorizontalAlignment="Center" 
-                         Height="97"
-                         Margin="0,518,0,0"
+                         Height="106"
+                         Margin="0,461,0,0"
                          TextWrapping="Wrap"
                          Text="Unesite komentar ukoliko odbijate zahtjev..."
                          Foreground="Gray"

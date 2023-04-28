@@ -46,10 +46,10 @@ namespace ProjectSims.Service
         {
             return requests.Max(r => r.Id) + 1;
         }
-        public void CreateRequest(int reservationId, DateOnly dateChange)
+        public void CreateRequest(int reservationId, DateOnly dateChange, string comment)
         {
             int id = NextId();
-            Request request = new Request(id, reservationId, dateChange, RequestState.Waiting, "", false);
+            Request request = new Request(id, reservationId, dateChange, RequestState.Waiting, comment, false);
             SetReservedForRequest(request);
             requestRepository.Add(request);
         }
@@ -72,13 +72,14 @@ namespace ProjectSims.Service
             accommodationReservationService.SetReserved(request);
         }
 
-        public void UpdateSelectedRequest(object sender, Request SelectedRequest, DataGrid RequestsTable)
+        public void UpdateSelectedRequest(object sender, Request SelectedRequest, DataGrid RequestsTable, string comment)
         {
             SelectedRequest = (Request)RequestsTable.SelectedItem;
 
             if (SelectedRequest != null)
             {
                 SelectedRequest.State = Set(sender);
+                SelectedRequest.OwnerComment = comment;
                 Update(SelectedRequest);
                 SelectedRequest.Reservation.CheckInDate = SelectedRequest.ChangeDate;
                 SelectedRequest.Reservation.CheckOutDate = SelectedRequest.Reservation.CheckInDate.AddDays(SelectedRequest.Reservation.CheckOutDate.DayNumber - SelectedRequest.Reservation.CheckInDate.DayNumber);
