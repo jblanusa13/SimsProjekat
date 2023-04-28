@@ -15,11 +15,15 @@ namespace ProjectSims.Service
     {
         private AccommodationReservationRepository reservationRepository;
         private List<AccommodationReservation> reservations;
+        private List<DateRanges> unavailableDates;
+        private DateRangesService dateRangesService;
 
         public AccommodationReservationService()
         {
             reservationRepository = new AccommodationReservationRepository();
             reservations = reservationRepository.GetAll();
+            unavailableDates = new List<DateRanges>();
+            dateRangesService = new DateRangesService();
         }
 
         public AccommodationReservation GetReservation(int id)
@@ -58,6 +62,11 @@ namespace ProjectSims.Service
             int id = NextId();
             AccommodationReservation reservation = new AccommodationReservation(id, accommodationId, guestId, checkIn, checkOut, guestNumber, ReservationState.Active, false);
             reservationRepository.Add(reservation);
+        }
+
+        public void Update(AccommodationReservation reservation)
+        {
+            reservationRepository.Update(reservation);
         }
 
         public void RemoveReservation(AccommodationReservation reservation)
@@ -106,6 +115,49 @@ namespace ProjectSims.Service
         public List<AccommodationReservation> GetAllReservations()
         {
             return reservationRepository.GetAll();
+        }
+        public List<DateRanges> FindUnavailableDates(Request request)
+        {
+            foreach (AccommodationReservation reservation in reservationRepository.GetAll())
+            {
+                if (reservation.AccommodationId == GetReservation(request.ReservationId).AccommodationId
+                    && reservation.State == ReservationState.Active
+                    && reservation.Id != request.ReservationId)
+                {
+                    unavailableDates.Add(new DateRanges(reservation.CheckInDate, reservation.CheckOutDate));
+                }
+            }
+            return unavailableDates;
+        }
+
+        public void SetReserved(Request request)
+        {
+            foreach (var date in unavailableDates)
+            {
+                if (IsInRange(request, date.CheckIn, date.CheckOut))
+                {
+                    request.Reserved = true;
+                }
+                else
+                {
+                    request.Reserved = false;
+                }
+            }
+        }
+
+        public bool IsInRange(Request request, DateOnly firstDate, DateOnly lastDate)
+        {
+            int days = GetReservation(request.ReservationId).CheckOutDate.DayNumber - GetReservation(request.ReservationId).CheckInDate.DayNumber;
+
+            //Requested: 12.03, Vacation days: 5, Reserved: 15.03-19.03.
+            for (int i = 0; i < days; i++)
+            {
+                if (dateRangesService.IsInRange(request.ChangeDate.AddDays(i), firstDate, lastDate))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

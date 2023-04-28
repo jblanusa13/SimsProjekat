@@ -184,6 +184,7 @@
   <ItemGroup>
     <Folder Include="Domain\RepositoryInterface\" />
     <Folder Include="Resources\Images\Guest1\" />
+    <Folder Include="WPF\ViewModel\OwnerViewModel\" />
   </ItemGroup>
 
 </Project>

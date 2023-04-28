@@ -47,7 +47,6 @@ namespace ProjectSims.View.OwnerView.Pages
             accommodationRepository = new AccommodationRepository();
             ownerRepository = new OwnerRepository();
             accommodations = new ObservableCollection<Accommodation>();
-            SelectedImages = new List<ListBoxItem>();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -233,8 +232,8 @@ namespace ProjectSims.View.OwnerView.Pages
                 foreach (string path in paths)
                 {
                     Pics.Add(path);
-                } 
-                int idCurrentOwner = MainWindow.CurrentUserId;                
+                }
+                int idCurrentOwner = MainWindow.CurrentUserId;
                 Location location = new Location(IdLocation, Location.ToString().Split(",")[0], Location.ToString().Split(",")[1]);
                 Accommodation accommodation = new Accommodation(-1, AccommodationName, IdLocation, location, Type, GuestsMaximum, MinimumReservationDays, DismissalDays, Pics, idCurrentOwner);
                 accommodationService.Create(accommodation);
@@ -273,7 +272,7 @@ namespace ProjectSims.View.OwnerView.Pages
             }
         }
 
-        private void AddImagesToImageList(string path) 
+        private void AddImagesToImageList(string path)
         {
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();

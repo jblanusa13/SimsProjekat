@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 using ProjectSims.Repository;
+using ProjectSims.WPF.View.OwnerView.Pages;
 
 namespace ProjectSims.Service
 {
@@ -13,10 +15,19 @@ namespace ProjectSims.Service
     {
         private RequestRepository requestRepository;
         private List<Request> requests;
+        private DateRangesService dateRangesService;
+        private AccommodationReservationService accommodationReservationService;
+        private AccommodationReservationRepository reservationRepository;
+        private List<DateRanges> unavailableDates;
+
         public RequestService()
         {
             requestRepository = new RequestRepository();
             requests = requestRepository.GetAll();
+            dateRangesService = new DateRangesService();
+            accommodationReservationService = new AccommodationReservationService();
+            reservationRepository = new AccommodationReservationRepository();
+            unavailableDates = new List<DateRanges>();
         }
 
         public List<Request> GetAllRequestByGuest(int guestId)
@@ -33,16 +44,13 @@ namespace ProjectSims.Service
         }
         public int NextId()
         {
-            if (requests.Count == 0)
-            {
-                return 0;
-            }
             return requests.Max(r => r.Id) + 1;
         }
         public void CreateRequest(int reservationId, DateOnly dateChange)
         {
             int id = NextId();
-            Request request = new Request(id, reservationId, dateChange, RequestState.Waiting, "");
+            Request request = new Request(id, reservationId, dateChange, RequestState.Waiting, "", false);
+            SetReservedForRequest(request);
             requestRepository.Add(request);
         }
         public void Update(Request request)
@@ -56,6 +64,42 @@ namespace ProjectSims.Service
         public void Subscribe(IObserver observer)
         {
             requestRepository.Subscribe(observer);
+        }
+
+        private void SetReservedForRequest(Request request)
+        {
+            unavailableDates = accommodationReservationService.FindUnavailableDates(request);
+            accommodationReservationService.SetReserved(request);
+        }
+
+        public void UpdateSelectedRequest(object sender, Request SelectedRequest, DataGrid RequestsTable)
+        {
+            SelectedRequest = (Request)RequestsTable.SelectedItem;
+
+            if (SelectedRequest != null)
+            {
+                SelectedRequest.State = Set(sender);
+                Update(SelectedRequest);
+                SelectedRequest.Reservation.CheckInDate = SelectedRequest.ChangeDate;
+                SelectedRequest.Reservation.CheckOutDate = SelectedRequest.Reservation.CheckInDate.AddDays(SelectedRequest.Reservation.CheckOutDate.DayNumber - SelectedRequest.Reservation.CheckInDate.DayNumber);
+                accommodationReservationService.Update(SelectedRequest.Reservation);
+            }
+            else if (SelectedRequest == null)
+            {
+                //Do nothing
+            }
+        }
+
+        RequestState Set(object sender)
+        {
+            Button clickedButton = sender as Button;
+
+            if (clickedButton.Name == "AcceptButton" && clickedButton != null)
+            {
+                return RequestState.Approved;
+            }
+
+            return RequestState.Rejected;
         }
     }
 }

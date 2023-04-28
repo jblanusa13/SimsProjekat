@@ -23,8 +23,7 @@
                     <RowDefinition Height="47*"/>
                 </Grid.RowDefinitions>
                 <DataGrid x:Name="RequestsTable"  
-                          ItemsSource="{Binding RequestList,
-                                        UpdateSourceTrigger=PropertyChanged}"
+                          ItemsSource="{Binding RequestList}"
                           Margin="22,61,22,200" 
                           AutoGenerateColumns="False" 
                           IsReadOnly="True" 
@@ -52,12 +51,22 @@
                         <DataGridCheckBoxColumn Header="Rezervisan"      
                                                 Binding="{Binding Reserved,
                                                           Mode=TwoWay,
-                                                          BindsDirectlyToSource=True, 
-                                                          UpdateSourceTrigger=PropertyChanged}"
+                                                          BindsDirectlyToSource=True}"
                                                 Width="*"
                                                 IsReadOnly="True"/>
                     </DataGrid.Columns>
                 </DataGrid>
+                <TextBox x:Name="CommentTextBox"
+                         HorizontalAlignment="Center" 
+                         Height="97"
+                         Margin="0,518,0,0"
+                         TextWrapping="Wrap"
+                         Text="Unesite komentar ukoliko odbijate zahtjev..."
+                         Foreground="Gray"
+                         GotKeyboardFocus="CommentTextBox_GotKeyboardFocus"
+                         LostKeyboardFocus="CommentTextBox_LostKeyboardFocus"
+                         VerticalAlignment="Top"
+                         Width="376"/>
             </Grid>
         </StackPanel>
         <Button x:Name="AcceptButton"

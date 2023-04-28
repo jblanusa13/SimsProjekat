@@ -27,13 +27,12 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
     /// <summary>
     /// Interaction logic for Requests.xaml
     /// </summary>
-    public partial class Requests : Page, INotifyPropertyChanged, IObserver
+    public partial class Requests : Page, IObserver
     {
         public Owner owner;
         public Request SelectedRequest { get; set; }
         public ObservableCollection<Request> RequestList { get; set; }
         private RequestService requestService;
-        private RequestRepository requestRepository;
         private AccommodationReservationService accommodationReservationService;
 
         public Requests(Owner o)
@@ -44,92 +43,7 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
             requestService = new RequestService();
             requestService.Subscribe(this);
             RequestList = new ObservableCollection<Request>(requestService.GetAllRequests());
-            requestRepository = new RequestRepository();
             accommodationReservationService = new AccommodationReservationService();
-
-            SetReserved();
-        }
-
-        private string _firstName;
-        public string FirstName
-        {
-            get => _firstName;
-            set
-            {
-                if (value != _firstName)
-                {
-                    _firstName = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private string _lastName;
-        public string LastName
-        {
-            get => _lastName;
-            set
-            {
-                if (value != _lastName)
-                {
-                    _lastName = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private bool _reserved = true;
-        public bool Reserved
-        {
-            get => _reserved = true;
-
-            set
-            {
-                if (value != _reserved)
-                {
-                    _reserved = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private void SetReserved()
-        {
-            foreach (var item in RequestList)
-            {
-                if (IsReserved(item))
-                {
-                    Reserved = false;
-                }
-                else
-                {
-                    Reserved = true;
-                }
-                requestRepository.NotifyObservers();
-            }
-        }
-
-        private bool IsReserved(Request request)
-        {
-            foreach (var item in accommodationReservationService.GetAllReservations())
-            {
-                if (request.Reservation.AccommodationId == item.AccommodationId && IsInRange(item.CheckInDate, item.CheckOutDate, request.ChangeDate))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        private bool IsInRange(DateOnly firstDate, DateOnly lastDate, DateOnly requestedDate)
-        {
-            return requestedDate >= firstDate && requestedDate <= lastDate;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public void Update()
@@ -143,44 +57,32 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
 
         private void AcceptButton_Click(object sender, RoutedEventArgs e)
         {
-            Button clickedButton = sender as Button;
-            UpdateSelectedRequest(clickedButton);
+            requestService.UpdateSelectedRequest(sender, SelectedRequest, RequestsTable);
         }
 
         private void RefuseButton_Click(object sender, RoutedEventArgs e)
         {
-            Button clickedButton = sender as Button;
-            UpdateSelectedRequest(clickedButton);
+            requestService.UpdateSelectedRequest(sender, SelectedRequest, RequestsTable);
         }
 
-        private void UpdateSelectedRequest(Button clickedButton) 
+        private void CommentTextBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            if (SelectedRequest != null)
+            if (CommentTextBox.Text == "Unesite komentar ukoliko odbijate zahtjev...")
             {
-                SelectedRequest.State = RequestState.Approved;
-                //SetRequestState(clickedButton);
-                requestService.Update(SelectedRequest);
-                accommodationReservationService.Update(SelectedRequest.Reservation);
-                requestService.Delete(SelectedRequest);
-                UpdateLayout();
-                Update();
+                CommentTextBox.Text = "";
             }
-            else if (SelectedRequest == null)
-            {
-                //Do nothing
-            }
+
+            CommentTextBox.SelectionTextBrush = Brushes.Black;
         }
 
-        private void SetRequestState(Button clickedButton)
+        private void CommentTextBox_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            if (clickedButton == AcceptButton)
+            if (CommentTextBox.Text == "")
             {
-                SelectedRequest.State = RequestState.Approved;
+                CommentTextBox.Text = "Unesite komentar ukoliko odbijate zahtjev...";
             }
-            else if (clickedButton == RefuseButton)
-            {
-                SelectedRequest.State = RequestState.Rejected;
-            }
+
+            CommentTextBox.SelectionTextBrush = Brushes.Black;
         }
     }
 }

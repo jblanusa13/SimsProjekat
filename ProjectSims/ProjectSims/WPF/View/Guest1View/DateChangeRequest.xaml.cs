@@ -26,7 +26,7 @@ namespace ProjectSims.WPF.View.Guest1View
     /// </summary>
     public partial class DateChangeRequest : Window
     {
-        public DateChangeRequestViewModel viewModel { get; set; } 
+        public DateChangeRequestViewModel viewModel { get; set; }
         public DateChangeRequest(AccommodationReservation selectedReservation)
         {
             InitializeComponent();
