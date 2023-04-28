@@ -20,12 +20,12 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
             tourRequestService = new TourRequestService();
             tourRequestService.Subscribe(this);
             Guide = guide;
-            TourRequests = new ObservableCollection<TourRequest>(tourRequestService.GetAllRequests());
+            TourRequests = new ObservableCollection<TourRequest>(tourRequestService.GetWaitingRequests());
         }
         public void Update()
         {
             TourRequests.Clear();
-            foreach (var tourRequest in tourRequestService.GetAllRequests())
+            foreach (var tourRequest in tourRequestService.GetWaitingRequests())
             {
                 TourRequests.Add(tourRequest);
             }

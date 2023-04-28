@@ -25,6 +25,10 @@ namespace ProjectSims.Service
         {
             return tourRequestRepository.GetAll();
         }
+        public List<TourRequest> GetWaitingRequests()
+        {
+            return tourRequestRepository.GetWaitingRequests();
+        }
         public TourRequest GetById(int id)
         {
             return tourRequestRepository.GetById(id);

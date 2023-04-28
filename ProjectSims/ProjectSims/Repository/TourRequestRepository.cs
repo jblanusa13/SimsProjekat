@@ -57,6 +57,10 @@ namespace ProjectSims.Repository
         {
             return tourRequests;
         }
+        public List<TourRequest> GetWaitingRequests()
+        {
+            return tourRequests.Where(r=> r.State == TourRequestState.Waiting).ToList();
+        }
         public TourRequest GetById(int id)
         {
             return tourRequests.Find(t => t.Id == id);

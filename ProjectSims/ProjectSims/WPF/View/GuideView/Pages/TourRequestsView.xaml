@@ -5,12 +5,43 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
       mc:Ignorable="d" 
-       d:DesignHeight="400" d:DesignWidth="1280"
+      d:DesignHeight="400" d:DesignWidth="1280"
       Title="FinishedToursView">
+    <Page.Resources>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Broadway"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
+        <Style TargetType="{x:Type Image}">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
+    </Page.Resources>
     <ScrollViewer>
         <Grid Background="#FF050518">
-            <Label Content="Lista zahteva" HorizontalAlignment="Center" Margin="0,35,0,0" VerticalAlignment="Top" Width="200" Height="40" Foreground="White" FontSize="25" FontFamily="Broadway"/>
-            <ListView  x:Name="TourRequestsListView" ItemsSource="{Binding TourRequests}" Margin="0,100,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single" Width="1200" Background="#D0D5F7">
+            <Label Content="Lista zahteva" HorizontalAlignment="Center" Margin="0,35,0,0" FontSize="25"/>
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,100,0,0" Width="1280" Height="120">
+                <Border BorderBrush="White" BorderThickness="2"/>
+                <Image Source="/Resources/Icons/Guide/filter.png" Height="50" Width="50" Margin="20,20,0,0"/>
+                <Label Content="Filteri" Margin="60,30,0,0" FontSize="22"/>
+                <TextBox x:Name="LocationTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,60,0,0" Height="40" Width="200"/>
+                <Image Source="/Resources/Icons/Guide/mappin.png" Margin="400,60,0,0"/>
+                <TextBox x:Name="LanguageTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="500,60,0,0" Height="40" Width="200"/>
+                <Image Source="/Resources/Icons/Guide/globe.png" Margin="710,60,0,0"/>
+                <TextBox x:Name="MaxNumberGuestsTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="800,60,0,0" Height="40" Width="70"/>
+                <Image Source="/Resources/Icons/Guide/guests.png" Margin="890,60,0,0"/>
+                <DatePicker HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1000,70,0,0" Height="25" Width="110"/>
+            </Grid>
+            <ListView  x:Name="TourRequestsListView" ItemsSource="{Binding TourRequests}" Margin="0,270,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single" Width="1200" Background="#D0D5F7">
+                <ListView.Resources>
+                    <Style TargetType="{x:Type Label}">
+                        <Setter Property="Foreground" Value="Black"/>
+                    </Style>
+                </ListView.Resources>
                 <ListView.View>
                     <GridView >
                         <GridViewColumn Header="Lokacija" Width="250">
@@ -60,6 +91,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
+            <Grid/>
         </Grid>
     </ScrollViewer>
 </Page>

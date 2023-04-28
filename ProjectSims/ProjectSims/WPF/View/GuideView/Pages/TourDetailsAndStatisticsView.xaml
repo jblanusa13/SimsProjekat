@@ -23,8 +23,14 @@
     </Page.Resources>
     <ScrollViewer>
         <Grid Background="#FF050518">
-            <Label Content="{Binding SelectedTour.Name}" Margin="0,40,0,0" Width="500" Height="60" FontSize="30" FontWeight="UltraBold"/>
-            <Label Content="{Binding SelectedTour.StartOfTheTour}" Margin="510,40,0,0" Width="400" Height="60" FontSize="30" FontWeight="UltraBold"/>
+            <Label Margin="0,50,0,0" Height="60" FontSize="30" FontWeight="UltraBold" HorizontalAlignment="Center">
+                <AccessText>
+                    <MultiBinding StringFormat="{}{0} , {1}">
+                        <Binding Path="SelectedTour.Name" />
+                        <Binding Path="SelectedTour.StartOfTheTour" />
+                    </MultiBinding>
+                </AccessText>
+            </Label>
             <Image Source="/Resources/Icons/Guide/mapPin.png" Margin="50,90,0,0"/>
             <Label Content="{Binding SelectedTour.Location}" Margin="100,90,0,0" Width="400" Height="40" FontSize="20"/>
             <Image Source="/Resources/Icons/Guide/Globe.png" Margin="50,140,0,0"/>
