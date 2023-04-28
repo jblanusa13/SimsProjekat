@@ -19,6 +19,7 @@ namespace ProjectSims.Service
             requestRepository = Injector.CreateInstance<IRequestRepository>();
            // reservationService = new AccommodationReservationService();
         }
+
         /*
         public List<Request> GetAllRequestByGuest(int guestId)
         {

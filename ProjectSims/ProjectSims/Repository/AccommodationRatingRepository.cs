@@ -25,6 +25,20 @@ namespace ProjectSims.Repository
         {
             return ratings.Find(r => r.ReservationId == reservationId);
         }
+        public List<AccommodationAndOwnerRating> GetAllByGuestId(int guestId)
+        {
+            List<AccommodationAndOwnerRating> ratingsByGuest = new List<AccommodationAndOwnerRating>();
+
+            foreach(AccommodationAndOwnerRating rating in ratings)
+            {
+                if(rating.Reservation.Guest.Id == guestId)
+                {
+                    ratingsByGuest.Add(rating);
+                }
+            }
+
+            return ratingsByGuest;
+        }
         public List<AccommodationAndOwnerRating> GetAll()
         {
             return ratings;

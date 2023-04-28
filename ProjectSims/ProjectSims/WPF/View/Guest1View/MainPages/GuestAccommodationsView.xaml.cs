@@ -84,7 +84,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
                     }
                 case 4:
                     {
-                        NavigationService.Navigate(new RatingsView());
+                        NavigationService.Navigate(new RatingsView(Guest));
                         break;
                     }
                 case 5:
