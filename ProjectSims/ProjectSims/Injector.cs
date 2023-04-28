@@ -15,7 +15,6 @@ namespace ProjectSims
     {
         private static Dictionary<Type, object> implementations = new Dictionary<Type, object>
         {
-
             { typeof(IGuest2Repository), new Guest2Repository() },
             { typeof(IVoucherRepository), new VoucherRepository() },
             { typeof(IReservationTourRepository), new ReservationTourRepository() },
@@ -23,15 +22,16 @@ namespace ProjectSims
             { typeof(ITourRepository), new TourRepository() },
             { typeof(IGuideRepository), new GuideRepository() },
             { typeof(IKeyPointRepository), new KeyPointRepository() },
-            { typeof(IUserRepository), new UserRepository() }            
-            /*{ typeof(IAccommodationRepository), new AccommodationRepository() },
+            { typeof(IUserRepository), new UserRepository() },            
+            //{ typeof(IAccommodationRepository), new AccommodationRepository() },
+            // { typeof(IGuestAcommodationRepository), new GuestAccommodationRepository() },
+           // { typeof(ILocationRepository), new LocationRepository() },
+            //{ typeof(IOwnerRepository), new OwnerRepository() },
             { typeof(IAccommodationReservationRepository), new AccommodationReservationRepository() },
             { typeof(IGuest1Repository), new Guest1Repository() },
-            { typeof(IGuestAcommodationRepository), new GuestAccommodationRepository() },
-            { typeof(ILocationRepository), new LocationRepository() },
-            { typeof(IOwnerRepository), new OwnerRepository() },
-            { typeof(IRequestRepository), new RequestRepository() }*/
-
+            { typeof(IAccommodationRatingRepository), new AccommodationRatingRepository() },
+            { typeof(IRenovationRecommendationRepository), new RenovationRecommendationRepository() },
+            { typeof(IRequestRepository), new RequestRepository() }
         };
        public static T CreateInstance<T>()
         {

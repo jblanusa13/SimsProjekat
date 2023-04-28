@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.Repository;
 using ProjectSims.Serializer;
 using ProjectSims.Service;
@@ -84,17 +85,18 @@ namespace ProjectSims.Domain.Model
                 Images.Add(image);
             }
             RenovationId = Convert.ToInt32(values[8]);
-
-            InitalizeData();
+            InitializeData();
         }
-
-        public void InitalizeData()
+        
+        public void InitializeData()
         {
+            //Reservation = Injector.CreateInstance<IAccommodationReservationRepository>().GetById(ReservationId);
+            //RenovationRecommendation = Injector.CreateInstance<IRenovationRecommendationRepository>().GetById(RenovationId);
             AccommodationReservationRepository reservationRepository = new AccommodationReservationRepository();
             RenovationRecommendationRepository recommendationRepository = new RenovationRecommendationRepository();
 
-            Reservation = reservationRepository.Get(ReservationId);
-            RenovationRecommendation = recommendationRepository.Get(RenovationId);
+            Reservation = reservationRepository.GetById(ReservationId);
+            RenovationRecommendation = recommendationRepository.GetById(RenovationId);
         }
 
     }

@@ -8,35 +8,50 @@ using ProjectSims.Repository;
 using ProjectSims.Observer;
 using ProjectSims.FileHandler;
 using ProjectSims.WPF.View.Guest1View;
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Service
 {
     public class AccommodationReservationService
     {
-        private AccommodationReservationRepository reservationRepository;
+        private IAccommodationReservationRepository reservationRepository;
+       // private AccommodationService accommodationService;
+       // private LocationService locationService;
+       // private Guest1Service guest1Service;
         private RequestService requestService;
 
         public AccommodationReservationService()
         {
-            reservationRepository = new AccommodationReservationRepository();
+            reservationRepository = Injector.CreateInstance<IAccommodationReservationRepository>();
+            // accommodationService = new AccommodationService();
+            // locationService = new LocationService();
+            // guest1Service = new Guest1Service();
             requestService = new RequestService();
         }
 
         public AccommodationReservation GetReservation(int id)
         {
-            return reservationRepository.Get(id);
+            return reservationRepository.GetById(id);
         }
-
+        /*
+                public List<AccommodationReservation> GetReservationByGuest(int guestId)
+                {
+                    List<AccommodationReservation> reservations = reservationRepository.GetByGuest(guestId);
+                    reservations.ForEach(reservation => reservation.Accommodation = accommodationService.GetAccommodation(reservation.AccommodationId));
+                    reservations.ForEach(reservation => reservation.Accommodation.Location = locationService.GetLocation(reservation.Accommodation.IdLocation));
+                    reservations.ForEach(reservation => reservation.Guest = guest1Service.GetGuest1(guestId));
+                    return reservations;
+                }*/
         public List<AccommodationReservation> GetReservationByGuest(int guestId)
         {
             return reservationRepository.GetByGuest(guestId);
         }
- 
+
         public void CreateReservation(int accommodationId, int guestId, DateOnly checkIn, DateOnly checkOut, int guestNumber)
         {
             int id = reservationRepository.NextId();
             AccommodationReservation reservation = new AccommodationReservation(id, accommodationId, guestId, checkIn, checkOut, guestNumber, ReservationState.Active, false);
-            reservationRepository.Add(reservation);
+            reservationRepository.Create(reservation);
         }
 
         public void RemoveReservation(AccommodationReservation reservation)

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Domain.Model;
+using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.Observer;
 using ProjectSims.Repository;
 
@@ -11,11 +12,20 @@ namespace ProjectSims.Service
 {
     public class RequestService
     {
-        private RequestRepository requestRepository;
+        private IRequestRepository requestRepository;
+        // private AccommodationReservationService reservationService;
         public RequestService()
         {
-            requestRepository = new RequestRepository();
+            requestRepository = Injector.CreateInstance<IRequestRepository>();
+           // reservationService = new AccommodationReservationService();
         }
+        /*
+        public List<Request> GetAllRequestByGuest(int guestId)
+        {
+            List<Request> requests = requestRepository.GetAllByGuest(guestId);
+            requests.ForEach(request => request.Reservation = reservationService.GetReservation(request.ReservationId));
+            return requests;
+        }*/
 
         public List<Request> GetAllRequestByGuest(int guestId)
         {
@@ -30,7 +40,7 @@ namespace ProjectSims.Service
         {
             int id = requestRepository.NextId();
             Request request = new Request(id, reservationId, dateChange, RequestState.Waiting, "");
-            requestRepository.Add(request);
+            requestRepository.Create(request);
         }
 
         public void UpdateRequestsWhenCancelReservation(AccommodationReservation reservation)

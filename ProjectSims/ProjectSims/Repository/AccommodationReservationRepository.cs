@@ -8,47 +8,38 @@ using System.Windows.Input;
 using ProjectSims.FileHandler;
 using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Repository
 {
-    public class AccommodationReservationRepository : ISubject
+    public class AccommodationReservationRepository : IAccommodationReservationRepository
     {
         private AccommodationReservationFileHandler reservationFileHandler;
         private List<AccommodationReservation> reservations;
-
         private readonly List<IObserver> observers;
-
 
         public AccommodationReservationRepository()
         {
             reservationFileHandler = new AccommodationReservationFileHandler();
             reservations = reservationFileHandler.Load();
-
             observers = new List<IObserver>();
-
         }
-
-        public List<AccommodationReservation> GetAll()
-        {
-            return reservations;
-        }
-
-        public AccommodationReservation Get(int id)
-        {
-            return reservations.Find(r => r.Id == id);
-        }
-
         public List<AccommodationReservation> GetByGuest(int guestId)
         {
             List<AccommodationReservation> guestReservations = new List<AccommodationReservation>();
             foreach (AccommodationReservation reservation in reservations)
             {
-                if(reservation.GuestId == guestId && reservation.State == ReservationState.Active)
+                if (reservation.GuestId == guestId && reservation.State == ReservationState.Active)
                 {
                     guestReservations.Add(reservation);
                 }
             }
             return guestReservations;
+        }
+
+        public List<AccommodationReservation> GetAll()
+        {
+            return reservations;
         }
         public int NextId()
         {
@@ -58,22 +49,34 @@ namespace ProjectSims.Repository
             }
             return reservations.Max(r => r.Id) + 1;
         }
-
-        public void Add(AccommodationReservation reservation)
+        public void Create(AccommodationReservation entity)
         {
-            reservations.Add(reservation);
+            reservations.Add(entity);
             reservationFileHandler.Save(reservations);
             NotifyObservers();
         }
-        public void Update(AccommodationReservation reservation)
+
+        public void Update(AccommodationReservation entity)
         {
-            int index = reservations.FindIndex(a => reservation.Id == a.Id);
+            int index = reservations.FindIndex(a => entity.Id == a.Id);
             if (index != -1)
             {
-                reservations[index] = reservation;
+                reservations[index] = entity;
             }
             reservationFileHandler.Save(reservations);
-            NotifyObservers();          
+            NotifyObservers();
+        }
+
+        public void Remove(AccommodationReservation entity)
+        {
+            reservations.Remove(entity);
+            reservationFileHandler.Save(reservations);
+            NotifyObservers();
+        }
+
+        public AccommodationReservation GetById(int key)
+        {
+            return reservations.Find(r => r.Id == key);
         }
 
         public void Subscribe(IObserver observer)

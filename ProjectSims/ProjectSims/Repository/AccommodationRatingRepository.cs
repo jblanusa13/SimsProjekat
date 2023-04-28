@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using ProjectSims.Domain.Model;
+using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.FileHandler;
 using ProjectSims.WPF.View.Guest1View.MainPages;
 
 namespace ProjectSims.Repository
 {
-    public class AccommodationRatingRepository
+    public class AccommodationRatingRepository : IAccommodationRatingRepository
     {
         private AccommodationRatingFileHandler ratingFileHandler;
         private List<AccommodationAndOwnerRating> ratings;
@@ -19,20 +21,13 @@ namespace ProjectSims.Repository
             ratingFileHandler = new AccommodationRatingFileHandler();
             ratings = ratingFileHandler.Load();
         }
-
-        public List<AccommodationAndOwnerRating> GetAll()
-        {
-            return ratings;
-        }
-
-        public AccommodationAndOwnerRating Get(int id)
-        {
-            return ratings.Find(r => r.Id == id);
-        }
-
         public AccommodationAndOwnerRating GetByReservationId(int reservationId)
         {
             return ratings.Find(r => r.ReservationId == reservationId);
+        }
+        public List<AccommodationAndOwnerRating> GetAll()
+        {
+            return ratings;
         }
 
         public int NextId()
@@ -44,19 +39,30 @@ namespace ProjectSims.Repository
             return ratings.Max(r => r.Id) + 1;
         }
 
-        public void Add(AccommodationAndOwnerRating rating)
+        public void Create(AccommodationAndOwnerRating entity)
         {
-            ratings.Add(rating);
+            ratings.Add(entity);
             ratingFileHandler.Save(ratings);
         }
-        public void Update(AccommodationAndOwnerRating rating)
+        public void Update(AccommodationAndOwnerRating entity)
         {
-            int index = ratings.FindIndex(r => rating.Id == r.Id);
+            int index = ratings.FindIndex(r => entity.Id == r.Id);
             if (index != -1)
             {
-                ratings[index] = rating;
+                ratings[index] = entity;
             }
             ratingFileHandler.Save(ratings);
+        }
+
+        public void Remove(AccommodationAndOwnerRating entity)
+        {
+            ratings.Remove(entity);
+            ratingFileHandler.Save(ratings); 
+        }
+
+        public AccommodationAndOwnerRating GetById(int key)
+        {
+            return ratings.Find(r => r.Id == key);
         }
     }
 }

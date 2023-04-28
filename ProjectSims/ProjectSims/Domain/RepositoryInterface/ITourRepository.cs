@@ -9,12 +9,10 @@ using System.Threading.Tasks;
 
 namespace ProjectSims.Domain.RepositoryInterface
 {
-    public interface ITourRepository : IGenericRepository<Tour, int>
+    public interface ITourRepository : IGenericRepository<Tour, int>, ISubject
     {
         public List<Tour> GetToursByStateAndGuideId(TourState state, int guideId);
         public Tour GetTourByStateAndGuideId(TourState state, int guideId);
         public List<Tour> GetTodayTours(int guideId);
-        public int NextId();
-
     }
 }

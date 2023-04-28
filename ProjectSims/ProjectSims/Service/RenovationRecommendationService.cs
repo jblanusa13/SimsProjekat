@@ -4,22 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Domain.Model;
+using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.Repository;
 
 namespace ProjectSims.Service
 {
     public class RenovationRecommendationService
     {
-        private RenovationRecommendationRepository recommendationRepository;
+        private IRenovationRecommendationRepository recommendationRepository;
 
         public RenovationRecommendationService()
         {
-            recommendationRepository = new RenovationRecommendationRepository();
+            recommendationRepository = Injector.CreateInstance<IRenovationRecommendationRepository>();
         }
 
         public RenovationRecommendation GetRecommendation(int id)
         {
-            return recommendationRepository.Get(id);
+            return recommendationRepository.GetById(id);
         }
 
         public List<RenovationRecommendation> GetAllRecommendations()
@@ -30,7 +31,7 @@ namespace ProjectSims.Service
         {
             int id = recommendationRepository.NextId();
             RenovationRecommendation recommendation = new RenovationRecommendation(id, renovationUrgency, recommendations);
-            recommendationRepository.Add(recommendation);
+            recommendationRepository.Create(recommendation);
         }
 
         public RenovationRecommendation GetNewRecommendation(int renovationUrgency, string recommendations)

@@ -9,10 +9,9 @@ using System.Threading.Tasks;
 
 namespace ProjectSims.Domain.RepositoryInterface
 {
-    public interface IVoucherRepository : IGenericRepository<Voucher,int>
+    public interface IVoucherRepository : IGenericRepository<Voucher,int>, ISubject
     {
         public List<Voucher> GetWithIds(List<int> ids);
         public List<Voucher> GetActiveVouchers(List<int> ids);
-        public int GetNextId();
     }
 }

@@ -11,41 +11,53 @@ namespace ProjectSims.Service
 {
     public class AccommodationService
     {
-        private AccommodationRepository accommodations;
+        private AccommodationRepository accommodationRepository;
+        // private LocationService locationService;
 
         public AccommodationService()
         {
-            accommodations = new AccommodationRepository();
+            accommodationRepository = new AccommodationRepository();
+            // locationService = new LocationService();
         }
 
         public List<Accommodation> GetAllAccommodations()
         {
-            return accommodations.GetAll();
+            return accommodationRepository.GetAll();
+        }/*
+        public List<Accommodation> GetAllAccommodationsForGuestView()
+        {
+            List<Accommodation> accommodations = GetAllAccommodations();
+            accommodations.ForEach(accommodation => accommodation.Location = locationService.GetLocation(accommodation.IdLocation));
+            return accommodations;
+        }*/
+        public List<Accommodation> GetAllAccommodationsForGuestView()
+        {
+            return GetAllAccommodations();
         }
 
         public Accommodation GetAccommodation(int id)
         {
-            return accommodations.Get(id);
+            return accommodationRepository.Get(id);
         }
 
         public void Create(Accommodation accommodation)
         {
-            accommodations.Add(accommodation);
+            accommodationRepository.Add(accommodation);
         }
 
         public void Delete(Accommodation accommodation)
         {
-            accommodations.Remove(accommodation);
+            accommodationRepository.Remove(accommodation);
         }
 
         public void Update(Accommodation accommodation)
         {
-            accommodations.Update(accommodation);
+            accommodationRepository.Update(accommodation);
         }
 
         public void Subscribe(IObserver observer)
         {
-            accommodations.Subscribe(observer);
+            accommodationRepository.Subscribe(observer);
         }
     }
 }

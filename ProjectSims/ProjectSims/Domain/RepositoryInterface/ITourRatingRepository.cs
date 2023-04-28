@@ -9,9 +9,8 @@ using ProjectSims.Repository;
 
 namespace ProjectSims.Domain.RepositoryInterface
 {
-    public interface ITourRatingRepository : IGenericRepository<TourAndGuideRating, int>
+    public interface ITourRatingRepository : IGenericRepository<TourAndGuideRating, int>, ISubject
     {
         public List<TourAndGuideRating> GetAllRatingsByTour(Tour tour);
-        public int GetNextId();
     }
 }

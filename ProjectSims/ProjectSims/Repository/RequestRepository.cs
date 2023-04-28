@@ -4,35 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Domain.Model;
+using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.FileHandler;
 using ProjectSims.Observer;
+using ProjectSims.WPF.View.Guest1View.MainPages;
 
 namespace ProjectSims.Repository
 {
-    public class RequestRepository : ISubject
+    public class RequestRepository : IRequestRepository
     {
         private RequestFileHandler requestFileHandler;
         private List<Request> requests;
-
         private readonly List<IObserver> observers;
         public RequestRepository()
         {
             requestFileHandler = new RequestFileHandler();
             requests = requestFileHandler.Load();
-
             observers = new List<IObserver>();
         }
-
-        public List<Request> GetAll()
-        {
-            return requests;
-        }
-
-        public Request Get(int id)
-        {
-            return requests.Find(r => r.Id == id);
-        }
-
         public List<Request> GetAllByGuest(int guestId)
         {
             List<Request> guestRequests = new List<Request>();
@@ -63,6 +52,11 @@ namespace ProjectSims.Repository
         {
             return requests.Find(r => r.ReservationId == reservationId);
         }
+        public List<Request> GetAll()
+        {
+            return requests;
+        }
+
         public int NextId()
         {
             if (requests.Count == 0)
@@ -71,18 +65,32 @@ namespace ProjectSims.Repository
             }
             return requests.Max(r => r.Id) + 1;
         }
-        public void Add(Request request)
+        public void Create(Request entity)
         {
-            requests.Add(request);
+            requests.Add(entity);
             requestFileHandler.Save(requests);
         }
 
-        public void Remove(Request request)
+        public void Update(Request entity)
         {
-            requests.Remove(request);
+            int index = requests.FindIndex(a => entity.Id == a.Id);
+            if (index != -1)
+            {
+                requests[index] = entity;
+            }
             requestFileHandler.Save(requests);
         }
-  
+        public void Remove(Request entity)
+        {
+            requests.Remove(entity);
+            requestFileHandler.Save(requests);
+        }
+
+        public Request GetById(int key)
+        {
+            return requests.Find(r => r.Id == key);
+        }
+
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);

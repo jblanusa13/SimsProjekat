@@ -4,19 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Domain.Model;
+using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.FileHandler;
+using ProjectSims.WPF.View.Guest1View.MainPages;
 
 namespace ProjectSims.Repository
 {
-    public class RenovationRecommendationRepository
+    public class RenovationRecommendationRepository : IRenovationRecommendationRepository
     {
-        private RenovationRecommendationFileHandler fileHandler;
+        private RenovationRecommendationFileHandler recommendationFileHandler;
         private List<RenovationRecommendation> recommendations;
 
         public RenovationRecommendationRepository()
         {
-            fileHandler = new RenovationRecommendationFileHandler();
-            recommendations = fileHandler.Load();
+            recommendationFileHandler = new RenovationRecommendationFileHandler();
+            recommendations = recommendationFileHandler.Load();
         }
 
         public List<RenovationRecommendation> GetAll()
@@ -24,10 +26,6 @@ namespace ProjectSims.Repository
             return recommendations;
         }
 
-        public RenovationRecommendation Get(int id)
-        {
-            return recommendations.Find(r => r.Id == id);
-        }
         public int NextId()
         {
             if (recommendations.Count == 0)
@@ -37,10 +35,31 @@ namespace ProjectSims.Repository
             return recommendations.Max(r => r.Id) + 1;
         }
 
-        public void Add(RenovationRecommendation recommendation)
+        public void Create(RenovationRecommendation entity)
         {
-            recommendations.Add(recommendation);
-            fileHandler.Save(recommendations);
+            recommendations.Add(entity);
+            recommendationFileHandler.Save(recommendations);
+        }
+
+        public void Update(RenovationRecommendation entity)
+        {
+            int index = recommendations.FindIndex(a => entity.Id == a.Id);
+            if (index != -1)
+            {
+                recommendations[index] = entity;
+            }
+            recommendationFileHandler.Save(recommendations);
+        }
+
+        public void Remove(RenovationRecommendation entity)
+        {
+            recommendations.Remove(entity);
+            recommendationFileHandler.Save(recommendations);
+        }
+
+        public RenovationRecommendation GetById(int key)
+        {
+            return recommendations.Find(r => r.Id == key);
         }
     }
 }

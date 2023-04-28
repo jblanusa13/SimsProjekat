@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Domain.Model;
+using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.Repository;
 using ProjectSims.WPF.View.Guest1View.MainPages;
 
@@ -11,16 +12,16 @@ namespace ProjectSims.Service
 {
     public class AccommodationRatingService
     {
-        private AccommodationRatingRepository ratingRepository;
+        private IAccommodationRatingRepository ratingRepository;
 
         public AccommodationRatingService()
         {
-            ratingRepository = new AccommodationRatingRepository();
+            ratingRepository = Injector.CreateInstance<IAccommodationRatingRepository>();
         }
 
         public AccommodationAndOwnerRating GetRating(int id)
         {
-            return ratingRepository.Get(id);
+            return ratingRepository.GetById(id);
         }
 
         public AccommodationAndOwnerRating GetRatingByReservationId(int reservationId)
@@ -32,7 +33,7 @@ namespace ProjectSims.Service
         {
             int id = ratingRepository.NextId();
             AccommodationAndOwnerRating rating = new AccommodationAndOwnerRating(id, reservationId, reservation, cleanliness, ownerFairness, location, valueForMoney, comment, imageList, recommendationId, recommendation);
-            ratingRepository.Add(rating);
+            ratingRepository.Create(rating);
         }
     }
 }

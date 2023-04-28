@@ -20,7 +20,7 @@ namespace ProjectSims.Service
         }
         public int GetNextId()
         {
-            return keyPointRepository.GetNextId();
+            return keyPointRepository.NextId();
         }
         public List<KeyPoint> GetAllKeyPoints()
         {

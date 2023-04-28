@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.Repository;
 using ProjectSims.Serializer;
 using ProjectSims.Service;
@@ -38,6 +39,7 @@ namespace ProjectSims.Domain.Model
             ChangeDate = DateOnly.ParseExact(values[2], "dd.MM.yyyy");
             State = Enum.Parse<RequestState>(values[3]);
             OwnerComment = values[4];
+
             InitializeData();
         }
 
@@ -56,7 +58,8 @@ namespace ProjectSims.Domain.Model
         public void InitializeData()
         {
             AccommodationReservationRepository reservationRepository = new AccommodationReservationRepository();
-            Reservation = reservationRepository.Get(ReservationId);
+
+            Reservation = reservationRepository.GetById(ReservationId);
         }
     }
 }
