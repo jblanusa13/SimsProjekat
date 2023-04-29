@@ -161,13 +161,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
     <PackageReference Include="CalcBinding" Version="2.5.2" />
     <PackageReference Include="Tulpep.NotificationWindow" Version="1.1.38" />
   </ItemGroup>
-
   <ItemGroup>
     <Resource Include="Images\draganovi_konaci1.jpg" />
     <Resource Include="Images\filipovic1.jpg" />
@@ -186,5 +184,4 @@
     <Folder Include="Resources\Images\Guest1\" />
     <Folder Include="WPF\ViewModel\OwnerViewModel\" />
   </ItemGroup>
-
 </Project>

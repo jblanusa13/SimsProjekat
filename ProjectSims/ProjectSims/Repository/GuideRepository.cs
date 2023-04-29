@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Repository
 {
-    public class GuideRepository : ISubject
+    public class GuideRepository : ISubject, IGuideRepository
     {
         private GuideFileHandler guideFileHandler;
         private List<Guide> guides;
@@ -28,7 +29,7 @@ namespace ProjectSims.Repository
             return guides.Max(t => t.Id) + 1;
         }
 
-        public void Add(Guide guide)
+        public void Create(Guide guide)
         {
             guide.Id = NextId();
             guides.Add(guide);
