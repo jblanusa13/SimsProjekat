@@ -162,10 +162,26 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
     <PackageReference Include="CalcBinding" Version="2.5.2" />
     <PackageReference Include="Tulpep.NotificationWindow" Version="1.1.38" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\draganovi_konaci1.jpg" />
+    <Resource Include="Images\filipovic1.jpg" />
+    <Resource Include="Images\jovanovic1.jpg" />
+    <Resource Include="Images\jovanovic2.jpg" />
+    <Resource Include="Images\kod_labuda.jpg" />
+    <Resource Include="Images\kod_labuda1.jpg" />
+    <Resource Include="Images\mladenovic.jpg" />
+    <Resource Include="Images\mladenovic2.jpg" />
+    <Resource Include="Images\visnjin_dom1.jpg" />
+    <Resource Include="Images\visnjin_dom2.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Domain\RepositoryInterface\" />
     <Folder Include="Resources\Images\Guest1\" />
+    <Folder Include="WPF\ViewModel\OwnerViewModel\" />
   </ItemGroup>
 </Project>

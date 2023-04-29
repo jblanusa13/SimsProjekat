@@ -76,10 +76,9 @@ namespace ProjectSims.Repository
                     observer.Update();
                 }
             }
-            public GuestAccommodation FindById(int id)
+            public GuestAccommodation Get(int id)
             {
                 return _guestAccommodations.Find(g => g.Id == id);
             }
-
-    }
+        }
 }

@@ -19,6 +19,8 @@ namespace ProjectSims.Service
        // private LocationService locationService;
        // private Guest1Service guest1Service;
         private RequestService requestService;
+        private List<DateRanges> unavailableDates;
+        private DateRangesService dateRangesService;
 
         public AccommodationReservationService()
         {
@@ -27,6 +29,8 @@ namespace ProjectSims.Service
             // locationService = new LocationService();
             // guest1Service = new Guest1Service();
             requestService = new RequestService();
+            unavailableDates = new List<DateRanges>();
+            dateRangesService = new DateRangesService();
         }
 
         public AccommodationReservation GetReservation(int id)
@@ -46,12 +50,30 @@ namespace ProjectSims.Service
         {
             return reservationRepository.GetByGuest(guestId);
         }
+        public AccommodationReservation GetReservation(int guestId, int accommodationId, DateOnly checkInDate, DateOnly checkOutDate)
+        {
+            AccommodationReservation reservation = null;
+            List<AccommodationReservation> reservations = reservationRepository.GetByGuest(guestId);
+            foreach (var item in reservations)
+            {
+                if (item.CheckInDate==checkInDate && item.CheckOutDate==checkOutDate && item.AccommodationId==accommodationId) 
+                {
+                    reservation = item;                    
+                }
+            }
+            return reservation;
+        }
 
         public void CreateReservation(int accommodationId, int guestId, DateOnly checkIn, DateOnly checkOut, int guestNumber)
         {
             int id = reservationRepository.NextId();
             AccommodationReservation reservation = new AccommodationReservation(id, accommodationId, guestId, checkIn, checkOut, guestNumber, ReservationState.Active, false);
             reservationRepository.Create(reservation);
+        }
+
+        public void Update(AccommodationReservation reservation)
+        {
+            reservationRepository.Update(reservation);
         }
 
         public void RemoveReservation(AccommodationReservation reservation)
@@ -98,6 +120,54 @@ namespace ProjectSims.Service
         public void Subscribe(IObserver observer)
         {
             reservationRepository.Subscribe(observer);
+        }
+
+        public List<AccommodationReservation> GetAllReservations()
+        {
+            return reservationRepository.GetAll();
+        }
+        public List<DateRanges> FindUnavailableDates(Request request)
+        {
+            foreach (AccommodationReservation reservation in reservationRepository.GetAll())
+            {
+                if (reservation.AccommodationId == GetReservation(request.ReservationId).AccommodationId
+                    && reservation.State == ReservationState.Active
+                    && reservation.Id != request.ReservationId)
+                {
+                    unavailableDates.Add(new DateRanges(reservation.CheckInDate, reservation.CheckOutDate));
+                }
+            }
+            return unavailableDates;
+        }
+
+        public void SetReserved(Request request)
+        {
+            foreach (var date in unavailableDates)
+            {
+                if (IsInRange(request, date.CheckIn, date.CheckOut))
+                {
+                    request.Reserved = true;
+                }
+                else
+                {
+                    request.Reserved = false;
+                }
+            }
+        }
+
+        public bool IsInRange(Request request, DateOnly firstDate, DateOnly lastDate)
+        {
+            int days = GetReservation(request.ReservationId).CheckOutDate.DayNumber - GetReservation(request.ReservationId).CheckInDate.DayNumber;
+
+            //Requested: 12.03, Vacation days: 5, Reserved: 15.03-19.03.
+            for (int i = 0; i < days; i++)
+            {
+                if (dateRangesService.IsInRange(request.ChangeDate.AddDays(i), firstDate, lastDate))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
