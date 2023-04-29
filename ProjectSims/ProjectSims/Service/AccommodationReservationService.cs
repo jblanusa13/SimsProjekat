@@ -15,9 +15,6 @@ namespace ProjectSims.Service
     public class AccommodationReservationService
     {
         private IAccommodationReservationRepository reservationRepository;
-       // private AccommodationService accommodationService;
-       // private LocationService locationService;
-       // private Guest1Service guest1Service;
         private RequestService requestService;
         private List<DateRanges> unavailableDates;
         private DateRangesService dateRangesService;
@@ -25,43 +22,26 @@ namespace ProjectSims.Service
         public AccommodationReservationService()
         {
             reservationRepository = Injector.CreateInstance<IAccommodationReservationRepository>();
-            // accommodationService = new AccommodationService();
-            // locationService = new LocationService();
-            // guest1Service = new Guest1Service();
             requestService = new RequestService();
             unavailableDates = new List<DateRanges>();
             dateRangesService = new DateRangesService();
+        }
+        public List<AccommodationReservation> GetAllReservations()
+        {
+            return reservationRepository.GetAll();
         }
 
         public AccommodationReservation GetReservation(int id)
         {
             return reservationRepository.GetById(id);
         }
-        /*
-                public List<AccommodationReservation> GetReservationByGuest(int guestId)
-                {
-                    List<AccommodationReservation> reservations = reservationRepository.GetByGuest(guestId);
-                    reservations.ForEach(reservation => reservation.Accommodation = accommodationService.GetAccommodation(reservation.AccommodationId));
-                    reservations.ForEach(reservation => reservation.Accommodation.Location = locationService.GetLocation(reservation.Accommodation.IdLocation));
-                    reservations.ForEach(reservation => reservation.Guest = guest1Service.GetGuest1(guestId));
-                    return reservations;
-                }*/
         public List<AccommodationReservation> GetReservationByGuest(int guestId)
         {
             return reservationRepository.GetByGuest(guestId);
         }
         public AccommodationReservation GetReservation(int guestId, int accommodationId, DateOnly checkInDate, DateOnly checkOutDate)
         {
-            AccommodationReservation reservation = null;
-            List<AccommodationReservation> reservations = reservationRepository.GetByGuest(guestId);
-            foreach (var item in reservations)
-            {
-                if (item.CheckInDate==checkInDate && item.CheckOutDate==checkOutDate && item.AccommodationId==accommodationId) 
-                {
-                    reservation = item;                    
-                }
-            }
-            return reservation;
+            return reservationRepository.GetReservation(guestId, accommodationId, checkInDate, checkOutDate);
         }
 
         public void CreateReservation(int accommodationId, int guestId, DateOnly checkIn, DateOnly checkOut, int guestNumber)
@@ -122,10 +102,7 @@ namespace ProjectSims.Service
             reservationRepository.Subscribe(observer);
         }
 
-        public List<AccommodationReservation> GetAllReservations()
-        {
-            return reservationRepository.GetAll();
-        }
+        
         public List<DateRanges> FindUnavailableDates(Request request)
         {
             foreach (AccommodationReservation reservation in reservationRepository.GetAll())

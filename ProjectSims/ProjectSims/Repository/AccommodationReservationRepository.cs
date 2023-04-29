@@ -37,6 +37,20 @@ namespace ProjectSims.Repository
             return guestReservations;
         }
 
+        public AccommodationReservation GetReservation(int guestId, int accommodationId, DateOnly checkInDate, DateOnly checkOutDate)
+        {
+            AccommodationReservation reservation = null;
+            List<AccommodationReservation> reservations = GetByGuest(guestId);
+            foreach (var item in reservations)
+            {
+                if (item.CheckInDate == checkInDate && item.CheckOutDate == checkOutDate && item.AccommodationId == accommodationId)
+                {
+                    reservation = item;
+                }
+            }
+            return reservation;
+        }
+
         public List<AccommodationReservation> GetAll()
         {
             return reservations;

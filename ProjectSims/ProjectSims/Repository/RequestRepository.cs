@@ -69,6 +69,7 @@ namespace ProjectSims.Repository
         {
             requests.Add(entity);
             requestFileHandler.Save(requests);
+            NotifyObservers();
         }
 
         public void Update(Request entity)
@@ -79,6 +80,7 @@ namespace ProjectSims.Repository
                 requests[index] = entity;
             }
             requestFileHandler.Save(requests);
+            NotifyObservers();
         }
         public void Remove(Request entity)
         {
