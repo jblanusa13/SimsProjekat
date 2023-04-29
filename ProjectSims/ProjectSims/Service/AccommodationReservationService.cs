@@ -88,7 +88,6 @@ namespace ProjectSims.Service
             List<AccommodationReservation> guestReservations = new List<AccommodationReservation>();
             List<AccommodationReservation> accommodationsForRating = new List<AccommodationReservation>();
 
-
             guestReservations = GetReservationByGuest(guest.Id);
             foreach (AccommodationReservation reservation in guestReservations)
             {
@@ -97,7 +96,6 @@ namespace ProjectSims.Service
                     accommodationsForRating.Add(reservation);
                 }
             }
-
             return accommodationsForRating;
         }
 

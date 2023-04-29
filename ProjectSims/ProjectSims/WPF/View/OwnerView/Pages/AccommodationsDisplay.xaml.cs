@@ -65,7 +65,9 @@ namespace ProjectSims.View.OwnerView.Pages
         {
             SelectedGuestAccommodation = (GuestAccommodation)GuestAccommodationsTable.SelectedItem;
 
-            if (SelectedGuestAccommodation != null && SelectedGuestAccommodation.Rated == false)
+            if (SelectedGuestAccommodation != null 
+                && SelectedGuestAccommodation.Rated == false 
+                && SelectedGuestAccommodation.CheckOutDate.AddDays(5) >= DateOnly.FromDateTime(DateTime.Today))
             {
                 OwnerStartingView ownerStartingView = (OwnerStartingView)Window.GetWindow(this);
                 ownerStartingView.SelectedTab.Content = new GuestRatingView(SelectedGuestAccommodation, guestAccommodationService, owner);
