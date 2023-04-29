@@ -32,12 +32,15 @@ namespace ProjectSims.View.OwnerView.Pages
     {
         public GuestAccommodation SelectedGuestAccommodation { get; set; }
 
-        public GuestAccommodationService _guestAccommodationService;
+        public GuestAccommodationService guestAccommodationService;
         public ObservableCollection<GuestAccommodation> GuestAccommodations { get; set; }
 
-        public AccommodationReservationService _accommodationReservationService;
+        public AccommodationReservationService accommodationReservationService;
 
-        public GuestRatingService _guestRatingService;
+        public GuestRatingService guestRatingService;
+
+        public DateRangesService dateRangesService;
+        
         private Owner owner;
         public GuestRatingView(GuestAccommodation selectedGuestAccommodation, GuestAccommodationService guestAccommodationService, Owner o)
         {
@@ -56,14 +59,14 @@ namespace ProjectSims.View.OwnerView.Pages
             Rated = selectedGuestAccommodation.Rated;
             SelectedGuestAccommodation = selectedGuestAccommodation;
  
-            _guestAccommodationService = guestAccommodationService;
-            _guestAccommodationService.Subscribe(this);
-            _accommodationReservationService = new AccommodationReservationService();
-            _accommodationReservationService.Subscribe(this);
-            _guestRatingService = new GuestRatingService();
-            _guestRatingService.Subscribe(this);
-;
-            GuestAccommodations = new ObservableCollection<GuestAccommodation>(_guestAccommodationService.GetAllGuestAccommodations());
+            guestAccommodationService = guestAccommodationService;
+            guestAccommodationService.Subscribe(this);
+            accommodationReservationService = new AccommodationReservationService();
+            accommodationReservationService.Subscribe(this);
+            guestRatingService = new GuestRatingService();
+            guestRatingService.Subscribe(this);
+            dateRangesService = new DateRangesService();
+            GuestAccommodations = new ObservableCollection<GuestAccommodation>(guestAccommodationService.GetAllGuestAccommodations());
         }
 
         private string _accommodationName;
@@ -244,7 +247,7 @@ namespace ProjectSims.View.OwnerView.Pages
         public void Update()
         {
             GuestAccommodations.Clear();
-            foreach (GuestAccommodation guestAccommodation in _guestAccommodationService.GetAllGuestAccommodations())
+            foreach (GuestAccommodation guestAccommodation in guestAccommodationService.GetAllGuestAccommodations())
             {
                 GuestAccommodations.Add(guestAccommodation);
             }
@@ -254,25 +257,16 @@ namespace ProjectSims.View.OwnerView.Pages
         {
             Button clickedButton = sender as Button;
 
-            if (IsValid && !string.IsNullOrWhiteSpace(CommentTextBox.Text))
+            if (IsValid 
+                && !string.IsNullOrWhiteSpace(CommentTextBox.Text) 
+                && clickedButton == RateButton)
             {
-                if (clickedButton == RateButton)
-                {
-                    SelectedGuestAccommodation.Rated = true;
-                    _guestAccommodationService.Update(SelectedGuestAccommodation);
-                    AccommodationReservation accommodationReservation = _accommodationReservationService.GetReservation(SelectedGuestAccommodation.GuestId, SelectedGuestAccommodation.AccommodationId, SelectedGuestAccommodation.CheckInDate, SelectedGuestAccommodation.CheckOutDate);
-                    _guestRatingService.Create(new GuestRating(-1, CleanlinessRate, RespectingRulesRate, TidinessRate, CommunicationRate, CommentTextBox.Text, accommodationReservation, DateOnly.FromDateTime(DateTime.Now), SelectedGuestAccommodation.GuestId));
-                }
+                SelectedGuestAccommodation.Rated = true;
+                guestAccommodationService.Update(SelectedGuestAccommodation);
+                AccommodationReservation accommodationReservation = accommodationReservationService.GetReservation(SelectedGuestAccommodation.GuestId, SelectedGuestAccommodation.AccommodationId, SelectedGuestAccommodation.CheckInDate, SelectedGuestAccommodation.CheckOutDate);
+                guestRatingService.Create(new GuestRating(-1, CleanlinessRate, RespectingRulesRate, TidinessRate, CommunicationRate, CommentTextBox.Text, accommodationReservation, DateOnly.FromDateTime(DateTime.Now), SelectedGuestAccommodation.GuestId));
                 OwnerStartingView ownerStartingView = (OwnerStartingView)Window.GetWindow(this);
                 ownerStartingView.SelectedTab.Content = new AccommodationsDisplay(owner);
-            }
-            else if (clickedButton == CancelButton)
-            {
-                //Didn't rate guest
-            }
-            else if (clickedButton == null)
-            {
-                return;
             }
         }
 

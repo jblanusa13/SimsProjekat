@@ -46,10 +46,10 @@ namespace ProjectSims.Service
         {
             return requests.Max(r => r.Id) + 1;
         }
-        public void CreateRequest(int reservationId, DateOnly dateChange, string comment)
+        public void CreateRequest(int reservationId, DateOnly dateChange)
         {
             int id = NextId();
-            Request request = new Request(id, reservationId, dateChange, RequestState.Waiting, comment, false);
+            Request request = new Request(id, reservationId, dateChange, RequestState.Waiting, "", false);
             SetReservedForRequest(request);
             requestRepository.Add(request);
         }
