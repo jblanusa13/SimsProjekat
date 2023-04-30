@@ -57,16 +57,45 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
 
         private void AcceptButton_Click(object sender, RoutedEventArgs e)
         {
-            requestService.UpdateSelectedRequest(sender, SelectedRequest, RequestsTable, CommentTextBox.Text);
+            UpdateSelectedRequest(sender, SelectedRequest, RequestsTable, CommentTextBox.Text);
             CommentTextBox.Text = "Unesite komentar ukoliko odbijate zahtjev...";
         }
 
         private void RefuseButton_Click(object sender, RoutedEventArgs e)
         {
-            requestService.UpdateSelectedRequest(sender, SelectedRequest, RequestsTable, CommentTextBox.Text);
+            UpdateSelectedRequest(sender, SelectedRequest, RequestsTable, CommentTextBox.Text);
             CommentTextBox.Text = "Unesite komentar ukoliko odbijate zahtjev...";
         }
 
+        public void UpdateSelectedRequest(object sender, Request SelectedRequest, DataGrid RequestsTable, string comment)
+        {
+            SelectedRequest = (Request)RequestsTable.SelectedItem;
+
+            if (SelectedRequest != null)
+            {
+                SelectedRequest.State = Set(sender);
+                SelectedRequest.OwnerComment = comment;
+                requestService.Update(SelectedRequest);
+                SelectedRequest.Reservation.CheckInDate = SelectedRequest.ChangeDate;
+                SelectedRequest.Reservation.CheckOutDate = SelectedRequest.Reservation.CheckInDate.AddDays(SelectedRequest.Reservation.CheckOutDate.DayNumber - SelectedRequest.Reservation.CheckInDate.DayNumber);
+                accommodationReservationService.Update(SelectedRequest.Reservation);
+            }
+            else if (SelectedRequest == null)
+            {
+                //Do nothing
+            }
+        }
+        public RequestState Set(object sender)
+        {
+            Button clickedButton = sender as Button;
+
+            if (clickedButton.Name == "AcceptButton" && clickedButton != null)
+            {
+                return RequestState.Approved;
+            }
+
+            return RequestState.Rejected;
+        }
         private void CommentTextBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             TextBox source = e.Source as TextBox;

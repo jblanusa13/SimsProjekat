@@ -15,17 +15,10 @@ namespace ProjectSims.Service
     public class RequestService
     {
         private DateRangesService dateRangesService;
-        private AccommodationReservationService accommodationReservationService;
-        private AccommodationReservationRepository reservationRepository;
-        private List<DateRanges> unavailableDates;
-
         private IRequestRepository requestRepository;
         public RequestService()
         {
             dateRangesService = new DateRangesService();
-            accommodationReservationService = new AccommodationReservationService();
-            reservationRepository = new AccommodationReservationRepository();
-            unavailableDates = new List<DateRanges>();
             requestRepository = Injector.CreateInstance<IRequestRepository>();
         }
 
@@ -42,10 +35,6 @@ namespace ProjectSims.Service
             return requestRepository.GetAll();
         }
 
-        public int NextId()
-        {
-            return requestRepository.GetAll().Max(r => r.Id) + 1;
-        }
         public void CreateRequest(int reservationId, DateOnly dateChange)
         {
             int id = requestRepository.NextId();
@@ -70,40 +59,21 @@ namespace ProjectSims.Service
 
         private void SetReservedForRequest(Request request)
         {
-            unavailableDates = accommodationReservationService.FindUnavailableDates(request);
-            accommodationReservationService.SetReserved(request);
-        }
+            List<DateRanges> unavailableDates = dateRangesService.FindUnavailableDatesForRequest(request);
 
-        public void UpdateSelectedRequest(object sender, Request SelectedRequest, DataGrid RequestsTable, string comment)
-        {
-            SelectedRequest = (Request)RequestsTable.SelectedItem;
-
-            if (SelectedRequest != null)
+            foreach (var date in dateRangesService.FindUnavailableDatesForRequest(request))
             {
-                SelectedRequest.State = Set(sender);
-                SelectedRequest.OwnerComment = comment;
-                Update(SelectedRequest);
-                SelectedRequest.Reservation.CheckInDate = SelectedRequest.ChangeDate;
-                SelectedRequest.Reservation.CheckOutDate = SelectedRequest.Reservation.CheckInDate.AddDays(SelectedRequest.Reservation.CheckOutDate.DayNumber - SelectedRequest.Reservation.CheckInDate.DayNumber);
-                accommodationReservationService.Update(SelectedRequest.Reservation);
-            }
-            else if (SelectedRequest == null)
-            {
-                //Do nothing
+                if (dateRangesService.IsInRange(request, date.CheckIn, date.CheckOut))
+                {
+                    request.Reserved = true;
+                }
+                else
+                {
+                    request.Reserved = false;
+                }
             }
         }
 
-        RequestState Set(object sender)
-        {
-            Button clickedButton = sender as Button;
-
-            if (clickedButton.Name == "AcceptButton" && clickedButton != null)
-            {
-                return RequestState.Approved;
-            }
-
-            return RequestState.Rejected;
-        }
         public void Subscribe(IObserver observer)
         {
             requestRepository.Subscribe(observer);
