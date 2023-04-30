@@ -4,16 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Domain.Model;
+using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.Repository;
+using ProjectSims.WPF.View.OwnerView;
 
 namespace ProjectSims.Service
 {
     public class LocationService
     {
-        private LocationRepository repository;
+        private ILocationRepository repository;
         public LocationService()
         {
-            repository = new LocationRepository();
+            repository = Injector.CreateInstance<ILocationRepository>();
         }
 
         public Location GetLocation(int id)

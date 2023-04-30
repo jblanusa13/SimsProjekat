@@ -11,7 +11,7 @@ using ProjectSims.WPF.View.OwnerView;
 
 namespace ProjectSims.Repository
 {
-    class OwnerRepository : ISubject, IOwnerRepository
+    class OwnerRepository : IOwnerRepository
     {
         private OwnerFileHandler ownerFileHandler;
         private List<Owner> owners;

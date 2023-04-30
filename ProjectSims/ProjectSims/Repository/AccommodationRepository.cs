@@ -10,7 +10,7 @@ using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Repository
 {
-    class AccommodationRepository : ISubject, IAccommodationRepository
+    class AccommodationRepository : IAccommodationRepository
     {
         private AccommodationFileHandler accommodationFileHandler;
         private LocationFileHandler locationFileHandler;

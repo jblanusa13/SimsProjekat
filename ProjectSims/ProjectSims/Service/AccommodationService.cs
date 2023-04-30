@@ -6,30 +6,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Service
 {
     public class AccommodationService
     {
-        private AccommodationRepository accommodationRepository;
-        // private LocationService locationService;
+        private IAccommodationRepository accommodationRepository;
 
         public AccommodationService()
         {
-            accommodationRepository = new AccommodationRepository();
-            // locationService = new LocationService();
+            accommodationRepository = Injector.CreateInstance<IAccommodationRepository>();
         }
 
         public List<Accommodation> GetAllAccommodations()
         {
             return accommodationRepository.GetAll();
-        }/*
-        public List<Accommodation> GetAllAccommodationsForGuestView()
-        {
-            List<Accommodation> accommodations = GetAllAccommodations();
-            accommodations.ForEach(accommodation => accommodation.Location = locationService.GetLocation(accommodation.IdLocation));
-            return accommodations;
-        }*/
+        }
+
         public List<Accommodation> GetAllAccommodationsForGuestView()
         {
             return GetAllAccommodations();

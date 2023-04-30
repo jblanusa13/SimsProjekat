@@ -6,16 +6,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Service
 {
     public class GuestRatingService
     {
-        private GuestRatingRepository guestRatings;
+        private IGuestRatingRepository guestRatings;
 
         public GuestRatingService()
         {
-            guestRatings = new GuestRatingRepository();
+            guestRatings = Injector.CreateInstance<IGuestRatingRepository>();
         }
 
         public List<GuestRating> GetAllGuestAccommodations()
