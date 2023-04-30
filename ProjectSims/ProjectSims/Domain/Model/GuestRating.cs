@@ -42,7 +42,7 @@ namespace ProjectSims.Domain.Model
             TidinessRating = Convert.ToInt32(values[3]);
             CommunicationRating = Convert.ToInt32(values[4]);
             Comment = values[5];
-            TimeStamp = DateOnly.Parse(values[6]);
+            TimeStamp = DateOnly.ParseExact(values[6], "dd.MM.yyyy");
             GuestId = Convert.ToInt32(values[7]);
         }
 
