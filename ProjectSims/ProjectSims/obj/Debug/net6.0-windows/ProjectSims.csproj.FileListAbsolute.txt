@@ -47,7 +47,6 @@ C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\GuideView\Pages\TourDetailsAndStatisticsView.g.cs
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\GuideView\Pages\TourTrackingView.g.cs
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\OwnerView\OwnerStartingView.g.cs
-C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\OwnerView\OwnerUI.g.cs
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\OwnerView\Pages\AccommodationRegistrationView.g.cs
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\OwnerView\Pages\AccommodationsDisplay.g.cs
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\OwnerView\Pages\GuestRatingView.g.cs
@@ -117,7 +116,6 @@ C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\GuideView\Pages\TourDetailsAndStatisticsView.baml
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\GuideView\Pages\TourTrackingView.baml
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\OwnerView\OwnerStartingView.baml
-C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\OwnerView\OwnerUI.baml
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\OwnerView\Pages\AccommodationRegistrationView.baml
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\OwnerView\Pages\AccommodationsDisplay.baml
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\OwnerView\Pages\GuestRatingView.baml

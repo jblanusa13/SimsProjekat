@@ -34,8 +34,8 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
         {
             Window parentWindow = Window.GetWindow(this);
             parentWindow.Close();
-            var startView = new MainWindow();
-            startView.Show();
+            var login = new MainWindow();
+            login.Show();
         }
 
         private void HomePage_Click(object sender, RoutedEventArgs e)
