@@ -46,7 +46,7 @@ namespace ProjectSims.WPF.View.OwnerView
             { 
                 if (DateOnly.FromDateTime(DateTime.Today).CompareTo(item.CheckOutDate) > 0)
                 {
-                    if (guestAccommodationRepository.Get(item.Id).Rated == false) 
+                    if (guestAccommodationRepository.GetById(item.Id).Rated == false) 
                     {
                         return true;   
                     }

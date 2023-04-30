@@ -6,14 +6,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectSims.Domain.RepositoryInterface;
+using ProjectSims.WPF.View.OwnerView;
 
 namespace ProjectSims.Repository
 {
-    class OwnerRepository : ISubject
+    class OwnerRepository : ISubject, IOwnerRepository
     {
         private OwnerFileHandler ownerFileHandler;
         private List<Owner> owners;
-
         private List<IObserver> observers;
 
         public OwnerRepository()
@@ -22,7 +23,14 @@ namespace ProjectSims.Repository
             owners = ownerFileHandler.Load();
             observers = new List<IObserver>();
         }
-
+        public void Create(Owner owner)
+        {
+            owner.Id = NextId();
+            owners.Add(owner);
+            ownerFileHandler.Save(owners);
+            NotifyObservers();
+        }
+        
         public int NextId()
         {
             return owners.Max(owner => owner.Id) + 1;
@@ -53,7 +61,10 @@ namespace ProjectSims.Repository
             ownerFileHandler.Save(owners);
             NotifyObservers();
         }
-
+        public Owner GetById(int id)
+        {
+            return owners.Find(o => o.Id == id);
+        }
 
         public List<Owner> GetAll()
         {
@@ -77,10 +88,7 @@ namespace ProjectSims.Repository
                 observer.Update();
             }
         }
-        public Owner FindById(int id)
-        {
-            return owners.Find(owner => owner.Id == id);
-        }
+
         public bool ExistAccommodation(Owner owner, int accommodationId) 
         {
             foreach (int id in owner.AccommodationIds)

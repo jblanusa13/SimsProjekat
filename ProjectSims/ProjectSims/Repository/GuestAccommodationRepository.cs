@@ -6,57 +6,62 @@ using System.Threading.Tasks;
 using ProjectSims.FileHandler;
 using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Repository
 {
-    public class GuestAccommodationRepository : ISubject  
+    public class GuestAccommodationRepository : IGuestAccommodationRepository
     {
             private GuestAccommodationFileHandler _guestAccommodationFileHandler;
-            private List<GuestAccommodation> _guestAccommodations;
-
+            private List<GuestAccommodation> guestAccommodations;
             private List<IObserver> _observers;
 
             public GuestAccommodationRepository()
             {
                 _guestAccommodationFileHandler = new GuestAccommodationFileHandler();
-                _guestAccommodations = _guestAccommodationFileHandler.Load();
+                guestAccommodations = _guestAccommodationFileHandler.Load();
                 _observers = new List<IObserver>();
             }
 
             public int NextId()
             {
-                return _guestAccommodations.Max(a => a.Id) + 1;
+                return guestAccommodations.Max(a => a.Id) + 1;
             }
 
-            public void Add(GuestAccommodation accommodation)
+            public void Create(GuestAccommodation accommodation)
             {
                 accommodation.Id = NextId();
-                _guestAccommodations.Add(accommodation);
-                _guestAccommodationFileHandler.Save(_guestAccommodations);
+                guestAccommodations.Add(accommodation);
+                _guestAccommodationFileHandler.Save(guestAccommodations);
                 NotifyObservers();
             }
 
             public void Remove(GuestAccommodation accommodation)
             {
-                _guestAccommodations.Remove(accommodation);
-                _guestAccommodationFileHandler.Save(_guestAccommodations);
+                guestAccommodations.Remove(accommodation);
+                _guestAccommodationFileHandler.Save(guestAccommodations);
                 NotifyObservers();
             }
 
             public void Update(GuestAccommodation accommodation)
             {
-                int index = _guestAccommodations.FindIndex(a => accommodation.Id == a.Id);
+                int index = guestAccommodations.FindIndex(a => accommodation.Id == a.Id);
                 if (index != -1)
                 {
-                    _guestAccommodations[index] = accommodation;
+                    guestAccommodations[index] = accommodation;
                 }
-                _guestAccommodationFileHandler.Save(_guestAccommodations);
+                _guestAccommodationFileHandler.Save(guestAccommodations);
                 NotifyObservers();
             }
 
             public List<GuestAccommodation> GetAll()
             {
-                return _guestAccommodations;
+                return guestAccommodations;
+            }
+
+            public GuestAccommodation GetById(int id) 
+            {
+                return guestAccommodations.Find(g => g.Id == id);
             }
 
             public void Subscribe(IObserver observer)
@@ -75,10 +80,6 @@ namespace ProjectSims.Repository
                 {
                     observer.Update();
                 }
-            }
-            public GuestAccommodation Get(int id)
-            {
-                return _guestAccommodations.Find(g => g.Id == id);
             }
         }
 }

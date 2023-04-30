@@ -89,7 +89,7 @@
                          FontSize="14" Click="RateAccommodation_Click"/>
                 <Button Grid.Row="3" Margin="30,10" Content="Prikaz ocena"
                         HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="150"
-                         FontSize="14"/>
+                         FontSize="14" Click="ShowRatings_Click"/>
                 <Button Grid.Row="4" Margin="30,10" Content="Forum"
                         HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="150"
                          FontSize="14"/>

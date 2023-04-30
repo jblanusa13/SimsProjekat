@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Domain.Model;
+using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.FileHandler;
 using ProjectSims.Observer;
 
 namespace ProjectSims.Repository
 {
-    public class GuestRatingRepository : ISubject
+    public class GuestRatingRepository : IGuestRatingRepository
     {
         private GuestRatingFileHandler guestRatingFileHandler;
         private List<GuestRating> guestRatings;
@@ -32,12 +33,12 @@ namespace ProjectSims.Repository
             return guestRatings;
         }
 
-        public GuestRating Get(int id)
+        public GuestRating GetById(int id)
         {
             return guestRatings.Find(r => r.Id == id);
         }
 
-        public void Add(GuestRating guestRating)
+        public void Create(GuestRating guestRating)
         {
             guestRating.Id = NextId();
             guestRatings.Add(guestRating);

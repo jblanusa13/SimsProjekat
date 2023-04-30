@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Xps.Serialization;
 using System.Xml.Linq;
+using ProjectSims.Domain.RepositoryInterface;
+using ProjectSims.Repository;
 using ProjectSims.Serializer;
 using ProjectSims.Service;
 
@@ -58,8 +60,9 @@ namespace ProjectSims.Domain.Model
 
         public void InitializeData()
         {
-            AccommodationReservationService reservationService = new AccommodationReservationService();
-            Reservation = reservationService.GetReservation(ReservationId);
+            AccommodationReservationRepository reservationRepository = new AccommodationReservationRepository();
+
+            Reservation = reservationRepository.GetById(ReservationId);
         }
     }
 }

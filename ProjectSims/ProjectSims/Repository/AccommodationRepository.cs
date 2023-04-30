@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Repository
 {
-    class AccommodationRepository : ISubject
+    class AccommodationRepository : ISubject, IAccommodationRepository
     {
         private AccommodationFileHandler accommodationFileHandler;
         private LocationFileHandler locationFileHandler;
@@ -30,7 +31,7 @@ namespace ProjectSims.Repository
             observers = new List<IObserver>();
         }
 
-        public Accommodation Get(int id)
+        public Accommodation GetById(int id)
         {
             return accommodations.Find(a => a.Id == id);
         }
@@ -40,7 +41,7 @@ namespace ProjectSims.Repository
             return accommodations.Max(a => a.Id) + 1;
         }
 
-        public void Add(Accommodation accommodation)
+        public void Create(Accommodation accommodation)
         {
             accommodation.Id = NextId();
             accommodations.Add(accommodation);
@@ -86,54 +87,6 @@ namespace ProjectSims.Repository
             {
                 observer.Update();
             }
-        }
-        public int NextLocationId() 
-        {
-            return locations.Max(l => l.Id) + 1; 
-        }
-        
-        public int Add(string location) 
-        {
-            int id = -1;
-            if (!ExistLocation(location)) 
-            {
-                id = NextLocationId();
-                Location loc = new Location(id, location.Split(",")[0], location.Split(",")[1]);
-                locations.Add(loc);
-                locationFileHandler.Save(locations);
-                NotifyObservers();
-            }
-            return id;
-        }
-        
-        public bool ExistLocation(string location)
-        {
-            string city = location.Split(",")[0];
-            string country = location.Split(",")[1];
-
-            foreach (Location l in locations)
-            {
-                if (city == l.City && country == l.Country)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public int GetLocationId(string location) 
-        {
-            string city = location.Split(",")[0];
-            string country = location.Split(",")[1];
-
-            foreach (Location l in locations)
-            {
-                if (city == l.City && country == l.Country)
-                {
-                    return l.Id;
-                }
-            }
-            return -1;
         }
     }   
 }

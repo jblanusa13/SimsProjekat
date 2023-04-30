@@ -11,7 +11,7 @@ using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Repository
 {
-    class KeyPointRepository : ISubject, IKeyPointRepository
+    class KeyPointRepository : IKeyPointRepository
     {
 
         private KeyPointFileHandler keyPointFile;
@@ -23,7 +23,7 @@ namespace ProjectSims.Repository
             keyPoints = keyPointFile.Load();
             observers = new List<IObserver>();
         }
-        public int GetNextId()
+        public int NextId()
         {
             if (keyPoints.Count == 0)
             {

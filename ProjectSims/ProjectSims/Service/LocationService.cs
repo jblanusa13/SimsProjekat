@@ -18,7 +18,7 @@ namespace ProjectSims.Service
 
         public Location GetLocation(int id)
         {
-            return repository.Get(id);
+            return repository.GetById(id);
         }
     }
 }

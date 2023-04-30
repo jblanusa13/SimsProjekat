@@ -24,6 +24,10 @@ namespace ProjectSims.Repository
         }
         public int NextId()
         {
+            if (users.Count == 0)
+            {
+                return 0;
+            }
             return users.Max(u => u.Id) + 1;
         }
         public void Create(User user)

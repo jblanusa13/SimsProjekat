@@ -19,7 +19,7 @@ namespace ProjectSims.Service
         }
         public int GetNextId()
         {
-            return voucherRepository.GetNextId();
+            return voucherRepository.NextId();
         }
         public List<Voucher> GetAllVouchers()
         {

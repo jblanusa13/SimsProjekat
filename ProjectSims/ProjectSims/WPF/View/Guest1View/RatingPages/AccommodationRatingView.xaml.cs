@@ -10,25 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ProjectSims.Domain.Model;
-using ProjectSims.Service;
 using ProjectSims.WPF.ViewModel.Guest1ViewModel;
 
-namespace ProjectSims.WPF.View.Guest1View
+namespace ProjectSims.WPF.View.Guest1View.RatingPages
 {
     /// <summary>
     /// Interaction logic for AccommodationRating.xaml
     /// </summary>
-    public partial class AccommodationRating : Window
+    public partial class AccommodationRatingView : Page
     {
-        public AccommodationRatingViewModel ViewModel { get; set; }
-        public Guest1 Guest { get; set; }
-        public AccommodationRating(AccommodationReservation accommodationReservation, Guest1 guest)
+        private AccommodationRatingViewModel viewModel;
+        public AccommodationRatingView(AccommodationReservation accommodationReservation)
         {
             InitializeComponent();
-            ViewModel = new AccommodationRatingViewModel(accommodationReservation, guest);
-            Guest = guest;
+            viewModel = new AccommodationRatingViewModel(accommodationReservation);
         }
 
         private void Browse_Click(object sender, RoutedEventArgs e)
@@ -37,7 +35,7 @@ namespace ProjectSims.WPF.View.Guest1View
             Nullable<bool> result = openFileDlg.ShowDialog();
 
             string fileName = "";
-            if(result == true)
+            if (result == true)
             {
                 fileName = openFileDlg.SafeFileName;
             }
@@ -55,18 +53,16 @@ namespace ProjectSims.WPF.View.Guest1View
 
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
-            if(!string.IsNullOrEmpty(CleanlinessTb.Text) && !string.IsNullOrEmpty(FairnessTb.Text) && !string.IsNullOrEmpty(LocationTb.Text) && !string.IsNullOrEmpty(ValueForMoneyTb.Text))
+            if (!string.IsNullOrEmpty(CleanlinessTb.Text) && !string.IsNullOrEmpty(FairnessTb.Text) && !string.IsNullOrEmpty(LocationTb.Text) && !string.IsNullOrEmpty(ValueForMoneyTb.Text))
             {
-                ViewModel.Confirm(CleanlinessTb.Text, FairnessTb.Text, LocationTb.Text, ValueForMoneyTb.Text, CommentTb.Text, Images.Text);
+                viewModel.Confirm(CleanlinessTb.Text, FairnessTb.Text, LocationTb.Text, ValueForMoneyTb.Text, CommentTb.Text, Images.Text);
             }
-            Close();
+            NavigationService.Navigate(new RenovationRecommendationView(viewModel));
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            AccommodationsForRating accommodationForRating = new AccommodationsForRating(Guest);
-            accommodationForRating.Show();
-            Close();
-        }
+            NavigationService.GoBack();
+        } 
     }
 }

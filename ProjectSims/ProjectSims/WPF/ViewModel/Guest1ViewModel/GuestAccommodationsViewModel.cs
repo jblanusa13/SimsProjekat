@@ -28,7 +28,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         {
             accommodationService = new AccommodationService();
             accommodationService.Subscribe(this);
-            Accommodations = new ObservableCollection<Accommodation>(accommodationService.GetAllAccommodations());
+            Accommodations = new ObservableCollection<Accommodation>(accommodationService.GetAllAccommodationsForGuestView());
 
             Guest = guest;
         }

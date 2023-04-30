@@ -9,5 +9,7 @@ namespace ProjectSims.Domain.RepositoryInterface
 {
     public interface IOwnerRepository : IGenericRepository<Owner, int>
     {
+        public bool ExistAccommodation(Owner owner, int accommodationId);
+        public void AddAccommodationId(Owner owner, int accommodationId);
     }
 }

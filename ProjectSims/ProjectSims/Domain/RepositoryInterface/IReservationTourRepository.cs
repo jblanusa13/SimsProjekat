@@ -8,12 +8,11 @@ using System.Threading.Tasks;
 
 namespace ProjectSims.Domain.RepositoryInterface
 {
-    public interface IReservationTourRepository : IGenericRepository<ReservationTour,int>
+    public interface IReservationTourRepository : IGenericRepository<ReservationTour,int>, ISubject
     {
         public List<ReservationTour> GetReservationsByTour(Tour tour);
         public List<ReservationTour> GetReservationsByTourAndState(Tour tour, Guest2State state);
         public ReservationTour GetReservationByGuestAndTour(Tour tour, Guest2 guest);
         public ReservationTour GetTourIdWhereGuestIsWaiting(Guest2 guest);
-        public int NextId();
     }
 }

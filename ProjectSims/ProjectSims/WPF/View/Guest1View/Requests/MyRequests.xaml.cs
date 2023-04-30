@@ -16,7 +16,7 @@ using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 using ProjectSims.Service;
 
-namespace ProjectSims.WPF.View.Guest1View
+namespace ProjectSims.WPF.View.Guest1View.Requests
 {
     /// <summary>
     /// Interaction logic for MyRequests.xaml

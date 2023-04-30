@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjectSims.Domain.RepositoryInterface
 {
-    public interface IGuest2Repository : IGenericRepository<Guest2,int>
+    public interface IGuest2Repository : IGenericRepository<Guest2,int>, ISubject
     {
-        public int NextId();
     }
 }

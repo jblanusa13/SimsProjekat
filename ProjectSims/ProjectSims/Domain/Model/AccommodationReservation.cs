@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectSims.Domain.RepositoryInterface;
+using ProjectSims.Repository;
 using ProjectSims.Serializer;
 using ProjectSims.Service;
 using ProjectSims.WPF.View.Guest1View;
@@ -65,14 +67,14 @@ namespace ProjectSims.Domain.Model
             };
             return csvvalues;
         }
-
         public void InitializeData()
         {
-            AccommodationService accommodationService = new AccommodationService();
-            Guest1Service guest1Service = new Guest1Service();
+            //Guest = Injector.CreateInstance<IGuest1Repository>().GetById(GuestId);
+            AccommodationRepository accommodationRepository = new AccommodationRepository();
+            Guest1Repository guest1Repository = new Guest1Repository();
 
-            Accommodation = accommodationService.GetAccommodation(AccommodationId);
-            Guest = guest1Service.GetGuest1(GuestId);
+            Accommodation = accommodationRepository.GetById(AccommodationId);
+            Guest = guest1Repository.GetById(GuestId);
         }
     }
 }

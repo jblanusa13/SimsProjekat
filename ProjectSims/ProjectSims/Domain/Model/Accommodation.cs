@@ -94,8 +94,8 @@ namespace ProjectSims.Domain.Model
 
         public void InitializeData()
         {
-            LocationService locationService = new LocationService();
-            Location = locationService.GetLocation(IdLocation);
+            LocationRepository locationRepository = new LocationRepository();
+            Location = locationRepository.GetById(IdLocation);
         }
     }
 }

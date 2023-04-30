@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectSims.Domain.RepositoryInterface;
+using ProjectSims.Repository;
 using ProjectSims.Serializer;
 using ProjectSims.Service;
 
@@ -11,35 +13,35 @@ namespace ProjectSims.Domain.Model
     public class AccommodationAndOwnerRating : ISerializable
     {
         public int Id { get; set; }
-        public int GuestId { get; set; }
-        public Guest1 Guest { get; set; }
-        public int AccommodationId { get; set; }
-        public Accommodation Accommodation { get; set; }
+        public int ReservationId { get; set; }
+        public AccommodationReservation Reservation { get; set; }
         public int Cleanliness { get; set; }
         public int OwnerFairness { get; set; }
         public int Location { get; set; }
         public int ValueForMoney { get; set; }
         public string AddedComment { get; set; }
         public List<string> Images { get; set; }
+        public int RenovationId { get; set; }
+        public RenovationRecommendation RenovationRecommendation { get; set; }
 
         public AccommodationAndOwnerRating()
         {
             Images = new List<string>();
         }
 
-        public AccommodationAndOwnerRating(int id, int guestId, Guest1 guest, int accommodationId, Accommodation accommodation, int cleanliness, int ownerFairness, int location, int valueForMoney, string addedComment, List<string> images)
+        public AccommodationAndOwnerRating(int id, int reservationId, AccommodationReservation reservation, int cleanliness, int ownerFairness, int location, int valueForMoney, string addedComment, List<string> images, int renovationId, RenovationRecommendation renovationRecommendation)
         {
             Id = id;
-            GuestId = guestId;
-            Guest = guest;
-            AccommodationId = accommodationId;
-            Accommodation = accommodation;
+            ReservationId = reservationId;
+            Reservation = reservation;
             Cleanliness = cleanliness;
             OwnerFairness = ownerFairness;
             Location = location;
             ValueForMoney = valueForMoney;
             AddedComment = addedComment;
             Images = images;
+            RenovationId = renovationId;
+            RenovationRecommendation = renovationRecommendation;
         }
 
         public string[] ToCSV()
@@ -57,14 +59,14 @@ namespace ProjectSims.Domain.Model
             string[] csvvalues = 
             {
                 Id.ToString(), 
-                GuestId.ToString(), 
-                AccommodationId.ToString(), 
+                ReservationId.ToString(), 
                 Cleanliness.ToString(),
                 OwnerFairness.ToString(), 
                 Location.ToString(), 
                 ValueForMoney.ToString(),
                 AddedComment, 
-                ImageString
+                ImageString,
+                RenovationId.ToString()
             };
             return csvvalues;
         }
@@ -72,28 +74,29 @@ namespace ProjectSims.Domain.Model
         public void FromCSV(string[] values)
         {
             Id = Convert.ToInt32(values[0]);
-            GuestId = Convert.ToInt32(values[1]);
-            AccommodationId = Convert.ToInt32(values[2]);
-            Cleanliness = Convert.ToInt32(values[3]);
-            OwnerFairness = Convert.ToInt32(values[4]);
-            Location = Convert.ToInt32(values[5]);
-            ValueForMoney = Convert.ToInt32(values[6]);
-            AddedComment = values[7];
-            foreach (string image in values[8].Split(","))
+            ReservationId = Convert.ToInt32(values[1]);
+            Cleanliness = Convert.ToInt32(values[2]);
+            OwnerFairness = Convert.ToInt32(values[3]);
+            Location = Convert.ToInt32(values[4]);
+            ValueForMoney = Convert.ToInt32(values[5]);
+            AddedComment = values[6];
+            foreach (string image in values[7].Split(","))
             {
                 Images.Add(image);
             }
-
-            InitalizeData();
+            RenovationId = Convert.ToInt32(values[8]);
+            InitializeData();
         }
-
-        public void InitalizeData()
+        
+        public void InitializeData()
         {
-            Guest1Service guest1Service = new Guest1Service();
-            AccommodationService accommodationService = new AccommodationService();
+            //Reservation = Injector.CreateInstance<IAccommodationReservationRepository>().GetById(ReservationId);
+            //RenovationRecommendation = Injector.CreateInstance<IRenovationRecommendationRepository>().GetById(RenovationId);
+            AccommodationReservationRepository reservationRepository = new AccommodationReservationRepository();
+            RenovationRecommendationRepository recommendationRepository = new RenovationRecommendationRepository();
 
-            Guest = guest1Service.GetGuest1(GuestId);
-            Accommodation = accommodationService.GetAccommodation(AccommodationId);
+            Reservation = reservationRepository.GetById(ReservationId);
+            RenovationRecommendation = recommendationRepository.GetById(RenovationId);
         }
 
     }

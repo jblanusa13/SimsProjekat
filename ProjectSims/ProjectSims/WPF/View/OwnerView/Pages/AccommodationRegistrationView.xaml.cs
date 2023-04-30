@@ -24,6 +24,7 @@ using System.Security;
 using System.Collections.ObjectModel;
 using ProjectSims.Repository;
 using System.IO;
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.View.OwnerView.Pages
 {
@@ -36,6 +37,7 @@ namespace ProjectSims.View.OwnerView.Pages
         private AccommodationRepository accommodationRepository;
         private readonly OwnerService ownerService;
         private readonly OwnerRepository ownerRepository;
+        private readonly LocationRepository locationRepository;
         public ObservableCollection<Accommodation> accommodations;
         public AccommodationRegistrationView()
         {
@@ -46,6 +48,7 @@ namespace ProjectSims.View.OwnerView.Pages
             ownerService = new OwnerService();
             accommodationRepository = new AccommodationRepository();
             ownerRepository = new OwnerRepository();
+            locationRepository = new LocationRepository();
             accommodations = new ObservableCollection<Accommodation>();
         }
 
@@ -226,8 +229,8 @@ namespace ProjectSims.View.OwnerView.Pages
                         && !string.IsNullOrEmpty(MinimumReservationDaysTextBox.Text)
                         && !string.IsNullOrEmpty(DismissalDaysTextBox.Text))
             {
-                accommodationRepository.Add(LocationTextBox.Text);
-                int IdLocation = accommodationRepository.GetLocationId(Location);
+                locationRepository.Add(LocationTextBox.Text);
+                int IdLocation = locationRepository.GetLocationId(Location);
                 List<string> Pics = new List<string>();
                 foreach (string path in paths)
                 {
@@ -237,9 +240,9 @@ namespace ProjectSims.View.OwnerView.Pages
                 Location location = new Location(IdLocation, Location.ToString().Split(",")[0], Location.ToString().Split(",")[1]);
                 Accommodation accommodation = new Accommodation(-1, AccommodationName, IdLocation, location, Type, GuestsMaximum, MinimumReservationDays, DismissalDays, Pics, idCurrentOwner);
                 accommodationService.Create(accommodation);
-                Owner owner = ownerRepository.FindById(idCurrentOwner);
+                Owner owner = ownerRepository.GetById(idCurrentOwner);
                 ownerRepository.AddAccommodationId(owner, accommodation.Id);
-                ownerService.Update(ownerRepository.FindById(idCurrentOwner));
+                ownerService.Update(ownerRepository.GetById(idCurrentOwner));
                 this.Close();
             }
         }

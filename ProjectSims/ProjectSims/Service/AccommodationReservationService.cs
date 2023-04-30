@@ -8,60 +8,47 @@ using ProjectSims.Repository;
 using ProjectSims.Observer;
 using ProjectSims.FileHandler;
 using ProjectSims.WPF.View.Guest1View;
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Service
 {
     public class AccommodationReservationService
     {
-        private AccommodationReservationRepository reservationRepository;
-        private List<AccommodationReservation> reservations;
+        private IAccommodationReservationRepository reservationRepository;
+        private RequestService requestService;
         private List<DateRanges> unavailableDates;
         private DateRangesService dateRangesService;
 
         public AccommodationReservationService()
         {
-            reservationRepository = new AccommodationReservationRepository();
-            reservations = reservationRepository.GetAll();
+            reservationRepository = Injector.CreateInstance<IAccommodationReservationRepository>();
+            requestService = new RequestService();
             unavailableDates = new List<DateRanges>();
             dateRangesService = new DateRangesService();
+        }
+        public List<AccommodationReservation> GetAllReservations()
+        {
+            return reservationRepository.GetAll();
         }
 
         public AccommodationReservation GetReservation(int id)
         {
-            return reservationRepository.Get(id);
+            return reservationRepository.GetById(id);
         }
-
         public List<AccommodationReservation> GetReservationByGuest(int guestId)
         {
             return reservationRepository.GetByGuest(guestId);
         }
         public AccommodationReservation GetReservation(int guestId, int accommodationId, DateOnly checkInDate, DateOnly checkOutDate)
         {
-            AccommodationReservation reservation = null;
-            List<AccommodationReservation> reservations = reservationRepository.GetByGuest(guestId);
-            foreach (var item in reservations)
-            {
-                if (item.CheckInDate==checkInDate && item.CheckOutDate==checkOutDate && item.AccommodationId==accommodationId) 
-                {
-                    reservation = item;                    
-                }
-            }
-            return reservation;
+            return reservationRepository.GetReservation(guestId, accommodationId, checkInDate, checkOutDate);
         }
 
-        public int NextId()
-        {
-            if (reservations.Count == 0)
-            {
-                return 0;
-            }
-            return reservations.Max(r => r.Id) + 1;
-        }
         public void CreateReservation(int accommodationId, int guestId, DateOnly checkIn, DateOnly checkOut, int guestNumber)
         {
-            int id = NextId();
+            int id = reservationRepository.NextId();
             AccommodationReservation reservation = new AccommodationReservation(id, accommodationId, guestId, checkIn, checkOut, guestNumber, ReservationState.Active, false);
-            reservationRepository.Add(reservation);
+            reservationRepository.Create(reservation);
         }
 
         public void Update(AccommodationReservation reservation)
@@ -73,7 +60,10 @@ namespace ProjectSims.Service
         {
             reservation.State = ReservationState.Canceled;
             reservationRepository.Update(reservation);
+
+            requestService.UpdateRequestsWhenCancelReservation(reservation);
         }
+
         public bool CanCancel(AccommodationReservation reservation)
         {
             int dismissalDays = reservation.Accommodation.DismissalDays;
@@ -110,10 +100,7 @@ namespace ProjectSims.Service
             reservationRepository.Subscribe(observer);
         }
 
-        public List<AccommodationReservation> GetAllReservations()
-        {
-            return reservationRepository.GetAll();
-        }
+        
         public List<DateRanges> FindUnavailableDates(Request request)
         {
             foreach (AccommodationReservation reservation in reservationRepository.GetAll())

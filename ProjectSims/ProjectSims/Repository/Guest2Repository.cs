@@ -12,7 +12,7 @@ using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Repository
 {
-    class Guest2Repository : ISubject, IGuest2Repository
+    class Guest2Repository : IGuest2Repository
     {
         private Guest2FileHandler guest2FileHandler;
         private List<Guest2> guests;
@@ -25,6 +25,10 @@ namespace ProjectSims.Repository
         }
         public int NextId()
         {
+            if (guests.Count == 0)
+            {
+                return 0;
+            }
             return guests.Max(t => t.Id) + 1;
         }
         public void Create(Guest2 guest)

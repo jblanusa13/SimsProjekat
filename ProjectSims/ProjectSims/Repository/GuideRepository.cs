@@ -10,7 +10,7 @@ using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Repository
 {
-    public class GuideRepository : ISubject, IGuideRepository
+    public class GuideRepository : IGuideRepository
     {
         private GuideFileHandler guideFileHandler;
         private List<Guide> guides;
@@ -26,6 +26,10 @@ namespace ProjectSims.Repository
 
         public int NextId()
         {
+            if (guides.Count == 0)
+            {
+                return 0;
+            }
             return guides.Max(t => t.Id) + 1;
         }
 

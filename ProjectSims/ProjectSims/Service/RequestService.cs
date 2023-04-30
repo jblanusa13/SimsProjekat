@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using ProjectSims.Domain.Model;
+using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.Observer;
 using ProjectSims.Repository;
 using ProjectSims.WPF.View.OwnerView.Pages;
@@ -13,21 +14,19 @@ namespace ProjectSims.Service
 {
     public class RequestService
     {
-        private RequestRepository requestRepository;
-        private List<Request> requests;
         private DateRangesService dateRangesService;
         private AccommodationReservationService accommodationReservationService;
         private AccommodationReservationRepository reservationRepository;
         private List<DateRanges> unavailableDates;
 
+        private IRequestRepository requestRepository;
         public RequestService()
         {
-            requestRepository = new RequestRepository();
-            requests = requestRepository.GetAll();
             dateRangesService = new DateRangesService();
             accommodationReservationService = new AccommodationReservationService();
             reservationRepository = new AccommodationReservationRepository();
             unavailableDates = new List<DateRanges>();
+            requestRepository = Injector.CreateInstance<IRequestRepository>();
         }
 
         public List<Request> GetAllRequestByGuest(int guestId)
@@ -42,16 +41,17 @@ namespace ProjectSims.Service
         {
             return requestRepository.GetAll();
         }
+
         public int NextId()
         {
-            return requests.Max(r => r.Id) + 1;
+            return requestRepository.GetAll().Max(r => r.Id) + 1;
         }
         public void CreateRequest(int reservationId, DateOnly dateChange)
         {
-            int id = NextId();
+            int id = requestRepository.NextId();
             Request request = new Request(id, reservationId, dateChange, RequestState.Waiting, "", false);
             SetReservedForRequest(request);
-            requestRepository.Add(request);
+            requestRepository.Create(request);
         }
         public void Update(Request request)
         {
@@ -61,9 +61,11 @@ namespace ProjectSims.Service
         {
             requestRepository.Remove(request);
         }
-        public void Subscribe(IObserver observer)
+
+        public void UpdateRequestsWhenCancelReservation(AccommodationReservation reservation)
         {
-            requestRepository.Subscribe(observer);
+            Request request = requestRepository.GetByReservationId(reservation.Id);
+            requestRepository.Remove(request);
         }
 
         private void SetReservedForRequest(Request request)
@@ -101,6 +103,10 @@ namespace ProjectSims.Service
             }
 
             return RequestState.Rejected;
+        }
+        public void Subscribe(IObserver observer)
+        {
+            requestRepository.Subscribe(observer);
         }
     }
 }

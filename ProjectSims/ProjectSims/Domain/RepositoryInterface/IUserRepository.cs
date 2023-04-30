@@ -9,6 +9,5 @@ namespace ProjectSims.Domain.RepositoryInterface
 {
     public interface IUserRepository : IGenericRepository<User, int>
     {
-        public int NextId();
     }
 }

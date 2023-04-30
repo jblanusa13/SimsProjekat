@@ -25,7 +25,7 @@ namespace ProjectSims.Service
 
         public void Create(GuestRating guestRating)
         {
-            guestRatings.Add(guestRating);
+            guestRatings.Create(guestRating);
         }
 
         public void Delete(GuestRating guestRating)

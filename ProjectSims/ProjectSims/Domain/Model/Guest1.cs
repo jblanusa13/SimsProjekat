@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using ProjectSims.Serializer;
 using ProjectSims.Service;
+using ProjectSims.Repository;
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Domain.Model
 {
@@ -39,7 +41,6 @@ namespace ProjectSims.Domain.Model
             Adress = values[3];
             Email = values[4];
             UserId = Convert.ToInt32(values[5]);
-            InitalizeData();
         }
 
         public string[] ToCSV()
@@ -54,12 +55,6 @@ namespace ProjectSims.Domain.Model
                 UserId.ToString() 
             };
             return csvvalues;
-        }
-
-        public void InitalizeData()
-        {
-            UserService userService = new UserService();
-            User = userService.GetUser(UserId);
         }
     }
 }
