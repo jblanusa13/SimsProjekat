@@ -32,7 +32,7 @@ namespace ProjectSims.View.OwnerView.Pages
     public partial class AccommodationsDisplay : Page, INotifyPropertyChanged, IObserver
     {
         private readonly GuestAccommodationService guestAccommodationService;
-        private Owner owner;
+        public Owner owner { get; set; }
         private OwnerService ownerService;
         public ObservableCollection<GuestAccommodation> GuestAccommodations { get; set; }
         public GuestAccommodation SelectedGuestAccommodation { get; set; }
@@ -84,8 +84,8 @@ namespace ProjectSims.View.OwnerView.Pages
 
         private void RegistrateAccommodation_Click(object sender, RoutedEventArgs e)
         {
-            AccommodationRegistrationView accommodationRegistrationView = new AccommodationRegistrationView();
-            accommodationRegistrationView.Show();
+            OwnerStartingView ownerStartingView = (OwnerStartingView)Window.GetWindow(this);
+            ownerStartingView.SelectedTab.Content = new AccommodationRegistrationView(owner);
         }
 
         public void Update()

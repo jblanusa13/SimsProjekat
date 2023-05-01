@@ -22,5 +22,15 @@ namespace ProjectSims.Service
         {
             return repository.GetById(id);
         }
+        public int GetIdByLocation(string location)
+        {
+            return repository.GetIdByLocation(location);
+        }
+
+        public void Add(string location)
+        {
+            repository.Add(location);
+        }
+
     }
 }

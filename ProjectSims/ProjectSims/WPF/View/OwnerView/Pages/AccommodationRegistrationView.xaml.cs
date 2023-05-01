@@ -1,7 +1,5 @@
 ﻿using System;
 using ProjectSims.Domain.Model;
-using ProjectSims.Service;
-using ProjectSims.Repository;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -14,7 +12,6 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
@@ -22,41 +19,20 @@ using ProjectSims.FileHandler;
 using Microsoft.Win32;
 using System.Security;
 using System.Collections.ObjectModel;
-using ProjectSims.Repository;
-using System.IO;
-using ProjectSims.Domain.RepositoryInterface;
+using ProjectSims.WPF.ViewModel.OwnerViewModel;
+using ProjectSims.WPF.View.OwnerView;
 
 namespace ProjectSims.View.OwnerView.Pages
 {
     /// <summary>
     /// Interaction logic for AccommodationRegistrationView.xaml
     /// </summary>
-    public partial class AccommodationRegistrationView : Window, INotifyPropertyChanged, IDataErrorInfo
+    public partial class AccommodationRegistrationView : Page, INotifyPropertyChanged, IDataErrorInfo
     {
-        private readonly AccommodationService accommodationService;
-        private AccommodationRepository accommodationRepository;
-        private readonly OwnerService ownerService;
-        private readonly OwnerRepository ownerRepository;
-        private readonly LocationRepository locationRepository;
-        public ObservableCollection<Accommodation> accommodations;
-        public AccommodationRegistrationView()
-        {
-            InitializeComponent();
-            DataContext = this;
+        public Owner Owner { get; set; }
+        public AccommodationRegistrationViewModel accommodationRegistrationViewModel { get; set; }
 
-            accommodationService = new AccommodationService();
-            ownerService = new OwnerService();
-            accommodationRepository = new AccommodationRepository();
-            ownerRepository = new OwnerRepository();
-            locationRepository = new LocationRepository();
-            accommodations = new ObservableCollection<Accommodation>();
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        public List<string> paths = new List<string>();
 
         private string _accommodationName;
         public string AccommodationName
@@ -163,88 +139,32 @@ namespace ProjectSims.View.OwnerView.Pages
             }
         }
 
-        private string _ownerName;
-        public string OwnerName
+        public AccommodationRegistrationView(Owner o)
         {
-            get => _ownerName;
-
-            set
-            {
-                if (value != _ownerName)
-                {
-                    _ownerName = value;
-                    OnPropertyChanged();
-                }
-            }
+            InitializeComponent();
+            Owner = o;
+            accommodationRegistrationViewModel = new AccommodationRegistrationViewModel(Owner);
+            this.DataContext = accommodationRegistrationViewModel;
         }
-        private string _ownerSurname;
-        public string _OwnerSurname
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            get => _ownerSurname;
-
-            set
-            {
-                if (value != _ownerSurname)
-                {
-                    _ownerSurname = value;
-                    OnPropertyChanged();
-                }
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        private string address;
-        public string Address
-        {
-            get => address;
-
-            set
-            {
-                if (value != address)
-                {
-                    address = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-        private string _email;
-        public string Email
-        {
-            get => _email;
-
-            set
-            {
-                if (value != _email)
-                {
-                    _email = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-        public List<string> paths = new List<string>();
-
         private void RegisterAccommodation_Click(object sender, RoutedEventArgs e)
         {
-            if (IsValid && !string.IsNullOrEmpty(AccommodationNameTextBox.Text)
-                        && !string.IsNullOrEmpty(LocationTextBox.Text)
-                        && !string.IsNullOrEmpty(GuestsMaximumTextBox.Text)
-                        && !string.IsNullOrEmpty(MinimumReservationDaysTextBox.Text)
-                        && !string.IsNullOrEmpty(DismissalDaysTextBox.Text))
+            //if (IsValid)
             {
-                locationRepository.Add(LocationTextBox.Text);
-                int IdLocation = locationRepository.GetLocationId(Location);
                 List<string> Pics = new List<string>();
                 foreach (string path in paths)
                 {
                     Pics.Add(path);
                 }
-                int idCurrentOwner = MainWindow.CurrentUserId;
-                Location location = new Location(IdLocation, Location.ToString().Split(",")[0], Location.ToString().Split(",")[1]);
-                Accommodation accommodation = new Accommodation(-1, AccommodationName, IdLocation, location, Type, GuestsMaximum, MinimumReservationDays, DismissalDays, Pics, idCurrentOwner);
-                accommodationService.Create(accommodation);
-                Owner owner = ownerRepository.GetById(idCurrentOwner);
-                ownerRepository.AddAccommodationId(owner, accommodation.Id);
-                ownerService.Update(ownerRepository.GetById(idCurrentOwner));
-                this.Close();
+                accommodationRegistrationViewModel.RegisterAccommodation(LocationTextBox.Text, Pics, AccommodationName, Type, GuestsMaximum, MinimumReservationDays, DismissalDays);
             }
+            OwnerStartingView ownerStartingView = (OwnerStartingView)Window.GetWindow(this);
+            ownerStartingView.ChangeTab(4);
         }
 
         private void LoadImages_Click(object sender, RoutedEventArgs e)
@@ -263,10 +183,7 @@ namespace ProjectSims.View.OwnerView.Pages
                 foreach (var filename in fileDialog.FileNames)
                 {
                     paths.Add(filename);
-                }
-                foreach (var path in paths)
-                {
-                    AddImagesToImageList(path);
+                    InitializeImages(filename);
                 }
             }
             else
@@ -275,7 +192,7 @@ namespace ProjectSims.View.OwnerView.Pages
             }
         }
 
-        private void AddImagesToImageList(string path)
+        private void InitializeImages(string path)
         {
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
@@ -308,7 +225,7 @@ namespace ProjectSims.View.OwnerView.Pages
                 }
                 else if (columnName == "Location")
                 {
-                    if (string.IsNullOrWhiteSpace(Location))
+                    if (string.IsNullOrEmpty(Location))
                     {
                         return "Unesite vrijednost!";
                     }
@@ -319,7 +236,7 @@ namespace ProjectSims.View.OwnerView.Pages
                 }
                 else if (columnName == "GuestsMaximum")
                 {
-                    if (string.IsNullOrWhiteSpace(Convert.ToString(GuestsMaximum)))
+                    if (string.IsNullOrEmpty(Convert.ToString(GuestsMaximum)))
                     {
                         return "Unesite vrijednost!";
                     }
@@ -330,7 +247,7 @@ namespace ProjectSims.View.OwnerView.Pages
                 }
                 else if (columnName == "MinimumReservationDays")
                 {
-                    if (string.IsNullOrWhiteSpace(Convert.ToString(MinimumReservationDays)))
+                    if (string.IsNullOrEmpty(Convert.ToString(MinimumReservationDays)))
                     {
                         return "Unesite vrijednost!";
                     }
@@ -352,7 +269,7 @@ namespace ProjectSims.View.OwnerView.Pages
                 }
                 else if (columnName == "DismissalDays")
                 {
-                    if (string.IsNullOrWhiteSpace(Convert.ToString(DismissalDays)))
+                    if (string.IsNullOrEmpty(Convert.ToString(DismissalDays)))
                     {
                         return "Unesite vrijednost!";
                     }

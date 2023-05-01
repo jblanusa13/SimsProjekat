@@ -57,7 +57,7 @@ namespace ProjectSims.Repository
             return locations;
         }
 
-        public int GetLocationId(string location)
+        public int GetIdByLocation(string location)
         {
             string city = location.Split(",")[0];
             string country = location.Split(",")[1];
@@ -72,17 +72,13 @@ namespace ProjectSims.Repository
             return -1;
         }
 
-        public int Add(string location)
+        public void Add(string location)
         {
-            int id = -1;
             if (!Exist(location))
             {
-                id = NextId();
-                Location loc = new Location(id, location.Split(",")[0], location.Split(",")[1]);
-                locations.Add(loc);
-                fileHandler.Save(locations);
+                Location loc = new Location(NextId(), location.Split(",")[0], location.Split(",")[1]);
+                Create(loc);
             }
-            return id;
         }
 
         public bool Exist(string location)
