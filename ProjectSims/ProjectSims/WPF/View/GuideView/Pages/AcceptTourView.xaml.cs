@@ -1,4 +1,5 @@
 ﻿using ProjectSims.Domain.Model;
+using ProjectSims.WPF.ViewModel.GuideViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +22,23 @@ namespace ProjectSims.WPF.View.GuideView.Pages
     /// </summary>
     public partial class AcceptTourView : Page
     {
-        public AcceptTourView(TourRequest TourRequest)
+        private AcceptTourViewModel acceptTourViewModel;
+        public AcceptTourView(TourRequest tourRequest,Guide guide)
         {
             InitializeComponent();
+            acceptTourViewModel = new AcceptTourViewModel(tourRequest,guide);
+            this.DataContext = acceptTourViewModel;
         }
        public void AcceptTour_Click(object sender, RoutedEventArgs e) { }
        public void Back_Click(object sender, RoutedEventArgs e) { }
+       public void DurationTextBox_TextChanged(object sender, TextChangedEventArgs e)
+       {
+            acceptTourViewModel.ShowAvailableDays(DaysComboBox);
+       }
+        public void DaysComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+       {
+            DateOnly SelectedDate = (DateOnly)DaysComboBox.SelectedItem;
+            acceptTourViewModel.ShowAvailableTimes(SelectedDate, AppointmentsComboBox, Convert.ToDouble(DurationTextBox.Text));
+       }
     }
 }

@@ -28,11 +28,13 @@ namespace ProjectSims.WPF.View.GuideView.Pages
     {
         public TourRequestsViewModel tourRequestViewModel { get; set; }
         public TourRequest SelectedTourRequest { get; set; }
+        public Guide Guide { get; set; }
         public TourRequestsView(Guide guide)
         {
             InitializeComponent();
             tourRequestViewModel = new TourRequestsViewModel(guide);
             this.DataContext = tourRequestViewModel;
+            Guide = guide;
         }
 
         private void AcceptRequest_Click(object sender, RoutedEventArgs e)
@@ -40,7 +42,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             SelectedTourRequest = ((FrameworkElement)sender).DataContext as TourRequest;
             if (SelectedTourRequest != null)
             {
-                this.NavigationService.Navigate(new AcceptTourView(SelectedTourRequest));
+                this.NavigationService.Navigate(new AcceptTourView(SelectedTourRequest,Guide));
             }
         }
         private void Search_Click(object sender, RoutedEventArgs e)
