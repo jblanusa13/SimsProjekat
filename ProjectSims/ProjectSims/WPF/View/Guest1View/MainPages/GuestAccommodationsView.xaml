@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
       xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.MainPages"
       mc:Ignorable="d" 
       d:DesignHeight="540" d:DesignWidth="1067"
@@ -14,7 +15,7 @@
             <ColumnDefinition Width="230"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0">
+        <Grid Grid.Column="0" Background="{DynamicResource CenterBackground}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="100"/>
@@ -32,24 +33,38 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" Content="Naziv:" HorizontalAlignment="Left" Margin="25,17,0,0" VerticalAlignment="Top"/>
-                <Label Grid.Column="1" Content="Grad:" HorizontalAlignment="Left" Margin="17,17,0,0" VerticalAlignment="Top"/>
-                <Label Grid.Column="2" Content="Drzava:" HorizontalAlignment="Left" Margin="17,17,0,0" VerticalAlignment="Top"/>
-                <Label Grid.Column="3" Content="Tip smestaja:" HorizontalAlignment="Left" Margin="17,17,0,0" VerticalAlignment="Top"/>
-                <Label Grid.Column="4" Content="Broj gostiju:" HorizontalAlignment="Left" Margin="17,17,0,0" VerticalAlignment="Top"/>
-                <Label Grid.Column="5" Content="Broj dana:" HorizontalAlignment="Left" Margin="17,17,0,0" VerticalAlignment="Top"/>
-                <TextBox Grid.Column="0" Name="TextboxName"  HorizontalAlignment="Left" Margin="25,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Height="25"/>
-                <TextBox Grid.Column="1" Name="TextboxCity" HorizontalAlignment="Left" Margin="17,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Height="25"/>
-                <TextBox Grid.Column="2" Name="TextboxCountry" HorizontalAlignment="Left" Margin="17,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Height="25"/>
-                <TextBox Grid.Column="3" Name="TextboxType" HorizontalAlignment="Left" Margin="17,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Height="25"/>
-                <TextBox Grid.Column="4" Name="TextboxGuests" HorizontalAlignment="Left" Margin="17,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Height="25"/>
-                <TextBox Grid.Column="5" Name="TextboxDays" HorizontalAlignment="Left" Margin="17,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Height="25"/>
-                <Button Grid.Column="6" Content="Pretraga" Click="Search_Click" HorizontalAlignment="Center" Margin="0,45,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
+                <Label Grid.Column="0" Content="Naziv:" HorizontalAlignment="Left" Margin="25,17,0,0" VerticalAlignment="Top"
+                       Foreground="{DynamicResource ElementsColor}"/>
+                <Label Grid.Column="1" Content="Grad:" HorizontalAlignment="Left" Margin="17,17,0,0" VerticalAlignment="Top"
+                       Foreground="{DynamicResource ElementsColor}"/>
+                <Label Grid.Column="2" Content="Drzava:" HorizontalAlignment="Left" Margin="17,17,0,0" VerticalAlignment="Top"
+                       Foreground="{DynamicResource ElementsColor}"/>
+                <Label Grid.Column="3" Content="Tip smestaja:" HorizontalAlignment="Left" Margin="17,17,0,0" VerticalAlignment="Top"
+                       Foreground="{DynamicResource ElementsColor}"/>
+                <Label Grid.Column="4" Content="Broj gostiju:" HorizontalAlignment="Left" Margin="17,17,0,0" VerticalAlignment="Top"
+                       Foreground="{DynamicResource ElementsColor}"/>
+                <Label Grid.Column="5" Content="Broj dana:" HorizontalAlignment="Left" Margin="17,17,0,0" VerticalAlignment="Top"
+                       Foreground="{DynamicResource ElementsColor}"/>
+                <TextBox Grid.Column="0" Name="TextboxName"  HorizontalAlignment="Left" Margin="25,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Height="25"
+                         Background="{DynamicResource TextboxColor}"/>
+                <TextBox Grid.Column="1" Name="TextboxCity" HorizontalAlignment="Left" Margin="17,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Height="25"
+                         Background="{DynamicResource TextboxColor}"/>
+                <TextBox Grid.Column="2" Name="TextboxCountry" HorizontalAlignment="Left" Margin="17,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Height="25"
+                         Background="{DynamicResource TextboxColor}"/>
+                <TextBox Grid.Column="3" Name="TextboxType" HorizontalAlignment="Left" Margin="17,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Height="25"
+                         Background="{DynamicResource TextboxColor}"/>
+                <TextBox Grid.Column="4" Name="TextboxGuests" HorizontalAlignment="Left" Margin="17,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Height="25"
+                         Background="{DynamicResource TextboxColor}"/>
+                <TextBox Grid.Column="5" Name="TextboxDays" HorizontalAlignment="Left" Margin="17,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Height="25"
+                         Background="{DynamicResource TextboxColor}"/>
+                <Button Grid.Column="6" Content="Pretraga" Click="Search_Click" HorizontalAlignment="Center" Margin="0,45,0,0" VerticalAlignment="Top" Width="80" Height="25"
+                        Background="{DynamicResource CenterDarkColor}" Foreground="{DynamicResource ElementsColor}"/>
 
             </Grid>
 
             <DataGrid Grid.Row="2" Name="AccommodationsTable" ItemsSource="{Binding Path=Accommodations, UpdateSourceTrigger=PropertyChanged}"
-            Margin="25,10,10,36" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
+            Margin="25,10,10,36" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single"
+                      Background="{DynamicResource CenterDarkColor}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" Width="120"></DataGridTextColumn>
                     <DataGridTextColumn Header="Grad" Binding="{Binding Location.City}" Width="130"></DataGridTextColumn>
@@ -61,12 +76,19 @@
             </DataGrid>
         </Grid>
 
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" Background="{DynamicResource MainColor}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Button x:Name="ButtonTheme" Margin="10,20,180,20" Click="Theme_Click"
+                        Background="{DynamicResource MainColor}">
+                    <DynamicResource ResourceKey="MoonIcon"></DynamicResource>
+                </Button>
+            </Grid>
 
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
@@ -80,25 +102,33 @@
 
                 <Button Grid.Row="0" Margin="30,10" Content="Bilo kad/Bilo gde"
                         HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="150"
-                        FontSize="14"/>
+                        FontSize="14"
+                        Background="{DynamicResource MainColor}" Foreground="{DynamicResource ElementsColor}"
+                        />
                 <Button Grid.Row="1" Margin="30,10" Content="Moje rezervacije"
                         HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="150"
-                         FontSize="14" Click="MyReservations_Click"/>
+                         FontSize="14" Click="MyReservations_Click"
+                        Background="{DynamicResource MainColor}" Foreground="{DynamicResource ElementsColor}"/>
                 <Button Grid.Row="2" Margin="30,10" Content="Ocenite smestaj"
                         HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="150"
-                         FontSize="14" Click="RateAccommodation_Click"/>
+                         FontSize="14" Click="RateAccommodation_Click"
+                        Background="{DynamicResource MainColor}" Foreground="{DynamicResource ElementsColor}"/>
                 <Button Grid.Row="3" Margin="30,10" Content="Prikaz ocena"
                         HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="150"
-                         FontSize="14" Click="ShowRatings_Click"/>
+                         FontSize="14" Click="ShowRatings_Click"
+                        Background="{DynamicResource MainColor}" Foreground="{DynamicResource ElementsColor}"/>
                 <Button Grid.Row="4" Margin="30,10" Content="Forum"
                         HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="150"
-                         FontSize="14"/>
+                         FontSize="14"
+                        Background="{DynamicResource MainColor}" Foreground="{DynamicResource ElementsColor}"/>
                 <Button Grid.Row="5" Margin="30,10" Content="Moj nalog"
                         HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="150"
-                         FontSize="14"/>
+                         FontSize="14"
+                        Background="{DynamicResource MainColor}" Foreground="{DynamicResource ElementsColor}"/>
             </Grid>
             <Grid Grid.Row="2">
-                <Button Content="Rezervisi" Click="Reservation_Click" Margin="30,10" VerticalAlignment="Top" Height="30"/>
+                <Button Content="Rezervisi" Click="Reservation_Click" Margin="30,10" VerticalAlignment="Top" Height="30"
+                        Background="{DynamicResource MainColor}" Foreground="{DynamicResource ElementsColor}"/>
             </Grid>
         </Grid>
     </Grid>

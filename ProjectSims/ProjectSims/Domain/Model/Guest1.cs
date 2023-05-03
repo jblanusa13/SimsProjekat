@@ -1,14 +1,5 @@
 ﻿using ProjectSims.Serializer;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using ProjectSims.Serializer;
-using ProjectSims.Service;
-using ProjectSims.Repository;
-using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Domain.Model
 {

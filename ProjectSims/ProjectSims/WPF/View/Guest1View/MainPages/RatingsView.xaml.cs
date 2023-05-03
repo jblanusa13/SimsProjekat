@@ -25,14 +25,31 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
     public partial class RatingsView : Page, IObserver
     {
         public ObservableCollection<AccommodationAndOwnerRating> MyRatings { get; set; }
-        private AccommodationRatingService ratingService;
+        public ObservableCollection<GuestRating> OwnerRatings { get; set; }
+        private AccommodationRatingService accommodationRatingService;
+        private GuestRatingService guestRatingService;
         public RatingsView(Guest1 guest)
         {
             InitializeComponent();
             DataContext = this;
 
-            ratingService = new AccommodationRatingService();
-            MyRatings = new ObservableCollection<AccommodationAndOwnerRating>(ratingService.GetAllRatingsByGuestId(guest.Id));    
+            accommodationRatingService = new AccommodationRatingService();
+            guestRatingService = new GuestRatingService();
+
+            MyRatings = new ObservableCollection<AccommodationAndOwnerRating>(accommodationRatingService.GetAllRatingsByGuestId(guest.Id));
+            OwnerRatings = new ObservableCollection<GuestRating>(guestRatingService.GetAllRatingsForGuest(guest.Id));
+        }
+
+        private void MyRatings_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            AccommodationAndOwnerRating accommodationAndOwnerRating = (AccommodationAndOwnerRating)MyRatingsTable.SelectedItem;
+            MyRatingsTb.Text = accommodationAndOwnerRating.AddedComment;
+        }
+
+        private void OwnerRatings_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GuestRating guestRating = (GuestRating)OwnerRatingsTable.SelectedItem;
+            OwnerRatingsTb.Text = guestRating.Comment;
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

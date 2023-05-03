@@ -264,7 +264,7 @@ namespace ProjectSims.View.OwnerView.Pages
                 SelectedGuestAccommodation.Rated = true;
                 guestAccommodationService.Update(SelectedGuestAccommodation);
                 AccommodationReservation accommodationReservation = accommodationReservationService.GetReservation(SelectedGuestAccommodation.GuestId, SelectedGuestAccommodation.AccommodationId, SelectedGuestAccommodation.CheckInDate, SelectedGuestAccommodation.CheckOutDate);
-                guestRatingService.Create(new GuestRating(-1, CleanlinessRate, RespectingRulesRate, TidinessRate, CommunicationRate, CommentTextBox.Text, accommodationReservation, DateOnly.FromDateTime(DateTime.Now), SelectedGuestAccommodation.GuestId));
+                guestRatingService.Create(new GuestRating(-1, CleanlinessRate, RespectingRulesRate, TidinessRate, CommunicationRate, CommentTextBox.Text, accommodationReservation.Id, accommodationReservation, DateOnly.FromDateTime(DateTime.Now), SelectedGuestAccommodation.GuestId));
                 OwnerStartingView ownerStartingView = (OwnerStartingView)Window.GetWindow(this);
                 ownerStartingView.SelectedTab.Content = new AccommodationsDisplay(owner);
             }

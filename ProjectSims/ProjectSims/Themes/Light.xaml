@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:fa="http://schemas.fontawesome.io/icons/">
+
+    <fa:ImageAwesome Icon="MoonOutline" x:Key="MoonIcon" Foreground="#FF114642"/>
+    <fa:ImageAwesome Icon="WindowMinimize" x:Key="MinimizeIcon"  Width="10" HorizontalAlignment="Center" Foreground="#FF114642"/>
+    <fa:ImageAwesome Icon="WindowRestore" x:Key="RestoreIcon" Width="15" Foreground="#FF114642"/>
+    <fa:ImageAwesome Icon="WindowClose" x:Key="CloseIcon" Width="20" Foreground="#FF114642"/>
+    <SolidColorBrush  x:Key="MainColor" Color="#FF55977A" ></SolidColorBrush>
+    <SolidColorBrush x:Key="CenterBackground" Color="#FFC7DFD4"></SolidColorBrush>
+    <SolidColorBrush  x:Key="ElementsColor" Color="#FF114642"></SolidColorBrush>
+    <SolidColorBrush Color="White" x:Key="TextboxColor"></SolidColorBrush>
+    <SolidColorBrush Color="White" x:Key="CenterDarkColor"></SolidColorBrush>
+
+</ResourceDictionary>

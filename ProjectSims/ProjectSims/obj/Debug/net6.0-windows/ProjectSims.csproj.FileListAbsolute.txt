@@ -278,3 +278,10 @@ C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\Guest1View\RatingStartView.baml
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\Guest1View\Requests\DateChangeRequest.baml
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\Guest1View\Requests\MyRequests.baml
+C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\Themes\Dark.baml
+C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\Themes\Light.baml
+C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\App.baml
+C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\Guest1View\BarPages\StatusBar.g.cs
+C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\Guest1View\BarPages\WindowBar.g.cs
+C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\Guest1View\BarPages\StatusBar.baml
+C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\Guest1View\BarPages\WindowBar.baml
