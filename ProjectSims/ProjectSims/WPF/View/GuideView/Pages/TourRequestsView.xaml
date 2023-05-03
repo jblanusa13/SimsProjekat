@@ -24,7 +24,7 @@
     <ScrollViewer>
         <Grid Background="#FF050518">
             <Label Content="Lista zahteva" HorizontalAlignment="Center" Margin="0,35,0,0" FontSize="25"/>
-            <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,100,0,0" Width="1280" Height="120">
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,100,0,0" Width="1280" Height="140">
                 <Border BorderBrush="White" BorderThickness="2"/>
                 <Image Source="/Resources/Icons/Guide/filter.png" Height="50" Width="50" Margin="20,20,0,0"/>
                 <Label Content="Filteri" Margin="60,30,0,0" FontSize="22"/>
@@ -34,9 +34,14 @@
                 <Image Source="/Resources/Icons/Guide/globe.png" Margin="710,60,0,0"/>
                 <TextBox x:Name="MaxNumberGuestsTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="800,60,0,0" Height="40" Width="70"/>
                 <Image Source="/Resources/Icons/Guide/guests.png" Margin="890,60,0,0"/>
-                <DatePicker HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1000,70,0,0" Height="25" Width="110"/>
+                <Viewbox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1000,40,0,0" Height="110" Width="110">
+                    <Calendar Name="DateRange" FirstDayOfWeek="Monday" IsTodayHighlighted="True" SelectionMode="SingleRange"/>
+                </Viewbox>
+                <Button Click ="Search_Click" Margin="1200,60,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="50" Width="50" Background="Transparent" BorderThickness="0">
+                    <Image Source="/Resources/Icons/Guide/search.png"/>
+                </Button>
             </Grid>
-            <ListView  x:Name="TourRequestsListView" ItemsSource="{Binding TourRequests}" Margin="0,270,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single" Width="1200" Background="#D0D5F7">
+            <ListView  x:Name="TourRequestsListView" ItemsSource="{Binding TourRequests}" Margin="0,370,0,50" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single" Width="1200" Background="#D0D5F7">
                 <ListView.Resources>
                     <Style TargetType="{x:Type Label}">
                         <Setter Property="Foreground" Value="Black"/>

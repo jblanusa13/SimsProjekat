@@ -38,6 +38,14 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         private void AcceptRequest_Click(object sender, RoutedEventArgs e)
         {
             SelectedTourRequest = ((FrameworkElement)sender).DataContext as TourRequest;
+            if (SelectedTourRequest != null)
+            {
+                this.NavigationService.Navigate(new AcceptTourView(SelectedTourRequest));
+            }
+        }
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            tourRequestViewModel.SearchRequests(LocationTextBox.Text,LanguageTextBox.Text,MaxNumberGuestsTextBox.Text,DateRange.SelectedDates.Cast<DateTime>().ToList());
         }
 
     }

@@ -65,6 +65,22 @@ namespace ProjectSims.Repository
         {
             return tourRequests.Find(t => t.Id == id);
         }
+        public List<TourRequest> GetByLocation(string location)
+        {
+            return tourRequests.Where(t => t.Location.ToLower().Contains(location)).ToList();
+        }
+        public List<TourRequest> GetByLanguage(string language)
+        {
+            return tourRequests.Where(t => t.Language.ToLower().Contains(language)).ToList();
+        }
+        public List<TourRequest> GetByMaxNumberGuests(int maxNumberGuests)
+        {
+            return tourRequests.Where(t => t.MaxNumberGuests == maxNumberGuests).ToList();
+        }
+        public List<TourRequest> GetRequestsInDateRange(DateOnly dateRangeStart,DateOnly dateRangeEnd)
+        {
+            return tourRequests.Where(t => t.DateRangeStart.CompareTo(dateRangeStart) >= 0 && t.DateRangeEnd.CompareTo(dateRangeEnd) <=0).ToList();
+        }
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);

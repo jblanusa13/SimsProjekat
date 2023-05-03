@@ -22,6 +22,15 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
             Guide = guide;
             TourRequests = new ObservableCollection<TourRequest>(tourRequestService.GetWaitingRequests());
         }
+        public void SearchRequests(string location, string language, string maxNumberGuests, List<DateTime> dateRange)
+        {
+            List<TourRequest> wantedRequests = tourRequestService.GetWantedRequests(location, language, maxNumberGuests,dateRange.First(),dateRange.Last());
+            TourRequests.Clear();
+            foreach (TourRequest request in wantedRequests)
+            {
+                TourRequests.Add(request);
+            }
+        }
         public void Update()
         {
             TourRequests.Clear();

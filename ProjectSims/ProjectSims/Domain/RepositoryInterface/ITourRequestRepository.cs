@@ -12,5 +12,9 @@ namespace ProjectSims.Domain.RepositoryInterface
     {
         public int GetNextId();
         public List<TourRequest> GetWaitingRequests();
+        public List<TourRequest> GetByLocation(string location);
+        public List<TourRequest> GetByLanguage(string language);
+        public List<TourRequest> GetByMaxNumberGuests(int maxNumberGuests);
+        public List<TourRequest> GetRequestsInDateRange(DateOnly dateRangeStart, DateOnly dateRangeEnd);
     }
 }
