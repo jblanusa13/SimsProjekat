@@ -55,7 +55,7 @@ namespace ProjectSims.Domain.Model
                 TidinessRating.ToString(),
                 CommunicationRating.ToString(),
                 Comment,
-                TimeStamp.ToString(),
+                TimeStamp.ToString("dd.MM.yyyy"),
                 GuestId.ToString()};
             return csvValues;
         }

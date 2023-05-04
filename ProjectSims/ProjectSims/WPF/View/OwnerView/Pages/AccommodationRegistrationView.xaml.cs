@@ -27,7 +27,7 @@ namespace ProjectSims.View.OwnerView.Pages
     /// <summary>
     /// Interaction logic for AccommodationRegistrationView.xaml
     /// </summary>
-    public partial class AccommodationRegistrationView : Page, INotifyPropertyChanged, IDataErrorInfo
+    public partial class AccommodationRegistrationView : Page, INotifyPropertyChanged
     {
         public Owner Owner { get; set; }
         public AccommodationRegistrationViewModel accommodationRegistrationViewModel { get; set; }
@@ -154,15 +154,12 @@ namespace ProjectSims.View.OwnerView.Pages
         }
         private void RegisterAccommodation_Click(object sender, RoutedEventArgs e)
         {
-            //if (IsValid)
+            List<string> Pics = new List<string>();
+            foreach (string path in paths)
             {
-                List<string> Pics = new List<string>();
-                foreach (string path in paths)
-                {
-                    Pics.Add(path);
-                }
-                accommodationRegistrationViewModel.RegisterAccommodation(LocationTextBox.Text, Pics, AccommodationName, Type, GuestsMaximum, MinimumReservationDays, DismissalDays);
+                Pics.Add(path);
             }
+            accommodationRegistrationViewModel.RegisterAccommodation(LocationTextBox.Text, Pics, AccommodationName, Type, GuestsMaximum, MinimumReservationDays, DismissalDays);
             OwnerStartingView ownerStartingView = (OwnerStartingView)Window.GetWindow(this);
             ownerStartingView.ChangeTab(4);
         }
@@ -203,108 +200,6 @@ namespace ProjectSims.View.OwnerView.Pages
             Images.Width = 170;
             Images.Height = 100;
             ImageList.Items.Add(Images);
-        }
-
-        public string Error => null;
-        public string this[string columnName]
-        {
-            get
-            {
-                string result = string.Empty;
-
-                if (columnName == "AccommodationName")
-                {
-                    if (string.IsNullOrEmpty(AccommodationName))
-                    {
-                        return "Unesite vrijednost!";
-                    }
-                    else if (!Regex.IsMatch(AccommodationName, @"^[a-zA-Z0-9,. ]*$"))
-                    {
-                        return "Iskljucivo: slova[a-z] i brojevi[0-9]!";
-                    }
-                }
-                else if (columnName == "Location")
-                {
-                    if (string.IsNullOrEmpty(Location))
-                    {
-                        return "Unesite vrijednost!";
-                    }
-                    else if (!Regex.IsMatch(LocationTextBox.Text, @"^[a-zA-Z]+[,]{1}[a-zA-Z]+$"))
-                    {
-                        return "Iskljucivo: slova[a-z] u formatu Grad,Drzava!";
-                    }
-                }
-                else if (columnName == "GuestsMaximum")
-                {
-                    if (string.IsNullOrEmpty(Convert.ToString(GuestsMaximum)))
-                    {
-                        return "Unesite vrijednost!";
-                    }
-                    else if (GuestsMaximum < 1)
-                    {
-                        return "Iskljucivo brojevi veci od 0!";
-                    }
-                }
-                else if (columnName == "MinimumReservationDays")
-                {
-                    if (string.IsNullOrEmpty(Convert.ToString(MinimumReservationDays)))
-                    {
-                        return "Unesite vrijednost!";
-                    }
-                    else
-                    {
-                        try
-                        {
-                            if (MinimumReservationDays < 1)
-                            {
-                                return "Iskljucivo brojevi veci od 0!";
-                            }
-                        }
-                        catch (Exception e1)
-                        {
-                            return "Iskljucivo brojevi veci od 0!";
-                        }
-                    }
-
-                }
-                else if (columnName == "DismissalDays")
-                {
-                    if (string.IsNullOrEmpty(Convert.ToString(DismissalDays)))
-                    {
-                        return "Unesite vrijednost!";
-                    }
-                    else
-                    {
-                        try
-                        {
-                            if (Convert.ToInt32(DismissalDays) < 0)
-                            {
-                                return "Iskljucivo nenegativni brojevi!";
-                            }
-                        }
-                        catch (Exception e1)
-                        {
-                            return "Iskljucivo nenegativni brojevi!";
-                        }
-                    }
-                }
-                return null;
-            }
-        }
-
-        private readonly string[] validatedProperties = { "AccommodationName", "Location", "GuestsMaximum", "MinimumReservationDays", "DismissalDays" };
-
-        public bool IsValid
-        {
-            get
-            {
-                foreach (var property in validatedProperties)
-                {
-                    if (this[property] != null)
-                        return false;
-                }
-                return true;
-            }
         }
     }
 }
