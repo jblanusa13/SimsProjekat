@@ -20,7 +20,7 @@ namespace ProjectSims.Domain.Model
         public int IdLocation { get; set; }
         public Location Location { get; set; }
         public AccommodationType Type { get; set; }
-        public int GuestsMaximum { get; set; }
+        public int GuestsMaximum { get; set; } 
         public int MinimumReservationDays { get; set; }
         public int DismissalDays { get; set; }
         public List<string> Images { get; set; }

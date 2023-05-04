@@ -127,6 +127,22 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        private void Theme_Click(object sender, RoutedEventArgs e)
+        {
+            App app = (App)Application.Current;
+
+            if (ButtonTheme.Content == FindResource("SunIcon"))
+            {
+                app.ChangeTheme(new Uri("Themes/Light.xaml", UriKind.Relative));
+                ButtonTheme.Content = FindResource("MoonIcon");
+            }
+            else
+            {
+                app.ChangeTheme(new Uri("Themes/Dark.xaml", UriKind.Relative));
+                ButtonTheme.Content = FindResource("SunIcon");
+            }
+        }
+
 
         private void FindDates_Click(object sender, RoutedEventArgs e)
         {
