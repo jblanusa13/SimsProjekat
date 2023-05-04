@@ -1,0 +1,33 @@
+﻿<Page x:Class="ProjectSims.WPF.View.Guest1View.BarPages.WindowBar"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View"
+      mc:Ignorable="d" 
+      d:DesignHeight="30" d:DesignWidth="1050"
+      Title="Smestaji">
+
+    <Grid Background="{DynamicResource StatusBar}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="40"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Column="0" Foreground="{DynamicResource ElementsColor}">Agencija za putovanja</TextBlock>
+        <Button Grid.Column="2" Name="MinimizeButton" BorderBrush="{DynamicResource StatusBar}" Background="{DynamicResource StatusBar}">
+            <DynamicResource ResourceKey="MinimizeIcon"/>
+        </Button>
+        <Button Grid.Column="3" Name="RestoreButton" BorderBrush="{DynamicResource StatusBar}" Background="{DynamicResource StatusBar}">
+            <DynamicResource ResourceKey="RestoreIcon"/>
+        </Button>
+        <Button Grid.Column="4" Name="CloseButton" BorderBrush="{DynamicResource StatusBar}" Background="{DynamicResource StatusBar}"
+                Click="Close_Click">
+            <DynamicResource ResourceKey="CloseIcon"/>
+        </Button>
+    </Grid>
+</Page>

@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.MainPages"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
       mc:Ignorable="d" 
       d:DesignHeight="540" d:DesignWidth="1067"
       Title="RatingsView">
@@ -16,7 +17,9 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <Button Margin="10,10,1000,80" Click="Back_Click">Nazad</Button>
+            <Button Margin="10,10,1020,80" Click="Back_Click" Background="White" BorderBrush="White">
+                <fa:ImageAwesome Icon="ArrowCircleLeft" Foreground="DarkSeaGreen"/>
+            </Button>
         </Grid>
 
         <Grid Grid.Row="1">
@@ -28,9 +31,10 @@
                             <ColumnDefinition Width="350"/>
                         </Grid.ColumnDefinitions>
 
-                        <DataGrid Grid.Column="0" Margin="20,50,20,10"
+                        <DataGrid Name="MyRatingsTable" Grid.Column="0" Margin="20,50,20,10"
                                   ItemsSource="{Binding MyRatings, UpdateSourceTrigger=PropertyChanged}"
-                                  AutoGenerateColumns="False" IsReadOnly="True">
+                                  AutoGenerateColumns="False" IsReadOnly="True"
+                                  SelectionChanged="MyRatings_SelectionChanged">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Naziv smestaja" Binding="{Binding Reservation.Accommodation.Name}" Width="*"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Cistoca" Binding="{Binding Cleanliness}" Width="70"></DataGridTextColumn>
@@ -41,7 +45,7 @@
                         </DataGrid>
 
                         <Grid Grid.Column="1">
-                            <TextBox Text="{Binding AddedComment}" Margin="30,100,30,10" IsEnabled="False"></TextBox>
+                            <TextBox Name="MyRatingsTb" Text="{Binding AddedComment}" Margin="30,100,30,10" IsEnabled="False"></TextBox>
                         </Grid>
                     </Grid>
                 </TabItem>
@@ -52,18 +56,20 @@
                             <ColumnDefinition Width="350"/>
                         </Grid.ColumnDefinitions>
 
-                        <DataGrid Grid.Column="0" Margin="20,50,20,10"
-                                  ItemsSource="{Binding OwnerRatings, UpdateSourceTrigger=PropertyChanged}">
+                        <DataGrid Name="OwnerRatingsTable" Grid.Column="0" Margin="20,50,20,10"
+                                  ItemsSource="{Binding OwnerRatings, UpdateSourceTrigger=PropertyChanged}"
+                                  AutoGenerateColumns="False" IsReadOnly="True"
+                                  SelectionChanged="OwnerRatings_SelectionChanged">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Cistoca" Width="130"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Postovanje pravila" Width="150"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Komunikacija" Width="150"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Urednost" Width="*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Cistoca" Binding="{Binding CleanlinessRating}" Width="130"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Postovanje pravila" Binding="{Binding RespectingRulesRating}" Width="150"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Komunikacija" Binding="{Binding CommunicationRating}" Width="150"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Urednost" Binding="{Binding TidinessRating}" Width="*"></DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
 
                         <Grid Grid.Column="1">
-                            <TextBox Margin="30,100,30,10" IsEnabled="False"></TextBox>
+                            <TextBox Name="OwnerRatingsTb"  Margin="30,100,30,10" IsEnabled="False"></TextBox>
                         </Grid>
                     </Grid>
                 </TabItem>

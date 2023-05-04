@@ -10,5 +10,6 @@ namespace ProjectSims.Domain.RepositoryInterface
 {
     interface IGuestRatingRepository : IGenericRepository<GuestRating, int>, ISubject
     {
+        public List<GuestRating> GetAllForGuest(int guestId);
     }
 }

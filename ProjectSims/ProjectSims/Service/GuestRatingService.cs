@@ -26,6 +26,21 @@ namespace ProjectSims.Service
             return guestRatings.GetAll();
         }
 
+        public List<GuestRating> GetAllRatingsForGuest(int guestId)
+        {
+            List<GuestRating> ratings = guestRatings.GetAllForGuest(guestId);
+            List<GuestRating> ratingsToShow = new List<GuestRating>();
+            foreach(var rating in ratings)
+            {
+                if(rating.Reservation.Rated == true)
+                {
+                    ratingsToShow.Add(rating);
+                }
+            }
+
+            return ratingsToShow;
+        }
+
         public void Create(GuestRating guestRating)
         {
             guestRatings.Create(guestRating);

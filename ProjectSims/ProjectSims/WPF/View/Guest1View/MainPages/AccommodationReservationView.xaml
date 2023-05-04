@@ -42,8 +42,8 @@
                         <ColumnDefinition Width="250"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Margin="20,5" FontSize="14">Grad:</Label>
-                    <Label Grid.Column="1" Margin="0,5" Content="{Binding Accommodation.Location.City}"></Label>
+                    <Label Grid.Column="0" Margin="20,5" FontSize="14" FontFamily="Bahnschrift">Grad:</Label>
+                    <Label Grid.Column="1" Margin="0,5" FontFamily="Bahnschrift" Content="{Binding Accommodation.Location.City}"></Label>
                 </Grid>
 
                 <Grid Grid.Row="1">
@@ -52,8 +52,8 @@
                         <ColumnDefinition Width="250"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Margin="20,5" FontSize="14">Drzava:</Label>
-                    <Label Grid.Column="1" Margin="0,5" Content="{Binding Accommodation.Location.Country}"></Label>
+                    <Label Grid.Column="0" Margin="20,5" FontSize="14" FontFamily="Bahnschrift">Drzava:</Label>
+                    <Label Grid.Column="1" Margin="0,5" FontFamily="Bahnschrift" Content="{Binding Accommodation.Location.Country}"></Label>
                 </Grid>
 
                 <Grid Grid.Row="2">
@@ -62,8 +62,8 @@
                         <ColumnDefinition Width="250"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Margin="20,5" FontSize="14">Tip smestaja:</Label>
-                    <Label Grid.Column="1" Margin="0,5" Content="{Binding Accommodation.Type}"></Label>
+                    <Label Grid.Column="0" Margin="20,5" FontSize="14" FontFamily="Bahnschrift">Tip smestaja:</Label>
+                    <Label Grid.Column="1" Margin="0,5" FontFamily="Bahnschrift" Content="{Binding Accommodation.Type}"></Label>
                 </Grid>
 
                 <Grid Grid.Row="3">
@@ -72,8 +72,8 @@
                         <ColumnDefinition Width="250"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Margin="20,5" FontSize="14">Maksimalan broj gostiju:</Label>
-                    <Label Grid.Column="1" Margin="0,5" Content="{Binding Accommodation.GuestsMaximum}"></Label>
+                    <Label Grid.Column="0" Margin="20,5" FontSize="14" FontFamily="Bahnschrift">Maksimalan broj gostiju:</Label>
+                    <Label Grid.Column="1" Margin="0,5" FontFamily="Bahnschrift" Content="{Binding Accommodation.GuestsMaximum}"></Label>
                 </Grid>
 
                 <Grid Grid.Row="4">
@@ -82,8 +82,8 @@
                         <ColumnDefinition Width="250"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Margin="20,5" FontSize="14">Minimalan broj dana:</Label>
-                    <Label Grid.Column="1" Margin="0,5" Content="{Binding Accommodation.MinimumReservationDays}"></Label>
+                    <Label Grid.Column="0" Margin="20,5" FontSize="14" FontFamily="Bahnschrift">Minimalan broj dana:</Label>
+                    <Label Grid.Column="1" Margin="0,5" FontFamily="Bahnschrift" Content="{Binding Accommodation.MinimumReservationDays}"></Label>
                 </Grid>
 
                 <Grid Grid.Row="5">
@@ -92,8 +92,8 @@
                         <ColumnDefinition Width="250"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Margin="20,5,5,5" FontSize="14">Rok za otkazivanje (broj dana):</Label>
-                    <Label Grid.Column="1" Margin="0,5" Content="{Binding Accommodation.DismissalDays}"></Label>
+                    <Label Grid.Column="0" Margin="20,5,5,5" FontSize="14" FontFamily="Bahnschrift">Rok za otkazivanje (broj dana):</Label>
+                    <Label Grid.Column="1" Margin="0,5" FontFamily="Bahnschrift" Content="{Binding Accommodation.DismissalDays}"></Label>
                 </Grid>
 
                 <Grid Grid.Row="6">
@@ -102,7 +102,7 @@
             </Grid>
 
             <Grid Grid.Column="1">
-                <GroupBox Margin="10">
+                <GroupBox Margin="10" Background="{DynamicResource RightBackground}">
                     <GroupBox.Header>Potrebne informacije</GroupBox.Header>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -122,33 +122,39 @@
 
 
                             <Grid Grid.Row="0">
-                                <Label Margin="10, 15" FontSize="14">Korisnicko ime</Label>
+                                <Label Margin="10, 15" FontSize="14" FontFamily="Bahnschrift">Korisnicko ime</Label>
                             </Grid>
 
                             <Grid Grid.Row="1">
-                                <Label Margin="10,5" FontSize="14">Pocetni datum pretrage:</Label>
+                                <Label Margin="10,5" FontSize="14" FontFamily="Bahnschrift">Pocetni datum pretrage:</Label>
                                 <DatePicker Name="FirstDatePicker" Margin="15,35,10,10"
                                             DisplayDateStart="{x:Static sys:DateTime.Today}"></DatePicker>
                             </Grid>
 
                             <Grid Grid.Row="2">
-                                <Label Margin="10,5" FontSize="14">Krajnji datum pretrage:</Label>
+                                <Label Margin="10,5" FontSize="14" FontFamily="Bahnschrift">Krajnji datum pretrage:</Label>
                                 <DatePicker Name="LastDatePicker" Margin="15,35,10,10"
                                             DisplayDateStart="{x:Static sys:DateTime.Today}"></DatePicker>
                             </Grid>
 
                             <Grid Grid.Row="3">
-                                <Label Margin="10,5" FontSize="14">Broj dana:</Label>
+                                <Label Margin="10,5" FontSize="14" FontFamily="Bahnschrift">Broj dana:</Label>
                                 <TextBox Name="TextboxDaysNumber" Text="{Binding Path=DaysNumber, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Margin="15,35,10,0" Height="32" VerticalAlignment="Top"></TextBox>
                             </Grid>
 
                             <Grid Grid.Row="4">
-                                <Label Margin="10,5" FontSize="14">Broj gostiju:</Label>
+                                <Label Margin="10,5" FontSize="14" FontFamily="Bahnschrift">Broj gostiju:</Label>
                                 <TextBox Text="{Binding Path=GuestNumber, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Margin="15,35,10,10"></TextBox>
                             </Grid>
 
                             <Grid Grid.Row="5">
-                                <Button Margin="15,20,10,15" Click="FindDates_Click">Pretrazi datume</Button>
+                                <Button Margin="15,20,10,15" Click="FindDates_Click" FontFamily="Bahnschrift">Pretrazi datume
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="10"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
                             </Grid>
                         </Grid>
 
@@ -172,8 +178,20 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <Button Grid.Column="0" Margin="30,20,30,15" Click="Confirm_Click">Potvrdi rezervaciju</Button>
-                                <Button Grid.Column="1" Margin="30,20,30,15" Click="Cancel_Click">Otkazi</Button>
+                                <Button Grid.Column="0" Margin="30,20,10,15" FontFamily="Bahnschrift" Click="Confirm_Click">Potvrdi rezervaciju
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="10"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                                <Button Grid.Column="1" Margin="30,20,30,15" FontFamily="Bahnschrift" Click="Cancel_Click">Otkazi
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="10"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
                             </Grid>
                         </Grid>
                     </Grid>

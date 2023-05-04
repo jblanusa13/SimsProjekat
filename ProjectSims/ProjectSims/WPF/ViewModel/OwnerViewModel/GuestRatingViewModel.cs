@@ -41,7 +41,7 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
             SelectedGuestAccommodation.Rated = true;
             guestAccommodationService.Update(SelectedGuestAccommodation);
             AccommodationReservation accommodationReservation = accommodationReservationService.GetReservation(SelectedGuestAccommodation.GuestId, SelectedGuestAccommodation.AccommodationId, SelectedGuestAccommodation.CheckInDate, SelectedGuestAccommodation.CheckOutDate);
-            guestRatingService.Create(new GuestRating(-1, cleanlinessRate, respectingRulesRate, tidinessRate, communicationRate, comment, accommodationReservation, DateOnly.FromDateTime(DateTime.Now), SelectedGuestAccommodation.GuestId));
+            guestRatingService.Create(new GuestRating(-1, cleanlinessRate, respectingRulesRate, tidinessRate, communicationRate, comment, accommodationReservation.Id, accommodationReservation, DateOnly.FromDateTime(DateTime.Now), SelectedGuestAccommodation.GuestId));
         }
 
         public void Update()

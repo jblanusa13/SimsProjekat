@@ -22,7 +22,10 @@ namespace ProjectSims.Repository
             guestRatings = guestRatingFileHandler.Load();
             observers = new List<IObserver>();
         }
-        
+        public List<GuestRating> GetAllForGuest(int guestId)
+        {
+            return guestRatings.Where(r => r.GuestId == guestId).ToList();
+        }
         public int NextId()
         {
             return guestRatings.Max(t => t.Id) + 1;
