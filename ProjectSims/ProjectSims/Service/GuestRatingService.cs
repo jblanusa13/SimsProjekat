@@ -32,7 +32,7 @@ namespace ProjectSims.Service
             List<GuestRating> ratingsToShow = new List<GuestRating>();
             foreach(var rating in ratings)
             {
-                if(rating.Reservation.Rated == true)
+                if(rating.Reservation.RatedAccommodation == true)
                 {
                     ratingsToShow.Add(rating);
                 }

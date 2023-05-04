@@ -43,7 +43,7 @@ namespace ProjectSims.Service
         public void CreateReservation(int accommodationId, int guestId, DateOnly checkIn, DateOnly checkOut, int guestNumber)
         {
             int id = reservationRepository.NextId();
-            AccommodationReservation reservation = new AccommodationReservation(id, accommodationId, guestId, checkIn, checkOut, guestNumber, ReservationState.Active, false);
+            AccommodationReservation reservation = new AccommodationReservation(id, accommodationId, guestId, checkIn, checkOut, guestNumber, ReservationState.Active, false, false);
             reservationRepository.Create(reservation);
         }
 
@@ -77,7 +77,7 @@ namespace ProjectSims.Service
             guestReservations = GetReservationByGuest(guest.Id);
             foreach (AccommodationReservation reservation in guestReservations)
             {
-                if(DateOnly.FromDateTime(DateTime.Today) <= reservation.CheckOutDate.AddDays(5) && DateOnly.FromDateTime(DateTime.Today) >= reservation.CheckOutDate && reservation.Rated == false)
+                if(DateOnly.FromDateTime(DateTime.Today) <= reservation.CheckOutDate.AddDays(5) && DateOnly.FromDateTime(DateTime.Today) >= reservation.CheckOutDate && reservation.RatedAccommodation == false)
                 {
                     accommodationsForRating.Add(reservation);
                 }
@@ -87,7 +87,7 @@ namespace ProjectSims.Service
 
         public void ChangeReservationRatedState(AccommodationReservation reservation)
         {
-            reservation.Rated = true;
+            reservation.RatedAccommodation = true;
             reservationRepository.Update(reservation);
         }
 
