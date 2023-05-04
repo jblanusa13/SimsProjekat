@@ -18,7 +18,6 @@ using System.Windows.Shapes;
 using ProjectSims.Service;
 using ProjectSims.View.OwnerView.Pages;
 using System.IO;
-using ProjectSims.Repository;
 
 namespace ProjectSims.WPF.View.OwnerView
 {
@@ -28,55 +27,20 @@ namespace ProjectSims.WPF.View.OwnerView
     public partial class OwnerStartingView : Window
     {
         public Owner owner { get; set; }
-        private AccommodationReservationRepository accommodationReservationRepository;
-        private GuestAccommodationRepository guestAccommodationRepository;
+        private GuestRatingService guestRatingService { get; set; }
+        
         public OwnerStartingView(Owner o)
         {
             InitializeComponent();
             DataContext = this;
+            owner = o; 
             SelectedTab.Content = new HomePage(owner);
-            owner = o;
-            accommodationReservationRepository = new AccommodationReservationRepository();
-            guestAccommodationRepository = new GuestAccommodationRepository();
-        }
-        private Boolean IsAnyGuestRatable() 
-        {
-            List<AccommodationReservation> reservations = accommodationReservationRepository.GetAll();
-            foreach (var item in reservations)
-            { 
-                if (DateOnly.FromDateTime(DateTime.Today).CompareTo(item.CheckOutDate) > 0)
-                {
-                    if (guestAccommodationRepository.GetById(item.Id).Rated == false) 
-                    {
-                        return true;   
-                    }
-                }
-            }
-            return false;
-        }
+            guestRatingService = new GuestRatingService();
+       }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            string fileName = "../../../Resources/Data/lastShown.csv";
-
-            try
-            {
-                string lastShownText = File.ReadAllText(fileName);
-                DateOnly lastShownDate = DateOnly.Parse(lastShownText);
-
-                if (lastShownDate < DateOnly.FromDateTime(DateTime.Today)) 
-                {
-                    if (IsAnyGuestRatable())
-                    {
-                        MessageBox.Show("Imate neocijenjenih gostiju!", "Ocjenjivanje gostiju", MessageBoxButton.OK);
-                        File.WriteAllText(fileName, DateOnly.FromDateTime(DateTime.Today).ToString());
-                    }
-                }
-            }
-            catch (Exception)
-            {
-              
-            }
+            guestRatingService.NotifyOwnerAboutRating();
         }
 
         private void ButtonMenu(object sender, RoutedEventArgs e)
@@ -110,7 +74,7 @@ namespace ProjectSims.WPF.View.OwnerView
                     }
                 case 2:
                     {
-                        //SelectedTab.Content = new SideMenu(owner);
+                        //SelectedTab.Content = new Notifications(owner);
                         break;
                     }
                 case 3:
@@ -121,11 +85,6 @@ namespace ProjectSims.WPF.View.OwnerView
                 case 4:
                     {
                         SelectedTab.Content = new AccommodationsDisplay(owner);
-                        break;
-                    }
-                case 5:
-                    {
-                        //SelectedTab.Content = new GuestRatingView(owner);
                         break;
                     }
             }

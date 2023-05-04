@@ -19,8 +19,7 @@
                     <RowDefinition Height="47*"/>
                 </Grid.RowDefinitions>
                 <DataGrid x:Name="GuestAccommodationsTable"
-                          ItemsSource="{Binding GuestAccommodations,
-                                        UpdateSourceTrigger=PropertyChanged}"
+                          ItemsSource="{Binding GuestAccommodations}"
                           Margin="22,61,22,200"
                           AutoGenerateColumns="False"
                           IsReadOnly="True"
@@ -46,8 +45,7 @@
                         <DataGridCheckBoxColumn Header="Ocijenjen"
                                                 Binding="{Binding Rated,
                                                 Mode=TwoWay, 
-                                                BindsDirectlyToSource=True, 
-                                                UpdateSourceTrigger=PropertyChanged}"
+                                                BindsDirectlyToSource=True}"
                                                 Width="*"
                                                 IsReadOnly="True"/>
                     </DataGrid.Columns>

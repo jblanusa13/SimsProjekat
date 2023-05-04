@@ -91,6 +91,24 @@ namespace ProjectSims.Service
             reservationRepository.Update(reservation);
         }
 
+        public Boolean IsAnyGuestRatable()
+        {
+            GuestAccommodationService guestAccommodationService = new GuestAccommodationService();
+            List<AccommodationReservation> reservations = GetAllReservations();
+
+            foreach (var item in reservations)
+            {
+                if (DateOnly.FromDateTime(DateTime.Today).CompareTo(item.CheckOutDate) > 0)
+                {
+                    if (guestAccommodationService.GetGuestAccommodationById(item.Id).Rated == false)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         public void Subscribe(IObserver observer)
         {
             reservationRepository.Subscribe(observer);

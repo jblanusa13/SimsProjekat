@@ -18,6 +18,10 @@ namespace ProjectSims.Service
         {
             guestAccommodations = Injector.CreateInstance<IGuestAccommodationRepository>();
         }
+        public GuestAccommodation GetGuestAccommodationById(int id) 
+        {
+            return guestAccommodations.GetById(id);            
+        }
 
         public List<GuestAccommodation> GetAllGuestAccommodations()
         {

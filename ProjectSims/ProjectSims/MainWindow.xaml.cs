@@ -30,9 +30,7 @@ namespace ProjectSims
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static int CurrentUserId { get; set; }
         private readonly UserFileHandler userFile;
-
         private readonly OwnerFileHandler ownerFile;
         private readonly Guest1FileHandler guest1File;
         private readonly Guest2FileHandler guest2File;
@@ -57,7 +55,6 @@ namespace ProjectSims
                     Owner owner = ownerFile.GetByUserId(user.Id);
                     if(owner != null)
                     {
-                        CurrentUserId = owner.UserId;
                         OwnerStartingView ownerView = new OwnerStartingView(owner);
                         ownerView.Show();
                         Close();

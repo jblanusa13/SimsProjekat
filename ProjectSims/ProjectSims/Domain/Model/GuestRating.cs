@@ -61,7 +61,7 @@ namespace ProjectSims.Domain.Model
                 CommunicationRating.ToString(),
                 Comment,
                 ReservationId.ToString(),
-                TimeStamp.ToString(),
+                TimeStamp.ToString("dd.MM.yyyy"),
                 GuestId.ToString()};
             return csvValues;
         }

@@ -22,52 +22,19 @@ using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using ProjectSims.WPF.View.OwnerView;
 using ProjectSims.WPF.View.OwnerView.Pages;
+using ProjectSims.WPF.ViewModel.Guest1ViewModel;
+using ProjectSims.WPF.ViewModel.OwnerViewModel;
 
 namespace ProjectSims.View.OwnerView.Pages
 {
     /// <summary>
     /// Interaction logic for GuestRatingtView.xaml
     /// </summary>
-    public partial class GuestRatingView : Page, INotifyPropertyChanged, IObserver
+    public partial class GuestRatingView : Page, INotifyPropertyChanged
     {
+        public GuestRatingViewModel guestRatingViewModel { get; set; }
         public GuestAccommodation SelectedGuestAccommodation { get; set; }
-
-        public GuestAccommodationService guestAccommodationService;
-        public ObservableCollection<GuestAccommodation> GuestAccommodations { get; set; }
-
-        public AccommodationReservationService accommodationReservationService;
-
-        public GuestRatingService guestRatingService;
-
-        public DateRangesService dateRangesService;
-        
-        private Owner owner;
-        public GuestRatingView(GuestAccommodation selectedGuestAccommodation, GuestAccommodationService guestAccommodationService, Owner o)
-        {
-            InitializeComponent();
-            DataContext = this;
-            owner = o;
-
-            FirstName = selectedGuestAccommodation.FirstName;
-            LastName = selectedGuestAccommodation.LastName;
-            AccommodationName = selectedGuestAccommodation.Name;
-            Type = selectedGuestAccommodation.Type;
-            CheckInDate = selectedGuestAccommodation.CheckInDate;
-            CheckInDateTextBox.Text = selectedGuestAccommodation.CheckInDate.ToString();
-            CheckOutDate = selectedGuestAccommodation.CheckOutDate;
-            CheckOutDateTextBox.Text = selectedGuestAccommodation.CheckOutDate.ToString();
-            Rated = selectedGuestAccommodation.Rated;
-            SelectedGuestAccommodation = selectedGuestAccommodation;
- 
-            guestAccommodationService = guestAccommodationService;
-            guestAccommodationService.Subscribe(this);
-            accommodationReservationService = new AccommodationReservationService();
-            accommodationReservationService.Subscribe(this);
-            guestRatingService = new GuestRatingService();
-            guestRatingService.Subscribe(this);
-            dateRangesService = new DateRangesService();
-            GuestAccommodations = new ObservableCollection<GuestAccommodation>(guestAccommodationService.GetAllGuestAccommodations());
-        }
+        private Owner Owner { get; set; }
 
         private string _accommodationName;
         public string AccommodationName
@@ -223,8 +190,8 @@ namespace ProjectSims.View.OwnerView.Pages
             }
         }
 
-        private string _comment = "Dodatni komentar...";
-        public string Comment 
+        private string _comment;
+        public string Comment
         {
             get => _comment;
             set
@@ -236,6 +203,24 @@ namespace ProjectSims.View.OwnerView.Pages
                 }
             }
         }
+        public GuestRatingView(GuestAccommodation selectedGuestAccommodation, Owner o)
+        {
+            InitializeComponent();
+            Owner = o;
+            SelectedGuestAccommodation = selectedGuestAccommodation;
+            guestRatingViewModel = new GuestRatingViewModel(SelectedGuestAccommodation, Owner);
+            this.DataContext = guestRatingViewModel;
+
+            FirstName = selectedGuestAccommodation.FirstName;
+            LastName = selectedGuestAccommodation.LastName;
+            AccommodationName = selectedGuestAccommodation.Name;
+            Type = selectedGuestAccommodation.Type;
+            CheckInDate = selectedGuestAccommodation.CheckInDate;
+            CheckInDateTextBox.Text = selectedGuestAccommodation.CheckInDate.ToString();
+            CheckOutDate = selectedGuestAccommodation.CheckOutDate;
+            CheckOutDateTextBox.Text = selectedGuestAccommodation.CheckOutDate.ToString();
+            Rated = selectedGuestAccommodation.Rated;
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -244,97 +229,15 @@ namespace ProjectSims.View.OwnerView.Pages
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public void Update()
-        {
-            GuestAccommodations.Clear();
-            foreach (GuestAccommodation guestAccommodation in guestAccommodationService.GetAllGuestAccommodations())
-            {
-                GuestAccommodations.Add(guestAccommodation);
-            }
-        }
-
         private void RateGuest_Click(object sender, RoutedEventArgs e)
         {
-            Button clickedButton = sender as Button;
-
-            if (IsValid 
-                && !string.IsNullOrWhiteSpace(CommentTextBox.Text) 
-                && clickedButton == RateButton)
-            {
-                SelectedGuestAccommodation.Rated = true;
-                guestAccommodationService.Update(SelectedGuestAccommodation);
-                AccommodationReservation accommodationReservation = accommodationReservationService.GetReservation(SelectedGuestAccommodation.GuestId, SelectedGuestAccommodation.AccommodationId, SelectedGuestAccommodation.CheckInDate, SelectedGuestAccommodation.CheckOutDate);
-                guestRatingService.Create(new GuestRating(-1, CleanlinessRate, RespectingRulesRate, TidinessRate, CommunicationRate, CommentTextBox.Text, accommodationReservation.Id, accommodationReservation, DateOnly.FromDateTime(DateTime.Now), SelectedGuestAccommodation.GuestId));
-                OwnerStartingView ownerStartingView = (OwnerStartingView)Window.GetWindow(this);
-                ownerStartingView.SelectedTab.Content = new AccommodationsDisplay(owner);
-            }
+                guestRatingViewModel.RateGuest(SelectedGuestAccommodation, CleanlinessRate, RespectingRulesRate, TidinessRate, CommunicationRate, CommentTextBox.Text);
+                this.NavigationService.Navigate(new AccommodationsDisplay(Owner));
         }
 
         private void CancelRateGuest_Click(object sender, RoutedEventArgs e)
         {
-            OwnerStartingView ownerStartingView = (OwnerStartingView)Window.GetWindow(this);
-            ownerStartingView.SelectedTab.Content = new AccommodationsDisplay(owner);
-        }
-
-        public string Error => null;
-        public string this[string columnName]
-        {
-            get
-            {
-                string result = string.Empty;
-
-                if (columnName == "CleanlinessRate")
-                {
-                    if (CleanlinessComboBox.SelectedIndex == -1)
-                    {
-                        return "Izaberite vrijednost!";
-                    }
-                }
-                else if (columnName == "RespectingRulesRate")
-                {
-                    if (RespectingRulesComboBox.SelectedIndex == -1)
-                    {
-                        return "Izaberite vrijednost!";
-                    }
-                }
-                else if (columnName == "TidinessRate")
-                {
-                    if (TidinessComboBox.SelectedIndex == -1)
-                    {
-                        return "Izaberite vrijednost!";
-                    }
-                }
-                else if (columnName == "CommunicationRate")
-                {
-                    if (CommunicationComboBox.SelectedIndex == -1)
-                    {
-                        return "Izaberite vrijednost!";
-                    }
-                }
-                else if (columnName == "Comment")
-                {
-                    if (string.IsNullOrEmpty(Comment) || CommentTextBox.Text == "Dodatni komentar...")
-                    {
-                        return "Unesite komentar!";
-                    }
-                }
-                return null;
-            }
-        }
-
-        private readonly string[] validatedProperties = { "CleanlinessRate", "RespectingRulesRate", "TidinessRate", "CommunicationRate", "Comment" };
-
-        public bool IsValid
-        {
-            get
-            {
-                foreach (var property in validatedProperties)
-                {
-                    if (this[property] != null)
-                        return false;
-                }
-                return true;
-            }     
+            this.NavigationService.Navigate(new AccommodationsDisplay(Owner));
         }
 
         private void CommentTextBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
@@ -359,7 +262,5 @@ namespace ProjectSims.View.OwnerView.Pages
                 source.Foreground = Brushes.Black;
             }
         }
-
-
     }
 }

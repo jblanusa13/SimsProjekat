@@ -1,5 +1,4 @@
-﻿using ProjectSims.Service;
-using ProjectSims.Domain.Model;
+﻿using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 using System;
 using System.Collections;
@@ -23,54 +22,45 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Tulpep.NotificationWindow;
 using ProjectSims.WPF.View.OwnerView;
+using ProjectSims.WPF.ViewModel.OwnerViewModel;
+using ProjectSims.WPF.View.GuideView.Pages;
 
 namespace ProjectSims.View.OwnerView.Pages
 {
     /// <summary>
     /// Interaction logic for OwnerView.xaml
     /// </summary>
-    public partial class AccommodationsDisplay : Page, INotifyPropertyChanged, IObserver
+    public partial class AccommodationsDisplay : Page
     {
-        private readonly GuestAccommodationService guestAccommodationService;
-        private Owner owner;
-        private OwnerService ownerService;
-        public ObservableCollection<GuestAccommodation> GuestAccommodations { get; set; }
+        public AccommodationsDisplayViewModel accommodationsDisplayViewModel;
+        public Owner Owner { get; set; }
         public GuestAccommodation SelectedGuestAccommodation { get; set; }
         
-        public AccommodationsDisplay(Owner owner)
+        public AccommodationsDisplay(Owner o)
         {
             InitializeComponent();
-            DataContext = this;
+            Owner = o;
+            accommodationsDisplayViewModel = new AccommodationsDisplayViewModel(Owner);
+            this.DataContext = accommodationsDisplayViewModel;
+            NotifyAboutRequest();
+        }
 
-            guestAccommodationService = new GuestAccommodationService();
-            guestAccommodationService.Subscribe(this);
-            GuestAccommodations = new ObservableCollection<GuestAccommodation>(guestAccommodationService.GetAllGuestAccommodations());
-
-            this.owner = owner;
-            ownerService = new OwnerService();
-            if (ownerService.HasWaitingRequests(owner.Id))
+        public void NotifyAboutRequest()
+        {
+            if (accommodationsDisplayViewModel.HasWaitingRequests(Owner))
             {
                 MessageBox.Show("Imate zahteve na cekanju!");
             }
         }
-       
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-       private void RateGuest_Click(object sender, RoutedEventArgs e)
+        private void RateGuest_Click(object sender, RoutedEventArgs e)
         {
             SelectedGuestAccommodation = (GuestAccommodation)GuestAccommodationsTable.SelectedItem;
 
             if (SelectedGuestAccommodation != null 
-                && SelectedGuestAccommodation.Rated == false 
-                && SelectedGuestAccommodation.CheckOutDate.AddDays(5) >= DateOnly.FromDateTime(DateTime.Today))
+                && accommodationsDisplayViewModel.IsNotRated(SelectedGuestAccommodation) 
+                && accommodationsDisplayViewModel.IsLessThan5Days(SelectedGuestAccommodation))
             {
-                OwnerStartingView ownerStartingView = (OwnerStartingView)Window.GetWindow(this);
-                ownerStartingView.SelectedTab.Content = new GuestRatingView(SelectedGuestAccommodation, guestAccommodationService, owner);
+                this.NavigationService.Navigate(new GuestRatingView(SelectedGuestAccommodation, Owner));
             }
             else if(SelectedGuestAccommodation == null)
             {
@@ -84,17 +74,7 @@ namespace ProjectSims.View.OwnerView.Pages
 
         private void RegistrateAccommodation_Click(object sender, RoutedEventArgs e)
         {
-            AccommodationRegistrationView accommodationRegistrationView = new AccommodationRegistrationView();
-            accommodationRegistrationView.Show();
-        }
-
-        public void Update()
-        {
-            GuestAccommodations.Clear();
-            foreach (GuestAccommodation guestAccommodation in guestAccommodationService.GetAllGuestAccommodations()) 
-            {
-                GuestAccommodations.Add(guestAccommodation);
-            }
+            this.NavigationService.Navigate(new AccommodationRegistrationView(Owner));
         }
     }
 }

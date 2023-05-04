@@ -100,7 +100,7 @@ namespace ProjectSims.Repository
             }
             return false;
         }
-        public void AddAccommodationId(Owner owner, int accommodationId)
+        public void AddAccommodation(Owner owner, int accommodationId)
         {
             if (!ExistAccommodation(owner, accommodationId))
             {

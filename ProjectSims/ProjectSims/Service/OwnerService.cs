@@ -37,6 +37,10 @@ namespace ProjectSims.Service
             }
             return false;
         }
+        public void AddAccommodation(Owner owner, int accommodationId)
+        {
+            owners.AddAccommodation(owner, accommodationId);
+        }
 
         public void Create(Owner owner)
         {

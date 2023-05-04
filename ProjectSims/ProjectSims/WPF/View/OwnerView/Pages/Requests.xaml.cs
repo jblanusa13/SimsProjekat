@@ -4,6 +4,8 @@ using ProjectSims.Observer;
 using ProjectSims.Repository;
 using ProjectSims.Service;
 using ProjectSims.View.OwnerView.Pages;
+using ProjectSims.WPF.ViewModel.GuideViewModel;
+using ProjectSims.WPF.ViewModel.OwnerViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -27,75 +29,34 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
     /// <summary>
     /// Interaction logic for Requests.xaml
     /// </summary>
-    public partial class Requests : Page, IObserver
+    public partial class Requests : Page
     {
         public Owner owner;
         public Request SelectedRequest { get; set; }
-        public ObservableCollection<Request> RequestList { get; set; }
-        private RequestService requestService;
-        private AccommodationReservationService accommodationReservationService;
+        public RequestsViewModel requestsViewModel { get; set; }
 
         public Requests(Owner o)
         {
             InitializeComponent();
-            DataContext = this;
             owner = o;
-            requestService = new RequestService();
-            requestService.Subscribe(this);
-            RequestList = new ObservableCollection<Request>(requestService.GetAllRequests());
-            accommodationReservationService = new AccommodationReservationService();
-        }
-
-        public void Update()
-        {
-            RequestList.Clear();
-            foreach (Request request in requestService.GetAllRequests())
-            {
-                RequestList.Add(request);
-            }
+            requestsViewModel = new RequestsViewModel(o);
+            this.DataContext = requestsViewModel;
         }
 
         private void AcceptButton_Click(object sender, RoutedEventArgs e)
         {
-            UpdateSelectedRequest(sender, SelectedRequest, RequestsTable, CommentTextBox.Text);
+            SelectedRequest = (Request)RequestsTable.SelectedItem;
+            requestsViewModel.UpdateSelectedRequest(sender, SelectedRequest, CommentTextBox.Text);
             CommentTextBox.Text = "Unesite komentar ukoliko odbijate zahtjev...";
         }
 
         private void RefuseButton_Click(object sender, RoutedEventArgs e)
         {
-            UpdateSelectedRequest(sender, SelectedRequest, RequestsTable, CommentTextBox.Text);
+            SelectedRequest = (Request)RequestsTable.SelectedItem;
+            requestsViewModel.UpdateSelectedRequest(sender, SelectedRequest, CommentTextBox.Text);
             CommentTextBox.Text = "Unesite komentar ukoliko odbijate zahtjev...";
         }
 
-        public void UpdateSelectedRequest(object sender, Request SelectedRequest, DataGrid RequestsTable, string comment)
-        {
-            SelectedRequest = (Request)RequestsTable.SelectedItem;
-
-            if (SelectedRequest != null)
-            {
-                SelectedRequest.State = Set(sender);
-                SelectedRequest.OwnerComment = comment;
-                requestService.Update(SelectedRequest);
-                SelectedRequest.Reservation.CheckInDate = SelectedRequest.ChangeDate;
-                SelectedRequest.Reservation.CheckOutDate = SelectedRequest.Reservation.CheckInDate.AddDays(SelectedRequest.Reservation.CheckOutDate.DayNumber - SelectedRequest.Reservation.CheckInDate.DayNumber);
-                accommodationReservationService.Update(SelectedRequest.Reservation);
-            }
-            else if (SelectedRequest == null)
-            {
-                //Do nothing
-            }
-        }
-        public RequestState Set(object sender)
-        {
-            Button clickedButton = sender as Button;
-
-            if (clickedButton.Name == "AcceptButton" && clickedButton != null)
-            {
-                return RequestState.Approved;
-            }
-
-            return RequestState.Rejected;
-        }
         private void CommentTextBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             TextBox source = e.Source as TextBox;
