@@ -35,6 +35,10 @@ namespace ProjectSims.Service
         {
             return tourRequestRepository.GetById(id);
         }
+        public List<TourRequest> GetByGuest2Id(int guest2Id)
+        {
+            return tourRequestRepository.GetByGuest2Id(guest2Id);
+        }
         public List<TourRequest> GetWantedRequests(string location,string language,string maxNumberGuests,DateTime dateRangeStart,DateTime dateRangeEnd)
         {
             List<TourRequest> wantedRequests = new List<TourRequest>();

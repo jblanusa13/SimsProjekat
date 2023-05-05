@@ -12,6 +12,7 @@ namespace ProjectSims.Domain.Model
     public class TourRequest : ISerializable
     {
         public int Id { get; set; }
+        public int Guest2Id { get; set; }
         public int GuideId { get; set; }
         public TourRequestState State { get; set; }
         public string Location { get; set; }
@@ -23,9 +24,10 @@ namespace ProjectSims.Domain.Model
         public TourRequest()
         {
         }
-        public TourRequest(int id, int guideId, TourRequestState state, string location, string description, string language, int maxNumberGuests, DateOnly dateRangeStart, DateOnly dateRangeEnd)
+        public TourRequest(int id,int guest2Id, int guideId, TourRequestState state, string location, string description, string language, int maxNumberGuests, DateOnly dateRangeStart, DateOnly dateRangeEnd)
         {
             Id = id;
+            Guest2Id = guest2Id;
             GuideId = guideId;
             State = state;
             Location = location;
@@ -38,18 +40,19 @@ namespace ProjectSims.Domain.Model
         public void FromCSV(string[] values)
         {
             Id = Convert.ToInt32(values[0]);
-            GuideId = Convert.ToInt32(values[1]);
-            State = (TourRequestState)Enum.Parse(typeof(TourRequestState), values[2]);
-            Location = values[3];
-            Description = values[4];
-            Language = values[5];
-            MaxNumberGuests = Convert.ToInt32(values[6]);
-            DateRangeStart = DateOnly.ParseExact(values[7], "MM/dd/yyyy", CultureInfo.InvariantCulture);
-            DateRangeEnd = DateOnly.ParseExact(values[8], "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            Guest2Id = Convert.ToInt32(values[1]);
+            GuideId = Convert.ToInt32(values[2]);
+            State = (TourRequestState)Enum.Parse(typeof(TourRequestState), values[3]);
+            Location = values[4];
+            Description = values[5];
+            Language = values[6];
+            MaxNumberGuests = Convert.ToInt32(values[7]);
+            DateRangeStart = DateOnly.ParseExact(values[8], "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            DateRangeEnd = DateOnly.ParseExact(values[9], "MM/dd/yyyy", CultureInfo.InvariantCulture);
         }
         public string[] ToCSV()
         {
-            string[] csvvalues = { Id.ToString(), GuideId.ToString(), State.ToString(), Location, Description, Language, MaxNumberGuests.ToString(), DateRangeStart.ToString("MM/dd/yyyy"), DateRangeEnd.ToString("MM/dd/yyyy") };
+            string[] csvvalues = { Id.ToString(), Guest2Id.ToString(), GuideId.ToString(), State.ToString(), Location, Description, Language, MaxNumberGuests.ToString(), DateRangeStart.ToString("MM/dd/yyyy"), DateRangeEnd.ToString("MM/dd/yyyy") };
             return csvvalues;
         }
     }

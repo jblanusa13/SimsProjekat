@@ -65,6 +65,11 @@ namespace ProjectSims.Repository
         {
             return tourRequests.Find(t => t.Id == id);
         }
+
+        public List<TourRequest> GetByGuest2Id(int guest2Id)
+        {
+            return tourRequests.Where(t => t.Guest2Id == guest2Id).ToList();
+        }
         public List<TourRequest> GetByLocation(string location)
         {
             return tourRequests.Where(t => t.Location.ToLower().Contains(location)).ToList();
