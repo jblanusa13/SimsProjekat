@@ -29,7 +29,9 @@ namespace ProjectSims.WPF.View.GuideView.Pages
     {
         public Guide guide { get; set; }
 
-        private readonly TourService _controller;
+        private readonly TourService tourService;
+        private readonly GuideScheduleService guideScheduleService;
+
 
         private string _tourName;
         public string TourName
@@ -284,7 +286,8 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         {
             InitializeComponent();
             DataContext = this;
-            _controller = new TourService();
+            tourService = new TourService();
+            guideScheduleService = new GuideScheduleService();
             OtherKeyPoints = new List<string>();
             guide = g;
         }
@@ -324,7 +327,8 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 foreach (string TourStart in TourStarts.Split(','))
                 {
                     String ImageList = Images.Remove(Images.Length - 1, 1);
-                    _controller.Create(guide.Id, TourName, Location, Description, TourLanguage, MaxNumberGuests, StartKeyPoint, FinishKeyPoint, OtherKeyPoints, TourStart, Duration, ImageList);
+                    tourService.Create(guide.Id, TourName, Location, Description, TourLanguage, MaxNumberGuests, StartKeyPoint, FinishKeyPoint, OtherKeyPoints, TourStart, Duration, ImageList);
+
                 }
                 this.NavigationService.Navigate(new ScheduledToursView(guide));
             }

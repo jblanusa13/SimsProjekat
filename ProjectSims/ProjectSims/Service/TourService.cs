@@ -19,13 +19,13 @@ namespace ProjectSims.Service
     {
         private ITourRepository tourRepository;
         private KeyPointService keyPointService;
-        private Guest2Service guestService;
+        private GuideScheduleService guideScheduleService;
         private ReservationTourService reservationService;
         public TourService()
         {
             tourRepository = Injector.CreateInstance<ITourRepository>();
             keyPointService = new KeyPointService();
-            guestService = new Guest2Service();
+            guideScheduleService = new GuideScheduleService();
             reservationService = new ReservationTourService();
         }
         public List<Tour> GetAllTours()
@@ -94,6 +94,8 @@ namespace ProjectSims.Service
                 }
                 Tour newTour =  new Tour(-1, guideId, name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPointIds, DateTime.Parse(tourStart), Convert.ToDouble(duration), imageList, Convert.ToInt32(maxNumberGuests),TourState.Inactive,-1);
                 tourRepository.Create(newTour);
+                guideScheduleService.Create(guideId, newTour.Id, DateTime.Parse(tourStart), Convert.ToDouble(duration));
+
         }
         public void UpdateTourState(Tour tour,TourState state)
         {

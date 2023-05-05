@@ -26,9 +26,9 @@ namespace ProjectSims.Service
         {
             return guideScheduleRepository.GetById(id);
         }
-        public void Create(GuideSchedule guideSchedule)
-        {
-            guideScheduleRepository.Create(guideSchedule);
+        public void Create(int guideId,int tourId,DateTime start,double duration)
+        {           
+            guideScheduleRepository.Create(new GuideSchedule(-1,guideId,tourId,start,start.AddHours(duration)));
         }
 
         public void Delete(GuideSchedule guideSchedule)
