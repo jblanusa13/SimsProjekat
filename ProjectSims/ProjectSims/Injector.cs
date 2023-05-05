@@ -24,7 +24,8 @@ namespace ProjectSims
             { typeof(IGuideRepository), new GuideRepository() },
             { typeof(IKeyPointRepository), new KeyPointRepository() },
             { typeof(IUserRepository), new UserRepository() },
-            { typeof(ITourRequestRepository), new TourRequestRepository() }      
+            { typeof(ITourRequestRepository), new TourRequestRepository() },
+            { typeof(IGuideScheduleRepository), new GuideScheduleRepository() }    
             /*{ typeof(IAccommodationRepository), new AccommodationRepository() },
             { typeof(IAccommodationReservationRepository), new AccommodationReservationRepository() },
             { typeof(IGuest1Repository), new Guest1Repository() },
@@ -37,18 +38,11 @@ namespace ProjectSims
        public static T CreateInstance<T>()
         {
             Type type = typeof(T);
-            if(Injector.implementations == null)
+            if (Injector.implementations.ContainsKey(type))
             {
-                MessageBox.Show("ovo je null");
+                return (T)Injector.implementations[type];
             }
-            else
-            {
-                if (Injector.implementations.ContainsKey(type))
-                {
-                    return (T)Injector.implementations[type];
-                }
-                throw new ArgumentException($"No implementation found for type {type}");
-           }
+            throw new ArgumentException($"No implementation found for type {type}");
             return default(T);
         }
     }
