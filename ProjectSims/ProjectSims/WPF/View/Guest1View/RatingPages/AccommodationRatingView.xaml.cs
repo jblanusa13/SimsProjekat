@@ -23,10 +23,13 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
     public partial class AccommodationRatingView : Page
     {
         private AccommodationRatingViewModel viewModel;
+        private List<string> images;
+        public Image image { get; set; }
         public AccommodationRatingView(AccommodationReservation accommodationReservation)
         {
             InitializeComponent();
             viewModel = new AccommodationRatingViewModel(accommodationReservation);
+            images = new List<string>();
         }
 
         private void Browse_Click(object sender, RoutedEventArgs e)
@@ -43,19 +46,33 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
             {
                 return;
             }
-            Images.Text += GetRelativePath(fileName) + ",\n";
+            images.Add(GetRelativePath(fileName));
+            LoadImages(images.Last());
         }
 
         private string GetRelativePath(string fileName)
         {
-            return "../../../Resources/Images/Guest1/" + fileName;
+            return "/Resources/Images/Guest1/" + fileName;
+        }
+        private void LoadImages(string path)
+        {
+            BitmapImage bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.UriSource = new Uri(path, UriKind.RelativeOrAbsolute);
+            bitmapImage.EndInit();
+
+            image = new Image();
+            image.Source = bitmapImage;
+            image.Height = 200;
+            image.Width = 270;
+            ImageList.Items.Add(image);
         }
 
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrEmpty(CleanlinessTb.Text) && !string.IsNullOrEmpty(FairnessTb.Text) && !string.IsNullOrEmpty(LocationTb.Text) && !string.IsNullOrEmpty(ValueForMoneyTb.Text))
             {
-                viewModel.Confirm(CleanlinessTb.Text, FairnessTb.Text, LocationTb.Text, ValueForMoneyTb.Text, CommentTb.Text, Images.Text);
+                viewModel.Confirm(CleanlinessTb.Text, FairnessTb.Text, LocationTb.Text, ValueForMoneyTb.Text, CommentTb.Text, images);
             }
             NavigationService.Navigate(new RenovationRecommendationView(viewModel));
         }

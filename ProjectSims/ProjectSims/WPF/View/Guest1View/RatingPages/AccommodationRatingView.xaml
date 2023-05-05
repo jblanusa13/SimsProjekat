@@ -103,8 +103,18 @@
                 </Grid>
 
                 <Grid Grid.Row="1">
-                    <!-- <ListView Margin="40,10,100,10"></ListView> -->
-                    <TextBox Name="Images" Margin="40,10,50,10" IsEnabled="False"></TextBox>
+                    <ListView x:Name="ImageList" 
+                              ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                              ScrollViewer.VerticalScrollBarVisibility="Visible"
+                              ScrollViewer.PanningMode="VerticalOnly"
+                              Margin="20,10,0,10" HorizontalAlignment="Left" Width="314">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Vertical"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+                    <!--<TextBox Name="Images" Margin="40,10,50,10" IsEnabled="False"></TextBox>-->
                 </Grid>
             </Grid>
         </Grid>

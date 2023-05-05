@@ -36,6 +36,17 @@
     <None Remove="Resources\Icons\Guide\user.png" />
     <None Remove="Resources\Images\background.jpg" />
     <None Remove="Resources\Images\checkmark.png" />
+    <None Remove="Resources\Images\Guest1\DraganoviKonaciKoliba.jpg" />
+    <None Remove="Resources\Images\Guest1\DraganoviKonaciTrem.jpg" />
+    <None Remove="Resources\Images\Guest1\DraganoviKonaciUnutra.jpg" />
+    <None Remove="Resources\Images\Guest1\JovanovicDnevna.jpg" />
+    <None Remove="Resources\Images\Guest1\JovanovicKuca.jpg" />
+    <None Remove="Resources\Images\Guest1\JovanovicSoba.jpg" />
+    <None Remove="Resources\Images\Guest1\KodLabudaDnevna.jpg" />
+    <None Remove="Resources\Images\Guest1\KodLabudaKupatilo.jpg" />
+    <None Remove="Resources\Images\Guest1\KodLabudaSpavaca.jpg" />
+    <None Remove="Resources\Images\Guest1\MladenovicKuhinja.jpg" />
+    <None Remove="Resources\Images\Guest1\MladenovicTrem.jpg" />
     <None Remove="Resources\Images\Guest2\download.jpg" />
     <None Remove="Resources\Images\Guest2\images.jpg" />
     <None Remove="Resources\Images\Guest2\kofer.jpg" />
@@ -96,6 +107,39 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\user.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest1\DraganoviKonaciKoliba.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest1\DraganoviKonaciTrem.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest1\DraganoviKonaciUnutra.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest1\JovanovicDnevna.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest1\JovanovicKuca.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest1\JovanovicSoba.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest1\KodLabudaDnevna.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest1\KodLabudaKupatilo.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest1\KodLabudaSpavaca.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest1\MladenovicKuhinja.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest1\MladenovicTrem.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Guest2\kofer.jpg">
@@ -184,9 +228,5 @@
     <Resource Include="FileHandler\Images\mladenovic2.jpg" />
     <Resource Include="FileHandler\Images\visnjin_dom1.jpg" />
     <Resource Include="FileHandler\Images\visnjin_dom2.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Resources\Images\Guest1\" />
   </ItemGroup>
 </Project>

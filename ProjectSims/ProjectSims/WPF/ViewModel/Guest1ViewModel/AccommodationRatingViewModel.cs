@@ -35,13 +35,13 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             ImageList = new List<string>();
         }
 
-        public void Confirm(string cleanliness, string fairness, string location, string valueForMoney, string comment, string imagesString)
+        public void Confirm(string cleanliness, string fairness, string location, string valueForMoney, string comment, List<string> images)
         {
             Cleanliness = Convert.ToInt32(cleanliness);
             Fairness = Convert.ToInt32(fairness);
             Location = Convert.ToInt32(location);
             ValueForMoney = Convert.ToInt32(valueForMoney);
-
+            /*
             if (!string.IsNullOrEmpty(imagesString))
             {
                 string images = imagesString.Remove(imagesString.Length - 2, 2);
@@ -53,6 +53,10 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             else
             {
                 ImageList.Add("");
+            }*/
+            foreach(var image in images)
+            {
+                ImageList.Add(image);
             }
 
             if (string.IsNullOrEmpty(comment))

@@ -288,3 +288,14 @@ C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\
 C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ProjectSims.csproj.CopyComplete
 C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ProjectSims.genruntimeconfig.cache
 C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ref\ProjectSims.dll
+C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guest1\DraganoviKonaciKoliba.jpg
+C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guest1\DraganoviKonaciTrem.jpg
+C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guest1\DraganoviKonaciUnutra.jpg
+C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guest1\JovanovicDnevna.jpg
+C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guest1\JovanovicKuca.jpg
+C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guest1\JovanovicSoba.jpg
+C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guest1\KodLabudaDnevna.jpg
+C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guest1\KodLabudaKupatilo.jpg
+C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guest1\KodLabudaSpavaca.jpg
+C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guest1\MladenovicKuhinja.jpg
+C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guest1\MladenovicTrem.jpg

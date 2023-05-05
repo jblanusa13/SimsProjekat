@@ -100,7 +100,6 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             }
         }
 
-
         public ObservableCollection<DateRanges> AvailableDates { get; set; }
 
         public DateRanges SelectedDates;
@@ -119,6 +118,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             Accommodation = SelectedAccommodation;
             Username = guest.User.Username;
             AvailableDates = new ObservableCollection<DateRanges>();
+            LoadImages(SelectedAccommodation.Images);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -143,7 +143,22 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             }
         }
 
+        private void LoadImages(List<string> pathList)
+        {
+            foreach(string path in pathList)
+            {
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.UriSource = new Uri(path, UriKind.Absolute);
+                bitmapImage.EndInit();
 
+                Image image = new Image();
+                image.Source = bitmapImage;
+                image.Height = 100;
+                image.Width = 170;
+                ImageList.Items.Add(image);
+            }
+        }
         private void FindDates_Click(object sender, RoutedEventArgs e)
         {
             DateRangesService dateRangesService = new DateRangesService();

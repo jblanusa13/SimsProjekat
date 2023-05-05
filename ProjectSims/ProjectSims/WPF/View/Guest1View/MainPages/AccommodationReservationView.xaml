@@ -124,7 +124,17 @@
                 </Grid>
 
                 <Grid Grid.Row="6">
-                    <ListView Margin="20,10"></ListView>
+                    <ListView x:Name="ImageList" 
+                              ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                              ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                              ScrollViewer.PanningMode="HorizontalOnly"
+                              Margin="10">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
                 </Grid>
             </Grid>
 
