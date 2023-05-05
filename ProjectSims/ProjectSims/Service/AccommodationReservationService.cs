@@ -93,17 +93,13 @@ namespace ProjectSims.Service
 
         public Boolean IsAnyGuestRatable()
         {
-            GuestAccommodationService guestAccommodationService = new GuestAccommodationService();
             List<AccommodationReservation> reservations = GetAllReservations();
 
             foreach (var item in reservations)
             {
-                if (DateOnly.FromDateTime(DateTime.Today).CompareTo(item.CheckOutDate) > 0)
+                if (DateOnly.FromDateTime(DateTime.Today).CompareTo(item.CheckOutDate) > 0 && GetReservation(item.Id).RatedGuest == false)
                 {
-                    if (guestAccommodationService.GetGuestAccommodationById(item.Id).Rated == false)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
             return false;

@@ -34,7 +34,7 @@ namespace ProjectSims.View.OwnerView.Pages
     {
         public AccommodationsDisplayViewModel accommodationsDisplayViewModel;
         public Owner Owner { get; set; }
-        public GuestAccommodation SelectedGuestAccommodation { get; set; }
+        public AccommodationReservation SelectedAccommodationReservation { get; set; }
         
         public AccommodationsDisplay(Owner o)
         {
@@ -52,17 +52,18 @@ namespace ProjectSims.View.OwnerView.Pages
                 MessageBox.Show("Imate zahteve na cekanju!");
             }
         }
+
         private void RateGuest_Click(object sender, RoutedEventArgs e)
         {
-            SelectedGuestAccommodation = (GuestAccommodation)GuestAccommodationsTable.SelectedItem;
+            SelectedAccommodationReservation = (AccommodationReservation)AccommodationReservationsTable.SelectedItem;
 
-            if (SelectedGuestAccommodation != null 
-                && accommodationsDisplayViewModel.IsNotRated(SelectedGuestAccommodation) 
-                && accommodationsDisplayViewModel.IsLessThan5Days(SelectedGuestAccommodation))
+            if (SelectedAccommodationReservation != null 
+                && accommodationsDisplayViewModel.IsNotRated(SelectedAccommodationReservation) 
+                && accommodationsDisplayViewModel.IsLessThan5Days(SelectedAccommodationReservation))
             {
-                this.NavigationService.Navigate(new GuestRatingView(SelectedGuestAccommodation, Owner));
+                this.NavigationService.Navigate(new GuestRatingView(SelectedAccommodationReservation, Owner));
             }
-            else if(SelectedGuestAccommodation == null)
+            else if(SelectedAccommodationReservation == null)
             {
                 //Do nothing
             }

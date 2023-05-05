@@ -33,7 +33,7 @@ namespace ProjectSims.View.OwnerView.Pages
     public partial class GuestRatingView : Page, INotifyPropertyChanged
     {
         public GuestRatingViewModel guestRatingViewModel { get; set; }
-        public GuestAccommodation SelectedGuestAccommodation { get; set; }
+        public AccommodationReservation SelectedAccommodationReservation { get; set; }
         private Owner Owner { get; set; }
 
         private string _accommodationName;
@@ -203,23 +203,23 @@ namespace ProjectSims.View.OwnerView.Pages
                 }
             }
         }
-        public GuestRatingView(GuestAccommodation selectedGuestAccommodation, Owner o)
+        public GuestRatingView(AccommodationReservation selectedAccommodationReservation, Owner o)
         {
             InitializeComponent();
             Owner = o;
-            SelectedGuestAccommodation = selectedGuestAccommodation;
-            guestRatingViewModel = new GuestRatingViewModel(SelectedGuestAccommodation, Owner);
+            SelectedAccommodationReservation = selectedAccommodationReservation;
+            guestRatingViewModel = new GuestRatingViewModel(SelectedAccommodationReservation, Owner);
             this.DataContext = guestRatingViewModel;
 
-            FirstName = selectedGuestAccommodation.FirstName;
-            LastName = selectedGuestAccommodation.LastName;
-            AccommodationName = selectedGuestAccommodation.Name;
-            Type = selectedGuestAccommodation.Type;
-            CheckInDate = selectedGuestAccommodation.CheckInDate;
-            CheckInDateTextBox.Text = selectedGuestAccommodation.CheckInDate.ToString();
-            CheckOutDate = selectedGuestAccommodation.CheckOutDate;
-            CheckOutDateTextBox.Text = selectedGuestAccommodation.CheckOutDate.ToString();
-            Rated = selectedGuestAccommodation.Rated;
+            FirstName = selectedAccommodationReservation.Guest.Name;
+            LastName = selectedAccommodationReservation.Guest.Surname;
+            AccommodationName = selectedAccommodationReservation.Accommodation.Name;
+            Type = selectedAccommodationReservation.Accommodation.Type;
+            CheckInDate = selectedAccommodationReservation.CheckInDate;
+            CheckInDateTextBox.Text = selectedAccommodationReservation.CheckInDate.ToString();
+            CheckOutDate = selectedAccommodationReservation.CheckOutDate;
+            CheckOutDateTextBox.Text = selectedAccommodationReservation.CheckOutDate.ToString();
+            Rated = selectedAccommodationReservation.RatedGuest;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -231,8 +231,8 @@ namespace ProjectSims.View.OwnerView.Pages
 
         private void RateGuest_Click(object sender, RoutedEventArgs e)
         {
-                guestRatingViewModel.RateGuest(SelectedGuestAccommodation, CleanlinessRate, RespectingRulesRate, TidinessRate, CommunicationRate, CommentTextBox.Text);
-                this.NavigationService.Navigate(new AccommodationsDisplay(Owner));
+            guestRatingViewModel.RateGuest(SelectedAccommodationReservation, Convert.ToInt32(CleanlinessComboBox.Text), Convert.ToInt32(RespectingRulesComboBox.Text), Convert.ToInt32(TidinessComboBox.Text), Convert.ToInt32(CommunicationComboBox.Text), CommentTextBox.Text);
+            this.NavigationService.Navigate(new AccommodationsDisplay(Owner));
         }
 
         private void CancelRateGuest_Click(object sender, RoutedEventArgs e)
