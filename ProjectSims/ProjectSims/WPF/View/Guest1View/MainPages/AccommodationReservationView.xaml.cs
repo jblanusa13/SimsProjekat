@@ -149,7 +149,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             {
                 BitmapImage bitmapImage = new BitmapImage();
                 bitmapImage.BeginInit();
-                bitmapImage.UriSource = new Uri(path, UriKind.Absolute);
+                bitmapImage.UriSource = new Uri(path, UriKind.RelativeOrAbsolute);
                 bitmapImage.EndInit();
 
                 Image image = new Image();

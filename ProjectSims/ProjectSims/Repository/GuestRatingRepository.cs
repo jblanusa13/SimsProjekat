@@ -24,7 +24,7 @@ namespace ProjectSims.Repository
         }
         public List<GuestRating> GetAllForGuest(int guestId)
         {
-            return guestRatings.Where(r => r.GuestId == guestId).ToList();
+            return guestRatings.Where(r => r.Reservation.GuestId == guestId).ToList();
         }
         public int NextId()
         {

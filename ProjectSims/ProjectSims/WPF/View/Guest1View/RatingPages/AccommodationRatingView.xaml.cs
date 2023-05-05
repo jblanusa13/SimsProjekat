@@ -30,6 +30,8 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
             InitializeComponent();
             viewModel = new AccommodationRatingViewModel(accommodationReservation);
             images = new List<string>();
+
+            this.DataContext = viewModel;
         }
 
         private void Browse_Click(object sender, RoutedEventArgs e)

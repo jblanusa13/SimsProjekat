@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 using ProjectSims.Service;
+using ProjectSims.WPF.View.Guest1View.BarPages;
 using ProjectSims.WPF.View.Guest1View.RatingPages;
 
 namespace ProjectSims.WPF.View.Guest1View
@@ -28,6 +29,8 @@ namespace ProjectSims.WPF.View.Guest1View
         {
             InitializeComponent();
             SelectedTab.Content = new AccommodationsForRatingView(guest);
+            StatusBarFrame.Content = new RatingStatusBar();
+            WindowBarFrame.Content = new RatingWindowBar();
         }
     }
 }

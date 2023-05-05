@@ -53,6 +53,12 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
             startView.Close();
         }
 
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            RatingStartView startView = (RatingStartView)Window.GetWindow(this);
+            startView.Close();
+        }
+
         public void Update()
         {
             Reservations.Clear();

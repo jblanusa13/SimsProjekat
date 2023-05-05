@@ -61,10 +61,11 @@
                                   AutoGenerateColumns="False" IsReadOnly="True"
                                   SelectionChanged="OwnerRatings_SelectionChanged">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Cistoca" Binding="{Binding CleanlinessRating}" Width="130"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Postovanje pravila" Binding="{Binding RespectingRulesRating}" Width="150"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Komunikacija" Binding="{Binding CommunicationRating}" Width="150"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Urednost" Binding="{Binding TidinessRating}" Width="*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Naziv smestaja" Binding="{Binding Reservation.Accommodation.Name}" Width="*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Cistoca" Binding="{Binding CleanlinessRating}" Width="100"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Postovanje pravila" Binding="{Binding RespectingRulesRating}" Width="120"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Komunikacija" Binding="{Binding CommunicationRating}" Width="100"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Urednost" Binding="{Binding TidinessRating}" Width="100"></DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
 

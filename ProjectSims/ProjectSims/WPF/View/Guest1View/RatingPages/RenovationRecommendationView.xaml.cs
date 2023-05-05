@@ -29,6 +29,7 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
         {
             InitializeComponent();
             this.viewModel = viewModel;
+            this.DataContext = viewModel;
         }
 
         private void RateAcommodation_Click(object sender, RoutedEventArgs e)
