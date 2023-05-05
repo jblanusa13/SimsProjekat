@@ -33,13 +33,8 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
                 DaysComboBox.Items.Add(day);
             }
         }
-        public void ShowAvailableTimes(DateOnly selectedDay,ComboBox AppointmentsComboBox, double Duration)
+        public void ShowAvailableTimes(DateOnly selectedDay,ComboBox AppointmentsComboBox)
         {
-           // availableAppointments 
-            for (DateOnly day = SelectedTourRequest.DateRangeStart; day <= SelectedTourRequest.DateRangeEnd; day = day.AddDays(1))
-            {
-                AppointmentsComboBox.Items.Add(day);
-            }
         }
 
     }

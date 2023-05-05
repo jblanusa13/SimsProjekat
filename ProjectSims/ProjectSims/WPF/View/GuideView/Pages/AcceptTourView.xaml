@@ -48,10 +48,9 @@
                 </AccessText>
             </Label>
             <Label Content="Odaberite trajanje i termin:" Margin="50,450,0,0" Height="40" FontSize="20"/>
-            <Label Content="Nakon što unesete trajanje ture, biće ponuđeni termini koji pripadaju opsegu datuma iz zahteva i u kojima ste slobodni!" Margin="50,480,0,0" Height="40" FontSize="12"/>
-            <TextBox Name="DurationTextBox" Margin="100,520,0,0" Height="40"  Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" TextChanged="DurationTextBox_TextChanged"/>
-            <ComboBox Name="DaysComboBox" Margin="300,520,0,0" Height="40"  Width="300" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="DaysComboBox_SelectionChanged"/>
-            <ComboBox Name="AppointmentsComboBox" Margin="650,520,0,0" Height="40"  Width="150" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Label Content="Ponuđeni su termini koji pripadaju opsegu datuma iz zahteva i u kojima ste slobodni" Margin="50,480,0,0" Height="40" FontSize="12"/>
+            <ComboBox Name="DaysComboBox" Margin="100,520,0,0" Height="40"  Width="300" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="DaysComboBox_SelectionChanged"/>
+            <ComboBox Name="AppointmentsComboBox" Margin="500,520,0,0" Height="40"  Width="150" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Button Name="AcceptTour" Click="AcceptTour_Click" Margin="400,600,0,50" Background="Green">
                 <Grid Height="70" Width="70" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Image Source="/Resources/Icons/Guide/checkmark.png"  HorizontalAlignment="Center" Height="40" Width="40" Margin="0,5,0,0"/>

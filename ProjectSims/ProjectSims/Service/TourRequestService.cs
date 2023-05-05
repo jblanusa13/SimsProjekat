@@ -13,9 +13,11 @@ namespace ProjectSims.Service
     public class TourRequestService
     {
         private ITourRequestRepository tourRequestRepository;
+        private TourService tourService;
         public TourRequestService()
         {
             tourRequestRepository = Injector.CreateInstance<ITourRequestRepository>();
+            tourService = new TourService();
         }
         public int GetNextId()
         {

@@ -49,11 +49,11 @@ namespace ProjectSims.Service
             List<int> keyPointIds = tour.KeyPointIds;
             return keyPointIds.Select(id => keyPointService.GetKeyPointById(id)).ToList();
         }
-        public List<Tour> GetTodayTours(int guideId)
+        public List<Tour> GetToursByDateAndGuideId(DateTime date,int guideId)
         {
-           return tourRepository.GetTodayTours(guideId);
+           return tourRepository.GetToursByDateAndGuideId(date,guideId);
         }
-       public Tour GetMostVisitedTour(int guideId,bool thisYear)
+        public Tour GetMostVisitedTour(int guideId,bool thisYear)
         {
             List<Tour> wantedTours = GetToursByStateAndGuideId(TourState.Finished, guideId);
             if (wantedTours.Count != 0)

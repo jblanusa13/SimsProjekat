@@ -41,7 +41,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             tourService.Subscribe(this);
             reservationService = new ReservationTourService();
             Guide = g;
-            TodayTours = new ObservableCollection<Tour>(tourService.GetTodayTours(Guide.Id));   
+            TodayTours = new ObservableCollection<Tour>(tourService.GetToursByDateAndGuideId(DateTime.Now,Guide.Id));   
         }
         private void StartTour_Click(object sender, RoutedEventArgs e)
         {
@@ -61,7 +61,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         private void UpdateAvailableTours()
         {
             TodayTours.Clear();
-            foreach (var tour in tourService.GetTodayTours(Guide.Id))
+            foreach (var tour in tourService.GetToursByDateAndGuideId(DateTime.Now,Guide.Id))
             {
                 TodayTours.Add(tour);
             }

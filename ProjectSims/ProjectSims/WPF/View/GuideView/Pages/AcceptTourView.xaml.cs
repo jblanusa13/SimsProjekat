@@ -28,17 +28,17 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             InitializeComponent();
             acceptTourViewModel = new AcceptTourViewModel(tourRequest,guide);
             this.DataContext = acceptTourViewModel;
+            acceptTourViewModel.ShowAvailableDays(DaysComboBox);
         }
        public void AcceptTour_Click(object sender, RoutedEventArgs e) { }
-       public void Back_Click(object sender, RoutedEventArgs e) { }
-       public void DurationTextBox_TextChanged(object sender, TextChangedEventArgs e)
-       {
-            acceptTourViewModel.ShowAvailableDays(DaysComboBox);
-       }
-        public void DaysComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+       public void Back_Click(object sender, RoutedEventArgs e) 
+        { 
+            this.NavigationService.GoBack();
+        }
+       public void DaysComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
        {
             DateOnly SelectedDate = (DateOnly)DaysComboBox.SelectedItem;
-            acceptTourViewModel.ShowAvailableTimes(SelectedDate, AppointmentsComboBox, Convert.ToDouble(DurationTextBox.Text));
+            acceptTourViewModel.ShowAvailableTimes(SelectedDate, AppointmentsComboBox);
        }
     }
 }
