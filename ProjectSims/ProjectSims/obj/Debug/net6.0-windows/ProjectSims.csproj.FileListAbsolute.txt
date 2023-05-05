@@ -32,6 +32,16 @@ C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guide\Pobednik.jpg
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guide\sat.jpg
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guide\VojniMuzej.jpg
+C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Owner\Accommodations\filipovic2.jpg
+C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Owner\Accommodations\jovanovic1.jpg
+C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Owner\Accommodations\jovanovic2.jpg
+C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Owner\Accommodations\kod_labuda1.jpg
+C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Owner\Accommodations\kod_labuda2.jpg
+C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Owner\Accommodations\mladenovic1.jpg
+C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Owner\Accommodations\visnjin_dom1.jpg
+C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Owner\Accommodations\visnjin_dom2.jpg
+C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Owner\Accommodations\visnjin_dom3.jpg
+C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Owner\Accommodations\draganovi_konaci.jpg
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\ProjectSims.exe
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\ProjectSims.deps.json
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\ProjectSims.runtimeconfig.json
