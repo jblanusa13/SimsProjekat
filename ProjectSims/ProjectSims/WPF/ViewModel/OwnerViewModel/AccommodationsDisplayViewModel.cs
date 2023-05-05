@@ -14,37 +14,37 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
     public class AccommodationsDisplayViewModel : IObserver
     {
         public Owner Owner { get; set; }
-        public ObservableCollection<GuestAccommodation> GuestAccommodations { get; set; }
-        private GuestAccommodationService guestAccommodationService;
+        public ObservableCollection<AccommodationReservation> AccommodationReservations { get; set; }
+        private AccommodationReservationService accommodationReservationService;
         private OwnerService ownerService;
         
         public AccommodationsDisplayViewModel(Owner o) {
             Owner = o;
-            guestAccommodationService = new GuestAccommodationService();
-            guestAccommodationService.Subscribe(this); 
-            GuestAccommodations = new ObservableCollection<GuestAccommodation>(guestAccommodationService.GetAllGuestAccommodations());
+            accommodationReservationService = new AccommodationReservationService();
+            accommodationReservationService.Subscribe(this); 
+            AccommodationReservations = new ObservableCollection<AccommodationReservation>(accommodationReservationService.GetAllReservations());
             ownerService = new OwnerService();
         }
         public bool HasWaitingRequests(Owner owner)
         {
             return ownerService.HasWaitingRequests(owner.Id);
         }
-        public bool IsNotRated(GuestAccommodation SelectedGuestAccommodation)
+        public bool IsNotRated(AccommodationReservation SelectedAccommodationReservation)
         {
-            return SelectedGuestAccommodation.Rated == false;
+            return SelectedAccommodationReservation.RatedGuest == false;
         }
 
-        public bool IsLessThan5Days(GuestAccommodation SelectedGuestAccommodation)
+        public bool IsLessThan5Days(AccommodationReservation SelectedAccommodationReservation)
         {
-            return SelectedGuestAccommodation.CheckOutDate.AddDays(5) >= DateOnly.FromDateTime(DateTime.Today);
+            return SelectedAccommodationReservation.CheckOutDate.AddDays(5) >= DateOnly.FromDateTime(DateTime.Today);
         }
 
         public void Update()
         {
-            GuestAccommodations.Clear();
-            foreach (GuestAccommodation guestAccommodation in guestAccommodationService.GetAllGuestAccommodations())
+            AccommodationReservations.Clear();
+            foreach (AccommodationReservation guestAccommodation in accommodationReservationService.GetAllReservations())
             {
-                GuestAccommodations.Add(guestAccommodation);
+                AccommodationReservations.Add(guestAccommodation);
             }
         }
     }

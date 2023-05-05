@@ -18,8 +18,8 @@
                     <RowDefinition Height="644*"/>
                     <RowDefinition Height="47*"/>
                 </Grid.RowDefinitions>
-                <DataGrid x:Name="GuestAccommodationsTable"
-                          ItemsSource="{Binding GuestAccommodations}"
+                <DataGrid x:Name="AccommodationReservationsTable"
+                          ItemsSource="{Binding AccommodationReservations}"
                           Margin="22,61,22,200"
                           AutoGenerateColumns="False"
                           IsReadOnly="True"
@@ -27,7 +27,7 @@
                           Width="375">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Naziv smjestaja"
-                                            Binding="{Binding Name}"
+                                            Binding="{Binding Accommodation.Name}"
                                             Width="150"
                                             IsReadOnly="True"/>
                         <DataGridTextColumn Header="Gost"
@@ -35,15 +35,13 @@
                                             IsReadOnly="True">
                             <DataGridTextColumn.Binding>
                                 <MultiBinding StringFormat="{}{0} {1}">
-                                    <Binding Path="FirstName"/>
-                                    <Binding Path="LastName"/>
+                                    <Binding Path="Guest.Name"/>
+                                    <Binding Path="Guest.Surname"/>
                                 </MultiBinding>
                             </DataGridTextColumn.Binding>
                         </DataGridTextColumn>
-                        <!-- <DataGridTextColumn x:Name="CheckInDateColumn" Header="Datum dolaska" Binding="{Binding CheckInDate}" Width="95" IsReadOnly="True"/>-->
-                        <!-- <DataGridTextColumn x:Name="CheckOutDateColumn" Header="Datum odlaska" Binding="{Binding CheckOutDate}" Width="95" IsReadOnly="True"/>-->
-                        <DataGridCheckBoxColumn Header="Ocijenjen"
-                                                Binding="{Binding Rated,
+                         <DataGridCheckBoxColumn Header="Ocijenjen"
+                                                Binding="{Binding RatedGuest,
                                                 Mode=TwoWay, 
                                                 BindsDirectlyToSource=True}"
                                                 Width="*"

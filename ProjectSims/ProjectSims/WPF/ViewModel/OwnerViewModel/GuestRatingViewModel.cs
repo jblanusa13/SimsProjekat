@@ -13,43 +13,38 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
     public class GuestRatingViewModel : IObserver
     {
         Owner Owner { get; set; }
-        public GuestAccommodation SelectedGuestAccommodation { get; set; }
-        public GuestAccommodationService guestAccommodationService;
-        public ObservableCollection<GuestAccommodation> GuestAccommodations { get; set; }
-
+        public AccommodationReservation SelectedAccommodationReservation { get; set; }
         public AccommodationReservationService accommodationReservationService;
+        public ObservableCollection<AccommodationReservation> AccommodationReservations { get; set; }
 
         public GuestRatingService guestRatingService;
 
         public DateRangesService dateRangesService;
-        public GuestRatingViewModel(GuestAccommodation selectedGuestAccommodation, Owner o) 
+        public GuestRatingViewModel(AccommodationReservation selectedAccommodationReservation, Owner o) 
         {
             Owner = o;
-            SelectedGuestAccommodation = selectedGuestAccommodation;
-            guestAccommodationService = new GuestAccommodationService();
-            guestAccommodationService.Subscribe(this);
+            SelectedAccommodationReservation = selectedAccommodationReservation;
             accommodationReservationService = new AccommodationReservationService();
             accommodationReservationService.Subscribe(this);
             guestRatingService = new GuestRatingService();
             guestRatingService.Subscribe(this);
             dateRangesService = new DateRangesService();
-            GuestAccommodations = new ObservableCollection<GuestAccommodation>(guestAccommodationService.GetAllGuestAccommodations());
+            AccommodationReservations = new ObservableCollection<AccommodationReservation>(accommodationReservationService.GetAllReservations());
         }
 
-        public void RateGuest(GuestAccommodation SelectedGuestAccommodation, int cleanlinessRate, int respectingRulesRate, int tidinessRate, int communicationRate, string comment)
+        public void RateGuest(AccommodationReservation SelectedAccommodationReservation, int cleanlinessRate, int respectingRulesRate, int tidinessRate, int communicationRate, string comment)
         {
-            SelectedGuestAccommodation.Rated = true;
-            guestAccommodationService.Update(SelectedGuestAccommodation);
-            AccommodationReservation accommodationReservation = accommodationReservationService.GetReservation(SelectedGuestAccommodation.GuestId, SelectedGuestAccommodation.AccommodationId, SelectedGuestAccommodation.CheckInDate, SelectedGuestAccommodation.CheckOutDate);
-            guestRatingService.Create(new GuestRating(-1, cleanlinessRate, respectingRulesRate, tidinessRate, communicationRate, comment, accommodationReservation.Id, accommodationReservation, DateOnly.FromDateTime(DateTime.Now), SelectedGuestAccommodation.GuestId));
+            SelectedAccommodationReservation.RatedGuest = true;
+            accommodationReservationService.Update(SelectedAccommodationReservation);
+            guestRatingService.Create(new GuestRating(-1, cleanlinessRate, respectingRulesRate, tidinessRate, communicationRate, comment, SelectedAccommodationReservation.Id, SelectedAccommodationReservation, DateOnly.FromDateTime(DateTime.Now), SelectedAccommodationReservation.GuestId));
         }
 
         public void Update()
         {
-            GuestAccommodations.Clear();
-            foreach (GuestAccommodation guestAccommodation in guestAccommodationService.GetAllGuestAccommodations())
+            AccommodationReservations.Clear();
+            foreach (AccommodationReservation guestAccommodation in accommodationReservationService.GetAllReservations())
             {
-                GuestAccommodations.Add(guestAccommodation);
+                AccommodationReservations.Add(guestAccommodation);
             }
         }
     }
