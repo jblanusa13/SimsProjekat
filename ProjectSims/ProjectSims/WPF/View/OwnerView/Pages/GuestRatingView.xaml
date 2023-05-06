@@ -18,8 +18,8 @@
     </Page.Resources>
     <Grid Margin="25,25,25,25" Cursor="Arrow">
         <Label Content="Ocjenjujete gosta:" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" Height="26"/>
-        <Label Content="Smjestaj u kom je odsjeo:" HorizontalAlignment="Left" Margin="20,50,0,0" VerticalAlignment="Top" Height="26"/>
-        <Label Content="Tip smestaja:" HorizontalAlignment="Left" Margin="20,80,0,0" VerticalAlignment="Top" Height="26"/>
+        <Label Content="Smještaj u kom je odsjeo:" HorizontalAlignment="Left" Margin="20,50,0,0" VerticalAlignment="Top" Height="26"/>
+        <Label Content="Tip smještaja:" HorizontalAlignment="Left" Margin="20,80,0,0" VerticalAlignment="Top" Height="26"/>
         <Label Content="Datum dolaska:" HorizontalAlignment="Left" Margin="20,110,0,0" VerticalAlignment="Top" Height="26"/>
         <Label Content="Datum odlaska:" HorizontalAlignment="Left" Margin="20,140,0,0" VerticalAlignment="Top" Height="26"/>
         <TextBox x:Name="GuestNameTextBox" HorizontalAlignment="Left" Margin="200,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False">
@@ -32,7 +32,7 @@
         <TextBox x:Name="TypeTextBox" Text="{Binding SelectedAccommodationReservation.Accommodation.Type}" HorizontalAlignment="Left" Margin="200,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False"/>
         <TextBox x:Name="CheckInDateTextBox" Text="{Binding SelectedAccommodationReservation.CheckInDate, StringFormat={}{0:dd.MM.yyyy.}}" HorizontalAlignment="Left" Margin="200,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False"/>
         <TextBox x:Name="CheckOutDateTextBox" Text="{Binding SelectedAccommodationReservation.CheckOutDate, StringFormat={}{0:dd.MM.yyyy.}}" HorizontalAlignment="Left" Margin="200,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False"/>
-        <Label Content="Cistoca:" HorizontalAlignment="Left" Margin="20,199,0,0" VerticalAlignment="Top" Height="26"/>
+        <Label Content="istoca:" HorizontalAlignment="Left" Margin="20,199,0,0" VerticalAlignment="Top" Height="26"/>
         <Label Content="Postovanje pravila:" HorizontalAlignment="Left" Margin="20,229,0,0" VerticalAlignment="Top" Height="26"/>
         <Label Content="Urednost:" HorizontalAlignment="Left" Margin="20,259,0,0" VerticalAlignment="Top" Height="26"/>
         <Label Content="Komunikacija:" HorizontalAlignment="Left" Margin="20,289,0,0" VerticalAlignment="Top" Height="26"/>
