@@ -24,9 +24,8 @@ namespace ProjectSims.Domain.Model
         public TourRequest()
         {
         }
-        public TourRequest(int id,int guest2Id, int guideId, TourRequestState state, string location, string description, string language, int maxNumberGuests, DateOnly dateRangeStart, DateOnly dateRangeEnd)
+        public TourRequest(int guest2Id, int guideId, TourRequestState state, string location, string description, string language, int maxNumberGuests, DateOnly dateRangeStart, DateOnly dateRangeEnd)
         {
-            Id = id;
             Guest2Id = guest2Id;
             GuideId = guideId;
             State = state;
