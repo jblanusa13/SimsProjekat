@@ -57,5 +57,17 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
         {
             UpdateListRequest();
         }
+
+        private void ImageAndLabel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var helpWindow = new HelpForTourRequest();
+            helpWindow.Show();
+        }
+
+        private void Statistic_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var statisticWindow = new RequestStatisticsView();
+            statisticWindow.Show();
+        }
     }
 }
