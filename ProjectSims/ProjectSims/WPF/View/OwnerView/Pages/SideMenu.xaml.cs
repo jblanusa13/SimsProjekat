@@ -41,7 +41,7 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
 
         private void HomePage_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new HomePage(Owner)); 
+            this.NavigationService.Navigate(new HomePage(Owner));
         }
 
         private void Accommodations_Click(object sender, RoutedEventArgs e)
