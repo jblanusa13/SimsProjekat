@@ -210,16 +210,6 @@ namespace ProjectSims.View.OwnerView.Pages
             SelectedAccommodationReservation = selectedAccommodationReservation;
             guestRatingViewModel = new GuestRatingViewModel(SelectedAccommodationReservation, Owner);
             this.DataContext = guestRatingViewModel;
-
-            FirstName = selectedAccommodationReservation.Guest.Name;
-            LastName = selectedAccommodationReservation.Guest.Surname;
-            AccommodationName = selectedAccommodationReservation.Accommodation.Name;
-            Type = selectedAccommodationReservation.Accommodation.Type;
-            CheckInDate = selectedAccommodationReservation.CheckInDate;
-            CheckInDateTextBox.Text = selectedAccommodationReservation.CheckInDate.ToString();
-            CheckOutDate = selectedAccommodationReservation.CheckOutDate;
-            CheckOutDateTextBox.Text = selectedAccommodationReservation.CheckOutDate.ToString();
-            Rated = selectedAccommodationReservation.RatedGuest;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

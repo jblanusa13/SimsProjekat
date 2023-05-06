@@ -77,16 +77,6 @@ namespace ProjectSims.WPF.View.OwnerView
                         //SelectedTab.Content = new Notifications(owner);
                         break;
                     }
-                case 3:
-                    {
-                        SelectedTab.Content = new HomePage(owner);
-                        break;
-                    }
-                case 4:
-                    {
-                        SelectedTab.Content = new AccommodationsDisplay(owner);
-                        break;
-                    }
             }
         }
     }

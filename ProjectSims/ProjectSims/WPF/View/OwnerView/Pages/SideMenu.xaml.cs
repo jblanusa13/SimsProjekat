@@ -1,4 +1,5 @@
 ﻿using ProjectSims.Domain.Model;
+using ProjectSims.View.OwnerView.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,32 +23,30 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
     /// </summary>
     public partial class SideMenu : Page
     {
-        public Owner owner { get; set; }
+        public Owner Owner { get; set; }
         public SideMenu(Owner o)
         {
             InitializeComponent();
             DataContext = this;
-            owner = o;
+            Owner = o;
         }
 
         private void LogOut_Click(object sender, RoutedEventArgs e)
         {
-            Window parentWindow = Window.GetWindow(this);
-            parentWindow.Close();
             var login = new MainWindow();
             login.Show();
+            Window parentWindow = Window.GetWindow(this);
+            parentWindow.Close();
         }
 
         private void HomePage_Click(object sender, RoutedEventArgs e)
         {
-            OwnerStartingView ownerStartingView = (OwnerStartingView)Window.GetWindow(this);
-            ownerStartingView.ChangeTab(3); 
+            this.NavigationService.Navigate(new HomePage(Owner)); 
         }
 
         private void Accommodations_Click(object sender, RoutedEventArgs e)
         {
-            OwnerStartingView ownerStartingView = (OwnerStartingView)Window.GetWindow(this);
-            ownerStartingView.ChangeTab(4);
+            this.NavigationService.Navigate(new AccommodationsDisplay(Owner));
         }
     }
 }
