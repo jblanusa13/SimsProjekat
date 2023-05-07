@@ -24,11 +24,13 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
     public partial class SideMenu : Page
     {
         public Owner Owner { get; set; }
-        public SideMenu(Owner o)
+        public TextBlock TitleTextBlock { get; set; }
+        public SideMenu(Owner o, TextBlock titleTextBlock)
         {
             InitializeComponent();
             DataContext = this;
             Owner = o;
+            TitleTextBlock = titleTextBlock;
         }
 
         private void LogOut_Click(object sender, RoutedEventArgs e)
@@ -41,12 +43,15 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
 
         private void HomePage_Click(object sender, RoutedEventArgs e)
         {
+            Window parentWindow = Window.GetWindow(this);
             this.NavigationService.Navigate(new HomePage(Owner));
+            TitleTextBlock.Text = "Početna stranica";
         }
 
         private void Accommodations_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new AccommodationsDisplay(Owner));
+            TitleTextBlock.Text = "Smještaji";
         }
     }
 }

@@ -17,13 +17,12 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
         private RequestService requestService;
         private AccommodationReservationService accommodationReservationService;
         public ObservableCollection<Request> RequestList { get; set; }
-
         public RequestsViewModel(Owner o) 
         {
             requestService = new RequestService();
             requestService.Subscribe(this);
             accommodationReservationService = new AccommodationReservationService();
-            RequestList = new ObservableCollection<Request>(requestService.GetAllRequests());
+            RequestList = new ObservableCollection<Request>(requestService.GetAllRequests().Where(r => r.State == RequestState.Waiting));
             owner = o;
         }
 
