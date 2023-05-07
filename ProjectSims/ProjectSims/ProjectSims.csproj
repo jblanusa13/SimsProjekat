@@ -51,6 +51,7 @@
     <None Remove="Resources\Images\leftarrow.png" />
     <None Remove="Resources\Images\mappin.png" />
     <None Remove="Resources\Images\rightarrow.png" />
+    <None Remove="WPF\View\Guest2View\travel-tour-logo.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -196,5 +197,8 @@
     <Reference Include="BlazorDateRangePicker">
       <HintPath>bin\Debug\net6.0-windows\BlazorDateRangePicker.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WPF\View\Guest2View\travel-tour-logo.png" />
   </ItemGroup>
 </Project>
