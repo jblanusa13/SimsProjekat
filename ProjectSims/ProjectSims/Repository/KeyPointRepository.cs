@@ -23,7 +23,7 @@ namespace ProjectSims.Repository
             keyPoints = keyPointFile.Load();
             observers = new List<IObserver>();
         }
-        public int GetNextId()
+        public int NextId()
         {
             if (keyPoints.Count == 0)
             {

@@ -10,7 +10,7 @@
     <ScrollViewer>
         <Grid Background="#FF050518">
             <Image Source="/Resources/Icons/Guide/star.png" HorizontalAlignment="Left" Margin="350,25,0,0" VerticalAlignment="Top" Width="60" Height="60"/>
-            <Label Content="Ocene i recenzije zavrsenih tura" HorizontalAlignment="Center" Margin="0,35,0,0" VerticalAlignment="Top" Width="450" Height="40" Foreground="White" FontSize="25" FontFamily="Broadway"/>
+            <Label Content="Ocene i recenzije zavrsenih tura" HorizontalAlignment="Center" Margin="0,35,0,0" VerticalAlignment="Top" Width="450" Height="40" Foreground="White" FontSize="25" FontFamily="Lucida Sans"/>
             <ListView  x:Name="FinishedToursListView" ItemsSource="{Binding FinishedTours}" Margin="0,100,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single" Width="1200" Background="#D0D5F7">
                 <ListView.View>
                     <GridView >

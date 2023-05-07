@@ -16,11 +16,11 @@ namespace ProjectSims.Domain.Model
         public bool Finished { get; set; }
         public KeyPointType Type { get; set; }
         public KeyPoint() { }
-        public KeyPoint(int id, string name, KeyPointType type, bool finished)
+        public KeyPoint(int id, string name, KeyPointType type)
         {
            Id = id;
            Name = name;
-           Finished = finished;
+           Finished = false;
            Type = type;
 
         }

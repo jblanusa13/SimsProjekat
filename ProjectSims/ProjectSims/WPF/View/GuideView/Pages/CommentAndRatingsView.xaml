@@ -10,7 +10,7 @@
     <Page.Resources>
         <Style TargetType="Label">
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontFamily" Value="Broadway"/>
+            <Setter Property="FontFamily" Value="Lucida Sans"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
         </Style>

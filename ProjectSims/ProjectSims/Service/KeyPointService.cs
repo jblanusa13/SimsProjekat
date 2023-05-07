@@ -18,17 +18,17 @@ namespace ProjectSims.Service
         {
             keyPointRepository = Injector.CreateInstance<IKeyPointRepository>();
         }
-        public int GetNextId()
+        public int NextId()
         {
-            return keyPointRepository.GetNextId();
+            return keyPointRepository.NextId();
         }
         public List<KeyPoint> GetAllKeyPoints()
         {
             return keyPointRepository.GetAll();
         }
-        public void Create(int id, string name, KeyPointType type)
+        public void Create(KeyPoint keyPoint)
         {
-            keyPointRepository.Create(new KeyPoint(id,name,type,false));
+            keyPointRepository.Create(keyPoint);
         }
         public void Remove(KeyPoint keyPoint)
         {
