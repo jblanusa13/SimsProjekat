@@ -118,7 +118,8 @@ namespace ProjectSims.View.Guest2View
                     }
                 case 4:
                     {
-                        SelectedTab.Content = new ShowTourRequestsView(guest2);
+                        ShowTourRequestsViewModel showTourRequestsViewModel = new ShowTourRequestsViewModel(guest2);
+                        SelectedTab.Content = new ShowTourRequestsView(showTourRequestsViewModel);
                         break;
                     }
                 case 5:

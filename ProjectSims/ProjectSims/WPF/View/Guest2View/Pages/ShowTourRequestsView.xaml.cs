@@ -1,6 +1,7 @@
 ﻿using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 using ProjectSims.Service;
+using ProjectSims.WPF.ViewModel.Guest2ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,68 +23,26 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
     /// <summary>
     /// Interaction logic for ShowTourRequestsView.xaml
     /// </summary>
-    public partial class ShowTourRequestsView : Page, IObserver
+    public partial class ShowTourRequestsView : Page
     {
-        private TourRequestService tourRequestService;
-
-        public ObservableCollection<TourRequest> ListRequests { get; set; }
-        public Guest2 guest2 { get; set; }
-        public ShowTourRequestsView(Guest2 g)
+        public ShowTourRequestsViewModel viewModel;
+        public ShowTourRequestsView(ShowTourRequestsViewModel showTourRequestsViewModel)
         {
             InitializeComponent();
-            DataContext = this;
-            UpdateTourRequestsFile();
-            guest2 = g;
-            tourRequestService = new TourRequestService();
-            tourRequestService.Subscribe(this);
-            ListRequests = new ObservableCollection<TourRequest>(tourRequestService.GetByGuest2Id(guest2.Id));
-
+            this.DataContext = showTourRequestsViewModel;
+            viewModel = showTourRequestsViewModel;
         }
-
         private void ButtonCreateRequest(object sender, RoutedEventArgs e)
         {
-            var createRequest = new CreateTourRequestView(guest2);
-            createRequest.Show();
+            viewModel.ButtonCreateRequest(sender);
         }
-
-        private void UpdateTourRequestsFile()
-        {
-            TourRequestService requestService = new TourRequestService();
-            DateOnly today = DateOnly.FromDateTime(DateTime.Today).AddDays(2);
-            List<TourRequest> requests = new List<TourRequest>(requestService.GetAllRequests());
-            foreach (TourRequest request in requests)
-            {
-                if (today >= request.DateRangeStart && request.State == TourRequestState.Waiting)
-                {
-                    request.State = TourRequestState.Invalid;
-                    requestService.Update(request);
-                }
-            }
-        }
-
-        private void UpdateListRequest()
-        {
-            ListRequests.Clear();
-            foreach (var request in tourRequestService.GetByGuest2Id(guest2.Id))
-            {
-                ListRequests.Add(request);
-            }
-        }
-        public void Update()
-        {
-            UpdateListRequest();
-        }
-
         private void ImageAndLabel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            var helpWindow = new HelpForTourRequest();
-            helpWindow.Show();
+            viewModel.ImageAndLabel_MouseLeftButtonDown(sender);
         }
-
         private void Statistic_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            var statisticWindow = new RequestStatisticsView();
-            statisticWindow.Show();
+            viewModel.Statistic_MouseLeftButtonDown(sender);
         }
     }
 }
