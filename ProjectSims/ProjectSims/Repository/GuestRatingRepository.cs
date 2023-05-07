@@ -10,7 +10,7 @@ using ProjectSims.Observer;
 
 namespace ProjectSims.Repository
 {
-    public class GuestRatingRepository : IGuestRatingRepository
+    public class GuestRatingRepository : IGuestRatingRepository, ISubject
     {
         private GuestRatingFileHandler guestRatingFileHandler;
         private List<GuestRating> guestRatings;

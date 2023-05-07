@@ -74,9 +74,9 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
         {
             if (!string.IsNullOrEmpty(CleanlinessTb.Text) && !string.IsNullOrEmpty(FairnessTb.Text) && !string.IsNullOrEmpty(LocationTb.Text) && !string.IsNullOrEmpty(ValueForMoneyTb.Text))
             {
-                viewModel.Confirm(CleanlinessTb.Text, FairnessTb.Text, LocationTb.Text, ValueForMoneyTb.Text, CommentTb.Text, images);
+                viewModel.AddRating(CleanlinessTb.Text, FairnessTb.Text, LocationTb.Text, ValueForMoneyTb.Text, CommentTb.Text, images);
+                NavigationService.Navigate(new RenovationRecommendationView(viewModel));
             }
-            NavigationService.Navigate(new RenovationRecommendationView(viewModel));
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)

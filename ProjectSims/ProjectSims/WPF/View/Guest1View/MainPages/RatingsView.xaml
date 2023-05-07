@@ -33,7 +33,7 @@
 
                         <DataGrid Name="MyRatingsTable" Grid.Column="0" Margin="20,50,20,10"
                                   ItemsSource="{Binding MyRatings, UpdateSourceTrigger=PropertyChanged}"
-                                  AutoGenerateColumns="False" IsReadOnly="True"
+                                  IsReadOnly="True" AutoGenerateColumns="False"
                                   SelectionChanged="MyRatings_SelectionChanged">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Naziv smestaja" Binding="{Binding Reservation.Accommodation.Name}" Width="*"></DataGridTextColumn>
@@ -58,7 +58,7 @@
 
                         <DataGrid Name="OwnerRatingsTable" Grid.Column="0" Margin="20,50,20,10"
                                   ItemsSource="{Binding OwnerRatings, UpdateSourceTrigger=PropertyChanged}"
-                                  AutoGenerateColumns="False" IsReadOnly="True"
+                                  IsReadOnly="True" AutoGenerateColumns="False"
                                   SelectionChanged="OwnerRatings_SelectionChanged">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Naziv smestaja" Binding="{Binding Reservation.Accommodation.Name}" Width="*"></DataGridTextColumn>

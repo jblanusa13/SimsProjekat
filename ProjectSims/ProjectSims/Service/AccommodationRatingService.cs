@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Domain.Model;
 using ProjectSims.Domain.RepositoryInterface;
+using ProjectSims.Observer;
 using ProjectSims.Repository;
 using ProjectSims.WPF.View.Guest1View.MainPages;
 
@@ -40,5 +41,11 @@ namespace ProjectSims.Service
             AccommodationAndOwnerRating rating = new AccommodationAndOwnerRating(id, reservationId, reservation, cleanliness, ownerFairness, location, valueForMoney, comment, imageList, recommendationId, recommendation);
             ratingRepository.Create(rating);
         }
+
+        public void Subscribe(IObserver observer)
+        {
+            ratingRepository.Subscribe(observer);
+        }
+
     }
 }

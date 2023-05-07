@@ -153,7 +153,7 @@
             <Button Grid.Column="1" Margin="240,20,30,20" Click="Confirm_Click"
                     Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"
                             Background="{DynamicResource SecondGrayShade}">
-                Potvrdi
+                Dalje
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>

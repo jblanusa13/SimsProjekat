@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using ProjectSims.Domain.Model;
 using ProjectSims.Service;
+using ProjectSims.WPF.View.Guest1View.MainPages;
 using ProjectSims.WPF.View.Guest1View.RatingPages;
 
 namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
@@ -16,6 +17,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         private AccommodationReservationService reservationService;
         private AccommodationRatingService ratingService;
         private RenovationRecommendationService recommendationService;
+        private RatingsView ratingsView;
         public AccommodationReservation AccommodationReservation { get; set; }
         public int Cleanliness { get; set; }
         public int Fairness { get; set; }
@@ -23,6 +25,8 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public int ValueForMoney { get; set; }
         public string Comment { get; set; }
         public List<string> ImageList { get; set; }
+        public RenovationRecommendation RenovationRecommendation { get; set; }
+        public int RecommendationId { get; set; }
 
         public AccommodationRatingViewModel(AccommodationReservation accommodationReservation)
         {
@@ -35,25 +39,13 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             ImageList = new List<string>();
         }
 
-        public void Confirm(string cleanliness, string fairness, string location, string valueForMoney, string comment, List<string> images)
+        public void AddRating(string cleanliness, string fairness, string location, string valueForMoney, string comment, List<string> images)
         {
             Cleanliness = Convert.ToInt32(cleanliness);
             Fairness = Convert.ToInt32(fairness);
             Location = Convert.ToInt32(location);
             ValueForMoney = Convert.ToInt32(valueForMoney);
-            /*
-            if (!string.IsNullOrEmpty(imagesString))
-            {
-                string images = imagesString.Remove(imagesString.Length - 2, 2);
-                foreach (string image in images.Split(",\n"))
-                {
-                    ImageList.Add(image);
-                }
-            }
-            else
-            {
-                ImageList.Add("");
-            }*/
+
             foreach(var image in images)
             {
                 ImageList.Add(image);
@@ -69,20 +61,21 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             }
         }
 
-        public void RateAcommodation(RenovationRecommendation renovationRecommendation, int recommendationId)
-        {
-            ratingService.CreateRating(AccommodationReservation.Id, AccommodationReservation, Cleanliness, Fairness, Location, ValueForMoney, Comment, ImageList, recommendationId, renovationRecommendation);
-            reservationService.ChangeReservationRatedState(AccommodationReservation);
-        }
-
         public void AddRecommendation(int urgency, string recommendation)
         {
-            RenovationRecommendation renovationRecommendation = recommendationService.GetNewRecommendation(urgency, recommendation);
-            RateAcommodation(renovationRecommendation, renovationRecommendation.Id);
+            RenovationRecommendation = recommendationService.GetNewRecommendation(urgency, recommendation);
+            RecommendationId = RenovationRecommendation.Id;
         }
         public void SkipRecommendation()
         {
-            RateAcommodation(null, -1);
+            RenovationRecommendation = null;
+            RecommendationId = -1;
+        }
+
+        public void RateAcommodation()
+        {
+            ratingService.CreateRating(AccommodationReservation.Id, AccommodationReservation, Cleanliness, Fairness, Location, ValueForMoney, Comment, ImageList, RecommendationId, RenovationRecommendation);
+            reservationService.ChangeReservationRatedState(AccommodationReservation);
         }
     }
 }
