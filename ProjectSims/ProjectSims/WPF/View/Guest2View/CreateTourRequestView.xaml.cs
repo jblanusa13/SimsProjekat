@@ -85,6 +85,8 @@ namespace ProjectSims.WPF.View.Guest2View
                 }
             }
         }
+
+        private Regex locationRegex = new Regex("^[A-Za-z]+,[A-Za-z]+$");
         public string Error => null;
         public string this[string columnName]
         {
@@ -94,6 +96,9 @@ namespace ProjectSims.WPF.View.Guest2View
                 {
                     if (string.IsNullOrEmpty(Location))
                         return "Unesite lokaciju ture!";
+                    Match match = locationRegex.Match(Location);
+                    if (!match.Success)
+                        return "Format mora biti Grad,Drzava (npr. Beograd,Srbija)!";
                 }
                 else if (columnName == "Description")
                 {
