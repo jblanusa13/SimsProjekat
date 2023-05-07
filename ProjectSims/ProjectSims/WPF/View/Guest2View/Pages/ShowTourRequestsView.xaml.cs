@@ -32,6 +32,7 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
         {
             InitializeComponent();
             DataContext = this;
+            UpdateTourRequestsFile();
             guest2 = g;
             tourRequestService = new TourRequestService();
             tourRequestService.Subscribe(this);
@@ -43,6 +44,21 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
         {
             var createRequest = new CreateTourRequestView(guest2);
             createRequest.Show();
+        }
+
+        private void UpdateTourRequestsFile()
+        {
+            TourRequestService requestService = new TourRequestService();
+            DateOnly today = DateOnly.FromDateTime(DateTime.Today).AddDays(2);
+            List<TourRequest> requests = new List<TourRequest>(requestService.GetAllRequests());
+            foreach (TourRequest request in requests)
+            {
+                if (today >= request.DateRangeStart && request.State == TourRequestState.Waiting)
+                {
+                    request.State = TourRequestState.Invalid;
+                    requestService.Update(request);
+                }
+            }
         }
 
         private void UpdateListRequest()

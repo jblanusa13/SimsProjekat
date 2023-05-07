@@ -33,6 +33,7 @@ namespace ProjectSims.Repository
         }
         public void Create(TourRequest tourRequest)
         {
+            tourRequest.Id = GetNextId();
             tourRequests.Add(tourRequest);
             tourRequestFile.Save(tourRequests);
             NotifyObservers();
