@@ -93,7 +93,6 @@ namespace ProjectSims.WPF.View.OwnerView
                     }
                 case 2:
                     {
-                        //SelectedTab.Content = new Notifications(owner);
                         break;
                     }
             }

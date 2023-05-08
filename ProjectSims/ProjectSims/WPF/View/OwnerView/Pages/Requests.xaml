@@ -41,7 +41,7 @@
                             </DataGridTextColumn.Binding>
                         </DataGridTextColumn>
                         <DataGridTextColumn Header="Trazeni datum"
-                                            Binding="{Binding ChangeDate}"
+                                            Binding="{Binding ChangeDate, StringFormat={}{0:dd.MM.yyyy.}}"
                                             Width="130"
                                             IsReadOnly="True">
                         </DataGridTextColumn>

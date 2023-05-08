@@ -40,7 +40,7 @@
                     <DataGridTextColumn Header="Status ture" Binding="{Binding State}" Width="*" />
                 </DataGrid.Columns>
             </DataGrid>
-            <Border BorderBrush="#FF455DF6" BorderThickness="1" HorizontalAlignment="Center" Height="343" Margin="0,36,0,0" VerticalAlignment="Top" Width="180" CornerRadius="8,8,8,8" Background="#FF455DF6"/>
+            <Border BorderBrush="#FF455DF6" BorderThickness="1" HorizontalAlignment="Center" Height="343" Margin="0,36,0,0" VerticalAlignment="Top" Width="180" CornerRadius="8,8,8,8" Background="#FFFF9100"/>
             <Label Content="Lokacija:" FontSize="15" HorizontalAlignment="Center" Margin="0,45,0,0" VerticalAlignment="Top" Width="158"/>
             <TextBox x:Name="LocationTextBox" HorizontalAlignment="Center" Margin="0,80,0,0" TextWrapping="Wrap" Text="" FontSize="15" VerticalAlignment="Top" Width="158" Height="27"/>
             <Label Content="Jezik:" FontSize="15" HorizontalAlignment="Center" Margin="0,112,0,0" VerticalAlignment="Top" Width="158"/>
@@ -51,12 +51,12 @@
             <Label Content="do:" FontSize="15" HorizontalAlignment="Center" Margin="0,213,0,0" VerticalAlignment="Top"/>
             <Label Content="Broj ljudi:" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" Width="158" Margin="0,248,0,0"/>
             <TextBox x:Name="NumberGuestsTextBox" HorizontalAlignment="Center" Margin="0,278,0,0" TextWrapping="Wrap" Text="" FontSize="15" VerticalAlignment="Top" Width="158" Height="27"/>
-            <Button Click="Search_Click" Content="Trazi" FontSize="18" HorizontalAlignment="Center" Margin="0,325,0,0" VerticalAlignment="Top" Width="108" Height="35"/>
+            <Button Click="Search_Click" Cursor="Hand" Content="Trazi" FontSize="18" HorizontalAlignment="Center" Margin="0,325,0,0" VerticalAlignment="Top" Width="108" Height="35" Background="#FF455DF6" Foreground="White"/>
 
         </Grid>
 
         <Grid Grid.Row="4" Grid.Column="1">
-            <Button Content="Vidi vise detalja o turi i izvrsi rezervaciju" FontSize="18" Click="See_More_Click" Margin="682,10,78,25"/>
+            <Button Content="Vidi vise detalja o turi i izvrsi rezervaciju" Cursor="Hand" FontSize="18" Click="See_More_Click" Margin="682,10,78,25"/>
         </Grid>
 
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">

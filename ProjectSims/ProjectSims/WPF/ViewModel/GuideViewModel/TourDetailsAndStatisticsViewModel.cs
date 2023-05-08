@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjectSims.WPF.ViewModel.GuideViewModel
 {
-    public partial class TourDetailsAndStatisticsViewModel
+    public class TourDetailsAndStatisticsViewModel
     {
         private KeyPointService keyPointService;
         private ReservationTourService reservationTourService;

@@ -17,12 +17,16 @@
   <ItemGroup>
     <None Remove="Resources\Icons\Guest2\icons8-add-file-60.png" />
     <None Remove="Resources\Icons\Guest2\icons8-bell-48.png" />
+    <None Remove="Resources\Icons\Guest2\icons8-help-50.png" />
     <None Remove="Resources\Icons\Guest2\icons8-home-page-64.png" />
     <None Remove="Resources\Icons\Guest2\icons8-male-user-48.png" />
     <None Remove="Resources\Icons\Guide\addPhoto.png" />
+    <None Remove="Resources\Icons\Guide\calendar.png" />
     <None Remove="Resources\Icons\Guide\checkmark.png" />
     <None Remove="Resources\Icons\Guide\close.png" />
+    <None Remove="Resources\Icons\Guide\description.png" />
     <None Remove="Resources\Icons\Guide\duration.png" />
+    <None Remove="Resources\Icons\Guide\filter.png" />
     <None Remove="Resources\Icons\Guide\Globe.png" />
     <None Remove="Resources\Icons\Guide\guests.png" />
     <None Remove="Resources\Icons\Guide\info.png" />
@@ -30,6 +34,7 @@
     <None Remove="Resources\Icons\Guide\mapPin.png" />
     <None Remove="Resources\Icons\Guide\pin.png" />
     <None Remove="Resources\Icons\Guide\report.png" />
+    <None Remove="Resources\Icons\Guide\search.png" />
     <None Remove="Resources\Icons\Guide\star.png" />
     <None Remove="Resources\Icons\Guide\start.png" />
     <None Remove="Resources\Icons\Guide\travel-tour-logo.png" />
@@ -64,6 +69,7 @@
     <None Remove="Resources\Images\Owner\Accommodations\visnjin_dom2.jpg" />
     <None Remove="Resources\Images\Owner\Accommodations\visnjin_dom3.jpg" />
     <None Remove="Resources\Images\rightarrow.png" />
+    <None Remove="WPF\View\Guest2View\travel-tour-logo.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -82,6 +88,9 @@
     <Content Include="Resources\Icons\Guest2\icons8-bell-48.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Icons\Guest2\icons8-help-50.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Icons\Guest2\icons8-home-page-64.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -91,13 +100,25 @@
     <Content Include="Resources\Icons\Guide\addPhoto.png">
 	<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Icons\Guide\calendar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Icons\Guide\checkmark.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\description.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\filter.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\logout.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\report.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\search.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\star.png">
@@ -210,9 +231,15 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="CalcBinding" Version="2.5.2" />
-    <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
-    <PackageReference Include="Tulpep.NotificationWindow" Version="1.1.38" />
+    <PackageReference Include="CalcBinding" Version="2.5.2">
+      <TreatAsUsed>true</TreatAsUsed>
+    </PackageReference>
+	  <PackageReference Include="Tulpep.NotificationWindow" Version="1.1.38">
+		  <TreatAsUsed>true</TreatAsUsed>
+	  </PackageReference>
+	  <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9">
+		  <TreatAsUsed>true</TreatAsUsed>
+	  </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="FileHandler\Images\draganovi_konaci1.jpg" />
@@ -232,5 +259,13 @@
 
   <ItemGroup>
     <Folder Include="Resources\Images\Guest1\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="BlazorDateRangePicker">
+      <HintPath>bin\Debug\net6.0-windows\BlazorDateRangePicker.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WPF\View\Guest2View\travel-tour-logo.png" />
   </ItemGroup>
 </Project>

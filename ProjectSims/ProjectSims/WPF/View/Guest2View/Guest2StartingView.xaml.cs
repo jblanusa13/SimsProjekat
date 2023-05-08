@@ -80,9 +80,14 @@ namespace ProjectSims.View.Guest2View
             ChangeTab(3);
         }
 
-        private void ButtonShowVouchers(object sender, RoutedEventArgs e)
+        private void ButtonShowTourRequests(object sender, RoutedEventArgs e)
         {
             ChangeTab(4);
+        }
+
+        private void ButtonShowVouchers(object sender, RoutedEventArgs e)
+        {
+            ChangeTab(5);
         }
 
         public void ChangeTab(int tabNum)
@@ -112,6 +117,12 @@ namespace ProjectSims.View.Guest2View
                         break;
                     }
                 case 4:
+                    {
+                        ShowTourRequestsViewModel showTourRequestsViewModel = new ShowTourRequestsViewModel(guest2);
+                        SelectedTab.Content = new ShowTourRequestsView(showTourRequestsViewModel);
+                        break;
+                    }
+                case 5:
                     {
                         ShowVouchersViewModel vouchersViewModel = new ShowVouchersViewModel(guest2);
                         SelectedTab.Content = new ShowVouchersView(vouchersViewModel);

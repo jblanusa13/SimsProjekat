@@ -1,0 +1,69 @@
+﻿<Page x:Class="ProjectSims.WPF.View.GuideView.Pages.AcceptTourView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280">
+    <Page.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Broadway"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
+        <Style TargetType="Image">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Height" Value="70"/>
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+    </Page.Resources>
+    <ScrollViewer>
+        <Grid Background="#FF050518">
+            <Label Content ="Prihvati turu" Margin="0,50,0,0" Height="60" FontSize="30" FontWeight="UltraBold" HorizontalAlignment="Center"/>
+            <Image Source="/Resources/Icons/Guide/mapPin.png" Margin="50,90,0,0"/>
+            <Label Content="{Binding SelectedTourRequest.Location}" Margin="100,90,0,0" Width="400" Height="40" FontSize="20"/>
+            <Image Source="/Resources/Icons/Guide/Globe.png" Margin="50,140,0,0"/>
+            <Label Content="{Binding SelectedTourRequest.Language}" Margin="100,140,0,0" Width="300" Height="40" FontSize="20"/>
+            <Image Source="/Resources/Icons/Guide/guests.png" Margin="50,190,0,0"/>
+            <Label Content="{Binding SelectedTourRequest.MaxNumberGuests}" Margin="100,190,0,0" Width="100" Height="40" FontSize="20"/>
+            <Image Source="/Resources/Icons/Guide/description.png" Margin="50,240,0,0"/>
+            <TextBox Text="{Binding SelectedTourRequest.Description}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,250,0,0" Width="1000" Height="120" FontSize="20" Foreground="White" Background="Transparent" BorderThickness="0" IsReadOnly="True"/>
+            <Image Source="/Resources/Icons/Guide/calendar.png" Margin="50,400,0,0"/>
+            <Label Margin="100,400,0,0" Height="40" FontSize="20">
+                <AccessText>
+                    <MultiBinding StringFormat="{}{0} - {1}">
+                        <Binding Path="SelectedTourRequest.DateRangeStart" />
+                        <Binding Path="SelectedTourRequest.DateRangeEnd" />
+                    </MultiBinding>
+                </AccessText>
+            </Label>
+            <Label Content="Odaberite trajanje i termin:" Margin="50,450,0,0" Height="40" FontSize="20"/>
+            <Label Content="Ponuđeni su termini koji pripadaju opsegu datuma iz zahteva i u kojima ste slobodni" Margin="50,480,0,0" Height="40" FontSize="12"/>
+            <ComboBox Name="DaysComboBox" Margin="100,520,0,0" Height="40"  Width="300" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="DaysComboBox_SelectionChanged"/>
+            <ComboBox Name="AppointmentsComboBox" Margin="500,520,0,0" Height="40"  Width="150" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Button Name="AcceptTour" Click="AcceptTour_Click" Margin="400,600,0,50" Background="Green">
+                <Grid Height="70" Width="70" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="/Resources/Icons/Guide/checkmark.png"  HorizontalAlignment="Center" Height="40" Width="40" Margin="0,5,0,0"/>
+                    <Label Content="Prihvati" FontSize="10" HorizontalAlignment="Center" Foreground="Black" Margin="0,40,0,0"/>
+                </Grid>
+            </Button>
+            <Button Name="Back" Click="Back_Click" Margin="700,600,0,50" Background="LightBlue">
+                <Grid Height="70" Width="70" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="/Resources/Icons/Guide/leftarrow.png"  HorizontalAlignment="Center" Height="40" Width="40" Margin="0,5,0,0"/>
+                    <Label Content="Nazad" FontSize="10" HorizontalAlignment="Center" Foreground="Black" Margin="0,40,0,0"/>
+                </Grid>
+            </Button>
+
+        </Grid>
+    </ScrollViewer>
+</Page>

@@ -12,7 +12,7 @@ using System.Windows;
 
 namespace ProjectSims.WPF.ViewModel.GuideViewModel
 {
-    public partial class ScheduledToursViewModel : Page, IObserver
+    public class ScheduledToursViewModel : Page, IObserver
     {
         private TourService tourService;
         private ReservationTourService reservationTourService;
