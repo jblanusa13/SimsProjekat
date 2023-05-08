@@ -27,8 +27,19 @@
         <Label Content="Procenat (ne)prihvacenih zahtjeva:" FontSize="13" HorizontalAlignment="Left" Margin="110,17,0,0" Grid.Row="1" VerticalAlignment="Top"/>
 
         <Label Content="Prosecan broj ljudi u zahtjevima koji su prihvaceni:" FontSize="13" HorizontalAlignment="Left" Margin="110,37,0,0" Grid.Row="2" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="154,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding AverageNumberOfPeople}" VerticalAlignment="Center" FontSize="110" Foreground="Green"/>
+        <TextBlock HorizontalAlignment="Left" Margin="154,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding AverageNumberOfPeople}" VerticalAlignment="Center" FontSize="100" Foreground="#FF2195F2"/>
 
+        <lvc:CartesianChart Grid.Row="1" Grid.Column="1" Series="{Binding NumberRequestForLanguageSeriesCollection}" LegendLocation="Bottom" Margin="20,49,31,30">
+            <lvc:CartesianChart.AxisX>
+                <lvc:Axis Title="Jezik" Labels="{Binding LabelsForLanguages}"/>
+            </lvc:CartesianChart.AxisX>
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis Title="Broj zahteva" Labels="{Binding Values}"/>
+            </lvc:CartesianChart.AxisY>
+        </lvc:CartesianChart>
+        <Label Grid.Row="1" Grid.Column="1" Content="Prikaz broja zahtjeva spram jezika:" FontSize="13" HorizontalAlignment="Left" Margin="37,17,0,0" VerticalAlignment="Top"/>
+        
+        <Label Grid.Row="2" Grid.Column="1" Content="Prikaz broja zahtjeva spram lokacije:" FontSize="13" HorizontalAlignment="Left" Margin="37,37,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

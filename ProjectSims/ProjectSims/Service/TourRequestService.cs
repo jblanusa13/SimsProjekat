@@ -66,6 +66,18 @@ namespace ProjectSims.Service
 
             return Math.Round((double)numberPeople/numberAcceptedRequest,2);
         }
+        public int GetNumberRequestsByLanguage(List<TourRequest> requests, string language)
+        {
+            int number = 0;
+            foreach (TourRequest request in requests)
+            {
+                if (request.Language == language)
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
         public List<TourRequest> GetWantedRequests(string location,string language,string maxNumberGuests,DateTime dateRangeStart,DateTime dateRangeEnd)
         {
             List<TourRequest> wantedRequests = new List<TourRequest>();

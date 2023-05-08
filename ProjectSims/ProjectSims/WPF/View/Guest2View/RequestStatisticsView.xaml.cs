@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using LiveCharts;
 using LiveCharts.Wpf;
 using LiveCharts.Defaults;
+using System.Collections.ObjectModel;
 
 namespace ProjectSims.WPF.View.Guest2View
 {
@@ -31,6 +32,10 @@ namespace ProjectSims.WPF.View.Guest2View
         public Func<int, string> Values { get; set; }
         public Func<ChartPoint, string> Pointlabel { get; set; }
 
+        public string[] LabelsLanguage { get; set; }
+        public ObservableCollection<string> LabelsForLanguages { get; set; }
+        public SeriesCollection NumberRequestForLanguageSeriesCollection { get; set; }
+
         public double AverageNumberOfPeople { get; set; }
         public RequestStatisticsView(Guest2 g)
         {
@@ -43,6 +48,18 @@ namespace ProjectSims.WPF.View.Guest2View
 
             GetRequestStatistics();
             AverageNumberOfPeople = tourRequestService.GetAverageNumberOfPeopleOnAcceptedRequests(requests);
+
+            NumberRequestForLanguageSeriesCollection = new SeriesCollection();
+            LabelsLanguage = new[] { "Srpski", "Engleski", "Francuski", "Nemački", "Španski", "Italijanski"};
+
+
+            LabelsForLanguages = new ObservableCollection<string>();
+            foreach(var l in LabelsLanguage)
+            {
+                LabelsForLanguages.Add(l);
+            }
+
+            DisplayTheMostRequestedLanguage();
         }
 
         private void ButtonBack(object sender, RoutedEventArgs e)
@@ -73,6 +90,17 @@ namespace ProjectSims.WPF.View.Guest2View
                     DataLabels = true
                 }
             };
+        }
+
+        public void DisplayTheMostRequestedLanguage()
+        {
+            var languageStats = new ChartValues<int>();
+            foreach (string language in LabelsLanguage)
+            {
+                languageStats.Add(tourRequestService.GetNumberRequestsByLanguage(requests, language));
+            }
+            NumberRequestForLanguageSeriesCollection.Add(new ColumnSeries { Values = languageStats, Title = "Broj zahteva za jezik:" });
+            Values = value => value.ToString("D");
         }
     }
 }
