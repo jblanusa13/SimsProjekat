@@ -71,32 +71,10 @@ namespace ProjectSims.Service
             else
                 return null;
         }
-        public void Create(int guideId, string name, string location, string description, string language, string maxNumberGuests,string startKeyPointName, string finishKeyPointName, 
-            List<string> otherKeyPointsNames, string tourStart, string duration, string images)
-        {
-                List<int> keyPointIds = new List<int>();
-                int startKeyPointId = keyPointService.GetNextId();
-                keyPointService.Create(startKeyPointId, startKeyPointName,KeyPointType.First);
-                keyPointIds.Add(startKeyPointId);
-                foreach (string keyPointName in otherKeyPointsNames)
-                {
-                    int otherKeyPointId = keyPointService.GetNextId();
-                    keyPointService.Create(otherKeyPointId, keyPointName, KeyPointType.Intermediate);
-                    keyPointIds.Add(otherKeyPointId);
-                }
-                int finishKeyPointId = keyPointService.GetNextId();
-                keyPointService.Create(finishKeyPointId, finishKeyPointName, KeyPointType.Last);
-                keyPointIds.Add(finishKeyPointId);
-                List<string> imageList = new List<string>();
-                foreach (string image in images.Split(','))
-                {
-                    imageList.Add(image);
-                }
-                Tour newTour =  new Tour(-1, guideId, name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPointIds, DateTime.Parse(tourStart), Convert.ToDouble(duration), imageList, Convert.ToInt32(maxNumberGuests),TourState.Inactive,-1);
-                tourRepository.Create(newTour);
-                guideScheduleService.Create(guideId, newTour.Id, DateTime.Parse(tourStart), Convert.ToDouble(duration));
-
-        }
+       public void Create(Tour tour) 
+       {
+            tourRepository.Create(tour);
+       }
         public void UpdateTourState(Tour tour,TourState state)
         {
             tour.State = state;

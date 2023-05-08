@@ -13,22 +13,38 @@
     <None Remove="Resources\Icons\Guest2\icons8-home-page-64.png" />
     <None Remove="Resources\Icons\Guest2\icons8-male-user-48.png" />
     <None Remove="Resources\Icons\Guide\addPhoto.png" />
+    <None Remove="Resources\Icons\Guide\adjust.png" />
     <None Remove="Resources\Icons\Guide\calendar.png" />
     <None Remove="Resources\Icons\Guide\checkmark.png" />
     <None Remove="Resources\Icons\Guide\close.png" />
     <None Remove="Resources\Icons\Guide\description.png" />
     <None Remove="Resources\Icons\Guide\duration.png" />
-    <None Remove="Resources\Icons\Guide\filter.png" />
     <None Remove="Resources\Icons\Guide\Globe.png" />
+    <None Remove="Resources\Icons\Guide\cross.png" />
+    <None Remove="Resources\Icons\Guide\details.png" />
+    <None Remove="Resources\Icons\Guide\duration.png" />
+    <None Remove="Resources\Icons\Guide\globe.png" />
     <None Remove="Resources\Icons\Guide\guests.png" />
+    <None Remove="Resources\Icons\Guide\help.png" />
+    <None Remove="Resources\Icons\Guide\home.png" />
+    <None Remove="Resources\Icons\Guide\image.png" />
     <None Remove="Resources\Icons\Guide\info.png" />
+    <None Remove="Resources\Icons\Guide\leftarrow.png" />
+    <None Remove="Resources\Icons\Guide\location.png" />
     <None Remove="Resources\Icons\Guide\logout.png" />
     <None Remove="Resources\Icons\Guide\mapPin.png" />
+    <None Remove="Resources\Icons\Guide\name.png" />
+    <None Remove="Resources\Icons\Guide\ok.png" />
     <None Remove="Resources\Icons\Guide\pin.png" />
+    <None Remove="Resources\Icons\Guide\play.png" />
+    <None Remove="Resources\Icons\Guide\plus.png" />
+    <None Remove="Resources\Icons\Guide\profile.png" />
+    <None Remove="Resources\Icons\Guide\question.png" />
     <None Remove="Resources\Icons\Guide\report.png" />
+    <None Remove="Resources\Icons\Guide\rightarrow.png" />
     <None Remove="Resources\Icons\Guide\search.png" />
     <None Remove="Resources\Icons\Guide\star.png" />
-    <None Remove="Resources\Icons\Guide\start.png" />
+    <None Remove="Resources\Icons\Guide\time.png" />
     <None Remove="Resources\Icons\Guide\travel-tour-logo.png" />
     <None Remove="Resources\Icons\Guide\user.png" />
     <None Remove="Resources\Images\background.jpg" />
@@ -40,6 +56,8 @@
     <None Remove="Resources\Images\Guest2\travel-tour-logo.png" />
     <None Remove="Resources\Images\guests.png" />
     <None Remove="Resources\Images\Guide\background.jpg" />
+    <None Remove="Resources\Images\Guide\bck.jpg" />
+    <None Remove="Resources\Images\Guide\bckgrnd.jpg" />
     <None Remove="Resources\Images\Guide\JaksicevaKula.jpg" />
     <None Remove="Resources\Images\Guide\kalemegdan1.jpg" />
     <None Remove="Resources\Images\Guide\petrovaradin.jpg" />
@@ -50,8 +68,8 @@
     <None Remove="Resources\Images\leftarrow.png" />
     <None Remove="Resources\Images\mappin.png" />
     <None Remove="Resources\Images\rightarrow.png" />
+    <None Remove="WPF\View\GuideView\bckgrnd.jpg" />
   </ItemGroup>
-
   <ItemGroup>
     <COMReference Include="{215d64d2-031c-33c7-96e3-61794cd1ee61}">
       <WrapperTool>tlbimp</WrapperTool>
@@ -60,7 +78,6 @@
       <Guid>215d64d2-031c-33c7-96e3-61794cd1ee61</Guid>
     </COMReference>
   </ItemGroup>
-
   <ItemGroup>
     <Content Include="Resources\Icons\Guest2\icons8-add-file-60.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -74,67 +91,73 @@
     <Content Include="Resources\Icons\Guest2\icons8-male-user-48.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Icons\Guide\addPhoto.png">
-	<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="Resources\Icons\Guide\adjust.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\calendar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Icons\Guide\checkmark.png">
+    <Content Include="Resources\Icons\Guide\cross.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\details.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\globe.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\home.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\image.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\leftarrow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\location.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\description.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Icons\Guide\filter.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\Icons\Guide\logout.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Icons\Guide\report.png">
+    <Content Include="Resources\Icons\Guide\name.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\ok.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\pin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\play.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\profile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\rightarrow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\search.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Icons\Guide\star.png">
+    <Content Include="Resources\Icons\Guide\time.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\travel-tour-logo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Icons\Guide\user.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Guest2\kofer.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Guest2\travel-tour-logo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Icons\Guide\close.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Icons\Guide\duration.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Icons\Guide\Globe.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Icons\Guide\guests.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Icons\Guide\info.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Icons\Guide\mapPin.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Icons\Guide\pin.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Icons\Guide\start.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Guest2\download.jpg">
@@ -144,18 +167,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Guest2\park-kalemegdan-1184267749.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Icons\Guide\home.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Icons\Guide\leftarrow.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Icons\Guide\rightarrow.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Guide\background.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Guide\JaksicevaKula.jpg">
@@ -184,6 +195,9 @@
     <PackageReference Include="Tulpep.NotificationWindow" Version="1.1.38">
       <TreatAsUsed>true</TreatAsUsed>
     </PackageReference>
+    <PackageReference Include="CalcBinding" Version="2.5.2" />
+    <PackageReference Include="Syncfusion.Shared.WPF" Version="21.2.3" />
+    <PackageReference Include="Tulpep.NotificationWindow" Version="1.1.38" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\Images\Guest1\" />
@@ -192,5 +206,6 @@
     <Reference Include="BlazorDateRangePicker">
       <HintPath>bin\Debug\net6.0-windows\BlazorDateRangePicker.dll</HintPath>
     </Reference>
+    <Resource Include="WPF\View\GuideView\bckgrnd.jpg" />
   </ItemGroup>
 </Project>

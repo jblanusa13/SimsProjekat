@@ -14,17 +14,20 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
     public class AcceptTourViewModel
     {
         private GuideService guideService;
-        public List<DateTime> daysBetween = new List<DateTime>();
-        public List<DateTime> availableAppointments = new List<DateTime>();
+        private GuideScheduleService guideScheduleService;
+        public List<DateTime> daysBetween;
+        public List<Tuple<DateTime,DateTime>> freeAppointments;
         public DateTime SelectedStartOfTheTour { get; set; }
         public TourRequest SelectedTourRequest { get; set; }
         public Guide Guide { get; set; }
         public AcceptTourViewModel(TourRequest selectedTourRequest,Guide guide)
         {
             guideService = new GuideService();
+            guideScheduleService = new GuideScheduleService();
             Guide = guide;
             SelectedTourRequest = selectedTourRequest;
             daysBetween = new List<DateTime>();
+            freeAppointments = new List<Tuple<DateTime, DateTime>>();
         }
         public void ShowAvailableDays(ComboBox DaysComboBox)
         {
@@ -33,8 +36,12 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
                 DaysComboBox.Items.Add(day);
             }
         }
-        public void ShowAvailableTimes(DateOnly selectedDay,ComboBox AppointmentsComboBox)
+        public void ShowAvailableAppointments(DateOnly selectedDate,ComboBox AppointmentsComboBox)
         {
+            foreach (var freeappointment in guideScheduleService.GetFreeAppointmentsByDateAndGuideId(Guide.Id, selectedDate))
+            {
+                AppointmentsComboBox.Items.Add(freeappointment);
+            }
         }
 
     }

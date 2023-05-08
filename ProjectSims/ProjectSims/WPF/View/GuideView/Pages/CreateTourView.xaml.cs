@@ -1,10 +1,12 @@
 ﻿using ProjectSims.Domain.Model;
 using ProjectSims.Service;
 using ProjectSims.View.GuideView;
+using ProjectSims.WPF.ViewModel.GuideViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.Metrics;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -19,6 +21,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ProjectSims.WPF.View.GuideView.Pages
 {
@@ -27,12 +30,11 @@ namespace ProjectSims.WPF.View.GuideView.Pages
     /// </summary>
     public partial class CreateTourView : Page,INotifyPropertyChanged, IDataErrorInfo
     {
+        private CreateTourViewModel createTourViewModel;
         public Guide guide { get; set; }
-
-        private readonly TourService tourService;
-        private readonly GuideScheduleService guideScheduleService;
-
-
+        public List<string> OtherKeyPoints { get; set; }
+        public List<DateTime> Appointments { get; set; }
+        public List<string> Images { get; set; }
         private string _tourName;
         public string TourName
         {
@@ -46,21 +48,6 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 }
             }
         }
-
-        private string _location;
-        public string Location
-        {
-            get => _location;
-            set
-            {
-                if (value != _location)
-                {
-                    _location = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
         private string _tourLanguage;
         public string TourLanguage
         {
@@ -74,49 +61,71 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 }
             }
         }
-
-        private string _maxNumberGuests;
-        public string MaxNumberGuests
+        private string _city;
+        public string City
         {
-            get => _maxNumberGuests;
+            get => _city;
             set
             {
-                if (value != _maxNumberGuests)
+                if (value != _city)
                 {
-                    _maxNumberGuests = value;
+                    _city = value;
                     OnPropertyChanged();
                 }
             }
         }
-
-        private string _duration;
-        public string Duration
+        private string _country;
+        public string Country
         {
-            get => _duration;
+            get => _country;
             set
             {
-                if (value != _duration)
+                if (value != _country)
                 {
-                    _duration = value;
+                    _country = value;
                     OnPropertyChanged();
                 }
             }
         }
-
-        private string _tourStarts;
-        public string TourStarts
+        private string _date;
+        public string Date
         {
-            get => _tourStarts;
+            get => _date;
             set
             {
-                if (value != _tourStarts)
+                if (value != _date)
                 {
-                    _tourStarts = value;
+                    _date = value;
                     OnPropertyChanged();
                 }
             }
         }
-
+        private string _hour;
+        public string Hour
+        {
+            get => _hour;
+            set
+            {
+                if (value != _hour)
+                {
+                    _hour = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private string _minute;
+        public string Minute
+        {
+            get => _minute;
+            set
+            {
+                if (value != _minute)
+                {
+                    _minute = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         private string _startKeyPoint;
         public string StartKeyPoint
         {
@@ -130,7 +139,6 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 }
             }
         }
-
         private string _finishKeyPoint;
         public string FinishKeyPoint
         {
@@ -144,20 +152,32 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 }
             }
         }
-        private string _otherKeyPoint;
-        public string OtherKeyPoint
+        private string _duration;
+        public string Duration
         {
-            get => _otherKeyPoint;
+            get => _duration;
             set
             {
-                if (value != _otherKeyPoint)
+                if (value != _duration)
                 {
-                    _otherKeyPoint = value;
+                    _duration = value;
                     OnPropertyChanged();
                 }
             }
         }
-
+        private string _maxNumberGuests;
+        public string MaxNumberGuests
+        {
+            get => _maxNumberGuests;
+            set
+            {
+                if (value != _maxNumberGuests)
+                {
+                    _maxNumberGuests = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         private string _description;
         public string Description
         {
@@ -172,36 +192,10 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             }
         }
 
-        private string _images;
-        public string Images
-        {
-            get => _images;
-            set
-            {
-                if (value != _images)
-                {
-                    _images = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private List<string> _otherKeyPoints;
-        public List<string> OtherKeyPoints
-        {
-            get => _otherKeyPoints;
-            set
-            {
-                if (value != _otherKeyPoints)
-                {
-                    _otherKeyPoints = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
         private Regex _durationRegex = new Regex("^([0-9]*\\.)?[0-9]+$");
         private Regex _maxNumberGuestsRegex = new Regex("^[1-9][0-9]*$");
+        private Regex _hoursRegex = new Regex("^[01]?[0-9]|2[0-3]$");
+        private Regex _minuteRegex = new Regex("^[0-5][0-9]$");
         public String Error => null;
         public string this[string columnName]
         {
@@ -212,15 +206,20 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                     if (string.IsNullOrEmpty(TourName))
                         return "Unesite naziv ture!";
                 }
-                else if (columnName == "Location")
-                {
-                    if (string.IsNullOrEmpty(Location))
-                        return "Unesite lokaciju!";
-                }
                 else if (columnName == "TourLanguage")
                 {
                     if (string.IsNullOrEmpty(TourLanguage))
                         return "Odaberite jezik!";
+                }
+                else if (columnName == "City")
+                {
+                    if (string.IsNullOrEmpty(City))
+                        return "Unesite grad!";
+                }
+                else if (columnName == "Country")
+                {
+                    if (string.IsNullOrEmpty(Country))
+                        return "Unesite drzavu!";
                 }
                 else if (columnName == "MaxNumberGuests")
                 {
@@ -229,25 +228,6 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                     Match match = _maxNumberGuestsRegex.Match(MaxNumberGuests);
                     if (!match.Success)
                         return "Format nije ispravan!";
-                }
-                else if (columnName == "Duration")
-                {
-                    if (string.IsNullOrEmpty(Duration))
-                        return "Unesite trajanje ture!";
-                    Match match = _durationRegex.Match(Duration);
-                    if (!match.Success)
-                        return "Format nije ispravan!";
-                }
-                else if (columnName == "TourStarts")
-                {
-                    if (string.IsNullOrEmpty(TourStarts))
-                        return "Unesite datum i vreme početka ture!";
-                    DateTime result;
-                    foreach (string tourStart in TourStarts.Split(','))
-                    {
-                        if (!DateTime.TryParse(tourStart, out result))
-                            return "Format nije ispravan!";
-                    }
                 }
                 else if (columnName == "StartKeyPoint")
                 {
@@ -259,6 +239,14 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                     if (string.IsNullOrEmpty(FinishKeyPoint))
                         return "Unesite krajnju stanicu!";
                 }
+                else if (columnName == "Duration")
+                {
+                    if (string.IsNullOrEmpty(Duration))
+                        return "Unesite trajanje!";
+                    Match match = _durationRegex.Match(Duration);
+                    if (!match.Success)
+                        return "Format nije ispravan!";
+                }
                 else if (columnName == "Description")
                 {
                     if (string.IsNullOrEmpty(Description))
@@ -269,7 +257,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             }
         }
 
-        private readonly string[] _validatedProperties = { "TourName", "Location", "TourLanguage", "MaxNumberGuests", "Duration", "TourStarts", "StartKeyPoint", "FinishKeyPoint", "Description"};
+        private readonly string[] _validatedProperties = { "TourName", "TourLanguage", "City", "Country", "MaxNumberGuests", "Duration", "StartKeyPoint", "FinishKeyPoint", "Description"};
         public bool IsValid
         {
             get
@@ -286,14 +274,16 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         {
             InitializeComponent();
             DataContext = this;
-            tourService = new TourService();
-            guideScheduleService = new GuideScheduleService();
-            OtherKeyPoints = new List<string>();
+            createTourViewModel = new CreateTourViewModel(g);
+            OtherKeyPoints =new List<string>();
+            Appointments = new List<DateTime>();
+            Images = new List<string>();
+            AddKeyPointButton.IsEnabled = false;
+            AddAppointmentButton.IsEnabled = false;
             guide = g;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -302,7 +292,6 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         {
             Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
             Nullable<bool> result = openFileDlg.ShowDialog();
-
             string apsolutePath = "";
             if (result == true)
             {
@@ -312,7 +301,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             {
                 return;
             }
-            Images += GetRelativePath(apsolutePath) + ",";
+            Images.Add(GetRelativePath(apsolutePath));
         }
         private string GetRelativePath(string apsolutePath)
         {
@@ -320,32 +309,64 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             string image = helpString.Last();
             return "/Resources/Images/Guide/" + image;
         }
+        public void OtherKeyPointTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(!string.IsNullOrWhiteSpace(OtherKeyPointTextBox.Text))
+            {
+                AddKeyPointButton.IsEnabled = true;
+            }
+        }
+        public void HourTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Match matchHour = _hoursRegex.Match(HourTextBox.Text);
+            Match matchMinute = _minuteRegex.Match(MinuteTextBox.Text);
+            if (TourDatePicker.SelectedDate != null && matchHour.Success && matchMinute.Success)
+            {
+                AddAppointmentButton.IsEnabled = true;
+            }
+        }
+        public void MinuteTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Match matchHour = _hoursRegex.Match(HourTextBox.Text);
+            Match matchMinute = _minuteRegex.Match(MinuteTextBox.Text);
+            if (TourDatePicker.SelectedDate != null && matchHour.Success && matchMinute.Success)
+            {
+                AddAppointmentButton.IsEnabled = true;
+            }
+        }
+        public void TourDatePicker_SelectedDateChanged(object sender, EventArgs e)
+        {
+            Match matchHour = _hoursRegex.Match(HourTextBox.Text);
+            Match matchMinute = _minuteRegex.Match(MinuteTextBox.Text);
+            if (TourDatePicker.SelectedDate != null && matchHour.Success && matchMinute.Success)
+            {
+                AddAppointmentButton.IsEnabled = true;
+            }
+        }
+        public void AddAppointment_Click(object sender, RoutedEventArgs e)
+        {
+            Appointments.Add(new DateTime(TourDatePicker.SelectedDate.Value.Year, TourDatePicker.SelectedDate.Value.Month,TourDatePicker.SelectedDate.Value.Day,Convert.ToInt32(HourTextBox.Text), Convert.ToInt32(MinuteTextBox.Text),0));
+            TourDatePicker.SelectedDate = null;
+            HourTextBox.Text = "";
+            MinuteTextBox.Text = "";
+            AddAppointmentButton.IsEnabled = false;
+        }
+        public void AddKeyPoint_Click(object sender, RoutedEventArgs e)
+        {
+            OtherKeyPoints.Add(OtherKeyPointTextBox.Text);
+            OtherKeyPointTextBox.Text = "";
+            AddKeyPointButton.IsEnabled = false;
+  
+        }
         private void CreateTour_Click(object sender, RoutedEventArgs e)
         {
-            if (IsValid)
-            {
-                foreach (string TourStart in TourStarts.Split(','))
-                {
-                    String ImageList = Images.Remove(Images.Length - 1, 1);
-                    tourService.Create(guide.Id, TourName, Location, Description, TourLanguage, MaxNumberGuests, StartKeyPoint, FinishKeyPoint, OtherKeyPoints, TourStart, Duration, ImageList);
-
-                }
+           if (IsValid)
+           {
+                createTourViewModel.CreateTour(guide.Id,TourName,TourLanguage,City + "," + Country,MaxNumberGuests, Appointments, Duration,StartKeyPoint,OtherKeyPoints,FinishKeyPoint,Description,Images);
                 this.NavigationService.Navigate(new ScheduledToursView(guide));
-            }
-            else
-                MessageBox.Show("Nisu validno popunjena polja!");
-
-        }
-
-        private void AddKeyPoint_Click(object sender, RoutedEventArgs e)
-        {
-            if (OtherKeyPoint != "")
-            {
-                OtherKeyPoints.Add(OtherKeyPoint);
-                OtherKeyPointTextBox.Text = "";
-            }
-            else
-                MessageBox.Show("Unesite stanicu!");
+           }
+           else
+               MessageBox.Show("Nisu validno popunjena polja!");
         }
     }
 }

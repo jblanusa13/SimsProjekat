@@ -38,7 +38,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
        public void DaysComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
        {
             DateOnly SelectedDate = (DateOnly)DaysComboBox.SelectedItem;
-            acceptTourViewModel.ShowAvailableTimes(SelectedDate, AppointmentsComboBox);
+            acceptTourViewModel.ShowAvailableAppointments(SelectedDate, AppointmentsComboBox);
        }
     }
 }

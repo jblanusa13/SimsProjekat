@@ -8,8 +8,8 @@
       d:DesignHeight="720" d:DesignWidth="1280">
     <Page.Resources>
         <Style TargetType="Label">
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontFamily" Value="Broadway"/>
+            <Setter Property="Foreground" Value="#e1c564"/>
+            <Setter Property="FontFamily" Value="Corbel light"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
         </Style>
@@ -28,15 +28,15 @@
         </Style>
     </Page.Resources>
     <ScrollViewer>
-        <Grid Background="#FF050518">
+        <Grid Background="Transparent">
             <Label Content ="Prihvati turu" Margin="0,50,0,0" Height="60" FontSize="30" FontWeight="UltraBold" HorizontalAlignment="Center"/>
-            <Image Source="/Resources/Icons/Guide/mapPin.png" Margin="50,90,0,0"/>
+            <Image Source="/Resources/Icons/Guide/location.png" Margin="50,90,0,0"/>
             <Label Content="{Binding SelectedTourRequest.Location}" Margin="100,90,0,0" Width="400" Height="40" FontSize="20"/>
-            <Image Source="/Resources/Icons/Guide/Globe.png" Margin="50,140,0,0"/>
+            <Image Source="/Resources/Icons/Guide/globe.png" Margin="50,140,0,0"/>
             <Label Content="{Binding SelectedTourRequest.Language}" Margin="100,140,0,0" Width="300" Height="40" FontSize="20"/>
-            <Image Source="/Resources/Icons/Guide/guests.png" Margin="50,190,0,0"/>
+            <Image Source="/Resources/Icons/Guide/people.png" Margin="50,200,0,0" Height="30" Width="50"/>
             <Label Content="{Binding SelectedTourRequest.MaxNumberGuests}" Margin="100,190,0,0" Width="100" Height="40" FontSize="20"/>
-            <Image Source="/Resources/Icons/Guide/description.png" Margin="50,240,0,0"/>
+            <Image Source="/Resources/Icons/Guide/details.png" Margin="50,240,0,0"/>
             <TextBox Text="{Binding SelectedTourRequest.Description}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,250,0,0" Width="1000" Height="120" FontSize="20" Foreground="White" Background="Transparent" BorderThickness="0" IsReadOnly="True"/>
             <Image Source="/Resources/Icons/Guide/calendar.png" Margin="50,400,0,0"/>
             <Label Margin="100,400,0,0" Height="40" FontSize="20">
@@ -51,16 +51,16 @@
             <Label Content="Ponuđeni su termini koji pripadaju opsegu datuma iz zahteva i u kojima ste slobodni" Margin="50,480,0,0" Height="40" FontSize="12"/>
             <ComboBox Name="DaysComboBox" Margin="100,520,0,0" Height="40"  Width="300" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="DaysComboBox_SelectionChanged"/>
             <ComboBox Name="AppointmentsComboBox" Margin="500,520,0,0" Height="40"  Width="150" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <Button Name="AcceptTour" Click="AcceptTour_Click" Margin="400,600,0,50" Background="Green">
+            <Button Name="AcceptTour" Click="AcceptTour_Click" Margin="400,600,0,50" Background="Transparent">
                 <Grid Height="70" Width="70" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Source="/Resources/Icons/Guide/checkmark.png"  HorizontalAlignment="Center" Height="40" Width="40" Margin="0,5,0,0"/>
-                    <Label Content="Prihvati" FontSize="10" HorizontalAlignment="Center" Foreground="Black" Margin="0,40,0,0"/>
+                    <Image Source="/Resources/Icons/Guide/ok.png"  HorizontalAlignment="Center" Height="40" Width="40" Margin="0,5,0,0"/>
+                    <Label Content="Prihvati" FontSize="10" HorizontalAlignment="Center" Margin="0,40,0,0"/>
                 </Grid>
             </Button>
-            <Button Name="Back" Click="Back_Click" Margin="700,600,0,50" Background="LightBlue">
+            <Button Name="Back" Click="Back_Click" Margin="700,600,0,50" Background="Transparent">
                 <Grid Height="70" Width="70" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Image Source="/Resources/Icons/Guide/leftarrow.png"  HorizontalAlignment="Center" Height="40" Width="40" Margin="0,5,0,0"/>
-                    <Label Content="Nazad" FontSize="10" HorizontalAlignment="Center" Foreground="Black" Margin="0,40,0,0"/>
+                    <Label Content="Nazad" FontSize="10" HorizontalAlignment="Center" Margin="0,40,0,0"/>
                 </Grid>
             </Button>
 

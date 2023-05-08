@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace ProjectSims.Repository
 {
@@ -26,6 +27,10 @@ namespace ProjectSims.Repository
 
         public int NextId()
         {
+            if (guideSchedules.Count == 0)
+            {
+                return 0;
+            }
             return guideSchedules.Max(t => t.Id) + 1;
         }
 
@@ -61,6 +66,10 @@ namespace ProjectSims.Repository
         public GuideSchedule GetById(int id)
         {
             return guideSchedules.Find(s => s.Id == id);
+        }
+        public List<GuideSchedule> GetByGuideIdAndDate(int id, DateOnly date)
+        {
+            return guideSchedules.Where(s => s.GuideId == id && DateOnly.FromDateTime(s.Start) == date).ToList();
         }
         public void Subscribe(IObserver observer)
         {

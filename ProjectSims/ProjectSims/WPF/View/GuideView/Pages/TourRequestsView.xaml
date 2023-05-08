@@ -9,8 +9,8 @@
       Title="FinishedToursView">
     <Page.Resources>
         <Style TargetType="{x:Type Label}">
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontFamily" Value="Broadway"/>
+            <Setter Property="Foreground" Value="#e1c564"/>
+            <Setter Property="FontFamily" Value="Corbel light"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
         </Style>
@@ -22,18 +22,18 @@
         </Style>
     </Page.Resources>
     <ScrollViewer>
-        <Grid Background="#FF050518">
+        <Grid Background="Transparent">
             <Label Content="Lista zahteva" HorizontalAlignment="Center" Margin="0,35,0,0" FontSize="25"/>
             <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,100,0,0" Width="1280" Height="140">
                 <Border BorderBrush="White" BorderThickness="2"/>
-                <Image Source="/Resources/Icons/Guide/filter.png" Height="50" Width="50" Margin="20,20,0,0"/>
-                <Label Content="Filteri" Margin="60,30,0,0" FontSize="22"/>
+                <Image Source="/Resources/Icons/Guide/adjust.png" Height="50" Width="50" Margin="20,20,0,0"/>
+                <Label Content="Filteri" Margin="70,30,0,0" FontSize="22"/>
                 <TextBox x:Name="LocationTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,60,0,0" Height="40" Width="200"/>
-                <Image Source="/Resources/Icons/Guide/mappin.png" Margin="400,60,0,0"/>
+                <Image Source="/Resources/Icons/Guide/location.png" Margin="400,60,0,0"/>
                 <TextBox x:Name="LanguageTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="500,60,0,0" Height="40" Width="200"/>
                 <Image Source="/Resources/Icons/Guide/globe.png" Margin="710,60,0,0"/>
                 <TextBox x:Name="MaxNumberGuestsTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="800,60,0,0" Height="40" Width="70"/>
-                <Image Source="/Resources/Icons/Guide/guests.png" Margin="890,60,0,0"/>
+                <Image Source="/Resources/Icons/Guide/people.png" Margin="890,70,0,0" Height="30" Width="60"/>
                 <Viewbox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1000,40,0,0" Height="110" Width="110">
                     <Calendar Name="DateRange" FirstDayOfWeek="Monday" IsTodayHighlighted="True" SelectionMode="SingleRange"/>
                 </Viewbox>
@@ -41,10 +41,12 @@
                     <Image Source="/Resources/Icons/Guide/search.png"/>
                 </Button>
             </Grid>
-            <ListView  x:Name="TourRequestsListView" ItemsSource="{Binding TourRequests}" Margin="0,370,0,50" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single" Width="1200" Background="#D0D5F7">
+            <ListView  x:Name="TourRequestsListView" ItemsSource="{Binding TourRequests}" Margin="0,310,0,100" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single" Width="1200" Background="White">
                 <ListView.Resources>
                     <Style TargetType="{x:Type Label}">
-                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="Foreground" Value="#222E50"/>
+                        <Setter Property="FontFamily" Value="Corbel light"/>
+                        <Setter Property="FontSize" Value="22"/>
                     </Style>
                 </ListView.Resources>
                 <ListView.View>
@@ -88,7 +90,7 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Height="20" Width="20" Background="Transparent" Click="AcceptRequest_Click" BorderThickness="0">
-                                        <Image Source="/Resources/Icons/Guide/info.png"/>
+                                        <Image Source="/Resources/Icons/Guide/details.png"/>
                                     </Button>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>

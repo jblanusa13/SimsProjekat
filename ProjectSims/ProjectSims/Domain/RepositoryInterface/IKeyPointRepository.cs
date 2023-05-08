@@ -9,7 +9,7 @@ namespace ProjectSims.Domain.RepositoryInterface
 {
     public interface IKeyPointRepository : IGenericRepository<KeyPoint, int>
     {
-        public int GetNextId();
+        public int NextId();
         public List<KeyPoint> GetKeyPointsByStateAndIds(List<int> ids, bool state);
     }
 }
