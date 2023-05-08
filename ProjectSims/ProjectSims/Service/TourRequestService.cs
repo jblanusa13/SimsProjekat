@@ -39,6 +39,33 @@ namespace ProjectSims.Service
         {
             return tourRequestRepository.GetByGuest2Id(guest2Id);
         }
+        public int GetNumberRequestsByState(List<TourRequest> requests, TourRequestState state)
+        {
+            int number = 0;
+            foreach (TourRequest request in requests)
+            {
+                if(request.State == state)
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+        public double GetAverageNumberOfPeopleOnAcceptedRequests(List<TourRequest> requests)
+        {
+            int numberPeople = 0;
+            int numberAcceptedRequest = 0;
+            foreach(TourRequest request in requests)
+            {
+                if(request.State == TourRequestState.Accepted)
+                {
+                    numberPeople += request.MaxNumberGuests;
+                    numberAcceptedRequest++;
+                }
+            }
+
+            return Math.Round((double)numberPeople/numberAcceptedRequest,2);
+        }
         public List<TourRequest> GetWantedRequests(string location,string language,string maxNumberGuests,DateTime dateRangeStart,DateTime dateRangeEnd)
         {
             List<TourRequest> wantedRequests = new List<TourRequest>();
