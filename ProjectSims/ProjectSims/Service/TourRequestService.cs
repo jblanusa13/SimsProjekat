@@ -63,7 +63,7 @@ namespace ProjectSims.Service
                     numberAcceptedRequest++;
                 }
             }
-
+            if (numberAcceptedRequest == 0) return 0;
             return Math.Round((double)numberPeople/numberAcceptedRequest,2);
         }
         public int GetNumberRequestsByLanguage(List<TourRequest> requests, string language)
@@ -72,6 +72,28 @@ namespace ProjectSims.Service
             foreach (TourRequest request in requests)
             {
                 if (request.Language == language)
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+        public List<string> GetAllLocations(List<TourRequest> requests)
+        {
+            List<string> locations = new List<string>();
+            foreach(TourRequest request in requests)
+            {
+                if(!locations.Contains(request.Location))
+                    locations.Add(request.Location);
+            }
+            return locations;
+        }
+        public int GetNumberRequestsByLocation(List<TourRequest> requests, string location)
+        {
+            int number = 0;
+            foreach (TourRequest request in requests)
+            {
+                if (request.Location == location)
                 {
                     number++;
                 }

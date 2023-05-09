@@ -33,8 +33,11 @@ namespace ProjectSims.WPF.View.Guest2View
         public Func<ChartPoint, string> Pointlabel { get; set; }
 
         public string[] LabelsLanguage { get; set; }
+        public string[] LabelsLocation { get; set; }
         public ObservableCollection<string> LabelsForLanguages { get; set; }
+        public ObservableCollection<string> LabelsForLocations { get; set; }
         public SeriesCollection NumberRequestForLanguageSeriesCollection { get; set; }
+        public SeriesCollection NumberRequestForLocationSeriesCollection { get; set; }
 
         public double AverageNumberOfPeople { get; set; }
         public RequestStatisticsView(Guest2 g)
@@ -50,8 +53,8 @@ namespace ProjectSims.WPF.View.Guest2View
             AverageNumberOfPeople = tourRequestService.GetAverageNumberOfPeopleOnAcceptedRequests(requests);
 
             NumberRequestForLanguageSeriesCollection = new SeriesCollection();
+            NumberRequestForLocationSeriesCollection = new SeriesCollection();
             LabelsLanguage = new[] { "Srpski", "Engleski", "Francuski", "Nemački", "Španski", "Italijanski"};
-
 
             LabelsForLanguages = new ObservableCollection<string>();
             foreach(var l in LabelsLanguage)
@@ -59,7 +62,15 @@ namespace ProjectSims.WPF.View.Guest2View
                 LabelsForLanguages.Add(l);
             }
 
-            DisplayTheMostRequestedLanguage();
+            LabelsForLocations = new ObservableCollection<string>();
+            LabelsLocation = tourRequestService.GetAllLocations(requests).ToArray();
+            foreach (var l in LabelsLocation)
+            {
+                LabelsForLocations.Add(l);
+            }
+
+            DisplayTheNumberRequestByLanguage();
+            DisplayTheNumberRequestByLocation();
         }
 
         private void ButtonBack(object sender, RoutedEventArgs e)
@@ -92,7 +103,7 @@ namespace ProjectSims.WPF.View.Guest2View
             };
         }
 
-        public void DisplayTheMostRequestedLanguage()
+        public void DisplayTheNumberRequestByLanguage()
         {
             var languageStats = new ChartValues<int>();
             foreach (string language in LabelsLanguage)
@@ -100,6 +111,17 @@ namespace ProjectSims.WPF.View.Guest2View
                 languageStats.Add(tourRequestService.GetNumberRequestsByLanguage(requests, language));
             }
             NumberRequestForLanguageSeriesCollection.Add(new ColumnSeries { Values = languageStats, Title = "Broj zahteva za jezik:" });
+            Values = value => value.ToString("D");
+        }
+
+        public void DisplayTheNumberRequestByLocation()
+        {
+            var locationStats = new ChartValues<int>();
+            foreach (string location in LabelsLocation)
+            {
+                locationStats.Add(tourRequestService.GetNumberRequestsByLocation(requests, location));
+            }
+            NumberRequestForLocationSeriesCollection.Add(new ColumnSeries { Values = locationStats, Title = "Broj zahteva za lokaciju:" });
             Values = value => value.ToString("D");
         }
     }
