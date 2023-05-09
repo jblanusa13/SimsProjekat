@@ -26,6 +26,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
     {
         public ObservableCollection<AccommodationAndOwnerRating> MyRatings { get; set; }
         public ObservableCollection<GuestRating> OwnerRatings { get; set; }
+        private AccommodationReservationService reservationService;
         private AccommodationRatingService accommodationRatingService;
         private GuestRatingService guestRatingService;
         public Guest1 Guest { get; set; }
@@ -35,9 +36,11 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             DataContext = this;
             Guest = guest;
 
+            reservationService = new AccommodationReservationService();
             accommodationRatingService = new AccommodationRatingService();
             guestRatingService = new GuestRatingService();
 
+            reservationService.Subscribe(this);
             accommodationRatingService.Subscribe(this);
             guestRatingService.Subscribe(this);
 

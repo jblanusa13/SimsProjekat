@@ -57,7 +57,7 @@
                         </Grid.ColumnDefinitions>
 
                         <DataGrid Name="OwnerRatingsTable" Grid.Column="0" Margin="20,50,20,10"
-                                  ItemsSource="{Binding OwnerRatings, UpdateSourceTrigger=PropertyChanged}"
+                                  ItemsSource="{Binding OwnerRatings, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                   IsReadOnly="True" AutoGenerateColumns="False"
                                   SelectionChanged="OwnerRatings_SelectionChanged">
                             <DataGrid.Columns>

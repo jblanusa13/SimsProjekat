@@ -24,7 +24,12 @@ namespace ProjectSims.Repository
         }
         public List<GuestRating> GetAllForGuest(int guestId)
         {
+            ReloadRatingList();
             return guestRatings.Where(r => r.Reservation.GuestId == guestId).ToList();
+        }
+        public void ReloadRatingList()
+        {
+            guestRatings = guestRatingFileHandler.Load();
         }
         public int NextId()
         {

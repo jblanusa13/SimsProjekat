@@ -42,7 +42,7 @@
                 </Grid>
 
                 <Grid Grid.Column="2">
-                    <fa:ImageAwesome Icon="MapMarker" Foreground="{DynamicResource FontsColor}"  Margin="20"></fa:ImageAwesome>
+                    <Image Source="{DynamicResource Logo}" Width="80"></Image>
                 </Grid>
             </Grid>
 

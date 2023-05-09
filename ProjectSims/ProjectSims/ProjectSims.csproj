@@ -15,6 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Icons\Guest1\travel-tour-logo-dark.png" />
+    <None Remove="Resources\Icons\Guest1\travel-tour-logo-light.png" />
     <None Remove="Resources\Icons\Guest2\icons8-add-file-60.png" />
     <None Remove="Resources\Icons\Guest2\icons8-bell-48.png" />
     <None Remove="Resources\Icons\Guest2\icons8-home-page-64.png" />
@@ -228,5 +230,7 @@
     <Resource Include="FileHandler\Images\mladenovic2.jpg" />
     <Resource Include="FileHandler\Images\visnjin_dom1.jpg" />
     <Resource Include="FileHandler\Images\visnjin_dom2.jpg" />
+    <Resource Include="Resources\Icons\Guest1\travel-tour-logo-dark.png" />
+    <Resource Include="Resources\Icons\Guest1\travel-tour-logo-light.png" />
   </ItemGroup>
 </Project>
