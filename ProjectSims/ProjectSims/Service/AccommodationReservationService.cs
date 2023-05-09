@@ -27,14 +27,29 @@ namespace ProjectSims.Service
             return reservationRepository.GetAll();
         }
 
+        public List<AccommodationReservation> GetAllByOwnerId(int id)
+        {
+            List<AccommodationReservation> reservations = new List<AccommodationReservation>();
+            foreach (var reservation in GetAllReservations())
+            {
+                if (reservation.Accommodation.IdOwner == id && reservation.State == ReservationState.Active)
+                {
+                    reservations.Add(reservation);
+                }
+            }
+            return reservations;
+        }
+
         public AccommodationReservation GetReservation(int id)
         {
             return reservationRepository.GetById(id);
         }
+
         public List<AccommodationReservation> GetReservationByGuest(int guestId)
         {
             return reservationRepository.GetByGuest(guestId);
         }
+        
         public AccommodationReservation GetReservation(int guestId, int accommodationId, DateOnly checkInDate, DateOnly checkOutDate)
         {
             return reservationRepository.GetReservation(guestId, accommodationId, checkInDate, checkOutDate);

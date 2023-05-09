@@ -41,9 +41,14 @@ namespace ProjectSims.Repository
         }
         public List<AccommodationAndOwnerRating> GetAll()
         {
+            ReloadRatingList();
             return ratings;
         }
 
+        public void ReloadRatingList() 
+        {
+            ratings = ratingFileHandler.Load();
+        }
         public int NextId()
         {
             if (ratings.Count == 0)

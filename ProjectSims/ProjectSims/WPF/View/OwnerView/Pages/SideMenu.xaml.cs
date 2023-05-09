@@ -53,5 +53,11 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
             this.NavigationService.Navigate(new AccommodationsDisplay(Owner));
             TitleTextBlock.Text = "Smještaji";
         }
+
+        private void Ratings_Click(object sender, RoutedEventArgs e) 
+        {
+            this.NavigationService.Navigate(new OwnerRatingsDisplay(Owner));
+            TitleTextBlock.Text = "Recenzije";
+        }
     }
 }

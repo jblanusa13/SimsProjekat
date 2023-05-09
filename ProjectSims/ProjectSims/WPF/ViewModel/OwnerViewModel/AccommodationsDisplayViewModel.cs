@@ -22,7 +22,7 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
             Owner = o;
             accommodationReservationService = new AccommodationReservationService();
             accommodationReservationService.Subscribe(this); 
-            AccommodationReservations = new ObservableCollection<AccommodationReservation>(accommodationReservationService.GetAllReservations());
+            AccommodationReservations = new ObservableCollection<AccommodationReservation>(accommodationReservationService.GetAllByOwnerId(Owner.Id));
             ownerService = new OwnerService();
         }
         public bool HasWaitingRequests(Owner owner)

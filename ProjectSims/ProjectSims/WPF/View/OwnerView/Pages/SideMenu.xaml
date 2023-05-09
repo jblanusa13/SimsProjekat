@@ -49,6 +49,7 @@
         </Grid>
         <Grid Grid.Row="3">
             <Button Content="Recenzije"
+                    Click="Ratings_Click"
                     FontSize="17"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"

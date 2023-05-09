@@ -18,8 +18,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\Guest2View\Pages\ActivatedToursView.xaml.cs">
-		<SubType>Code</SubType>
-	</Compile>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\Guest2View\Guest2TrackingTourView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -104,7 +104,10 @@
     <Compile Update="WPF\View\GuideView\Pages\TourTrackingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-        <Compile Update="WPF\View\OwnerView\Pages\Requests.xaml.cs">
+    <Compile Update="WPF\View\OwnerView\Pages\OwnerRatingsDisplay.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\OwnerView\Pages\Requests.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\OwnerView\Pages\SideMenu.xaml.cs">
@@ -157,7 +160,7 @@
     <Page Update="WPF\View\Guest2View\Guest2TrackingTourView.xaml">
       <SubType>Designer</SubType>
     </Page>
-     <Page Update="WPF\View\Guest2View\Pages\ActivatedToursView.xaml">
+    <Page Update="WPF\View\Guest2View\Pages\ActivatedToursView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\Guest2View\Pages\ShowTourRequestsView.xaml">
@@ -221,6 +224,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\OwnerView\Pages\HomePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\OwnerView\Pages\OwnerRatingsDisplay.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\OwnerView\Pages\Requests.xaml">
