@@ -10,7 +10,7 @@ using ProjectSims.Observer;
 
 namespace ProjectSims.Repository
 {
-    public class GuestRatingRepository : IGuestRatingRepository
+    public class GuestRatingRepository : IGuestRatingRepository, ISubject
     {
         private GuestRatingFileHandler guestRatingFileHandler;
         private List<GuestRating> guestRatings;
@@ -24,7 +24,12 @@ namespace ProjectSims.Repository
         }
         public List<GuestRating> GetAllForGuest(int guestId)
         {
-            return guestRatings.Where(r => r.GuestId == guestId).ToList();
+            ReloadRatingList();
+            return guestRatings.Where(r => r.Reservation.GuestId == guestId).ToList();
+        }
+        public void ReloadRatingList()
+        {
+            guestRatings = guestRatingFileHandler.Load();
         }
         public int NextId()
         {

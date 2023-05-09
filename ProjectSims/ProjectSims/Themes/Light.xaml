@@ -6,15 +6,45 @@
     <fa:ImageAwesome Icon="WindowMinimize" x:Key="MinimizeIcon"  Width="10" HorizontalAlignment="Center" Foreground="#FF114642"/>
     <fa:ImageAwesome Icon="WindowRestore" x:Key="RestoreIcon" Width="15" Foreground="#FF114642"/>
     <fa:ImageAwesome Icon="WindowClose" x:Key="CloseIcon" Width="20" Foreground="#FF114642"/>
-    <SolidColorBrush  x:Key="MainColor" Color="#d8d8d8" ></SolidColorBrush>
-    <SolidColorBrush Color="White" x:Key="CenterBackground"></SolidColorBrush>
-    <SolidColorBrush Color="#ebf5ff" x:Key="RightBackground"></SolidColorBrush>
+    <BitmapImage x:Key="Logo" UriSource="/Resources/Icons/Guest1/travel-tour-logo-light.png"/>
+    <SolidColorBrush Color="White" x:Key="FirstGrayShade"></SolidColorBrush>
+    <SolidColorBrush Color="#f0f0f0" x:Key="SecondGrayShade"></SolidColorBrush>
+    <SolidColorBrush Color="#ebf5ff" x:Key="BlueShade"></SolidColorBrush>
+    <SolidColorBrush Color="#d8d8d8" x:Key="BarShade"></SolidColorBrush>
     <SolidColorBrush Color="White" x:Key="TextboxColor"></SolidColorBrush>
-    <SolidColorBrush Color="#001330" x:Key="ElementsColor"></SolidColorBrush>
-    <SolidColorBrush Color="#001330" x:Key="DiffElementsColor"></SolidColorBrush>
-    <SolidColorBrush Color="White" x:Key="CenterDarkColor"></SolidColorBrush>
-    <SolidColorBrush Color="#d8d8d8" x:Key="StatusBar"></SolidColorBrush>
-    <SolidColorBrush Color="#f0f0f0" x:Key="UpperColor"></SolidColorBrush>
-    <SolidColorBrush Color="White" x:Key="ContrastColor"></SolidColorBrush>
+    <SolidColorBrush Color="#001330" x:Key="FontsColor"></SolidColorBrush>
+    <SolidColorBrush Color="White" x:Key="DataGridBackground"></SolidColorBrush>
+    <SolidColorBrush Color="White" x:Key="ListViewBackground"></SolidColorBrush>
+
+    <Style TargetType="DataGrid" x:Key="DataGridStyle">
+        <Setter Property="FontFamily" Value="Bahnschrift"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="CanUserResizeColumns" Value="False"/>
+        <Setter Property="CanUserResizeRows" Value="False"/>
+        <Setter Property="SelectionMode" Value="Single"/>
+        <Setter Property="AutoGenerateColumns" Value="False"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+    </Style>
+
+    <Style TargetType="DataGridColumnHeader" x:Key="DataGridHeader">
+        <Setter Property="Background" Value="#d8d8d8"/>
+        <Setter Property="Foreground" Value="#001330"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
+
+    <Style TargetType="DataGridRow" x:Key="DataGridRow">
+        <Setter Property="Background" Value="#f0f0f0"/>
+        <Setter Property="Foreground" Value="#001330"/>
+        <Setter Property="BorderBrush" Value="#001330"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="13"/>
+    </Style>
+    
+    <Style TargetType="ListViewItem" x:Key="ListViewItem">
+        <Setter Property="Background" Value="#f0f0f0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    </Style>
 
 </ResourceDictionary>

@@ -1,0 +1,58 @@
+﻿<Page x:Class="ProjectSims.WPF.View.Guest1View.RatingPages.FinishRatingView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.RatingPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="590" d:DesignWidth="750"
+      Title="FinishRatingView">
+
+    <Grid Background="{DynamicResource FirstGrayShade}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" Background="{DynamicResource SecondGrayShade}">
+            <Label FontSize="45" Margin="70,20,70,100"
+                   Foreground="{DynamicResource FontsColor}" 
+                   FontFamily="Bahnschrift"
+                   HorizontalContentAlignment="Center">Zavrsi ocenjivanje smestaja</Label>
+            <Label FontSize="37" Margin="70,110,70,0"
+                   Foreground="{DynamicResource FontsColor}" 
+                   FontFamily="Bahnschrift"
+                   HorizontalContentAlignment="Center">Ime</Label>
+        </Grid>
+        <Grid Grid.Row="2" Background="{DynamicResource SecondGrayShade}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Margin="120,20,20,20"
+                    Foreground="{DynamicResource FontsColor}" 
+                   FontFamily="Bahnschrift"
+                    FontSize="20"
+                    Background="{DynamicResource SecondGrayShade}" Click="Back_Click">Nazad
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Grid.Column="1" Margin="20,20,120,20"
+                    Foreground="{DynamicResource FontsColor}" 
+                   FontFamily="Bahnschrift"
+                    FontSize="20"
+                    Background="{DynamicResource SecondGrayShade}" Click="FinishRating_Click">Potvrdi
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+    </Grid>
+</Page>

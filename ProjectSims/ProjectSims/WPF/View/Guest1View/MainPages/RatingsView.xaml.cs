@@ -26,15 +26,23 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
     {
         public ObservableCollection<AccommodationAndOwnerRating> MyRatings { get; set; }
         public ObservableCollection<GuestRating> OwnerRatings { get; set; }
+        private AccommodationReservationService reservationService;
         private AccommodationRatingService accommodationRatingService;
         private GuestRatingService guestRatingService;
+        public Guest1 Guest { get; set; }
         public RatingsView(Guest1 guest)
         {
             InitializeComponent();
             DataContext = this;
+            Guest = guest;
 
+            reservationService = new AccommodationReservationService();
             accommodationRatingService = new AccommodationRatingService();
             guestRatingService = new GuestRatingService();
+
+            reservationService.Subscribe(this);
+            accommodationRatingService.Subscribe(this);
+            guestRatingService.Subscribe(this);
 
             MyRatings = new ObservableCollection<AccommodationAndOwnerRating>(accommodationRatingService.GetAllRatingsByGuestId(guest.Id));
             OwnerRatings = new ObservableCollection<GuestRating>(guestRatingService.GetAllRatingsForGuest(guest.Id));
@@ -59,7 +67,17 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
 
         public void Update()
         {
-            throw new NotImplementedException();
+            MyRatings.Clear();
+            foreach (var myRating in accommodationRatingService.GetAllRatingsByGuestId(Guest.Id))
+            {
+                MyRatings.Add(myRating);
+            }
+
+            OwnerRatings.Clear();
+            foreach (var ownerRating in guestRatingService.GetAllRatingsForGuest(Guest.Id))
+            {
+                OwnerRatings.Add(ownerRating);
+            }
         }
     }
 }

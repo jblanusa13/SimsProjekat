@@ -7,6 +7,7 @@ using System.Windows.Media;
 using ProjectSims.Domain.Model;
 using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.FileHandler;
+using ProjectSims.Observer;
 using ProjectSims.WPF.View.Guest1View.MainPages;
 
 namespace ProjectSims.Repository
@@ -15,11 +16,13 @@ namespace ProjectSims.Repository
     {
         private AccommodationRatingFileHandler ratingFileHandler;
         private List<AccommodationAndOwnerRating> ratings;
+        private List<IObserver> observers;
 
         public AccommodationRatingRepository()
         {
             ratingFileHandler = new AccommodationRatingFileHandler();
             ratings = ratingFileHandler.Load();
+            observers = new List<IObserver>();
         }
         public AccommodationAndOwnerRating GetByReservationId(int reservationId)
         {
@@ -62,6 +65,7 @@ namespace ProjectSims.Repository
         {
             ratings.Add(entity);
             ratingFileHandler.Save(ratings);
+            NotifyObservers();
         }
         public void Update(AccommodationAndOwnerRating entity)
         {
@@ -71,17 +75,37 @@ namespace ProjectSims.Repository
                 ratings[index] = entity;
             }
             ratingFileHandler.Save(ratings);
+            NotifyObservers();
         }
 
         public void Remove(AccommodationAndOwnerRating entity)
         {
             ratings.Remove(entity);
-            ratingFileHandler.Save(ratings); 
+            ratingFileHandler.Save(ratings);
+            NotifyObservers();
         }
 
         public AccommodationAndOwnerRating GetById(int key)
         {
             return ratings.Find(r => r.Id == key);
+        }
+
+        public void Subscribe(IObserver observer)
+        {
+            observers.Add(observer);
+        }
+
+        public void Unsubscribe(IObserver observer)
+        {
+            observers.Remove(observer);
+        }
+
+        public void NotifyObservers()
+        {
+            foreach (var observer in observers)
+            {
+                observer.Update();
+            }
         }
     }
 }

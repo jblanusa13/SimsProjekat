@@ -10,14 +10,15 @@
 
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="150"/>
+            <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
-            <TextBlock Margin="20,20,200,70" FontSize="40">Ocenjivanje smestaja</TextBlock>
-            <Label Margin="20,80,200,20" FontSize="28">Ime</Label>
+        <Grid Grid.Row="0" Background="{DynamicResource SecondGrayShade}">
+            <TextBlock Margin="20,20,200,70" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Ocenjivanje smestaja</TextBlock>
+            <Label Margin="20,80,200,20" FontSize="28" Content="{Binding AccommodationReservation.Accommodation.Name}"
+                   Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></Label>
         </Grid>
 
         <Grid Grid.Row="1">
@@ -41,8 +42,9 @@
                         <ColumnDefinition Width="150"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Margin="20,10" FontSize="14" Height="35">Cistoca:</Label>
-                    <TextBox Name="CleanlinessTb" Grid.Column="1" Margin="10,15,50,20"></TextBox>
+                    <Label Grid.Column="0" Margin="50,10,0,0" FontSize="14" Height="35"
+                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Cistoca:</Label>
+                    <TextBox Name="CleanlinessTb" Grid.Column="1" Margin="50,15,20,20"></TextBox>
                 </Grid>
 
                 <Grid Grid.Row="1">
@@ -51,8 +53,9 @@
                         <ColumnDefinition Width="150"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Margin="20,10" FontSize="14" Height="35">Korektnost vlasnika:</Label>
-                    <TextBox Name="FairnessTb" Grid.Column="1" Margin="10,15,50,20"></TextBox>
+                    <Label Grid.Column="0" Margin="50,10,0,0" FontSize="14" Height="35"
+                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Korektnost vlasnika:</Label>
+                    <TextBox Name="FairnessTb" Grid.Column="1" Margin="50,15,20,20"></TextBox>
                 </Grid>
 
                 <Grid Grid.Row="2">
@@ -61,8 +64,9 @@
                         <ColumnDefinition Width="150"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Margin="20,10" FontSize="14" Height="35">Lokacija:</Label>
-                    <TextBox Name="LocationTb" Grid.Column="1" Margin="10,15,50,20"></TextBox>
+                    <Label Grid.Column="0" Margin="50,10,0,0" FontSize="14" Height="35"
+                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Lokacija:</Label>
+                    <TextBox Name="LocationTb" Grid.Column="1" Margin="50,15,20,20"></TextBox>
                 </Grid>
 
                 <Grid Grid.Row="3">
@@ -71,8 +75,9 @@
                         <ColumnDefinition Width="150"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Margin="20,10" FontSize="14" Height="35">Vrednost za novac:</Label>
-                    <TextBox Name="ValueForMoneyTb" Grid.Column="1" Margin="10,15,50,20"></TextBox>
+                    <Label Grid.Column="0" Margin="50,10,0,0" FontSize="14" Height="35"
+                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Vrednost za novac:</Label>
+                    <TextBox Name="ValueForMoneyTb" Grid.Column="1" Margin="50,15,20,20"></TextBox>
                 </Grid>
 
                 <Grid Grid.Row="4">
@@ -81,8 +86,9 @@
                         <ColumnDefinition Width="200"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Margin="20,0,10,30" FontSize="14" Height="35">Komentar:</Label>
-                    <TextBox Name="CommentTb" Grid.Column="1" Margin="10,20,50,20"></TextBox>
+                    <Label Grid.Column="0" Margin="50,0,0,30" FontSize="14" Height="35"
+                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Komentar:</Label>
+                    <TextBox Name="CommentTb" Grid.Column="1" Margin="50,20,20,20"></TextBox>
                 </Grid>
             </Grid>
 
@@ -95,16 +101,35 @@
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="180"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Margin="30,20,20,20" FontSize="14">Dodajte slike smestaja:</Label>
-                    <Button Grid.Column="1" Margin="10,20,90,20" Click="Browse_Click">Uvezi</Button>
+                    <Label Grid.Column="0" Margin="30,20,20,20" FontSize="14"
+                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Dodajte slike smestaja:</Label>
+                    <Button Grid.Column="1" Margin="0,20,40,20" Click="Browse_Click"
+                            Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"
+                            Background="{DynamicResource SecondGrayShade}">
+                        Uvezi
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="20"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
                 </Grid>
 
                 <Grid Grid.Row="1">
-                    <!-- <ListView Margin="40,10,100,10"></ListView> -->
-                    <TextBox Name="Images" Margin="40,10,50,10" IsEnabled="False"></TextBox>
+                    <ListView x:Name="ImageList" 
+                              ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                              ScrollViewer.VerticalScrollBarVisibility="Visible"
+                              ScrollViewer.PanningMode="VerticalOnly"
+                              Margin="0,10,0,10" HorizontalAlignment="Center" Width="341">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Vertical"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
                 </Grid>
             </Grid>
         </Grid>
@@ -115,8 +140,26 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Margin="20,20,270,20" Click="Cancel_Click">Odustani</Button>
-            <Button Grid.Column="1" Margin="270,20,20,20" Click="Confirm_Click">Potvrdi</Button>
+            <Button Grid.Column="0" Margin="30,20,240,20" Click="Cancel_Click"
+                    Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"
+                    Background="{DynamicResource SecondGrayShade}">
+                Odustani
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Grid.Column="1" Margin="240,20,30,20" Click="Confirm_Click"
+                    Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"
+                            Background="{DynamicResource SecondGrayShade}">
+                Dalje
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </Grid>
     </Grid>
 </Page>

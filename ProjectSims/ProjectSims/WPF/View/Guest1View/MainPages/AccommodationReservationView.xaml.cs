@@ -100,7 +100,6 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             }
         }
 
-
         public ObservableCollection<DateRanges> AvailableDates { get; set; }
 
         public DateRanges SelectedDates;
@@ -119,6 +118,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             Accommodation = SelectedAccommodation;
             Username = guest.User.Username;
             AvailableDates = new ObservableCollection<DateRanges>();
+            LoadImages(SelectedAccommodation.Images);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -127,7 +127,38 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        private void Theme_Click(object sender, RoutedEventArgs e)
+        {
+            App app = (App)Application.Current;
 
+            if (ButtonTheme.Content == FindResource("SunIcon"))
+            {
+                app.ChangeTheme(new Uri("Themes/Light.xaml", UriKind.Relative));
+                ButtonTheme.Content = FindResource("MoonIcon");
+            }
+            else
+            {
+                app.ChangeTheme(new Uri("Themes/Dark.xaml", UriKind.Relative));
+                ButtonTheme.Content = FindResource("SunIcon");
+            }
+        }
+
+        private void LoadImages(List<string> pathList)
+        {
+            foreach(string path in pathList)
+            {
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.UriSource = new Uri(path, UriKind.RelativeOrAbsolute);
+                bitmapImage.EndInit();
+
+                Image image = new Image();
+                image.Source = bitmapImage;
+                image.Height = 100;
+                image.Width = 170;
+                ImageList.Items.Add(image);
+            }
+        }
         private void FindDates_Click(object sender, RoutedEventArgs e)
         {
             DateRangesService dateRangesService = new DateRangesService();

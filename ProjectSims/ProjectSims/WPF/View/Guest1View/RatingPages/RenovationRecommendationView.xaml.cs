@@ -29,6 +29,7 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
         {
             InitializeComponent();
             this.viewModel = viewModel;
+            this.DataContext = viewModel;
         }
 
         private void RateAcommodation_Click(object sender, RoutedEventArgs e)
@@ -39,8 +40,7 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
                 viewModel.AddRecommendation(urgency, TbRecommendation.Text);
             }
 
-            RatingStartView startView = (RatingStartView)Window.GetWindow(this);
-            startView.Close();
+            NavigationService.Navigate(new FinishRatingView(viewModel));
         }
 
         public int FindUrgencyLevel()
@@ -71,8 +71,7 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
         private void SkipRecommendation_Click(object sender, RoutedEventArgs e)
         {
             viewModel.SkipRecommendation();
-            RatingStartView startView = (RatingStartView)Window.GetWindow(this);
-            startView.Close();
+            NavigationService.Navigate(new FinishRatingView(viewModel));
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

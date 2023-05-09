@@ -8,7 +8,7 @@
       d:DesignHeight="30" d:DesignWidth="1050"
       Title="StatusBar">
 
-    <Grid Background="{DynamicResource StatusBar}">
+    <Grid Background="{DynamicResource BarShade}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="*"/>
@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
 
       
-        <TextBlock Grid.Column="0" Foreground="{DynamicResource ElementsColor}">Pritisnite alt...</TextBlock>
+        <TextBlock Grid.Column="0" Foreground="{DynamicResource FontsColor}">Pritisnite alt...</TextBlock>
         <Grid Grid.Column="2"></Grid>
     </Grid>
 </Page>

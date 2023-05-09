@@ -33,7 +33,7 @@
 
                         <DataGrid Name="MyRatingsTable" Grid.Column="0" Margin="20,50,20,10"
                                   ItemsSource="{Binding MyRatings, UpdateSourceTrigger=PropertyChanged}"
-                                  AutoGenerateColumns="False" IsReadOnly="True"
+                                  IsReadOnly="True" AutoGenerateColumns="False"
                                   SelectionChanged="MyRatings_SelectionChanged">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Naziv smestaja" Binding="{Binding Reservation.Accommodation.Name}" Width="*"></DataGridTextColumn>
@@ -57,14 +57,15 @@
                         </Grid.ColumnDefinitions>
 
                         <DataGrid Name="OwnerRatingsTable" Grid.Column="0" Margin="20,50,20,10"
-                                  ItemsSource="{Binding OwnerRatings, UpdateSourceTrigger=PropertyChanged}"
-                                  AutoGenerateColumns="False" IsReadOnly="True"
+                                  ItemsSource="{Binding OwnerRatings, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                  IsReadOnly="True" AutoGenerateColumns="False"
                                   SelectionChanged="OwnerRatings_SelectionChanged">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Cistoca" Binding="{Binding CleanlinessRating}" Width="130"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Postovanje pravila" Binding="{Binding RespectingRulesRating}" Width="150"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Komunikacija" Binding="{Binding CommunicationRating}" Width="150"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Urednost" Binding="{Binding TidinessRating}" Width="*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Naziv smestaja" Binding="{Binding Reservation.Accommodation.Name}" Width="*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Cistoca" Binding="{Binding CleanlinessRating}" Width="100"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Postovanje pravila" Binding="{Binding RespectingRulesRating}" Width="120"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Komunikacija" Binding="{Binding CommunicationRating}" Width="100"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Urednost" Binding="{Binding TidinessRating}" Width="100"></DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
 

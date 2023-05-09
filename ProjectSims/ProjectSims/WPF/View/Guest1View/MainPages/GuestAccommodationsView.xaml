@@ -9,20 +9,28 @@
       d:DesignHeight="540" d:DesignWidth="1067"
       Title="GuestAccommodationsView">
 
+    <Page.Resources>
+        <Style TargetType="DataGrid" BasedOn="{StaticResource DataGridStyle}">
+            <Setter Property="Background" Value="{DynamicResource DataGridBackground}"></Setter>
+            <Setter Property="ColumnHeaderStyle" Value="{DynamicResource DataGridHeader}"></Setter>
+            <Setter Property="RowStyle" Value="{DynamicResource DataGridRow}"></Setter>
+        </Style>
+    </Page.Resources>
+
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="230"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0" Background="{DynamicResource CenterBackground}">
+        <Grid Grid.Column="0" Background="{DynamicResource FirstGrayShade}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="110"/>
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="324.04"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" Background="{DynamicResource UpperColor}" Margin="0,0,0,15">
+            <Grid Grid.Row="0" Background="{DynamicResource SecondGrayShade}" Margin="0,0,0,15">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="*"/>
@@ -30,11 +38,11 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Column="1">
-                    <TextBlock Foreground="{DynamicResource ElementsColor}"  HorizontalAlignment="Right" Margin="50,30,0,10" FontSize="40" FontFamily="Bahnschrift">Rezervacija smestaja</TextBlock>
+                    <TextBlock Foreground="{DynamicResource FontsColor}"  HorizontalAlignment="Right" Margin="50,30,0,10" FontSize="40" FontFamily="Bahnschrift">Rezervacija smestaja</TextBlock>
                 </Grid>
 
                 <Grid Grid.Column="2">
-                    <fa:ImageAwesome Icon="MapMarker" Foreground="{DynamicResource ElementsColor}"  Margin="20"></fa:ImageAwesome>
+                    <Image Source="{DynamicResource Logo}" Width="80"></Image>
                 </Grid>
             </Grid>
 
@@ -53,17 +61,17 @@
                 
 
                 <Label Grid.Column="0" Content="Naziv:" HorizontalAlignment="Left" Margin="25,35,0,0" VerticalAlignment="Top"
-                       Foreground="{DynamicResource ElementsColor}" FontFamily="Bahnschrift"/>
+                       Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"/>
                 <Label Grid.Column="1" Content="Grad:" HorizontalAlignment="Left" Margin="17,35,0,0" VerticalAlignment="Top"
-                       Foreground="{DynamicResource ElementsColor}" FontFamily="Bahnschrift"/>
+                       Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"/>
                 <Label Grid.Column="2" Content="Drzava:" HorizontalAlignment="Left" Margin="17,35,0,0" VerticalAlignment="Top"
-                       Foreground="{DynamicResource ElementsColor}" FontFamily="Bahnschrift"/>
+                       Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"/>
                 <Label Grid.Column="3" Content="Tip smestaja:" HorizontalAlignment="Left" Margin="17,35,0,0" VerticalAlignment="Top"
-                       Foreground="{DynamicResource ElementsColor}" FontFamily="Bahnschrift"/>
+                       Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"/>
                 <Label Grid.Column="4" Content="Broj gostiju:" HorizontalAlignment="Left" Margin="17,35,0,0" VerticalAlignment="Top"
-                       Foreground="{DynamicResource ElementsColor}" FontFamily="Bahnschrift"/>
+                       Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"/>
                 <Label Grid.Column="5" Content="Broj dana:" HorizontalAlignment="Left" Margin="17,35,0,0" VerticalAlignment="Top"
-                       Foreground="{DynamicResource ElementsColor}" FontFamily="Bahnschrift"/>
+                       Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"/>
                 <TextBox Grid.Column="0" Name="TextboxName"  HorizontalAlignment="Left" Margin="25,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Height="25"
                          Background="{DynamicResource TextboxColor}">
                     <TextBox.Resources>
@@ -113,7 +121,7 @@
                     </TextBox.Resources>
                 </TextBox>
                 <Button Grid.Column="6" Content="Pretraga" Click="Search_Click" HorizontalAlignment="Center" Margin="0,60,0,0" VerticalAlignment="Top" Width="80" Height="25"
-                        Background="{DynamicResource ButtonsColor}" Foreground="{DynamicResource ElementsColor}" FontFamily="Bahnschrift">
+                        Background="{DynamicResource SecondGrayShade}" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -124,8 +132,7 @@
             </Grid>
 
             <DataGrid Grid.Row="2" Name="AccommodationsTable" ItemsSource="{Binding Path=Accommodations, UpdateSourceTrigger=PropertyChanged}"
-            Margin="25,30,10,10" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single"
-                      Background="{DynamicResource CenterDarkColor}">
+            Margin="10,10,10,0">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" Width="120"></DataGridTextColumn>
                     <DataGridTextColumn Header="Grad" Binding="{Binding Location.City}" Width="130"></DataGridTextColumn>
@@ -137,7 +144,7 @@
             </DataGrid>
         </Grid>
 
-        <Grid Grid.Column="1" Background="{DynamicResource RightBackground}">
+        <Grid Grid.Column="1" Background="{DynamicResource BlueShade}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="*"/>
@@ -168,8 +175,8 @@
 
                 <Button Content="Bilo kad/Bilo gde"
                         HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
-                        FontSize="16"  BorderBrush="{DynamicResource RightBackground}"
-                        Background="{DynamicResource ButtonsColor}" Foreground="{DynamicResource DiffElementsColor}" FontFamily="Bahnschrift" FontWeight="Bold"
+                        FontSize="16"  BorderBrush="{DynamicResource FirstGrayShade}"
+                        Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" FontWeight="Bold"
                         >
                     <Button.Resources>
                         <Style TargetType="Border">
@@ -180,8 +187,8 @@
                 <Button Grid.Row="1" Content="Moje rezervacije"
                         HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
                          FontSize="16" Click="MyReservations_Click" FontFamily="Bahnschrift"
-                        Background="{DynamicResource ButtonsColor}" Foreground="{DynamicResource DiffElementsColor}"
-                         BorderBrush="{DynamicResource RightBackground}" FontWeight="Bold">
+                        Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}"
+                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -191,8 +198,8 @@
                 <Button Grid.Row="2" Content="Ocenite smestaj"
                         HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
                          FontSize="16" Click="RateAccommodation_Click" FontFamily="Bahnschrift"
-                        Background="{DynamicResource ButtonsColor}" Foreground="{DynamicResource DiffElementsColor}"
-                         BorderBrush="{DynamicResource RightBackground}" FontWeight="Bold">
+                        Background="{DynamicResource ButtonsColor}" Foreground="{DynamicResource FontsColor}"
+                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -202,8 +209,8 @@
                 <Button Grid.Row="3" Content="Prikaz ocena"
                         HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
                          FontSize="16" Click="ShowRatings_Click" FontFamily="Bahnschrift"
-                        Background="{DynamicResource ButtonsColor}" Foreground="{DynamicResource DiffElementsColor}"
-                         BorderBrush="{DynamicResource RightBackground}" FontWeight="Bold">
+                        Background="{DynamicResource ButtonsColor}" Foreground="{DynamicResource FontsColor}"
+                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -213,8 +220,8 @@
                 <Button Grid.Row="4" Content="Forum"
                         HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
                          FontSize="16" FontFamily="Bahnschrift"
-                        Background="{DynamicResource ButtonsColor}" Foreground="{DynamicResource DiffElementsColor}"
-                         BorderBrush="{DynamicResource RightBackground}" FontWeight="Bold">
+                        Background="{DynamicResource ButtonsColor}" Foreground="{DynamicResource FontsColor}"
+                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -224,8 +231,8 @@
                 <Button Grid.Row="5" Content="Moj nalog"
                         HorizontalAlignment="Center" VerticalAlignment="Top" Height="65" Width="210"
                          FontSize="16" FontFamily="Bahnschrift"
-                        Background="{DynamicResource ButtonsColor}" Foreground="{DynamicResource DiffElementsColor}"
-                         BorderBrush="{DynamicResource RightBackground}" FontWeight="Bold">
+                        Background="{DynamicResource ButtonsColor}" Foreground="{DynamicResource FontsColor}"
+                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -235,9 +242,9 @@
             </Grid>
             <Grid Grid.Row="2">
                 <Button Content="Rezervisi" Click="Reservation_Click" Margin="30,10" VerticalAlignment="Top" Height="30"
-                        Background="{DynamicResource ButtonsColor}" Foreground="{DynamicResource DiffElementsColor}"
+                        Background="{DynamicResource ButtonsColor}" Foreground="{DynamicResource FontsColor}"
                         FontFamily="Bahnschrift"
-                         BorderBrush="{DynamicResource RightBackground}" FontWeight="Bold"/>
+                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold"/>
             </Grid>
         </Grid>
     </Grid>

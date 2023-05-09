@@ -54,7 +54,7 @@ namespace ProjectSims.Domain.Model
                     ImageString += image + ",";
                 }
             }
-            ImageString += Images.Last();
+            ImageString += Images.LastOrDefault();
 
             string[] csvvalues = 
             {
