@@ -89,7 +89,7 @@
                         <GridViewColumn Header="Detalji i statistika" Width="270">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Height="20" Width="20" Background="Transparent" Click="AcceptRequest_Click" BorderThickness="0">
+                                    <Button Height="20" Width="20" Background="Transparent" Click="Details_Click" BorderThickness="0">
                                         <Image Source="/Resources/Icons/Guide/details.png"/>
                                     </Button>
                                 </DataTemplate>

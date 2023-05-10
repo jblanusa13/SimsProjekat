@@ -22,16 +22,14 @@ namespace ProjectSims.WPF.View.GuideView.Pages
     /// </summary>
     public partial class AcceptTourView : Page
     {
-        private AcceptTourViewModel acceptTourViewModel;
         public TourRequest TourRequest { get; set; }
         public Guide Guide { get; set; }
         public AcceptTourView(TourRequest tourRequest,Guide guide)
         {
             InitializeComponent();
-            acceptTourViewModel = new AcceptTourViewModel(tourRequest,guide);
+            this.DataContext = new AcceptTourViewModel(tourRequest);
             Guide = guide;
             TourRequest=tourRequest;
-            this.DataContext = acceptTourViewModel;
         }
        public void AcceptTour_Click(object sender, RoutedEventArgs e) 
         {
