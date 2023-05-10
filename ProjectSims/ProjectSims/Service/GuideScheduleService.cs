@@ -17,7 +17,6 @@ namespace ProjectSims.Service
         {
             guideScheduleRepository = Injector.CreateInstance<IGuideScheduleRepository>();
         }
-
         public List<GuideSchedule> GetAll()
         {
             return guideScheduleRepository.GetAll();

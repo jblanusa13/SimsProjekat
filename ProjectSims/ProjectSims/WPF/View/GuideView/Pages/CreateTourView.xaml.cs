@@ -273,18 +273,17 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             if (tourRequest != null)
             {
                 City = tourRequest.Location.Split(',')[0];
-                CityTextBox.IsEnabled = false;
+                CityTextBox.IsReadOnly = true;
                 Country = tourRequest.Location.Split(',')[1];
-                CountryTextBox.IsEnabled = false;
+                CountryTextBox.IsReadOnly = true;
                 LanguageComboBox.SelectedValue = tourRequest.Language;
-                LanguageComboBox.IsEnabled = false;
+                LanguageComboBox.IsReadOnly = true;
                 MaxNumberGuests = tourRequest.MaxNumberGuests.ToString();
-                MaxNumberGuestsTextBox.IsEnabled = false;
+                MaxNumberGuestsTextBox.IsReadOnly = true;
                 TourDatePicker.DisplayDateStart = new DateTime(tourRequest.DateRangeStart.Year, tourRequest.DateRangeStart.Month, tourRequest.DateRangeStart.Day);
                 TourDatePicker.DisplayDateEnd = new DateTime(tourRequest.DateRangeEnd.Year, tourRequest.DateRangeEnd.Month, tourRequest.DateRangeEnd.Day);
             }
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -347,7 +346,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         }
         public void AddAppointment_Click(object sender, RoutedEventArgs e)
         {
-            Appointments.Add(TourDatePicker.SelectedDate.GetValueOrDefault().ToString("MM/dd/yyyy") + "" + Hour + ":" + Minute + "-" + Duration);
+            Appointments.Add(TourDatePicker.SelectedDate.GetValueOrDefault().ToString("MM/dd/yyyy") + " " + Hour + ":" + Minute + "-" + Duration);
             TourDatePicker.SelectedDate = null;
             HourTextBox.Text = "";
             MinuteTextBox.Text = "";

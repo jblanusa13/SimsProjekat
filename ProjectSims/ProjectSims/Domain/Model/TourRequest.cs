@@ -44,12 +44,12 @@ namespace ProjectSims.Domain.Model
             Description = values[4];
             Language = values[5];
             MaxNumberGuests = Convert.ToInt32(values[6]);
-            DateRangeStart = DateOnly.ParseExact(values[7], "MM/dd/yyyy", CultureInfo.InvariantCulture);
-            DateRangeEnd = DateOnly.ParseExact(values[8], "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            DateRangeStart = DateOnly.ParseExact(values[7], "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            DateRangeEnd = DateOnly.ParseExact(values[8], "dd/MM/yyyy", CultureInfo.InvariantCulture);
         }
         public string[] ToCSV()
         {
-            string[] csvvalues = { Id.ToString(), GuideId.ToString(), State.ToString(), Location, Description, Language, MaxNumberGuests.ToString(), DateRangeStart.ToString("MM/dd/yyyy"), DateRangeEnd.ToString("MM/dd/yyyy") };
+            string[] csvvalues = { Id.ToString(), GuideId.ToString(), State.ToString(), Location, Description, Language, MaxNumberGuests.ToString(), DateRangeStart.ToString("dd/MM/yyyy"), DateRangeEnd.ToString("dd/MM/yyyy") };
             return csvvalues;
         }
     }

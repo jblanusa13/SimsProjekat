@@ -35,25 +35,17 @@ namespace ProjectSims.Service
         {
             return tourRequestRepository.GetById(id);
         }
-        public List<TourRequest> GetWantedRequests(string location,string language,string maxNumberGuests,DateTime dateRangeStart,DateTime dateRangeEnd)
+        public List<TourRequest> GetWantedRequests(string location,string language,string maxNumberGuests,List<DateTime> dateRange)
         {
-            List<TourRequest> wantedRequests = new List<TourRequest>();
-            List<TourRequest> tourRequestsOnLocation = tourRequestRepository.GetAll();
-            List<TourRequest> tourRequestsOnLanguage = tourRequestRepository.GetAll();
-            List<TourRequest> tourRequestsWithMaxNumberGuests = tourRequestRepository.GetAll();
-            List<TourRequest> tourRequestsInDateRange = tourRequestRepository.GetAll();
+            List<TourRequest> wantedRequests = tourRequestRepository.GetWaitingRequests();
             if (location != "")
-                tourRequestsOnLocation = tourRequestRepository.GetByLocation(location);
-            if (language != "")
-                tourRequestsOnLanguage = tourRequestRepository.GetByLanguage(language);
-            if(maxNumberGuests != "")
-                tourRequestsWithMaxNumberGuests = tourRequestRepository.GetByMaxNumberGuests(int.Parse(maxNumberGuests));
-            tourRequestsInDateRange = tourRequestRepository.GetRequestsInDateRange(DateOnly.FromDateTime(dateRangeStart),DateOnly.FromDateTime(dateRangeEnd.Date));
-            foreach(TourRequest request in tourRequestRepository.GetAll())
-            {
-                if(tourRequestsOnLocation.Contains(request) && tourRequestsOnLanguage.Contains(request) && tourRequestsWithMaxNumberGuests.Contains(request) && tourRequestsInDateRange.Contains(request))
-                    wantedRequests.Add(request);
-            }
+                wantedRequests.RemoveAll(request => !tourRequestRepository.GetByLocation(location).Contains(request));
+            if(language != "")
+                wantedRequests.RemoveAll(request => !tourRequestRepository.GetByLanguage(language).Contains(request));
+            if (maxNumberGuests != "")
+                wantedRequests.RemoveAll(request => !tourRequestRepository.GetByMaxNumberGuests(int.Parse(maxNumberGuests)).Contains(request));
+            if(dateRange.Count != 0)
+                wantedRequests.RemoveAll(request => !tourRequestRepository.GetRequestsInDateRange(DateOnly.FromDateTime(dateRange.First()), DateOnly.FromDateTime(dateRange.Last())).Contains(request));
             return wantedRequests;
         }
         public void Create(TourRequest tourRequest)

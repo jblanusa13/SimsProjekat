@@ -17,14 +17,12 @@ namespace ProjectSims.Repository
         private List<GuideSchedule> guideSchedules;
 
         private List<IObserver> observers;
-
         public GuideScheduleRepository()
         {
             guideScheduleFileHandler = new GuideScheduleFileHandler();
             guideSchedules = guideScheduleFileHandler.Load();
             observers = new List<IObserver>();
         }
-
         public int NextId()
         {
             if (guideSchedules.Count == 0)
@@ -67,9 +65,9 @@ namespace ProjectSims.Repository
         {
             return guideSchedules.Find(s => s.Id == id);
         }
-        public List<GuideSchedule> GetByGuideIdAndDate(int id, DateOnly date)
+        public List<GuideSchedule> GetByGuideIdAndDate(int guideId, DateOnly date)
         {
-            return guideSchedules.Where(s => s.GuideId == id && DateOnly.FromDateTime(s.Start) == date).ToList();
+            return guideSchedules.Where(s => s.GuideId == guideId && DateOnly.FromDateTime(s.Start) == date).ToList();
         }
         public void Subscribe(IObserver observer)
         {

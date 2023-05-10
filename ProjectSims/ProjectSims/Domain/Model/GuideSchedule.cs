@@ -32,13 +32,13 @@ namespace ProjectSims.Domain.Model
             Id = Convert.ToInt32(values[0]);
             GuideId = Convert.ToInt32(values[1]);
             TourId = Convert.ToInt32(values[2]);
-            Start = DateTime.ParseExact(values[3], "MM/dd/yyyy HH:mm",CultureInfo.InvariantCulture);
-            End = DateTime.ParseExact(values[4], "MM/dd/yyyy HH:mm", CultureInfo.InvariantCulture);
+            Start = DateTime.ParseExact(values[3], "dd/MM/yyyy HH:mm",CultureInfo.InvariantCulture);
+            End = DateTime.ParseExact(values[4], "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
         }
 
         public string[] ToCSV()
         {
-            string[] csvvalues = { Id.ToString(), GuideId.ToString(), TourId.ToString(), Start.ToString("MM/dd/yyyy HH:mm"), End.ToString("MM/dd/yyyy HH:mm") };
+            string[] csvvalues = { Id.ToString(), GuideId.ToString(), TourId.ToString(), Start.ToString("dd/MM/yyyy HH:mm"), End.ToString("dd/MM/yyyy HH:mm") };
             return csvvalues;
         }
     }
