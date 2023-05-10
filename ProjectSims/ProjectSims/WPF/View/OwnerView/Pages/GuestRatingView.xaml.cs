@@ -210,16 +210,6 @@ namespace ProjectSims.View.OwnerView.Pages
             SelectedAccommodationReservation = selectedAccommodationReservation;
             guestRatingViewModel = new GuestRatingViewModel(SelectedAccommodationReservation, Owner);
             this.DataContext = guestRatingViewModel;
-
-            FirstName = selectedAccommodationReservation.Guest.Name;
-            LastName = selectedAccommodationReservation.Guest.Surname;
-            AccommodationName = selectedAccommodationReservation.Accommodation.Name;
-            Type = selectedAccommodationReservation.Accommodation.Type;
-            CheckInDate = selectedAccommodationReservation.CheckInDate;
-            CheckInDateTextBox.Text = selectedAccommodationReservation.CheckInDate.ToString();
-            CheckOutDate = selectedAccommodationReservation.CheckOutDate;
-            CheckOutDateTextBox.Text = selectedAccommodationReservation.CheckOutDate.ToString();
-            Rated = selectedAccommodationReservation.RatedGuest;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -231,8 +221,20 @@ namespace ProjectSims.View.OwnerView.Pages
 
         private void RateGuest_Click(object sender, RoutedEventArgs e)
         {
-            guestRatingViewModel.RateGuest(SelectedAccommodationReservation, Convert.ToInt32(CleanlinessComboBox.Text), Convert.ToInt32(RespectingRulesComboBox.Text), Convert.ToInt32(TidinessComboBox.Text), Convert.ToInt32(CommunicationComboBox.Text), CommentTextBox.Text);
-            this.NavigationService.Navigate(new AccommodationsDisplay(Owner));
+            if (CleanlinessComboBox.SelectedIndex > -1 && RespectingRulesComboBox.SelectedIndex > -1 && TidinessComboBox.SelectedIndex > -1 && CommunicationComboBox.SelectedIndex > -1) 
+            {
+                guestRatingViewModel.RateGuest(SelectedAccommodationReservation, Convert.ToInt32(CleanlinessComboBox.Text), Convert.ToInt32(RespectingRulesComboBox.Text), Convert.ToInt32(TidinessComboBox.Text), Convert.ToInt32(CommunicationComboBox.Text), ReadComment());
+                this.NavigationService.Navigate(new AccommodationsDisplay(Owner));
+            }
+        }
+
+        private string ReadComment() 
+        {
+            if (CommentTextBox.Text == "Dodatni komentar...")
+            {
+                return "";
+            }
+            return CommentTextBox.Text;
         }
 
         private void CancelRateGuest_Click(object sender, RoutedEventArgs e)
@@ -248,7 +250,10 @@ namespace ProjectSims.View.OwnerView.Pages
             {
                 source.Background = Brushes.MintCream;
                 source.Foreground = Brushes.Black;
-                source.Clear();
+                if (source.Text == "Dodatni komentar...") 
+                {
+                    source.Clear();
+                }
             }
         }
 

@@ -21,6 +21,7 @@ using System.Security;
 using System.Collections.ObjectModel;
 using ProjectSims.WPF.ViewModel.OwnerViewModel;
 using ProjectSims.WPF.View.OwnerView;
+using System.IO;
 
 namespace ProjectSims.View.OwnerView.Pages
 {
@@ -33,6 +34,7 @@ namespace ProjectSims.View.OwnerView.Pages
         public AccommodationRegistrationViewModel accommodationRegistrationViewModel { get; set; }
 
         public List<string> paths = new List<string>();
+        public List<string> relativePaths = new List<string>();
 
         private string _accommodationName;
         public string AccommodationName
@@ -155,13 +157,15 @@ namespace ProjectSims.View.OwnerView.Pages
         private void RegisterAccommodation_Click(object sender, RoutedEventArgs e)
         {
             List<string> Pics = new List<string>();
-            foreach (string path in paths)
+            foreach (string path in relativePaths)
             {
                 Pics.Add(path);
             }
-            accommodationRegistrationViewModel.RegisterAccommodation(LocationTextBox.Text, Pics, AccommodationName, Type, GuestsMaximum, MinimumReservationDays, DismissalDays);
-            OwnerStartingView ownerStartingView = (OwnerStartingView)Window.GetWindow(this);
-            ownerStartingView.ChangeTab(4);
+            if (!string.IsNullOrEmpty(AccommodationNameTextBox.Text) && !string.IsNullOrEmpty(LocationTextBox.Text) && !string.IsNullOrEmpty(GuestsMaximumTextBox.Text) && !string.IsNullOrEmpty(MinimumReservationDaysTextBox.Text) && !string.IsNullOrEmpty(DismissalDaysTextBox.Text))
+            {
+                accommodationRegistrationViewModel.RegisterAccommodation(LocationTextBox.Text, Pics, AccommodationNameTextBox.Text, Type, Convert.ToInt32(GuestsMaximumTextBox.Text), Convert.ToInt32(MinimumReservationDaysTextBox.Text), Convert.ToInt32(DismissalDaysTextBox.Text));
+            }
+            this.NavigationService.Navigate(new AccommodationsDisplay(Owner));
         }
 
         private void LoadImages_Click(object sender, RoutedEventArgs e)
@@ -177,29 +181,40 @@ namespace ProjectSims.View.OwnerView.Pages
 
             if (success == true)
             {
-                foreach (var filename in fileDialog.FileNames)
+                foreach (var fileName in fileDialog.SafeFileNames)
                 {
-                    paths.Add(filename);
-                    InitializeImages(filename);
+                    AddRelativePath(fileName);
+                    string path = GetRelativePath(fileName);
+                    InitializeImages(path);
                 }
             }
             else
             {
-                //Didn't pick anything
+                return;
             }
         }
 
-        private void InitializeImages(string path)
+        private void InitializeImages(string filename)
         {
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.UriSource = new Uri(path, UriKind.Absolute);
-            bitmap.EndInit();
-            Images = new Image();
-            Images.Source = bitmap;
-            Images.Width = 170;
-            Images.Height = 100;
-            ImageList.Items.Add(Images);
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(filename, UriKind.RelativeOrAbsolute);
+                bitmap.EndInit();
+                Images = new Image();
+                Images.Source = bitmap;
+                Images.Width = 170;
+                Images.Height = 100;
+                ImageList.Items.Add(Images);
+        }
+
+        private void AddRelativePath(string fileName)
+        {
+            relativePaths.Add(GetRelativePath(fileName));   
+        }
+        
+        private string GetRelativePath(string fileName)
+        {
+            return "/Resources/Images/Owner/Accommodations/" + fileName;
         }
     }
 }

@@ -191,5 +191,9 @@ namespace ProjectSims.View.Guest2View
             return (int)numberGuests;
         }
 
+        private void ButtonBack(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

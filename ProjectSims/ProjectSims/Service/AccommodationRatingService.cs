@@ -20,6 +20,22 @@ namespace ProjectSims.Service
             ratingRepository = Injector.CreateInstance<IAccommodationRatingRepository>();
         }
 
+        public List<AccommodationAndOwnerRating> GetAllRatings()
+        {
+            return ratingRepository.GetAll();
+        }
+        public List<AccommodationAndOwnerRating> GetRatingsWhereGuestRated(int ownerId)
+        {
+            List<AccommodationAndOwnerRating> ratings = new List<AccommodationAndOwnerRating>();
+            foreach (var rating in GetAllRatings()) 
+            {
+                if (rating.Reservation.RatedGuest == true && rating.Reservation.Accommodation.IdOwner == ownerId)
+                {
+                    ratings.Add(rating);
+                }
+            }
+            return ratings;
+        }
         public AccommodationAndOwnerRating GetRating(int id)
         {
             return ratingRepository.GetById(id);

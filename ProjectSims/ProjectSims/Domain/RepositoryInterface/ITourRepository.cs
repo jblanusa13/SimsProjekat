@@ -13,6 +13,8 @@ namespace ProjectSims.Domain.RepositoryInterface
     {
         public List<Tour> GetToursByStateAndGuideId(TourState state, int guideId);
         public Tour GetTourByStateAndGuideId(TourState state, int guideId);
-        public List<Tour> GetTodayTours(int guideId);
+        public List<Tour> GetToursByDateAndGuideId(DateTime date,int guideId);
+        public int NextId();
+
     }
 }

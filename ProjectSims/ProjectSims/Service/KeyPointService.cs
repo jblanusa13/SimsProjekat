@@ -18,7 +18,7 @@ namespace ProjectSims.Service
         {
             keyPointRepository = Injector.CreateInstance<IKeyPointRepository>();
         }
-        public int GetNextId()
+        public int NextId()
         {
             return keyPointRepository.NextId();
         }

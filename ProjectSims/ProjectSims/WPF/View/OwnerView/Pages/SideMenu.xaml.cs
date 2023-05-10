@@ -1,4 +1,5 @@
 ﻿using ProjectSims.Domain.Model;
+using ProjectSims.View.OwnerView.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,32 +23,41 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
     /// </summary>
     public partial class SideMenu : Page
     {
-        public Owner owner { get; set; }
-        public SideMenu(Owner o)
+        public Owner Owner { get; set; }
+        public TextBlock TitleTextBlock { get; set; }
+        public SideMenu(Owner o, TextBlock titleTextBlock)
         {
             InitializeComponent();
             DataContext = this;
-            owner = o;
+            Owner = o;
+            TitleTextBlock = titleTextBlock;
         }
 
         private void LogOut_Click(object sender, RoutedEventArgs e)
         {
-            Window parentWindow = Window.GetWindow(this);
-            parentWindow.Close();
             var login = new MainWindow();
             login.Show();
+            Window parentWindow = Window.GetWindow(this);
+            parentWindow.Close();
         }
 
         private void HomePage_Click(object sender, RoutedEventArgs e)
         {
-            OwnerStartingView ownerStartingView = (OwnerStartingView)Window.GetWindow(this);
-            ownerStartingView.ChangeTab(3); 
+            Window parentWindow = Window.GetWindow(this);
+            this.NavigationService.Navigate(new HomePage(Owner));
+            TitleTextBlock.Text = "Početna stranica";
         }
 
         private void Accommodations_Click(object sender, RoutedEventArgs e)
         {
-            OwnerStartingView ownerStartingView = (OwnerStartingView)Window.GetWindow(this);
-            ownerStartingView.ChangeTab(4);
+            this.NavigationService.Navigate(new AccommodationsDisplay(Owner));
+            TitleTextBlock.Text = "Smještaji";
+        }
+
+        private void Ratings_Click(object sender, RoutedEventArgs e) 
+        {
+            this.NavigationService.Navigate(new OwnerRatingsDisplay(Owner));
+            TitleTextBlock.Text = "Recenzije";
         }
     }
 }

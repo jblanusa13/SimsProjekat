@@ -49,11 +49,11 @@ namespace ProjectSims.Service
             List<int> keyPointIds = tour.KeyPointIds;
             return keyPointIds.Select(id => keyPointService.GetKeyPointById(id)).ToList();
         }
-        public List<Tour> GetTodayTours(int guideId)
+        public List<Tour> GetToursByDateAndGuideId(DateTime date,int guideId)
         {
-           return tourRepository.GetTodayTours(guideId);
+           return tourRepository.GetToursByDateAndGuideId(date,guideId);
         }
-       public Tour GetMostVisitedTour(int guideId,bool thisYear)
+        public Tour GetMostVisitedTour(int guideId,bool thisYear)
         {
             List<Tour> wantedTours = GetToursByStateAndGuideId(TourState.Finished, guideId);
             if (wantedTours.Count != 0)
@@ -75,16 +75,16 @@ namespace ProjectSims.Service
             List<string> otherKeyPointsNames, string tourStart, string duration, string images)
         {
                 List<int> keyPointIds = new List<int>();
-                int startKeyPointId = keyPointService.GetNextId();
+                int startKeyPointId = keyPointService.NextId();
                 keyPointService.Create(startKeyPointId, startKeyPointName,KeyPointType.First);
                 keyPointIds.Add(startKeyPointId);
                 foreach (string keyPointName in otherKeyPointsNames)
                 {
-                    int otherKeyPointId = keyPointService.GetNextId();
+                    int otherKeyPointId = keyPointService.NextId();
                     keyPointService.Create(otherKeyPointId, keyPointName, KeyPointType.Intermediate);
                     keyPointIds.Add(otherKeyPointId);
                 }
-                int finishKeyPointId = keyPointService.GetNextId();
+                int finishKeyPointId = keyPointService.NextId();
                 keyPointService.Create(finishKeyPointId, finishKeyPointName, KeyPointType.Last);
                 keyPointIds.Add(finishKeyPointId);
                 List<string> imageList = new List<string>();

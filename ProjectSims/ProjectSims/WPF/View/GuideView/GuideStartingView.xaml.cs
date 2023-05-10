@@ -84,6 +84,11 @@ namespace ProjectSims.View.GuideView
             Page finishedToursRatingsView = new FinishedToursRatingsView(Guide);
             GuideFrame.Content = finishedToursRatingsView;
         }
+        private void TourRequests_Click(object sender, RoutedEventArgs e)
+        {
+            Page finishedTourtourRequestsView = new TourRequestsView(Guide);
+            GuideFrame.Content = finishedTourtourRequestsView;
+        }
         public void Update()
         {
             ActiveTour = tourService.GetTourByStateAndGuideId(TourState.Active, Guide.Id);

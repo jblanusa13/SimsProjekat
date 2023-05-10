@@ -18,22 +18,38 @@ using System.Windows.Shapes;
 using ProjectSims.Service;
 using ProjectSims.View.OwnerView.Pages;
 using System.IO;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace ProjectSims.WPF.View.OwnerView
 {
     /// <summary>
     /// Interaction logic for OwnerStartingView.xaml
     /// </summary>
-    public partial class OwnerStartingView : Window
+    public partial class OwnerStartingView : Window, INotifyPropertyChanged
     {
         public Owner owner { get; set; }
         private GuestRatingService guestRatingService { get; set; }
-        
+
+        private string _title;
+        public string Title
+        {
+            get => _title;
+            set
+            {
+                if (value != _title)
+                {
+                    _title = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public OwnerStartingView(Owner o)
         {
             InitializeComponent();
-            DataContext = this;
-            owner = o; 
+            this.DataContext = this;
+            owner = o;
+            TitleTextBlock.Text = "Početna stranica";
             SelectedTab.Content = new HomePage(owner);
             guestRatingService = new GuestRatingService();
        }
@@ -45,16 +61,19 @@ namespace ProjectSims.WPF.View.OwnerView
 
         private void ButtonMenu(object sender, RoutedEventArgs e)
         {
+            TitleTextBlock.Text = "";
             ChangeTab(0);
         }
 
         private void ButtonRequests(object sender, RoutedEventArgs e)
         {
+            TitleTextBlock.Text = "Zahtjevi";
             ChangeTab(1);
         }
 
         private void ButtonNotifications(object sender, RoutedEventArgs e)
         {
+            TitleTextBlock.Text = "Obavještenja";
             ChangeTab(2);
         }
 
@@ -64,7 +83,7 @@ namespace ProjectSims.WPF.View.OwnerView
             {
                 case 0:
                     {
-                        SelectedTab.Content = new SideMenu(owner);
+                        SelectedTab.Content = new SideMenu(owner, TitleTextBlock);
                         break;
                     }
                 case 1:
@@ -74,20 +93,15 @@ namespace ProjectSims.WPF.View.OwnerView
                     }
                 case 2:
                     {
-                        //SelectedTab.Content = new Notifications(owner);
-                        break;
-                    }
-                case 3:
-                    {
-                        SelectedTab.Content = new HomePage(owner);
-                        break;
-                    }
-                case 4:
-                    {
-                        SelectedTab.Content = new AccommodationsDisplay(owner);
                         break;
                     }
             }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

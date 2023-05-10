@@ -8,49 +8,43 @@
         Height="750" Width="430">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="17*"/>
-            <RowDefinition Height="13*"/>
-        </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.RowSpan="2">
-            <Grid ScrollViewer.CanContentScroll="True" Width="420">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="644*"/>
-                    <RowDefinition Height="47*"/>
-                </Grid.RowDefinitions>
-                <DataGrid x:Name="AccommodationReservationsTable"
+                <Grid ScrollViewer.CanContentScroll="True" Grid.Row="0">
+                    <DataGrid x:Name="AccommodationReservationsTable"
                           ItemsSource="{Binding AccommodationReservations}"
-                          Margin="22,61,22,200"
                           AutoGenerateColumns="False"
+                          CanUserResizeColumns="False"
                           IsReadOnly="True"
                           SelectionMode="Single"
-                          Width="375">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Naziv smjestaja"
+                          Width="430"
+                          Height="500"
+                          Margin="0,0,0,250">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Naziv smjestaja"
                                             Binding="{Binding Accommodation.Name}"
-                                            Width="150"
+                                            Width="170"
                                             IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Gost"
-                                            Width="130"
+                            <DataGridTextColumn Header="Gost"
+                                            Width="158"
                                             IsReadOnly="True">
-                            <DataGridTextColumn.Binding>
-                                <MultiBinding StringFormat="{}{0} {1}">
-                                    <Binding Path="Guest.Name"/>
-                                    <Binding Path="Guest.Surname"/>
-                                </MultiBinding>
-                            </DataGridTextColumn.Binding>
-                        </DataGridTextColumn>
-                         <DataGridCheckBoxColumn Header="Ocijenjen"
+                                <DataGridTextColumn.Binding>
+                                    <MultiBinding StringFormat="{}{0} {1}">
+                                        <Binding Path="Guest.Name"/>
+                                        <Binding Path="Guest.Surname"/>
+                                    </MultiBinding>
+                                </DataGridTextColumn.Binding>
+                            </DataGridTextColumn>
+                            <DataGridCheckBoxColumn Header="Ocijenjen"
                                                 Binding="{Binding RatedGuest,
                                                 Mode=TwoWay, 
                                                 BindsDirectlyToSource=True}"
                                                 Width="*"
                                                 IsReadOnly="True"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Grid>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
         </StackPanel>
-        <Button Margin="0,143,0,0"
+        <Button Margin="0,600,0,0"
                 Click="RegistrateAccommodation_Click"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
@@ -59,10 +53,9 @@
                 TextElement.FontWeight="DemiBold"
                 Height="34"
                 Width="162"
-                Content="Registracija novog smjestaja"
-                Grid.Row="1"/>
+                Content="Registracija novog smjestaja"/>
         <Button x:Name="RateGuestButton"
-                Margin="0,199,0,0"
+                Margin="0,650,0,0"
                 Click="RateGuest_Click"
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Top"
@@ -71,7 +64,6 @@
                 TextElement.FontWeight="DemiBold" 
                 Height="34" 
                 Width="162"
-                Content="Ocijeni gosta"
-                Grid.Row="1"/>
+                Content="Ocijeni gosta"/>
     </Grid>
 </Page>
