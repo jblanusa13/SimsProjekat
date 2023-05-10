@@ -20,7 +20,7 @@
     <SolidColorBrush Color="#ebf5ff" x:Key="TextboxColor"></SolidColorBrush>
     <SolidColorBrush Color="#ffaeaeae" x:Key="FontsColor"></SolidColorBrush>
     <SolidColorBrush Color="#1c1c1c" x:Key="DataGridBackground"></SolidColorBrush>
-    <SolidColorBrush Color="#ebf5ff" x:Key="ListViewBackground"></SolidColorBrush>
+    <SolidColorBrush Color="#1c1c1c" x:Key="ListViewBackground"></SolidColorBrush>
 
     <Style TargetType="DataGrid" x:Key="DataGridStyle">
         <Setter Property="FontFamily" Value="Bahnschrift"/>
