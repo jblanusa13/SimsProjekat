@@ -52,12 +52,14 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         {
             AccommodationAndOwnerRating accommodationAndOwnerRating = (AccommodationAndOwnerRating)MyRatingsTable.SelectedItem;
             MyRatingsTb.Text = accommodationAndOwnerRating.AddedComment;
+            MyRatingsNameLabel.Content = accommodationAndOwnerRating.Reservation.Accommodation.Name;
         }
 
         private void OwnerRatings_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             GuestRating guestRating = (GuestRating)OwnerRatingsTable.SelectedItem;
             OwnerRatingsTb.Text = guestRating.Comment;
+            OwnerRatingsNameLabel.Content = guestRating.Reservation.Accommodation.Name;
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

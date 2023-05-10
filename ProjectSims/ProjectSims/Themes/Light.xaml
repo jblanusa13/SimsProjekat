@@ -3,9 +3,14 @@
                     xmlns:fa="http://schemas.fontawesome.io/icons/">
 
     <fa:ImageAwesome Icon="MoonOutline" x:Key="MoonIcon" Foreground="#FF114642"/>
-    <fa:ImageAwesome Icon="WindowMinimize" x:Key="MinimizeIcon"  Width="10" HorizontalAlignment="Center" Foreground="#FF114642"/>
-    <fa:ImageAwesome Icon="WindowRestore" x:Key="RestoreIcon" Width="15" Foreground="#FF114642"/>
-    <fa:ImageAwesome Icon="WindowClose" x:Key="CloseIcon" Width="20" Foreground="#FF114642"/>
+    <fa:ImageAwesome Icon="WindowMinimize" x:Key="MainWindowMinimizeIcon"  Width="10" HorizontalAlignment="Center" Foreground="#FF114642"/>
+    <fa:ImageAwesome Icon="WindowRestore" x:Key="MainWindowRestoreIcon" Width="15" Foreground="#FF114642"/>
+    <fa:ImageAwesome Icon="WindowClose" x:Key="MainWindowCloseIcon" Width="20" Foreground="#FF114642"/>
+
+    <fa:ImageAwesome Icon="WindowMinimize" x:Key="RatingsMinimizeIcon"  Width="10" HorizontalAlignment="Center" Foreground="#FF114642"/>
+    <fa:ImageAwesome Icon="WindowRestore" x:Key="RatingsRestoreIcon" Width="15" Foreground="#FF114642"/>
+    <fa:ImageAwesome Icon="WindowClose" x:Key="RatingsCloseIcon" Width="20" Foreground="#FF114642"/>
+    
     <BitmapImage x:Key="Logo" UriSource="/Resources/Icons/Guest1/travel-tour-logo-light.png"/>
     <SolidColorBrush Color="White" x:Key="FirstGrayShade"></SolidColorBrush>
     <SolidColorBrush Color="#f0f0f0" x:Key="SecondGrayShade"></SolidColorBrush>
@@ -32,6 +37,7 @@
         <Setter Property="Foreground" Value="#001330"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="FontSize" Value="14"/>
+        <Setter Property="BorderBrush" Value="White"/>
     </Style>
 
     <Style TargetType="DataGridRow" x:Key="DataGridRow">
