@@ -2,6 +2,7 @@
 using ProjectSims.Service;
 using ProjectSims.View.GuideView;
 using ProjectSims.WPF.ViewModel.GuideViewModel;
+using Syncfusion.Windows.Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,9 +32,8 @@ namespace ProjectSims.WPF.View.GuideView.Pages
     public partial class CreateTourView : Page,INotifyPropertyChanged, IDataErrorInfo
     {
         private CreateTourViewModel createTourViewModel;
-        public Guide guide { get; set; }
         public List<string> OtherKeyPoints { get; set; }
-        public List<DateTime> Appointments { get; set; }
+        public List<string> Appointments { get; set; }
         public List<string> Images { get; set; }
         private string _tourName;
         public string TourName
@@ -191,12 +191,9 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 }
             }
         }
-
-        private Regex _durationRegex = new Regex("^([0-9]*\\.)?[0-9]+$");
         private Regex _maxNumberGuestsRegex = new Regex("^[1-9][0-9]*$");
-        private Regex _hoursRegex = new Regex("^[01]?[0-9]|2[0-3]$");
-        private Regex _minuteRegex = new Regex("^[0-5][0-9]$");
         public String Error => null;
+
         public string this[string columnName]
         {
             get
@@ -204,22 +201,22 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 if (columnName == "TourName")
                 {
                     if (string.IsNullOrEmpty(TourName))
-                        return "Unesite naziv ture!";
+                        return "Ovo je obavezno polje!";
                 }
                 else if (columnName == "TourLanguage")
                 {
                     if (string.IsNullOrEmpty(TourLanguage))
-                        return "Odaberite jezik!";
+                        return "Ovo je obavezno polje!";
                 }
                 else if (columnName == "City")
                 {
                     if (string.IsNullOrEmpty(City))
-                        return "Unesite grad!";
+                        return "Ovo je obavezno polje!";
                 }
                 else if (columnName == "Country")
                 {
                     if (string.IsNullOrEmpty(Country))
-                        return "Unesite drzavu!";
+                        return "Ovo je obavezno polje!";
                 }
                 else if (columnName == "MaxNumberGuests")
                 {
@@ -227,30 +224,22 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                         return "Unesite broj mesta!";
                     Match match = _maxNumberGuestsRegex.Match(MaxNumberGuests);
                     if (!match.Success)
-                        return "Format nije ispravan!";
+                        return "Los format!";
                 }
                 else if (columnName == "StartKeyPoint")
                 {
                     if (string.IsNullOrEmpty(StartKeyPoint))
-                        return "Unesite početnu stanicu!";
+                        return "Ovo je obavezno polje!";
                 }
                 else if (columnName == "FinishKeyPoint")
                 {
                     if (string.IsNullOrEmpty(FinishKeyPoint))
-                        return "Unesite krajnju stanicu!";
-                }
-                else if (columnName == "Duration")
-                {
-                    if (string.IsNullOrEmpty(Duration))
-                        return "Unesite trajanje!";
-                    Match match = _durationRegex.Match(Duration);
-                    if (!match.Success)
-                        return "Format nije ispravan!";
+                        return "Ovo je obavezno polje!";
                 }
                 else if (columnName == "Description")
                 {
                     if (string.IsNullOrEmpty(Description))
-                        return "Unesite opis!";
+                        return "Ovo je obavezno polje!";
                 }
                 return null;
 
@@ -270,17 +259,30 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 return true;
             }
         }
-        public CreateTourView(Guide g)
+        public CreateTourView(Guide guide, TourRequest tourRequest)
         {
             InitializeComponent();
             DataContext = this;
-            createTourViewModel = new CreateTourViewModel(g);
-            OtherKeyPoints =new List<string>();
-            Appointments = new List<DateTime>();
+            createTourViewModel = new CreateTourViewModel(guide, tourRequest);
+            OtherKeyPoints = new List<string>();
+            Appointments = new List<string>();
             Images = new List<string>();
             AddKeyPointButton.IsEnabled = false;
             AddAppointmentButton.IsEnabled = false;
-            guide = g;
+            TourDatePicker.BlackoutDates.AddDatesInPast();
+            if (tourRequest != null)
+            {
+                City = tourRequest.Location.Split(',')[0];
+                CityTextBox.IsEnabled = false;
+                Country = tourRequest.Location.Split(',')[1];
+                CountryTextBox.IsEnabled = false;
+                LanguageComboBox.SelectedValue = tourRequest.Language;
+                LanguageComboBox.IsEnabled = false;
+                MaxNumberGuests = tourRequest.MaxNumberGuests.ToString();
+                MaxNumberGuestsTextBox.IsEnabled = false;
+                TourDatePicker.DisplayDateStart = new DateTime(tourRequest.DateRangeStart.Year, tourRequest.DateRangeStart.Month, tourRequest.DateRangeStart.Day);
+                TourDatePicker.DisplayDateEnd = new DateTime(tourRequest.DateRangeEnd.Year, tourRequest.DateRangeEnd.Month, tourRequest.DateRangeEnd.Day);
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -311,59 +313,58 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         }
         public void OtherKeyPointTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(!string.IsNullOrWhiteSpace(OtherKeyPointTextBox.Text))
-            {
+            if (!string.IsNullOrEmpty(OtherKeyPointTextBox.Text))
                 AddKeyPointButton.IsEnabled = true;
-            }
+            else
+                AddKeyPointButton.IsEnabled = false;
         }
-        public void HourTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        public void DurationTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Match matchHour = _hoursRegex.Match(HourTextBox.Text);
-            Match matchMinute = _minuteRegex.Match(MinuteTextBox.Text);
-            if (TourDatePicker.SelectedDate != null && matchHour.Success && matchMinute.Success)
-            {
-                AddAppointmentButton.IsEnabled = true;
-            }
+            if (!string.IsNullOrEmpty(OtherKeyPointTextBox.Text))
+                AddKeyPointButton.IsEnabled = true;
+            else
+                AddKeyPointButton.IsEnabled = false;
         }
-        public void MinuteTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        public bool IsCorrectAppointment()
         {
-            Match matchHour = _hoursRegex.Match(HourTextBox.Text);
-            Match matchMinute = _minuteRegex.Match(MinuteTextBox.Text);
-            if (TourDatePicker.SelectedDate != null && matchHour.Success && matchMinute.Success)
-            {
-                AddAppointmentButton.IsEnabled = true;
-            }
+            int hour;
+            int minute;
+            double duration;
+            DateTime date = TourDatePicker.SelectedDate.GetValueOrDefault();
+            if (TourDatePicker.SelectedDate == null || string.IsNullOrEmpty(Hour) || string.IsNullOrEmpty(Minute) || string.IsNullOrEmpty(Duration))
+                MessageTextBox.Text = "Odaberite termin!";
+            else if (!Int32.TryParse(Hour, out hour) || hour < 0 || hour >= 24 || !Int32.TryParse(Minute, out minute) || minute < 0 || minute > 60 || !Double.TryParse(Duration, out duration))
+                MessageTextBox.Text = "Los format!";
+            else if (!createTourViewModel.GuideIsAvailable(DateOnly.FromDateTime(date), hour, minute, duration))
+                MessageTextBox.Text = "Termin je zauzet!";
+            else
+                MessageTextBox.Text = "";
+            return string.IsNullOrEmpty(MessageTextBox.Text);
         }
-        public void TourDatePicker_SelectedDateChanged(object sender, EventArgs e)
+        public void AppointmentInput_Changed(object sender, EventArgs e)
         {
-            Match matchHour = _hoursRegex.Match(HourTextBox.Text);
-            Match matchMinute = _minuteRegex.Match(MinuteTextBox.Text);
-            if (TourDatePicker.SelectedDate != null && matchHour.Success && matchMinute.Success)
-            {
-                AddAppointmentButton.IsEnabled = true;
-            }
+            AddAppointmentButton.IsEnabled = IsCorrectAppointment();
         }
         public void AddAppointment_Click(object sender, RoutedEventArgs e)
         {
-            Appointments.Add(new DateTime(TourDatePicker.SelectedDate.Value.Year, TourDatePicker.SelectedDate.Value.Month,TourDatePicker.SelectedDate.Value.Day,Convert.ToInt32(HourTextBox.Text), Convert.ToInt32(MinuteTextBox.Text),0));
+            Appointments.Add(TourDatePicker.SelectedDate.GetValueOrDefault().ToString("MM/dd/yyyy") + "" + Hour + ":" + Minute + "-" + Duration);
             TourDatePicker.SelectedDate = null;
             HourTextBox.Text = "";
             MinuteTextBox.Text = "";
+            DurationTextBox.Text = "";
             AddAppointmentButton.IsEnabled = false;
         }
         public void AddKeyPoint_Click(object sender, RoutedEventArgs e)
         {
             OtherKeyPoints.Add(OtherKeyPointTextBox.Text);
             OtherKeyPointTextBox.Text = "";
-            AddKeyPointButton.IsEnabled = false;
-  
+            AddKeyPointButton.IsEnabled = false; 
         }
         private void CreateTour_Click(object sender, RoutedEventArgs e)
         {
            if (IsValid)
            {
-                createTourViewModel.CreateTour(guide.Id,TourName,TourLanguage,City + "," + Country,MaxNumberGuests, Appointments, Duration,StartKeyPoint,OtherKeyPoints,FinishKeyPoint,Description,Images);
-                this.NavigationService.Navigate(new ScheduledToursView(guide));
+                createTourViewModel.CreateTour(TourName,TourLanguage,City + "," + Country,MaxNumberGuests, Appointments,StartKeyPoint,OtherKeyPoints,FinishKeyPoint,Description,Images);
            }
            else
                MessageBox.Show("Nisu validno popunjena polja!");

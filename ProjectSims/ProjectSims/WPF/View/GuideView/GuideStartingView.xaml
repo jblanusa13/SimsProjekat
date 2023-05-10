@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims.View.GuideView"
         mc:Ignorable="d"
-        Title="Guide Starting View" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Background="#222E50">
+        Title="Guide Starting View" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Background="#011630">
     <Grid>
         <ToolBar HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Height="40" Width="1280" Background="#333333">
             <ToolBar.Resources>
@@ -33,31 +33,31 @@
             <Button Click="Home_Click" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,40,0" Height="60" Width="60" Background="Transparent" BorderThickness="0">
                 <Image Source="\Resources\Icons\Guide\profile.png" Cursor="Hand"/>
             </Button>
-            <Image Source="/Resources/Icons/Guide/travel-tour-logo.png" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Image Source="/Resources/Icons/Guide/logo.png" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Height="90" Width="90"/>
         </Grid>
-        <Menu Margin="0,125,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="80" Width="1280" Background="White" BorderBrush="#e1c564" BorderThickness="0 4 0 4">
+        <Menu Margin="0,125,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="80" Width="1280" Background="White" BorderBrush="#D7B94B" BorderThickness="0 4 0 4">
             <Menu.Resources>
                 <Style TargetType="MenuItem">
-                    <Setter Property="Foreground" Value="#222E50"/>
-                    <Setter Property="FontFamily" Value="Corbel"/>
-                    <Setter Property="FontSize" Value="40"/>
+                    <Setter Property="Foreground" Value="#011630"/>
+                    <Setter Property="FontFamily" Value="Helvetica"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="FontSize" Value="38"/>
                     <Setter Property="Height" Value="80"/>
-                    <Setter Property="FontWeight" Value="UltraBold"/>
                     <Setter Property="HorizontalAlignment" Value="Center"/>
                     <Setter Property="VerticalAlignment" Value="Center"/>
                 </Style>
             </Menu.Resources>
-            <MenuItem Header="Pocetna" Click="Home_Click"/>
-            <MenuItem Header="Pracenje ture">
+            <MenuItem Header="Početna" Click="Home_Click"/>
+            <MenuItem Header="Praćenje ture">
                 <MenuItem Header="Aktivna tura" Click="TrackTour_Click" FontSize="28" Foreground="#222E50" Height="30" Width="300"/>
-                <MenuItem Header="Danasnje ture" Click="AvailableTours_Click" FontSize="28" Foreground="#222E50" Height="30" Width="300"/>
+                <MenuItem Header="Današnje ture" Click="AvailableTours_Click" FontSize="28" Foreground="#222E50" Height="30" Width="300"/>
             </MenuItem>
             <MenuItem Header="Nova tura">
                 <MenuItem Header="Kreiraj novu" Click="CreateTour_Click" FontSize="28" Foreground="#222E50" Height="30" Width="300"/>
                 <MenuItem Header="Pogledaj predloge" FontSize="28" Foreground="#222E50" Height="30" Width="300"/>
             </MenuItem>
             <MenuItem Header="Zakazane ture" Click="ScheduledTours_Click"/>
-            <MenuItem Header="Zavrsene ture">
+            <MenuItem Header="Završene ture">
                 <MenuItem Header="Statistika" Click="FinishedToursStatistics_Click" FontSize="28" Foreground="#222E50" Height="30" Width="300"/>
                 <MenuItem Header="Ocene i recenzije" Click="FinishedToursRatings_Click" FontSize="28" Foreground="#222E50" Height="30" Width="300"/>
             </MenuItem>

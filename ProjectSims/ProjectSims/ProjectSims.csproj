@@ -14,6 +14,7 @@
     <None Remove="Resources\Icons\Guest2\icons8-male-user-48.png" />
     <None Remove="Resources\Icons\Guide\addPhoto.png" />
     <None Remove="Resources\Icons\Guide\adjust.png" />
+    <None Remove="Resources\Icons\Guide\back.png" />
     <None Remove="Resources\Icons\Guide\calendar.png" />
     <None Remove="Resources\Icons\Guide\checkmark.png" />
     <None Remove="Resources\Icons\Guide\close.png" />
@@ -31,10 +32,12 @@
     <None Remove="Resources\Icons\Guide\info.png" />
     <None Remove="Resources\Icons\Guide\leftarrow.png" />
     <None Remove="Resources\Icons\Guide\location.png" />
+    <None Remove="Resources\Icons\Guide\logo.png" />
     <None Remove="Resources\Icons\Guide\logout.png" />
     <None Remove="Resources\Icons\Guide\mapPin.png" />
     <None Remove="Resources\Icons\Guide\name.png" />
     <None Remove="Resources\Icons\Guide\ok.png" />
+    <None Remove="Resources\Icons\Guide\people.png" />
     <None Remove="Resources\Icons\Guide\pin.png" />
     <None Remove="Resources\Icons\Guide\play.png" />
     <None Remove="Resources\Icons\Guide\plus.png" />
@@ -68,7 +71,6 @@
     <None Remove="Resources\Images\leftarrow.png" />
     <None Remove="Resources\Images\mappin.png" />
     <None Remove="Resources\Images\rightarrow.png" />
-    <None Remove="WPF\View\GuideView\bckgrnd.jpg" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="{215d64d2-031c-33c7-96e3-61794cd1ee61}">
@@ -92,6 +94,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\adjust.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\back.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\calendar.png">
@@ -118,16 +123,16 @@
     <Content Include="Resources\Icons\Guide\location.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Icons\Guide\description.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Icons\Guide\logout.png">
+    <Content Include="Resources\Icons\Guide\logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\name.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\ok.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\people.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\pin.png">
@@ -149,9 +154,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\time.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Icons\Guide\travel-tour-logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Guest2\kofer.jpg">
@@ -206,6 +208,5 @@
     <Reference Include="BlazorDateRangePicker">
       <HintPath>bin\Debug\net6.0-windows\BlazorDateRangePicker.dll</HintPath>
     </Reference>
-    <Resource Include="WPF\View\GuideView\bckgrnd.jpg" />
   </ItemGroup>
 </Project>

@@ -12,6 +12,8 @@ using System.Windows.Controls;
 using System.Windows;
 using ProjectSims.Repository;
 using System.Windows.Documents;
+using System.DirectoryServices.ActiveDirectory;
+using System.Globalization;
 
 namespace ProjectSims.WPF.ViewModel.GuideViewModel
 {
@@ -20,13 +22,15 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
         private TourService tourService;
         private KeyPointService keyPointService;
         private GuideScheduleService guideScheduleService;
+        public TourRequest TourRequest { get; set; }
         public Guide Guide { get; set; }
-        public CreateTourViewModel(Guide guide)
+        public CreateTourViewModel(Guide guide,TourRequest tourRequest)
         {
             tourService = new TourService();
             keyPointService = new KeyPointService();
             guideScheduleService = new GuideScheduleService();
             Guide = guide;
+            TourRequest = tourRequest;
         }
         public int CreateKeyPointAndReturnId(string name,KeyPointType type)
         {
@@ -34,9 +38,9 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
             keyPointService.Create(keyPoint);
             return keyPoint.Id;
         }
-        public void CreateTour(int guideId,string name,string language,string location,string maxNumberGuests,List<DateTime> appointments,string duration,string startKeyPoint,List<string> otherKeyPoints,string finishKeyPoint,string description,List<string> images) 
+        public void CreateTour(string name,string language,string location,string maxNumberGuests,List<string> appointments,string startKeyPoint,List<string> otherKeyPoints,string finishKeyPoint,string description,List<string> images) 
         {
-            foreach(var appointment in appointments)
+            foreach(string appointment in appointments)
             {
                 List<int> keyPointIds = new List<int>();
                 keyPointIds.Add(CreateKeyPointAndReturnId(startKeyPoint, KeyPointType.First));
@@ -45,10 +49,23 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
                     keyPointIds.Add(CreateKeyPointAndReturnId(keyPointName, KeyPointType.Intermediate));
                 }
                 keyPointIds.Add(CreateKeyPointAndReturnId(finishKeyPoint, KeyPointType.Last));
-                Tour tour = new Tour(-1, guideId, name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPointIds, appointment, Convert.ToDouble(duration), images, Convert.ToInt32(maxNumberGuests), TourState.Inactive, -1);
+                DateTime start = DateTime.ParseExact(appointment.Split("-")[0], "MM/dd/yyyy HH:mm", CultureInfo.InvariantCulture);
+                double duration = Convert.ToDouble(appointment.Split("-")[1]);
+                Tour tour = new Tour(-1, Guide.Id, name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPointIds, start, duration, images, Convert.ToInt32(maxNumberGuests), TourState.Inactive, -1);
                 tourService.Create(tour);
-                guideScheduleService.Create(new GuideSchedule(-1, guideId, tour.Id, appointment, appointment.AddHours(Convert.ToDouble(duration))));
+                guideScheduleService.Create(new GuideSchedule(-1, Guide.Id, tour.Id, start, start.AddHours(duration)));
             }
+        }
+        public bool GuideIsAvailable(DateOnly date,int hour,int minute,double duration)
+        {
+            DateTime start = new DateTime(date.Year,date.Month,date.Day,hour, minute, 0);
+            DateTime end = start.AddHours(duration);
+            foreach (var freeAppointment in guideScheduleService.GetFreeAppointmentsForThatDay(Guide.Id,date))
+            {
+                if ((start >= freeAppointment.Item1) && (start <= freeAppointment.Item2) && (end <= freeAppointment.Item2) && (end <= freeAppointment.Item2))
+                    return true;
+            }
+            return false ;
         }
     }
 }

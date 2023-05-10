@@ -26,36 +26,32 @@ namespace ProjectSims.Service
         {
             return guideScheduleRepository.GetById(id);
         }
-        public List<Tuple<DateTime,DateTime>> GetAppointmentsByGuideIdAndDate(int id,DateOnly date)
+        public List<Tuple<DateTime,DateTime>> GetGuidesDailySchedule(int guideId,DateOnly date)
         {
             List<Tuple<DateTime,DateTime>> appointments = new List<Tuple<DateTime, DateTime>>();
-            foreach(var appointment in guideScheduleRepository.GetByGuideIdAndDate(id,date))
+            foreach(var appointment in guideScheduleRepository.GetByGuideIdAndDate(guideId, date))
             {
                 appointments.Add(new Tuple<DateTime, DateTime>(appointment.Start, appointment.End));
             }
-            return appointments;
+            return appointments.OrderBy(x => x.Item1).ToList();
         }
-        public List<Tuple<DateTime, DateTime>> GetFreeAppointmentsByDateAndGuideId(int id,DateOnly date)
+        public List<Tuple<DateTime, DateTime>> GetFreeAppointmentsForThatDay(int guideId, DateOnly date)
         {
-            List<Tuple<DateTime, DateTime>> appointments = GetAppointmentsByGuideIdAndDate(id,date).OrderBy(x=>x.Item1).ToList();
-            List<Tuple<DateTime, DateTime>> freeAppointments = new List<Tuple<DateTime, DateTime>>();
-            DateTime begin = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
-            DateTime end = new DateTime(date.Year, date.Month, date.Day, 23, 59, 59);
-            if (appointments.Count != 0)
+            List<Tuple<DateTime, DateTime>> dailySchedule = GetGuidesDailySchedule(guideId, date);
+            DateTime dayBegin = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
+            DateTime dayEnd = new DateTime(date.Year, date.Month, date.Day, 23, 59, 59);
+            if (dailySchedule.Count != 0)
             {
-                freeAppointments.Add(new Tuple<DateTime, DateTime>(begin, appointments.First().Item1));
-                for (int i = 0; i < appointments.Count - 1; i++)
+                List<Tuple<DateTime, DateTime>> freeAppointments = new List<Tuple<DateTime, DateTime>>();
+                freeAppointments.Add(new Tuple<DateTime, DateTime>(dayBegin, dailySchedule.First().Item1));
+                for (int i = 0; i < dailySchedule.Count - 1; i++)
                 {
-                    freeAppointments.Add(new Tuple<DateTime, DateTime>(appointments[1].Item2, appointments[i + 1].Item1));
-
+                    freeAppointments.Add(new Tuple<DateTime, DateTime>(dailySchedule[1].Item2, dailySchedule[i + 1].Item1));
                 }
-                freeAppointments.Add(new Tuple<DateTime, DateTime>(appointments.Last().Item2, end));
+                freeAppointments.Add(new Tuple<DateTime, DateTime>(dailySchedule.Last().Item2, dayEnd));
+                return freeAppointments;
             }
-            else
-            {
-                freeAppointments.Add(new Tuple<DateTime, DateTime>(begin, end));
-            }
-            return freeAppointments;
+            return new List<Tuple<DateTime, DateTime>>() { new Tuple<DateTime, DateTime>(dayBegin, dayEnd) };
         }
         public void Create(GuideSchedule guideSchedule)
         {           
