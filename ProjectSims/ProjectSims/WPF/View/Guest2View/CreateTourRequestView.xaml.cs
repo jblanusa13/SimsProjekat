@@ -169,7 +169,7 @@ namespace ProjectSims.WPF.View.Guest2View
         private void ButtonCreateTourRequest(object sender, RoutedEventArgs e)
         {
             if (IsValid)
-            {
+            {   
                 if(DateStart.Text == "" || DateEnd.Text == "")
                 {
                     MessageBox.Show("Morate popuniti opseg datuma!");
@@ -183,6 +183,30 @@ namespace ProjectSims.WPF.View.Guest2View
             else
                 MessageBox.Show("Nisu popunjena sva polja!");
             
+        }
+
+        private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Up)
+            {
+                MaxNumberGuests++;
+                e.Handled = true;
+            }
+            else if (e.Key == Key.Down && MaxNumberGuests > 0)
+            {
+                MaxNumberGuests--;
+                e.Handled = true;
+            }
+            else if (e.Key == Key.Back && MaxNumberGuests < 10)
+            {
+                MaxNumberGuests = 0;
+                e.Handled = true;
+            }
+            else if (e.Key == Key.Delete || e.Key == Key.Back)
+            {
+                MaxNumberGuests = 0;
+                e.Handled = true;
+            }
         }
     }
 }

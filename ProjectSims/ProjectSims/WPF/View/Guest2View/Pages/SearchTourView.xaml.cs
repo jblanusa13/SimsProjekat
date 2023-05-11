@@ -1,7 +1,7 @@
 ﻿using ProjectSims.Service;
 using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
-using ProjectSims.View.Guest2View;
+using ProjectSims.WPF.View.Guest2View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,13 +17,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace ProjectSims.WPF.View.Guest2View.Pages
 {
     /// <summary>
     /// Interaction logic for SearchTourView.xaml
     /// </summary>
-    public partial class SearchTourView : Page, IObserver
+    public partial class SearchTourView : Page, IObserver, INotifyPropertyChanged
     {
         private TourService tourService;
         private ReservationTourService reservationTourService;
@@ -32,6 +34,26 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
         public Tour SelectedTour { get; set; }
 
         public Guest2 guest2 { get; set; }
+
+        private int _numberGuest;
+        public int NumberGuests 
+        { 
+            get => _numberGuest;
+            set
+            {
+                if (value != _numberGuest)
+                {
+                    _numberGuest = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         public SearchTourView(Guest2 g)
         {
@@ -69,7 +91,7 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
             }
             else
             {
-                MessageBox.Show("You must select a tour for more details!");
+                MessageBox.Show("Morate selektovati turu da bi ste vidjeli vise detalja o njoj!");
             }
 
         }
@@ -88,7 +110,7 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
             //both duration fields must be entered
             if ((durationStart == -1 && durationEnd != -1) || (durationStart != -1 && durationEnd == -1))
             {
-                MessageBox.Show("Both duration fields must be entered for search tours!");
+                MessageBox.Show("Oba polja za trajanje ture moraju biti popunjena da bi se izvrsila pretraga tura!");
                 return;
             }
             else if (durationStart != -1 && durationEnd != -1)
@@ -96,17 +118,16 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
             {
                 if (durationStart > durationEnd)
                 {
-                    MessageBox.Show("The first duration fields must be less than the second!");
+                    MessageBox.Show("Prvo polje kod trajanja ture mora imati manju vrijednost nego drugo!");
                     return;
                 }
             }
 
-            int numberGuests = tourService.ConvertToInt(NumberGuestsTextBox.Text);
-            if (numberGuests == -2) return;
+            //int numberGuests = NumberGuests;//tourService.ConvertToInt(NumberGuestsTextBox.Text);
 
-            if (location == "" && durationStart == -1 && language == "" && numberGuests == -1)         //16. case (nothing entered)
+            if (location == "" && durationStart == -1 && language == "" && NumberGuests == 0)         //16. case (nothing entered)
             {
-                MessageBox.Show("You must enter some information for search!");
+                MessageBox.Show("Morate unijeti neke informacije za pretragu!");
                 ListTour.Clear();
                 foreach (var tour in tourService.GetAllTours())
                 {
@@ -114,7 +135,7 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
                 }
                 return;
             }
-            List<Tour> wantedTours = tourService.SearchTours(location, durationStart, durationEnd, language, numberGuests);
+            List<Tour> wantedTours = tourService.SearchTours(location, durationStart, durationEnd, language, NumberGuests);
             ListTour.Clear();
             foreach (Tour tour in wantedTours)
             {

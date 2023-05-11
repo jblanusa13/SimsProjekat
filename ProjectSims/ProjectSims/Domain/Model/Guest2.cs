@@ -18,12 +18,13 @@ namespace ProjectSims.Domain.Model
         public int UserId { get; set; }
         public List<int> VoucherIds { get; set; }
         public DateTime BirthDate { get; set; }
+        public string PhoneNumber { get; set; }
 
         public Guest2()
         {
             VoucherIds = new List<int>();
         }
-        public Guest2(int id, string name, string surname, string adress, string email, int userId, DateTime birthDate)
+        public Guest2(int id, string name, string surname, string adress, string email, int userId, DateTime birthDate, string phoneNumber)
         {
             Id = id;
             Name = name;
@@ -33,6 +34,7 @@ namespace ProjectSims.Domain.Model
             UserId = userId;
             VoucherIds = new List<int>();
             BirthDate = birthDate;
+            PhoneNumber = phoneNumber;
         }
 
         public void FromCSV(string[] values)
@@ -52,6 +54,7 @@ namespace ProjectSims.Domain.Model
                 }
             }
             BirthDate = DateTime.ParseExact(values[7], "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            PhoneNumber = values[8];
         }
 
         public string[] ToCSV()
@@ -68,7 +71,7 @@ namespace ProjectSims.Domain.Model
                 }
                 VoucherString += VoucherIds.Last();
             }
-            string[] csvvalues = { Id.ToString(), Name, Surname, Adress, Email, UserId.ToString(),VoucherString,BirthDate.ToString("MM/dd/yyyy")};
+            string[] csvvalues = { Id.ToString(), Name, Surname, Adress, Email, UserId.ToString(),VoucherString,BirthDate.ToString("MM/dd/yyyy"), PhoneNumber};
             return csvvalues;
         }
     }
