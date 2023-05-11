@@ -22,7 +22,7 @@ using ProjectSims.Observer;
 using ProjectSims.WPF.View.Guest2View;
 using ProjectSims.WPF.ViewModel.Guest2ViewModel;
 
-namespace ProjectSims.View.Guest2View
+namespace ProjectSims.WPF.View.Guest2View
 {
     /// <summary>
     /// Interaction logic for DetailsAndReservationTourView.xaml

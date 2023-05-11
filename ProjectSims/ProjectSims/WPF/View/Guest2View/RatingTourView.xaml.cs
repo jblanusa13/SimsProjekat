@@ -18,7 +18,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using ProjectSims.WPF.View.Guest2View.Pages;
 
-namespace ProjectSims.View.Guest2View
+namespace ProjectSims.WPF.View.Guest2View
 {
     /// <summary>
     /// Interaction logic for RatingTourView.xaml

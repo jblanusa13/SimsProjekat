@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest2View.Pages" 
       xmlns:converters="clr-namespace:ProjectSims.WPF.Converters"
+      xmlns:custom="clr-namespace:ProjectSims.WPF.CustomControls"
       mc:Ignorable="d" 
       d:DesignHeight="650"
       Title="SearchTourView" Width="1200" Foreground="#FFFAF6F6">
@@ -54,8 +55,12 @@
             <TextBox x:Name="DurationEndTextBox" HorizontalAlignment="Left" Margin="129,213,0,0" TextWrapping="Wrap" Text="" FontSize="15" VerticalAlignment="Top" Width="50" Height="27"/>
             <Label Content="do:" FontSize="15" HorizontalAlignment="Center" Margin="0,213,0,0" VerticalAlignment="Top"/>
             <Label Content="Broj ljudi:" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" Width="158" Margin="0,248,0,0"/>
-            <TextBox x:Name="NumberGuestsTextBox" HorizontalAlignment="Center" Margin="0,278,0,0" TextWrapping="Wrap" Text="" FontSize="15" VerticalAlignment="Top" Width="158" Height="27"/>
-            <Button Click="Search_Click" Cursor="Hand" Content="Trazi" FontSize="18" HorizontalAlignment="Center" Margin="0,325,0,0" VerticalAlignment="Top" Width="108" Height="35" Background="#FF455DF6" Foreground="White"/>
+            <Button Click="Search_Click" Cursor="Hand" Content="Trazi" FontSize="18" HorizontalAlignment="Center" Margin="0,324,0,0" VerticalAlignment="Top" Width="108" Height="35" Background="#FF455DF6" Foreground="White"/>
+
+            <custom:NumericBox  HorizontalAlignment="Center" Margin="0,278,0,0" FontSize="15" 
+                                VerticalAlignment="Top" Value="{Binding NumberGuests, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+
+            </custom:NumericBox>
 
         </Grid>
 

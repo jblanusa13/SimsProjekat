@@ -1,6 +1,6 @@
 ﻿using ProjectSims.Service;
 using ProjectSims.Domain.Model;
-using ProjectSims.View.Guest2View;
+using ProjectSims.WPF.View.Guest2View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

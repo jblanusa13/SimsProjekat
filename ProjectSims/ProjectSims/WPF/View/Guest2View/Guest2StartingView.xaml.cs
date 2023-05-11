@@ -17,7 +17,7 @@ using ProjectSims.WPF.View.Guest2View.Pages;
 using System.Windows.Threading;
 using ProjectSims.WPF.ViewModel.Guest2ViewModel;
 
-namespace ProjectSims.View.Guest2View
+namespace ProjectSims.WPF.View.Guest2View
 {
     /// <summary>
     /// Interaction logic for Guest2StartingView.xaml
