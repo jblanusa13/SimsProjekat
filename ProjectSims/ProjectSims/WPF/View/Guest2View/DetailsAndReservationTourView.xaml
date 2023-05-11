@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="Detalji o turi i njena rezervacija" Height="800" Width="1400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/WPF/View/Guest2View/travel-tour-logo.png">
     <Grid>
+        <Border BorderBrush="Black" BorderThickness="3" HorizontalAlignment="Left" Height="671" Margin="23,23,0,0" VerticalAlignment="Top" Width="848" CornerRadius="10,10,10,10"/>
         <Label Content="Prikaz informacija o turi:" FontSize="36" HorizontalAlignment="Left" Margin="37,34,0,0" VerticalAlignment="Top" Width="430" Height="58" FontWeight="Bold"/>
         <Label Content="Naziv ture:" FontSize="16" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="62,112,0,0" VerticalAlignment="Top" Width="231" Height="30"/>
         <Label Content="Lokacija(Grad i Drzava):" FontSize="16"  HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="62,186,0,0" VerticalAlignment="Top" Width="231" Height="35"/>
@@ -44,9 +45,7 @@
         <TextBlock x:Name="MessageBlock" HorizontalAlignment="Left" Margin="961,640,0,0" TextWrapping="Wrap" Text="" FontSize="16" VerticalAlignment="Top" Height="54" Width="358" FontStyle="Italic"/>
         <ListView x:Name="ImageList"  Margin="457,147,546,414"/>
         <Button Content="&#60;Nazad" Cursor="Hand" Click="ButtonBack" FontSize="18" HorizontalAlignment="Left" Margin="1285,23,0,0" VerticalAlignment="Top" Height="40" Width="90" />
-        <Border BorderBrush="Black" BorderThickness="3" HorizontalAlignment="Left" Height="671" Margin="23,23,0,0" VerticalAlignment="Top" Width="848" CornerRadius="10,10,10,10"/>
-
-
+        
 
 
     </Grid>

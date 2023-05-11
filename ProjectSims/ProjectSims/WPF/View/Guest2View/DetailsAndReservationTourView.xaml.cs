@@ -64,7 +64,6 @@ namespace ProjectSims.View.Guest2View
                 {
                     KeyPointTextBox.Text += keyPointService.GetKeyPointById(id).Name + ", ";
                 }
-
             }
 
             DateStartTextBox.Text = tourSelected.StartOfTheTour.ToString();

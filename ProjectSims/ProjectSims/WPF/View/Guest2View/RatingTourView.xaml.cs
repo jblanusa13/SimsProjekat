@@ -32,6 +32,7 @@ namespace ProjectSims.View.Guest2View
         public Tour tourRate { get; set; }
         private TourRatingService tourRatingService { get; set; }
         private ReservationTourService reservationTourService { get; set; }
+        private KeyPointService keyPointService { get; set; }
         public RatingTourView(Tour tour,Guest2 g,ReservationTourService rts)
         {
             InitializeComponent();
@@ -39,11 +40,22 @@ namespace ProjectSims.View.Guest2View
 
             guideService = new GuideService();
             guide = guideService.GetGuideById(tour.GuideId);
-            GuideTextBox.Text = guide.Name + " " + guide.Surname;
             guest2 = g;
             tourRate = tour;
             reservationTourService = rts;
             tourRatingService = new TourRatingService();
+            keyPointService = new KeyPointService(); 
+            foreach (int id in tourRate.KeyPointIds)
+            {
+                if (id.Equals(tourRate.KeyPointIds.Last()))
+                {
+                    KeyPointTextBox.Text += keyPointService.GetKeyPointById(id).Name;
+                }
+                else
+                {
+                    KeyPointTextBox.Text += keyPointService.GetKeyPointById(id).Name + ", ";
+                }
+            }
         }
 
         private void Rating_Click(object sender, RoutedEventArgs e)
@@ -181,6 +193,11 @@ namespace ProjectSims.View.Guest2View
             string[] helpString = apsolutePath.Split('\\');
             string nameFile = helpString.Last();
             return "/Resources/Images/Guest2/" + nameFile;
+        }
+
+        private void ButtonClose(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
