@@ -9,73 +9,97 @@
       Title="FinishedToursView">
     <Page.Resources>
         <Style TargetType="{x:Type Label}">
-            <Setter Property="Foreground" Value="#e1c564"/>
-            <Setter Property="FontFamily" Value="Corbel light"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Height" Value="45"/>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="0.4"/>
         </Style>
         <Style TargetType="{x:Type Image}">
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="Width" Value="40"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="50"/>
+        </Style>
+        <Style x:Key="ColumnHeader" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="Foreground" Value="#FF1B5886"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="IsHitTestVisible" Value="False"/>
+            
         </Style>
     </Page.Resources>
     <ScrollViewer>
         <Grid Background="Transparent">
-            <Label Content="Lista zahteva" HorizontalAlignment="Center" Margin="0,35,0,0" FontSize="25"/>
+            <Label Content="Lista zahteva" HorizontalAlignment="Center" Margin="0,50,0,0" FontSize="44" Height="50" FontWeight="Bold"/>
             <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,100,0,0" Width="1280" Height="140">
                 <Border BorderBrush="White" BorderThickness="2"/>
-                <Image Source="/Resources/Icons/Guide/adjust.png" Height="50" Width="50" Margin="20,20,0,0"/>
-                <Label Content="Filteri" Margin="70,30,0,0" FontSize="22"/>
-                <TextBox x:Name="LocationTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,60,0,0" Height="40" Width="200"/>
-                <Image Source="/Resources/Icons/Guide/location.png" Margin="400,60,0,0"/>
-                <TextBox x:Name="LanguageTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="500,60,0,0" Height="40" Width="200"/>
-                <Image Source="/Resources/Icons/Guide/globe.png" Margin="710,60,0,0"/>
-                <TextBox x:Name="MaxNumberGuestsTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="800,60,0,0" Height="40" Width="70"/>
-                <Image Source="/Resources/Icons/Guide/people.png" Margin="890,70,0,0" Height="30" Width="60"/>
+                <Image Source="/Resources/Icons/Guide/filter.png" Height="65" Width="65" Margin="20,20,0,0"/>
+                <Label Content="Filteri" Margin="70,40,0,0"/>
+                <TextBox x:Name="LocationTextBox" Margin="200,70,0,0" Width="200"/>
+                <Image Source="/Resources/Icons/Guide/location.png" Margin="410,70,0,0"/>
+                <TextBox x:Name="LanguageTextBox" Margin="500,70,0,0" Width="200"/>
+                <Image Source="/Resources/Icons/Guide/language.png" Margin="710,70,0,0"/>
+                <TextBox x:Name="MaxNumberGuestsTextBox" Margin="800,70,0,0"  Width="70"/>
+                <Image Source="/Resources/Icons/Guide/people.png" Margin="890,70,0,0"/>
                 <Viewbox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1000,40,0,0" Height="110" Width="110">
                     <Calendar Name="DateRange" FirstDayOfWeek="Monday" IsTodayHighlighted="True" SelectionMode="SingleRange"/>
                 </Viewbox>
-                <Button Click ="Search_Click" Margin="1200,60,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="50" Width="50" Background="Transparent" BorderThickness="0">
+                <Button Click ="Search_Click" Margin="0,70,20,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="65" Width="65" Background="Transparent" BorderThickness="0" Cursor="Hand">
                     <Image Source="/Resources/Icons/Guide/search.png"/>
                 </Button>
             </Grid>
-            <ListView  x:Name="TourRequestsListView" ItemsSource="{Binding TourRequests}" Margin="0,310,0,100" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single" Width="1200" Background="White">
+            <ListView  x:Name="TourRequestsListView" ItemsSource="{Binding TourRequests}" Margin="0,310,0,100" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single" Width="1200" Background="#ffc300">
                 <ListView.Resources>
                     <Style TargetType="{x:Type Label}">
-                        <Setter Property="Foreground" Value="#222E50"/>
-                        <Setter Property="FontFamily" Value="Corbel light"/>
+                        <Setter Property="Foreground" Value="#FF1B5886"/>
+                        <Setter Property="FontFamily" Value="Helvetica"/>
                         <Setter Property="FontSize" Value="22"/>
                     </Style>
                 </ListView.Resources>
                 <ListView.View>
-                    <GridView >
-                        <GridViewColumn Header="Lokacija" Width="250">
+                    <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeader}">
+                        <GridViewColumn Header="Lokacija" Width="300">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Label Content="{Binding Location}"/>
+                                    <Label Content="{Binding Location}"  Margin="45,0,0,0"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Jezik" Width="200">
+                        <GridViewColumn Header="Jezik" Width="300">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Label Content="{Binding Language}"/>
+                                    <Label Content="{Binding Language}" Margin="45,0,0,0"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Broj ljudi" Width="350">
+                        <GridViewColumn Header="Broj ljudi" Width="100" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Label Content="{Binding MaxNumberGuests}"/>
+                                    <Label Content="{Binding MaxNumberGuests}" Margin="25,0,0,0"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Opseg datuma">
+                        <GridViewColumn Header="Opseg datuma" Width="280">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Label>
+                                    <Label Margin="45,0,0,0">
                                         <AccessText>
                                             <MultiBinding StringFormat="{}{0} - {1}">
                                                 <Binding Path="DateRangeStart" />
@@ -86,11 +110,11 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Detalji i statistika" Width="270">
+                        <GridViewColumn Header="Detalji i statistika" Width="210">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Height="20" Width="20" Background="Transparent" Click="Details_Click" BorderThickness="0">
-                                        <Image Source="/Resources/Icons/Guide/details.png"/>
+                                    <Button Height="20" Width="20" Background="Transparent" Click="Details_Click" BorderThickness="0" Margin="75,0,0,0">
+                                        <Image Source="/Resources/Icons/Guide/info.png"/>
                                     </Button>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>

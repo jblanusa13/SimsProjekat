@@ -10,24 +10,23 @@
       Title="CreateTourView">
     <Page.Resources>
         <Style TargetType="{x:Type Label}">
-            <Setter Property="Foreground" Value="#011B3C"/>
+            <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Helvetica"/>
-            <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="FontSize" Value="30"/>
             <Setter Property="Height" Value="45"/>
         </Style>
         <Style TargetType="{x:Type TextBox}">
-            <Setter Property="Foreground" Value="#011B3C"/>
+            <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Helvetica"/>
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="FontSize" Value="28"/>
             <Setter Property="Height" Value="40"/>
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="#011B3C"/>
-            <Setter Property="BorderThickness" Value="0.5"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="0.4"/>
         </Style>
         <Style TargetType="{x:Type Image}">
             <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -38,13 +37,10 @@
         <Style TargetType="{x:Type GroupBox}">
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="Foreground" Value="#011B3C"/>
+            <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="28"/>
             <Setter Property="FontFamily" Value="Helvetica"/>
-            <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Width" Value="930"/>
-            <Setter Property="BorderBrush" Value="#011B3C"/>
-            <Setter Property="BorderThickness" Value="2.5"/>
         </Style>
         <ControlTemplate x:Key="ValidationTemplate">
             <StackPanel>
@@ -55,7 +51,8 @@
     </Page.Resources>
     <ScrollViewer>
         <Grid Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Width="1200" Height="2000">
-            <Label Content="Nova tura" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0" FontSize="40" Height="50" FontWeight="Bold"/>
+            <Image Source="/Resources/Icons/Guide/create.png" Margin="420,50,0,0"/>
+            <Label Content="Nova tura" HorizontalAlignment="Center" Margin="0,50,0,0" FontSize="44" Height="50" FontWeight="Bold"/>
             <Image Source="/Resources/Icons/Guide/tourname.png" Margin="100,150,0,0"/>
             <Label Content="Naziv" Margin="160,150,0,0"/>
             <TextBox Text="{Binding Path = TourName, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Margin="0,150,100,0"  Width="800"/>
@@ -84,9 +81,8 @@
                     <Grid.Resources>
                         <Style TargetType="Label">
                             <Setter Property="FontSize" Value="26"/>
-                            <Setter Property="Foreground" Value="#011B3C"/>
+                            <Setter Property="Foreground" Value="White"/>
                             <Setter Property="FontFamily" Value="Helvetica"/>
-                            <Setter Property="FontWeight" Value="Normal"/>
                             <Setter Property="VerticalAlignment" Value="Center"/>
                             <Setter Property="HorizontalAlignment" Value="Left"/>
                         </Style>
@@ -94,8 +90,7 @@
                             <Setter Property="FontSize" Value="26"/>
                             <Setter Property="FontFamily" Value="Helvetica"/>
                             <Setter Property="Background" Value="Transparent"/>
-                            <Setter Property="Foreground" Value="#011B3C"/>
-                            <Setter Property="FontWeight" Value="Normal"/>
+                            <Setter Property="Foreground" Value="White"/>
                             <Setter Property="VerticalAlignment" Value="Center"/>
                             <Setter Property="HorizontalAlignment" Value="Left"/>
                             <Setter Property="Height" Value="40"/>
@@ -128,9 +123,8 @@
                     <Grid.Resources>
                         <Style TargetType="Label">
                             <Setter Property="FontSize" Value="26"/>
-                            <Setter Property="Foreground" Value="#011B3C"/>
+                            <Setter Property="Foreground" Value="White"/>
                             <Setter Property="FontFamily" Value="Helvetica"/>
-                            <Setter Property="FontWeight" Value="Normal"/>
                             <Setter Property="VerticalAlignment" Value="Top"/>
                             <Setter Property="HorizontalAlignment" Value="Left"/>
                         </Style>
@@ -138,8 +132,7 @@
                             <Setter Property="FontSize" Value="26"/>
                             <Setter Property="FontFamily" Value="Helvetica"/>
                             <Setter Property="Background" Value="Transparent"/>
-                            <Setter Property="Foreground" Value="#011B3C"/>
-                            <Setter Property="FontWeight" Value="Normal"/>
+                            <Setter Property="Foreground" Value="White"/>
                             <Setter Property="VerticalAlignment" Value="Top"/>
                             <Setter Property="HorizontalAlignment" Value="Right"/>
                             <Setter Property="Height" Value="40"/>
@@ -186,7 +179,7 @@
                     </Image.Effect>
                 </Image>
             </Button>
-            <Label Content="Kreiraj turu" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,30" FontSize="16" Foreground="Green"/>
+            <Label Content="Kreiraj turu" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,30" FontSize="18"/>
         </Grid>
     </ScrollViewer>
 </Page>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims.View.GuideView"
         mc:Ignorable="d"
-        Title="Guide Starting View" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Background="#011B3C">
+        Title="Guide Starting View" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Background="#FF75C8F1">
     <Grid>
         <ToolBar HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Height="40" Width="1280" Background="#333333">
             <ToolBar.Resources>
@@ -30,12 +30,15 @@
             </Button>
         </ToolBar>
         <Grid Background ="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,40,0,0" Height="83" Width="1280">
-            <Button Click="Home_Click" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,40,0" Height="60" Width="60" Background="Transparent" BorderThickness="0">
+            <Button HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40,0,0,0" Height="60" Width="60" Background="Transparent" BorderThickness="0">
+                <Image Source="\Resources\Icons\Guide\question.png" Cursor="Hand"/>
+            </Button>
+            <Button HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,40,0" Height="60" Width="60" Background="Transparent" BorderThickness="0">
                 <Image Source="\Resources\Icons\Guide\profile.png" Cursor="Hand"/>
             </Button>
-            <Image Source="/Resources/Icons/Guide/logo.png" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Height="90" Width="90"/>
+            <Image Source="/Resources/Icons/Guide/logo.png" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="100"/>
         </Grid>
-        <Menu Margin="0,128,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="80" Width="1280" Background="Transparent" BorderThickness="0 4 0 0" BorderBrush="#8BB5DF">
+        <Menu Margin="0,128,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="80" Width="1280" Background="Transparent" BorderThickness="0 1 0 1" BorderBrush="#FCF5C7">
             <Menu.Resources>
                 <Style TargetType="MenuItem">
                     <Setter Property="Foreground" Value="White"/>
@@ -66,12 +69,12 @@
                 <MenuItem Header="Statistika zahteva" FontSize="28" Foreground="#011b3c" Height="30" Width="300"/>
             </MenuItem>
         </Menu>
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,209,0,0" Height="470" Width="1280">
-            <Frame Name="GuideFrame" HorizontalAlignment="Center" VerticalAlignment="Top" Height="470" Width="1280" NavigationUIVisibility="Hidden">
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,209,0,0" Height="490" Width="1280">
+            <Frame Name="GuideFrame" HorizontalAlignment="Center" VerticalAlignment="Top" Height="490" Width="1277" NavigationUIVisibility="Hidden" FlowDirection="RightToLeft">
                 <Frame.Background>
-                    <LinearGradientBrush EndPoint="0.5,0" StartPoint="0,0" SpreadMethod="Reflect">
-                        <GradientStop Color="#8BB5DF"/>
-                        <GradientStop Color="#b9d2ec" Offset="1"/>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0" SpreadMethod="Pad">
+                        <GradientStop Color="#FF75C8F1"/>
+                        <GradientStop Color="#FF1B5886" Offset="1"/>
                     </LinearGradientBrush>
                 </Frame.Background>
             </Frame>

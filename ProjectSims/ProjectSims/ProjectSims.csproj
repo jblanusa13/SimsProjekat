@@ -19,20 +19,25 @@
     <None Remove="Resources\Icons\Guide\checkmark.png" />
     <None Remove="Resources\Icons\Guide\checkpoints.png" />
     <None Remove="Resources\Icons\Guide\close.png" />
+    <None Remove="Resources\Icons\Guide\create.png" />
     <None Remove="Resources\Icons\Guide\description.png" />
     <None Remove="Resources\Icons\Guide\duration.png" />
     <None Remove="Resources\Icons\Guide\duration.png" />
+    <None Remove="Resources\Icons\Guide\filter.png" />
     <None Remove="Resources\Icons\Guide\guests.png" />
     <None Remove="Resources\Icons\Guide\help.png" />
     <None Remove="Resources\Icons\Guide\image.png" />
     <None Remove="Resources\Icons\Guide\info.png" />
     <None Remove="Resources\Icons\Guide\language.png" />
     <None Remove="Resources\Icons\Guide\location.png" />
+    <None Remove="Resources\Icons\Guide\logo.png" />
     <None Remove="Resources\Icons\Guide\logout.png" />
     <None Remove="Resources\Icons\Guide\mapPin.png" />
     <None Remove="Resources\Icons\Guide\people.png" />
+    <None Remove="Resources\Icons\Guide\profile.png" />
     <None Remove="Resources\Icons\Guide\question.png" />
     <None Remove="Resources\Icons\Guide\report.png" />
+    <None Remove="Resources\Icons\Guide\search.png" />
     <None Remove="Resources\Icons\Guide\star.png" />
     <None Remove="Resources\Icons\Guide\tourname.png" />
     <None Remove="Resources\Icons\Guide\travel-tour-logo.png" />
@@ -92,10 +97,19 @@
     <Content Include="Resources\Icons\Guide\checkpoints.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Icons\Guide\create.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Icons\Guide\description.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Icons\Guide\filter.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Icons\Guide\image.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\info.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\language.png">
@@ -104,7 +118,19 @@
     <Content Include="Resources\Icons\Guide\location.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Icons\Guide\logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Icons\Guide\people.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\profile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\question.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\search.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\tourname.png">
