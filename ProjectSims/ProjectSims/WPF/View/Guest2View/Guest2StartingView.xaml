@@ -32,7 +32,7 @@
             <Button Content="Pracenje tura" Cursor="Hand"  HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Height="70" Width="200" Click="ButtonShowActiveTour" FontSize="24" Background="#FF455DF6" Foreground="White"/>
             <Button Content="Zahtjevi" Cursor="Hand"  HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" Height="70" Width="200" FontSize="24" Background="#FF455DF6" Foreground="White" Click="ButtonShowTourRequests"/>
             <Button Content="Vauceri" Cursor="Hand"  HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Height="70" Width="200" Click="ButtonShowVouchers" FontSize="24" Background="#FF455DF6" Foreground="White"/>
-            <Button Content="Nalog" Cursor="Hand"  HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center" Height="70" Width="200" FontSize="24" Background="#FF455DF6" Foreground="White"/>
+            <Button Content="Nalog" Cursor="Hand"  HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center" Height="70" Width="200" Click="ButtonAccount" FontSize="24" Background="#FF455DF6" Foreground="White"/>
             <Button Content="Odjavi se!" Cursor="Hand" HorizontalAlignment="Center" Margin="0,127,0,0" Grid.Row="7" VerticalAlignment="Top" Height="45" Width="124" Click="LogOut" FontSize="24" Background="#FF455DF6" Foreground="White"/>
         </Grid>
 
