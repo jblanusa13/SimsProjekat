@@ -132,7 +132,7 @@
             </Grid>
 
             <DataGrid Grid.Row="2" Name="AccommodationsTable" ItemsSource="{Binding Path=Accommodations, UpdateSourceTrigger=PropertyChanged}"
-            Margin="10,10,10,0">
+            Margin="10,10,10,0" HeadersVisibility="Column">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" Width="120"></DataGridTextColumn>
                     <DataGridTextColumn Header="Grad" Binding="{Binding Location.City}" Width="130"></DataGridTextColumn>

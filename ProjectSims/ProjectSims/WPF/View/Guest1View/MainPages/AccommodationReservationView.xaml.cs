@@ -19,6 +19,7 @@ using System.Windows.Shapes;
 using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 using ProjectSims.Service;
+using ProjectSims.Validation;
 using ProjectSims.WPF.View.Guest1View;
 
 namespace ProjectSims.WPF.View.Guest1View.MainPages
@@ -159,6 +160,12 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
                 ImageList.Items.Add(image);
             }
         }
+
+        private void FirstDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LastDatePicker.DisplayDateStart = FirstDatePicker.SelectedDate;                   
+        }
+
         private void FindDates_Click(object sender, RoutedEventArgs e)
         {
             DateRangesService dateRangesService = new DateRangesService();

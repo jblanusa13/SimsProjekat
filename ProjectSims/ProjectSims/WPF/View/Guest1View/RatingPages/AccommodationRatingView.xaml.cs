@@ -72,9 +72,9 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
 
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(CleanlinessTb.Text) && !string.IsNullOrEmpty(FairnessTb.Text) && !string.IsNullOrEmpty(LocationTb.Text) && !string.IsNullOrEmpty(ValueForMoneyTb.Text))
+            if (!string.IsNullOrEmpty(CleanlinessCb.Text) && !string.IsNullOrEmpty(FairnessCb.Text) && !string.IsNullOrEmpty(LocationCb.Text) && !string.IsNullOrEmpty(ValueForMoneyCb.Text))
             {
-                viewModel.AddRating(CleanlinessTb.Text, FairnessTb.Text, LocationTb.Text, ValueForMoneyTb.Text, CommentTb.Text, images);
+                viewModel.AddRating(CleanlinessCb.Text, FairnessCb.Text, LocationCb.Text, ValueForMoneyCb.Text, CommentTb.Text, images);
                 NavigationService.Navigate(new RenovationRecommendationView(viewModel));
             }
         }

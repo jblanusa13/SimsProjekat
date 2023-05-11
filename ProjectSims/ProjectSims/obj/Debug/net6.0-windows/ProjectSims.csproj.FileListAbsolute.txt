@@ -380,3 +380,4 @@ C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\
 C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ProjectSims.pdb
 C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ProjectSims.genruntimeconfig.cache
 C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ref\ProjectSims.dll
+C:\Users\Jelena\OneDrive\Desktop\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
