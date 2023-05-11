@@ -32,13 +32,12 @@ namespace ProjectSims.WPF.CustomControls
         public NumericBox()
         {
             InitializeComponent();
-        }
-
+        }      
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = !IsNumeric(e.Text);
+             e.Handled = !IsNumeric(e.Text);
+            
         }
-
         private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             // Handle arrow keys to increment/decrement value
@@ -47,9 +46,19 @@ namespace ProjectSims.WPF.CustomControls
                 Value++;
                 e.Handled = true;
             }
-            else if (e.Key == Key.Down)
+            else if (e.Key == Key.Down && Value > 0)
             {
                 Value--;
+                e.Handled = true;
+            }
+            else if(e.Key == Key.Back && Value < 10) 
+            {
+                Value = 0;
+                e.Handled = true;
+            }
+            else if (e.Key == Key.Delete || e.Key == Key.Back)
+            {
+                Value = 0;
                 e.Handled = true;
             }
         }
