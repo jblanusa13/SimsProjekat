@@ -135,8 +135,8 @@ namespace ProjectSims.View.Guest2View
             MessageReservationBox.Text = "";
             if (numberGuests > tour.AvailableSeats)
             {
-                MessageReservationBox.Text = "There are no available seats on this tour for the entered number of people. " +
-                    "\nThe number of available seats is " + tour.AvailableSeats + "!";
+                MessageReservationBox.Text = "Na ovoj turi nema dovoljan broj slobodnih mjesta za unijeti broj ljudi. " +
+                    "\nBroj slobodnih mjesta je: " + tour.AvailableSeats + "!";
             }
             else 
             {
@@ -147,7 +147,7 @@ namespace ProjectSims.View.Guest2View
             }
             if (tour.AvailableSeats == 0)
             {
-                AlternativeTextBlock.Text = "The selected tour is fully booked, some of the alternative tours are:";
+                AlternativeTextBlock.Text = "Izabrana tura je u potpunosti rezervisana, neke od alternativnih tura su:";
                 AlternativeToursGrid.Visibility = Visibility.Visible;
 
                 if (SelectedTour != null)
@@ -160,7 +160,7 @@ namespace ProjectSims.View.Guest2View
                     MessageBlock.Text = "";
                     if (numberGuests > SelectedTour.AvailableSeats)
                     {
-                        MessageBlock.Text = "The number of available seats is " + SelectedTour.AvailableSeats + "!";
+                        MessageBlock.Text = "Broj slobodnih mjesta je " + SelectedTour.AvailableSeats + "!";
                     }
                     else
                     {
