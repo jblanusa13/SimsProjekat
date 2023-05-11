@@ -368,5 +368,10 @@ namespace ProjectSims.WPF.View.GuideView.Pages
            else
                MessageBox.Show("Nisu validno popunjena polja!");
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

@@ -6,39 +6,45 @@
       xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
       xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="ProjectSims.WPF.View.GuideView.Pages.CreateTourView"
       mc:Ignorable="d" 
-      d:DesignHeight="1750" d:DesignWidth="1280"
+      d:DesignHeight="2000" d:DesignWidth="1280"
       Title="CreateTourView">
     <Page.Resources>
         <Style TargetType="{x:Type Label}">
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="#011B3C"/>
             <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="FontSize" Value="22"/>
-            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Height" Value="45"/>
         </Style>
         <Style TargetType="{x:Type TextBox}">
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="#011B3C"/>
             <Setter Property="FontFamily" Value="Helvetica"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontSize" Value="28"/>
             <Setter Property="Height" Value="40"/>
             <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="#011B3C"/>
+            <Setter Property="BorderThickness" Value="0.5"/>
         </Style>
         <Style TargetType="{x:Type Image}">
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="Height" Value="35"/>
-            <Setter Property="Width" Value="35"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="50"/>
         </Style>
         <Style TargetType="{x:Type GroupBox}">
-            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="Foreground" Value="#011B3C"/>
+            <Setter Property="FontSize" Value="28"/>
             <Setter Property="FontFamily" Value="Helvetica"/>
-            <Setter Property="Width" Value="900"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Width" Value="930"/>
+            <Setter Property="BorderBrush" Value="#011B3C"/>
+            <Setter Property="BorderThickness" Value="2.5"/>
         </Style>
         <ControlTemplate x:Key="ValidationTemplate">
             <StackPanel>
@@ -48,14 +54,14 @@
         </ControlTemplate>
     </Page.Resources>
     <ScrollViewer>
-        <Grid Background="Transparent">
-            <Label Content="Nova tura" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0" FontSize="36" Height="50" Foreground="#D7B94B"/>
-            <Image Source="/Resources/Icons/Guide/name.png" Margin="50,100,0,0"/>
-            <Label Content="Naziv" Margin="100,100,0,0"/>
-            <TextBox Text="{Binding Path = TourName, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Margin="200,100,0,0"  Width="800"/>
-            <Image Source="/Resources/Icons/Guide/globe.png" Margin="50,160,0,0"/>
-            <Label Content="Jezik" Margin="100,160,0,0"/>
-            <ComboBox Name="LanguageComboBox" Text="{Binding Path = TourLanguage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,160,0,0" Width="800" Height="40" Background="Transparent">
+        <Grid Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Width="1200" Height="2000">
+            <Label Content="Nova tura" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0" FontSize="40" Height="50" FontWeight="Bold"/>
+            <Image Source="/Resources/Icons/Guide/tourname.png" Margin="100,150,0,0"/>
+            <Label Content="Naziv" Margin="160,150,0,0"/>
+            <TextBox Text="{Binding Path = TourName, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Margin="0,150,100,0"  Width="800"/>
+            <Image Source="/Resources/Icons/Guide/language.png" Margin="100,250,0,0"/>
+            <Label Content="Jezik" Margin="170,250,0,0"/>
+            <ComboBox Name="LanguageComboBox" Text="{Binding Path = TourLanguage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,250,100,0" Width="800" Height="40" Background="Transparent">
                 <ComboBoxItem Content="Srpski"/>
                 <ComboBoxItem Content="Engleski"/>
                 <ComboBoxItem Content="Francuski"/>
@@ -63,65 +69,124 @@
                 <ComboBoxItem Content="Španski"/>
                 <ComboBoxItem Content="Italijanski"/>
             </ComboBox>
-            <Image Source="/Resources/Icons/Guide/location.png" Margin="50,220,0,0"/>
-            <GroupBox  Header="Lokacija" Margin="100,220,0,0" Height="180">
+            <Image Source="/Resources/Icons/Guide/location.png" Margin="100,350,0,0"/>
+            <GroupBox  Header="Lokacija" FontFamily="Helvetica" Margin="0,350,100,0" Height="180">
                 <Grid>
-                    <Label Content="Grad" Margin="20,20,0,0"/>
-                    <TextBox Name="CityTextBox" Text="{Binding City, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Margin="100,20,0,0"  Width="790"/>
-                    <Label Content="Drzava" Margin="20,80,0,0"/>
-                    <TextBox Name="CountryTextBox" Text="{Binding Country, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Margin="100,80,0,0"  Width="790"/>
+                    <Label Content="Grad" Margin="15,20,0,0" FontWeight="Normal" FontSize="26"/>
+                    <TextBox Name="CityTextBox" Text="{Binding City, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Margin="0,20,10,0"  Width="780"/>
+                    <Label Content="Drzava" Margin="15,80,0,0" FontWeight="Normal" FontSize="26"/>
+                    <TextBox Name="CountryTextBox" Text="{Binding Country, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Margin="0,80,10,0"  Width="780"/>
                 </Grid>
             </GroupBox>
-            <Image Source="/Resources/Icons/Guide/calendar.png" Margin="50,430,0,0"/>
-            <GroupBox Header="Termin" Margin="100,430,0,0" Height="120" >
-                <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Width="900" Height="100">
-                    <StackPanel Orientation="Horizontal">
-                    <Label Content="Dan" Margin="40,20,0,0"/>
-                    <DatePicker  x:Name ="TourDatePicker" SelectedDate="{Binding Date, Mode=TwoWay}" Height="40" Width="150" Margin="20,20,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" SelectedDateChanged="AppointmentInput_Changed"/>
-                    <Label Content="Sat" Margin="40,20,0,0"/>
-                        <TextBox Name="HourTextBox" Text="{Binding Hour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" TextChanged="AppointmentInput_Changed" Margin="20,20,0,0"  Width="70"/>
-                    <Label Content="Minut" Margin="40,20,0,0"/>
-                        <TextBox Name="MinuteTextBox" Text="{Binding Minute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" TextChanged="AppointmentInput_Changed" Margin="20,20,0,0"  Width="70"/>
-                    <Label Content="Trajanje" Margin="40,20,0,0"/>
-                     <TextBox Name="DurationTextBox" Text="{Binding Duration, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" TextChanged="AppointmentInput_Changed" Margin="20,20,0,0" Width="70"/>
-                    </StackPanel>
-                    <TextBox Name="MessageTextBox" Margin="300,60,0,0" FontSize="20" Foreground="Red" IsReadOnly="True" BorderThickness="0"/>
-                </Grid>
-        </GroupBox>
-            <Button x:Name="AddAppointmentButton" Margin="1020,480,0,0" Height="50" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent" Click="AddAppointment_Click" Cursor="Hand">
-                <Image Source="/Resources/Icons/Guide/plus.png"/>
-            </Button>
-            <Image Source="/Resources/Icons/Guide/pin.png" Margin="50,580,0,0"/>
-            <GroupBox Header="Stanice" Margin="100,580,0,0" Height="240">
+            <Image Source="/Resources/Icons/Guide/calendar.png" Margin="100,590,0,0"/>
+            <GroupBox Header="Termin i trajanje" Margin="0,590,100,0" Height="120" >
                 <Grid>
-                    <Label Content="Pocetna" Margin="20,20,0,0"/>
-                    <TextBox Text="{Binding StartKeyPoint, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Margin="160,20,0,0" Width="700"/>
-                    <Label Content="Medjustanica" Margin="20,80,0,0"/>
-                    <TextBox x:Name="OtherKeyPointTextBox" Text="{Binding OtherKeyPoint, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="160,80,0,0" Width="700" TextChanged="OtherKeyPointTextBox_TextChanged"/>
-                    <Button x:Name="AddKeyPointButton" Margin="860,80,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent" Click="AddKeyPoint_Click" Cursor="Hand">
-                        <Image Source="/Resources/Icons/Guide/plus.png"/>
+                    <Grid.Resources>
+                        <Style TargetType="Label">
+                            <Setter Property="FontSize" Value="26"/>
+                            <Setter Property="Foreground" Value="#011B3C"/>
+                            <Setter Property="FontFamily" Value="Helvetica"/>
+                            <Setter Property="FontWeight" Value="Normal"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="HorizontalAlignment" Value="Left"/>
+                        </Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="FontSize" Value="26"/>
+                            <Setter Property="FontFamily" Value="Helvetica"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Foreground" Value="#011B3C"/>
+                            <Setter Property="FontWeight" Value="Normal"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="HorizontalAlignment" Value="Left"/>
+                            <Setter Property="Height" Value="40"/>
+                            <Setter Property="Width" Value="80"/>
+                        </Style>
+                    </Grid.Resources>
+                    <Label Content="Dan" Margin="15,0,0,0"/>
+                    <Viewbox HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,0,0,0" Height="40" Width="150" Stretch="Fill">
+                        <DatePicker Name="TourDatePicker"  SelectedDate="{Binding Date, Mode=TwoWay}" SelectedDateChanged="AppointmentInput_Changed"/>
+                    </Viewbox>
+                    <Label Content="Sat" Margin="280,0,0,0"/>
+                    <TextBox Name="HourTextBox" Text="{Binding Hour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" TextChanged="AppointmentInput_Changed" Margin="340,0,0,0" />
+                    <Label Content="Minut" Margin="470,0,0,0"/>
+                    <TextBox Name="MinuteTextBox" Text="{Binding Minute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" TextChanged="AppointmentInput_Changed" Margin="560,0,0,0" />
+                    <Label Content="Trajanje" Margin="690,0,0,0"/>
+                    <TextBox Name="DurationTextBox" Text="{Binding Duration, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" TextChanged="AppointmentInput_Changed"  Margin="800,0,0,0"/>
+                </Grid>
+            </GroupBox>
+            <TextBox Name="MessageTextBox" Margin="0,715,0,0" FontSize="20" Foreground="Red" IsReadOnly="True" BorderThickness="0" HorizontalAlignment="Center"/>
+            <Button Name="AddAppointmentButton" Margin="0,635,30,0" Height="65" Width="65" HorizontalAlignment="Right" VerticalAlignment="Top"  Background="Transparent" BorderThickness="0" Click="AddAppointment_Click" Cursor="Hand">
+                <Image Source="/Resources/Icons/Guide/add.png" Height="60" Width="60" Cursor="Hand">
+                    <Image.Effect>
+                        <DropShadowEffect/>
+                    </Image.Effect>
+                </Image>
+            </Button>
+            <Image Source="/Resources/Icons/Guide/checkpoints.png" Margin="100,770,0,0"/>
+            <GroupBox Header="Stanice" Margin="0,770,100,0" Height="240">
+                <Grid>
+                    <Grid.Resources>
+                        <Style TargetType="Label">
+                            <Setter Property="FontSize" Value="26"/>
+                            <Setter Property="Foreground" Value="#011B3C"/>
+                            <Setter Property="FontFamily" Value="Helvetica"/>
+                            <Setter Property="FontWeight" Value="Normal"/>
+                            <Setter Property="VerticalAlignment" Value="Top"/>
+                            <Setter Property="HorizontalAlignment" Value="Left"/>
+                        </Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="FontSize" Value="26"/>
+                            <Setter Property="FontFamily" Value="Helvetica"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Foreground" Value="#011B3C"/>
+                            <Setter Property="FontWeight" Value="Normal"/>
+                            <Setter Property="VerticalAlignment" Value="Top"/>
+                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                            <Setter Property="Height" Value="40"/>
+                            <Setter Property="Width" Value="650"/>
+                        </Style>
+                    </Grid.Resources>
+                    <Label Content="Pocetna" Margin="15,20,0,0"/>
+                    <TextBox Text="{Binding StartKeyPoint, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Margin="0,20,80,0"/>
+                    <Label Content="Medjustanica" Margin="15,80,0,0"/>
+                    <TextBox x:Name="OtherKeyPointTextBox" Text="{Binding OtherKeyPoint, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="0,80,80,0" TextChanged="OtherKeyPointTextBox_TextChanged"/>
+                    <Button x:Name="AddKeyPointButton" Margin="0,75,15,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" BorderThickness="0" Click="AddKeyPoint_Click" Cursor="Hand" Height="45" Width="45">
+                        <Image Source="/Resources/Icons/Guide/add.png" Height="40" Width="40">
+                            <Image.Effect>
+                                <DropShadowEffect/>
+                            </Image.Effect>
+                        </Image>
                     </Button>
-                    <Label Content="Krajnja" Margin="20,140,0,0"/>
-                    <TextBox Text="{Binding FinishKeyPoint, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Margin="160,140,0,0" Width="700"/>
+                    <Label Content="Krajnja" Margin="15,140,0,0"/>
+                    <TextBox Text="{Binding FinishKeyPoint, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Margin="0,140,80,0"/>
                 </Grid>
             </GroupBox>
-            <Image Source="/Resources/Icons/Guide/people.png" Margin="50,860,0,0" Height="20" Width="40"/>
-            <Label Content="Maksimalan broj gostiju" Margin="100,850,0,0"/>
-            <TextBox Name="MaxNumberGuestsTextBox" Text="{Binding MaxNumberGuests, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Margin="350,850,0,0" Width="100"/>
-            <Image Source="/Resources/Icons/Guide/image.png" Margin="50,910,0,0"/>
-            <GroupBox Header="Slike" Margin="100,910,0,0" Height="300">
-                <ListView x:Name="ImageList" Margin="0,0,0,0" Height="250" Width="850" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" BorderThickness="0"/>
+            <Image Source="/Resources/Icons/Guide/people.png" Margin="100,1070,0,0"/>
+            <Label Content="Maksimalan broj gostiju" Margin="150,1070,0,0"/>
+            <TextBox Name="MaxNumberGuestsTextBox" Text="{Binding MaxNumberGuests, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Margin="0,1070,580,0" Width="100"/>
+            <Image Source="/Resources/Icons/Guide/image.png" Margin="100,1140,0,0"/>
+            <GroupBox Header="Slike" Margin="0,1140,100,0" Height="300">
+                <ListView x:Name="ImageList" Height="220" Width="860" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" BorderThickness="0"/>
             </GroupBox>
-            <Button Margin="1020,1110,0,0" Height="50" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent" Click="BrowseImage_Click" Cursor="Hand">
-                <Image Source="/Resources/Icons/Guide/plus.png"/>
+            <Button Name="AddImageButton" Margin="0,1250,30,0" Height="65" Width="65" HorizontalAlignment="Right" VerticalAlignment="Top"  Background="Transparent" BorderThickness="0" Click="BrowseImage_Click" Cursor="Hand">
+                <Image Source="/Resources/Icons/Guide/add.png" Height="60" Width="60" Cursor="Hand">
+                    <Image.Effect>
+                        <DropShadowEffect/>
+                    </Image.Effect>
+                </Image>
             </Button>
-            <Image Source="/Resources/Icons/Guide/details.png" Margin="50,1230,0,0"/>
-            <GroupBox Header="Opis" Margin="100,1230,0,0" Height="300">
-                <TextBox Text="{Binding Description, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Width="900" Height="300"/>
+            <Image Source="/Resources/Icons/Guide/description.png" Margin="100,1500,0,0"/>
+            <GroupBox Header="Opis" Margin="0,1500,100,0" Height="300" >
+                <TextBox Text="{Binding Description, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="860" Height="220" TextChanged="TextBox_TextChanged"/>
             </GroupBox>
-            <Button  Click="CreateTour_Click" HorizontalAlignment="Left" Margin="1050,1600,0,100"  VerticalAlignment="Top" Background="Transparent" Cursor="Hand">
-                <Image Source="/Resources/Icons/Guide/ok.png" Width="100" Height="100"/>
+            <Button Margin="0,0,10,80" Height="85" Width="85" HorizontalAlignment="Right" VerticalAlignment="Bottom"  Background="Transparent" BorderThickness="0" Click="CreateTour_Click" Cursor="Hand">
+                <Image Source="/Resources/Icons/Guide/checked.png" Height="80" Width="80" Cursor="Hand">
+                    <Image.Effect>
+                        <DropShadowEffect/>
+                    </Image.Effect>
+                </Image>
             </Button>
+            <Label Content="Kreiraj turu" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,30" FontSize="16" Foreground="Green"/>
         </Grid>
     </ScrollViewer>
 </Page>
