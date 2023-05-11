@@ -36,6 +36,26 @@ namespace ProjectSims.Domain.Model
             DateRangeStart = dateRangeStart;
             DateRangeEnd = dateRangeEnd;
         }
+
+        public static TourRequestState GetRequestState(string state)
+        {
+            return state switch
+            {
+                "na cekanju" => TourRequestState.Waiting ,
+                "prihvacen" => TourRequestState.Accepted,
+                _ => TourRequestState.Invalid
+            };
+        }
+
+        public static string GetRequestState(TourRequestState state)
+        {
+            return state switch
+            {
+                TourRequestState.Waiting => "na cekanju",
+                TourRequestState.Accepted => "prihvacen",
+                _ => "nevazeci"
+            };
+        }
         public void FromCSV(string[] values)
         {
             Id = Convert.ToInt32(values[0]);
