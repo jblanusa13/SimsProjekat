@@ -13,20 +13,20 @@ namespace ProjectSims.Domain.Model
         public int Id { get; set; }
         public int Guest2Id { get; set; }
         public int GuideId { get; set; }
-        public int TourId { get; set; }
+        public List<int> TourIds { get; set; }
         public string ContentNotification { get; set; }
         public DateTime DateSentNotification { get; set; }
         public bool Seen { get; set; }
         public NotificationTour()
         {
-
+            TourIds = new List<int>();
         }
-        public NotificationTour(int id, int guest2Id, int guideId, int tourId, string contentNotification, DateTime dateSentNotification, bool seen)
+        public NotificationTour(int id, int guest2Id, int guideId, List<int> tourIds, string contentNotification, DateTime dateSentNotification, bool seen)
         {
             Id = id;
             Guest2Id = guest2Id;
             GuideId = guideId;
-            TourId = tourId;
+            TourIds = tourIds;
             ContentNotification = contentNotification;
             DateSentNotification = dateSentNotification;
             Seen = seen;
@@ -34,7 +34,17 @@ namespace ProjectSims.Domain.Model
 
         public string[] ToCSV()
         {
-            string[] csvvalues = { Id.ToString(), Guest2Id.ToString(), GuideId.ToString(), TourId.ToString(), ContentNotification, DateSentNotification.ToString(), Seen.ToString() };
+            string TourIdArray = "";
+            foreach (int tourId in TourIds)
+            {
+                if (tourId != TourIds.Last())
+                {
+                    TourIdArray += tourId.ToString() + ",";
+                }
+            }
+            TourIdArray += TourIds.Last().ToString();
+
+            string[] csvvalues = { Id.ToString(), Guest2Id.ToString(), GuideId.ToString(), TourIdArray, ContentNotification, DateSentNotification.ToString("dd/MM/yyyy HH:mm:ss"), Seen.ToString() };
             return csvvalues;
         }
 
@@ -43,9 +53,14 @@ namespace ProjectSims.Domain.Model
             Id = Convert.ToInt32(values[0]);
             Guest2Id = Convert.ToInt32(values[1]);
             GuideId = Convert.ToInt32(values[2]);
-            TourId = Convert.ToInt32(values[3]);
+            
+            foreach (string tour in values[3].Split(","))
+            {
+                int tourId = Convert.ToInt32(tour);
+                TourIds.Add(tourId);
+            }
             ContentNotification = values[4];
-            DateSentNotification = DateTime.ParseExact(values[5], "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            DateSentNotification = DateTime.ParseExact(values[5], "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
             Seen = Convert.ToBoolean(values[6]);
         }
     }

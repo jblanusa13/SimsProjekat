@@ -28,6 +28,10 @@ namespace ProjectSims.Service
             guideScheduleService = new GuideScheduleService();
             reservationService = new ReservationTourService();
         }
+        public int NextId()
+        {
+            return tourRepository.NextId();
+        }
         public List<Tour> GetAllTours()
         {
             return tourRepository.GetAll();
