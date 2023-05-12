@@ -54,8 +54,8 @@ namespace ProjectSims.WPF.ViewModel.Guest2ViewModel
             reservationTourService.Create(reservation);
             tour.AvailableSeats -= numberGuests;
             tourService.Update(tour);
-            return "Reservation successful! \nUser " + guest2.Name + " " + guest2.Surname +
-                " has made a reservation for " + numberGuests.ToString() + " people on the tour " + tour.Name + "." ;
+            return "Rezervacija uspjesna! \nKorisnik " + guest2.Name + " " + guest2.Surname +
+                " je izvrsio rezervaciju za " + numberGuests.ToString() + ". ljudi na turi: " + tour.Name + "." ;
             
         }
 

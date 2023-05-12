@@ -73,7 +73,7 @@ namespace ProjectSims.Repository
         public List<Tour> GetToursByDateAndGuideId(DateTime date, int guideId)
         {
             List<Tour> inactiveTours = GetToursByStateAndGuideId(TourState.Inactive, guideId);
-            return inactiveTours.Where(t => t.StartOfTheTour.Date == date).ToList();
+            return inactiveTours.Where(t => t.StartOfTheTour.Date == date.Date).ToList();
         }
         public void Subscribe(IObserver observer)
         {

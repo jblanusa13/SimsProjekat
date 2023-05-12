@@ -34,7 +34,7 @@
             <ComboBoxItem Content="Italijanski"/>
         </ComboBox>
         <Label Content="Broj gostiju:" HorizontalAlignment="Left" Margin="400,326,0,0" VerticalAlignment="Top"/>
-        <TextBox PreviewTextInput="NumberValidationTextBox" Text="{Binding Path=MaxNumberGuests,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="400,352,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="189" Height="27" FontSize="13" BorderThickness="2" BorderBrush="Black"></TextBox>
+        <TextBox PreviewTextInput="NumberValidationTextBox" PreviewKeyDown="TextBox_PreviewKeyDown" Text="{Binding Path=MaxNumberGuests,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="400,352,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="189" Height="27" FontSize="13" BorderThickness="2" BorderBrush="Black"></TextBox>
         <Label Content="Pocetni datum:" FontSize="13" HorizontalAlignment="Left" Margin="152,385,0,0" VerticalAlignment="Top"/>
         <DatePicker x:Name="DateStart" SelectedDateChanged="DateStart_SelectedDateChanged" HorizontalAlignment="Left" DisplayDateStart="{x:Static sys:DateTime.Today}" FontSize="13" Width="189" Height="27" BorderThickness="2" Margin="152,417,0,0" VerticalAlignment="Top" Focusable="False">
             <DatePicker.BorderBrush>

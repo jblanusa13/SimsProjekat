@@ -13,10 +13,12 @@ namespace ProjectSims.Service
     public class AccommodationService
     {
         private IAccommodationRepository accommodationRepository;
+        private IAccommodationScheduleRepository scheduleRepository;
 
         public AccommodationService()
         {
             accommodationRepository = Injector.CreateInstance<IAccommodationRepository>();
+            scheduleRepository = Injector.CreateInstance<IAccommodationScheduleRepository>();
         }
 
         public List<Accommodation> GetAllAccommodations()
@@ -49,6 +51,7 @@ namespace ProjectSims.Service
 
         public void Create(Accommodation accommodation)
         {
+            accommodation.ScheduleId = scheduleRepository.NextId();
             accommodationRepository.Create(accommodation);
         }
 

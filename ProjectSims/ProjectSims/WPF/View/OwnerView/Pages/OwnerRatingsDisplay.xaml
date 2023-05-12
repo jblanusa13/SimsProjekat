@@ -8,7 +8,7 @@
       d:DesignHeight="750" d:DesignWidth="430"
       Title="Requests">
     
-    <Grid Height="700" Width="400" ScrollViewer.CanContentScroll="True" 
+    <Grid ScrollViewer.CanContentScroll="True" 
             TextBlock.TextAlignment="Center"
         SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical">
         

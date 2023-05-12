@@ -25,6 +25,7 @@ namespace ProjectSims.Service
         {
             return ratingRepository.GetAll();
         }
+
         public List<AccommodationAndOwnerRating> GetRatingsWhereGuestRated(int ownerId)
         {
             List<AccommodationAndOwnerRating> ratings = new List<AccommodationAndOwnerRating>();

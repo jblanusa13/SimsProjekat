@@ -49,6 +49,27 @@ namespace ProjectSims.Domain.Model
             State = state;
             ActiveKeyPointId = activeKeyPointId;
         }
+
+        public static TourState GetState(string state)
+        {
+            return state switch
+            {
+                "Neaktivna" => TourState.Inactive,
+                "Aktivna" => TourState.Active,
+                "Zavrsena" => TourState.Finished,
+                _ => TourState.Cancelled
+            };
+        }
+        public static string GetState(TourState state)
+        {
+            return state switch
+            {
+                TourState.Inactive => "Neaktivna",
+                TourState.Active => "Aktivna",
+                TourState.Finished => "Zavrsena",
+                _ => "Otkazana" 
+            };
+        }
         public void FromCSV(string[] values)
         {
             Id = Convert.ToInt32(values[0]);
@@ -63,7 +84,7 @@ namespace ProjectSims.Domain.Model
                  int keyPointId = Convert.ToInt32(keyPoint);
                  KeyPointIds.Add(keyPointId);
             }         
-            StartOfTheTour = DateTime.ParseExact(values[8], "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+            StartOfTheTour = DateTime.ParseExact(values[8], "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
             Duration = Convert.ToDouble(values[9]);
             foreach(string image in values[10].Split(","))
             {
@@ -96,7 +117,7 @@ namespace ProjectSims.Domain.Model
             }
             ImageString += Images.Last();
 
-            string[] csvvalues = { Id.ToString(), GuideId.ToString(), Name, Location, Description, Language, MaxNumberGuests.ToString(), KeyPointIdArray, StartOfTheTour.ToString("MM/dd/yyyy HH:mm:ss"), Duration.ToString(), ImageString, AvailableSeats.ToString(),State.ToString(),ActiveKeyPointId.ToString()};
+            string[] csvvalues = { Id.ToString(), GuideId.ToString(), Name, Location, Description, Language, MaxNumberGuests.ToString(), KeyPointIdArray, StartOfTheTour.ToString("dd/MM/yyyy HH:mm:ss"), Duration.ToString(), ImageString, AvailableSeats.ToString(),State.ToString(),ActiveKeyPointId.ToString()};
             return csvvalues;
         }
     }

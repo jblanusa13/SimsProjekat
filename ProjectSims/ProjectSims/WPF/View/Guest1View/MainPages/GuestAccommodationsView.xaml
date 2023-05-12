@@ -12,9 +12,10 @@
     <Page.Resources>
         <Style TargetType="DataGrid" BasedOn="{StaticResource DataGridStyle}">
             <Setter Property="Background" Value="{DynamicResource DataGridBackground}"></Setter>
-            <Setter Property="ColumnHeaderStyle" Value="{DynamicResource DataGridHeader}"></Setter>
-            <Setter Property="RowStyle" Value="{DynamicResource DataGridRow}"></Setter>
+            <Setter Property="BorderBrush" Value="{DynamicResource SecondGrayShade}"></Setter>
         </Style>
+        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridHeader}"/>
+        <Style TargetType="DataGridRow" BasedOn="{StaticResource DataGridRow}"/>
     </Page.Resources>
 
     <Grid Background="White">
@@ -132,14 +133,42 @@
             </Grid>
 
             <DataGrid Grid.Row="2" Name="AccommodationsTable" ItemsSource="{Binding Path=Accommodations, UpdateSourceTrigger=PropertyChanged}"
-            Margin="10,10,10,0">
+            Margin="10,10,10,0" HeadersVisibility="Column">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" Width="120"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Grad" Binding="{Binding Location.City}" Width="130"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" Width="170"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Grad" Binding="{Binding Location.City}" Width="150"></DataGridTextColumn>
                     <DataGridTextColumn Header="Drzava" Binding="{Binding Location.Country}" Width="130"></DataGridTextColumn>
                     <DataGridTextColumn Header="Tip smestaja" Binding="{Binding Type}" Width="100"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Maks broj gostiju" Binding="{Binding GuestsMaximum}" Width="129"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Min broj dana za rezervaciju" Binding="{Binding MinimumReservationDays}" Width="*"></DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding GuestsMaximum}" Width="110">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Label Content="Maksimalan"/>
+                                    <Label Content="broj gostiju" Grid.Row="1"/>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Min broj dana za rezervaciju" Binding="{Binding MinimumReservationDays}" Width="*">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Label Content="Minimalan broj"/>
+                                    <Label Content="dana za rezervaciju" Grid.Row="1"/>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

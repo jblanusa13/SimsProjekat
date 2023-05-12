@@ -26,9 +26,9 @@ namespace ProjectSims.Service
         {
             return keyPointRepository.GetAll();
         }
-        public void Create(int id, string name, KeyPointType type)
+        public void Create(KeyPoint keyPoint)
         {
-            keyPointRepository.Create(new KeyPoint(id,name,type,false));
+            keyPointRepository.Create(keyPoint);
         }
         public void Remove(KeyPoint keyPoint)
         {

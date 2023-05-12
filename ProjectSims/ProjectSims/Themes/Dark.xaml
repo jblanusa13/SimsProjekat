@@ -3,9 +3,15 @@
                     xmlns:fa="http://schemas.fontawesome.io/icons/">
 
     <fa:ImageAwesome Icon="SunOutline" x:Key="SunIcon" Foreground="#FF687EA7"/>
-    <fa:ImageAwesome Icon="WindowMinimize" x:Key="MinimizeIcon" Width="10" HorizontalAlignment="Center" Foreground="#FF687EA7"/>
-    <fa:ImageAwesome Icon="WindowRestore" x:Key="RestoreIcon" Width="15" Foreground="#FF687EA7"/>
-    <fa:ImageAwesome Icon="WindowClose" x:Key="CloseIcon" Width="20" Foreground="#FF687EA7"/>
+
+    <fa:ImageAwesome Icon="WindowMinimize" x:Key="MainWindowMinimizeIcon"  Width="10" HorizontalAlignment="Center" Foreground="#FF687EA7"/>
+    <fa:ImageAwesome Icon="WindowRestore" x:Key="MainWindowRestoreIcon" Width="15" Foreground="#FF687EA7"/>
+    <fa:ImageAwesome Icon="WindowClose" x:Key="MainWindowCloseIcon" Width="20" Foreground="#FF687EA7"/>
+
+    <fa:ImageAwesome Icon="WindowMinimize" x:Key="RatingsMinimizeIcon"  Width="10" HorizontalAlignment="Center" Foreground="#FF687EA7"/>
+    <fa:ImageAwesome Icon="WindowRestore" x:Key="RatingsRestoreIcon" Width="15" Foreground="#FF687EA7"/>
+    <fa:ImageAwesome Icon="WindowClose" x:Key="RatingsCloseIcon" Width="20" Foreground="#FF687EA7"/>
+    
     <BitmapImage x:Key="Logo" UriSource="/Resources/Icons/Guest1/travel-tour-logo-dark.png" />
     <SolidColorBrush Color="#1c1c1c" x:Key="FirstGrayShade"></SolidColorBrush>
     <SolidColorBrush Color="#242424" x:Key="SecondGrayShade"></SolidColorBrush>
@@ -14,7 +20,7 @@
     <SolidColorBrush Color="#ebf5ff" x:Key="TextboxColor"></SolidColorBrush>
     <SolidColorBrush Color="#ffaeaeae" x:Key="FontsColor"></SolidColorBrush>
     <SolidColorBrush Color="#1c1c1c" x:Key="DataGridBackground"></SolidColorBrush>
-    <SolidColorBrush Color="#ebf5ff" x:Key="ListViewBackground"></SolidColorBrush>
+    <SolidColorBrush Color="#1c1c1c" x:Key="ListViewBackground"></SolidColorBrush>
 
     <Style TargetType="DataGrid" x:Key="DataGridStyle">
         <Setter Property="FontFamily" Value="Bahnschrift"/>
@@ -30,8 +36,12 @@
     <Style TargetType="DataGridColumnHeader" x:Key="DataGridHeader">
         <Setter Property="Background" Value="#353535"/>
         <Setter Property="Foreground" Value="#ebf5ff"/>
-        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="FontSize" Value="14"/>
+        <Setter Property="BorderBrush" Value="#1c1c1c"/>
+        <Setter Property="Height" Value="20"/>
     </Style>
 
     <Style TargetType="DataGridRow" x:Key="DataGridRow">

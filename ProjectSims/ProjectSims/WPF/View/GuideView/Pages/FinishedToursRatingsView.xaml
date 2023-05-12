@@ -7,38 +7,72 @@
       mc:Ignorable="d" 
      d:DesignHeight="400" d:DesignWidth="1280"
       Title="FinishedToursView">
+    <Page.Resources>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Height" Value="45"/>
+        </Style>
+        <Style TargetType="{x:Type Image}">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="50"/>
+        </Style>
+        <Style x:Key="ColumnHeader" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="Foreground" Value="#FF1B5886"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="IsHitTestVisible" Value="False"/>
+        </Style>
+    </Page.Resources>
     <ScrollViewer>
-        <Grid Background="#FF050518">
-            <Image Source="/Resources/Icons/Guide/star.png" HorizontalAlignment="Left" Margin="350,25,0,0" VerticalAlignment="Top" Width="60" Height="60"/>
-            <Label Content="Ocene i recenzije zavrsenih tura" HorizontalAlignment="Center" Margin="0,35,0,0" VerticalAlignment="Top" Width="450" Height="40" Foreground="White" FontSize="25" FontFamily="Broadway"/>
-            <ListView  x:Name="FinishedToursListView" ItemsSource="{Binding FinishedTours}" Margin="0,100,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single" Width="1200" Background="#D0D5F7">
+        <Grid Background="Transparent">
+            <Image Source="/Resources/Icons/Guide/rating.png" Margin="330,50,0,0" Height="65" Width="65"/>
+            <Label Content="Ocene završenih tura" HorizontalAlignment="Center" Margin="0,50,0,0" FontSize="44" Height="60" FontWeight="Bold"/>
+            <ListView  x:Name="ScheduledTour" ItemsSource="{Binding FinishedTours}" Margin="0,150,0,100" HorizontalAlignment="Center" VerticalAlignment="Top"  Width="1200" Background="#ffc300" SelectionMode="Single">
+                <ListView.Resources>
+                    <Style TargetType="{x:Type Label}">
+                        <Setter Property="Foreground" Value="#FF1B5886"/>
+                        <Setter Property="FontFamily" Value="Helvetica"/>
+                        <Setter Property="FontSize" Value="22"/>
+                    </Style>
+                </ListView.Resources>
                 <ListView.View>
-                    <GridView >
-                        <GridViewColumn Header="Naziv" Width="500">
+                    <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeader}" >
+                        <GridViewColumn Header="Naziv" Width="350">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Label Content="{Binding Name}"/>
+                                    <Label  Content="{Binding Name}" Margin="10,0,0,0"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Pocetak" Width="200">
+                        <GridViewColumn Header="Pocetak" Width="180">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Label Content="{Binding StartOfTheTour}"/>
+                                    <Label  Content="{Binding StartOfTheTour}" Margin="10,0,0,0"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Lokacija" Width="350">
+                        <GridViewColumn Header="Lokacija" Width="240">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Label Content="{Binding Location}"/>
+                                    <Label  Content="{Binding Location}" Margin="10,0,0,0"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Detalji i recenzije">
+                        <GridViewColumn Header="Prosecna ocena" Width="150"/>
+                        <GridViewColumn Header="Detalji i otkazivanje" Width="270">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Height="20" Width="20" Background="Transparent" Click="TourInfo_Click" BorderThickness="0">
+                                    <Button  Height="20" Width="20" Background="Transparent" Click="TourInfo_Click" BorderThickness="0">
                                         <Image Source="/Resources/Icons/Guide/info.png"/>
                                     </Button>
                                 </DataTemplate>

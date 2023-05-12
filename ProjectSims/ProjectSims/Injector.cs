@@ -22,7 +22,9 @@ namespace ProjectSims
             { typeof(ITourRepository), new TourRepository() },
             { typeof(IGuideRepository), new GuideRepository() },
             { typeof(IKeyPointRepository), new KeyPointRepository() },
-            { typeof(IUserRepository), new UserRepository() },            
+            { typeof(IUserRepository), new UserRepository() },
+            { typeof(ITourRequestRepository), new TourRequestRepository() },
+            { typeof(IGuideScheduleRepository), new GuideScheduleRepository() },    
             { typeof(IAccommodationRepository), new AccommodationRepository() },
             { typeof(IGuestRatingRepository), new GuestRatingRepository() },
             { typeof(ILocationRepository), new LocationRepository() },
@@ -31,23 +33,17 @@ namespace ProjectSims
             { typeof(IGuest1Repository), new Guest1Repository() },
             { typeof(IAccommodationRatingRepository), new AccommodationRatingRepository() },
             { typeof(IRenovationRecommendationRepository), new RenovationRecommendationRepository() },
-            { typeof(IRequestRepository), new RequestRepository() }
+            { typeof(IRequestRepository), new RequestRepository() },
+            { typeof(IAccommodationScheduleRepository), new AccommodationScheduleRepository() }
         };
        public static T CreateInstance<T>()
         {
             Type type = typeof(T);
-            if(Injector.implementations == null)
+            if (Injector.implementations.ContainsKey(type))
             {
-                MessageBox.Show("ovo je null");
+                return (T)Injector.implementations[type];
             }
-            else
-            {
-                if (Injector.implementations.ContainsKey(type))
-                {
-                    return (T)Injector.implementations[type];
-                }
-                throw new ArgumentException($"No implementation found for type {type}");
-           }
+            throw new ArgumentException($"No implementation found for type {type}");
             return default(T);
         }
     }

@@ -19,13 +19,13 @@ namespace ProjectSims.Service
     {
         private ITourRepository tourRepository;
         private KeyPointService keyPointService;
-        private Guest2Service guestService;
+        private GuideScheduleService guideScheduleService;
         private ReservationTourService reservationService;
         public TourService()
         {
             tourRepository = Injector.CreateInstance<ITourRepository>();
             keyPointService = new KeyPointService();
-            guestService = new Guest2Service();
+            guideScheduleService = new GuideScheduleService();
             reservationService = new ReservationTourService();
         }
         public List<Tour> GetAllTours()
@@ -71,30 +71,10 @@ namespace ProjectSims.Service
             else
                 return null;
         }
-        public void Create(int guideId, string name, string location, string description, string language, string maxNumberGuests,string startKeyPointName, string finishKeyPointName, 
-            List<string> otherKeyPointsNames, string tourStart, string duration, string images)
-        {
-                List<int> keyPointIds = new List<int>();
-                int startKeyPointId = keyPointService.NextId();
-                keyPointService.Create(startKeyPointId, startKeyPointName,KeyPointType.First);
-                keyPointIds.Add(startKeyPointId);
-                foreach (string keyPointName in otherKeyPointsNames)
-                {
-                    int otherKeyPointId = keyPointService.NextId();
-                    keyPointService.Create(otherKeyPointId, keyPointName, KeyPointType.Intermediate);
-                    keyPointIds.Add(otherKeyPointId);
-                }
-                int finishKeyPointId = keyPointService.NextId();
-                keyPointService.Create(finishKeyPointId, finishKeyPointName, KeyPointType.Last);
-                keyPointIds.Add(finishKeyPointId);
-                List<string> imageList = new List<string>();
-                foreach (string image in images.Split(','))
-                {
-                    imageList.Add(image);
-                }
-                Tour newTour =  new Tour(-1, guideId, name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPointIds, DateTime.Parse(tourStart), Convert.ToDouble(duration), imageList, Convert.ToInt32(maxNumberGuests),TourState.Inactive,-1);
-                tourRepository.Create(newTour);
-        }
+       public void Create(Tour tour) 
+       {
+            tourRepository.Create(tour);
+       }
         public void UpdateTourState(Tour tour,TourState state)
         {
             tour.State = state;
@@ -190,12 +170,12 @@ namespace ProjectSims.Service
             }
             else if (!double.TryParse(text, out number))
             {
-                MessageBox.Show("Wrong input! Duration tour must be a double!");
+                MessageBox.Show("Pogresan unos! Trajanje ture mora biti realan broj!");
                 return -2;
             }
             else if (number < 0)
             {
-                MessageBox.Show("The tour duration search fields cannot have a negative value");
+                MessageBox.Show("Pogresan unos! Trajanje ture ne moze imati negativnu vrijednost!");
                 return -2;
             }
             return number;

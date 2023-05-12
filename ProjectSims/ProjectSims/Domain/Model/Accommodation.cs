@@ -26,6 +26,8 @@ namespace ProjectSims.Domain.Model
         public List<string> Images { get; set; }
         public Owner Owner { get; set; }
         public int IdOwner { get; set; }
+        public int ScheduleId { get; set; }
+        public AccommodationSchedule Schedule { get; set; }
         public bool Renovated { get; set; } 
 
         public Accommodation() 
@@ -36,7 +38,7 @@ namespace ProjectSims.Domain.Model
 
         public Accommodation(int id, string name, int idLocation, Location location, AccommodationType type, 
             int guestsMaximum, int minimumReservationDays, int dismissalDays, 
-            List<string> images, int idOwner, bool renovated) {
+            List<string> images, int idOwner, int scheduleId, bool renovated) {
             Id = id;
             Name = name;
             IdLocation = idLocation;
@@ -47,6 +49,7 @@ namespace ProjectSims.Domain.Model
             DismissalDays = dismissalDays;
             Images = images;
             IdOwner = idOwner;
+            ScheduleId = scheduleId;
             Renovated = renovated;
         }
 
@@ -65,7 +68,8 @@ namespace ProjectSims.Domain.Model
                 Images.Add(image);
             }
             IdOwner = Convert.ToInt32(values[8]);
-            Renovated = Convert.ToBoolean(values[9]);
+            ScheduleId = Convert.ToInt32(values[9]);
+            Renovated = Convert.ToBoolean(values[10]);
             InitializeData();
         }
         public string[] ToCSV()
@@ -90,7 +94,8 @@ namespace ProjectSims.Domain.Model
                 DismissalDays.ToString(), 
                 ImageString, 
                 IdOwner.ToString(),
-                Renovated.ToString(),
+                ScheduleId.ToString(),
+                Renovated.ToString()
             };
             return csvValues;
         }
@@ -98,7 +103,9 @@ namespace ProjectSims.Domain.Model
         public void InitializeData()
         {
             LocationRepository locationRepository = new LocationRepository();
+            AccommodationScheduleRepository scheduleRepository = new AccommodationScheduleRepository();
             Location = locationRepository.GetById(IdLocation);
+            Schedule = scheduleRepository.GetById(ScheduleId);
         }
     }
 }

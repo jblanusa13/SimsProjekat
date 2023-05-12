@@ -63,7 +63,8 @@ namespace ProjectSims.WPF.ViewModel.Guest2ViewModel
         }
         public void Statistic_MouseLeftButtonDown(object sender)
         {
-            var statisticWindow = new RequestStatisticsView();
+            RequestStatisticsViewModel requestStatisticsViewModel = new RequestStatisticsViewModel(guest2);
+            var statisticWindow = new RequestStatisticsView(requestStatisticsViewModel);
             statisticWindow.Show();
         }
     }

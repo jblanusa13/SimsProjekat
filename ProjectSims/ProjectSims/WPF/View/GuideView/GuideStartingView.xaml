@@ -5,52 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims.View.GuideView"
         mc:Ignorable="d"
-        Title="Guide Starting View" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
+        Title="Guide Starting View" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Background="#FF75C8F1">
     <Grid>
-        <ToolBar HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" Height="40" Width="1280">
-            <Button Click="Back_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="40">
-                <Image Source="\Resources\Icons\Guide\leftarrow.png"/>
+        <Grid Background ="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Height="83" Width="1280">
+            <Button HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40,0,0,0" Height="60" Width="60" Background="Transparent" BorderThickness="0">
+                <Image Source="\Resources\Icons\Guide\question.png" Cursor="Hand"/>
             </Button>
-            <Button HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="40">
-                <Image Source="\Resources\Icons\Guide\rightarrow.png"/>
+            <Button HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,40,0" Height="60" Width="60" Background="Transparent" BorderThickness="0">
+                <Image Source="\Resources\Icons\Guide\profile.png" Cursor="Hand"/>
             </Button>
-            <Button Click="Home_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="40">
-                <Image Source="\Resources\Icons\Guide\home.png"/>
-            </Button>
-            <Button Click="Logout_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="30" Margin="1050,0,0,0">
-                <Image Source="\Resources\Icons\Guide\logout.png"/>
-            </Button>
-            <Button Click="Close_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="40" Margin="10,0,0,0">
-                <Image Source="\Resources\Icons\Guide\close.png"/>
-            </Button>
-        </ToolBar>
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,40,0,0" Height="100" Width="1280" Background="#FF050518">
-            <Image Source="/Resources/Icons/Guide/travel-tour-logo.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Image Source="/Resources/Icons/Guide/logo.png" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="100"/>
         </Grid>
-        <Menu Margin="0,140,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="120" Width="1280" Background="White">
-            <MenuItem Header="Pocetna" Click="Home_Click" Height="120" Width="140" FontSize="32" Foreground="#FF050518" FontFamily="TGaramond" FontWeight="UltraBold"/>
-            <MenuItem Header="Pracenje ture" Height="120" Width="220"  FontSize="32" Foreground="#FF050518" FontFamily="TGaramond" FontWeight="UltraBold">
-                <MenuItem Header="Aktivna tura" Click="TrackTour_Click"/>
-                <MenuItem Header="Danasnje ture" Click="AvailableTours_Click"/>
+        <Menu Margin="0,80,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="80" Width="1280" Background="Transparent" BorderThickness="0 1 0 1" BorderBrush="White">
+            <Menu.Resources>
+                <Style TargetType="MenuItem">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontFamily" Value="Helvetica"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="FontSize" Value="38"/>
+                    <Setter Property="Height" Value="80"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+            </Menu.Resources>
+            <MenuItem Header="Početna" Click="Home_Click"/>
+            <MenuItem Header="Praćenje ture">
+                <MenuItem Header="Aktivna tura" Click="TrackTour_Click" FontSize="28" Foreground="#FF1B5886" Height="30" Width="300"/>
+                <MenuItem Header="Današnje ture" Click="AvailableTours_Click" FontSize="28" Foreground="#FF1B5886" Height="30" Width="300"/>
             </MenuItem>
-            <MenuItem Header="Nova tura" Height="120"  Width="180" FontSize="32" Foreground="#FF050518" FontFamily="TGaramond" FontWeight="UltraBold">
-                <MenuItem Header="Kreiraj novu" Click="CreateTour_Click" />
-                <MenuItem Header="Pogledaj predloge"/>
+            <MenuItem Header="Nova tura">
+                <MenuItem Header="Kreiraj novu" Click="CreateTour_Click" FontSize="28" Foreground="#FF1B5886" Height="30" Width="300"/>
+                <MenuItem Header="Pogledaj predloge" FontSize="28" Foreground="#FF1B5886" Height="30" Width="300"/>
             </MenuItem>
-            <MenuItem Header="Zakazane ture" Click="ScheduledTours_Click" Height="120"  Width="240" FontSize="32" Foreground="#FF050518" FontFamily="TGaramond" FontWeight="UltraBold"/>
-            <MenuItem Header="Zavrsene ture" Height="120"  Width="240" FontSize="32" Foreground="#FF050518" FontFamily="TGaramond" FontWeight="UltraBold">
-                <MenuItem Header="Statistika" Click="FinishedToursStatistics_Click"/>
-                <MenuItem Header="Ocene i recenzije" Click="FinishedToursRatings_Click"/>
+            <MenuItem Header="Zakazane ture" Click="ScheduledTours_Click"/>
+            <MenuItem Header="Završene ture">
+                <MenuItem Header="Statistika" Click="FinishedToursStatistics_Click" FontSize="28" Foreground="#FF1B5886" Height="30" Width="300"/>
+                <MenuItem Header="Ocene i recenzije" Click="FinishedToursRatings_Click" FontSize="28" Foreground="#FF1B5886" Height="30" Width="300"/>
             </MenuItem>
-            <MenuItem Header="Zahtevi" Height="120"  Width="150" FontSize="32" Foreground="#FF050518" FontFamily="TGaramond" FontWeight="UltraBold">
-                <MenuItem Header="Zahtevi za ture" Click="TourRequests_Click"/>
-                <MenuItem Header="Statistika zahteva"/>
+            <MenuItem Header="Zahtevi">
+                <MenuItem Header="Zahtevi za ture" Click="TourRequests_Click" FontSize="28" Foreground="#FF1B5886" Height="30" Width="300"/>
+                <MenuItem Header="Statistika zahteva" FontSize="28" Foreground="#FF1B5886" Height="30" Width="300"/>
             </MenuItem>
         </Menu>
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,260,0,0" Height="444" Width="1280" Background="#FF050518">
-            <Frame Name="GuideFrame" HorizontalAlignment="Center" VerticalAlignment="Top" Height="420" Width="1280" NavigationUIVisibility="Hidden">
+        <Border HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,161,0,0" Height="30" Width="1280" BorderBrush="White" BorderThickness="0 0 0 1">
+            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,161,0,0" Height="30" Width="1280"/>
+        </Border>
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,191,0,0" Height="490" Width="1280">
+            <Frame Name="GuideFrame" HorizontalAlignment="Center" VerticalAlignment="Top" Height="490" Width="1277" NavigationUIVisibility="Hidden" FlowDirection="RightToLeft">
                 <Frame.Background>
-                    <ImageBrush ImageSource="/Resources/Images/Guide/background.jpg"/>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0" SpreadMethod="Pad">
+                        <GradientStop Color="#FF75C8F1"/>
+                        <GradientStop Color="#FF1B5886" Offset="1"/>
+                    </LinearGradientBrush>
                 </Frame.Background>
             </Frame>
         </Grid>

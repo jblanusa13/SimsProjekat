@@ -5,61 +5,64 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="420" d:DesignWidth="1280"
+      d:DesignHeight="600" d:DesignWidth="1280"
       Title="CommentAndRatingsView">
     <Page.Resources>
-        <Style TargetType="Label">
+        <Style TargetType="{x:Type Label}">
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontFamily" Value="Broadway"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Height" Value="45"/>
         </Style>
-        <Style TargetType="Image">
+        <Style TargetType="{x:Type Image}">
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
-        </Style>
-        <Style TargetType="Button">
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="Height" Value="70"/>
-            <Setter Property="Width" Value="70"/>
-            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="50"/>
         </Style>
     </Page.Resources>
     <ScrollViewer>
-        <Grid Background="#FF050518">
-            <Label Margin="160,40,0,0" Height="60" FontSize="26">
-                <AccessText>
-                    <MultiBinding StringFormat="{}{0}  {1}">
-                        <Binding Path="Guest.Name" />
-                        <Binding Path="Guest.Surname" />
-                    </MultiBinding>
-                </AccessText>
-            </Label>
-            <Image Source="/Resources/Icons/Guide/user.png" Margin="20,20,0,0" Height="80" Width="80"/>
-            <Image Source="/Resources/Icons/Guide/pin.png" Margin="670,40,0,0" Height="40" Width="40"/>
-            <Label Content="Pojavio se na kljucnoj tacki:" Margin="700,40,0,0" FontSize="20"/>
-            <Label Content="{Binding KeyPoint.Name}" Margin="1010,40,0,0" Width="250" Height="40" FontSize="20"/>
+        <Grid Background="Transparent">
+            <Image Source="/Resources/Icons/Guide/user.png" Margin="100,50,0,0" Height="80" Width="80"/>
+            <StackPanel Orientation="Horizontal" Margin="200,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="70" Width="1000">
+                <Label Margin="10,0,0,0" FontSize="36" VerticalAlignment="Center">
+                    <AccessText>
+                        <MultiBinding StringFormat="{}{0}  {1}">
+                            <Binding Path="Guest.Name" />
+                            <Binding Path="Guest.Surname" />
+                        </MultiBinding>
+                    </AccessText>
+                </Label>
+                <Image Source="/Resources/Icons/Guide/checkpoints.png" Margin="30,0,0,0" VerticalAlignment="Center"/>
+                <Label Content="Pojavio se na kljucnoj tacki:" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                <Label Content="{Binding KeyPoint.Name}" Margin="10,0,0,0" VerticalAlignment="Center"/>
+            </StackPanel>
+            <Border BorderBrush="White" BorderThickness="0 0 0 1" Height="5" Margin="200,120,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1000"/>
             <Label Content="Znanje vodica:" Margin="100,150,0,0" FontSize="20"/>
-            <Label Content="{Binding TourRating.KnowledgeGuide}" Margin="280,150,0,0" Width="100" Height="40" FontSize="20"/>
+            <Label Content="{Binding TourRating.KnowledgeGuide}" Margin="280,150,0,0"/>
             <Label Content="Jezik vodica:" Margin="100,200,0,0" FontSize="20"/>
-            <Label Content="{Binding TourRating.LanguageGuide}" Margin="280,200,0,0" Width="100" Height="40" FontSize="20"/>
+            <Label Content="{Binding TourRating.LanguageGuide}" Margin="280,200,0,0"/>
             <Label Content="Zanimljivost ture:" Margin="100,250,0,0" FontSize="20"/>
-            <Label Content="{Binding TourRating.InterestingTour}" Margin="320,250,0,0" Width="100" Height="40" FontSize="20"/>
-            <Label Content="{Binding TourRating.AddedComment}" Margin="500,150,0,0" Width="700" Height="130" FontSize="20"/>
-            <Button Name="AcceptComment" Click="AcceptComment_Click" Margin="400,320,0,0" Background="Green">
-                <Grid Height="70" Width="70" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Source="/Resources/Icons/Guide/checkmark.png"  HorizontalAlignment="Center" Height="40" Width="40" Margin="0,5,0,0"/>
-                    <Label Content="Prihvati" FontSize="10" HorizontalAlignment="Center" Foreground="Black" Margin="0,40,0,0"/>
-                </Grid>
+            <Label Content="{Binding TourRating.InterestingTour}" Margin="320,250,0,0"/>
+            <Label Content="{Binding TourRating.AddedComment}" Margin="500,150,0,0"/>
+            <Button Name="AcceptComment" Margin="0,350,300,0" Height="85" Width="85" HorizontalAlignment="Center" VerticalAlignment="Top"  Background="Transparent" BorderThickness="0" Click="AcceptComment_Click" Cursor="Hand">
+                <Image Source="/Resources/Icons/Guide/checked.png" Height="80" Width="80" Cursor="Hand">
+                    <Image.Effect>
+                        <DropShadowEffect/>
+                    </Image.Effect>
+                </Image>
             </Button>
-            <Button Name="ReportComment" Click="ReportComment_Click" Margin="700,320,0,0" Background="Red">
-                <Grid Height="70" Width="70" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Source="/Resources/Icons/Guide/report.png"  HorizontalAlignment="Center" Height="40" Width="40" Margin="0,5,0,0"/>
-                    <Label Content="Prijavi" FontSize="10" HorizontalAlignment="Center" Foreground="Black" Margin="0,40,0,0"/>
-                </Grid>
+            <Label Content="Prihvati komentar" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,450,300,80" FontSize="18"/>
+            <Button Name="ReportComment" Margin="300,350,0,0" Height="85" Width="85" HorizontalAlignment="Center" VerticalAlignment="Top"  Background="Transparent" BorderThickness="0" Click="ReportComment_Click" Cursor="Hand">
+                <Image Source="/Resources/Icons/Guide/report.png" Height="80" Width="80" Cursor="Hand">
+                    <Image.Effect>
+                        <DropShadowEffect/>
+                    </Image.Effect>
+                </Image>
             </Button>
-            <Border BorderBrush="White" BorderThickness="6" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="90,100,0,0" Width="1280" Height="2"/>
+            <Label Content="Prijavi komentar" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="300,450,0,80" FontSize="18"/>
         </Grid>
     </ScrollViewer>
 </Page>

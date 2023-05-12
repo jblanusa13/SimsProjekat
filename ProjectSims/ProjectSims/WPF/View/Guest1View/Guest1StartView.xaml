@@ -10,7 +10,9 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         AllowsTransparency="True"
-        Background="Transparent">
+        Background="Transparent"
+        BorderBrush="{DynamicResource BarShade}"
+        BorderThickness="3">
     
     <Grid>
         <Grid.RowDefinitions>

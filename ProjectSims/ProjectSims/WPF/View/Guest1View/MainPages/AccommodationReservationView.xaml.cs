@@ -19,6 +19,7 @@ using System.Windows.Shapes;
 using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 using ProjectSims.Service;
+using ProjectSims.Validation;
 using ProjectSims.WPF.View.Guest1View;
 
 namespace ProjectSims.WPF.View.Guest1View.MainPages
@@ -159,16 +160,32 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
                 ImageList.Items.Add(image);
             }
         }
+
+        private void FirstDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LastDatePicker.DisplayDateStart = FirstDatePicker.SelectedDate;                   
+        }
+
         private void FindDates_Click(object sender, RoutedEventArgs e)
         {
-            DateRangesService dateRangesService = new DateRangesService();
+            AccommodationScheduleService scheduleService = new AccommodationScheduleService();
             if (FirstDatePicker.SelectedDate != null && LastDatePicker.SelectedDate != null && !string.IsNullOrEmpty(TextboxDaysNumber.Text))
             {
                 FirstDate = DateOnly.FromDateTime((DateTime)FirstDatePicker.SelectedDate);
                 LastDate = DateOnly.FromDateTime((DateTime)LastDatePicker.SelectedDate);
 
                 List<DateRanges> availableDates = new List<DateRanges>();
-                availableDates = dateRangesService.FindAvailableDates(FirstDate, LastDate, DaysNumber, Accommodation.Id);
+
+
+                if (scheduleService.FindDates(FirstDate, LastDate, DaysNumber, Accommodation.Id).Count == 0)
+                {
+                    availableDates = scheduleService.FindAlternativeDates(FirstDate, LastDate, DaysNumber, Accommodation.Id);
+                }
+                else
+                {
+                    availableDates = scheduleService.FindDates(FirstDate, LastDate, DaysNumber, Accommodation.Id);
+                }
+                
 
                 UpdateDatesTable(availableDates);
             }

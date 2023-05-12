@@ -35,30 +35,83 @@ namespace ProjectSims.Service
         {
             return tourRequestRepository.GetById(id);
         }
+        public List<TourRequest> GetWantedRequests(string location,string language,string maxNumberGuests,List<DateTime> dateRange)
+        {
+            List<TourRequest> wantedRequests = tourRequestRepository.GetWaitingRequests();
+            if (location != "")
+                wantedRequests.RemoveAll(request => !tourRequestRepository.GetByLocation(location).Contains(request));
+            if (language != "")
+                wantedRequests.RemoveAll(request => !tourRequestRepository.GetByLanguage(language).Contains(request));
+            if (maxNumberGuests != "")
+                wantedRequests.RemoveAll(request => !tourRequestRepository.GetByMaxNumberGuests(int.Parse(maxNumberGuests)).Contains(request));
+            if (dateRange.Count != 0)
+                wantedRequests.RemoveAll(request => !tourRequestRepository.GetRequestsInDateRange(DateOnly.FromDateTime(dateRange.First()), DateOnly.FromDateTime(dateRange.Last())).Contains(request));
+            return wantedRequests;
+        }
         public List<TourRequest> GetByGuest2Id(int guest2Id)
         {
             return tourRequestRepository.GetByGuest2Id(guest2Id);
         }
-        public List<TourRequest> GetWantedRequests(string location,string language,string maxNumberGuests,DateTime dateRangeStart,DateTime dateRangeEnd)
+        public int GetNumberRequestsByState(List<TourRequest> requests, TourRequestState state)
         {
-            List<TourRequest> wantedRequests = new List<TourRequest>();
-            List<TourRequest> tourRequestsOnLocation = tourRequestRepository.GetAll();
-            List<TourRequest> tourRequestsOnLanguage = tourRequestRepository.GetAll();
-            List<TourRequest> tourRequestsWithMaxNumberGuests = tourRequestRepository.GetAll();
-            List<TourRequest> tourRequestsInDateRange = tourRequestRepository.GetAll();
-            if (location != "")
-                tourRequestsOnLocation = tourRequestRepository.GetByLocation(location);
-            if (language != "")
-                tourRequestsOnLanguage = tourRequestRepository.GetByLanguage(language);
-            if(maxNumberGuests != "")
-                tourRequestsWithMaxNumberGuests = tourRequestRepository.GetByMaxNumberGuests(int.Parse(maxNumberGuests));
-            tourRequestsInDateRange = tourRequestRepository.GetRequestsInDateRange(DateOnly.FromDateTime(dateRangeStart),DateOnly.FromDateTime(dateRangeEnd.Date));
-            foreach(TourRequest request in tourRequestRepository.GetAll())
+            int number = 0;
+            foreach (TourRequest request in requests)
             {
-                if(tourRequestsOnLocation.Contains(request) && tourRequestsOnLanguage.Contains(request) && tourRequestsWithMaxNumberGuests.Contains(request) && tourRequestsInDateRange.Contains(request))
-                    wantedRequests.Add(request);
+                if(request.State == state)
+                {
+                    number++;
+                }
             }
-            return wantedRequests;
+            return number;
+        }
+        public double GetAverageNumberOfPeopleOnAcceptedRequests(List<TourRequest> requests)
+        {
+            int numberPeople = 0;
+            int numberAcceptedRequest = 0;
+            foreach(TourRequest request in requests)
+            {
+                if(request.State == TourRequestState.Accepted)
+                {
+                    numberPeople += request.MaxNumberGuests;
+                    numberAcceptedRequest++;
+                }
+            }
+            if (numberAcceptedRequest == 0) return 0;
+            return Math.Round((double)numberPeople/numberAcceptedRequest,2);
+        }
+        public int GetNumberRequestsByLanguage(List<TourRequest> requests, string language)
+        {
+            int number = 0;
+            foreach (TourRequest request in requests)
+            {
+                if (request.Language == language)
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+        public List<string> GetAllLocations(List<TourRequest> requests)
+        {
+            List<string> locations = new List<string>();
+            foreach(TourRequest request in requests)
+            {
+                if(!locations.Contains(request.Location))
+                    locations.Add(request.Location);
+            }
+            return locations;
+        }
+        public int GetNumberRequestsByLocation(List<TourRequest> requests, string location)
+        {
+            int number = 0;
+            foreach (TourRequest request in requests)
+            {
+                if (request.Location == location)
+                {
+                    number++;
+                }
+            }
+            return number;
         }
         public void Create(TourRequest tourRequest)
         {

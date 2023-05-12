@@ -22,23 +22,22 @@ namespace ProjectSims.WPF.View.GuideView.Pages
     /// </summary>
     public partial class AcceptTourView : Page
     {
-        private AcceptTourViewModel acceptTourViewModel;
+        public TourRequest TourRequest { get; set; }
+        public Guide Guide { get; set; }
         public AcceptTourView(TourRequest tourRequest,Guide guide)
         {
             InitializeComponent();
-            acceptTourViewModel = new AcceptTourViewModel(tourRequest,guide);
-            this.DataContext = acceptTourViewModel;
-            acceptTourViewModel.ShowAvailableDays(DaysComboBox);
+            this.DataContext = new AcceptTourViewModel(tourRequest);
+            Guide = guide;
+            TourRequest=tourRequest;
         }
-       public void AcceptTour_Click(object sender, RoutedEventArgs e) { }
+       public void AcceptTour_Click(object sender, RoutedEventArgs e) 
+        {
+            this.NavigationService.Navigate(new CreateTourView(Guide, TourRequest));
+        }
        public void Back_Click(object sender, RoutedEventArgs e) 
         { 
             this.NavigationService.GoBack();
         }
-       public void DaysComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-       {
-            DateOnly SelectedDate = (DateOnly)DaysComboBox.SelectedItem;
-            acceptTourViewModel.ShowAvailableTimes(SelectedDate, AppointmentsComboBox);
-       }
     }
 }

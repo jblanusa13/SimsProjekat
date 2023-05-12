@@ -7,35 +7,83 @@
       mc:Ignorable="d" 
       d:DesignHeight="400" d:DesignWidth="1280"
       Title="ScheduledToursView">
+    <Page.Resources>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Height" Value="45"/>
+        </Style>
+        <Style TargetType="{x:Type Image}">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="50"/>
+        </Style>
+        <Style x:Key="ColumnHeader" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="Foreground" Value="#FF1B5886"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="IsHitTestVisible" Value="False"/>
+        </Style>
+    </Page.Resources>
     <ScrollViewer>
-        <Grid Background="#FF050518">
-            <ListView  x:Name="ScheduledTour" ItemsSource="{Binding ScheduledTours}" Margin="0,50,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single" Background="#D0D5F7">
+        <Grid Background="Transparent">
+            <Label Content="Zakazane ture" HorizontalAlignment="Center" Margin="0,50,0,0" FontSize="44" Height="60" FontWeight="Bold"/>
+            <ListView  x:Name="ScheduledTour" ItemsSource="{Binding ScheduledTours}" Margin="0,150,0,100" HorizontalAlignment="Center" VerticalAlignment="Top"  Width="1200" Background="#ffc300" SelectionMode="Single">
+                <ListView.Resources>
+                    <Style TargetType="{x:Type Label}">
+                        <Setter Property="Foreground" Value="#FF1B5886"/>
+                        <Setter Property="FontFamily" Value="Helvetica"/>
+                        <Setter Property="FontSize" Value="22"/>
+                    </Style>
+                </ListView.Resources>
                 <ListView.View>
-                    <GridView >
-                        <GridViewColumn Header="Naziv" Width="500">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Label  Content="{Binding Name}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Pocetak" Width="300">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Label  Content="{Binding StartOfTheTour}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Otkazi" Width="270">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Height="20" Width="20" Background="Transparent" Click="CancelTour_Click" BorderThickness="0">
-                                        <Image Source="/Resources/Icons/Guide/close.png"/>
-                                    </Button>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
+                        <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeader}" >
+                            <GridViewColumn Width="200">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image  Source="{Binding Images.First()}" Margin="10,0,0,0"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Naziv" Width="350">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label  Content="{Binding Name}" Margin="10,0,0,0"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Pocetak" Width="180">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label  Content="{Binding StartOfTheTour}" Margin="10,0,0,0"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Lokacija" Width="240">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label  Content="{Binding Location}" Margin="10,0,0,0"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Detalji i otkazivanje" Width="270">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Name="CancelButton" Height="20" Width="20" Background="Transparent" Click="CancelTour_Click" BorderThickness="0">
+                                            <Image Source="/Resources/Icons/Guide/info.png"/>
+                                        </Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
                 </ListView.View>
             </ListView>
         </Grid>

@@ -6,25 +6,37 @@
       xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
       xmlns:conv="clr-namespace:CalcBinding;assembly=CalcBinding"
       mc:Ignorable="d" 
-     d:DesignHeight="720" d:DesignWidth="1280"
+     d:DesignHeight="2000" d:DesignWidth="1280"
       Title="TourDetailsAndRatingsView">
     <Page.Resources>
-        <Style TargetType="Label">
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontFamily" Value="Broadway"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
-        </Style>
-        <Style TargetType="Image">
+        <Style TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontFamily" Value="Helvetica"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="FontSize" Value="30"/>
+        <Setter Property="Height" Value="45"/>
+    </Style>
+    <Style TargetType="{x:Type Image}">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Width" Value="50"/>
+    </Style>
+        <Style x:Key="ColumnHeader" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="Height" Value="40"/>
-            <Setter Property="Width" Value="40"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="Foreground" Value="#FF1B5886"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="IsHitTestVisible" Value="False"/>
         </Style>
     </Page.Resources>
     <ScrollViewer>
-        <Grid Background="#FF050518">
-            <Label Margin="0,50,0,0" Height="60" FontSize="30" FontWeight="UltraBold" HorizontalAlignment="Center">
+        <Grid Background="Transparent">
+            <Label Margin="0,50,0,0" Height="60" FontSize="44" FontWeight="Bold" HorizontalAlignment="Center">
                 <AccessText>
                     <MultiBinding StringFormat="{}{0} , {1}">
                         <Binding Path="SelectedTour.Name" />
@@ -32,23 +44,25 @@
                     </MultiBinding>
                 </AccessText>
             </Label>
-            <Image Source="/Resources/Icons/Guide/mapPin.png" Margin="50,90,0,0"/>
-            <Label Content="{Binding SelectedTour.Location}" Margin="100,90,0,0" Width="400" Height="40" FontSize="20"/>
-            <Image Source="/Resources/Icons/Guide/Globe.png" Margin="50,140,0,0"/>
-            <Label Content="{Binding SelectedTour.Language}" Margin="100,140,0,0" Width="300" Height="40" FontSize="20"/>
-            <Image Source="/Resources/Icons/Guide/duration.png" Margin="50,190,0,0"/>
-            <Label Content="{Binding SelectedTour.Duration}" Margin="100,190,0,0" Width="100" Height="40" FontSize="20"/>
-            <Image Source="/Resources/Icons/Guide/guests.png" Margin="50,240,0,0"/>
-            <Label Content="{Binding NumberOfPresentGuests}" Margin="100,250,0,0" Width="100" Height="40" FontSize="20"/>
-            <Image Source="/Resources/Icons/Guide/pin.png" Margin="50,300,0,0"/>
-            <ListView  ItemsSource="{Binding KeyPoints}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,300,10,10" Width="300" Background="LightGreen" FontSize="20" FontFamily="Broadway" BorderBrush="Transparent">
+            <Image Source="/Resources/Icons/Guide/location.png" Margin="100,150,0,0"/>
+            <Label Content="{Binding SelectedTour.Location}"  Margin="170,150,0,0"/>
+            <Image Source="/Resources/Icons/Guide/language.png" Margin="100,250,0,0"/>
+            <Label Content="{Binding SelectedTour.Language}" Margin="170,250,0,0"/>
+            <Image Source="/Resources/Icons/Guide/duration.png" Margin="100,350,0,0" Height="40" Width="70"/>
+            <Label Content="{Binding SelectedTour.Duration}" Margin="170,350,0,0"/>
+            <Image Source="/Resources/Icons/Guide/people.png" Margin="100,450,0,0"/>
+            <TextBox Text="{Binding NumberOfPresentGuests}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="170,450,0,0" Width="1000" Height="150" FontSize="30" FontFamily="Helvetica" Foreground="White" Background="Transparent" BorderThickness="0" IsReadOnly="True"/>
+            <Image Source="/Resources/Icons/Guide/checkpoints.png" Margin="100,550,0,0"/>
+            <ListView  ItemsSource="{Binding KeyPoints}" Margin="170,550,0,50" Width="300" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent" IsHitTestVisible="False">
                 <ListView.Resources>
-                    <Style TargetType="Label">
-                        <Setter Property="Foreground" Value="Black"/>
+                    <Style TargetType="{x:Type Label}">
+                        <Setter Property="Foreground" Value="#FF1B5886"/>
+                        <Setter Property="FontFamily" Value="Helvetica"/>
+                        <Setter Property="FontSize" Value="22"/>
                     </Style>
                 </ListView.Resources>
                 <ListView.View>
-                    <GridView >
+                    <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeader}">
                         <GridViewColumn Header="Stanice" Width="280">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
@@ -59,15 +73,17 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Label Content="Ocene i komentari" Margin="30,600,0,0" Width="300" Height="40"  FontSize="28" FontWeight="UltraBold"/>
-            <ListView  ItemsSource="{Binding TourRatings}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,650,0,50" Width="1200" Background="#D0D5F7" FontSize="20" FontFamily="Broadway" BorderBrush="Transparent">
+            <Label Content="Ocene i komentari" Margin="100,800,0,0" Height="60" FontSize="38" FontWeight="Bold" HorizontalAlignment="Left"/>
+            <ListView  ItemsSource="{Binding TourRatings}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,850,0,80" Width="1050" Background="#ffc300">
                 <ListView.Resources>
-                    <Style TargetType="Label">
-                        <Setter Property="Foreground" Value="Black"/>
+                    <Style TargetType="{x:Type Label}">
+                        <Setter Property="Foreground" Value="#FF1B5886"/>
+                        <Setter Property="FontFamily" Value="Helvetica"/>
+                        <Setter Property="FontSize" Value="22"/>
                     </Style>
                 </ListView.Resources>
                 <ListView.View>
-                    <GridView >
+                    <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeader}">
                         <GridViewColumn Width="70">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
@@ -113,7 +129,7 @@
                         <GridViewColumn Width="200">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Vidi komentar" Click="ViewComment_Click" IsEnabled="{Binding IsValid}" Background="Transparent" BorderThickness="0" Foreground="#FF050518"/>
+                                    <Button Content="Vidi komentar" Click="ViewComment_Click" IsEnabled="{Binding IsValid}" Background="Transparent" BorderThickness="0"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

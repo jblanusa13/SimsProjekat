@@ -5,7 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.MainPages"
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
-      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      xmlns:fa="http://schemas.fontawesome.io/icons/" 
+      xmlns:val="clr-namespace:ProjectSims.Validation"
       mc:Ignorable="d" 
       d:DesignHeight="540" d:DesignWidth="1067"
       Title="AccommodationReservation">
@@ -177,6 +178,7 @@
                                 <Label Margin="10,5" FontSize="14" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}">Pocetni datum pretrage:</Label>
                                 <DatePicker Name="FirstDatePicker" Margin="15,35,10,10" Height="28"
                                             DisplayDateStart="{x:Static sys:DateTime.Today}"
+                                            SelectedDateChanged="FirstDatePicker_SelectedDateChanged"
                                             Background="{DynamicResource TextboxColor}">
                                 </DatePicker>
                             </Grid>
@@ -190,16 +192,56 @@
 
                             <Grid Grid.Row="3">
                                 <Label Margin="10,5" FontSize="14" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}">Broj dana:</Label>
-                                <TextBox Name="TextboxDaysNumber" Text="{Binding Path=DaysNumber, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
+
+                                <TextBox Name="TextboxDaysNumber"
                                          Margin="15,35,10,0" Height="28" VerticalAlignment="Top"
                                          Background="{DynamicResource TextboxColor}">
+                                    <TextBox.Text>
+                                        <Binding Path="DaysNumber" UpdateSourceTrigger="PropertyChanged">
+                                            <Binding.ValidationRules>
+                                                <val:StringToInt ValidationStep="RawProposedValue"/>
+                                                <val:MinInt ValidationStep="ConvertedProposedValue" Min="2"/>
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </TextBox.Text>
+                                    <Validation.ErrorTemplate>
+                                        <ControlTemplate>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <AdornedElementPlaceholder Grid.Row="0"/>
+                                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Validation.ErrorTemplate>
                                 </TextBox>
                             </Grid>
 
                             <Grid Grid.Row="4">
                                 <Label Margin="10,5" FontSize="14" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}">Broj gostiju:</Label>
-                                <TextBox Text="{Binding Path=GuestNumber, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
-                                         Margin="15,35,10,10" Background="{DynamicResource TextboxColor}" Height="28">
+                                <TextBox Margin="15,35,10,10" Background="{DynamicResource TextboxColor}" Height="28">
+                                    <TextBox.Text>
+                                        <Binding Path="GuestNumber" UpdateSourceTrigger="PropertyChanged">
+                                            <Binding.ValidationRules>
+                                                <val:StringToInt ValidationStep="RawProposedValue"/>
+                                                <val:MaxInt ValidationStep="ConvertedProposedValue" Max="6"/>
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </TextBox.Text>
+                                    <Validation.ErrorTemplate>
+                                        <ControlTemplate>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <AdornedElementPlaceholder Grid.Row="0"/>
+                                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Validation.ErrorTemplate>
                                 </TextBox>
                             </Grid>
 
@@ -223,7 +265,8 @@
 
                             <DataGrid Grid.Row="0" Name="DatesTable" ItemsSource="{Binding AvailableDates, UpdateSourceTrigger=PropertyChanged}" 
                                       Margin="30,80,30,10" 
-                                      AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
+                                      AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single"
+                                      HeadersVisibility="Column">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Dolazak" Binding="{Binding CheckIn}" Width="150"></DataGridTextColumn>
                                     <DataGridTextColumn Header="Odlazak"  Binding="{Binding CheckOut}" Width="*"></DataGridTextColumn>
