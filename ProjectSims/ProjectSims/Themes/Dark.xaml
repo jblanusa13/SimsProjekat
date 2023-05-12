@@ -36,9 +36,12 @@
     <Style TargetType="DataGridColumnHeader" x:Key="DataGridHeader">
         <Setter Property="Background" Value="#353535"/>
         <Setter Property="Foreground" Value="#ebf5ff"/>
-        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="BorderBrush" Value="#1c1c1c"/>
+        <Setter Property="Height" Value="20"/>
     </Style>
 
     <Style TargetType="DataGridRow" x:Key="DataGridRow">
