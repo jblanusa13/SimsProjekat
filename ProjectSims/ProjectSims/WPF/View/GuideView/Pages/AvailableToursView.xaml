@@ -16,17 +16,6 @@
             <Setter Property="FontSize" Value="30"/>
             <Setter Property="Height" Value="45"/>
         </Style>
-        <Style TargetType="{x:Type TextBox}">
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontFamily" Value="Helvetica"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="FontSize" Value="28"/>
-            <Setter Property="Height" Value="50"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="White"/>
-            <Setter Property="BorderThickness" Value="0.4"/>
-        </Style>
         <Style TargetType="{x:Type Image}">
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
