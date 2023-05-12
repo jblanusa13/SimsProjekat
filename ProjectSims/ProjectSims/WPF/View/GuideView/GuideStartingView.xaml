@@ -7,29 +7,7 @@
         mc:Ignorable="d"
         Title="Guide Starting View" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Background="#FF75C8F1">
     <Grid>
-        <ToolBar HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Height="40" Width="1280" Background="#333333">
-            <ToolBar.Resources>
-                <Style TargetType="Button">
-                    <Setter Property="HorizontalAlignment" Value="Left"/>
-                    <Setter Property="VerticalAlignment" Value="Top"/>
-                    <Setter Property="Height" Value="30"/>
-                    <Setter Property="Width" Value="40"/>
-                </Style>
-            </ToolBar.Resources>
-            <Button Click="Back_Click">
-                <Image Source="\Resources\Icons\Guide\leftarrow.png"/>
-            </Button>
-            <Button>
-                <Image Source="\Resources\Icons\Guide\rightarrow.png"/>
-            </Button>
-            <Button Click="Close_Click">
-                <Image Source="\Resources\Icons\Guide\cross.png"/>
-            </Button>
-            <Button Click="Home_Click">
-                <Image Source="\Resources\Icons\Guide\home.png"/>
-            </Button>
-        </ToolBar>
-        <Grid Background ="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,40,0,0" Height="83" Width="1280">
+        <Grid Background ="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Height="83" Width="1280">
             <Button HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40,0,0,0" Height="60" Width="60" Background="Transparent" BorderThickness="0">
                 <Image Source="\Resources\Icons\Guide\question.png" Cursor="Hand"/>
             </Button>
@@ -38,7 +16,7 @@
             </Button>
             <Image Source="/Resources/Icons/Guide/logo.png" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="100"/>
         </Grid>
-        <Menu Margin="0,128,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="80" Width="1280" Background="Transparent" BorderThickness="0 1 0 1" BorderBrush="#FCF5C7">
+        <Menu Margin="0,80,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="80" Width="1280" Background="Transparent" BorderThickness="0 1 0 1" BorderBrush="White">
             <Menu.Resources>
                 <Style TargetType="MenuItem">
                     <Setter Property="Foreground" Value="White"/>
@@ -69,7 +47,10 @@
                 <MenuItem Header="Statistika zahteva" FontSize="28" Foreground="#FF1B5886" Height="30" Width="300"/>
             </MenuItem>
         </Menu>
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,209,0,0" Height="490" Width="1280">
+        <Border HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,161,0,0" Height="30" Width="1280" BorderBrush="White" BorderThickness="0 0 0 1">
+            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,161,0,0" Height="30" Width="1280"/>
+        </Border>
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,191,0,0" Height="490" Width="1280">
             <Frame Name="GuideFrame" HorizontalAlignment="Center" VerticalAlignment="Top" Height="490" Width="1277" NavigationUIVisibility="Hidden" FlowDirection="RightToLeft">
                 <Frame.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0" SpreadMethod="Pad">
