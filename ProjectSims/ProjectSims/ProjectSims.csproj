@@ -23,7 +23,6 @@
     <None Remove="Resources\Icons\Guide\create.png" />
     <None Remove="Resources\Icons\Guide\description.png" />
     <None Remove="Resources\Icons\Guide\duration.png" />
-    <None Remove="Resources\Icons\Guide\duration.png" />
     <None Remove="Resources\Icons\Guide\filter.png" />
     <None Remove="Resources\Icons\Guide\guests.png" />
     <None Remove="Resources\Icons\Guide\help.png" />
@@ -109,6 +108,9 @@
     <Content Include="Resources\Icons\Guide\description.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Icons\Guide\duration.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Icons\Guide\filter.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -139,6 +141,9 @@
     <Content Include="Resources\Icons\Guide\rating.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Icons\Guide\report.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Icons\Guide\search.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -146,6 +151,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\tourname.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\user.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Guest2\kofer.jpg">
@@ -186,6 +194,7 @@
     <PackageReference Include="CalcBinding" Version="2.5.2">
       <TreatAsUsed>true</TreatAsUsed>
     </PackageReference>
+    <PackageReference Include="Microsoft.UI.Xaml" Version="2.8.4" />
     <PackageReference Include="Tulpep.NotificationWindow" Version="1.1.38">
       <TreatAsUsed>true</TreatAsUsed>
     </PackageReference>

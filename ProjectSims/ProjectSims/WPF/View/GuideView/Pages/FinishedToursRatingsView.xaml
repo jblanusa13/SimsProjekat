@@ -35,7 +35,8 @@
     </Page.Resources>
     <ScrollViewer>
         <Grid Background="Transparent">
-            <Label Content="Zakazane ture" HorizontalAlignment="Center" Margin="0,50,0,0" FontSize="44" Height="60" FontWeight="Bold"/>
+            <Image Source="/Resources/Icons/Guide/rating.png" Margin="330,50,0,0" Height="65" Width="65"/>
+            <Label Content="Ocene završenih tura" HorizontalAlignment="Center" Margin="0,50,0,0" FontSize="44" Height="60" FontWeight="Bold"/>
             <ListView  x:Name="ScheduledTour" ItemsSource="{Binding FinishedTours}" Margin="0,150,0,100" HorizontalAlignment="Center" VerticalAlignment="Top"  Width="1200" Background="#ffc300" SelectionMode="Single">
                 <ListView.Resources>
                     <Style TargetType="{x:Type Label}">
