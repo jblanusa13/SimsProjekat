@@ -7,22 +7,81 @@
       mc:Ignorable="d" 
       d:DesignHeight="400" d:DesignWidth="1280"
       Title="AvailableToursView">
+    <Page.Resources>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Height" Value="45"/>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="0.4"/>
+        </Style>
+        <Style TargetType="{x:Type Image}">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="50"/>
+        </Style>
+        <Style x:Key="ColumnHeader" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="Foreground" Value="#FF1B5886"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="IsHitTestVisible" Value="False"/>
+        </Style>
+    </Page.Resources>
     <ScrollViewer>
-        <Grid Background="#FF050518">
-            <ListView  x:Name="AvailableTour" ItemsSource="{Binding TodayTours}" Margin="0,50,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single" SelectedItem="{Binding Path=SelectedTour}">
+        <Grid Background="Transparent">
+            <Label Content="Današnje ture" HorizontalAlignment="Center" Margin="0,50,0,0" FontSize="44" Height="60" FontWeight="Bold"/>
+            <ListView  x:Name="AvailableTour" ItemsSource="{Binding TodayTours}" Margin="0,150,0,100" HorizontalAlignment="Center" VerticalAlignment="Top"  Width="1200" Background="#ffc300" SelectionMode="Single" SelectedItem="{Binding Path=SelectedTour}">
+                <ListView.Resources>
+                    <Style TargetType="{x:Type Label}">
+                        <Setter Property="Foreground" Value="#FF1B5886"/>
+                        <Setter Property="FontFamily" Value="Helvetica"/>
+                        <Setter Property="FontSize" Value="22"/>
+                    </Style>
+                </ListView.Resources>
                 <ListView.View>
-                    <GridView >
-                        <GridViewColumn Header="Naziv" Width="500">
+                    <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeader}" >
+                        <GridViewColumn Width="200">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image  Source="{Binding Images.First()}" Margin="10,0,0,0"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Naziv" Width="350">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox  Text="{Binding Name}" IsReadOnly="True" BorderThickness="0"  Background="Transparent"/>
+                                    <Label  Content="{Binding Name}" Margin="10,0,0,0"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Pocetak" Width="300">
+                        <GridViewColumn Header="Pocetak" Width="180">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox  Text="{Binding StartOfTheTour}" IsReadOnly="True" BorderThickness="0"  Background="Transparent"/>
+                                    <Label  Content="{Binding StartOfTheTour}" Margin="10,0,0,0"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Lokacija" Width="250">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label  Content="{Binding Location}" Margin="10,0,0,0"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
