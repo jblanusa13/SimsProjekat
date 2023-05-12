@@ -404,3 +404,5 @@ C:\Users\Ana\Desktop\projekat\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net
 C:\Users\Ana\Desktop\projekat\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ProjectSims.pdb
 C:\Users\Ana\Desktop\projekat\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ProjectSims.genruntimeconfig.cache
 C:\Users\Ana\Desktop\projekat\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ref\ProjectSims.dll
+C:\Users\Ana\Desktop\projekat\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\GuideView\Pages\SuggestionsView.g.cs
+C:\Users\Ana\Desktop\projekat\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\GuideView\Pages\SuggestionsView.baml

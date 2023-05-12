@@ -101,6 +101,9 @@
     <Compile Update="WPF\View\GuideView\GuideStartingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\SuggestionsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\OwnerView\Pages\GuestRatingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -239,6 +242,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\GuideView\GuideStartingView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\GuideView\Pages\SuggestionsView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\OwnerView\Pages\GuestRatingView.xaml">
