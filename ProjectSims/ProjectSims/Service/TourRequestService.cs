@@ -48,6 +48,28 @@ namespace ProjectSims.Service
                 wantedRequests.RemoveAll(request => !tourRequestRepository.GetRequestsInDateRange(DateOnly.FromDateTime(dateRange.First()), DateOnly.FromDateTime(dateRange.Last())).Contains(request));
             return wantedRequests;
         }
+        public List<TourRequest> GetRequestsInLastYear()
+        {
+            return tourRequestRepository.GetInLastYear();
+        }
+
+        public string GetMostWantedLanguageInLastYear()
+        {
+            List<String> languagesInLastYear = GetRequestsInLastYear().Select(r=>r.Language.ToLower()).ToList();
+            Dictionary<string, int> languageCounts = new Dictionary<string, int>();
+            foreach (string language in languagesInLastYear)
+                {
+                    if (languageCounts.ContainsKey(language))
+                    {
+                    languageCounts[language] += 1;
+                    }
+                    else
+                    {
+                    languageCounts.Add(language, 1);
+                    }
+                }
+            return languageCounts.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
+        }
         public List<TourRequest> GetByGuest2Id(int guest2Id)
         {
             return tourRequestRepository.GetByGuest2Id(guest2Id);
