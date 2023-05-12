@@ -31,7 +31,8 @@ namespace ProjectSims
             { typeof(IGuest1Repository), new Guest1Repository() },
             { typeof(IAccommodationRatingRepository), new AccommodationRatingRepository() },
             { typeof(IRenovationRecommendationRepository), new RenovationRecommendationRepository() },
-            { typeof(IRequestRepository), new RequestRepository() }
+            { typeof(IRequestRepository), new RequestRepository() },
+            { typeof(IAccommodationScheduleRepository), new AccommodationScheduleRepository() }
         };
        public static T CreateInstance<T>()
         {

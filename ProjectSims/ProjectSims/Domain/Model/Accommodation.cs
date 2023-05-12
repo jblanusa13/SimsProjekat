@@ -26,6 +26,8 @@ namespace ProjectSims.Domain.Model
         public List<string> Images { get; set; }
         public Owner Owner { get; set; }
         public int IdOwner { get; set; }
+        public int ScheduleId { get; set; }
+        public AccommodationSchedule Schedule { get; set; }
 
 
         public Accommodation() 
@@ -36,7 +38,7 @@ namespace ProjectSims.Domain.Model
 
         public Accommodation(int id, string name, int idLocation, Location location, AccommodationType type, 
             int guestsMaximum, int minimumReservationDays, int dismissalDays, 
-            List<string> images, int idOwner) {
+            List<string> images, int idOwner, int scheduleId) {
             Id = id;
             Name = name;
             IdLocation = idLocation;
@@ -47,6 +49,7 @@ namespace ProjectSims.Domain.Model
             DismissalDays = dismissalDays;
             Images = images;
             IdOwner = idOwner;
+            ScheduleId = scheduleId;
         }
 
 
@@ -64,6 +67,7 @@ namespace ProjectSims.Domain.Model
                 Images.Add(image);
             }
             IdOwner = Convert.ToInt32(values[8]);
+            ScheduleId = Convert.ToInt32(values[9]);
             InitializeData();
         }
         public string[] ToCSV()
@@ -87,7 +91,8 @@ namespace ProjectSims.Domain.Model
                 MinimumReservationDays.ToString(), 
                 DismissalDays.ToString(), 
                 ImageString, 
-                IdOwner.ToString() 
+                IdOwner.ToString(),
+                ScheduleId.ToString()
             };
             return csvValues;
         }
@@ -95,7 +100,9 @@ namespace ProjectSims.Domain.Model
         public void InitializeData()
         {
             LocationRepository locationRepository = new LocationRepository();
+            AccommodationScheduleRepository scheduleRepository = new AccommodationScheduleRepository();
             Location = locationRepository.GetById(IdLocation);
+            Schedule = scheduleRepository.GetById(ScheduleId);
         }
     }
 }

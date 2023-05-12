@@ -30,7 +30,7 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
             locationService.Add(Location);
             int IdLocation = locationService.GetIdByLocation(Location);
             Location location = new Location(IdLocation, Location.ToString().Split(",")[0], Location.ToString().Split(",")[1]);
-            Accommodation accommodation = new Accommodation(-1, AccommodationName, IdLocation, location, Type, GuestsMaximum, MinimumReservationDays, DismissalDays, Pics, owner.Id);
+            Accommodation accommodation = new Accommodation(-1, AccommodationName, IdLocation, location, Type, GuestsMaximum, MinimumReservationDays, DismissalDays, Pics, owner.Id, -1);
             accommodationService.Create(accommodation);
             ownerService.AddAccommodation(owner, accommodation.Id);
             ownerService.Update(owner);
