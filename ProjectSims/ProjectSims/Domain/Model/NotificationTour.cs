@@ -17,7 +17,10 @@ namespace ProjectSims.Domain.Model
         public string ContentNotification { get; set; }
         public DateTime DateSentNotification { get; set; }
         public bool Seen { get; set; }
+        public NotificationTour()
+        {
 
+        }
         public NotificationTour(int id, int guest2Id, int guideId, int tourId, string contentNotification, DateTime dateSentNotification, bool seen)
         {
             Id = id;
