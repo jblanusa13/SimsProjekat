@@ -14,37 +14,28 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
     public class AccommodationsDisplayViewModel : IObserver
     {
         public Owner Owner { get; set; }
-        public ObservableCollection<AccommodationReservation> AccommodationReservations { get; set; }
-        private AccommodationReservationService accommodationReservationService;
+        public ObservableCollection<Accommodation> Accommodations { get; set; }
+        private AccommodationService accommodationService;
         private OwnerService ownerService;
         
         public AccommodationsDisplayViewModel(Owner o) {
             Owner = o;
-            accommodationReservationService = new AccommodationReservationService();
-            accommodationReservationService.Subscribe(this); 
-            AccommodationReservations = new ObservableCollection<AccommodationReservation>(accommodationReservationService.GetAllByOwnerId(Owner.Id));
+            accommodationService = new AccommodationService();
+            accommodationService.Subscribe(this); 
+            Accommodations = new ObservableCollection<Accommodation>(accommodationService.GetAllByOwnerId(Owner.Id));
             ownerService = new OwnerService();
         }
         public bool HasWaitingRequests(Owner owner)
         {
             return ownerService.HasWaitingRequests(owner.Id);
         }
-        public bool IsNotRated(AccommodationReservation SelectedAccommodationReservation)
-        {
-            return SelectedAccommodationReservation.RatedGuest == false;
-        }
-
-        public bool IsLessThan5Days(AccommodationReservation SelectedAccommodationReservation)
-        {
-            return SelectedAccommodationReservation.CheckOutDate.AddDays(5) >= DateOnly.FromDateTime(DateTime.Today);
-        }
 
         public void Update()
         {
-            AccommodationReservations.Clear();
-            foreach (AccommodationReservation guestAccommodation in accommodationReservationService.GetAllReservations())
+            Accommodations.Clear();
+            foreach (Accommodation accommodation in accommodationService.GetAllAccommodations())
             {
-                AccommodationReservations.Add(guestAccommodation);
+                Accommodations.Add(accommodation);
             }
         }
     }

@@ -203,10 +203,13 @@ namespace ProjectSims.View.OwnerView.Pages
                 }
             }
         }
-        public GuestRatingView(AccommodationReservation selectedAccommodationReservation, Owner o)
+
+        public TextBlock TitleTextBlock { get; set; }
+        public GuestRatingView(AccommodationReservation selectedAccommodationReservation, Owner o, TextBlock titleTextBlock)
         {
             InitializeComponent();
             Owner = o;
+            TitleTextBlock = titleTextBlock;
             SelectedAccommodationReservation = selectedAccommodationReservation;
             guestRatingViewModel = new GuestRatingViewModel(SelectedAccommodationReservation, Owner);
             this.DataContext = guestRatingViewModel;
@@ -224,7 +227,8 @@ namespace ProjectSims.View.OwnerView.Pages
             if (CleanlinessComboBox.SelectedIndex > -1 && RespectingRulesComboBox.SelectedIndex > -1 && TidinessComboBox.SelectedIndex > -1 && CommunicationComboBox.SelectedIndex > -1) 
             {
                 guestRatingViewModel.RateGuest(SelectedAccommodationReservation, Convert.ToInt32(CleanlinessComboBox.Text), Convert.ToInt32(RespectingRulesComboBox.Text), Convert.ToInt32(TidinessComboBox.Text), Convert.ToInt32(CommunicationComboBox.Text), ReadComment());
-                this.NavigationService.Navigate(new AccommodationsDisplay(Owner));
+                this.NavigationService.Navigate(new AccommodationsDisplay(Owner, TitleTextBlock));
+                TitleTextBlock.Text = "Smještaji";
             }
         }
 
@@ -239,7 +243,8 @@ namespace ProjectSims.View.OwnerView.Pages
 
         private void CancelRateGuest_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new AccommodationsDisplay(Owner));
+            this.NavigationService.Navigate(new AccommodationsDisplay(Owner, TitleTextBlock));
+            TitleTextBlock.Text = "Smještaji";
         }
 
         private void CommentTextBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)

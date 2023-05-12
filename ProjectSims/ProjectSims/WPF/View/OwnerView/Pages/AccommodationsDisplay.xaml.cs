@@ -34,12 +34,14 @@ namespace ProjectSims.View.OwnerView.Pages
     {
         public AccommodationsDisplayViewModel accommodationsDisplayViewModel;
         public Owner Owner { get; set; }
-        public AccommodationReservation SelectedAccommodationReservation { get; set; }
-        
-        public AccommodationsDisplay(Owner o)
+        public Accommodation SelectedAccommodation { get; set; }
+        public TextBlock TitleTextBlock { get; set; }
+
+        public AccommodationsDisplay(Owner o, TextBlock titleTextBlock)
         {
             InitializeComponent();
             Owner = o;
+            TitleTextBlock = titleTextBlock;
             accommodationsDisplayViewModel = new AccommodationsDisplayViewModel(Owner);
             this.DataContext = accommodationsDisplayViewModel;
             NotifyAboutRequest();
@@ -49,33 +51,19 @@ namespace ProjectSims.View.OwnerView.Pages
         {
             if (accommodationsDisplayViewModel.HasWaitingRequests(Owner))
             {
-                MessageBox.Show("Imate zahteve na cekanju!");
-            }
-        }
-
-        private void RateGuest_Click(object sender, RoutedEventArgs e)
-        {
-            SelectedAccommodationReservation = (AccommodationReservation)AccommodationReservationsTable.SelectedItem;
-
-            if (SelectedAccommodationReservation != null 
-                && accommodationsDisplayViewModel.IsNotRated(SelectedAccommodationReservation) 
-                && accommodationsDisplayViewModel.IsLessThan5Days(SelectedAccommodationReservation))
-            {
-                this.NavigationService.Navigate(new GuestRatingView(SelectedAccommodationReservation, Owner));
-            }
-            else if(SelectedAccommodationReservation == null)
-            {
-                //Do nothing
-            }
-            else
-            {
-               //Guest is rated
+                MessageBox.Show("Imate zahteve na čekanju!");
             }
         }
 
         private void RegistrateAccommodation_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new AccommodationRegistrationView(Owner));
+            this.NavigationService.Navigate(new AccommodationRegistrationView(Owner, TitleTextBlock));
+            TitleTextBlock.Text = "Registracija smještaja";
+        }
+
+        private void Statistics_Click(object sender, RoutedEventArgs e)
+        {
+            TitleTextBlock.Text = "Statistika smještaja";
         }
     }
 }

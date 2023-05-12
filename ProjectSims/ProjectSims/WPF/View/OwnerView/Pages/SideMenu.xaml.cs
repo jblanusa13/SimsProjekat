@@ -50,14 +50,19 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
 
         private void Accommodations_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new AccommodationsDisplay(Owner));
+            this.NavigationService.Navigate(new AccommodationsDisplay(Owner, TitleTextBlock));
             TitleTextBlock.Text = "Smještaji";
         }
 
-        private void Ratings_Click(object sender, RoutedEventArgs e) 
+        private void Ratings_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new OwnerRatingsDisplay(Owner));
             TitleTextBlock.Text = "Recenzije";
+        }
+        private void Profile_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Profile(Owner));
+            TitleTextBlock.Text = "Profil";
         }
     }
 }

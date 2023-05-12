@@ -26,7 +26,7 @@ namespace ProjectSims.Domain.Model
         public List<string> Images { get; set; }
         public Owner Owner { get; set; }
         public int IdOwner { get; set; }
-
+        public bool Renovated { get; set; } 
 
         public Accommodation() 
         {
@@ -36,7 +36,7 @@ namespace ProjectSims.Domain.Model
 
         public Accommodation(int id, string name, int idLocation, Location location, AccommodationType type, 
             int guestsMaximum, int minimumReservationDays, int dismissalDays, 
-            List<string> images, int idOwner) {
+            List<string> images, int idOwner, bool renovated) {
             Id = id;
             Name = name;
             IdLocation = idLocation;
@@ -47,6 +47,7 @@ namespace ProjectSims.Domain.Model
             DismissalDays = dismissalDays;
             Images = images;
             IdOwner = idOwner;
+            Renovated = renovated;
         }
 
 
@@ -64,6 +65,7 @@ namespace ProjectSims.Domain.Model
                 Images.Add(image);
             }
             IdOwner = Convert.ToInt32(values[8]);
+            Renovated = Convert.ToBoolean(values[9]);
             InitializeData();
         }
         public string[] ToCSV()
@@ -87,7 +89,8 @@ namespace ProjectSims.Domain.Model
                 MinimumReservationDays.ToString(), 
                 DismissalDays.ToString(), 
                 ImageString, 
-                IdOwner.ToString() 
+                IdOwner.ToString(),
+                Renovated.ToString(),
             };
             return csvValues;
         }

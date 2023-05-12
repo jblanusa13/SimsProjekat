@@ -6,87 +6,99 @@
       xmlns:local="clr-namespace:ProjectSims.WPF.View.OwnerView.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="750" d:DesignWidth="430"
-      Title="Menu" Background="CornflowerBlue">
+      Title="Menu" Background="#abc3cd">
 
     <Grid Margin="20 50 20 20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="87*"/>
+            <ColumnDefinition Width="304*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="45"/>
-            <RowDefinition Height="45"/>
-            <RowDefinition Height="45"/>
-            <RowDefinition Height="45"/>
-            <RowDefinition Height="45"/>
-            <RowDefinition Height="45"/>
-            <RowDefinition Height="45"/>
-            <RowDefinition Height="45"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
             <Button Content="Početna stranica"
                     Click="HomePage_Click"
-                    FontSize="17"
+                    FontSize="18"
+                    FontWeight="DemiBold"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
-                    Background="CornflowerBlue"
+                    Background="#abc3cd"
                     BorderThickness="0"/>
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
             <Button Content="Smještaji"
                     Click="Accommodations_Click"
-                    FontSize="17"
+                    FontSize="18"
+                    FontWeight="DemiBold"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
-                    Background="CornflowerBlue"
+                    Background="#abc3cd"
                     BorderThickness="0"/>
         </Grid>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" Grid.ColumnSpan="2">
             <Button Content="Renoviranja"
-                    FontSize="17"
+                    FontSize="18"
+                    FontWeight="DemiBold"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
-                    Background="CornflowerBlue"
+                    Background="#abc3cd"
                     BorderThickness="0"/>
         </Grid>
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="3" Grid.ColumnSpan="2">
             <Button Content="Recenzije"
                     Click="Ratings_Click"
-                    FontSize="17"
+                    FontSize="18"                                        FontWeight="DemiBold"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
-                    Background="CornflowerBlue"
+                    Background="#abc3cd"
                     BorderThickness="0"/>
         </Grid>
-        <Grid Grid.Row="4">
+        <Grid Grid.Row="4" Grid.ColumnSpan="2">
             <Button Content="Forumi"
-                    FontSize="17"
+                    FontSize="18"
+                    FontWeight="DemiBold"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
-                    Background="CornflowerBlue"
+                    Background="#abc3cd"
                     BorderThickness="0"/>
         </Grid>
-        <Grid Grid.Row="5">
+        <Grid Grid.Row="5" Grid.ColumnSpan="2">
             <Button Content="Tutorijal"
-                    FontSize="17"
+                    FontSize="18"
+                    FontWeight="DemiBold"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
-                    Background="CornflowerBlue"
+                    Background="#abc3cd"
                     BorderThickness="0"/>
         </Grid>
-        <Grid Grid.Row="6">
+        <Grid Grid.Row="6" Grid.ColumnSpan="2">
             <Button Content="Profil"
-                    FontSize="17"
+                    Click="Profile_Click"
+                    FontSize="18"
+                    FontWeight="DemiBold"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
-                    Background="CornflowerBlue"
+                    Background="#abc3cd"
                     BorderThickness="0"/>
         </Grid>
-        <Grid Grid.Row="7">
+        <Grid Grid.Row="7" Grid.ColumnSpan="2">
             <Button Content="Log out"
                     Click="LogOut_Click"
-                    FontSize="17"
+                    FontSize="18"                    
+                    FontWeight="DemiBold"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
-                    Background="CornflowerBlue"
+                    Background="#abc3cd"
                     BorderThickness="0"/>
         </Grid>
     </Grid>

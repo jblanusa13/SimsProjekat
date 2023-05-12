@@ -1,4 +1,5 @@
-﻿using ProjectSims.Serializer;
+﻿using ProjectSims.Repository;
+using ProjectSims.Serializer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +17,15 @@ namespace ProjectSims.Domain.Model
         public string Address { get; set; }
         public string Email { get; set; }
         public int UserId { get; set; }
+        public User User { get; set; }
         public List<int> AccommodationIds { get; set; }
+        public bool SuperOwner { get; set; }
 
         public Owner() 
         {
             AccommodationIds = new List<int>();
         }
-        public Owner(int id, string name, string surname, string address, string email, int userId, List<int> accommodationIds)
+        public Owner(int id, string name, string surname, string address, string email, int userId, List<int> accommodationIds, bool superOwner)
         {
             Id = id;
             Name = name;
@@ -31,6 +34,7 @@ namespace ProjectSims.Domain.Model
             Email = email;
             UserId = userId;
             AccommodationIds = accommodationIds;
+            SuperOwner = superOwner;
         }
 
         public void FromCSV(string[] values)
@@ -47,6 +51,8 @@ namespace ProjectSims.Domain.Model
                 accommodationIds.Add(Convert.ToInt32(value)); 
             }
             AccommodationIds = accommodationIds;
+            SuperOwner = Convert.ToBoolean(values[7]);
+            InitializeData();
         }
 
         public string[] ToCSV()
@@ -67,9 +73,16 @@ namespace ProjectSims.Domain.Model
                 Address,
                 Email,
                 UserId.ToString(),
-                AccommodationIdsString
+                AccommodationIdsString,
+                SuperOwner.ToString()
             };
             return csvvalues;
+        }
+        
+        public void InitializeData()
+        {
+            UserRepository userRepository = new UserRepository();
+            User = userRepository.GetById(UserId);         
         }
     }
 }

@@ -21,5 +21,10 @@ namespace ProjectSims.Service
         {
             return userRepository.GetById(id);
         }
+
+        public void Update(User user) 
+        {
+            userRepository.Update(user);
+        }
     }
 }

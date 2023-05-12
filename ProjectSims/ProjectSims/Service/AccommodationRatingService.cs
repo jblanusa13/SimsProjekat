@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,5 +64,35 @@ namespace ProjectSims.Service
             ratingRepository.Subscribe(observer);
         }
 
+        public bool IsSuperowner(Owner owner) 
+        {
+            bool isSuperowner = false;
+            double[] averageAndTotal = AverageAndNumberOfAllGrades(owner);
+            if (averageAndTotal[0] > 4.5 && averageAndTotal[1] >= 50) 
+            {
+                isSuperowner = true;
+            }
+            return isSuperowner;
+        }
+
+        public double[] AverageAndNumberOfAllGrades(Owner owner)
+        {
+            double[] result = {0, 0};
+            foreach (var rating in GetAllRatings())
+            {
+                if (rating.Reservation.Accommodation.IdOwner == owner.Id && rating.Reservation.RatedAccommodation == true && rating.Reservation.RatedGuest == true)
+                {
+                    result[0] += AverageGrade(rating);
+                    result[1] += 1;
+                }
+            }
+            result[0] = result[0] / result[1];
+            return result;
+        }
+
+        public double AverageGrade(AccommodationAndOwnerRating rating)
+        {
+            return (rating.Cleanliness + rating.OwnerFairness + rating.ValueForMoney + rating.Location)/ 4;
+        }
     }
 }

@@ -33,7 +33,6 @@ namespace ProjectSims.View.OwnerView.Pages
         public Owner Owner { get; set; }
         public AccommodationRegistrationViewModel accommodationRegistrationViewModel { get; set; }
 
-        public List<string> paths = new List<string>();
         public List<string> relativePaths = new List<string>();
 
         private string _accommodationName;
@@ -141,10 +140,13 @@ namespace ProjectSims.View.OwnerView.Pages
             }
         }
 
-        public AccommodationRegistrationView(Owner o)
+        public TextBlock TitleTextBlock { get; set; }
+        
+        public AccommodationRegistrationView(Owner o, TextBlock titleTextBlock)
         {
             InitializeComponent();
             Owner = o;
+            TitleTextBlock = titleTextBlock;
             accommodationRegistrationViewModel = new AccommodationRegistrationViewModel(Owner);
             this.DataContext = accommodationRegistrationViewModel;
         }
@@ -165,7 +167,8 @@ namespace ProjectSims.View.OwnerView.Pages
             {
                 accommodationRegistrationViewModel.RegisterAccommodation(LocationTextBox.Text, Pics, AccommodationNameTextBox.Text, Type, Convert.ToInt32(GuestsMaximumTextBox.Text), Convert.ToInt32(MinimumReservationDaysTextBox.Text), Convert.ToInt32(DismissalDaysTextBox.Text));
             }
-            this.NavigationService.Navigate(new AccommodationsDisplay(Owner));
+            this.NavigationService.Navigate(new AccommodationsDisplay(Owner, TitleTextBlock));
+            TitleTextBlock.Text = "Smještaji";
         }
 
         private void LoadImages_Click(object sender, RoutedEventArgs e)
@@ -215,6 +218,12 @@ namespace ProjectSims.View.OwnerView.Pages
         private string GetRelativePath(string fileName)
         {
             return "/Resources/Images/Owner/Accommodations/" + fileName;
+        }
+
+        private void Dismiss_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new AccommodationsDisplay(Owner, TitleTextBlock));
+            TitleTextBlock.Text = "Smještaji";
         }
     }
 }

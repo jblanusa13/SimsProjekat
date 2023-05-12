@@ -10,28 +10,28 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="17*"/>
-            <RowDefinition Height="13*"/>
+            <RowDefinition Height="500"/>
+            <RowDefinition Height="250"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" 
-                    Grid.RowSpan="2">
+                    Grid.RowSpan="2"
+                    Height="750">
             <Grid ScrollViewer.CanContentScroll="True" 
                   SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical" 
-                  Width="420">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="644*"/>
-                    <RowDefinition Height="47*"/>
-                </Grid.RowDefinitions>
+                  Width="430">
                 <DataGrid x:Name="RequestsTable"  
                           ItemsSource="{Binding RequestList}"
-                          Margin="22,61,22,257" 
+                          Margin="0,0,0,0" 
+                          Height="500"
                           AutoGenerateColumns="False" 
                           IsReadOnly="True" 
                           SelectionMode="Single" 
-                          Width="375">
+                          Grid.Row="0"
+                          VerticalAlignment="Top"
+                          HeadersVisibility="Column">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Ime i prezime"
-                                            Width="150"
+                                            Width="*"
                                             IsReadOnly="True">
                             <DataGridTextColumn.Binding>
                                 <MultiBinding StringFormat="{}{0} {1}">
@@ -40,54 +40,55 @@
                                 </MultiBinding>
                             </DataGridTextColumn.Binding>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Trazeni datum"
+                        <DataGridTextColumn Header="Traženi datum"
                                             Binding="{Binding ChangeDate, StringFormat={}{0:dd.MM.yyyy.}}"
-                                            Width="130"
+                                            Width="155"
                                             IsReadOnly="True">
                         </DataGridTextColumn>
                         <DataGridCheckBoxColumn Header="Rezervisan"      
                                                 Binding="{Binding Reserved,
                                                           Mode=TwoWay,
                                                           BindsDirectlyToSource=True}"
-                                                Width="*"
+                                                Width="70"
                                                 IsReadOnly="True"/>
                     </DataGrid.Columns>
                 </DataGrid>
                 <TextBox x:Name="CommentTextBox"
                          HorizontalAlignment="Center" 
-                         Height="106"
-                         Margin="0,461,0,0"
+                         Height="86"
+                         Margin="0,519,0,0"
                          TextWrapping="Wrap"
                          Text="Unesite komentar ukoliko odbijate zahtjev..."
                          Foreground="Gray"
                          GotKeyboardFocus="CommentTextBox_GotKeyboardFocus"
                          LostKeyboardFocus="CommentTextBox_LostKeyboardFocus"
                          VerticalAlignment="Top"
-                         Width="376"/>
+                         Width="376"
+                         Grid.Row="1"/>
             </Grid>
         </StackPanel>
         <Button x:Name="AcceptButton"
-                Margin="26,227,0,0"
+                Margin="53,140,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 TextElement.FontSize="12"
                 TextElement.FontStretch="UltraExpanded"
                 TextElement.FontWeight="DemiBold"
                 Height="34"
-                Width="162"
+                Width="120"
                 Content="Odobri"
                 Visibility="Visible"
                 Click="AcceptButton_Click" 
                 Grid.Row="1"/>
         <Button x:Name="RefuseButton"
-                Margin="232,227,0,0"
+                Margin="255,140,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 TextElement.FontSize="12"
                 TextElement.FontStretch="UltraExpanded"
                 TextElement.FontWeight="DemiBold"
                 Height="34"
-                Width="162"
+                Width="120"
                 Content="Odbij"
                 Visibility="Visible"
                 Click="RefuseButton_Click" 
