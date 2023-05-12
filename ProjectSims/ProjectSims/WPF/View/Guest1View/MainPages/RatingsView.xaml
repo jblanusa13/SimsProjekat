@@ -14,6 +14,7 @@
             <Setter Property="Background" Value="{DynamicResource DataGridBackground}"></Setter>
             <Setter Property="ColumnHeaderStyle" Value="{DynamicResource DataGridHeader}"></Setter>
             <Setter Property="RowStyle" Value="{DynamicResource DataGridRow}"></Setter>
+            <Setter Property="BorderBrush" Value="{DynamicResource SecondGrayShade}"></Setter>
         </Style>
     </Page.Resources>
 
@@ -52,7 +53,8 @@
                         <DataGrid Name="MyRatingsTable" Grid.Column="0" Margin="20,50,20,10"
                                   ItemsSource="{Binding MyRatings, UpdateSourceTrigger=PropertyChanged}"
                                   IsReadOnly="True" AutoGenerateColumns="False"
-                                  SelectionChanged="MyRatings_SelectionChanged">
+                                  SelectionChanged="MyRatings_SelectionChanged"
+                                  HeadersVisibility="Column">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Naziv smestaja" Binding="{Binding Reservation.Accommodation.Name}" Width="*"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Cistoca" Binding="{Binding Cleanliness}" Width="70"></DataGridTextColumn>
@@ -95,7 +97,8 @@
                         <DataGrid Name="OwnerRatingsTable" Grid.Column="0" Margin="20,50,20,10"
                                   ItemsSource="{Binding OwnerRatings, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                   IsReadOnly="True" AutoGenerateColumns="False"
-                                  SelectionChanged="OwnerRatings_SelectionChanged">
+                                  SelectionChanged="OwnerRatings_SelectionChanged"
+                                  HeadersVisibility="Column">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Naziv smestaja" Binding="{Binding Reservation.Accommodation.Name}" Width="*"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Cistoca" Binding="{Binding CleanlinessRating}" Width="100"></DataGridTextColumn>
@@ -137,7 +140,8 @@
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="1" Margin="80,20,70,15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}"
-                                        Background="{DynamicResource SecondGrayShade}">Odjavi se
+                                        Background="{DynamicResource SecondGrayShade}"
+                    Click="LogOut_Click">Odjavi se
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>

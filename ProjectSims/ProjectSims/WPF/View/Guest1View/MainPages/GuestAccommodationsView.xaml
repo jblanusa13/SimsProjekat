@@ -16,6 +16,7 @@
         </Style>
         <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridHeader}"/>
         <Style TargetType="DataGridRow" BasedOn="{StaticResource DataGridRow}"/>
+        <Style TargetType="DataGridCell" BasedOn="{StaticResource DataGridCell}"/>
     </Page.Resources>
 
     <Grid Background="White">
@@ -122,7 +123,8 @@
                     </TextBox.Resources>
                 </TextBox>
                 <Button Grid.Column="6" Content="Pretraga" Click="Search_Click" HorizontalAlignment="Center" Margin="0,60,0,0" VerticalAlignment="Top" Width="80" Height="25"
-                        Background="{DynamicResource SecondGrayShade}" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">
+                        Background="{DynamicResource SecondGrayShade}" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"
+                        FocusVisualStyle="{DynamicResource FocusControl}">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -133,7 +135,9 @@
             </Grid>
 
             <DataGrid Grid.Row="2" Name="AccommodationsTable" ItemsSource="{Binding Path=Accommodations, UpdateSourceTrigger=PropertyChanged}"
-            Margin="10,10,10,0" HeadersVisibility="Column">
+            Margin="10,10,10,0" HeadersVisibility="Column"
+                      PreviewKeyDown="OpenReservationView"
+                      SelectionChanged="Accommodations_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" Width="170"></DataGridTextColumn>
                     <DataGridTextColumn Header="Grad" Binding="{Binding Location.City}" Width="150"></DataGridTextColumn>
@@ -206,7 +210,7 @@
                         HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
                         FontSize="16"  BorderBrush="{DynamicResource FirstGrayShade}"
                         Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" FontWeight="Bold"
-                        >
+                        FocusVisualStyle="{DynamicResource FocusControl}">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -217,7 +221,8 @@
                         HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
                          FontSize="16" Click="MyReservations_Click" FontFamily="Bahnschrift"
                         Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}"
-                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold">
+                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold"
+                        FocusVisualStyle="{DynamicResource FocusControl}">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -228,7 +233,8 @@
                         HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
                          FontSize="16" Click="RateAccommodation_Click" FontFamily="Bahnschrift"
                         Background="{DynamicResource ButtonsColor}" Foreground="{DynamicResource FontsColor}"
-                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold">
+                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold"
+                        FocusVisualStyle="{DynamicResource FocusControl}">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -239,7 +245,8 @@
                         HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
                          FontSize="16" Click="ShowRatings_Click" FontFamily="Bahnschrift"
                         Background="{DynamicResource ButtonsColor}" Foreground="{DynamicResource FontsColor}"
-                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold">
+                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold"
+                        FocusVisualStyle="{DynamicResource FocusControl}">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -250,7 +257,8 @@
                         HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
                          FontSize="16" FontFamily="Bahnschrift"
                         Background="{DynamicResource ButtonsColor}" Foreground="{DynamicResource FontsColor}"
-                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold">
+                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold"
+                        FocusVisualStyle="{DynamicResource FocusControl}">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -261,7 +269,8 @@
                         HorizontalAlignment="Center" VerticalAlignment="Top" Height="65" Width="210"
                          FontSize="16" FontFamily="Bahnschrift"
                         Background="{DynamicResource ButtonsColor}" Foreground="{DynamicResource FontsColor}"
-                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold">
+                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold"
+                        FocusVisualStyle="{DynamicResource FocusControl}">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -270,10 +279,16 @@
                 </Button>
             </Grid>
             <Grid Grid.Row="2">
-                <Button Content="Rezervisi" Click="Reservation_Click" Margin="30,10" VerticalAlignment="Top" Height="30"
+                <Button Content="Odjavi se" Click="LogOut_Click" Margin="30,10" VerticalAlignment="Top" Height="30"
                         Background="{DynamicResource ButtonsColor}" Foreground="{DynamicResource FontsColor}"
                         FontFamily="Bahnschrift"
-                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold"/>
+                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="20"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
             </Grid>
         </Grid>
     </Grid>

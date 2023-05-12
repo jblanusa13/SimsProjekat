@@ -67,6 +67,15 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             NavigationService.GoBack();
         }
 
+        public void LogOut_Click(object sender, RoutedEventArgs e)
+        {
+            var login = new MainWindow();
+            login.Show();
+            Window parentWindow = Window.GetWindow(this);
+            parentWindow.Close();
+        }
+
+
         public void Update()
         {
             MyRatings.Clear();

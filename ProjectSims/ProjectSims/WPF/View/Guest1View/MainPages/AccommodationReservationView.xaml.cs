@@ -202,6 +202,22 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             }
         }
 
+        private void DateRanges_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedDates = (DateRanges)DatesTable.SelectedItem;
+        }
+
+        private void Reserve(object sender, KeyEventArgs e)
+        {
+            if (SelectedDates != null)
+            {
+                DateRanges dates = (DateRanges)DatesTable.SelectedItem;
+
+                reservationService.CreateReservation(Accommodation.Id, Guest.Id, dates.CheckIn, dates.CheckOut, GuestNumber);
+                NavigationService.GoBack();
+            }
+        }
+
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();

@@ -54,9 +54,23 @@
         <Setter Property="FontSize" Value="13"/>
     </Style>
 
+    <Style TargetType="DataGridCell" x:Key="DataGridCell">
+        <Setter Property="Focusable" Value="True"/>
+    </Style>
+
     <Style TargetType="ListViewItem" x:Key="ListViewItem">
         <Setter Property="Background" Value="#f0f0f0"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="FocusControl">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle Margin="0" StrokeThickness="1.5" Stroke="#001330" StrokeDashArray="3 2"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
 </ResourceDictionary>

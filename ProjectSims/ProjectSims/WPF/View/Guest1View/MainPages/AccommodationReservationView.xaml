@@ -16,6 +16,7 @@
             <Setter Property="Background" Value="{DynamicResource DataGridBackground}"></Setter>
             <Setter Property="ColumnHeaderStyle" Value="{DynamicResource DataGridHeader}"></Setter>
             <Setter Property="RowStyle" Value="{DynamicResource DataGridRow}"></Setter>
+            <Setter Property="BorderBrush" Value="{DynamicResource SecondGrayShade}"></Setter>
         </Style>
     </Page.Resources>
 
@@ -39,7 +40,7 @@
             </Grid>
 
             <Grid Grid.Column="1">
-                <Label Content="{Binding Accommodation.Name}" Margin="10,05" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></Label>
+                <Label Content="{Binding Accommodation.Name}" Margin="10,10" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></Label>
             </Grid>
 
             <Grid Grid.Column="2">
@@ -266,9 +267,11 @@
                             <DataGrid Grid.Row="0" Name="DatesTable" ItemsSource="{Binding AvailableDates, UpdateSourceTrigger=PropertyChanged}" 
                                       Margin="30,80,30,10" 
                                       AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single"
-                                      HeadersVisibility="Column">
+                                      HeadersVisibility="Column"
+                                      SelectionChanged="DateRanges_SelectionChanged"
+                                      PreviewKeyDown="Reserve">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Dolazak" Binding="{Binding CheckIn}" Width="150"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Dolazak" Binding="{Binding CheckIn}" Width="130"></DataGridTextColumn>
                                     <DataGridTextColumn Header="Odlazak"  Binding="{Binding CheckOut}" Width="*"></DataGridTextColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
