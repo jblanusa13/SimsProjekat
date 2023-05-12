@@ -33,6 +33,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         private CreateTourViewModel createTourViewModel;
         public List<string> OtherKeyPoints { get; set; }
         public List<string> Appointments { get; set; }
+        public Guide Guide { get; set; }
         public List<string> Images { get; set; }
         private string _tourName;
         public string TourName
@@ -263,6 +264,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             InitializeComponent();
             DataContext = this;
             createTourViewModel = new CreateTourViewModel(guide, tourRequest);
+            Guide = guide;
             OtherKeyPoints = new List<string>();
             Appointments = new List<string>();
             Images = new List<string>();
@@ -363,7 +365,8 @@ namespace ProjectSims.WPF.View.GuideView.Pages
            if (IsValid)
            {
                 createTourViewModel.CreateTour(TourName,TourLanguage,City + "," + Country,MaxNumberGuests, Appointments,StartKeyPoint,OtherKeyPoints,FinishKeyPoint,Description,Images);
-           }
+                this.NavigationService.Navigate(new ScheduledToursView(Guide));
+            }
            else
                MessageBox.Show("Nisu validno popunjena polja!");
         }

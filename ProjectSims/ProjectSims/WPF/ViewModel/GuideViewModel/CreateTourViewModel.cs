@@ -60,6 +60,7 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
             if(TourRequest != null)
             {
                 TourRequest.State = TourRequestState.Accepted;
+                TourRequest.GuideId = Guide.Id;
                 tourRequestService.Update(TourRequest);
             }
         }

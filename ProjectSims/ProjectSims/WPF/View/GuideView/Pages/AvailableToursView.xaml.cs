@@ -61,7 +61,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         private void UpdateAvailableTours()
         {
             TodayTours.Clear();
-            foreach (var tour in tourService.GetToursByDateAndGuideId(DateTime.Now,Guide.Id))
+            foreach (var tour in tourService.GetToursByDateAndGuideId(DateTime.Now.Date,Guide.Id))
             {
                 TodayTours.Add(tour);
             }
