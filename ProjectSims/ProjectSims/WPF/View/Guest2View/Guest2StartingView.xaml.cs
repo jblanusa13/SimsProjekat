@@ -17,7 +17,7 @@ using ProjectSims.WPF.View.Guest2View.Pages;
 using System.Windows.Threading;
 using ProjectSims.WPF.ViewModel.Guest2ViewModel;
 
-namespace ProjectSims.View.Guest2View
+namespace ProjectSims.WPF.View.Guest2View
 {
     /// <summary>
     /// Interaction logic for Guest2StartingView.xaml
@@ -89,6 +89,10 @@ namespace ProjectSims.View.Guest2View
         {
             ChangeTab(5);
         }
+        private void ButtonAccount(object sender, RoutedEventArgs e)
+        {
+            ChangeTab(6);
+        }
 
         public void ChangeTab(int tabNum)
         {
@@ -127,7 +131,12 @@ namespace ProjectSims.View.Guest2View
                         ShowVouchersViewModel vouchersViewModel = new ShowVouchersViewModel(guest2);
                         SelectedTab.Content = new ShowVouchersView(vouchersViewModel);
                         break;
-                    }                   
+                    }
+                case 6:
+                    {
+                        SelectedTab.Content = new AccountView(guest2);
+                        break;
+                    }
             }
         }
 

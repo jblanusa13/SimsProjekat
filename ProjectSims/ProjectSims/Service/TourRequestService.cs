@@ -39,6 +39,67 @@ namespace ProjectSims.Service
         {
             return tourRequestRepository.GetByGuest2Id(guest2Id);
         }
+        public int GetNumberRequestsByState(List<TourRequest> requests, TourRequestState state)
+        {
+            int number = 0;
+            foreach (TourRequest request in requests)
+            {
+                if(request.State == state)
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+        public double GetAverageNumberOfPeopleOnAcceptedRequests(List<TourRequest> requests)
+        {
+            int numberPeople = 0;
+            int numberAcceptedRequest = 0;
+            foreach(TourRequest request in requests)
+            {
+                if(request.State == TourRequestState.Accepted)
+                {
+                    numberPeople += request.MaxNumberGuests;
+                    numberAcceptedRequest++;
+                }
+            }
+            if (numberAcceptedRequest == 0) return 0;
+            return Math.Round((double)numberPeople/numberAcceptedRequest,2);
+        }
+        public int GetNumberRequestsByLanguage(List<TourRequest> requests, string language)
+        {
+            int number = 0;
+            foreach (TourRequest request in requests)
+            {
+                if (request.Language == language)
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+        public List<string> GetAllLocations(List<TourRequest> requests)
+        {
+            List<string> locations = new List<string>();
+            foreach(TourRequest request in requests)
+            {
+                if(!locations.Contains(request.Location))
+                    locations.Add(request.Location);
+            }
+            return locations;
+        }
+        public int GetNumberRequestsByLocation(List<TourRequest> requests, string location)
+        {
+            int number = 0;
+            foreach (TourRequest request in requests)
+            {
+                if (request.Location == location)
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
         public List<TourRequest> GetWantedRequests(string location,string language,string maxNumberGuests,DateTime dateRangeStart,DateTime dateRangeEnd)
         {
             List<TourRequest> wantedRequests = new List<TourRequest>();

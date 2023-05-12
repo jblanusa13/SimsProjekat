@@ -3,7 +3,6 @@ using ProjectSims.FileHandler;
 using ProjectSims.Domain.Model;
 using ProjectSims.View;
 using ProjectSims.View.Guest1View;
-using ProjectSims.View.Guest2View;
 using ProjectSims.View.GuideView;
 using ProjectSims.View.OwnerView;
 using System;
@@ -21,6 +20,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ProjectSims.WPF.View.Guest2View;
 using ProjectSims.WPF.View.OwnerView;
 
 namespace ProjectSims

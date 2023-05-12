@@ -190,12 +190,12 @@ namespace ProjectSims.Service
             }
             else if (!double.TryParse(text, out number))
             {
-                MessageBox.Show("Wrong input! Duration tour must be a double!");
+                MessageBox.Show("Pogresan unos! Trajanje ture mora biti realan broj!");
                 return -2;
             }
             else if (number < 0)
             {
-                MessageBox.Show("The tour duration search fields cannot have a negative value");
+                MessageBox.Show("Pogresan unos! Trajanje ture ne moze imati negativnu vrijednost!");
                 return -2;
             }
             return number;
