@@ -56,19 +56,28 @@ namespace ProjectSims.Service
         public string GetMostWantedLanguageInLastYear()
         {
             List<String> languagesInLastYear = GetRequestsInLastYear().Select(r=>r.Language.ToLower()).ToList();
-            Dictionary<string, int> languageCounts = new Dictionary<string, int>();
-            foreach (string language in languagesInLastYear)
+            return GetMostCommonElement(languagesInLastYear);
+        }
+        public string GetMostWantedLocationInLastYear()
+        {
+            List<String> locationsInLastYear = GetRequestsInLastYear().Select(r => r.Location.ToLower()).ToList();
+            return GetMostCommonElement(locationsInLastYear);
+        }
+        public string GetMostCommonElement(List<string> list)
+        {
+            Dictionary<string, int> counts = new Dictionary<string, int>();
+            foreach (string element in list)
+            {
+                if (counts.ContainsKey(element))
                 {
-                    if (languageCounts.ContainsKey(language))
-                    {
-                    languageCounts[language] += 1;
-                    }
-                    else
-                    {
-                    languageCounts.Add(language, 1);
-                    }
+                    counts[element] += 1;
                 }
-            return languageCounts.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
+                else
+                {
+                    counts.Add(element, 1);
+                }
+            }
+            return counts.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
         }
         public List<TourRequest> GetByGuest2Id(int guest2Id)
         {

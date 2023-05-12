@@ -22,6 +22,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
     public partial class SuggestionsView : Page
     {
         public string MostWantedLanguage { get; set; }
+        public string MostWantedLocation { get; set; }
         private TourRequestService tourRequestService;
         public SuggestionsView()
         {
@@ -29,6 +30,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             DataContext = this;
             tourRequestService = new TourRequestService();
             MostWantedLanguage = tourRequestService.GetMostWantedLanguageInLastYear();
+            MostWantedLocation = tourRequestService.GetMostWantedLocationInLastYear();
         }
     }
 }

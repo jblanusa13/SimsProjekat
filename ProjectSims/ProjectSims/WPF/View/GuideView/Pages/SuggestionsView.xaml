@@ -27,6 +27,8 @@
             <Label Content="Predlozi" HorizontalAlignment="Center" Margin="0,50,0,0" FontSize="44" Height="50" FontWeight="Bold"/>
             <Label Content="Tura na najtrazenijem jeziku u poslednjih godinu dana:"  Margin="50,150,0,0"/>
             <Label Content="{Binding MostWantedLanguage}" Margin="170,250,0,0"/>
+            <Label Content="Tura na najtrazenijoj lokaciji u poslednjih godinu dana:"  Margin="50,350,0,0"/>
+            <Label Content="{Binding MostWantedLocation}" Margin="170,450,0,0"/>
         </Grid>
     </ScrollViewer>
 </Page>
