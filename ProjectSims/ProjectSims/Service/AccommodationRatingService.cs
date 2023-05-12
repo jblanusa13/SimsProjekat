@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Domain.Model;
+using ProjectSims.Domain.RepositoryInterface;
+using ProjectSims.Observer;
 using ProjectSims.Repository;
 using ProjectSims.WPF.View.Guest1View.MainPages;
 
@@ -11,35 +13,56 @@ namespace ProjectSims.Service
 {
     public class AccommodationRatingService
     {
-        private AccommodationRatingRepository ratingRepository;
-        private List<AccommodationAndOwnerRating> ratings;
+        private IAccommodationRatingRepository ratingRepository;
 
         public AccommodationRatingService()
         {
-            ratingRepository = new AccommodationRatingRepository();
-            ratings = ratingRepository.GetAll();
+            ratingRepository = Injector.CreateInstance<IAccommodationRatingRepository>();
         }
 
+        public List<AccommodationAndOwnerRating> GetAllRatings()
+        {
+            return ratingRepository.GetAll();
+        }
+
+        public List<AccommodationAndOwnerRating> GetRatingsWhereGuestRated(int ownerId)
+        {
+            List<AccommodationAndOwnerRating> ratings = new List<AccommodationAndOwnerRating>();
+            foreach (var rating in GetAllRatings()) 
+            {
+                if (rating.Reservation.RatedGuest == true && rating.Reservation.Accommodation.IdOwner == ownerId)
+                {
+                    ratings.Add(rating);
+                }
+            }
+            return ratings;
+        }
         public AccommodationAndOwnerRating GetRating(int id)
         {
-            return ratingRepository.Get(id);
+            return ratingRepository.GetById(id);
         }
 
-
-        public int NextId()
+        public AccommodationAndOwnerRating GetRatingByReservationId(int reservationId)
         {
-            if (ratings.Count == 0)
-            {
-                return 0;
-            }
-            return ratings.Max(r => r.Id) + 1;
+            return ratingRepository.GetByReservationId(reservationId);
         }
 
-        public void CreateRating(int guestId, Guest1 guest, int accommodationId, Accommodation accommodation, int cleanliness, int ownerFairness, int location, int valueForMoney, string comment, List<string> imageList)
+        public List<AccommodationAndOwnerRating> GetAllRatingsByGuestId(int guestId)
         {
-            int id = NextId();
-            AccommodationAndOwnerRating rating = new AccommodationAndOwnerRating(id, guestId, guest, accommodationId, accommodation, cleanliness, ownerFairness, location, valueForMoney, comment, imageList);
-            ratingRepository.Add(rating);
+            return ratingRepository.GetAllByGuestId(guestId);
         }
+
+        public void CreateRating(int reservationId, AccommodationReservation reservation, int cleanliness, int ownerFairness, int location, int valueForMoney, string comment, List<string> imageList, int recommendationId, RenovationRecommendation recommendation)
+        {
+            int id = ratingRepository.NextId();
+            AccommodationAndOwnerRating rating = new AccommodationAndOwnerRating(id, reservationId, reservation, cleanliness, ownerFairness, location, valueForMoney, comment, imageList, recommendationId, recommendation);
+            ratingRepository.Create(rating);
+        }
+
+        public void Subscribe(IObserver observer)
+        {
+            ratingRepository.Subscribe(observer);
+        }
+
     }
 }

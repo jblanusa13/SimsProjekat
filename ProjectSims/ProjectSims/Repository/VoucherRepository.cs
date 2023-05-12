@@ -10,7 +10,7 @@ using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Repository
 {
-    class VoucherRepository : ISubject, IVoucherRepository
+    class VoucherRepository : IVoucherRepository
     {
 
         private VoucherFileHandler voucherFile;
@@ -23,7 +23,7 @@ namespace ProjectSims.Repository
             vouchers = voucherFile.Load();
             observers = new List<IObserver>();
         }
-        public int GetNextId()
+        public int NextId()
         {
             if (vouchers.Count == 0)
             {

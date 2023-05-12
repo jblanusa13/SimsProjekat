@@ -49,6 +49,27 @@ namespace ProjectSims.Domain.Model
             State = state;
             ActiveKeyPointId = activeKeyPointId;
         }
+
+        public static TourState GetState(string state)
+        {
+            return state switch
+            {
+                "Neaktivna" => TourState.Inactive,
+                "Aktivna" => TourState.Active,
+                "Zavrsena" => TourState.Finished,
+                _ => TourState.Cancelled
+            };
+        }
+        public static string GetState(TourState state)
+        {
+            return state switch
+            {
+                TourState.Inactive => "Neaktivna",
+                TourState.Active => "Aktivna",
+                TourState.Finished => "Zavrsena",
+                _ => "Otkazana" 
+            };
+        }
         public void FromCSV(string[] values)
         {
             Id = Convert.ToInt32(values[0]);

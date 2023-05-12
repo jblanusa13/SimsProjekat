@@ -15,7 +15,6 @@ namespace ProjectSims
     {
         private static Dictionary<Type, object> implementations = new Dictionary<Type, object>
         {
-
             { typeof(IGuest2Repository), new Guest2Repository() },
             { typeof(IVoucherRepository), new VoucherRepository() },
             { typeof(IReservationTourRepository), new ReservationTourRepository() },
@@ -25,15 +24,17 @@ namespace ProjectSims
             { typeof(IKeyPointRepository), new KeyPointRepository() },
             { typeof(IUserRepository), new UserRepository() },
             { typeof(ITourRequestRepository), new TourRequestRepository() },
-            { typeof(IGuideScheduleRepository), new GuideScheduleRepository() }    
-            /*{ typeof(IAccommodationRepository), new AccommodationRepository() },
-            { typeof(IAccommodationReservationRepository), new AccommodationReservationRepository() },
-            { typeof(IGuest1Repository), new Guest1Repository() },
-            { typeof(IGuestAcommodationRepository), new GuestAccommodationRepository() },
+            { typeof(IGuideScheduleRepository), new GuideScheduleRepository() },    
+            { typeof(IAccommodationRepository), new AccommodationRepository() },
+            { typeof(IGuestRatingRepository), new GuestRatingRepository() },
             { typeof(ILocationRepository), new LocationRepository() },
             { typeof(IOwnerRepository), new OwnerRepository() },
-            { typeof(IRequestRepository), new RequestRepository() }*/
-
+            { typeof(IAccommodationReservationRepository), new AccommodationReservationRepository() },
+            { typeof(IGuest1Repository), new Guest1Repository() },
+            { typeof(IAccommodationRatingRepository), new AccommodationRatingRepository() },
+            { typeof(IRenovationRecommendationRepository), new RenovationRecommendationRepository() },
+            { typeof(IRequestRepository), new RequestRepository() },
+            { typeof(IAccommodationScheduleRepository), new AccommodationScheduleRepository() }
         };
        public static T CreateInstance<T>()
         {

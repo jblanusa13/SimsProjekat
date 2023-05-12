@@ -7,17 +7,30 @@
         mc:Ignorable="d"
         MinHeight="600" MinWidth="1067"
         Title="Smestaji" Height="600" Width="1067"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        BorderBrush="{DynamicResource BarShade}"
+        BorderThickness="3">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0">
+            <Frame x:Name="WindowBarFrame" NavigationUIVisibility="Hidden"></Frame>
+        </Grid>
 
         <Grid Grid.Row="1">
             <Frame x:Name="SelectedTab" NavigationUIVisibility="Hidden" ></Frame>
         </Grid>
-        
+
+        <Grid Grid.Row="2">
+            <Frame x:Name="StatusBarFrame" NavigationUIVisibility="Hidden"></Frame>
+        </Grid>
     </Grid>
 </Window>

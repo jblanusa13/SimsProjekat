@@ -1,4 +1,5 @@
 ﻿using ProjectSims.Domain.Model;
+using ProjectSims.Observer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjectSims.Domain.RepositoryInterface
 {
-    public interface IGuideRepository : IGenericRepository<Guide, int>
+    public interface IGuideRepository : IGenericRepository<Guide, int>, ISubject
     {
-        public int NextId();
     }
 }

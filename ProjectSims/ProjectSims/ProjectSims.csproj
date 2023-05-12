@@ -8,8 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="WPF\View\Guest1View\NewFolder\**" />
+    <EmbeddedResource Remove="WPF\View\Guest1View\NewFolder\**" />
+    <None Remove="WPF\View\Guest1View\NewFolder\**" />
+    <Page Remove="WPF\View\Guest1View\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Icons\Guest1\travel-tour-logo-dark.png" />
+    <None Remove="Resources\Icons\Guest1\travel-tour-logo-light.png" />
     <None Remove="Resources\Icons\Guest2\icons8-add-file-60.png" />
     <None Remove="Resources\Icons\Guest2\icons8-bell-48.png" />
+    <None Remove="Resources\Icons\Guest2\icons8-help-50.png" />
     <None Remove="Resources\Icons\Guest2\icons8-home-page-64.png" />
     <None Remove="Resources\Icons\Guest2\icons8-male-user-48.png" />
     <None Remove="Resources\Icons\Guide\add.png" />
@@ -46,6 +56,17 @@
     <None Remove="Resources\Icons\Guide\user.png" />
     <None Remove="Resources\Images\background.jpg" />
     <None Remove="Resources\Images\checkmark.png" />
+    <None Remove="Resources\Images\Guest1\DraganoviKonaciKoliba.jpg" />
+    <None Remove="Resources\Images\Guest1\DraganoviKonaciTrem.jpg" />
+    <None Remove="Resources\Images\Guest1\DraganoviKonaciUnutra.jpg" />
+    <None Remove="Resources\Images\Guest1\JovanovicDnevna.jpg" />
+    <None Remove="Resources\Images\Guest1\JovanovicKuca.jpg" />
+    <None Remove="Resources\Images\Guest1\JovanovicSoba.jpg" />
+    <None Remove="Resources\Images\Guest1\KodLabudaDnevna.jpg" />
+    <None Remove="Resources\Images\Guest1\KodLabudaKupatilo.jpg" />
+    <None Remove="Resources\Images\Guest1\KodLabudaSpavaca.jpg" />
+    <None Remove="Resources\Images\Guest1\MladenovicKuhinja.jpg" />
+    <None Remove="Resources\Images\Guest1\MladenovicTrem.jpg" />
     <None Remove="Resources\Images\Guest2\download.jpg" />
     <None Remove="Resources\Images\Guest2\images.jpg" />
     <None Remove="Resources\Images\Guest2\kofer.jpg" />
@@ -64,7 +85,19 @@
     <None Remove="Resources\Images\home.png" />
     <None Remove="Resources\Images\leftarrow.png" />
     <None Remove="Resources\Images\mappin.png" />
+    <None Remove="Resources\Images\Owner\Accommodations\draganovi_konaci.jpg" />
+    <None Remove="Resources\Images\Owner\Accommodations\filipovic1.jpg" />
+    <None Remove="Resources\Images\Owner\Accommodations\filipovic2.jpg" />
+    <None Remove="Resources\Images\Owner\Accommodations\jovanovic1.jpg" />
+    <None Remove="Resources\Images\Owner\Accommodations\jovanovic2.jpg" />
+    <None Remove="Resources\Images\Owner\Accommodations\kod_labuda1.jpg" />
+    <None Remove="Resources\Images\Owner\Accommodations\kod_labuda2.jpg" />
+    <None Remove="Resources\Images\Owner\Accommodations\mladenovic1.jpg" />
+    <None Remove="Resources\Images\Owner\Accommodations\visnjin_dom1.jpg" />
+    <None Remove="Resources\Images\Owner\Accommodations\visnjin_dom2.jpg" />
+    <None Remove="Resources\Images\Owner\Accommodations\visnjin_dom3.jpg" />
     <None Remove="Resources\Images\rightarrow.png" />
+    <None Remove="WPF\View\Guest2View\travel-tour-logo.png" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="{215d64d2-031c-33c7-96e3-61794cd1ee61}">
@@ -79,6 +112,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guest2\icons8-bell-48.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guest2\icons8-help-50.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guest2\icons8-home-page-64.png">
@@ -156,6 +192,39 @@
     <Content Include="Resources\Icons\Guide\user.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Guest1\DraganoviKonaciKoliba.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest1\DraganoviKonaciTrem.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest1\DraganoviKonaciUnutra.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest1\JovanovicDnevna.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest1\JovanovicKuca.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest1\JovanovicSoba.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest1\KodLabudaDnevna.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest1\KodLabudaKupatilo.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest1\KodLabudaSpavaca.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest1\MladenovicKuhinja.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guest1\MladenovicTrem.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Guest2\kofer.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -189,25 +258,76 @@
     <Content Include="Resources\Images\Guide\VojniMuzej.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Owner\Accommodations\filipovic2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Images\Owner\Accommodations\jovanovic1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Owner\Accommodations\jovanovic2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Owner\Accommodations\kod_labuda1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Owner\Accommodations\kod_labuda2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Owner\Accommodations\mladenovic1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Owner\Accommodations\visnjin_dom1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Owner\Accommodations\visnjin_dom2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Owner\Accommodations\visnjin_dom3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CalcBinding" Version="2.5.2">
       <TreatAsUsed>true</TreatAsUsed>
     </PackageReference>
-    <PackageReference Include="Microsoft.UI.Xaml" Version="2.8.4" />
-    <PackageReference Include="Tulpep.NotificationWindow" Version="1.1.38">
-      <TreatAsUsed>true</TreatAsUsed>
-    </PackageReference>
-    <PackageReference Include="CalcBinding" Version="2.5.2" />
-    <PackageReference Include="Syncfusion.Shared.WPF" Version="21.2.3" />
-    <PackageReference Include="Tulpep.NotificationWindow" Version="1.1.38" />
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+	  <PackageReference Include="Tulpep.NotificationWindow" Version="1.1.38">
+		  <TreatAsUsed>true</TreatAsUsed>
+	  </PackageReference>
+	  <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9">
+		  <TreatAsUsed>true</TreatAsUsed>
+	  </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="FileHandler\Images\draganovi_konaci1.jpg" />
+    <Resource Include="FileHandler\Images\filipovic1.jpg" />
+    <Resource Include="FileHandler\Images\jovanovic1.jpg" />
+    <Resource Include="FileHandler\Images\jovanovic2.jpg" />
+    <Resource Include="FileHandler\Images\kod_labuda.jpg" />
+    <Resource Include="FileHandler\Images\kod_labuda1.jpg" />
+    <Resource Include="FileHandler\Images\mladenovic.jpg" />
+    <Resource Include="FileHandler\Images\mladenovic2.jpg" />
+    <Resource Include="FileHandler\Images\visnjin_dom1.jpg" />
+    <Resource Include="FileHandler\Images\visnjin_dom2.jpg" />
+    <Content Include="Resources\Images\Owner\Accommodations\draganovi_konaci.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Resources\Images\Guest1\" />
+    <Resource Include="Resources\Icons\Guest1\travel-tour-logo-dark.png" />
+    <Resource Include="Resources\Icons\Guest1\travel-tour-logo-light.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="BlazorDateRangePicker">
       <HintPath>bin\Debug\net6.0-windows\BlazorDateRangePicker.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WPF\View\Guest2View\travel-tour-logo.png" />
   </ItemGroup>
 </Project>

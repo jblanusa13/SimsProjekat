@@ -21,13 +21,15 @@ using System.Collections.ObjectModel;
 using ProjectSims.Observer;
 using ProjectSims.WPF.View.Guest2View;
 using ProjectSims.WPF.ViewModel.Guest2ViewModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
-namespace ProjectSims.View.Guest2View
+namespace ProjectSims.WPF.View.Guest2View
 {
     /// <summary>
     /// Interaction logic for DetailsAndReservationTourView.xaml
     /// </summary>
-    public partial class DetailsAndReservationTourView : Window
+    public partial class DetailsAndReservationTourView : Window, INotifyPropertyChanged
     {
         private TourService tourService;
 
@@ -40,6 +42,25 @@ namespace ProjectSims.View.Guest2View
         public Tour SelectedTour { get; set; }
         public Image image { get; set; }
         public Guest2 guest2 { get; set; }
+
+        private int _numberGuest;
+        public int NumberGuests
+        {
+            get => _numberGuest;
+            set
+            {
+                if (value != _numberGuest)
+                {
+                    _numberGuest = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         public DetailsAndReservationTourView(Tour tourSelected, Guest2 g)
         {
             InitializeComponent();
@@ -64,7 +85,6 @@ namespace ProjectSims.View.Guest2View
                 {
                     KeyPointTextBox.Text += keyPointService.GetKeyPointById(id).Name + ", ";
                 }
-
             }
 
             DateStartTextBox.Text = tourSelected.StartOfTheTour.ToString();
@@ -113,7 +133,7 @@ namespace ProjectSims.View.Guest2View
                 }
                 else
                 {
-                    ImageList.Items.Add("The format of the URL could not be determined.");
+                    ImageList.Items.Add("Nije moguce utvriditi format URL adrese.");
                 }
             }
             
@@ -129,25 +149,32 @@ namespace ProjectSims.View.Guest2View
                 MessageBox.Show("Za turu koju ste odabrali ne mozete izvrisiti rezervaciju jer je zapoceta,zavrsena ili otkazna!");
                 return;
             }
-            int numberGuests = CheckNumberGuestTextBox(NumberGuestsTextBox.Text);
-            if (numberGuests == -1) return;
+            //int numberGuests = CheckNumberGuestTextBox(NumberGuestsTextBox.Text);
+            //if (numberGuests == -1) return;
+
+            if (NumberGuests == 0)
+            {
+                MessageBox.Show("Pogresan unos! Broj osoba za koji zelite da rezervisete turu mora biti veci od 0!");
+                return;
+            }
+
 
             MessageReservationBox.Text = "";
-            if (numberGuests > tour.AvailableSeats)
+            if (NumberGuests > tour.AvailableSeats)
             {
-                MessageReservationBox.Text = "There are no available seats on this tour for the entered number of people. " +
-                    "\nThe number of available seats is " + tour.AvailableSeats + "!";
+                MessageReservationBox.Text = "Na ovoj turi nema dovoljan broj slobodnih mjesta za unijeti broj ljudi. " +
+                    "\nBroj slobodnih mjesta je: " + tour.AvailableSeats + "!";
             }
             else 
             {
-                UseVoucherViewModel useVoucherViewModel = new UseVoucherViewModel(guest2, tour, (int)numberGuests);
+                UseVoucherViewModel useVoucherViewModel = new UseVoucherViewModel(guest2, tour, NumberGuests);
                 var useVoucherView = new UseVoucherView(useVoucherViewModel);
                 useVoucherView.Show();
 
             }
             if (tour.AvailableSeats == 0)
             {
-                AlternativeTextBlock.Text = "The selected tour is fully booked, some of the alternative tours are:";
+                AlternativeTextBlock.Text = "Izabrana tura je u potpunosti rezervisana, neke od alternativnih tura su:";
                 AlternativeToursGrid.Visibility = Visibility.Visible;
 
                 if (SelectedTour != null)
@@ -158,13 +185,13 @@ namespace ProjectSims.View.Guest2View
                         return;
                     }
                     MessageBlock.Text = "";
-                    if (numberGuests > SelectedTour.AvailableSeats)
+                    if (NumberGuests > SelectedTour.AvailableSeats)
                     {
-                        MessageBlock.Text = "The number of available seats is " + SelectedTour.AvailableSeats + "!";
+                        MessageBlock.Text = "Broj slobodnih mjesta je " + SelectedTour.AvailableSeats + "!";
                     }
                     else
                     {
-                        UseVoucherViewModel useVoucherViewModel = new UseVoucherViewModel(guest2, tour, (int)numberGuests);
+                        UseVoucherViewModel useVoucherViewModel = new UseVoucherViewModel(guest2, tour, NumberGuests);
                         var useVoucherView = new UseVoucherView(useVoucherViewModel);
                         useVoucherView.Show();
                     }
@@ -191,5 +218,9 @@ namespace ProjectSims.View.Guest2View
             return (int)numberGuests;
         }
 
+        private void ButtonBack(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

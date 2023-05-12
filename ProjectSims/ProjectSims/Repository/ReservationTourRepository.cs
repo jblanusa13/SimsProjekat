@@ -10,7 +10,7 @@ using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Repository
 {
-    class ReservationTourRepository : ISubject, IReservationTourRepository
+    class ReservationTourRepository : IReservationTourRepository
     {
 
         private ReservationTourFileHandler reservationFile;

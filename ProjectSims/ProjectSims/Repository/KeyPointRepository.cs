@@ -11,7 +11,7 @@ using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Repository
 {
-    class KeyPointRepository : ISubject, IKeyPointRepository
+    class KeyPointRepository : IKeyPointRepository
     {
 
         private KeyPointFileHandler keyPointFile;

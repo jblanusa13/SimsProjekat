@@ -11,7 +11,7 @@ using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Repository
 {
-    class TourRepository : ISubject, ITourRepository
+    class TourRepository : ITourRepository
     {
 
         private TourFileHandler tourFile;

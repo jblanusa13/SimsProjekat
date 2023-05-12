@@ -23,7 +23,7 @@ namespace ProjectSims.Repository
             tourRequests = tourRequestFile.Load();
             observers = new List<IObserver>();
         }
-        public int GetNextId()
+        public int NextId()
         {
             if (tourRequests.Count == 0)
             {
@@ -33,6 +33,7 @@ namespace ProjectSims.Repository
         }
         public void Create(TourRequest tourRequest)
         {
+            tourRequest.Id = NextId();
             tourRequests.Add(tourRequest);
             tourRequestFile.Save(tourRequests);
             NotifyObservers();
@@ -59,11 +60,16 @@ namespace ProjectSims.Repository
         }
         public List<TourRequest> GetWaitingRequests()
         {
-            return tourRequests.Where(r=> r.State == TourRequestState.Waiting).ToList();
+            return tourRequests.Where(r => r.State == TourRequestState.Waiting).ToList();
         }
         public TourRequest GetById(int id)
         {
             return tourRequests.Find(t => t.Id == id);
+        }
+
+        public List<TourRequest> GetByGuest2Id(int guest2Id)
+        {
+            return tourRequests.Where(t => t.Guest2Id == guest2Id).ToList();
         }
         public List<TourRequest> GetByLocation(string location)
         {
@@ -77,9 +83,9 @@ namespace ProjectSims.Repository
         {
             return tourRequests.Where(t => t.MaxNumberGuests == maxNumberGuests).ToList();
         }
-        public List<TourRequest> GetRequestsInDateRange(DateOnly dateRangeStart,DateOnly dateRangeEnd)
+        public List<TourRequest> GetRequestsInDateRange(DateOnly dateRangeStart, DateOnly dateRangeEnd)
         {
-            return tourRequests.Where(t => t.DateRangeStart.CompareTo(dateRangeStart) >= 0 && t.DateRangeEnd.CompareTo(dateRangeEnd) <=0).ToList();
+            return tourRequests.Where(t => t.DateRangeStart.CompareTo(dateRangeStart) >= 0 && t.DateRangeEnd.CompareTo(dateRangeEnd) <= 0).ToList();
         }
         public void Subscribe(IObserver observer)
         {

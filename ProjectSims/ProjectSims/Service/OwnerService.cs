@@ -6,17 +6,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Service
 {
     public class OwnerService
     {
-        private OwnerRepository owners;
+        private IOwnerRepository owners;
         private RequestService requestService;
 
         public OwnerService()
         {
-            owners = new OwnerRepository();
+            owners = Injector.CreateInstance<IOwnerRepository>();
             requestService = new RequestService();
         }
 
@@ -36,10 +37,14 @@ namespace ProjectSims.Service
             }
             return false;
         }
+        public void AddAccommodation(Owner owner, int accommodationId)
+        {
+            owners.AddAccommodation(owner, accommodationId);
+        }
 
         public void Create(Owner owner)
         {
-            owners.Add(owner);
+            owners.Create(owner);
         }
 
         public void Delete(Owner owner)

@@ -2,7 +2,6 @@
 using ProjectSims.Service;
 using ProjectSims.View.GuideView;
 using ProjectSims.WPF.ViewModel.GuideViewModel;
-using Syncfusion.Windows.Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

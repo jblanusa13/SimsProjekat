@@ -6,46 +6,55 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Service
 {
     public class AccommodationService
     {
-        private AccommodationRepository accommodations;
+        private IAccommodationRepository accommodationRepository;
+        private IAccommodationScheduleRepository scheduleRepository;
 
         public AccommodationService()
         {
-            accommodations = new AccommodationRepository();
+            accommodationRepository = Injector.CreateInstance<IAccommodationRepository>();
+            scheduleRepository = Injector.CreateInstance<IAccommodationScheduleRepository>();
         }
 
         public List<Accommodation> GetAllAccommodations()
         {
-            return accommodations.GetAll();
+            return accommodationRepository.GetAll();
+        }
+
+        public List<Accommodation> GetAllAccommodationsForGuestView()
+        {
+            return GetAllAccommodations();
         }
 
         public Accommodation GetAccommodation(int id)
         {
-            return accommodations.Get(id);
+            return accommodationRepository.GetById(id);
         }
 
         public void Create(Accommodation accommodation)
         {
-            accommodations.Add(accommodation);
+            accommodation.ScheduleId = scheduleRepository.NextId();
+            accommodationRepository.Create(accommodation);
         }
 
         public void Delete(Accommodation accommodation)
         {
-            accommodations.Remove(accommodation);
+            accommodationRepository.Remove(accommodation);
         }
 
         public void Update(Accommodation accommodation)
         {
-            accommodations.Update(accommodation);
+            accommodationRepository.Update(accommodation);
         }
 
         public void Subscribe(IObserver observer)
         {
-            accommodations.Subscribe(observer);
+            accommodationRepository.Subscribe(observer);
         }
     }
 }

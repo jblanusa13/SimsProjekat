@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using ProjectSims.Domain.Model;
+using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.Observer;
 using ProjectSims.Repository;
+using ProjectSims.WPF.View.OwnerView.Pages;
 
 namespace ProjectSims.Service
 {
     public class RequestService
     {
-        private RequestRepository requestRepository;
-        private List<Request> requests;
+        private DateRangesService dateRangesService;
+        private IRequestRepository requestRepository;
         public RequestService()
         {
-            requestRepository = new RequestRepository();
-            requests = requestRepository.GetAll();
+            dateRangesService = new DateRangesService();
+            requestRepository = Injector.CreateInstance<IRequestRepository>();
         }
 
         public List<Request> GetAllRequestByGuest(int guestId)
@@ -27,19 +30,48 @@ namespace ProjectSims.Service
         {
             return requestRepository.GetAllByOwner(ownerId);
         }
-        public int NextId()
+        public List<Request> GetAllRequests()
         {
-            if (requests.Count == 0)
-            {
-                return 0;
-            }
-            return requests.Max(r => r.Id) + 1;
+            return requestRepository.GetAll();
         }
+
         public void CreateRequest(int reservationId, DateOnly dateChange)
         {
-            int id = NextId();
-            Request request = new Request(id, reservationId, dateChange, RequestState.Waiting, "");
-            requestRepository.Add(request);
+            int id = requestRepository.NextId();
+            Request request = new Request(id, reservationId, dateChange, RequestState.Waiting, "", false);
+            SetReservedForRequest(request);
+            requestRepository.Create(request);
+        }
+        public void Update(Request request)
+        {
+            requestRepository.Update(request);
+        }
+        public void Delete(Request request)
+        {
+            requestRepository.Remove(request);
+        }
+
+        public void UpdateRequestsWhenCancelReservation(AccommodationReservation reservation)
+        {
+            Request request = requestRepository.GetByReservationId(reservation.Id);
+            requestRepository.Remove(request);
+        }
+
+        private void SetReservedForRequest(Request request)
+        {
+            List<DateRanges> unavailableDates = dateRangesService.FindUnavailableDatesForRequest(request);
+
+            foreach (var date in dateRangesService.FindUnavailableDatesForRequest(request))
+            {
+                if (dateRangesService.IsInRange(request, date.CheckIn, date.CheckOut))
+                {
+                    request.Reserved = true;
+                }
+                else
+                {
+                    request.Reserved = false;
+                }
+            }
         }
 
         public void Subscribe(IObserver observer)

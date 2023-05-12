@@ -10,7 +10,7 @@ using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Repository
 {
-    class TourRatingRepository : ISubject, ITourRatingRepository
+    class TourRatingRepository : ITourRatingRepository
     {
         private TourRatingFileHandler tourRatingFile;
         private List<TourAndGuideRating> toursRating;
@@ -22,7 +22,7 @@ namespace ProjectSims.Repository
             toursRating = tourRatingFile.Load();
             observers = new List<IObserver>();
         }
-        public int GetNextId()
+        public int NextId()
         {
             if (toursRating.Count == 0)
             {
@@ -32,7 +32,7 @@ namespace ProjectSims.Repository
         }
         public void Create(TourAndGuideRating tourRating)
         {
-            tourRating.Id = GetNextId();
+            tourRating.Id = NextId();
             toursRating.Add(tourRating);
             tourRatingFile.Save(toursRating);
             NotifyObservers();

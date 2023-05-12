@@ -3,7 +3,6 @@ using ProjectSims.FileHandler;
 using ProjectSims.Domain.Model;
 using ProjectSims.View;
 using ProjectSims.View.Guest1View;
-using ProjectSims.View.Guest2View;
 using ProjectSims.View.GuideView;
 using ProjectSims.View.OwnerView;
 using System;
@@ -21,6 +20,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ProjectSims.WPF.View.Guest2View;
+using ProjectSims.WPF.View.OwnerView;
 
 namespace ProjectSims
 {
@@ -29,9 +30,7 @@ namespace ProjectSims
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static int CurrentUserId { get; set; }
         private readonly UserFileHandler userFile;
-
         private readonly OwnerFileHandler ownerFile;
         private readonly Guest1FileHandler guest1File;
         private readonly Guest2FileHandler guest2File;
@@ -56,8 +55,7 @@ namespace ProjectSims
                     Owner owner = ownerFile.GetByUserId(user.Id);
                     if(owner != null)
                     {
-                        CurrentUserId = owner.UserId;
-                        OwnerView ownerView = new OwnerView(owner);
+                        OwnerStartingView ownerView = new OwnerStartingView(owner);
                         ownerView.Show();
                         Close();
                     }

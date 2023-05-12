@@ -8,50 +8,73 @@ using ProjectSims.Repository;
 using ProjectSims.Observer;
 using ProjectSims.FileHandler;
 using ProjectSims.WPF.View.Guest1View;
+using ProjectSims.Domain.RepositoryInterface;
 
 namespace ProjectSims.Service
 {
     public class AccommodationReservationService
     {
-        private AccommodationReservationRepository reservationRepository;
-        private List<AccommodationReservation> reservations;
+        private IAccommodationReservationRepository reservationRepository;
+        private RequestService requestService;
 
         public AccommodationReservationService()
         {
-            reservationRepository = new AccommodationReservationRepository();
-            reservations = reservationRepository.GetAll();
+            reservationRepository = Injector.CreateInstance<IAccommodationReservationRepository>();
+            requestService = new RequestService();
+        }
+        public List<AccommodationReservation> GetAllReservations()
+        {
+            return reservationRepository.GetAll();
+        }
+
+        public List<AccommodationReservation> GetAllByOwnerId(int id)
+        {
+            List<AccommodationReservation> reservations = new List<AccommodationReservation>();
+            foreach (var reservation in GetAllReservations())
+            {
+                if (reservation.Accommodation.IdOwner == id && reservation.State == ReservationState.Active)
+                {
+                    reservations.Add(reservation);
+                }
+            }
+            return reservations;
         }
 
         public AccommodationReservation GetReservation(int id)
         {
-            return reservationRepository.Get(id);
+            return reservationRepository.GetById(id);
         }
 
         public List<AccommodationReservation> GetReservationByGuest(int guestId)
         {
             return reservationRepository.GetByGuest(guestId);
         }
- 
-        public int NextId()
+        
+        public AccommodationReservation GetReservation(int guestId, int accommodationId, DateOnly checkInDate, DateOnly checkOutDate)
         {
-            if (reservations.Count == 0)
-            {
-                return 0;
-            }
-            return reservations.Max(r => r.Id) + 1;
+            return reservationRepository.GetReservation(guestId, accommodationId, checkInDate, checkOutDate);
         }
+
         public void CreateReservation(int accommodationId, int guestId, DateOnly checkIn, DateOnly checkOut, int guestNumber)
         {
-            int id = NextId();
-            AccommodationReservation reservation = new AccommodationReservation(id, accommodationId, guestId, checkIn, checkOut, guestNumber, ReservationState.Active, false);
-            reservationRepository.Add(reservation);
+            int id = reservationRepository.NextId();
+            AccommodationReservation reservation = new AccommodationReservation(id, accommodationId, guestId, checkIn, checkOut, guestNumber, ReservationState.Active, false, false);
+            reservationRepository.Create(reservation);
+        }
+
+        public void Update(AccommodationReservation reservation)
+        {
+            reservationRepository.Update(reservation);
         }
 
         public void RemoveReservation(AccommodationReservation reservation)
         {
             reservation.State = ReservationState.Canceled;
             reservationRepository.Update(reservation);
+
+            requestService.UpdateRequestsWhenCancelReservation(reservation);
         }
+
         public bool CanCancel(AccommodationReservation reservation)
         {
             int dismissalDays = reservation.Accommodation.DismissalDays;
@@ -66,23 +89,35 @@ namespace ProjectSims.Service
             List<AccommodationReservation> guestReservations = new List<AccommodationReservation>();
             List<AccommodationReservation> accommodationsForRating = new List<AccommodationReservation>();
 
-
             guestReservations = GetReservationByGuest(guest.Id);
             foreach (AccommodationReservation reservation in guestReservations)
             {
-                if(DateOnly.FromDateTime(DateTime.Today) <= reservation.CheckOutDate.AddDays(5) && DateOnly.FromDateTime(DateTime.Today) >= reservation.CheckOutDate && reservation.Rated == false)
+                if(DateOnly.FromDateTime(DateTime.Today) <= reservation.CheckOutDate.AddDays(5) && DateOnly.FromDateTime(DateTime.Today) >= reservation.CheckOutDate && reservation.RatedAccommodation == false)
                 {
                     accommodationsForRating.Add(reservation);
                 }
             }
-
             return accommodationsForRating;
         }
 
         public void ChangeReservationRatedState(AccommodationReservation reservation)
         {
-            reservation.Rated = true;
+            reservation.RatedAccommodation = true;
             reservationRepository.Update(reservation);
+        }
+
+        public Boolean IsAnyGuestRatable()
+        {
+            List<AccommodationReservation> reservations = GetAllReservations();
+
+            foreach (var item in reservations)
+            {
+                if (DateOnly.FromDateTime(DateTime.Today).CompareTo(item.CheckOutDate) > 0 && GetReservation(item.Id).RatedGuest == false)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void Subscribe(IObserver observer)

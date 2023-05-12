@@ -9,5 +9,8 @@ namespace ProjectSims.Domain.RepositoryInterface
 {
     public interface ILocationRepository : IGenericRepository<Location, int>
     {
+        public int GetIdByLocation(string location);
+        public void Add(string location);
+        public bool Exist(string location);
     }
 }

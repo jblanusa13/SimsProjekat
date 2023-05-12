@@ -18,6 +18,7 @@ using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 using ProjectSims.WPF.View.Guest1View;
 using ProjectSims.WPF.View.Guest1View.MainPages;
+using ProjectSims.WPF.View.Guest1View.BarPages;
 
 namespace ProjectSims.View.Guest1View
 {
@@ -26,10 +27,13 @@ namespace ProjectSims.View.Guest1View
     /// </summary>
     public partial class Guest1StartView : Window
     {
+        WindowBar bar = new WindowBar(); 
         public Guest1StartView(Guest1 guest)
         {
             InitializeComponent();
-            SelectedTab.Content = new GuestAccommodationsView(guest, SelectedTab);
+            SelectedTab.Content = new GuestAccommodationsView(guest);
+            WindowBarFrame.Content = bar;
+            StatusBarFrame.Content = new WPF.View.Guest1View.BarPages.StatusBar();
         }
     }
 }

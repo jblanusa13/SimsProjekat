@@ -19,9 +19,9 @@ namespace ProjectSims.Service
             tourRequestRepository = Injector.CreateInstance<ITourRequestRepository>();
             tourService = new TourService();
         }
-        public int GetNextId()
+        public int NextId()
         {
-            return tourRequestRepository.GetNextId();
+            return tourRequestRepository.NextId();
         }
         public List<TourRequest> GetAllRequests()
         {
@@ -40,13 +40,78 @@ namespace ProjectSims.Service
             List<TourRequest> wantedRequests = tourRequestRepository.GetWaitingRequests();
             if (location != "")
                 wantedRequests.RemoveAll(request => !tourRequestRepository.GetByLocation(location).Contains(request));
-            if(language != "")
+            if (language != "")
                 wantedRequests.RemoveAll(request => !tourRequestRepository.GetByLanguage(language).Contains(request));
             if (maxNumberGuests != "")
                 wantedRequests.RemoveAll(request => !tourRequestRepository.GetByMaxNumberGuests(int.Parse(maxNumberGuests)).Contains(request));
-            if(dateRange.Count != 0)
+            if (dateRange.Count != 0)
                 wantedRequests.RemoveAll(request => !tourRequestRepository.GetRequestsInDateRange(DateOnly.FromDateTime(dateRange.First()), DateOnly.FromDateTime(dateRange.Last())).Contains(request));
             return wantedRequests;
+        }
+        public List<TourRequest> GetByGuest2Id(int guest2Id)
+        {
+            return tourRequestRepository.GetByGuest2Id(guest2Id);
+        }
+        public int GetNumberRequestsByState(List<TourRequest> requests, TourRequestState state)
+        {
+            int number = 0;
+            foreach (TourRequest request in requests)
+            {
+                if(request.State == state)
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+        public double GetAverageNumberOfPeopleOnAcceptedRequests(List<TourRequest> requests)
+        {
+            int numberPeople = 0;
+            int numberAcceptedRequest = 0;
+            foreach(TourRequest request in requests)
+            {
+                if(request.State == TourRequestState.Accepted)
+                {
+                    numberPeople += request.MaxNumberGuests;
+                    numberAcceptedRequest++;
+                }
+            }
+            if (numberAcceptedRequest == 0) return 0;
+            return Math.Round((double)numberPeople/numberAcceptedRequest,2);
+        }
+        public int GetNumberRequestsByLanguage(List<TourRequest> requests, string language)
+        {
+            int number = 0;
+            foreach (TourRequest request in requests)
+            {
+                if (request.Language == language)
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+        public List<string> GetAllLocations(List<TourRequest> requests)
+        {
+            List<string> locations = new List<string>();
+            foreach(TourRequest request in requests)
+            {
+                if(!locations.Contains(request.Location))
+                    locations.Add(request.Location);
+            }
+            return locations;
+        }
+        public int GetNumberRequestsByLocation(List<TourRequest> requests, string location)
+        {
+            int number = 0;
+            foreach (TourRequest request in requests)
+            {
+                if (request.Location == location)
+                {
+                    number++;
+                }
+            }
+            return number;
         }
         public void Create(TourRequest tourRequest)
         {

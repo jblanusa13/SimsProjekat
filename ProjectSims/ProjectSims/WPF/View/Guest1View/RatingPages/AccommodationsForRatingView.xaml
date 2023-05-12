@@ -1,0 +1,83 @@
+﻿<Page x:Class="ProjectSims.WPF.View.Guest1View.RatingPages.AccommodationsForRatingView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.RatingPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="590" d:DesignWidth="750"
+      Title="AccommodationsForRatingView">
+
+    <Page.Resources>
+        <Style TargetType="DataGrid" BasedOn="{StaticResource DataGridStyle}">
+            <Setter Property="Background" Value="{DynamicResource DataGridBackground}"></Setter>
+            <Setter Property="ColumnHeaderStyle" Value="{DynamicResource DataGridHeader}"></Setter>
+            <Setter Property="RowStyle" Value="{DynamicResource DataGridRow}"></Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="{DynamicResource FirstGrayShade}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="{DynamicResource SecondGrayShade}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Button Margin="0,10" Click="Back_Click" Background="{DynamicResource SecondGrayShade}" BorderBrush="{DynamicResource SecondGrayShade}">
+                    <fa:ImageAwesome Icon="ArrowCircleLeft" Foreground="{DynamicResource FontsColor}" Width="40"/>
+                </Button>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Label Margin="0,25,0,0" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Izaberite smestaj za ocenjivanje</Label>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <DataGrid Name="AccommodationsForRatingTable" Margin="50,50,50,10"
+                      ItemsSource="{Binding Reservations, UpdateSourceTrigger=PropertyChanged}"
+                      AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Naziv" Binding="{Binding Accommodation.Name}" Width="200"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Dolazak" Binding="{Binding CheckInDate}" Width="150"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Odlazak" Binding="{Binding CheckOutDate}" Width="150"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Broj gostiju" Binding="{Binding GuestNumber}" Width="*"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Margin="50,30,190,20" Click="RateAccommodation_Click"
+                    Background="{DynamicResource SecondGrayShade}" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">
+                Oceni
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Grid.Column="1" Margin="190,30,50,20" Click="Cancel_Click"
+                    Background="{DynamicResource SecondGrayShade}" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">
+                Otkazi
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+    </Grid>
+</Page>

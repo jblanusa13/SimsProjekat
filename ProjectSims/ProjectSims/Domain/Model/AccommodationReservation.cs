@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectSims.Domain.RepositoryInterface;
+using ProjectSims.Repository;
 using ProjectSims.Serializer;
 using ProjectSims.Service;
 using ProjectSims.WPF.View.Guest1View;
@@ -21,11 +23,12 @@ namespace ProjectSims.Domain.Model
         public DateOnly CheckOutDate { get; set; }
         public int GuestNumber { get; set; }
         public ReservationState State { get; set; }
-        public bool Rated { get; set; }
+        public bool RatedAccommodation { get; set; }
+        public bool RatedGuest { get; set; }
 
         public AccommodationReservation() { }
 
-        public AccommodationReservation(int id, int accommodationId, int guestId,  DateOnly checkInDate, DateOnly checkOutDate, int guestNumber, ReservationState state, bool rated)
+        public AccommodationReservation(int id, int accommodationId, int guestId,  DateOnly checkInDate, DateOnly checkOutDate, int guestNumber, ReservationState state, bool ratedAccommodation, bool ratedGuest)
         {
             Id = id;
             AccommodationId = accommodationId;
@@ -34,7 +37,8 @@ namespace ProjectSims.Domain.Model
             CheckOutDate = checkOutDate;
             GuestNumber = guestNumber;
             State = state;
-            Rated = rated;
+            RatedAccommodation = ratedAccommodation;
+            RatedGuest = ratedGuest;
         }
 
         public void FromCSV(string[] values)
@@ -46,7 +50,8 @@ namespace ProjectSims.Domain.Model
             CheckOutDate = DateOnly.ParseExact(values[4], "dd.MM.yyyy");
             GuestNumber = Convert.ToInt32(values[5]);
             State = Enum.Parse<ReservationState>(values[6]);
-            Rated = Convert.ToBoolean(values[7]);
+            RatedAccommodation = Convert.ToBoolean(values[7]);
+            RatedGuest = Convert.ToBoolean(values[8]);
             InitializeData();
         }
 
@@ -60,18 +65,19 @@ namespace ProjectSims.Domain.Model
                 CheckOutDate.ToString("dd.MM.yyyy"),
                 GuestNumber.ToString(),  
                 State.ToString(),
-                Rated.ToString()
+                RatedAccommodation.ToString(),
+                RatedGuest.ToString()
             };
             return csvvalues;
         }
-
         public void InitializeData()
         {
-            AccommodationService accommodationService = new AccommodationService();
-            Guest1Service guest1Service = new Guest1Service();
+            //Guest = Injector.CreateInstance<IGuest1Repository>().GetById(GuestId);
+            AccommodationRepository accommodationRepository = new AccommodationRepository();
+            Guest1Repository guest1Repository = new Guest1Repository();
 
-            Accommodation = accommodationService.GetAccommodation(AccommodationId);
-            Guest = guest1Service.GetGuest1(GuestId);
+            Accommodation = accommodationRepository.GetById(AccommodationId);
+            Guest = guest1Repository.GetById(GuestId);
         }
     }
 }
