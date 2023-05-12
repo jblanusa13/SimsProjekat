@@ -54,7 +54,7 @@
             <Image Source="/Resources/Icons/Guide/create.png" Margin="420,50,0,0"/>
             <Label Content="Nova tura" HorizontalAlignment="Center" Margin="0,50,0,0" FontSize="44" Height="50" FontWeight="Bold"/>
             <Image Source="/Resources/Icons/Guide/tourname.png" Margin="100,150,0,0"/>
-            <Label Content="Naziv" Margin="160,150,0,0"/>
+            <Label Content="Naziv" Margin="170,150,0,0"/>
             <TextBox Text="{Binding Path = TourName, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Margin="0,150,100,0"  Width="800"/>
             <Image Source="/Resources/Icons/Guide/language.png" Margin="100,250,0,0"/>
             <Label Content="Jezik" Margin="170,250,0,0"/>

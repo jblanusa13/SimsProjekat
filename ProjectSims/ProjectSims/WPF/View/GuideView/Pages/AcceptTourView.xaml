@@ -5,43 +5,36 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="1220" d:DesignWidth="1280">
+      d:DesignHeight="1100" d:DesignWidth="1280">
     <Page.Resources>
-        <Style TargetType="Label">
+        <Style TargetType="{x:Type Label}">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Helvetica"/>
-            <Setter Property="FontSize" Value="22"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Height" Value="45"/>
         </Style>
-        <Style TargetType="Image">
+        <Style TargetType="{x:Type Image}">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="Height" Value="50"/>
             <Setter Property="Width" Value="50"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
-        </Style>
-        <Style TargetType="Button">
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="Height" Value="100"/>
-            <Setter Property="Width" Value="100"/>
-            <Setter Property="BorderThickness" Value="0"/>
         </Style>
     </Page.Resources>
     <ScrollViewer>
         <Grid Background="Transparent">
-            <Label Content="Prihvati turu" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0" FontSize="36" Height="50" Foreground="#D7B94B"/>
+            <Label Content="Prihvati turu" HorizontalAlignment="Center" Margin="0,50,0,0" FontSize="44" Height="50" FontWeight="Bold"/>
             <Image Source="/Resources/Icons/Guide/location.png" Margin="100,150,0,0"/>
-            <Label Content="{Binding SelectedTourRequest.Location}" Margin="180,150,0,0" Width="400"/>
-            <Image Source="/Resources/Icons/Guide/globe.png" Margin="100,250,0,0"/>
-            <Label Content="{Binding SelectedTourRequest.Language}" Margin="180,250,0,0" Width="300"/>
+            <Label Content="{Binding SelectedTourRequest.Location}"  Margin="170,150,0,0"/>
+            <Image Source="/Resources/Icons/Guide/language.png" Margin="100,250,0,0"/>
+            <Label Content="{Binding SelectedTourRequest.Language}" Margin="170,250,0,0"/>
             <Image Source="/Resources/Icons/Guide/people.png" Margin="100,350,0,0" Height="40" Width="70"/>
-            <Label Content="{Binding SelectedTourRequest.MaxNumberGuests}" Margin="180,350,0,0" Width="100"/>
-            <Image Source="/Resources/Icons/Guide/details.png" Margin="100,450,0,0"/>
-            <TextBox Text="{Binding SelectedTourRequest.Description}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="180,450,0,0" Width="1000" Height="150" FontSize="22" FontFamily="Helvetica" Foreground="White" Background="Transparent" BorderThickness="0" IsReadOnly="True"/>
+            <Label Content="{Binding SelectedTourRequest.MaxNumberGuests}" Margin="170,350,0,0"/>
+            <Image Source="/Resources/Icons/Guide/description.png" Margin="100,450,0,0"/>
+            <TextBox Text="{Binding SelectedTourRequest.Description}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="170,450,0,0" Width="1000" Height="150" FontSize="30" FontFamily="Helvetica" Foreground="White" Background="Transparent" BorderThickness="0" IsReadOnly="True"/>
             <Image Source="/Resources/Icons/Guide/calendar.png" Margin="100,700,0,0"/>
-            <Label Margin="180,700,0,0">
+            <Label Margin="170,700,0,0">
                 <AccessText>
                     <MultiBinding StringFormat="{}{0} - {1}">
                         <Binding Path="SelectedTourRequest.DateRangeStart" />
@@ -49,16 +42,22 @@
                     </MultiBinding>
                 </AccessText>
             </Label>
-            <Button Name="AcceptTour" Click="AcceptTour_Click" Margin="400,800,0,50" Background="Transparent">
-                <Image Source="/Resources/Icons/Guide/ok.png"  HorizontalAlignment="Center" Height="100" Width="100" Margin="0,5,0,0"/>
+            <Button Name="AcceptTour" Margin="0,800,300,0" Height="85" Width="85" HorizontalAlignment="Center" VerticalAlignment="Top"  Background="Transparent" BorderThickness="0" Click="AcceptTour_Click" Cursor="Hand">
+                <Image Source="/Resources/Icons/Guide/checked.png" Height="80" Width="80" Cursor="Hand">
+                    <Image.Effect>
+                        <DropShadowEffect/>
+                    </Image.Effect>
+                </Image>
             </Button>
-            <Label Content="Prihvati" FontSize="20"  Margin="410,900,0,0" Foreground="#D7B94B"/>
-            <Button Name="Back" Click="Back_Click" Margin="700,800,0,50" Background="Transparent">
-                <Image Source="/Resources/Icons/Guide/back.png"  HorizontalAlignment="Center" Height="100" Width="100" Margin="0,5,0,0"/>
+            <Label Content="Prihvati turu" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,900,300,80" FontSize="18"/>
+            <Button Margin="300,800,0,0" Height="85" Width="85" HorizontalAlignment="Center" VerticalAlignment="Top"  Background="Transparent" BorderThickness="0" Click="Back_Click" Cursor="Hand">
+                <Image Source="/Resources/Icons/Guide/back.png" Height="80" Width="80" Cursor="Hand">
+                    <Image.Effect>
+                        <DropShadowEffect/>
+                    </Image.Effect>
+                </Image>
             </Button>
-            <Label Content="Vrati se nazad" FontSize="20"  Margin="700,900,0,0" Foreground="#D7B94B"/>
-
-
+            <Label Content="Vrati se nazad" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,900,-300,80" FontSize="18"/>
         </Grid>
     </ScrollViewer>
 </Page>
