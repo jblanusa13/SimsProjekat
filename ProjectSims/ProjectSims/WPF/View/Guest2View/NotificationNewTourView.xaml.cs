@@ -22,6 +22,7 @@ namespace ProjectSims.WPF.View.Guest2View
     /// </summary>
     public partial class NotificationNewTourView : Window
     {
+        private NotificationTourService notificationTourService;
         public NotificationTour notificationTour { get; set; }
         public ObservableCollection<Tour> ListTour { get; set; }
         public Tour SelectedTour { get; set; }
@@ -32,7 +33,13 @@ namespace ProjectSims.WPF.View.Guest2View
             DataContext = this;
             notificationTour = notification;
             tourService = new TourService();
+            notificationTourService = new NotificationTourService();
             LoadTourFromListInt(notificationTour);
+            if (!notification.Seen)
+            {
+                notification.Seen = true;
+                notificationTourService.Update(notification);
+            }
         }
 
         private void LoadTourFromListInt(NotificationTour notification)

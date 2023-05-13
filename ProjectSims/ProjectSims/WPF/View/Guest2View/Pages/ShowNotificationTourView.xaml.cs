@@ -1,4 +1,5 @@
 ﻿using ProjectSims.Domain.Model;
+using ProjectSims.Observer;
 using ProjectSims.Service;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
     /// <summary>
     /// Interaction logic for ShowNotificationTourView.xaml
     /// </summary>
-    public partial class ShowNotificationTourView : Page
+    public partial class ShowNotificationTourView : Page , IObserver
     {
         private NotificationTourService notificationTourService;
         public ObservableCollection<NotificationTour> ListNotification { get; set; }
@@ -33,14 +34,30 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
             DataContext = this;
             guest2 = g;
             notificationTourService = new NotificationTourService();
+            notificationTourService.Subscribe(this);
             ListNotification = new ObservableCollection<NotificationTour>
                                         (notificationTourService.GetAllNotificationsByGuest2(guest2.Id));
         }
         
         private void OpenNotificationAboutNewTours_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            var openWindow = new NotificationNewTourView(SelectedNotification);
-            openWindow.Show();          
+            if (SelectedNotification != null)
+            {
+                var openWindow = new NotificationNewTourView(SelectedNotification);
+                openWindow.Show();
+            }
+        }
+        private void UpdateNotificationList()
+        {
+            ListNotification.Clear();
+            foreach (var n in notificationTourService.GetAllNotificationsByGuest2(guest2.Id))
+            {
+                ListNotification.Add(n);
+            }
+        }
+        public void Update()
+        {
+            UpdateNotificationList();
         }
     }
 }

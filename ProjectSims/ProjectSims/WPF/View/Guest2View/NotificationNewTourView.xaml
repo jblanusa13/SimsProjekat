@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="NotificationNewTourView" Height="400" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Topmost="True">
     <Grid>
-        <Label Content="Od:" HorizontalAlignment="Left" FontSize="28" Margin="38,35,0,0" VerticalAlignment="Top"/>
-        <Label Content="{Binding notificationTour.Guide.FullName}" FontSize="28" HorizontalAlignment="Left" Margin="90,35,0,0" VerticalAlignment="Top"/>
-        <Label Content="Na osnovu vaseg kreiranog zahtjeva sam kreirao sledece ture:" FontSize="14" HorizontalAlignment="Left" Margin="38,87,0,0" VerticalAlignment="Top"/>
+        <Label Content="Od vodica:" HorizontalAlignment="Left" FontSize="28" Margin="38,35,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding notificationTour.Guide.FullName}" FontSize="28" HorizontalAlignment="Left" Margin="185,35,0,0" VerticalAlignment="Top"/>
+        <Label Content="Na osnovu vaseg kreiranog zahtjeva kreirane su sledece ture:" FontSize="14" HorizontalAlignment="Left" Margin="38,87,0,0" VerticalAlignment="Top"/>
         <Button Content="&#60;Nazad" Click="ButtonBack" FontSize="14" Width="72" Height="45" HorizontalAlignment="Left" Margin="674,42,0,0" VerticalAlignment="Top"/>
 
         <DataGrid  x:Name="DataGridTours" 
