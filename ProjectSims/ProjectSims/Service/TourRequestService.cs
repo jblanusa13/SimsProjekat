@@ -4,6 +4,7 @@ using ProjectSims.Observer;
 using ProjectSims.Repository;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.PerformanceData;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,13 +56,21 @@ namespace ProjectSims.Service
 
         public string GetMostWantedLanguageInLastYear()
         {
-            List<String> languagesInLastYear = GetRequestsInLastYear().Select(r=>r.Language.ToLower()).ToList();
-            return GetMostCommonElement(languagesInLastYear);
+            if (GetRequestsInLastYear != null)
+            {
+                List<String> languagesInLastYear = GetRequestsInLastYear().Select(r => r.Language.ToLower()).ToList();
+                return GetMostCommonElement(languagesInLastYear);
+            }
+            return null;
         }
         public string GetMostWantedLocationInLastYear()
         {
-            List<String> locationsInLastYear = GetRequestsInLastYear().Select(r => r.Location.ToLower()).ToList();
-            return GetMostCommonElement(locationsInLastYear);
+            if(GetRequestsInLastYear != null)
+            {
+                List<String> locationsInLastYear = GetRequestsInLastYear().Select(r => r.Location.ToLower()).ToList();
+                return GetMostCommonElement(locationsInLastYear);
+            }
+            return null;
         }
         public string GetMostCommonElement(List<string> list)
         {
@@ -77,7 +86,12 @@ namespace ProjectSims.Service
                     counts.Add(element, 1);
                 }
             }
-            return counts.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
+            int maxCount = counts.Values.Max();
+            if (counts.Where(c=> c.Value == maxCount).Count() > 1)
+            {
+                return null;
+            }
+            return counts.Aggregate((x, y) => x.Value > y.Value ? x : y).Key; ;
         }
         public List<TourRequest> GetByGuest2Id(int guest2Id)
         {

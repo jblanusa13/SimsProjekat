@@ -1,4 +1,6 @@
-﻿using ProjectSims.Service;
+﻿using ProjectSims.Domain.Model;
+using ProjectSims.Service;
+using ProjectSims.WPF.ViewModel.GuideViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,16 +23,22 @@ namespace ProjectSims.WPF.View.GuideView.Pages
     /// </summary>
     public partial class SuggestionsView : Page
     {
-        public string MostWantedLanguage { get; set; }
-        public string MostWantedLocation { get; set; }
-        private TourRequestService tourRequestService;
-        public SuggestionsView()
+        private SuggestionsViewModel suggestionsViewModel;
+        public Guide Guide { get; set; }
+        public SuggestionsView(Guide g)
         {
             InitializeComponent();
-            DataContext = this;
-            tourRequestService = new TourRequestService();
-            MostWantedLanguage = tourRequestService.GetMostWantedLanguageInLastYear();
-            MostWantedLocation = tourRequestService.GetMostWantedLocationInLastYear();
+            suggestionsViewModel = new SuggestionsViewModel(g);
+            this.DataContext = suggestionsViewModel;
+            Guide = g;
+        }
+        private void CreateTourByLanguage_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new CreateTourView(Guide,null,suggestionsViewModel.GetMostWantedLanguage(),null));
+        }
+        private void CreateTourByLocation_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new CreateTourView(Guide, null, null, suggestionsViewModel.GetMostWantedLocation()));
         }
     }
 }

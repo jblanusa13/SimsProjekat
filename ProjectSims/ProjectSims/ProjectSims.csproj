@@ -36,6 +36,7 @@
     <None Remove="Resources\Icons\Guide\filter.png" />
     <None Remove="Resources\Icons\Guide\guests.png" />
     <None Remove="Resources\Icons\Guide\help.png" />
+    <None Remove="Resources\Icons\Guide\idea.png" />
     <None Remove="Resources\Icons\Guide\image.png" />
     <None Remove="Resources\Icons\Guide\info.png" />
     <None Remove="Resources\Icons\Guide\language.png" />
@@ -80,7 +81,10 @@
     <None Remove="Resources\Images\Guide\kalemegdan1.jpg" />
     <None Remove="Resources\Images\Guide\klmgdn.jpg" />
     <None Remove="Resources\Images\Guide\knez.jpg" />
+    <None Remove="Resources\Images\Guide\languages.png" />
+    <None Remove="Resources\Images\Guide\location.png" />
     <None Remove="Resources\Images\Guide\muzejIluzija.jpg" />
+    <None Remove="Resources\Images\Guide\panteon.jpg" />
     <None Remove="Resources\Images\Guide\petrovaradin.jpg" />
     <None Remove="Resources\Images\Guide\Pobednik.jpg" />
     <None Remove="Resources\Images\Guide\sat.jpg" />
@@ -151,6 +155,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\filter.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\idea.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\image.png">
@@ -255,7 +262,16 @@
     <Content Include="Resources\Images\Guide\knez.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Guide\languages.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guide\location.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Guide\muzejIluzija.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guide\panteon.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Guide\petrovaradin.jpg">

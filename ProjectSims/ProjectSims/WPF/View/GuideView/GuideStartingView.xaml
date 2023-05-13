@@ -35,7 +35,7 @@
             </MenuItem>
             <MenuItem Header="Nova tura">
                 <MenuItem Header="Kreiraj novu" Click="CreateTour_Click" FontSize="28" Foreground="#FF1B5886" Height="30" Width="300"/>
-                <MenuItem Header="Pogledaj predloge" Click="Suggestions_Click" FontSize="28" Foreground="#FF1B5886" Height="30" Width="300"/>
+                <MenuItem Header="Pogledaj predloge" Click="Suggestions_Click" FontSize="28" Foreground="#FF1B5886" Height="30" Width="350"/>
             </MenuItem>
             <MenuItem Header="Zakazane ture" Click="ScheduledTours_Click"/>
             <MenuItem Header="Završene ture">

@@ -11,8 +11,8 @@
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Helvetica"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="24"/>
             <Setter Property="Height" Value="45"/>
         </Style>
         <Style TargetType="{x:Type Image}">
@@ -21,14 +21,31 @@
             <Setter Property="Height" Value="50"/>
             <Setter Property="Width" Value="50"/>
         </Style>
+        <Style TargetType="{x:Type Hyperlink}">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="TextBlock.TextDecorations" Value="{x:Null}" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="MidnightBlue" />
+                    <Setter Property="TextBlock.TextDecorations" Value="Underline" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Page.Resources>
-    <ScrollViewer>
-        <Grid Background="Transparent">
-            <Label Content="Predlozi" HorizontalAlignment="Center" Margin="0,50,0,0" FontSize="44" Height="50" FontWeight="Bold"/>
-            <Label Content="Tura na najtrazenijem jeziku u poslednjih godinu dana:"  Margin="50,150,0,0"/>
-            <Label Content="{Binding MostWantedLanguage}" Margin="170,250,0,0"/>
-            <Label Content="Tura na najtrazenijoj lokaciji u poslednjih godinu dana:"  Margin="50,350,0,0"/>
-            <Label Content="{Binding MostWantedLocation}" Margin="170,450,0,0"/>
-        </Grid>
-    </ScrollViewer>
+    <Grid Background="Transparent">
+        <Image Source="/Resources/Icons/Guide/idea.png" Margin="480,50,0,0"/>
+        <Label Content="Predlozi" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0" FontSize="44" Height="50" FontWeight="Bold"/>
+        <Label Margin="50,150,0,0" Width="600" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Hyperlink Click="CreateTourByLanguage_Click">
+                <TextBlock Text="{Binding MostWantedLanguage, StringFormat='Kreiraj turu na najtrazenijem jeziku: {0}'}"/>
+            </Hyperlink>
+        </Label>
+        <Image Source="/Resources/Images/Guide/languages.png" Width="450" Height="250" Margin="0,180,0,0"/>
+        <Label Margin="650,150,0,0" Width="600" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Hyperlink Click="CreateTourByLocation_Click">
+                <TextBlock Text="{Binding MostWantedLocation, StringFormat='Kreiraj turu na najtrazenijoj lokaciji: {0}'}"/>
+            </Hyperlink>
+        </Label>
+        <Image Source="/Resources/Images/Guide/location.png" Width="450" Height="250" Margin="670,160,0,0" VerticalAlignment="Center"/>
+    </Grid>
 </Page>
