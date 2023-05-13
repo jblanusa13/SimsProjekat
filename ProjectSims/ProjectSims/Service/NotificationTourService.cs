@@ -28,6 +28,10 @@ namespace ProjectSims.Service
         {
             return notificationTourRepository.GetById(id);
         }
+        public List<NotificationTour> GetAllNotificationsByGuest2(int guest2Id)
+        {
+            return notificationTourRepository.GetByGuest2Id(guest2Id);
+        }
 
         public void Create(NotificationTour notificationTour)
         {

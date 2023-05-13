@@ -93,6 +93,10 @@ namespace ProjectSims.WPF.View.Guest2View
         {
             ChangeTab(6);
         }
+        private void Notification_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ChangeTab(7);
+        }
 
         public void ChangeTab(int tabNum)
         {
@@ -137,6 +141,12 @@ namespace ProjectSims.WPF.View.Guest2View
                         SelectedTab.Content = new AccountView(guest2);
                         break;
                     }
+                case 7:
+                    {
+                        SelectedTab.Content = new ShowNotificationTourView(guest2);
+                        break;
+                    }
+            
             }
         }
 

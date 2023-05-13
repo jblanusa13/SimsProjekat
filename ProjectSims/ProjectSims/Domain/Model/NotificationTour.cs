@@ -1,4 +1,5 @@
-﻿using ProjectSims.Serializer;
+﻿using ProjectSims.Repository;
+using ProjectSims.Serializer;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,7 +13,9 @@ namespace ProjectSims.Domain.Model
     {
         public int Id { get; set; }
         public int Guest2Id { get; set; }
+        public Guest2 Guest2 { get; set; }
         public int GuideId { get; set; }
+        public Guide Guide { get; set; }
         public List<int> TourIds { get; set; }
         public string ContentNotification { get; set; }
         public DateTime DateSentNotification { get; set; }
@@ -52,8 +55,11 @@ namespace ProjectSims.Domain.Model
         {
             Id = Convert.ToInt32(values[0]);
             Guest2Id = Convert.ToInt32(values[1]);
+            Guest2Repository guest2Repository = new();
+            Guest2 = guest2Repository.GetById(Convert.ToInt32(values[1]));
             GuideId = Convert.ToInt32(values[2]);
-            
+            GuideRepository guideRepository = new();
+            Guide = guideRepository.GetById(Convert.ToInt32(values[2]));
             foreach (string tour in values[3].Split(","))
             {
                 int tourId = Convert.ToInt32(tour);

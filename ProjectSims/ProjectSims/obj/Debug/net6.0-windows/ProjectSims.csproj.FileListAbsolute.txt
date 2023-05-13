@@ -783,3 +783,7 @@ C:\Users\Korisnik\Desktop\SimsProj\SimsProjekat\ProjectSims\ProjectSims\bin\Debu
 C:\Users\Korisnik\Desktop\SimsProj\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guide\klmgdn.jpg
 C:\Users\Korisnik\Desktop\SimsProj\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guide\knez.jpg
 C:\Users\Korisnik\Desktop\SimsProj\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guide\muzejIluzija.jpg
+C:\Users\Korisnik\Desktop\SimsProj\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\Guest2View\Pages\ShowNotificationTourView.g.cs
+C:\Users\Korisnik\Desktop\SimsProj\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\Guest2View\Pages\ShowNotificationTourView.baml
+C:\Users\Korisnik\Desktop\SimsProj\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\Guest2View\NotificationNewTourView.g.cs
+C:\Users\Korisnik\Desktop\SimsProj\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\Guest2View\NotificationNewTourView.baml

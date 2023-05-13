@@ -60,6 +60,10 @@ namespace ProjectSims.Repository
         {
             return notificationTours;
         }
+        public List<NotificationTour> GetByGuest2Id(int guest2Id)
+        {
+            return notificationTours.Where(nt => nt.Guest2Id == guest2Id).ToList();
+        }
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);
