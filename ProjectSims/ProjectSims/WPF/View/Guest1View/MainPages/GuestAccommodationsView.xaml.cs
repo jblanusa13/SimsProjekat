@@ -41,6 +41,8 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             this.DataContext = ViewModel;
 
             Guest = guest;
+
+            HelpButton.Focus();
         }
         private void Theme_Click(object sender, RoutedEventArgs e)
         {

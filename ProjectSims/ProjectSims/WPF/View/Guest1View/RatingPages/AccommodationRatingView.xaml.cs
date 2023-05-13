@@ -32,6 +32,8 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
             images = new List<string>();
 
             this.DataContext = viewModel;
+
+            CleanlinessCb.Focus();
         }
 
         private void Browse_Click(object sender, RoutedEventArgs e)

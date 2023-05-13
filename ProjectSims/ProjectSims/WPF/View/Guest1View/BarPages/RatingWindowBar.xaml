@@ -13,21 +13,12 @@
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="40"/>
-            <ColumnDefinition Width="40"/>
-            <ColumnDefinition Width="40"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Column="0" Foreground="{DynamicResource FontsColor}"
+        <TextBlock Grid.Column="0" Foreground="{DynamicResource BarFont}"
                     FontFamily="Bahnschrift" FontSize="15"
                    Margin="10,7">TravelAndTour</TextBlock>
-        <Button Grid.Column="2" Name="MinimizeButton" BorderBrush="{DynamicResource BarShade}" Background="{DynamicResource BarShade}"
-                FocusVisualStyle="{DynamicResource FocusControl}">
-            <DynamicResource ResourceKey="RatingsMinimizeIcon"/>
-        </Button>
-        <Button Grid.Column="3" Name="RestoreButton" BorderBrush="{DynamicResource BarShade}" Background="{DynamicResource BarShade}"
-                FocusVisualStyle="{DynamicResource FocusControl}">
-            <DynamicResource ResourceKey="RatingsRestoreIcon"/>
-        </Button>
+
         <Button Grid.Column="4" Name="CloseButton" BorderBrush="{DynamicResource BarShade}" Background="{DynamicResource BarShade}"
                 Click="Close_Click"
                 FocusVisualStyle="{DynamicResource FocusControl}">

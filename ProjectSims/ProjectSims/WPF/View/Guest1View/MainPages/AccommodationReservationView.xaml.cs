@@ -21,6 +21,7 @@ using ProjectSims.Observer;
 using ProjectSims.Service;
 using ProjectSims.Validation;
 using ProjectSims.WPF.View.Guest1View;
+using ProjectSims.WPF.View.Guest1View.RatingPages;
 
 namespace ProjectSims.WPF.View.Guest1View.MainPages
 {
@@ -120,6 +121,8 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             Username = guest.User.Username;
             AvailableDates = new ObservableCollection<DateRanges>();
             LoadImages(SelectedAccommodation.Images);
+
+            BackButton.Focus();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -181,6 +184,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             }
         }
 
+
         public void UpdateDatesTable(List<DateRanges> availableDates)
         {
             AvailableDates.Clear();
@@ -202,7 +206,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             }
         }
 
-        private void DateRanges_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Dates_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectedDates = (DateRanges)DatesTable.SelectedItem;
         }
@@ -211,10 +215,13 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         {
             if (SelectedDates != null)
             {
-                DateRanges dates = (DateRanges)DatesTable.SelectedItem;
+                if ((e.Key.Equals(Key.Enter)) || (e.Key.Equals(Key.Return)))
+                {
+                    DateRanges dates = (DateRanges)DatesTable.SelectedItem;
 
-                reservationService.CreateReservation(Accommodation.Id, Guest.Id, dates.CheckIn, dates.CheckOut, GuestNumber);
-                NavigationService.GoBack();
+                    reservationService.CreateReservation(Accommodation.Id, Guest.Id, dates.CheckIn, dates.CheckOut, GuestNumber);
+                    NavigationService.GoBack();
+                }
             }
         }
 

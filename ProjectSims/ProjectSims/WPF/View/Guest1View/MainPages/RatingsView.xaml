@@ -12,32 +12,111 @@
     <Page.Resources>
         <Style TargetType="DataGrid" BasedOn="{StaticResource DataGridStyle}">
             <Setter Property="Background" Value="{DynamicResource DataGridBackground}"></Setter>
-            <Setter Property="ColumnHeaderStyle" Value="{DynamicResource DataGridHeader}"></Setter>
-            <Setter Property="RowStyle" Value="{DynamicResource DataGridRow}"></Setter>
             <Setter Property="BorderBrush" Value="{DynamicResource SecondGrayShade}"></Setter>
+        </Style>
+        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridHeader}"/>
+        <Style TargetType="DataGridRow" BasedOn="{StaticResource DataGridRow}"/>
+        <Style TargetType="DataGridCell" BasedOn="{StaticResource DataGridCell}">
+            <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusControl}"/>
         </Style>
     </Page.Resources>
 
     <Grid Background="{DynamicResource FirstGrayShade}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="90"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Background="{DynamicResource SecondGrayShade}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="60"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="320"/>
             </Grid.ColumnDefinitions>
             
-            <Button Grid.Column="0" Margin="10,20,10,20" Click="Back_Click" Background="{DynamicResource SecondGrayShade}" BorderBrush="{DynamicResource SecondGrayShade}">
+            <Button Grid.Column="0" Margin="10,20,10,20" Click="Back_Click"
+                    x:Name="BackButton"
+                    Background="{DynamicResource SecondGrayShade}" 
+                    BorderBrush="{DynamicResource SecondGrayShade}"
+                    FocusVisualStyle="{DynamicResource FocusControl}">
                 <fa:ImageAwesome Icon="ArrowCircleLeft" Foreground="{DynamicResource FontsColor}"/>
             </Button>
 
             <Grid Grid.Column="1">
-                <Label Margin="10,20,10,10" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Ocene</Label>
+                <Label Margin="10,18,10,10" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Ocene</Label>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="80"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" x:Name="ButtonTheme" Margin="0,15,0,0"
+                        Background="{DynamicResource SecondGrayShade}"
+                            BorderBrush="{DynamicResource BarShade}"
+                            FocusVisualStyle="{DynamicResource FocusControl}">
+                        <DynamicResource ResourceKey="MoonIconRatings"></DynamicResource>
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Label Grid.Row="1" Content="Tema" FontFamily="Bahnschrift" 
+                           Foreground="{DynamicResource FontsColor}" 
+                           FontSize="10" HorizontalContentAlignment="Center"
+                           VerticalContentAlignment="Top"/>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" x:Name="ButtonLanguage" Margin="0,15,0,0"
+                        Background="{DynamicResource SecondGrayShade}" 
+                            BorderBrush="{DynamicResource BarShade}"
+                            FocusVisualStyle="{DynamicResource FocusControl}">
+                        <DynamicResource ResourceKey="LanguageIconRatings"></DynamicResource>
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Label Grid.Row="1" Content="Jezik" FontFamily="Bahnschrift" 
+                           Foreground="{DynamicResource FontsColor}" HorizontalContentAlignment="Center"
+                           FontSize="10" VerticalContentAlignment="Top"/>
+                </Grid>
+                <Grid Grid.Column="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" x:Name="ButtonNotifications" Margin="0,15,0,0"
+                        Background="{DynamicResource SecondGrayShade}" 
+                            BorderBrush="{DynamicResource BarShade}"
+                            FocusVisualStyle="{DynamicResource FocusControl}">
+                        <DynamicResource ResourceKey="NotificationsIconRatings"></DynamicResource>
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Label Grid.Row="1" Content="Obavestenja" FontFamily="Bahnschrift" 
+                           Foreground="{DynamicResource FontsColor}" 
+                           HorizontalContentAlignment="Center"
+                           FontSize="10" VerticalContentAlignment="Top"/>
+                </Grid>
             </Grid>
         </Grid>
 
@@ -141,7 +220,8 @@
 
             <Button Grid.Column="1" Margin="80,20,70,15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}"
                                         Background="{DynamicResource SecondGrayShade}"
-                    Click="LogOut_Click">Odjavi se
+                    Click="LogOut_Click"
+                    FocusVisualStyle="{DynamicResource FocusControl}">Odjavi se
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>

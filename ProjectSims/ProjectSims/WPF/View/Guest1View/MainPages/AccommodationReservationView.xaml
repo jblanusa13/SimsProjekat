@@ -14,9 +14,15 @@
     <Page.Resources>
         <Style TargetType="DataGrid" BasedOn="{StaticResource DataGridStyle}">
             <Setter Property="Background" Value="{DynamicResource DataGridBackground}"></Setter>
-            <Setter Property="ColumnHeaderStyle" Value="{DynamicResource DataGridHeader}"></Setter>
-            <Setter Property="RowStyle" Value="{DynamicResource DataGridRow}"></Setter>
             <Setter Property="BorderBrush" Value="{DynamicResource SecondGrayShade}"></Setter>
+        </Style>
+        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridHeader}"/>
+        <Style TargetType="DataGridRow" BasedOn="{StaticResource DataGridRow}"/>
+        <Style TargetType="DataGridCell" BasedOn="{StaticResource DataGridCell}">
+            <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusControl}"/>
+        </Style>
+        <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItem}">
+            <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusControl}"/>
         </Style>
     </Page.Resources>
 
@@ -30,11 +36,13 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="60"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="320"/>
             </Grid.ColumnDefinitions>
             
             <Grid Grid.Column="0">
-                <Button Margin="10" Click="Back_Click" Background="{DynamicResource SecondGrayShade}" BorderBrush="{DynamicResource SecondGrayShade}">
+                <Button Margin="10" x:Name="BackButton"
+                        Click="Back_Click" Background="{DynamicResource SecondGrayShade}" BorderBrush="{DynamicResource SecondGrayShade}"
+                        FocusVisualStyle="{DynamicResource FocusControl}">
                     <fa:ImageAwesome Icon="ArrowCircleLeft" Foreground="{DynamicResource FontsColor}"/>
                 </Button>
             </Grid>
@@ -44,15 +52,76 @@
             </Grid>
 
             <Grid Grid.Column="2">
-                <Button x:Name="ButtonTheme" Margin="10,10,230,20" Click="Theme_Click"
-                        Background="{DynamicResource SecondGrayShade}">
-                    <DynamicResource ResourceKey="MoonIcon"></DynamicResource>
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="20"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="80"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="25"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" x:Name="ButtonTheme" Margin="0,5" Click="Theme_Click"
+                        Background="{DynamicResource SecondGrayShade}"
+                            BorderBrush="{DynamicResource BarShade}"
+                            FocusVisualStyle="{DynamicResource FocusControl}">
+                        <DynamicResource ResourceKey="MoonIconReservation"></DynamicResource>
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Label Grid.Row="1" Content="Tema" FontFamily="Bahnschrift" 
+                           Foreground="{DynamicResource FontsColor}" 
+                           FontSize="10" HorizontalContentAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="25"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" x:Name="ButtonLanguage" Margin="0,5"
+                        Background="{DynamicResource SecondGrayShade}" 
+                            BorderBrush="{DynamicResource BarShade}"
+                            FocusVisualStyle="{DynamicResource FocusControl}">
+                        <DynamicResource ResourceKey="LanguageIconReservation"></DynamicResource>
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Label Grid.Row="1" Content="Jezik" FontFamily="Bahnschrift" 
+                           Foreground="{DynamicResource FontsColor}" HorizontalContentAlignment="Center"
+                           FontSize="10"/>
+                </Grid>
+                <Grid Grid.Column="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="25"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" x:Name="ButtonNotifications" Margin="0,5"
+                        Background="{DynamicResource SecondGrayShade}" 
+                            BorderBrush="{DynamicResource BarShade}"
+                            FocusVisualStyle="{DynamicResource FocusControl}">
+                        <DynamicResource ResourceKey="NotificationsIconReservation"></DynamicResource>
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Label Grid.Row="1" Content="Obavestenja" FontFamily="Bahnschrift" 
+                           Foreground="{DynamicResource FontsColor}" 
+                           HorizontalContentAlignment="Center"
+                           FontSize="10"/>
+                </Grid>
+                
+                
             </Grid>
         </Grid>
 
@@ -180,7 +249,8 @@
                                 <DatePicker Name="FirstDatePicker" Margin="15,35,10,10" Height="28"
                                             DisplayDateStart="{x:Static sys:DateTime.Today}"
                                             SelectedDateChanged="FirstDatePicker_SelectedDateChanged"
-                                            Background="{DynamicResource TextboxColor}">
+                                            Background="{DynamicResource TextboxColor}"
+                                            FocusVisualStyle="{DynamicResource FocusControl}">
                                 </DatePicker>
                             </Grid>
 
@@ -188,7 +258,8 @@
                                 <Label Margin="10,5" FontSize="14" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}">Krajnji datum pretrage:</Label>
                                 <DatePicker Name="LastDatePicker" Margin="15,35,10,10" Height="28"
                                             DisplayDateStart="{x:Static sys:DateTime.Today}"
-                                            Background="{DynamicResource TextboxColor}"></DatePicker>
+                                            Background="{DynamicResource TextboxColor}"
+                                            FocusVisualStyle="{DynamicResource FocusControl}"></DatePicker>
                             </Grid>
 
                             <Grid Grid.Row="3">
@@ -248,7 +319,8 @@
 
                             <Grid Grid.Row="5">
                                 <Button Margin="15,20,10,15" Click="FindDates_Click" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}"
-                                        Background="{DynamicResource SecondGrayShade}">Pretrazi datume
+                                        Background="{DynamicResource SecondGrayShade}"
+                                        FocusVisualStyle="{DynamicResource FocusControl}">Pretrazi datume
                                     <Button.Resources>
                                         <Style TargetType="Border">
                                             <Setter Property="CornerRadius" Value="10"/>
@@ -268,11 +340,11 @@
                                       Margin="30,80,30,10" 
                                       AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single"
                                       HeadersVisibility="Column"
-                                      SelectionChanged="DateRanges_SelectionChanged"
+                                      SelectionChanged="Dates_SelectionChanged"
                                       PreviewKeyDown="Reserve">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Dolazak" Binding="{Binding CheckIn}" Width="130"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Odlazak"  Binding="{Binding CheckOut}" Width="*"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Dolazak" Binding="{Binding CheckIn}" Width="1*"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Odlazak"  Binding="{Binding CheckOut}" Width="1*"></DataGridTextColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
@@ -282,7 +354,8 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Button Grid.Column="0" Margin="30,20,10,15" FontFamily="Bahnschrift" Click="Confirm_Click" Foreground="{DynamicResource FontsColor}"
-                                        Background="{DynamicResource SecondGrayShade}">Potvrdi rezervaciju
+                                        Background="{DynamicResource SecondGrayShade}"
+                                        FocusVisualStyle="{DynamicResource FocusControl}">Potvrdi rezervaciju
                                     <Button.Resources>
                                         <Style TargetType="Border">
                                             <Setter Property="CornerRadius" Value="10"/>
@@ -290,7 +363,8 @@
                                     </Button.Resources>
                                 </Button>
                                 <Button Grid.Column="1" Margin="30,20,30,15" FontFamily="Bahnschrift" Click="Cancel_Click" Foreground="{DynamicResource FontsColor}"
-                                        Background="{DynamicResource SecondGrayShade}">Otkazi
+                                        Background="{DynamicResource SecondGrayShade}"
+                                        FocusVisualStyle="{DynamicResource FocusControl}">Otkazi
                                     <Button.Resources>
                                         <Style TargetType="Border">
                                             <Setter Property="CornerRadius" Value="10"/>

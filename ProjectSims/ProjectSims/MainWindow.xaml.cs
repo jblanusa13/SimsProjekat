@@ -43,6 +43,8 @@ namespace ProjectSims
             guest1File = new Guest1FileHandler();
             guest2File = new Guest2FileHandler();
             guideFile = new GuideFileHandler();
+
+            UsernameTextBox.Focus();
         }
 
         private void SignIn(object sender, RoutedEventArgs e)
