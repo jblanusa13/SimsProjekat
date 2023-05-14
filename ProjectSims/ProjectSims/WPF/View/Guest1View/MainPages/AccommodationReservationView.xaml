@@ -6,7 +6,6 @@
       xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.MainPages"
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
       xmlns:fa="http://schemas.fontawesome.io/icons/" 
-      xmlns:val="clr-namespace:ProjectSims.Validation"
       mc:Ignorable="d" 
       d:DesignHeight="540" d:DesignWidth="1067"
       Title="AccommodationReservation">
@@ -24,6 +23,13 @@
         <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItem}">
             <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusControl}"/>
         </Style>
+
+        <ControlTemplate x:Key="ValidationTemplate">
+            <StackPanel>
+                <AdornedElementPlaceholder x:Name="textBox" />
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="9" FontFamily="Bahnschrift" />
+            </StackPanel>
+        </ControlTemplate>
     </Page.Resources>
 
     <Grid Background="{DynamicResource FirstGrayShade}">
@@ -250,7 +256,9 @@
                                             DisplayDateStart="{x:Static sys:DateTime.Today}"
                                             SelectedDateChanged="FirstDatePicker_SelectedDateChanged"
                                             Background="{DynamicResource TextboxColor}"
-                                            FocusVisualStyle="{DynamicResource FocusControl}">
+                                            FocusVisualStyle="{DynamicResource FocusControl}"
+                                            Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                                            Text="{Binding FirstDate, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
                                 </DatePicker>
                             </Grid>
 
@@ -259,7 +267,9 @@
                                 <DatePicker Name="LastDatePicker" Margin="15,35,10,10" Height="28"
                                             DisplayDateStart="{x:Static sys:DateTime.Today}"
                                             Background="{DynamicResource TextboxColor}"
-                                            FocusVisualStyle="{DynamicResource FocusControl}"></DatePicker>
+                                            FocusVisualStyle="{DynamicResource FocusControl}"
+                                            Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                                            Text="{Binding LastDate, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></DatePicker>
                             </Grid>
 
                             <Grid Grid.Row="3">
@@ -267,53 +277,17 @@
 
                                 <TextBox Name="TextboxDaysNumber"
                                          Margin="15,35,10,0" Height="28" VerticalAlignment="Top"
-                                         Background="{DynamicResource TextboxColor}">
-                                    <TextBox.Text>
-                                        <Binding Path="DaysNumber" UpdateSourceTrigger="PropertyChanged">
-                                            <Binding.ValidationRules>
-                                                <val:StringToInt ValidationStep="RawProposedValue"/>
-                                                <val:MinInt ValidationStep="ConvertedProposedValue" Min="2"/>
-                                            </Binding.ValidationRules>
-                                        </Binding>
-                                    </TextBox.Text>
-                                    <Validation.ErrorTemplate>
-                                        <ControlTemplate>
-                                            <Grid>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition/>
-                                                    <RowDefinition/>
-                                                </Grid.RowDefinitions>
-                                                <AdornedElementPlaceholder Grid.Row="0"/>
-                                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
-                                            </Grid>
-                                        </ControlTemplate>
-                                    </Validation.ErrorTemplate>
+                                         Background="{DynamicResource TextboxColor}"
+                                         Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                                         Text="{Binding DaysNumber, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
                                 </TextBox>
                             </Grid>
 
                             <Grid Grid.Row="4">
                                 <Label Margin="10,5" FontSize="14" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}">Broj gostiju:</Label>
-                                <TextBox Margin="15,35,10,10" Background="{DynamicResource TextboxColor}" Height="28">
-                                    <TextBox.Text>
-                                        <Binding Path="GuestNumber" UpdateSourceTrigger="PropertyChanged">
-                                            <Binding.ValidationRules>
-                                                <val:StringToInt ValidationStep="RawProposedValue"/>
-                                                <val:MaxInt ValidationStep="ConvertedProposedValue" Max="6"/>
-                                            </Binding.ValidationRules>
-                                        </Binding>
-                                    </TextBox.Text>
-                                    <Validation.ErrorTemplate>
-                                        <ControlTemplate>
-                                            <Grid>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition/>
-                                                    <RowDefinition/>
-                                                </Grid.RowDefinitions>
-                                                <AdornedElementPlaceholder Grid.Row="0"/>
-                                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
-                                            </Grid>
-                                        </ControlTemplate>
-                                    </Validation.ErrorTemplate>
+                                <TextBox x:Name="TextboxGuestNumber" Margin="15,35,10,10" Background="{DynamicResource TextboxColor}" Height="28"
+                                         Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                                         Text="{Binding GuestNumber, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
                                 </TextBox>
                             </Grid>
 

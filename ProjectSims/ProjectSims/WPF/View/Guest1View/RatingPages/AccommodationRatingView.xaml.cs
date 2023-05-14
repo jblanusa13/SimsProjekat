@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,6 +27,7 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
         private AccommodationRatingViewModel viewModel;
         private List<string> images;
         public Image image { get; set; }
+
         public AccommodationRatingView(AccommodationReservation accommodationReservation)
         {
             InitializeComponent();
@@ -74,9 +77,9 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
 
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(CleanlinessCb.Text) && !string.IsNullOrEmpty(FairnessCb.Text) && !string.IsNullOrEmpty(LocationCb.Text) && !string.IsNullOrEmpty(ValueForMoneyCb.Text))
+            if (viewModel.IsValid)
             {
-                viewModel.AddRating(CleanlinessCb.Text, FairnessCb.Text, LocationCb.Text, ValueForMoneyCb.Text, CommentTb.Text, images);
+                viewModel.AddRating(CommentTb.Text, images);
                 NavigationService.Navigate(new RenovationRecommendationView(viewModel));
             }
         }
@@ -84,6 +87,6 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
-        } 
+        }    
     }
 }

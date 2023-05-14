@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,7 +29,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
     /// <summary>
     /// Interaction logic for AccommodationReservation.xaml
     /// </summary>
-    public partial class AccommodationReservationView : Page, INotifyPropertyChanged
+    public partial class AccommodationReservationView : Page, INotifyPropertyChanged, IDataErrorInfo
     {
         public Accommodation Accommodation { get; set; }
 
@@ -46,8 +47,8 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             }
         }
 
-        private DateOnly _firstDate;
-        public DateOnly FirstDate
+        private string _firstDate;
+        public string FirstDate
         {
             get => _firstDate;
             set
@@ -60,8 +61,8 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             }
         }
 
-        private DateOnly _lastDate;
-        public DateOnly LastDate
+        private string _lastDate;
+        public string LastDate
         {
             get => _lastDate;
             set
@@ -74,8 +75,8 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             }
         }
 
-        private int _guestNumber;
-        public int GuestNumber
+        private string _guestNumber;
+        public string GuestNumber
         {
             get => _guestNumber;
             set
@@ -88,8 +89,8 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             }
         }
 
-        private int _daysNumber;
-        public int DaysNumber
+        private string _daysNumber;
+        public string DaysNumber
         {
             get => _daysNumber;
             set
@@ -172,13 +173,13 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         private void FindDates_Click(object sender, RoutedEventArgs e)
         {
             DateRangesService dateRangesService = new DateRangesService();
-            if (FirstDatePicker.SelectedDate != null && LastDatePicker.SelectedDate != null && !string.IsNullOrEmpty(TextboxDaysNumber.Text))
+            if (IsValid)
             {
-                FirstDate = DateOnly.FromDateTime((DateTime)FirstDatePicker.SelectedDate);
-                LastDate = DateOnly.FromDateTime((DateTime)LastDatePicker.SelectedDate);
+               // FirstDate = DateOnly.FromDateTime((DateTime)FirstDatePicker.SelectedDate);
+                //LastDate = DateOnly.FromDateTime((DateTime)LastDatePicker.SelectedDate);
 
                 List<DateRanges> availableDates = new List<DateRanges>();
-                availableDates = dateRangesService.FindAvailableDates(FirstDate, LastDate, DaysNumber, Accommodation.Id);
+                availableDates = dateRangesService.FindAvailableDates(DateOnly.Parse(FirstDate), DateOnly.Parse(LastDate), Convert.ToInt32(DaysNumber), Accommodation.Id);
 
                 UpdateDatesTable(availableDates);
             }
@@ -201,7 +202,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             {
                 DateRanges dates = (DateRanges)DatesTable.SelectedItem;
 
-                reservationService.CreateReservation(Accommodation.Id, Guest.Id, dates.CheckIn, dates.CheckOut, GuestNumber);
+                reservationService.CreateReservation(Accommodation.Id, Guest.Id, dates.CheckIn, dates.CheckOut, Convert.ToInt32(GuestNumber));
                 NavigationService.GoBack();
             }
         }
@@ -219,7 +220,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
                 {
                     DateRanges dates = (DateRanges)DatesTable.SelectedItem;
 
-                    reservationService.CreateReservation(Accommodation.Id, Guest.Id, dates.CheckIn, dates.CheckOut, GuestNumber);
+                    reservationService.CreateReservation(Accommodation.Id, Guest.Id, dates.CheckIn, dates.CheckOut, Convert.ToInt32(GuestNumber));
                     NavigationService.GoBack();
                 }
             }
@@ -233,6 +234,98 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        public String Error => null;
+        public string this[string columnName]
+        {
+            get
+            {
+                if (columnName == "FirstDate")
+                {
+                    if (string.IsNullOrEmpty(FirstDate))
+                        return "Unesite pocetni datum!";
+
+                    DateOnly firstDate;
+                    if (!DateOnly.TryParse(FirstDate, out firstDate))
+                        return "Datum je u formatu: dd.MM.yyyy";
+
+                    if (!string.IsNullOrEmpty(LastDate))
+                    {
+                        if (firstDate > DateOnly.Parse(LastDate))
+                            return "Unesite datum manji od krajnjeg!";
+                    }
+
+                    if (firstDate < DateOnly.FromDateTime(DateTime.Now))
+                        return "Unesite datum u buducnosti";
+                }
+                else if (columnName == "LastDate")
+                {
+                    if (string.IsNullOrEmpty(LastDate))
+                        return "Unesite krajnji datum!";
+
+                    DateOnly lastDate;
+                    if (!DateOnly.TryParse(LastDate, out lastDate))
+                        return "Datum je u formatu: dd.MM.yyyy";
+
+                    if (string.IsNullOrEmpty(FirstDate))
+                    {
+                        if (lastDate < DateOnly.FromDateTime(DateTime.Now))
+                            return "Unesite datum u buducnosti";
+                    }
+                    else
+                    {
+                        if (lastDate < DateOnly.Parse(FirstDate))
+                            return "Unesite datum veci od pocetnog!";
+                    }                
+                }
+                else if (columnName == "DaysNumber")
+                {
+                    if (string.IsNullOrEmpty(DaysNumber))
+                        return "Unesite broj dana!";
+
+                    int daysNumber;
+                    if (!int.TryParse(DaysNumber, out daysNumber))
+                        return "Unesite ceo broj!";
+
+                    if (daysNumber < Accommodation.MinimumReservationDays)
+                        return "Mora biti veci od min broja dana!";
+
+                    if (daysNumber <= 0)
+                        return "Unesite broj veci od 0!";
+                }
+                else if (columnName == "GuestNumber")
+                {
+                    if (string.IsNullOrEmpty(GuestNumber))
+                        return "Unesite broj gostiju!";
+
+                    int guestNumber;
+                    if (!int.TryParse(GuestNumber, out guestNumber))
+                        return "Unesite ceo broj!";
+
+                    if (guestNumber > Accommodation.GuestsMaximum)
+                        return "Mora biti manji od maks broja gostiju!";
+
+                    if (guestNumber <= 0)
+                        return "Unesite broj veci od 0!";
+                }
+                return null;
+
+            }
+        }
+
+        private readonly string[] _validatedProperties = { "FirstDate", "LastDate", "GuestNumber", "DaysNumber" };
+        public bool IsValid
+        {
+            get
+            {
+                foreach (var property in _validatedProperties)
+                {
+                    if (this[property] != null)
+                        return false;
+                }
+                return true;
+            }
         }
     }
 }

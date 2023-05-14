@@ -11,6 +11,13 @@
         <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItem}">
             <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusControl}"/>
         </Style>
+
+        <ControlTemplate x:Key="ValidationTemplate">
+            <StackPanel>
+                <AdornedElementPlaceholder x:Name="textBox" />
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="9" FontFamily="Bahnschrift" />
+            </StackPanel>
+        </ControlTemplate>
     </Page.Resources>
 
     <Grid Background="White">
@@ -49,11 +56,13 @@
 
                     <Label Grid.Column="0" Margin="50,10,0,0" FontSize="14" Height="35"
                            Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Cistoca:</Label>
-                    <ComboBox Name="CleanlinessCb"
+                    <ComboBox x:Name="CleanlinessCb"
                               Grid.Column="1"
                               Margin="50,15,50,20"
                               Background="{DynamicResource TextboxColor}"
-                              FocusVisualStyle="{DynamicResource FocusControl}">
+                              FocusVisualStyle="{DynamicResource FocusControl}"
+                              Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                              Text="{Binding Cleanliness, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
                         <ComboBoxItem Content="1"/>
                         <ComboBoxItem Content="2"/>
                         <ComboBoxItem Content="3"/>
@@ -73,7 +82,9 @@
                     <ComboBox Name="FairnessCb"
                               Grid.Column="1"
                               Margin="50,15,50,20"
-                              FocusVisualStyle="{DynamicResource FocusControl}">
+                              FocusVisualStyle="{DynamicResource FocusControl}"
+                              Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                              Text="{Binding Fairness, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
                         <ComboBoxItem Content="1"/>
                         <ComboBoxItem Content="2"/>
                         <ComboBoxItem Content="3"/>
@@ -93,7 +104,9 @@
                     <ComboBox Name="LocationCb"
                               Grid.Column="1"
                               Margin="50,15,50,20"
-                              FocusVisualStyle="{DynamicResource FocusControl}">
+                              FocusVisualStyle="{DynamicResource FocusControl}"
+                              Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                              Text="{Binding Location, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
                         <ComboBoxItem Content="1"/>
                         <ComboBoxItem Content="2"/>
                         <ComboBoxItem Content="3"/>
@@ -113,7 +126,9 @@
                     <ComboBox Name="ValueForMoneyCb"
                               Grid.Column="1"
                               Margin="50,15,50,20"
-                              FocusVisualStyle="{DynamicResource FocusControl}">
+                              FocusVisualStyle="{DynamicResource FocusControl}"
+                              Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                              Text="{Binding ValueForMoney, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
                         <ComboBoxItem Content="1"/>
                         <ComboBoxItem Content="2"/>
                         <ComboBoxItem Content="3"/>
