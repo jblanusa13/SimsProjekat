@@ -48,14 +48,14 @@
                 Width="151" 
                 RenderTransformOrigin="1.194,0.155" 
                 IsDefault="True"/>
-        <ListView x:Name="ImageList" 
-                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
+        <ListView x:Name="ImageList"
+                  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
                   ScrollViewer.PanningMode="HorizontalOnly"
                   Margin="50,387,50,205">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal"/>
+                    <StackPanel  HorizontalAlignment="Center" Orientation="Horizontal"/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>

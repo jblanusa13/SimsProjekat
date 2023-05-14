@@ -4,7 +4,9 @@ using ProjectSims.WPF.ViewModel.Guest2ViewModel;
 using ProjectSims.WPF.ViewModel.OwnerViewModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,12 +24,27 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
     /// <summary>
     /// Interaction logic for StatisticsView.xaml
     /// </summary>
-    public partial class StatisticsView : Page
+    public partial class StatisticsView : Page, INotifyPropertyChanged
     {
         public Owner Owner { get; set; }
         public TextBlock TitleTextBlock { get; set; }
         public Accommodation SelectedAccommodation { get; set; }
         public StatisticsViewModel statisticsViewModel { get; set; }
+
+        private Image _image;
+        public Image Image
+        {
+            get => _image;
+
+            set
+            {
+                if (value != _image)
+                {
+                    _image = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public StatisticsView(Owner o, TextBlock titleTextBlock, Accommodation selectedAccommodetion)
         {
             InitializeComponent();
@@ -35,12 +52,46 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
             TitleTextBlock = titleTextBlock;
             SelectedAccommodation = selectedAccommodetion;
             statisticsViewModel = new StatisticsViewModel(Owner, TitleTextBlock, SelectedAccommodation);
+            InitializeImages();
             this.DataContext = statisticsViewModel;
         }
 
-        private void ButtonBack(object sender, RoutedEventArgs e)
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-        
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        private void InitializeImages()
+        {
+            foreach (string fileName in SelectedAccommodation.Images)
+            {
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri(fileName, UriKind.RelativeOrAbsolute);
+                    bitmap.EndInit();
+                    Image = new Image();
+                    Image.Source = bitmap;
+                    Image.Stretch = Stretch.Fill;
+                    ImageList.Items.Add(Image);
+            }
+        }
+
+        private void CloseAccommodation_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RegisterNew_Click(object sender, RoutedEventArgs e)
+        {
+
+        } 
+        
+        private void GenerateReport_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
     }
 }

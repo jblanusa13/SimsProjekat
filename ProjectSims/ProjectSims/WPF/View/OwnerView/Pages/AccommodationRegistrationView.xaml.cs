@@ -22,6 +22,7 @@ using System.Collections.ObjectModel;
 using ProjectSims.WPF.ViewModel.OwnerViewModel;
 using ProjectSims.WPF.View.OwnerView;
 using System.IO;
+using System.Windows.Media;
 
 namespace ProjectSims.View.OwnerView.Pages
 {
@@ -205,8 +206,7 @@ namespace ProjectSims.View.OwnerView.Pages
                 bitmap.EndInit();
                 Images = new Image();
                 Images.Source = bitmap;
-                Images.Width = 170;
-                Images.Height = 100;
+                Images.Stretch = Stretch.Fill;
                 ImageList.Items.Add(Images);
         }
 

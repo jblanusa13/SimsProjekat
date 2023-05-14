@@ -5,59 +5,129 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.OwnerView.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="750" d:DesignWidth="430">
+      d:DesignHeight="915" d:DesignWidth="430">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="180"></RowDefinition>
-            <RowDefinition Height="120"></RowDefinition>
-            <RowDefinition Height="170"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="180"></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="1">
-            <Label Content="Početak:" FontSize="14" HorizontalAlignment="Left" Margin="50,5,0,0" VerticalAlignment="Top" Width="200"/>
-            <Label Content="Kraj:" FontSize="14" HorizontalAlignment="Left" Margin="50,35,0,0" VerticalAlignment="Top" Height="30" Width="159"/>
-            <Label Content="Trajanje:" FontSize="14" HorizontalAlignment="Left" Margin="50,140,0,0" VerticalAlignment="Top" Width="159"/>
-            <TextBox x:Name="NameTextBox" HorizontalAlignment="Right" Margin="0,141,50,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="True"/>
-            <TextBox x:Name="LocationTextBox" HorizontalAlignment="Right" Margin="0,158,50,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="True"/>
-            <TextBox x:Name="TypeComboBox" HorizontalAlignment="Right" Margin="0,180,50,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="True"/>
-        </Grid>
-        <Grid Grid.Row="2">
-            <Label Content="Izaberite slobodan termin:" 
-                   FontSize="14" 
-                   HorizontalAlignment="Left" 
-                   Margin="50,0,0,0" 
-                   VerticalAlignment="Top" 
-                   Width="200"/>
-        </Grid>
-        <Grid Grid.Row="3">
-            <TextBox x:Name="DescriptionTextBox" 
-                 Text="{Binding Path=Description, FallbackValue='Unesite opis...', UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                 Margin="50,15,50,15" 
-                 Foreground="#FF6E6E6E"/>
-        </Grid>
-        <Grid Grid.Row="6">
-            <Button x:Name="ConfirmButton" 
-                Height="34" 
-                Width="125" 
-                Margin="80,60,0,0" 
-                VerticalAlignment="Top" 
-                HorizontalAlignment="Left" 
-                Content="Potvrdi"/>
-            <Button x:Name="CancelButton" 
-                Height="34"
-                Width="120"
-                Margin="0,60,80,0"  
-                VerticalAlignment="Top" 
-                HorizontalAlignment="Right" 
-                Content="Odustani"/>
-        </Grid>
-        <ScrollViewer Grid.RowSpan="4" VerticalScrollBarVisibility="Visible" 
-                      CanContentScroll="True"
-                      />
-    </Grid>
+    <ScrollViewer VerticalScrollBarVisibility="Hidden"
+                  HorizontalScrollBarVisibility="Disabled"
+                  CanContentScroll="True">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200"></RowDefinition>
+                <RowDefinition Height="150"></RowDefinition>
+                <RowDefinition Height="200"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="200"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="65"></RowDefinition>
+            </Grid.RowDefinitions>
 
+            <Grid Grid.Row="0">
+                <ListView x:Name="ImageList"
+                  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                  ScrollViewer.PanningMode="HorizontalOnly">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Label Content="Naziv:" FontSize="13" HorizontalAlignment="Left" Margin="50,5,0,0" VerticalAlignment="Bottom" Width="200"/>
+                    <TextBox x:Name="NameTextBox" Text="{Binding SelectedAccommodation.Name}" HorizontalAlignment="Right" Margin="0,5,50,0" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="183" Height="26" Foreground="Black" IsEnabled="False"/>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Label Content="Lokacija:" FontSize="13" HorizontalAlignment="Left" Margin="50,5,0,0" VerticalAlignment="Center" Height="30" Width="159"/>
+                    <TextBox x:Name="LocationTextBox" HorizontalAlignment="Right" Margin="0,5,50,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="183" Height="26" Foreground="Black" IsEnabled="False">
+                        <MultiBinding StringFormat="{}{0} {1}">
+                            <Binding Path="SelectedAccommodation.Location.City"/>
+                            <Binding Path="SelectedAccommodation.Location.Country"/>
+                        </MultiBinding>
+                    </TextBox>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Label Content="Tip:" FontSize="13" HorizontalAlignment="Left" Margin="50,5,0,0" VerticalAlignment="Top" Width="159"/>
+                    <TextBox x:Name="TypeTextBox" Text="{Binding SelectedAccommodation.Type}" HorizontalAlignment="Right" Margin="0,5,50,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="26" Foreground="Black" IsEnabled="False"/>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="2">
+
+            </Grid>
+            
+            <Grid Grid.Row="3">
+                <Label Content="Izaberite godinu:" 
+                       FontSize="13" 
+                       HorizontalAlignment="Left" 
+                       Margin="50,0,0,0" 
+                       VerticalAlignment="Center" 
+                       Width="200"/>
+                <ComboBox x:Name="TypeComboBox" HorizontalAlignment="Right" Margin="0,0,50,0" VerticalAlignment="Center" Width="183" Height="26" Foreground="Black" IsEnabled="True">
+                    <ComboBoxItem>2022</ComboBoxItem>
+                    <ComboBoxItem>2021</ComboBoxItem>
+                    <ComboBoxItem>2020</ComboBoxItem>
+                </ComboBox>
+            </Grid>
+            <Grid Grid.Row="4">
+
+            </Grid>
+            <Grid Grid.Row="5">
+                <Label Content="Najviše posjećen u:" 
+                       FontSize="13" 
+                       HorizontalAlignment="Left" 
+                       Margin="50,0,0,0" 
+                       VerticalAlignment="Center" 
+                       Width="200"/>
+                <TextBox x:Name="MostVisitedTextBox" HorizontalAlignment="Right" Margin="0,0,50,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="183" Height="26" Foreground="Black" FontSize="13" IsEnabled="False"/>
+            </Grid>
+            <Grid Grid.Row="6">
+                <Button x:Name="CloseAccommodationButton"
+                Margin="8 0 0 0"
+                Click="CloseAccommodation_Click"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                TextElement.FontSize="12"
+                TextElement.FontStretch="UltraExpanded"                
+                TextElement.FontWeight="Medium" 
+                Height="35"
+                Width="133"
+                Content="Zatvori smještaj"
+                Grid.Row="1"/>
+                <Button x:Name="RegisterButton"
+                Click="RegisterNew_Click"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center"
+                TextElement.FontSize="12"
+                TextElement.FontStretch="UltraExpanded"
+                TextElement.FontWeight="Medium" 
+                Height="35" 
+                Width="133">
+                    <StackPanel>
+                    <TextBlock  HorizontalAlignment="Center" Text="Registruj novi"/>
+                    <TextBlock  HorizontalAlignment="Center" Text="smještaj"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="ReportButton"
+                Click="GenerateReport_Click"
+                Margin="0 0 8 0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                TextElement.FontSize="12"
+                TextElement.FontStretch="UltraExpanded"
+                TextElement.FontWeight="Medium" 
+                Height="35"
+                Width="133"
+                Content="Generiši izvještaj"
+                Grid.Row="1"/>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
 </Page>

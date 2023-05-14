@@ -65,8 +65,12 @@ namespace ProjectSims.View.OwnerView.Pages
 
         private void Statistics_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new StatisticsView(Owner, TitleTextBlock, SelectedAccommodation));
-            TitleTextBlock.Text = "Statistika smještaja";
+            SelectedAccommodation = (Accommodation)AccommodationsTable.SelectedItem;
+            if (SelectedAccommodation != null)
+            {
+                this.NavigationService.Navigate(new StatisticsView(Owner, TitleTextBlock, SelectedAccommodation));
+                TitleTextBlock.Text = "Statistika smještaja";
+            }
         }
 
         private void Renovate_Click(object sender, RoutedEventArgs e)
