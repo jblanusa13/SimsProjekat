@@ -37,7 +37,7 @@ namespace ProjectSims.Serializer
             {
                 string[] csvValues = line.Split(Delimiter);
                 T obj = new T();
-                obj.FromCSV(csvValues);
+                    obj.FromCSV(csvValues);
                 objects.Add(obj);
             }
 

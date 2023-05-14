@@ -20,8 +20,6 @@ namespace ProjectSims.Repository
         private readonly List<Owner> _owners;
         private List<IObserver> observers;
 
-        public OwnerRepository ownerRepository { get; set; }
-
         public AccommodationRepository()
         {
             accommodationFileHandler = new AccommodationFileHandler();
@@ -64,11 +62,24 @@ namespace ProjectSims.Repository
                 accommodations[index] = accommodation;
             }
             accommodationFileHandler.Save(accommodations);
-            NotifyObservers();
         }
+
         public List<Accommodation> GetAll()
         {
             return accommodations;
+        }
+
+        public List<Accommodation> GetAllByOwner(int ownerId)
+        {
+            List<Accommodation> ownerAccomodations = new List<Accommodation>();
+            foreach (Accommodation accommodation in GetAll())
+            {
+                if (accommodation.IdOwner == ownerId)
+                {
+                    ownerAccomodations.Add(accommodation);
+                }
+            }
+            return ownerAccomodations;
         }
 
         public void Subscribe(IObserver observer)

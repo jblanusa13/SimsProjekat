@@ -54,7 +54,7 @@
         </StackPanel>
         <Button x:Name="RegistrateButton"
                 Margin="8,642.5,0,0"
-                Click="RegistrateAccommodation_Click"
+                Click="Registrate_Click"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 TextElement.FontSize="15"
@@ -65,6 +65,7 @@
                 Content="Registruj novi"
                 Grid.Row="1"/>
         <Button x:Name="RenovateButton"
+                Click="Renovate_Click"
                 Margin="148,642.5,0,0"
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Top"

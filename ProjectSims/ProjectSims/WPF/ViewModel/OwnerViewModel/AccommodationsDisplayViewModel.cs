@@ -22,12 +22,17 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
             Owner = o;
             accommodationService = new AccommodationService();
             accommodationService.Subscribe(this); 
-            Accommodations = new ObservableCollection<Accommodation>(accommodationService.GetAllByOwnerId(Owner.Id));
+            Accommodations = new ObservableCollection<Accommodation>(accommodationService.GetAccommodationsByOwner(Owner.Id));
             ownerService = new OwnerService();
         }
         public bool HasWaitingRequests(Owner owner)
         {
             return ownerService.HasWaitingRequests(owner.Id);
+        }
+
+        public void UpdateAccommodationsIfRenovated()
+        {
+            accommodationService.UpdateIfRenovated(accommodationService.GetAccommodationsByOwner(Owner.Id));
         }
 
         public void Update()

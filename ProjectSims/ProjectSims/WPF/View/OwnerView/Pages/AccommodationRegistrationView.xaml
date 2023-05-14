@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims.View.OwnerView.Pages"
         mc:Ignorable="d"
-        Title="Registracija smjestaja" Height="750" Width="430">
+        Height="750" Width="430">
     <Page.Resources>
         <ControlTemplate x:Key="ValidationTemplate">
             <Border BorderBrush="Red" BorderThickness="0.5" Height="22" Width="151">

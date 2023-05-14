@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjectSims.Domain.RepositoryInterface
 {
-    public interface IAccommodationRepository : IGenericRepository<Accommodation, int>, ISubject
+    public interface ILastShownRepository : IGenericRepository<LastShown,int>
     {
-        public List<Accommodation> GetAllByOwner(int ownerId);
     }
 }

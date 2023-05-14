@@ -125,10 +125,16 @@
     <Compile Update="WPF\View\OwnerView\Pages\Profile.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WPF\View\OwnerView\Pages\RenovationView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\OwnerView\Pages\Requests.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\OwnerView\Pages\SideMenu.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\OwnerView\Pages\StatisticsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -265,10 +271,16 @@
     <Page Update="WPF\View\OwnerView\Pages\Profile.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="WPF\View\OwnerView\Pages\RenovationView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="WPF\View\OwnerView\Pages\Requests.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\OwnerView\Pages\SideMenu.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\OwnerView\Pages\StatisticsView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

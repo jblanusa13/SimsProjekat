@@ -128,6 +128,7 @@ C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\OwnerView\Pages\HomePage.g.cs
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\OwnerView\Pages\OwnerRatingsDisplay.g.cs
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\OwnerView\Pages\Profile.g.cs
+C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\OwnerView\Pages\RenovationView.g.cs
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\OwnerView\Pages\Requests.g.cs
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\OwnerView\Pages\SideMenu.g.cs
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\App.g.cs
@@ -188,6 +189,7 @@ C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\OwnerView\Pages\HomePage.baml
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\OwnerView\Pages\OwnerRatingsDisplay.baml
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\OwnerView\Pages\Profile.baml
+C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\OwnerView\Pages\RenovationView.baml
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\OwnerView\Pages\Requests.baml
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\OwnerView\Pages\SideMenu.baml
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ProjectSims.g.resources
@@ -201,3 +203,5 @@ C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ProjectSims.pdb
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ProjectSims.genruntimeconfig.cache
 C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ref\ProjectSims.dll
+C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\OwnerView\Pages\StatisticsView.g.cs
+C:\Users\Marina\Desktop\Novi\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\OwnerView\Pages\StatisticsView.baml

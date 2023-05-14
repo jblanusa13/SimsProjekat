@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,6 +49,7 @@ namespace ProjectSims.Repository
 
         public void Create(AccommodationSchedule entity)
         {
+            entity.Id = NextId();
             schedules.Add(entity);
             scheduleFileHandler.Save(schedules);
         }
@@ -67,5 +69,5 @@ namespace ProjectSims.Repository
             }
             scheduleFileHandler.Save(schedules);
         }
-    }
+    }   
 }

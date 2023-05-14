@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjectSims.Domain.Model
 {
-    class LastShown : ISerializable
+    public class LastShown : ISerializable
     {
         public DateOnly Date { get; set; }
         public LastShown() { }

@@ -44,7 +44,7 @@ namespace ProjectSims.Domain.Model
             {
                 if (range != UnavailableDates.Last())
                 {
-                    UnavailableDatesString += range.CheckIn.ToString() + "-" + range.CheckOut.ToString() + ",";
+                    UnavailableDatesString += DateOnly.ParseExact(range.CheckIn.ToString().Split("-")[0], "dd.MM.yyyy") + "-" + DateOnly.ParseExact(range.CheckOut.ToString().Split("-")[0], "dd.MM.yyyy");
                 }
             }
             UnavailableDatesString += UnavailableDates.Last().CheckIn + "-" + UnavailableDates.Last().CheckOut;

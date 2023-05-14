@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Domain.RepositoryInterface;
+using System.Collections.ObjectModel;
 
 namespace ProjectSims.Service
 {
@@ -14,6 +15,7 @@ namespace ProjectSims.Service
     {
         private IAccommodationRepository accommodationRepository;
         private IAccommodationScheduleRepository scheduleRepository;
+        private IRenovationRepository renovationRepository;
 
         public AccommodationService()
         {
@@ -31,17 +33,9 @@ namespace ProjectSims.Service
             return GetAllAccommodations();
         }
 
-        public List<Accommodation> GetAllByOwnerId(int ownerId) 
+        public List<Accommodation> GetAccommodationsByOwner(int ownerId) 
         {
-            List<Accommodation> accommodations = new List<Accommodation>();
-            foreach (var item in GetAllAccommodations())
-            {
-                if (item.IdOwner == ownerId)
-                {
-                    accommodations.Add(item);
-                }
-            }
-            return accommodations;
+            return accommodationRepository.GetAllByOwner(ownerId);
         }
 
         public Accommodation GetAccommodation(int id)
@@ -63,6 +57,34 @@ namespace ProjectSims.Service
         public void Update(Accommodation accommodation)
         {
             accommodationRepository.Update(accommodation);
+        }
+
+        public void UpdateIfRenovated(List<Accommodation> accommodations)
+        {
+            foreach (var item in accommodations)
+            {
+                foreach (var range in item.Schedule.UnavailableDates)
+                {
+                    if (range.CheckOut < DateOnly.FromDateTime(DateTime.Today) && !IsRenovatedYearAgo(range.CheckOut))
+                    {
+                        item.Renovated = true;
+                    }
+                    else
+                    {
+                        item.Renovated = false;
+                    }       
+                    accommodationRepository.Update(item);
+                }
+            }
+        }
+
+        public bool IsRenovatedYearAgo(DateOnly checkOut)
+        {
+            if (checkOut.AddYears(1) < DateOnly.FromDateTime(DateTime.Today))
+            {
+                return true;
+            }
+            return false;
         }
 
         public void Subscribe(IObserver observer)

@@ -24,6 +24,7 @@ using Tulpep.NotificationWindow;
 using ProjectSims.WPF.View.OwnerView;
 using ProjectSims.WPF.ViewModel.OwnerViewModel;
 using ProjectSims.WPF.View.GuideView.Pages;
+using ProjectSims.WPF.View.OwnerView.Pages;
 
 namespace ProjectSims.View.OwnerView.Pages
 {
@@ -45,6 +46,7 @@ namespace ProjectSims.View.OwnerView.Pages
             accommodationsDisplayViewModel = new AccommodationsDisplayViewModel(Owner);
             this.DataContext = accommodationsDisplayViewModel;
             NotifyAboutRequest();
+            accommodationsDisplayViewModel.UpdateAccommodationsIfRenovated();
         }
 
         public void NotifyAboutRequest()
@@ -55,7 +57,7 @@ namespace ProjectSims.View.OwnerView.Pages
             }
         }
 
-        private void RegistrateAccommodation_Click(object sender, RoutedEventArgs e)
+        private void Registrate_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new AccommodationRegistrationView(Owner, TitleTextBlock));
             TitleTextBlock.Text = "Registracija smještaja";
@@ -63,7 +65,18 @@ namespace ProjectSims.View.OwnerView.Pages
 
         private void Statistics_Click(object sender, RoutedEventArgs e)
         {
+            this.NavigationService.Navigate(new StatisticsView(Owner, TitleTextBlock, SelectedAccommodation));
             TitleTextBlock.Text = "Statistika smještaja";
+        }
+
+        private void Renovate_Click(object sender, RoutedEventArgs e)
+        {
+            SelectedAccommodation = (Accommodation)AccommodationsTable.SelectedItem;
+            if (SelectedAccommodation != null)
+            {
+                this.NavigationService.Navigate(new RenovationView(Owner, TitleTextBlock, SelectedAccommodation));
+                TitleTextBlock.Text = "Renovacija smještaja";
+            }
         }
     }
 }
