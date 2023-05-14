@@ -15,10 +15,10 @@ namespace ProjectSims.Domain.Model
         public int Id { get; set; }
         public int ReservationId { get; set; }
         public AccommodationReservation Reservation { get; set; }
-        public int Cleanliness { get; set; }
-        public int OwnerFairness { get; set; }
-        public int Location { get; set; }
-        public int ValueForMoney { get; set; }
+        public double Cleanliness { get; set; }
+        public double OwnerFairness { get; set; }
+        public double Location { get; set; }
+        public double ValueForMoney { get; set; }
         public string AddedComment { get; set; }
         public List<string> Images { get; set; }
         public int RenovationId { get; set; }
@@ -29,7 +29,7 @@ namespace ProjectSims.Domain.Model
             Images = new List<string>();
         }
 
-        public AccommodationAndOwnerRating(int id, int reservationId, AccommodationReservation reservation, int cleanliness, int ownerFairness, int location, int valueForMoney, string addedComment, List<string> images, int renovationId, RenovationRecommendation renovationRecommendation)
+        public AccommodationAndOwnerRating(int id, int reservationId, AccommodationReservation reservation, double cleanliness, double ownerFairness, double location, double valueForMoney, string addedComment, List<string> images, int renovationId, RenovationRecommendation renovationRecommendation)
         {
             Id = id;
             ReservationId = reservationId;
@@ -75,10 +75,10 @@ namespace ProjectSims.Domain.Model
         {
             Id = Convert.ToInt32(values[0]);
             ReservationId = Convert.ToInt32(values[1]);
-            Cleanliness = Convert.ToInt32(values[2]);
-            OwnerFairness = Convert.ToInt32(values[3]);
-            Location = Convert.ToInt32(values[4]);
-            ValueForMoney = Convert.ToInt32(values[5]);
+            Cleanliness = Convert.ToDouble(values[2]);
+            OwnerFairness = Convert.ToDouble(values[3]);
+            Location = Convert.ToDouble(values[4]);
+            ValueForMoney = Convert.ToDouble(values[5]);
             AddedComment = values[6];
             foreach (string image in values[7].Split(","))
             {

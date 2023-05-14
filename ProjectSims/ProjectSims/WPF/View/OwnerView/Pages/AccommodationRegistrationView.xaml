@@ -17,30 +17,21 @@
         </ControlTemplate>
     </Page.Resources>
     <Grid>
-        <Label Content="Naziv:" HorizontalAlignment="Left" Margin="29,50,0,0" VerticalAlignment="Top" Width="225"/>
-        <Label Content="Lokacija(Grad,Drzava):" HorizontalAlignment="Left" Margin="29,95,0,0" VerticalAlignment="Top" Height="30" Width="225"/>
-        <Label Content="Tip:" HorizontalAlignment="Left" Margin="29,140,0,0" VerticalAlignment="Top" Width="225"/>
-        <Label Content="Maksimalan broj gostiju:" HorizontalAlignment="Left" Margin="29,185,0,0" VerticalAlignment="Top" Width="225"/>
-        <Label Content="Broj dana:" HorizontalAlignment="Left" Margin="29,230,0,0" VerticalAlignment="Top" Width="225"/>
-        <Label Content="Dani za otkaz:" HorizontalAlignment="Left" Margin="29,275,0,0" VerticalAlignment="Top" Width="225"/>
-        <Label Content="Slike:" HorizontalAlignment="Left" Margin="29,320,0,0" VerticalAlignment="Top" Width="225"/>
-        <TextBox x:Name="AccommodationNameTextBox"  Text="{Binding Path=AccommodationName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Height="22" Margin="259,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" IsEnabled="True"/>
-        <TextBox x:Name="LocationTextBox" Text="{Binding Path=Location, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Height="22" Margin="259,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151"/>
-        <TextBox x:Name="GuestsMaximumTextBox" Text="{Binding Path=GuestsMaximum, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, TargetNullValue=''}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Height="22" Margin="259,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" IsEnabled="True"/>
-        <TextBox x:Name="MinimumReservationDaysTextBox" Text="{Binding Path=MinimumReservationDays, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Height="22" Margin="259,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" IsEnabled="True"/>
-        <TextBox x:Name="DismissalDaysTextBox" Text="{Binding Path=DismissalDays, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Height="22" Margin="259,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" IsEnabled="True"/>
-        <Button Content="Registruj" 
-                Click="RegisterAccommodation_Click" 
-                HorizontalAlignment="Center" 
-                Height="26" 
-                Margin="0,561,0,0" 
-                VerticalAlignment="Top" 
-                Width="80" 
-                RenderTransformOrigin="1.194,0.155" 
-                IsDefault="True"/>
+        <Label Content="Naziv:" FontSize="14" HorizontalAlignment="Left" Margin="50,50,0,0" VerticalAlignment="Top" Width="200"/>
+        <Label Content="Lokacija:" FontSize="14" HorizontalAlignment="Left" Margin="50,95,0,0" VerticalAlignment="Top" Height="30" Width="159"/>
+        <Label Content="Tip:" FontSize="14" HorizontalAlignment="Left" Margin="50,140,0,0" VerticalAlignment="Top" Width="159"/>
+        <Label Content="Broj gostiju:" FontSize="14" HorizontalAlignment="Left" Margin="50,185,0,0" VerticalAlignment="Top" Width="159"/>
+        <Label Content="Broj dana:" FontSize="14" HorizontalAlignment="Left" Margin="50,230,0,0" VerticalAlignment="Top" Width="159"/>
+        <Label Content="Otkazni rok:" FontSize="14" HorizontalAlignment="Left" Margin="50,275,0,0" VerticalAlignment="Top" Width="159"/>
+        <Label Content="Slike:" FontSize="14" HorizontalAlignment="Left" Margin="50,320,0,0" VerticalAlignment="Top" Width="159"/>
+        <TextBox x:Name="AccommodationNameTextBox"  Text="{Binding Path=AccommodationName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Right" Height="22" Margin="0,50,50,0" TextWrapping="Wrap" FontSize="13" VerticalAlignment="Top" Width="151" IsEnabled="True"/>
+        <TextBox x:Name="LocationTextBox" Text="{Binding Path=Location, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Right" Height="22" Margin="0,95,50,0" TextWrapping="Wrap" FontSize="13" VerticalAlignment="Top" Width="151"/>
+        <TextBox x:Name="GuestsMaximumTextBox" Text="{Binding Path=GuestsMaximum, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, TargetNullValue=''}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Right" Height="22" Margin="0,185,50,0" TextWrapping="Wrap" FontSize="13" VerticalAlignment="Top" Width="151" IsEnabled="True"/>
+        <TextBox x:Name="MinimumReservationDaysTextBox" Text="{Binding Path=MinimumReservationDays, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Right" Height="22" Margin="0,230,50,0" TextWrapping="Wrap" FontSize="13" VerticalAlignment="Top" Width="151" IsEnabled="True"/>
+        <TextBox x:Name="DismissalDaysTextBox" Text="{Binding Path=DismissalDays, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Right" Height="22" Margin="0,275,50,0" TextWrapping="Wrap" FontSize="13" VerticalAlignment="Top" Width="151" IsEnabled="True"/>
         <ComboBox Text="{Binding Path=Type, UpdateSourceTrigger=PropertyChanged}"  
-                  HorizontalAlignment="Left" 
-                  Margin="259,140,0,0" 
+                  HorizontalAlignment="Right" 
+                  Margin="0,140,50,0" 
                   VerticalAlignment="Top" 
                   Width="151">
             <ComboBoxItem Content="Kuca"/>
@@ -49,23 +40,44 @@
         </ComboBox>
         <Button Content="Učitaj" 
                 Click="LoadImages_Click" 
-                HorizontalAlignment="Left" 
-                Height="26" 
-                Margin="294,320,0,0" 
+                HorizontalAlignment="Right" 
+                Height="22"
+                FontSize="12.5"
+                Margin="0,324,50,0" 
                 VerticalAlignment="Top" 
-                Width="80" 
+                Width="151" 
                 RenderTransformOrigin="1.194,0.155" 
                 IsDefault="True"/>
         <ListView x:Name="ImageList" 
                   ScrollViewer.HorizontalScrollBarVisibility="Visible"
                   ScrollViewer.VerticalScrollBarVisibility="Hidden"
                   ScrollViewer.PanningMode="HorizontalOnly"
-                  Margin="62,402,56,190">
+                  Margin="50,387,50,205">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
+        <Button Content="Potvrdi" 
+                Click="RegisterAccommodation_Click" 
+                FontSize="14" 
+                HorizontalAlignment="Left" 
+                Height="34"
+                Width="120"
+                Margin="80,621,0,0" 
+                VerticalAlignment="Top" 
+                RenderTransformOrigin="1.194,0.155" 
+                IsDefault="True"/>
+        <Button Content="Odustani" 
+                Click="Dismiss_Click" 
+                HorizontalAlignment="Right" 
+                Height="34"
+                FontSize="14" 
+                Width="120" 
+                Margin="0,621,80,0" 
+                VerticalAlignment="Top" 
+                RenderTransformOrigin="1.194,0.155" 
+                IsDefault="True"/>
     </Grid>
 </Page>

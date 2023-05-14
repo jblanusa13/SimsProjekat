@@ -8,62 +8,83 @@
         Height="750" Width="430">
 
     <Grid>
-        <StackPanel Orientation="Horizontal" Grid.RowSpan="2">
-                <Grid ScrollViewer.CanContentScroll="True" Grid.Row="0">
-                    <DataGrid x:Name="AccommodationReservationsTable"
-                          ItemsSource="{Binding AccommodationReservations}"
+        <StackPanel Orientation="Horizontal" 
+                    Grid.RowSpan="2">
+            <Grid ScrollViewer.CanContentScroll="True"
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                  Grid.Row="0">
+                <DataGrid x:Name="AccommodationsTable"
+                          ItemsSource="{Binding Accommodations}"
                           AutoGenerateColumns="False"
                           CanUserResizeColumns="False"
                           IsReadOnly="True"
                           SelectionMode="Single"
                           Width="430"
-                          Height="500"
-                          Margin="0,0,0,250">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Naziv smjestaja"
-                                            Binding="{Binding Accommodation.Name}"
-                                            Width="170"
+                          Height="630"
+                          Margin="0,0,0,0"
+                          HeadersVisibility="Column"
+                          VerticalAlignment="Top">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Naziv"
+                                            Binding="{Binding Name}"
+                                            Width="140"
                                             IsReadOnly="True"/>
-                            <DataGridTextColumn Header="Gost"
-                                            Width="158"
-                                            IsReadOnly="True">
-                                <DataGridTextColumn.Binding>
-                                    <MultiBinding StringFormat="{}{0} {1}">
-                                        <Binding Path="Guest.Name"/>
-                                        <Binding Path="Guest.Surname"/>
-                                    </MultiBinding>
-                                </DataGridTextColumn.Binding>
-                            </DataGridTextColumn>
-                            <DataGridCheckBoxColumn Header="Ocijenjen"
-                                                Binding="{Binding RatedGuest,
+                        <DataGridTextColumn Header="Lokacija"
+                                            Width="140">
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="Location.City"/>
+                                    <Binding Path="Location.Country"/>
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Tip"
+                                            Binding="{Binding Type}"
+                                            Width="80">
+                        </DataGridTextColumn>
+                        <DataGridCheckBoxColumn Header="Renoviran"
+                                                Binding="{Binding Renovated,
                                                 Mode=TwoWay, 
                                                 BindsDirectlyToSource=True}"
                                                 Width="*"
                                                 IsReadOnly="True"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Grid>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
         </StackPanel>
-        <Button Margin="0,600,0,0"
+        <Button x:Name="RegistrateButton"
+                Margin="8,642.5,0,0"
                 Click="RegistrateAccommodation_Click"
-                HorizontalAlignment="Center"
+                HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                TextElement.FontSize="12"
+                TextElement.FontSize="15"
                 TextElement.FontStretch="UltraExpanded"
                 TextElement.FontWeight="DemiBold"
                 Height="34"
-                Width="162"
-                Content="Registracija novog smjestaja"/>
-        <Button x:Name="RateGuestButton"
-                Margin="0,650,0,0"
-                Click="RateGuest_Click"
-                HorizontalAlignment="Center" 
+                Width="133"
+                Content="Registruj novi"
+                Grid.Row="1"/>
+        <Button x:Name="RenovateButton"
+                Margin="148,642.5,0,0"
+                HorizontalAlignment="Left" 
                 VerticalAlignment="Top"
-                TextElement.FontSize="12"
+                TextElement.FontSize="15"
                 TextElement.FontStretch="UltraExpanded"
                 TextElement.FontWeight="DemiBold" 
                 Height="34" 
-                Width="162"
-                Content="Ocijeni gosta"/>
+                Width="133"
+                Content="Renoviraj"/>
+        <Button x:Name="StatisticsButton"
+                Margin="289,642.5,8,0"
+                Click="Statistics_Click"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                TextElement.FontSize="15"
+                TextElement.FontStretch="UltraExpanded"
+                TextElement.FontWeight="DemiBold"
+                Height="34"
+                Width="133"
+                Content="Statistika"
+                Grid.Row="1"/>
     </Grid>
 </Page>

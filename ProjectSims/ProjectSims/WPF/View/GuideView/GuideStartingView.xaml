@@ -49,7 +49,7 @@
                         <Image Source="/Resources/Icons/Guide/calendar.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-            </MenuItem>
+                </MenuItem>
             <MenuItem Header="Nova tura&#x2335;" Width="200">
                 <MenuItem Header="Kreiraj novu" Click="CreateTour_Click" FontSize="28" Foreground="#FF1B5886" Height="30"  HorizontalAlignment="Left">
                     <MenuItem.Icon>

@@ -31,6 +31,19 @@ namespace ProjectSims.Service
             return GetAllAccommodations();
         }
 
+        public List<Accommodation> GetAllByOwnerId(int ownerId) 
+        {
+            List<Accommodation> accommodations = new List<Accommodation>();
+            foreach (var item in GetAllAccommodations())
+            {
+                if (item.IdOwner == ownerId)
+                {
+                    accommodations.Add(item);
+                }
+            }
+            return accommodations;
+        }
+
         public Accommodation GetAccommodation(int id)
         {
             return accommodationRepository.GetById(id);
