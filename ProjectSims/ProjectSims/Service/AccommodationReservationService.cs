@@ -9,6 +9,8 @@ using ProjectSims.Observer;
 using ProjectSims.FileHandler;
 using ProjectSims.WPF.View.Guest1View;
 using ProjectSims.Domain.RepositoryInterface;
+using ProjectSims.WPF.View.Guest1View.MainPages;
+using ProjectSims.WPF.View.OwnerView.Pages;
 
 namespace ProjectSims.Service
 {
@@ -38,7 +40,63 @@ namespace ProjectSims.Service
                 }
             }
             return reservations;
+        }  
+        
+        public List<AccommodationReservation> GetActiveAndCanceledByOwnerId(int ownerId, int accommodationId)
+        {
+            List<AccommodationReservation> reservations = new List<AccommodationReservation>();
+            foreach (var reservation in GetAllReservations())
+            {
+                if (reservation.Accommodation.IdOwner == ownerId && reservation.AccommodationId == accommodationId)
+                {
+                    reservations.Add(reservation);
+                }
+            }
+            return reservations;
         }
+
+        public int GetAllReservationsByYear(List<AccommodationReservation> reservations, string year)
+        {
+            int number = 0;
+            foreach (AccommodationReservation reservation in reservations)
+            {
+                if (reservation.CheckInDate.Year.ToString().Equals(year))
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+
+        public int GetAllShiftedReservationsByYear(List<AccommodationReservation> reservations, string year)
+        {
+            int number = 0;
+            foreach (AccommodationReservation reservation in reservations)
+            {
+                foreach (Request request in requestService.GetAllRequestByOwner(reservation.Accommodation.IdOwner))
+                {
+                    if (reservation.CheckInDate.Year.ToString().Equals(year) && reservation.Id == request.ReservationId)
+                    {
+                        number++;
+                    }
+                }
+            }
+            return number;
+        }
+        
+        public int GetAllCanceledReservationsByYear(List<AccommodationReservation> reservations, string year)
+        {
+            int number = 0;
+            foreach (AccommodationReservation reservation in reservations)
+            {
+                if (reservation.CheckInDate.Year.ToString().Equals(year) && reservation.State == ReservationState.Canceled)
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+        
 
         public AccommodationReservation GetReservation(int id)
         {
