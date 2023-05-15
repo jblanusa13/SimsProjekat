@@ -416,3 +416,5 @@ C:\Users\Ana\Desktop\projekat\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net
 C:\Users\Ana\Desktop\projekat\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Icons\Guide\placeholder.png
 C:\Users\Ana\Desktop\projekat\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Icons\Guide\notification.png
 C:\Users\Ana\Desktop\projekat\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Icons\Guide\stop.png
+C:\Users\Ana\Desktop\projekat\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\GuideView\Pages\TourDetailsAndCancelling.g.cs
+C:\Users\Ana\Desktop\projekat\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\GuideView\Pages\TourDetailsAndCancelling.baml

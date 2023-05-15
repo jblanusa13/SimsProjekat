@@ -42,6 +42,16 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="ColumnHeader1" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Background" Value="#D2FBA4"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="Foreground" Value="#FF1B5886"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="IsHitTestVisible" Value="False"/>
+        </Style>
         <Style x:Key="TransparentStyle" TargetType="{x:Type Button}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -112,7 +122,7 @@
                 <Label Content="Stanice" Margin="0,190,0,0" FontSize="36" Height="60" FontWeight="Medium" HorizontalAlignment="Center"/>
                 <ListView  ItemsSource="{Binding FinishedKeyPoints}" Margin="0,300,100,0" HorizontalAlignment="Right" VerticalAlignment="Top"  Width="500" Background="#ffc300" IsHitTestVisible="False">
                     <ListView.View>
-                        <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeader}" >
+                        <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeader1}" >
                         <GridViewColumn Header="Završene" Width="490">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
@@ -123,7 +133,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-                <ListView x:Name="KeyPointListView" ItemsSource="{Binding UnFinishedKeyPoints}"  SelectedItem="{Binding Path=SelectedKeyPoint}" SelectionMode="Single" SelectionChanged="KeyPointSelected_SelectionChanged" Margin="100,300,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Background="White">
+                <ListView x:Name="KeyPointListView" ItemsSource="{Binding UnFinishedKeyPoints}"  SelectedItem="{Binding Path=SelectedKeyPoint}" SelectionMode="Single" SelectionChanged="KeyPointSelected_SelectionChanged" Margin="100,300,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Background="#ffc300">
                     <ListView.View>
                         <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeader}" >
                         <GridViewColumn Header="Nezavršene stanice" Width="490">
@@ -157,7 +167,7 @@
                         </Style>
                     </ListView.Resources>
                     <ListView.View>
-                        <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeader}">
+                        <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeader1}">
                             <GridViewColumn Width="490" Header="Prisutni" >
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
@@ -175,7 +185,7 @@
                         </GridView>
                 </ListView.View>
             </ListView>
-                <ListView ItemsSource="{Binding WaitingGuests}"  SelectedItem="{Binding Path=SelectedGuest}" SelectionMode="Single" Margin="100,650,0,100" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Background="White">
+                <ListView ItemsSource="{Binding WaitingGuests}"  SelectedItem="{Binding Path=SelectedGuest}" SelectionMode="Single" Margin="100,650,0,100" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Background="#ffc300">
                     <ListView.Resources>
                         <Style TargetType="{x:Type Label}">
                             <Setter Property="Foreground" Value="#FF1B5886"/>

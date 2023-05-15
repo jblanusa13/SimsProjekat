@@ -37,14 +37,8 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         private void CancelTour_Click(object sender, RoutedEventArgs e)
         {
             SelectedTour = ((FrameworkElement)sender).DataContext as Tour;
-            if (!scheduledToursViewModel.IsLessThan48Hours(SelectedTour))
-            {
-                MessageBoxResult answer = MessageBox.Show("Da li ste sigurni da zelite da otkazete turu?", "", MessageBoxButton.YesNo);
-                if (answer == MessageBoxResult.Yes)
-                    scheduledToursViewModel.CancelTour(SelectedTour);
-            }
-            else
-                MessageBox.Show("Tura pocinje za manje od 48h i ne moze se otkazati!");
+            NavigationService.Navigate(new TourDetailsAndCancelling(SelectedTour));
+            //48
         }
     }
 }

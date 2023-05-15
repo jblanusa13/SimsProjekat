@@ -75,7 +75,7 @@
                         <TextBlock Text="Praćenje ture"/>
                     </Hyperlink>
                 </Label>
-                <Label Content="&#707;  Današnje ture" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="130,10,0,0" FontSize="16"/>
+                <Label Content="&#707;  Započni turu" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="130,10,0,0" FontSize="16"/>
             </Grid>
         </Border>
         <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,40,0,0" Width="1280" Height="530">
@@ -135,7 +135,7 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="Zapocni" Width="210">
+                            <GridViewColumn Header="Započni" Width="210">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button Name="StartButton" Style="{StaticResource TransparentStyle}" Cursor="Hand" Height="80" Width="65" Background="Transparent" Click="StartTour_Click" BorderThickness="0" Margin="60,0,0,0">
