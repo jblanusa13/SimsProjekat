@@ -77,7 +77,9 @@
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Margin="20,0,0,0" FontSize="15"
                        Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Preporuke za renoviranje:</Label>
-                <TextBox Name="TbRecommendation" Grid.Column="1" Margin="0,5,20,10"></TextBox>
+                <TextBox Name="TbRecommendation" Grid.Column="1" 
+                         Margin="0,5,20,10"
+                         TextWrapping="Wrap"></TextBox>
             </Grid>
         </Grid>
         <Grid Grid.Row="2">

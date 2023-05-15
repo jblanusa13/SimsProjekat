@@ -55,7 +55,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Margin="50,10,0,0" FontSize="14" Height="35"
-                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Cistoca:</Label>
+                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Cistoca*:</Label>
                     <ComboBox x:Name="CleanlinessCb"
                               Grid.Column="1"
                               Margin="50,15,50,20"
@@ -78,7 +78,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Margin="50,10,0,0" FontSize="14" Height="35"
-                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Korektnost vlasnika:</Label>
+                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Korektnost vlasnika*:</Label>
                     <ComboBox Name="FairnessCb"
                               Grid.Column="1"
                               Margin="50,15,50,20"
@@ -100,7 +100,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Margin="50,10,0,0" FontSize="14" Height="35"
-                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Lokacija:</Label>
+                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Lokacija*:</Label>
                     <ComboBox Name="LocationCb"
                               Grid.Column="1"
                               Margin="50,15,50,20"
@@ -122,7 +122,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Margin="50,10,0,0" FontSize="14" Height="35"
-                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Vrednost za novac:</Label>
+                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Vrednost za novac*:</Label>
                     <ComboBox Name="ValueForMoneyCb"
                               Grid.Column="1"
                               Margin="50,15,50,20"
@@ -145,7 +145,9 @@
 
                     <Label Grid.Column="0" Margin="50,0,0,30" FontSize="14" Height="35"
                            Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Komentar:</Label>
-                    <TextBox Name="CommentTb" Grid.Column="1" Margin="50,20,0,20" Background="{DynamicResource TextboxColor}"></TextBox>
+                    <TextBox Name="CommentTb" Grid.Column="1" Margin="50,20,0,20" 
+                             Background="{DynamicResource TextboxColor}"
+                             TextWrapping="Wrap"></TextBox>
                 </Grid>
             </Grid>
 

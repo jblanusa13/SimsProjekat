@@ -159,8 +159,8 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
 
                 Image image = new Image();
                 image.Source = bitmapImage;
-                image.Height = 100;
-                image.Width = 170;
+                image.Height = 150;
+                image.Width = 220;
                 ImageList.Items.Add(image);
             }
         }

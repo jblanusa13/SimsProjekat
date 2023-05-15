@@ -54,7 +54,7 @@
             </Grid>
 
             <Grid Grid.Column="1">
-                <Label Content="{Binding Accommodation.Name}" Margin="10,10" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></Label>
+                <Label Content="{Binding Accommodation.Name}" Margin="10,13,0,0" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></Label>
             </Grid>
 
             <Grid Grid.Column="2">
@@ -145,7 +145,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
-                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="195"/>
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0" Margin="0,10,0,0">
@@ -158,7 +158,7 @@
                     <Label Grid.Column="1" Margin="0,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{Binding Accommodation.Location.City}"></Label>
                 </Grid>
 
-                <Grid Grid.Row="1" Margin="0,10,0,0">
+                <Grid Grid.Row="1" Margin="0,5,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="250"/>
@@ -168,7 +168,7 @@
                     <Label Grid.Column="1" Margin="0,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{Binding Accommodation.Location.Country}"></Label>
                 </Grid>
 
-                <Grid Grid.Row="2" Margin="0,10,0,0">
+                <Grid Grid.Row="2" Margin="0,5,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="250"/>
@@ -178,7 +178,7 @@
                     <Label Grid.Column="1" Margin="0,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{Binding Accommodation.Type}"></Label>
                 </Grid>
 
-                <Grid Grid.Row="3" Margin="0,10,0,0">
+                <Grid Grid.Row="3" Margin="0,5,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="250"/>
@@ -188,7 +188,7 @@
                     <Label Grid.Column="1" Margin="0,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{Binding Accommodation.GuestsMaximum}"></Label>
                 </Grid>
 
-                <Grid Grid.Row="4" Margin="0,10,0,0">
+                <Grid Grid.Row="4" Margin="0,5,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="250"/>
@@ -198,7 +198,7 @@
                     <Label Grid.Column="1" Margin="0,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{Binding Accommodation.MinimumReservationDays}"></Label>
                 </Grid>
 
-                <Grid Grid.Row="5" Margin="0,10,0,0">
+                <Grid Grid.Row="5" Margin="0,5,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="250"/>
@@ -306,12 +306,29 @@
 
                         <Grid Grid.Column="1">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="80"/>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="60"/>
                             </Grid.RowDefinitions>
 
-                            <DataGrid Grid.Row="0" Name="DatesTable" ItemsSource="{Binding AvailableDates, UpdateSourceTrigger=PropertyChanged}" 
-                                      Margin="30,80,30,10" 
+                            <Grid Grid.Row="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="22"/>
+                                    <RowDefinition Height="22"/>
+                                </Grid.RowDefinitions>
+
+                                <Label Grid.Row="1" FontSize="12" 
+                                   Margin="30,0,0,0"
+                                       Foreground="{DynamicResource FontsColor}">Da biste rezervisali,</Label>
+                                <Label Grid.Row="2" FontSize="12" 
+                                   Margin="30,0,0,0"
+                                       Foreground="{DynamicResource FontsColor}">pritisnite Enter na zeljenom opsegu datuma</Label>
+                            </Grid>
+                            
+
+                            <DataGrid Grid.Row="1" Name="DatesTable" ItemsSource="{Binding AvailableDates, UpdateSourceTrigger=PropertyChanged}" 
+                                      Margin="30,10,30,10" 
                                       AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single"
                                       HeadersVisibility="Column"
                                       SelectionChanged="Dates_SelectionChanged"
@@ -322,7 +339,7 @@
                                 </DataGrid.Columns>
                             </DataGrid>
 
-                            <Grid Grid.Row="1">
+                            <Grid Grid.Row="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>

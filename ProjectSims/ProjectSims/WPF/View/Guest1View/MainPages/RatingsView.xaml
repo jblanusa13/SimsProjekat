@@ -121,7 +121,7 @@
         </Grid>
 
         <Grid Grid.Row="1">
-            <TabControl Margin="50,10">
+            <TabControl Margin="50,20,50,10">
                 <TabItem Header="Moji utisci" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" >
                     <Grid Background="{DynamicResource BlueShade}">
                         <Grid.ColumnDefinitions>
@@ -129,19 +129,30 @@
                             <ColumnDefinition Width="350"/>
                         </Grid.ColumnDefinitions>
 
-                        <DataGrid Name="MyRatingsTable" Grid.Column="0" Margin="20,50,20,10"
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="1"
+                                   FontSize="13"
+                                   Margin="20,0,0,0">Da biste videli komentar, pritiskom na Tab se pomerajte kroz tabelu ocena</Label>
+                            <DataGrid Name="MyRatingsTable" Grid.Row="2" Margin="20,0,20,10"
                                   ItemsSource="{Binding MyRatings, UpdateSourceTrigger=PropertyChanged}"
                                   IsReadOnly="True" AutoGenerateColumns="False"
                                   SelectionChanged="MyRatings_SelectionChanged"
                                   HeadersVisibility="Column">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Naziv smestaja" Binding="{Binding Reservation.Accommodation.Name}" Width="*"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Cistoca" Binding="{Binding Cleanliness}" Width="70"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Korektnost vlasnika" Binding="{Binding OwnerFairness}" Width="130"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Lokacija" Binding="{Binding Location}" Width="70"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Vrednost za novac" Binding="{Binding ValueForMoney}" Width="120"></DataGridTextColumn>
-                            </DataGrid.Columns>
-                        </DataGrid>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Naziv smestaja" Binding="{Binding Reservation.Accommodation.Name}" Width="*"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Cistoca" Binding="{Binding Cleanliness}" Width="70"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Korektnost vlasnika" Binding="{Binding OwnerFairness}" Width="130"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Lokacija" Binding="{Binding Location}" Width="70"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Vrednost za novac" Binding="{Binding ValueForMoney}" Width="120"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
 
                         <Grid Grid.Column="1">
                             <Grid.RowDefinitions>
@@ -162,7 +173,8 @@
                                        Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></Label>
                             </Grid>
                             <TextBox Grid.Row="1" Name="MyRatingsTb" Text="{Binding AddedComment}" Margin="30,10,30,10" IsEnabled="False"
-                                      Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></TextBox>
+                                      Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"
+                                     TextWrapping="Wrap"></TextBox>
                         </Grid>
                     </Grid>
                 </TabItem>
@@ -173,19 +185,34 @@
                             <ColumnDefinition Width="350"/>
                         </Grid.ColumnDefinitions>
 
-                        <DataGrid Name="OwnerRatingsTable" Grid.Column="0" Margin="20,50,20,10"
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Margin="20,15,0,0"
+                                FontSize="13"
+                                Foreground="{DynamicResource FontsColor}">Ocenu odredjenog vlasnika, 
+                                ako vas je ocenio, mozete videti tek kad vi njega ocenite</Label>
+                            <Label Grid.Row="1"
+                                   FontSize="13"
+                                   Margin="20,-5,0,0">Da biste videli komentar, pritiskom na Tab se pomerajte kroz tabelu ocena</Label>
+                            <DataGrid Name="OwnerRatingsTable" Grid.Row="2" Margin="20,0,20,10"
                                   ItemsSource="{Binding OwnerRatings, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                   IsReadOnly="True" AutoGenerateColumns="False"
                                   SelectionChanged="OwnerRatings_SelectionChanged"
                                   HeadersVisibility="Column">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Naziv smestaja" Binding="{Binding Reservation.Accommodation.Name}" Width="*"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Cistoca" Binding="{Binding CleanlinessRating}" Width="100"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Postovanje pravila" Binding="{Binding RespectingRulesRating}" Width="120"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Komunikacija" Binding="{Binding CommunicationRating}" Width="100"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Urednost" Binding="{Binding TidinessRating}" Width="100"></DataGridTextColumn>
-                            </DataGrid.Columns>
-                        </DataGrid>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Naziv smestaja" Binding="{Binding Reservation.Accommodation.Name}" Width="*"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Cistoca" Binding="{Binding CleanlinessRating}" Width="100"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Postovanje pravila" Binding="{Binding RespectingRulesRating}" Width="120"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Komunikacija" Binding="{Binding CommunicationRating}" Width="100"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Urednost" Binding="{Binding TidinessRating}" Width="100"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
 
                         <Grid Grid.Column="1">
                             <Grid.RowDefinitions>
@@ -201,12 +228,13 @@
                                 </Grid.RowDefinitions>
 
                                 <Label Grid.Row="1" FontSize="15" Margin="30,0,0,0"
-                                       Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Moj komentar za smestaj</Label>
+                                       Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Komentar vlasnika smestaja</Label>
                                 <Label Grid.Row="2" Name="OwnerRatingsNameLabel" FontSize="15" Margin="30,0,0,0"
                                        Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></Label>
                             </Grid>
                             <TextBox Grid.Row="1" Name="OwnerRatingsTb"  Margin="30,10,30,10" IsEnabled="False"
-                                      Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></TextBox>
+                                      Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"
+                                     TextWrapping="Wrap"></TextBox>
                         </Grid>
                     </Grid>
                 </TabItem>

@@ -50,7 +50,14 @@
         </Grid>
 
         <Grid Grid.Row="1">
-            <DataGrid Name="AccommodationsForRatingTable" Margin="50,50,50,10"
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label FontSize="13" FontFamily="Bahnschrift"
+                   Foreground="{DynamicResource FontsColor}"
+                   Margin="50,25,0,0">Da biste ocenili, pritisnite Enter na zeljenom smestaju</Label>
+            <DataGrid Grid.Row="1" Name="AccommodationsForRatingTable" Margin="50,0,50,10"
                       ItemsSource="{Binding Reservations, UpdateSourceTrigger=PropertyChanged}"
                       AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single"
                       HeadersVisibility="Column"
