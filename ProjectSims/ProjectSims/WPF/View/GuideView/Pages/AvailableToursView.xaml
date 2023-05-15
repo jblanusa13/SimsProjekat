@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="400" d:DesignWidth="1280"
+      d:DesignHeight="500" d:DesignWidth="1280"
       Title="AvailableToursView">
     <Page.Resources>
         <Style TargetType="{x:Type Label}">
@@ -22,6 +22,30 @@
             <Setter Property="Height" Value="50"/>
             <Setter Property="Width" Value="50"/>
         </Style>
+        <Style x:Key="TransparentStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border>
+                            <Border.Style>
+                                <Style TargetType="{x:Type Border}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Height" Value="55"/>
+                                            <Setter Property="Width" Value="55"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <Grid Background="Transparent">
+                                <ContentPresenter></ContentPresenter>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style x:Key="ColumnHeader" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="Height" Value="40"/>
             <Setter Property="Background" Value="White"/>
@@ -32,62 +56,98 @@
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="IsHitTestVisible" Value="False"/>
         </Style>
+        <Style TargetType="{x:Type Hyperlink}">
+            <Setter Property="Foreground" Value="#FF1B5886" />
+            <Setter Property="TextBlock.TextDecorations" Value="{x:Null}" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="MidnightBlue" />
+                    <Setter Property="TextBlock.TextDecorations" Value="Underline" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Page.Resources>
-    <ScrollViewer>
+    <Grid Background="Transparent">
+        <Border HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Height="40" Width="1280" BorderBrush="White" BorderThickness="0 0 0 1">
+            <Grid>
+                <Label Margin="20,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">
+                    <Hyperlink Click="Back_Click">
+                        <TextBlock Text="Praćenje ture"/>
+                    </Hyperlink>
+                </Label>
+                <Label Content="&#707;  Današnje ture" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="130,10,0,0" FontSize="16"/>
+            </Grid>
+        </Border>
+        <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,40,0,0" Width="1280" Height="530">
         <Grid Background="Transparent">
             <Label Content="Današnje ture" HorizontalAlignment="Center" Margin="0,50,0,0" FontSize="44" Height="60" FontWeight="Bold"/>
-            <ListView  x:Name="AvailableTour" ItemsSource="{Binding TodayTours}" Margin="0,150,0,100" HorizontalAlignment="Center" VerticalAlignment="Top"  Width="1200" Background="#ffc300" SelectionMode="Single" SelectedItem="{Binding Path=SelectedTour}">
-                <ListView.Resources>
-                    <Style TargetType="{x:Type Label}">
-                        <Setter Property="Foreground" Value="#FF1B5886"/>
-                        <Setter Property="FontFamily" Value="Helvetica"/>
-                        <Setter Property="FontSize" Value="22"/>
-                    </Style>
-                </ListView.Resources>
-                <ListView.View>
-                    <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeader}" >
-                        <GridViewColumn Width="200">
+                <ListView  x:Name="AvailableTour" ItemsSource="{Binding TodayTours}" Margin="0,150,0,100" HorizontalAlignment="Center" VerticalAlignment="Top"  Width="1200" Background="#ffc300" SelectionMode="Single" SelectedItem="{Binding Path=SelectedTour}">
+                    <ItemsControl.ItemContainerStyle>
+                        <Style>
+                            <Style.Triggers>
+                                <Trigger Property="Control.IsMouseOver" Value="True">
+                                    <Setter Property="Control.BorderBrush" Value="#ffe7a0" />
+                                    <Setter Property="Control.BorderThickness" Value="1" />
+                                    <Setter Property="Control.Background" Value="Transparent" />
+                                    <Setter Property="Control.FontWeight" Value="Medium" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                    <ListView.Resources>
+                        <Style TargetType="{x:Type Label}">
+                            <Setter Property="Foreground" Value="#FF1B5886"/>
+                            <Setter Property="FontFamily" Value="Helvetica"/>
+                            <Setter Property="FontSize" Value="22"/>
+                            <Setter Property="Height" Value="90"/>
+                            <Setter Property="Margin" Value="30,50,0,0"/>
+                        </Style>
+                    </ListView.Resources>
+                    <ListView.View>
+                        <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeader}" >
+                            <GridViewColumn Width="200">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Image  Source="{Binding Images.First()}" Margin="10,0,0,0"/>
+                                        <Grid Height="120" Width="200" Margin="0,0,0,0">
+                                            <Image  Source="{Binding Images[0]}" Height="140" Width="200" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                        </Grid>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
                             <GridViewColumn Header="Naziv" Width="350">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Label  Content="{Binding Name}" Margin="10,0,0,0"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Pocetak" Width="180">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Label  Content="{Binding StartOfTheTour}" Margin="10,0,0,0"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Lokacija" Width="250">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Label  Content="{Binding Location}" Margin="10,0,0,0"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Zapocni" Width="270">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Name="StartButton" Height="20" Width="20" Background="Transparent" Click="StartTour_Click" BorderThickness="0">
-                                        <Image Source="/Resources/Icons/Guide/start.png"/>
-                                    </Button>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-
-
-        </Grid>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label  Content="{Binding Name}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Pocetak" Width="180">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding StartOfTheTour,StringFormat=HH:mm}" Margin="50,50,0,0" Foreground="#FF1B5886" FontSize="22" FontFamily="Helvetica" HorizontalAlignment="Left" VerticalAlignment="Top" Height="80"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Lokacija" Width="250">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label  Content="{Binding Location}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Zapocni" Width="210">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Name="StartButton" Style="{StaticResource TransparentStyle}" Cursor="Hand" Height="80" Width="65" Background="Transparent" Click="StartTour_Click" BorderThickness="0" Margin="60,0,0,0">
+                                            <Image Source="/Resources/Icons/Guide/start.png"/>
+                                        </Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
     </ScrollViewer>
+    </Grid>
 </Page>

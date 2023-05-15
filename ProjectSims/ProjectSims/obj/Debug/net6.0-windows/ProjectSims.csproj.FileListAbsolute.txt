@@ -409,3 +409,10 @@ C:\Users\Ana\Desktop\projekat\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net
 C:\Users\Ana\Desktop\projekat\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Icons\Guide\idea.png
 C:\Users\Ana\Desktop\projekat\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guide\languages.png
 C:\Users\Ana\Desktop\projekat\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guide\location.png
+C:\Users\Ana\Desktop\projekat\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Icons\Guide\request.png
+C:\Users\Ana\Desktop\projekat\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Icons\Guide\schedule.png
+C:\Users\Ana\Desktop\projekat\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Icons\Guide\statistics.png
+C:\Users\Ana\Desktop\projekat\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guide\panteon.jpg
+C:\Users\Ana\Desktop\projekat\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Icons\Guide\placeholder.png
+C:\Users\Ana\Desktop\projekat\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Icons\Guide\notification.png
+C:\Users\Ana\Desktop\projekat\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Icons\Guide\stop.png

@@ -29,9 +29,10 @@
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True" >
                             <Setter Property="Foreground" Value="#FF1B5886" />
-                            <Setter Property="FontSize" Value="34" />
+                            <Setter Property="FontSize" Value="35" />
                             <Setter Property="Background" Value="Transparent" />
                             <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="FontWeight" Value="Medium" />
                         </Trigger>
                     </Style.Triggers>
                 </Style>
@@ -46,53 +47,50 @@
                 </MenuItem>
                 <MenuItem Header="Današnje ture" Click="AvailableTours_Click" FontSize="28" Foreground="#FF1B5886" Height="30"  HorizontalAlignment="Left">
                     <MenuItem.Icon>
-                        <Image Source="/Resources/Icons/Guide/calendar.png"/>
+                        <Image Source="/Resources/Icons/Guide/schedule.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                </MenuItem>
+            </MenuItem>
             <MenuItem Header="Nova tura&#x2335;" Width="200">
                 <MenuItem Header="Kreiraj novu" Click="CreateTour_Click" FontSize="28" Foreground="#FF1B5886" Height="30"  HorizontalAlignment="Left">
                     <MenuItem.Icon>
                         <Image Source="/Resources/Icons/Guide/add.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Pogledaj predloge" FontSize="28" Foreground="#FF1B5886" Height="30"  HorizontalAlignment="Left">
+                <MenuItem Header="Pogledaj predloge" FontSize="28" Foreground="#FF1B5886" Height="30"  HorizontalAlignment="Left" Click="Suggestions_Click">
                     <MenuItem.Icon>
-                        <Image Source="/Resources/Icons/Guide/add.png"/>
+                        <Image Source="/Resources/Icons/Guide/idea.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="Zakazane ture" Click="ScheduledTours_Click" Width="235"/>
             <MenuItem Header="Završene ture&#x2335;" Width="255">
                 <MenuItem Header="Statistika" Click="FinishedToursStatistics_Click" FontSize="28" Foreground="#FF1B5886" Height="30" HorizontalAlignment="Left">
-                <MenuItem.Icon>
-                    <Image Source="/Resources/Icons/Guide/add.png"/>
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Header="Ocene i recenzije" Click="FinishedToursRatings_Click" FontSize="28" Foreground="#FF1B5886" Height="30" HorizontalAlignment="Left">
-                <MenuItem.Icon>
-                    <Image Source="/Resources/Icons/Guide/rating.png" Height="15" Width="15"/>
-                </MenuItem.Icon>
-            </MenuItem>
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/Icons/Guide/statistics.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Ocene i recenzije" Click="FinishedToursRatings_Click" FontSize="28" Foreground="#FF1B5886" Height="30" HorizontalAlignment="Left">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/Icons/Guide/rating.png" Height="15" Width="15"/>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="Zahtevi&#x2335;" Width="160">
                 <MenuItem Header="Zahtevi za ture" Click="TourRequests_Click" FontSize="28" Foreground="#FF1B5886" Height="30" HorizontalAlignment="Left">
-                <MenuItem.Icon>
-                    <Image Source="/Resources/Icons/Guide/add.png"/>
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Header="Statistika zahteva" FontSize="28" Foreground="#FF1B5886" Height="30" HorizontalAlignment="Left">
-            <MenuItem.Icon>
-                <Image Source="/Resources/Icons/Guide/add.png"/>
-            </MenuItem.Icon>
-            </MenuItem>
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/Icons/Guide/request.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Statistika zahteva" FontSize="28" Foreground="#FF1B5886" Height="30" HorizontalAlignment="Left">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/Icons/Guide/statistics.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
         </Menu>
-        <Border HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,161,0,0" Height="30" Width="1280" BorderBrush="White" BorderThickness="0 0 0 1">
-            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,161,0,0" Height="30" Width="1280"/>
-        </Border>
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,191,0,0" Height="490" Width="1280">
-            <Frame Name="GuideFrame" HorizontalAlignment="Center" VerticalAlignment="Top" Height="490" Width="1277" NavigationUIVisibility="Hidden" FlowDirection="RightToLeft">
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,161,0,0" Height="500" Width="1280">
+            <Frame Name="GuideFrame" HorizontalAlignment="Center" VerticalAlignment="Top" Height="500" Width="1277" NavigationUIVisibility="Hidden" FlowDirection="RightToLeft">
                 <Frame.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0" SpreadMethod="Pad">
                         <GradientStop Color="#FF75C8F1"/>

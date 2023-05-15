@@ -44,14 +44,20 @@
     <None Remove="Resources\Icons\Guide\logo.png" />
     <None Remove="Resources\Icons\Guide\logout.png" />
     <None Remove="Resources\Icons\Guide\mapPin.png" />
+    <None Remove="Resources\Icons\Guide\notification.png" />
     <None Remove="Resources\Icons\Guide\people.png" />
+    <None Remove="Resources\Icons\Guide\placeholder.png" />
     <None Remove="Resources\Icons\Guide\profile.png" />
     <None Remove="Resources\Icons\Guide\question.png" />
     <None Remove="Resources\Icons\Guide\rating.png" />
     <None Remove="Resources\Icons\Guide\report.png" />
+    <None Remove="Resources\Icons\Guide\request.png" />
+    <None Remove="Resources\Icons\Guide\schedule.png" />
     <None Remove="Resources\Icons\Guide\search.png" />
     <None Remove="Resources\Icons\Guide\star.png" />
     <None Remove="Resources\Icons\Guide\start.png" />
+    <None Remove="Resources\Icons\Guide\statistics.png" />
+    <None Remove="Resources\Icons\Guide\stop.png" />
     <None Remove="Resources\Icons\Guide\tourname.png" />
     <None Remove="Resources\Icons\Guide\travel-tour-logo.png" />
     <None Remove="Resources\Icons\Guide\user.png" />
@@ -175,7 +181,13 @@
     <Content Include="Resources\Icons\Guide\logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Icons\Guide\notification.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Icons\Guide\people.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\placeholder.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\profile.png">
@@ -190,10 +202,22 @@
     <Content Include="Resources\Icons\Guide\report.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Icons\Guide\request.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\schedule.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Icons\Guide\search.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\start.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\statistics.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\stop.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\tourname.png">
