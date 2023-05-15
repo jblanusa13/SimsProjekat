@@ -47,7 +47,7 @@ namespace ProjectSims.Domain.Model
                     UnavailableDatesString += DateOnly.ParseExact(range.CheckIn.ToString().Split("-")[0], "dd.MM.yyyy") + "-" + DateOnly.ParseExact(range.CheckOut.ToString().Split("-")[0], "dd.MM.yyyy");
                 }
             }
-            UnavailableDatesString += UnavailableDates.Last().CheckIn + "-" + UnavailableDates.Last().CheckOut;
+            UnavailableDatesString += UnavailableDates.Last().CheckIn.ToString().Split("-")[0] + "-" + UnavailableDates.Last().CheckOut.ToString().Split("-")[1];
             string[] csvValues = {
                 Id.ToString(),
                 UnavailableDatesString,

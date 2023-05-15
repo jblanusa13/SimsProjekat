@@ -305,6 +305,7 @@
     <PackageReference Include="CalcBinding" Version="2.5.2">
       <TreatAsUsed>true</TreatAsUsed>
     </PackageReference>
+    <PackageReference Include="ceTe.DynamicPDF.CoreSuite.NET" Version="12.4.0" />
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
 	  <PackageReference Include="Tulpep.NotificationWindow" Version="1.1.38">
 		  <TreatAsUsed>true</TreatAsUsed>

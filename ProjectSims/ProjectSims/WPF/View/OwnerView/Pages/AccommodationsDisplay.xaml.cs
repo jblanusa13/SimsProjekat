@@ -59,7 +59,7 @@ namespace ProjectSims.View.OwnerView.Pages
 
         private void Registrate_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new AccommodationRegistrationView(Owner, TitleTextBlock));
+            this.NavigationService.Navigate(new AccommodationRegistrationView(Owner, TitleTextBlock, null));
             TitleTextBlock.Text = "Registracija smještaja";
         }
 

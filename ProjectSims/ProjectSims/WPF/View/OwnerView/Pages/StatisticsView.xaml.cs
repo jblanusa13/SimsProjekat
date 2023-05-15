@@ -1,4 +1,9 @@
-﻿using ProjectSims.Domain.Model;
+﻿using ceTe.DynamicPDF;
+using ceTe.DynamicPDF.IO;
+using ceTe.DynamicPDF.LayoutEngine;
+using ceTe.DynamicPDF.Merger;
+using ProjectSims.Domain.Model;
+using ProjectSims.View.OwnerView.Pages;
 using ProjectSims.WPF.View.Guest2View;
 using ProjectSims.WPF.ViewModel.Guest2ViewModel;
 using ProjectSims.WPF.ViewModel.OwnerViewModel;
@@ -24,7 +29,7 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
     /// <summary>
     /// Interaction logic for StatisticsView.xaml
     /// </summary>
-    public partial class StatisticsView : Page, INotifyPropertyChanged
+    public partial class StatisticsView : System.Windows.Controls.Page, INotifyPropertyChanged
     {
         public Owner Owner { get; set; }
         public TextBlock TitleTextBlock { get; set; }
@@ -51,7 +56,7 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
             Owner = o;
             TitleTextBlock = titleTextBlock;
             SelectedAccommodation = selectedAccommodetion;
-            statisticsViewModel = new StatisticsViewModel(Owner, TitleTextBlock, SelectedAccommodation);
+            statisticsViewModel = new StatisticsViewModel(Owner, TitleTextBlock, SelectedAccommodation, YearComboBox);
             InitializeImages();
             this.DataContext = statisticsViewModel;
         }
@@ -79,19 +84,38 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
 
         private void CloseAccommodation_Click(object sender, RoutedEventArgs e)
         {
-
+            statisticsViewModel.CloseAccommodation(SelectedAccommodation);
         }
-
+        
         private void RegisterNew_Click(object sender, RoutedEventArgs e)
         {
-
+            this.NavigationService.Navigate(new AccommodationRegistrationView(Owner, TitleTextBlock, SelectedAccommodation));
+            TitleTextBlock.Text = "Registracija smještaja";
         } 
         
         private void GenerateReport_Click(object sender, RoutedEventArgs e)
         {
+            PrintDialog printDialog = new PrintDialog();
+            ReportToGenerate rtg = new ReportToGenerate();
+            /*rtg.ReportScroll.ScrollToTop();
+            printDialog.PrintVisual(rtg.ReportScroll.Content as Visual, "IzvestajOZauzetostiProstorija");*/
+            FlowDocument fd = rtg.Document;
+            DocumentPaginator documentPaginator = (fd as IDocumentPaginatorSource).DocumentPaginator;
+            printDialog.PrintDocument(documentPaginator, "Izvestaj");
 
+            TitleTextBlock.Text = "Početna stranica";
+            this.NavigationService.Navigate(new HomePage(Owner));
         }
-
-
+        
+        private void YearComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBoxItem SelectedYear = (ComboBoxItem)YearComboBox.SelectedItem;
+            if (YearComboBox.SelectedItem !=null) 
+            {
+                statisticsViewModel.DisplayTheNumberOfMonthReservationsByCriteria(SelectedYear);
+                MonthChart.Visibility = Visibility.Visible;
+                MostVisitedTextBox.Visibility = Visibility.Visible;
+            }
+        }
     }
 }

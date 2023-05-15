@@ -52,6 +52,10 @@ namespace ProjectSims.Service
         {
             return ratingRepository.GetAllByGuestId(guestId);
         }
+        public List<AccommodationAndOwnerRating> GetAllRatingsByOwnerId(int ownerId)
+        {
+            return ratingRepository.GetAllByOwnerId(ownerId);
+        }
 
         public void CreateRating(int reservationId, AccommodationReservation reservation, int cleanliness, int ownerFairness, int location, int valueForMoney, string comment, List<string> imageList, int recommendationId, RenovationRecommendation recommendation)
         {

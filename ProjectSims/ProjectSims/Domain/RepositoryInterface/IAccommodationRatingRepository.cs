@@ -12,5 +12,7 @@ namespace ProjectSims.Domain.RepositoryInterface
     {
         public AccommodationAndOwnerRating GetByReservationId(int reservationId);
         public List<AccommodationAndOwnerRating> GetAllByGuestId(int guestId);
+        public List<AccommodationAndOwnerRating> GetAllByOwnerId(int ownerId);
+
     }
 }

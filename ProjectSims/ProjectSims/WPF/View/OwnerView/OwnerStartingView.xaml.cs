@@ -28,7 +28,7 @@ namespace ProjectSims.WPF.View.OwnerView
     /// </summary>
     public partial class OwnerStartingView : Window, INotifyPropertyChanged
     {
-        public Owner owner { get; set; }
+        public Owner Owner { get; set; }
         private GuestRatingService guestRatingService { get; set; }
 
         private string _title;
@@ -48,9 +48,9 @@ namespace ProjectSims.WPF.View.OwnerView
         {
             InitializeComponent();
             this.DataContext = this;
-            owner = o;
+            Owner = o;
             TitleTextBlock.Text = "Početna stranica";
-            SelectedTab.Content = new HomePage(owner);
+            SelectedTab.Content = new HomePage(Owner);
             guestRatingService = new GuestRatingService();
        }
 
@@ -83,12 +83,12 @@ namespace ProjectSims.WPF.View.OwnerView
             {
                 case 0:
                     {
-                        SelectedTab.Content = new SideMenu(owner, TitleTextBlock);
+                        SelectedTab.Content = new SideMenu(Owner, TitleTextBlock);
                         break;
                     }
                 case 1:
                     {
-                        SelectedTab.Content = new Requests(owner);
+                        SelectedTab.Content = new Requests(Owner);
                         break;
                     }
                 case 2:

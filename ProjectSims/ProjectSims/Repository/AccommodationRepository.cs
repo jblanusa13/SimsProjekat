@@ -14,8 +14,10 @@ namespace ProjectSims.Repository
     {
         private AccommodationFileHandler accommodationFileHandler;
         private LocationFileHandler locationFileHandler;
+        private AccommodationScheduleFileHandler accommodationScheduleFileHandler;
         private List<Accommodation> accommodations;
         private List<Location> locations;
+        private List<AccommodationSchedule> schedules;
         private readonly OwnerFileHandler _ownerFileHandler;
         private readonly List<Owner> _owners;
         private List<IObserver> observers;
@@ -26,6 +28,8 @@ namespace ProjectSims.Repository
             accommodations = accommodationFileHandler.Load();
             locationFileHandler = new LocationFileHandler();
             locations = locationFileHandler.Load();
+            accommodationScheduleFileHandler = new AccommodationScheduleFileHandler();
+            schedules = accommodationScheduleFileHandler.Load();
             observers = new List<IObserver>();
         }
 
@@ -42,8 +46,11 @@ namespace ProjectSims.Repository
         public void Create(Accommodation accommodation)
         {
             accommodation.Id = NextId();
-            accommodations.Add(accommodation);
+            accommodations.Add(accommodation); 
+            List<DateRanges> datumi = new List<DateRanges>();
+            schedules.Add(new AccommodationSchedule(accommodation.ScheduleId, datumi, accommodation.Id));
             accommodationFileHandler.Save(accommodations);
+            accommodationScheduleFileHandler.Save(schedules);
             NotifyObservers();
         }
 

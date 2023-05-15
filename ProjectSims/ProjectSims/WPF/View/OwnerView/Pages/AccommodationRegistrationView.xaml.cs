@@ -143,13 +143,18 @@ namespace ProjectSims.View.OwnerView.Pages
 
         public TextBlock TitleTextBlock { get; set; }
         
-        public AccommodationRegistrationView(Owner o, TextBlock titleTextBlock)
+        public AccommodationRegistrationView(Owner o, TextBlock titleTextBlock, Accommodation selectedAccommodation)
         {
             InitializeComponent();
             Owner = o;
             TitleTextBlock = titleTextBlock;
             accommodationRegistrationViewModel = new AccommodationRegistrationViewModel(Owner);
             this.DataContext = accommodationRegistrationViewModel;
+            if (selectedAccommodation != null)
+            {
+                LocationTextBox.Text = selectedAccommodation.Location.ToString();
+                LocationTextBox.IsEnabled = false;
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

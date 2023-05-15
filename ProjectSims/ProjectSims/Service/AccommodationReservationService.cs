@@ -18,11 +18,17 @@ namespace ProjectSims.Service
     {
         private IAccommodationReservationRepository reservationRepository;
         private RequestService requestService;
+        private RenovationRecommendationService renovationRecommendationService;
+        private AccommodationRatingService accommodationRatingService;
+        private AccommodationService accommodationService;
 
         public AccommodationReservationService()
         {
             reservationRepository = Injector.CreateInstance<IAccommodationReservationRepository>();
             requestService = new RequestService();
+            renovationRecommendationService = new RenovationRecommendationService();
+            accommodationRatingService = new AccommodationRatingService();
+            accommodationService = new AccommodationService();
         }
         public List<AccommodationReservation> GetAllReservations()
         {
@@ -68,6 +74,19 @@ namespace ProjectSims.Service
             return number;
         }
 
+        public int GetAllReservationsByMonth(List<AccommodationReservation> reservations, string month, string year)
+        {
+            int number = 0;
+            foreach (AccommodationReservation reservation in reservations)
+            {
+                if (reservation.CheckInDate.Month.ToString().Equals(month) && reservation.CheckInDate.Year.ToString().Equals(year))
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+
         public int GetAllShiftedReservationsByYear(List<AccommodationReservation> reservations, string year)
         {
             int number = 0;
@@ -76,6 +95,22 @@ namespace ProjectSims.Service
                 foreach (Request request in requestService.GetAllRequestByOwner(reservation.Accommodation.IdOwner))
                 {
                     if (reservation.CheckInDate.Year.ToString().Equals(year) && reservation.Id == request.ReservationId)
+                    {
+                        number++;
+                    }
+                }
+            }
+            return number;
+        }
+
+        public int GetAllShiftedReservationsByMonth(List<AccommodationReservation> reservations, string month, string year)
+        {
+            int number = 0;
+            foreach (AccommodationReservation reservation in reservations)
+            {
+                foreach (Request request in requestService.GetAllRequestByOwner(reservation.Accommodation.IdOwner))
+                {
+                    if (reservation.CheckInDate.Year.ToString().Equals(year) && reservation.CheckInDate.Month.ToString().Equals(month) && reservation.Id == request.ReservationId)
                     {
                         number++;
                     }
@@ -97,7 +132,51 @@ namespace ProjectSims.Service
             return number;
         }
         
+        public int GetAllCanceledReservationsByMonth(List<AccommodationReservation> reservations, string month, string year)
+        {
+            int number = 0;
+            foreach (AccommodationReservation reservation in reservations)
+            {
+                if (reservation.CheckInDate.Year.ToString().Equals(year) && reservation.CheckInDate.Month.ToString().Equals(month) && reservation.State == ReservationState.Canceled)
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+        
+        public int GetAllRenovationReccommendationsByYear(string year, int ownerId)
+        {
+            int number = 0;
+            foreach (AccommodationAndOwnerRating rating in accommodationRatingService.GetAllRatingsByOwnerId(ownerId))
+            {
+                foreach (RenovationRecommendation renovation in renovationRecommendationService.GetAllRecommendations())
+                {
+                    if (rating.Reservation.CheckInDate.Year.ToString().Equals(year) && rating.RenovationId == renovation.Id)
+                    {
+                        number++;
+                    }
+                }
+            }
+            return number;
+        }
 
+        public int GetAllRenovationReccommendationsByMonth(string month, string year, int ownerId)
+        {
+            int number = 0;
+            foreach (AccommodationAndOwnerRating rating in accommodationRatingService.GetAllRatingsByOwnerId(ownerId))
+            {
+                foreach (RenovationRecommendation renovation in renovationRecommendationService.GetAllRecommendations())
+                {
+                    if (rating.Reservation.CheckInDate.Year.ToString().Equals(year) && rating.Reservation.CheckInDate.Month.ToString().Equals(month) && rating.RenovationId == renovation.Id)
+                    {
+                        number++;
+                    }
+                }
+            }
+            return number;
+        }
+        
         public AccommodationReservation GetReservation(int id)
         {
             return reservationRepository.GetById(id);
@@ -131,6 +210,12 @@ namespace ProjectSims.Service
             reservationRepository.Update(reservation);
 
             requestService.UpdateRequestsWhenCancelReservation(reservation);
+        }
+
+        public void CloseAccommodation(Accommodation selectedAccommodation)
+        {
+            Accommodation accommodationToRemove = accommodationService.GetAccommodationsByOwner(selectedAccommodation.IdOwner).Find(accommodation => accommodation.Id == selectedAccommodation.Id);
+            accommodationService.Delete(accommodationToRemove);
         }
 
         public bool CanCancel(AccommodationReservation reservation)
