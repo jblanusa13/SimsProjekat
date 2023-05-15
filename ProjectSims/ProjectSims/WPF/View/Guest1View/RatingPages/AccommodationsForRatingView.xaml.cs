@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 using ProjectSims.Service;
+using ProjectSims.WPF.View.Guest1View.MainPages;
 
 namespace ProjectSims.WPF.View.Guest1View.RatingPages
 {
@@ -37,6 +38,8 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
 
             Guest = guest;
             Reservations = new ObservableCollection<AccommodationReservation>(reservationService.GetAccommodationsForRating(Guest));
+
+            BackButton.Focus();
         }
         private void RateAccommodation_Click(object sender, RoutedEventArgs e)
         {
@@ -44,6 +47,22 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
             if (SelectedReservation != null)
             {
                 NavigationService.Navigate(new AccommodationRatingView(SelectedReservation));
+            }
+        }
+
+        private void Reservations_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedReservation = (AccommodationReservation)AccommodationsForRatingTable.SelectedItem;
+        }
+
+        private void Rate(object sender, KeyEventArgs e)
+        {
+            if (SelectedReservation != null)
+            {
+                if ((e.Key.Equals(Key.Enter)) || (e.Key.Equals(Key.Return)))
+                {
+                    NavigationService.Navigate(new AccommodationRatingView(SelectedReservation));
+                }
             }
         }
 

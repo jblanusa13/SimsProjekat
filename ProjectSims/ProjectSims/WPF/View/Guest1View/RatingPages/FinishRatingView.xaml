@@ -24,7 +24,8 @@
             <Label FontSize="37" Margin="70,110,70,0"
                    Foreground="{DynamicResource FontsColor}" 
                    FontFamily="Bahnschrift"
-                   HorizontalContentAlignment="Center">Ime</Label>
+                   HorizontalContentAlignment="Center"
+                   Content="{Binding AccommodationReservation.Accommodation.Name}"></Label>
         </Grid>
         <Grid Grid.Row="2" Background="{DynamicResource SecondGrayShade}">
             <Grid.ColumnDefinitions>
@@ -32,10 +33,13 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Margin="120,20,20,20"
+                    x:Name="BackButton"
                     Foreground="{DynamicResource FontsColor}" 
                    FontFamily="Bahnschrift"
                     FontSize="20"
-                    Background="{DynamicResource SecondGrayShade}" Click="Back_Click">Nazad
+                    Background="{DynamicResource SecondGrayShade}" 
+                    Click="Back_Click"
+                    FocusVisualStyle="{DynamicResource FocusControl}">Nazad
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>
@@ -46,7 +50,9 @@
                     Foreground="{DynamicResource FontsColor}" 
                    FontFamily="Bahnschrift"
                     FontSize="20"
-                    Background="{DynamicResource SecondGrayShade}" Click="FinishRating_Click">Potvrdi
+                    Background="{DynamicResource SecondGrayShade}" 
+                    Click="FinishRating_Click"
+                    FocusVisualStyle="{DynamicResource FocusControl}">Potvrdi
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>

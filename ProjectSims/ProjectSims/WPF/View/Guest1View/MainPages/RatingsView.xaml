@@ -12,36 +12,116 @@
     <Page.Resources>
         <Style TargetType="DataGrid" BasedOn="{StaticResource DataGridStyle}">
             <Setter Property="Background" Value="{DynamicResource DataGridBackground}"></Setter>
-            <Setter Property="ColumnHeaderStyle" Value="{DynamicResource DataGridHeader}"></Setter>
-            <Setter Property="RowStyle" Value="{DynamicResource DataGridRow}"></Setter>
+            <Setter Property="BorderBrush" Value="{DynamicResource SecondGrayShade}"></Setter>
+        </Style>
+        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridHeader}"/>
+        <Style TargetType="DataGridRow" BasedOn="{StaticResource DataGridRow}"/>
+        <Style TargetType="DataGridCell" BasedOn="{StaticResource DataGridCell}">
+            <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusControl}"/>
         </Style>
     </Page.Resources>
 
     <Grid Background="{DynamicResource FirstGrayShade}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="90"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Background="{DynamicResource SecondGrayShade}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="60"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="320"/>
             </Grid.ColumnDefinitions>
             
-            <Button Grid.Column="0" Margin="10,20,10,20" Click="Back_Click" Background="{DynamicResource SecondGrayShade}" BorderBrush="{DynamicResource SecondGrayShade}">
+            <Button Grid.Column="0" Margin="10,20,10,20" Click="Back_Click"
+                    x:Name="BackButton"
+                    Background="{DynamicResource SecondGrayShade}" 
+                    BorderBrush="{DynamicResource SecondGrayShade}"
+                    FocusVisualStyle="{DynamicResource FocusControl}">
                 <fa:ImageAwesome Icon="ArrowCircleLeft" Foreground="{DynamicResource FontsColor}"/>
             </Button>
 
             <Grid Grid.Column="1">
-                <Label Margin="10,20,10,10" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Ocene</Label>
+                <Label Margin="10,18,10,10" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Ocene</Label>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="80"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" x:Name="ButtonTheme" Margin="0,15,0,0"
+                        Background="{DynamicResource SecondGrayShade}"
+                            BorderBrush="{DynamicResource BarShade}"
+                            FocusVisualStyle="{DynamicResource FocusControl}">
+                        <DynamicResource ResourceKey="MoonIconRatings"></DynamicResource>
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Label Grid.Row="1" Content="Tema" FontFamily="Bahnschrift" 
+                           Foreground="{DynamicResource FontsColor}" 
+                           FontSize="10" HorizontalContentAlignment="Center"
+                           VerticalContentAlignment="Top"/>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" x:Name="ButtonLanguage" Margin="0,15,0,0"
+                        Background="{DynamicResource SecondGrayShade}" 
+                            BorderBrush="{DynamicResource BarShade}"
+                            FocusVisualStyle="{DynamicResource FocusControl}">
+                        <DynamicResource ResourceKey="LanguageIconRatings"></DynamicResource>
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Label Grid.Row="1" Content="Jezik" FontFamily="Bahnschrift" 
+                           Foreground="{DynamicResource FontsColor}" HorizontalContentAlignment="Center"
+                           FontSize="10" VerticalContentAlignment="Top"/>
+                </Grid>
+                <Grid Grid.Column="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" x:Name="ButtonNotifications" Margin="0,15,0,0"
+                        Background="{DynamicResource SecondGrayShade}" 
+                            BorderBrush="{DynamicResource BarShade}"
+                            FocusVisualStyle="{DynamicResource FocusControl}">
+                        <DynamicResource ResourceKey="NotificationsIconRatings"></DynamicResource>
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Label Grid.Row="1" Content="Obavestenja" FontFamily="Bahnschrift" 
+                           Foreground="{DynamicResource FontsColor}" 
+                           HorizontalContentAlignment="Center"
+                           FontSize="10" VerticalContentAlignment="Top"/>
+                </Grid>
             </Grid>
         </Grid>
 
         <Grid Grid.Row="1">
-            <TabControl Margin="50,10">
+            <TabControl Margin="50,20,50,10">
                 <TabItem Header="Moji utisci" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" >
                     <Grid Background="{DynamicResource BlueShade}">
                         <Grid.ColumnDefinitions>
@@ -49,18 +129,30 @@
                             <ColumnDefinition Width="350"/>
                         </Grid.ColumnDefinitions>
 
-                        <DataGrid Name="MyRatingsTable" Grid.Column="0" Margin="20,50,20,10"
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="1"
+                                   FontSize="13"
+                                   Margin="20,0,0,0">Da biste videli komentar, pritiskom na Tab se pomerajte kroz tabelu ocena</Label>
+                            <DataGrid Name="MyRatingsTable" Grid.Row="2" Margin="20,0,20,10"
                                   ItemsSource="{Binding MyRatings, UpdateSourceTrigger=PropertyChanged}"
                                   IsReadOnly="True" AutoGenerateColumns="False"
-                                  SelectionChanged="MyRatings_SelectionChanged">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Naziv smestaja" Binding="{Binding Reservation.Accommodation.Name}" Width="*"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Cistoca" Binding="{Binding Cleanliness}" Width="70"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Korektnost vlasnika" Binding="{Binding OwnerFairness}" Width="130"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Lokacija" Binding="{Binding Location}" Width="70"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Vrednost za novac" Binding="{Binding ValueForMoney}" Width="120"></DataGridTextColumn>
-                            </DataGrid.Columns>
-                        </DataGrid>
+                                  SelectionChanged="MyRatings_SelectionChanged"
+                                  HeadersVisibility="Column">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Naziv smestaja" Binding="{Binding Reservation.Accommodation.Name}" Width="*"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Cistoca" Binding="{Binding Cleanliness}" Width="70"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Korektnost vlasnika" Binding="{Binding OwnerFairness}" Width="130"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Lokacija" Binding="{Binding Location}" Width="70"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Vrednost za novac" Binding="{Binding ValueForMoney}" Width="120"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
 
                         <Grid Grid.Column="1">
                             <Grid.RowDefinitions>
@@ -81,7 +173,8 @@
                                        Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></Label>
                             </Grid>
                             <TextBox Grid.Row="1" Name="MyRatingsTb" Text="{Binding AddedComment}" Margin="30,10,30,10" IsEnabled="False"
-                                      Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></TextBox>
+                                      Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"
+                                     TextWrapping="Wrap"></TextBox>
                         </Grid>
                     </Grid>
                 </TabItem>
@@ -92,18 +185,34 @@
                             <ColumnDefinition Width="350"/>
                         </Grid.ColumnDefinitions>
 
-                        <DataGrid Name="OwnerRatingsTable" Grid.Column="0" Margin="20,50,20,10"
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Margin="20,15,0,0"
+                                FontSize="13"
+                                Foreground="{DynamicResource FontsColor}">Ocenu odredjenog vlasnika, 
+                                ako vas je ocenio, mozete videti tek kad vi njega ocenite</Label>
+                            <Label Grid.Row="1"
+                                   FontSize="13"
+                                   Margin="20,-5,0,0">Da biste videli komentar, pritiskom na Tab se pomerajte kroz tabelu ocena</Label>
+                            <DataGrid Name="OwnerRatingsTable" Grid.Row="2" Margin="20,0,20,10"
                                   ItemsSource="{Binding OwnerRatings, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                   IsReadOnly="True" AutoGenerateColumns="False"
-                                  SelectionChanged="OwnerRatings_SelectionChanged">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Naziv smestaja" Binding="{Binding Reservation.Accommodation.Name}" Width="*"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Cistoca" Binding="{Binding CleanlinessRating}" Width="100"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Postovanje pravila" Binding="{Binding RespectingRulesRating}" Width="120"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Komunikacija" Binding="{Binding CommunicationRating}" Width="100"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Urednost" Binding="{Binding TidinessRating}" Width="100"></DataGridTextColumn>
-                            </DataGrid.Columns>
-                        </DataGrid>
+                                  SelectionChanged="OwnerRatings_SelectionChanged"
+                                  HeadersVisibility="Column">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Naziv smestaja" Binding="{Binding Reservation.Accommodation.Name}" Width="*"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Cistoca" Binding="{Binding CleanlinessRating}" Width="100"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Postovanje pravila" Binding="{Binding RespectingRulesRating}" Width="120"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Komunikacija" Binding="{Binding CommunicationRating}" Width="100"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Urednost" Binding="{Binding TidinessRating}" Width="100"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
 
                         <Grid Grid.Column="1">
                             <Grid.RowDefinitions>
@@ -119,12 +228,13 @@
                                 </Grid.RowDefinitions>
 
                                 <Label Grid.Row="1" FontSize="15" Margin="30,0,0,0"
-                                       Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Moj komentar za smestaj</Label>
+                                       Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Komentar vlasnika smestaja</Label>
                                 <Label Grid.Row="2" Name="OwnerRatingsNameLabel" FontSize="15" Margin="30,0,0,0"
                                        Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></Label>
                             </Grid>
                             <TextBox Grid.Row="1" Name="OwnerRatingsTb"  Margin="30,10,30,10" IsEnabled="False"
-                                      Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></TextBox>
+                                      Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"
+                                     TextWrapping="Wrap"></TextBox>
                         </Grid>
                     </Grid>
                 </TabItem>
@@ -137,7 +247,9 @@
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="1" Margin="80,20,70,15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}"
-                                        Background="{DynamicResource SecondGrayShade}">Odjavi se
+                                        Background="{DynamicResource SecondGrayShade}"
+                    Click="LogOut_Click"
+                    FocusVisualStyle="{DynamicResource FocusControl}">Odjavi se
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>

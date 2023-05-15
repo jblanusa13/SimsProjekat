@@ -16,6 +16,9 @@
         </Style>
         <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridHeader}"/>
         <Style TargetType="DataGridRow" BasedOn="{StaticResource DataGridRow}"/>
+        <Style TargetType="DataGridCell" BasedOn="{StaticResource DataGridCell}">
+            <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusControl}"/>
+        </Style>
     </Page.Resources>
 
     <Grid Background="White">
@@ -28,7 +31,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="110"/>
                 <RowDefinition Height="100"/>
-                <RowDefinition Height="324.04"/>
+                <RowDefinition Height="300*"/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" Background="{DynamicResource SecondGrayShade}" Margin="0,0,0,15">
@@ -38,8 +41,24 @@
                     <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
 
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" x:Name="HelpButton"
+                            Background="{DynamicResource SecondGrayShade}" BorderBrush="{DynamicResource SecondGrayShade}"
+                            Margin="10,10,10,5" FocusVisualStyle="{DynamicResource FocusControl}">
+                        <DynamicResource ResourceKey="QuestionIcon"></DynamicResource>
+                    </Button>
+
+                    <Label Grid.Row="1" HorizontalContentAlignment="Center" FontFamily="Bahnschrift"
+                           FontSize="9"
+                           VerticalContentAlignment="Top">Pomoc</Label>
+                </Grid>
+
                 <Grid Grid.Column="1">
-                    <TextBlock Foreground="{DynamicResource FontsColor}"  HorizontalAlignment="Right" Margin="50,30,0,10" FontSize="40" FontFamily="Bahnschrift">Rezervacija smestaja</TextBlock>
+                    <TextBlock Foreground="{DynamicResource FontsColor}"  HorizontalAlignment="Right" Margin="50,25,0,10" FontSize="40" FontFamily="Bahnschrift">Rezervacija smestaja</TextBlock>
                 </Grid>
 
                 <Grid Grid.Column="2">
@@ -51,13 +70,13 @@
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 
 
@@ -122,7 +141,8 @@
                     </TextBox.Resources>
                 </TextBox>
                 <Button Grid.Column="6" Content="Pretraga" Click="Search_Click" HorizontalAlignment="Center" Margin="0,60,0,0" VerticalAlignment="Top" Width="80" Height="25"
-                        Background="{DynamicResource SecondGrayShade}" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">
+                        Background="{DynamicResource SecondGrayShade}" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"
+                        FocusVisualStyle="{DynamicResource FocusControl}">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -132,45 +152,58 @@
 
             </Grid>
 
-            <DataGrid Grid.Row="2" Name="AccommodationsTable" ItemsSource="{Binding Path=Accommodations, UpdateSourceTrigger=PropertyChanged}"
-            Margin="10,10,10,0" HeadersVisibility="Column">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" Width="170"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Grad" Binding="{Binding Location.City}" Width="150"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Drzava" Binding="{Binding Location.Country}" Width="130"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Tip smestaja" Binding="{Binding Type}" Width="100"></DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding GuestsMaximum}" Width="110">
-                        <DataGridTextColumn.HeaderTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-                                    <Label Content="Maksimalan"/>
-                                    <Label Content="broj gostiju" Grid.Row="1"/>
-                                </Grid>
-                            </DataTemplate>
-                        </DataGridTextColumn.HeaderTemplate>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Header="Min broj dana za rezervaciju" Binding="{Binding MinimumReservationDays}" Width="*">
-                        <DataGridTextColumn.HeaderTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
+                <Label Grid.Row="0" FontFamily="Bahnschrift"
+                       Foreground="{DynamicResource FontsColor}"
+                       FontSize="13"
+                       Margin="10,0,0,0" HorizontalContentAlignment="Stretch">Da biste rezervisali, pritisnite Enter na zeljenom smestaju</Label>
+                <DataGrid Grid.Row="1" Name="AccommodationsTable" ItemsSource="{Binding Path=Accommodations, UpdateSourceTrigger=PropertyChanged}"
+                        Margin="10,0,10,0" HeadersVisibility="Column"
+                      PreviewKeyDown="OpenReservationView"
+                      SelectionChanged="Accommodations_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" Width="170"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Grad" Binding="{Binding Location.City}" Width="150"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Drzava" Binding="{Binding Location.Country}" Width="130"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Tip smestaja" Binding="{Binding Type}" Width="100"></DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding GuestsMaximum}" Width="110">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
 
-                                    <Label Content="Minimalan broj"/>
-                                    <Label Content="dana za rezervaciju" Grid.Row="1"/>
-                                </Grid>
-                            </DataTemplate>
-                        </DataGridTextColumn.HeaderTemplate>
-                    </DataGridTextColumn>
-                </DataGrid.Columns>
-            </DataGrid>
+                                        <Label Content="Maksimalan"/>
+                                        <Label Content="broj gostiju" Grid.Row="1"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Min broj dana za rezervaciju" Binding="{Binding MinimumReservationDays}" Width="*">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+
+                                        <Label Content="Minimalan broj"/>
+                                        <Label Content="dana za rezervaciju" Grid.Row="1"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
         </Grid>
 
         <Grid Grid.Column="1" Background="{DynamicResource BlueShade}">
@@ -181,99 +214,176 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
-                <Button x:Name="ButtonTheme" Margin="10,10,180,20" Click="Theme_Click"
-                        Background="{DynamicResource ButtonsColor}">
-                    <DynamicResource ResourceKey="MoonIcon"></DynamicResource>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="25"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" x:Name="ButtonTheme" Margin="0,5" Click="Theme_Click"
+                        Background="{DynamicResource BlueShade}" BorderBrush="{DynamicResource FirstGrayShade}"
+                            FocusVisualStyle="{DynamicResource FocusControl}">
+                        <DynamicResource ResourceKey="MoonIcon"></DynamicResource>
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Label Grid.Row="1" Content="Tema" FontFamily="Bahnschrift" 
+                           Foreground="{DynamicResource FontsColor}" 
+                           FontSize="8" HorizontalContentAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="25"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" x:Name="ButtonLanguage" Margin="0,5"
+                        Background="{DynamicResource BlueShade}" BorderBrush="{DynamicResource FirstGrayShade}"
+                            FocusVisualStyle="{DynamicResource FocusControl}">
+                        <DynamicResource ResourceKey="LanguageIcon"></DynamicResource>
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Label Grid.Row="1" Content="Jezik" FontFamily="Bahnschrift" 
+                           Foreground="{DynamicResource FontsColor}" HorizontalContentAlignment="Center"
+                           FontSize="8"/>
+                </Grid>
+                <Grid Grid.Column="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="25"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" x:Name="ButtonNotifications" Margin="0,5"
+                        Background="{DynamicResource BlueShade}" BorderBrush="{DynamicResource FirstGrayShade}"
+                            FocusVisualStyle="{DynamicResource FocusControl}">
+                        <DynamicResource ResourceKey="NotificationsIcon"></DynamicResource>
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Label Grid.Row="1" Content="Obavestenja" FontFamily="Bahnschrift" 
+                           Foreground="{DynamicResource FontsColor}" 
+                           HorizontalContentAlignment="Center"
+                           FontSize="8"/>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="130*"/>
+                    <RowDefinition Height="10*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="65"/>
+                        <RowDefinition Height="65"/>
+                        <RowDefinition Height="65"/>
+                        <RowDefinition Height="65"/>
+                        <RowDefinition Height="65"/>
+                        <RowDefinition Height="65"/>
+                    </Grid.RowDefinitions>
+
+                    <Button Content="Bilo kad/Bilo gde"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
+                        FontSize="16"  BorderBrush="{DynamicResource FirstGrayShade}"
+                        Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" FontWeight="Bold"
+                        FocusVisualStyle="{DynamicResource FocusControl}">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button Grid.Row="1" Content="Moje rezervacije"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
+                         FontSize="16" Click="MyReservations_Click" FontFamily="Bahnschrift"
+                        Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}"
+                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold"
+                        FocusVisualStyle="{DynamicResource FocusControl}">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button Grid.Row="2" Content="Ocenite smestaj"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
+                         FontSize="16" Click="RateAccommodation_Click" FontFamily="Bahnschrift"
+                        Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}"
+                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold"
+                        FocusVisualStyle="{DynamicResource FocusControl}">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button Grid.Row="3" Content="Prikaz ocena"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
+                         FontSize="16" Click="ShowRatings_Click" FontFamily="Bahnschrift"
+                        Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}"
+                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold"
+                        FocusVisualStyle="{DynamicResource FocusControl}">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button Grid.Row="4" Content="Forum"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
+                         FontSize="16" FontFamily="Bahnschrift"
+                        Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}"
+                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold"
+                        FocusVisualStyle="{DynamicResource FocusControl}">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button Grid.Row="5" Content="Moj nalog"
+                        HorizontalAlignment="Center" VerticalAlignment="Top" Height="65" Width="210"
+                         FontSize="16" FontFamily="Bahnschrift"
+                        Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}"
+                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold"
+                        FocusVisualStyle="{DynamicResource FocusControl}">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </Grid>
+                
+               
+            </Grid>
+            <Grid Grid.Row="2">
+                <Button Content="Odjavi se" Click="LogOut_Click" Margin="30,10" VerticalAlignment="Top" Height="30"
+                        Background="{DynamicResource ButtonsColor}" Foreground="{DynamicResource FontsColor}"
+                        FontFamily="Bahnschrift"
+                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold"
+                        FocusVisualStyle="{DynamicResource FocusControl}">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="20"/>
                         </Style>
                     </Button.Resources>
                 </Button>
-            </Grid>
-
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="65"/>
-                    <RowDefinition Height="65"/>
-                    <RowDefinition Height="65"/>
-                    <RowDefinition Height="65"/>
-                    <RowDefinition Height="65"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <Button Content="Bilo kad/Bilo gde"
-                        HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
-                        FontSize="16"  BorderBrush="{DynamicResource FirstGrayShade}"
-                        Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" FontWeight="Bold"
-                        >
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-                <Button Grid.Row="1" Content="Moje rezervacije"
-                        HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
-                         FontSize="16" Click="MyReservations_Click" FontFamily="Bahnschrift"
-                        Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}"
-                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-                <Button Grid.Row="2" Content="Ocenite smestaj"
-                        HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
-                         FontSize="16" Click="RateAccommodation_Click" FontFamily="Bahnschrift"
-                        Background="{DynamicResource ButtonsColor}" Foreground="{DynamicResource FontsColor}"
-                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-                <Button Grid.Row="3" Content="Prikaz ocena"
-                        HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
-                         FontSize="16" Click="ShowRatings_Click" FontFamily="Bahnschrift"
-                        Background="{DynamicResource ButtonsColor}" Foreground="{DynamicResource FontsColor}"
-                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-                <Button Grid.Row="4" Content="Forum"
-                        HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
-                         FontSize="16" FontFamily="Bahnschrift"
-                        Background="{DynamicResource ButtonsColor}" Foreground="{DynamicResource FontsColor}"
-                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-                <Button Grid.Row="5" Content="Moj nalog"
-                        HorizontalAlignment="Center" VerticalAlignment="Top" Height="65" Width="210"
-                         FontSize="16" FontFamily="Bahnschrift"
-                        Background="{DynamicResource ButtonsColor}" Foreground="{DynamicResource FontsColor}"
-                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-            </Grid>
-            <Grid Grid.Row="2">
-                <Button Content="Rezervisi" Click="Reservation_Click" Margin="30,10" VerticalAlignment="Top" Height="30"
-                        Background="{DynamicResource ButtonsColor}" Foreground="{DynamicResource FontsColor}"
-                        FontFamily="Bahnschrift"
-                         BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold"/>
             </Grid>
         </Grid>
     </Grid>

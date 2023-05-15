@@ -7,9 +7,9 @@
       xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View"
       mc:Ignorable="d" 
       d:DesignHeight="30" d:DesignWidth="1050"
-      Title="Smestaji">
+      Title="Smestaji" Focusable="False">
 
-    <Grid Background="{DynamicResource BarShade}">
+    <Grid Background="{DynamicResource BarShade}" FocusVisualStyle="{DynamicResource FocusControl}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="*"/>
@@ -18,15 +18,25 @@
             <ColumnDefinition Width="40"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Column="0" Foreground="{DynamicResource FontsColor}">Agencija za putovanja</TextBlock>
-        <Button Grid.Column="2" Name="MinimizeButton" BorderBrush="{DynamicResource BarShade}" Background="{DynamicResource BarShade}">
+        <TextBlock Grid.Column="0" Foreground="{DynamicResource BarFont}" FontFamily="Bahnschrift" FontSize="15"
+                   Text="TravelAndTour"
+                   Margin="10,7"></TextBlock>
+        <Button Grid.Column="2" Name="MinimizeButton" 
+                BorderBrush="{DynamicResource BarShade}" 
+                Background="{DynamicResource BarShade}" Click="Minimize_Click"
+                FocusVisualStyle="{DynamicResource FocusControl}" Height="30" VerticalAlignment="Top">
             <DynamicResource ResourceKey="MainWindowMinimizeIcon"/>
         </Button>
-        <Button Grid.Column="3" Name="RestoreButton" BorderBrush="{DynamicResource BarShade}" Background="{DynamicResource BarShade}">
-            <DynamicResource ResourceKey="MainWindowRestoreIcon"/>
+        <Button Grid.Column="3" Name="SizeButton" 
+                BorderBrush="{DynamicResource BarShade}" 
+                Background="{DynamicResource BarShade}"
+                Click="Size_Click"
+                FocusVisualStyle="{DynamicResource FocusControl}">
+            <DynamicResource ResourceKey="MainWindowMaximizeIcon"/>
         </Button>
         <Button Grid.Column="4" Name="CloseButton" BorderBrush="{DynamicResource BarShade}" Background="{DynamicResource BarShade}"
-                Click="Close_Click">
+                Click="Close_Click"
+                FocusVisualStyle="{DynamicResource FocusControl}">
             <DynamicResource ResourceKey="MainWindowCloseIcon"/>
         </Button>
     </Grid>

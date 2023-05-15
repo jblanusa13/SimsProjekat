@@ -7,6 +7,18 @@
       mc:Ignorable="d" 
       d:DesignHeight="590" d:DesignWidth="750"
       Title="AccommodationRating">
+    <Page.Resources>
+        <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItem}">
+            <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusControl}"/>
+        </Style>
+
+        <ControlTemplate x:Key="ValidationTemplate">
+            <StackPanel>
+                <AdornedElementPlaceholder x:Name="textBox" />
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="9" FontFamily="Bahnschrift" />
+            </StackPanel>
+        </ControlTemplate>
+    </Page.Resources>
 
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -43,11 +55,14 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Margin="50,10,0,0" FontSize="14" Height="35"
-                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Cistoca:</Label>
-                    <ComboBox Name="CleanlinessCb"
+                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Cistoca*:</Label>
+                    <ComboBox x:Name="CleanlinessCb"
                               Grid.Column="1"
-                              Margin="50,15,20,20"
-                              Background="{DynamicResource TextboxColor}">
+                              Margin="50,15,50,20"
+                              Background="{DynamicResource TextboxColor}"
+                              FocusVisualStyle="{DynamicResource FocusControl}"
+                              Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                              Text="{Binding Cleanliness, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
                         <ComboBoxItem Content="1"/>
                         <ComboBoxItem Content="2"/>
                         <ComboBoxItem Content="3"/>
@@ -63,10 +78,13 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Margin="50,10,0,0" FontSize="14" Height="35"
-                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Korektnost vlasnika:</Label>
+                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Korektnost vlasnika*:</Label>
                     <ComboBox Name="FairnessCb"
                               Grid.Column="1"
-                              Margin="50,15,20,20">
+                              Margin="50,15,50,20"
+                              FocusVisualStyle="{DynamicResource FocusControl}"
+                              Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                              Text="{Binding Fairness, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
                         <ComboBoxItem Content="1"/>
                         <ComboBoxItem Content="2"/>
                         <ComboBoxItem Content="3"/>
@@ -82,10 +100,13 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Margin="50,10,0,0" FontSize="14" Height="35"
-                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Lokacija:</Label>
+                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Lokacija*:</Label>
                     <ComboBox Name="LocationCb"
                               Grid.Column="1"
-                              Margin="50,15,20,20">
+                              Margin="50,15,50,20"
+                              FocusVisualStyle="{DynamicResource FocusControl}"
+                              Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                              Text="{Binding Location, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
                         <ComboBoxItem Content="1"/>
                         <ComboBoxItem Content="2"/>
                         <ComboBoxItem Content="3"/>
@@ -101,10 +122,13 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Margin="50,10,0,0" FontSize="14" Height="35"
-                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Vrednost za novac:</Label>
+                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Vrednost za novac*:</Label>
                     <ComboBox Name="ValueForMoneyCb"
                               Grid.Column="1"
-                              Margin="50,15,20,20">
+                              Margin="50,15,50,20"
+                              FocusVisualStyle="{DynamicResource FocusControl}"
+                              Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                              Text="{Binding ValueForMoney, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
                         <ComboBoxItem Content="1"/>
                         <ComboBoxItem Content="2"/>
                         <ComboBoxItem Content="3"/>
@@ -121,7 +145,9 @@
 
                     <Label Grid.Column="0" Margin="50,0,0,30" FontSize="14" Height="35"
                            Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Komentar:</Label>
-                    <TextBox Name="CommentTb" Grid.Column="1" Margin="50,20,20,20" Background="{DynamicResource TextboxColor}"></TextBox>
+                    <TextBox Name="CommentTb" Grid.Column="1" Margin="50,20,0,20" 
+                             Background="{DynamicResource TextboxColor}"
+                             TextWrapping="Wrap"></TextBox>
                 </Grid>
             </Grid>
 
@@ -141,7 +167,8 @@
                            Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Dodajte slike smestaja:</Label>
                     <Button Grid.Column="1" Margin="0,20,40,20" Click="Browse_Click"
                             Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"
-                            Background="{DynamicResource SecondGrayShade}">
+                            Background="{DynamicResource SecondGrayShade}"
+                            FocusVisualStyle="{DynamicResource FocusControl}">
                         Uvezi
                         <Button.Resources>
                             <Style TargetType="Border">
@@ -156,7 +183,7 @@
                               ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                               ScrollViewer.VerticalScrollBarVisibility="Visible"
                               ScrollViewer.PanningMode="VerticalOnly"
-                              Margin="0,10,0,10" HorizontalAlignment="Center" Width="341">
+                              Margin="0,10,0,10" HorizontalAlignment="Center" Width="250">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Vertical"/>
@@ -175,7 +202,8 @@
 
             <Button Grid.Column="0" Margin="30,20,240,20" Click="Cancel_Click"
                     Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"
-                    Background="{DynamicResource SecondGrayShade}">
+                    Background="{DynamicResource SecondGrayShade}"
+                    FocusVisualStyle="{DynamicResource FocusControl}">
                 Odustani
                 <Button.Resources>
                     <Style TargetType="Border">
@@ -185,7 +213,8 @@
             </Button>
             <Button Grid.Column="1" Margin="240,20,30,20" Click="Confirm_Click"
                     Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"
-                            Background="{DynamicResource SecondGrayShade}">
+                            Background="{DynamicResource SecondGrayShade}"
+                    FocusVisualStyle="{DynamicResource FocusControl}">
                 Dalje
                 <Button.Resources>
                     <Style TargetType="Border">

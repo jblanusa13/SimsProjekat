@@ -26,6 +26,26 @@ namespace ProjectSims.WPF.View.Guest1View.BarPages
             InitializeComponent();
         }
 
+        private void Minimize_Click(object sender, RoutedEventArgs e)
+        {
+            Guest1StartView startView = (Guest1StartView)Window.GetWindow(this);
+            startView.WindowState = WindowState.Minimized;
+        }
+        private void Size_Click(object sender, RoutedEventArgs e)
+        {
+            Guest1StartView startView = (Guest1StartView)Window.GetWindow(this);
+            if(startView.WindowState == WindowState.Normal)
+            {
+                startView.WindowState = WindowState.Maximized;
+                SizeButton.Content = FindResource("MainWindowRestoreIcon");
+            }
+            else
+            {
+                startView.WindowState = WindowState.Normal;
+                SizeButton.Content = FindResource("MainWindowMaximizeIcon");
+            }
+        }
+
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             Guest1StartView startView = (Guest1StartView)Window.GetWindow(this);
