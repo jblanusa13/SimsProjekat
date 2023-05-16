@@ -170,7 +170,7 @@
             </Button>
             <Image Source="/Resources/Icons/Guide/description.png" Margin="100,1500,0,0"/>
             <GroupBox Header="Opis" Margin="0,1500,100,0" Height="300" >
-                <TextBox Text="{Binding Description, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="860" Height="220" TextChanged="TextBox_TextChanged"/>
+                <TextBox Text="{Binding Description, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="860" Height="220"/>
             </GroupBox>
             <Button Margin="0,0,10,80" Height="85" Width="85" HorizontalAlignment="Right" VerticalAlignment="Bottom"  Background="Transparent" BorderThickness="0" Click="CreateTour_Click" Cursor="Hand">
                 <Image Source="/Resources/Icons/Guide/checked.png" Height="80" Width="80" Cursor="Hand">
