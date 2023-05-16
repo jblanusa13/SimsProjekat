@@ -33,7 +33,6 @@ namespace ProjectSims.Domain.Model
             Adress = values[3];
             Email = values[4];
             UserId = Convert.ToInt32(values[5]);
-            InitializeData();
         }
 
         public string[] ToCSV()
@@ -48,12 +47,6 @@ namespace ProjectSims.Domain.Model
                 UserId.ToString() 
             };
             return csvvalues;
-        }
-
-        public void InitializeData()
-        {
-            UserRepository userRepository = new UserRepository();
-            User = userRepository.GetById(UserId);
         }
     }
 }

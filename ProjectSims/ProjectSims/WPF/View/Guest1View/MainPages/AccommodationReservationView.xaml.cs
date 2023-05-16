@@ -109,6 +109,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
 
         private AccommodationReservationService reservationService;
 
+
         public Guest1 Guest { get; set; }
         public AccommodationReservationView(Accommodation SelectedAccommodation, Guest1 guest)
         {
@@ -117,6 +118,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
 
             Guest = guest;
             reservationService = new AccommodationReservationService();
+
 
             Accommodation = SelectedAccommodation;
             Username = guest.User.Username;

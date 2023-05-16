@@ -34,7 +34,7 @@ namespace ProjectSims.Repository
 
             foreach(AccommodationAndOwnerRating rating in ratings)
             {
-                if(rating.Reservation.Guest.Id == guestId)
+                if(rating.Reservation.GuestId == guestId)
                 {
                     ratingsByGuest.Add(rating);
                 }
@@ -44,7 +44,6 @@ namespace ProjectSims.Repository
         }
         public List<AccommodationAndOwnerRating> GetAll()
         {
-            ReloadRatingList();
             return ratings;
         }
 

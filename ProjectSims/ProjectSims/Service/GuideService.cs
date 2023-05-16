@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Domain.RepositoryInterface;
+using ProjectSims.Serializer;
 
 namespace ProjectSims.Service
 {
@@ -17,6 +18,10 @@ namespace ProjectSims.Service
         public GuideService()
         {
             guideRepository = Injector.CreateInstance<IGuideRepository>();
+        }
+        public Guide GetGuideByUserId(int userId)
+        {
+            return guideRepository.GetByUserId(userId);
         }
 
         public List<Guide> GetAllGuides()

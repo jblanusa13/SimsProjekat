@@ -10,5 +10,6 @@ namespace ProjectSims.Domain.RepositoryInterface
 {
     public interface IGuest2Repository : IGenericRepository<Guest2,int>, ISubject
     {
+        public Guest2 GetByUserId(int userId);
     }
 }

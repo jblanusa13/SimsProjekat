@@ -52,7 +52,6 @@ namespace ProjectSims.Domain.Model
             State = Enum.Parse<ReservationState>(values[6]);
             RatedAccommodation = Convert.ToBoolean(values[7]);
             RatedGuest = Convert.ToBoolean(values[8]);
-            InitializeData();
         }
 
         public string[] ToCSV()
@@ -69,15 +68,6 @@ namespace ProjectSims.Domain.Model
                 RatedGuest.ToString()
             };
             return csvvalues;
-        }
-        public void InitializeData()
-        {
-            //Guest = Injector.CreateInstance<IGuest1Repository>().GetById(GuestId);
-            AccommodationRepository accommodationRepository = new AccommodationRepository();
-            Guest1Repository guest1Repository = new Guest1Repository();
-
-            Accommodation = accommodationRepository.GetById(AccommodationId);
-            Guest = guest1Repository.GetById(GuestId);
         }
     }
 }

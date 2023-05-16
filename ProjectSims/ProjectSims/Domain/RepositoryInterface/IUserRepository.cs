@@ -9,5 +9,6 @@ namespace ProjectSims.Domain.RepositoryInterface
 {
     public interface IUserRepository : IGenericRepository<User, int>
     {
+        public User GetByUsername(string username);
     }
 }

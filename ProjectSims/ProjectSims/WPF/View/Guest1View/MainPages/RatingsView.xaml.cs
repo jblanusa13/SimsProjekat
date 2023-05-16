@@ -44,8 +44,9 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             accommodationRatingService.Subscribe(this);
             guestRatingService.Subscribe(this);
 
-            MyRatings = new ObservableCollection<AccommodationAndOwnerRating>(accommodationRatingService.GetAllRatingsByGuestId(guest.Id));
             OwnerRatings = new ObservableCollection<GuestRating>(guestRatingService.GetAllRatingsForGuest(guest.Id));
+            MyRatings = new ObservableCollection<AccommodationAndOwnerRating>(accommodationRatingService.GetAllRatingsByGuestId(guest.Id));
+            
 
             BackButton.Focus();
         }

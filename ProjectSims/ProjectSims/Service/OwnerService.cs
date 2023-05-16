@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Domain.RepositoryInterface;
+using ProjectSims.Serializer;
 
 namespace ProjectSims.Service
 {
@@ -19,6 +20,11 @@ namespace ProjectSims.Service
         {
             owners = Injector.CreateInstance<IOwnerRepository>();
             requestService = new RequestService();
+        }
+
+        public Owner GetOwnerByUserId(int userId)
+        {
+            return owners.GetByUserId(userId);
         }
 
         public List<Owner> GetAllOwners()

@@ -15,12 +15,35 @@ namespace ProjectSims.Service
     public class AccommodationReservationService
     {
         private IAccommodationReservationRepository reservationRepository;
-        private RequestService requestService;
+        private IRequestRepository requestRepository;
+        private IGuest1Repository guest1Repository;
+        private IAccommodationRepository accommodationRepository;
 
         public AccommodationReservationService()
         {
             reservationRepository = Injector.CreateInstance<IAccommodationReservationRepository>();
-            requestService = new RequestService();
+            requestRepository = Injector.CreateInstance<IRequestRepository>();
+            guest1Repository = Injector.CreateInstance<IGuest1Repository>();
+            accommodationRepository = Injector.CreateInstance<IAccommodationRepository>();
+
+            InitializeGuest();
+            InitializeAccommodation();
+        }
+
+        private void InitializeGuest()
+        {
+            foreach(var reservation in reservationRepository.GetAll())
+            {
+                reservation.Guest = guest1Repository.GetById(reservation.GuestId);
+            }
+        }
+
+        private void InitializeAccommodation()
+        {
+            foreach (var reservation in reservationRepository.GetAll())
+            {
+                reservation.Accommodation = accommodationRepository.GetById(reservation.AccommodationId);
+            }
         }
         public List<AccommodationReservation> GetAllReservations()
         {
@@ -72,7 +95,13 @@ namespace ProjectSims.Service
             reservation.State = ReservationState.Canceled;
             reservationRepository.Update(reservation);
 
-            requestService.UpdateRequestsWhenCancelReservation(reservation);
+            UpdateRequestsWhenCancelReservation(reservation);         
+        }
+
+        public void UpdateRequestsWhenCancelReservation(AccommodationReservation reservation)
+        {
+            Request request = requestRepository.GetByReservationId(reservation.Id);
+            requestRepository.Remove(request);
         }
 
         public bool CanCancel(AccommodationReservation reservation)

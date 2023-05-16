@@ -30,31 +30,32 @@ namespace ProjectSims
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly UserFileHandler userFile;
-        private readonly OwnerFileHandler ownerFile;
-        private readonly Guest1FileHandler guest1File;
-        private readonly Guest2FileHandler guest2File;
-        private readonly GuideFileHandler guideFile;
+        private UserService userService;
+        private OwnerService ownerService;
+        private Guest1Service guest1Service;
+        private Guest2Service guest2Service;
+        private GuideService guideService;
         public MainWindow()
         {
             InitializeComponent();
-            userFile = new UserFileHandler();
-            ownerFile = new OwnerFileHandler();
-            guest1File = new Guest1FileHandler();
-            guest2File = new Guest2FileHandler();
-            guideFile = new GuideFileHandler();
+
+            userService = new UserService();
+            ownerService = new OwnerService();
+            guest1Service = new Guest1Service();
+            guest2Service = new Guest2Service();
+            guideService = new GuideService();
 
             UsernameTextBox.Focus();
         }
 
         private void SignIn(object sender, RoutedEventArgs e)
         {
-            User user = userFile.GetByUsername(UsernameTextBox.Text);
+            User user = userService.GetByUsername(UsernameTextBox.Text);
             if (user != null)
             {
                 if (user.Password == PasswordTextBox.Password)
                 {
-                    Owner owner = ownerFile.GetByUserId(user.Id);
+                    Owner owner = ownerService.GetOwnerByUserId(user.Id);
                     if(owner != null)
                     {
                         OwnerStartingView ownerView = new OwnerStartingView(owner);
@@ -62,7 +63,7 @@ namespace ProjectSims
                         Close();
                     }
 
-                    Guest1 guest1 = guest1File.GetByUserId(user.Id);
+                    Guest1 guest1 = guest1Service.GetGuestByUserId(user.Id);
                     if(guest1 != null)
                     {
                         Guest1StartView guest1View = new Guest1StartView(guest1);
@@ -70,7 +71,7 @@ namespace ProjectSims
                         Close();
                     }
 
-                    Guide guide = guideFile.GetByUserId(user.Id);
+                    Guide guide = guideService.GetGuideByUserId(user.Id);
                     if(guide!= null)
                     {
                         GuideStartingView startingView = new GuideStartingView(guide);
@@ -78,7 +79,7 @@ namespace ProjectSims
                         Close();
                     }
 
-                    Guest2 guest2 = guest2File.GetByUserId(user.Id);
+                    Guest2 guest2 = guest2Service.GetGuestByUserId(user.Id);
                     if(guest2 != null)
                     {
                         Guest2StartingView guest2View = new Guest2StartingView(guest2);

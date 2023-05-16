@@ -16,10 +16,22 @@ namespace ProjectSims.Service
     {
         private DateRangesService dateRangesService;
         private IRequestRepository requestRepository;
+        private IAccommodationReservationRepository accommodationReservationRepository;
         public RequestService()
         {
             dateRangesService = new DateRangesService();
             requestRepository = Injector.CreateInstance<IRequestRepository>();
+            accommodationReservationRepository = Injector.CreateInstance<IAccommodationReservationRepository>();
+
+            InitializeReservation();    
+        }
+
+        private void InitializeReservation()
+        {
+            foreach(var request in requestRepository.GetAll())
+            {
+                request.Reservation = accommodationReservationRepository.GetById(request.ReservationId);
+            }
         }
 
         public List<Request> GetAllRequestByGuest(int guestId)
@@ -51,11 +63,6 @@ namespace ProjectSims.Service
             requestRepository.Remove(request);
         }
 
-        public void UpdateRequestsWhenCancelReservation(AccommodationReservation reservation)
-        {
-            Request request = requestRepository.GetByReservationId(reservation.Id);
-            requestRepository.Remove(request);
-        }
 
         private void SetReservedForRequest(Request request)
         {

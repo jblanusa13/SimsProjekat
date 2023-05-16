@@ -12,5 +12,6 @@ namespace ProjectSims.Domain.RepositoryInterface
     {
         public bool ExistAccommodation(Owner owner, int accommodationId);
         public void AddAccommodation(Owner owner, int accommodationId);
+        public Owner GetByUserId(int userId);
     }
 }

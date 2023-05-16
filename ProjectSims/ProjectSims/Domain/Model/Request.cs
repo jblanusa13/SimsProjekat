@@ -42,7 +42,6 @@ namespace ProjectSims.Domain.Model
             State = Enum.Parse<RequestState>(values[3]);
             OwnerComment = values[4];
             Reserved = Convert.ToBoolean(values[5]);
-            InitializeData();
         }
 
         public string[] ToCSV()
@@ -56,13 +55,6 @@ namespace ProjectSims.Domain.Model
                 Reserved.ToString()
             };
             return csvvalues;
-        }
-
-        public void InitializeData()
-        {
-            AccommodationReservationRepository reservationRepository = new AccommodationReservationRepository();
-
-            Reservation = reservationRepository.GetById(ReservationId);
         }
     }
 }

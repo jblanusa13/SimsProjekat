@@ -48,7 +48,7 @@ namespace ProjectSims.Domain.Model
             ReservationId = Convert.ToInt32(values[6]);
             TimeStamp = DateOnly.ParseExact(values[7], "dd.MM.yyyy");
             GuestId = Convert.ToInt32(values[8]);
-            InitializeData();
+
         }
 
         public string[] ToCSV()
@@ -64,12 +64,6 @@ namespace ProjectSims.Domain.Model
                 TimeStamp.ToString("dd.MM.yyyy"),
                 GuestId.ToString()};
             return csvValues;
-        }
-
-        public void InitializeData()
-        {
-            AccommodationReservationRepository reservationRepository = new AccommodationReservationRepository();
-            Reservation = reservationRepository.GetById(ReservationId);
         }
     }
 }
