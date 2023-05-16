@@ -14,25 +14,29 @@ namespace ProjectSims.Domain.Model
     {
         public int Id { get; set; }
         public int GuideId { get; set; }
+        public Guide Guide { get; set; }
         public string Name { get; set; }
         public string Location { get; set; }
         public string Description { get; set; }
         public string Language { get; set; }
         public int MaxNumberGuests { get; set; }
         public List<int> KeyPointIds { get; set; }
+        public List<KeyPoint> KeyPoints {get; set;}
         public DateTime StartOfTheTour { get; set; }
         public double Duration { get; set; }
         public List<string> Images { get; set; }
         public int AvailableSeats { get; set; }
         public TourState State { get; set; }
         public int ActiveKeyPointId { get; set; }
+        public KeyPoint ActiveKeyPoint { get; set; }
         public Tour() 
         {
             KeyPointIds = new List<int>();
+            KeyPoints = new List<KeyPoint>();
             Images = new List<string>();
         }
 
-        public Tour(int id, int guideId, string name, string location, string description, string language, int maxNumberGuests,List<int> keyPointIds, DateTime startOfTheTour, double duration, List<String> images, int availableSeats, TourState state,int activeKeyPointId)
+        public Tour(int id, int guideId, string name, string location, string description, string language, int maxNumberGuests,List<int> keyPointIds, DateTime startOfTheTour, double duration, List<String> images, int availableSeats, TourState state, int activeKeyPointId)
         {
             Id = id;
             GuideId = guideId;

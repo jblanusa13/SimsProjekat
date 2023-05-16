@@ -14,11 +14,29 @@ namespace ProjectSims.Service
     public class TourRequestService
     {
         private ITourRequestRepository tourRequestRepository;
-        private TourService tourService;
+        private IGuest2Repository guest2Repository;
+        private IGuideRepository guideRepository;
         public TourRequestService()
         {
             tourRequestRepository = Injector.CreateInstance<ITourRequestRepository>();
-            tourService = new TourService();
+            guest2Repository = Injector.CreateInstance<IGuest2Repository>();
+            guideRepository = Injector.CreateInstance<IGuideRepository>();
+            InitializeGuest();
+            InitializeGuide();
+        }
+        private void InitializeGuest()
+        {
+            foreach (var item in tourRequestRepository.GetAll())
+            {
+                item.Guest2 = guest2Repository.GetById(item.Guest2Id);
+            }
+        }
+        private void InitializeGuide()
+        {
+            foreach (var item in tourRequestRepository.GetAll())
+            {
+                item.Guide = guideRepository.GetById(item.GuideId);
+            }
         }
         public int NextId()
         {

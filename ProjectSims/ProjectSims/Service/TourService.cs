@@ -12,21 +12,45 @@ using ProjectSims.Observer;
 using System.Globalization;
 using ProjectSims.View;
 using ProjectSims.Domain.RepositoryInterface;
+using System.ComponentModel.Design;
+using System.Windows.Automation.Peers;
 
 namespace ProjectSims.Service
 {
     public class TourService
     {
         private ITourRepository tourRepository;
+        private IGuideRepository guideRepository;
+        private IKeyPointRepository keyPointRepository;
         private KeyPointService keyPointService;
-        private GuideScheduleService guideScheduleService;
         private ReservationTourService reservationService;
         public TourService()
         {
             tourRepository = Injector.CreateInstance<ITourRepository>();
+            guideRepository = Injector.CreateInstance<IGuideRepository>();
+            keyPointRepository = Injector.CreateInstance<IKeyPointRepository>();
             keyPointService = new KeyPointService();
-            guideScheduleService = new GuideScheduleService();
             reservationService = new ReservationTourService();
+            InitializeGuide();
+            InitializeKeyPoints();
+        }
+        private void InitializeGuide()
+        {
+            foreach (var item in tourRepository.GetAll())
+            {
+                item.Guide = guideRepository.GetById(item.GuideId);
+            }
+        }
+        private void InitializeKeyPoints()
+        {
+            foreach (var item in tourRepository.GetAll())
+            {
+               foreach(int id in item.KeyPointIds)
+                {
+                    item.KeyPoints.Add(keyPointRepository.GetById(id));
+                }
+                item.ActiveKeyPoint = keyPointRepository.GetById(item.ActiveKeyPointId);
+            }        
         }
         public List<Tour> GetAllTours()
         {

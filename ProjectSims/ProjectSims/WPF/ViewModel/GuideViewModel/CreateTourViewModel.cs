@@ -34,26 +34,26 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
             Guide = guide;
             TourRequest = tourRequest;
         }
-        public int CreateKeyPointAndReturnId(string name,KeyPointType type)
+        public KeyPoint CreateAndReturnKeyPoint(string name,KeyPointType type)
         {
             KeyPoint keyPoint = new KeyPoint(keyPointService.NextId(),name,type);
             keyPointService.Create(keyPoint);
-            return keyPoint.Id;
+            return keyPoint;
         }
         public void CreateTour(string name,string language,string location,string maxNumberGuests,List<string> appointments,string startKeyPoint,List<string> otherKeyPoints,string finishKeyPoint,string description,List<string> images) 
         {
             foreach(string appointment in appointments)
             {
-                List<int> keyPointIds = new List<int>();
-                keyPointIds.Add(CreateKeyPointAndReturnId(startKeyPoint, KeyPointType.First));
+                List<KeyPoint> keyPoints = new List<KeyPoint>();
+                keyPoints.Add(CreateAndReturnKeyPoint(startKeyPoint, KeyPointType.First));
                 foreach (string keyPointName in otherKeyPoints)
                 {
-                    keyPointIds.Add(CreateKeyPointAndReturnId(keyPointName, KeyPointType.Intermediate));
+                    keyPoints.Add(CreateAndReturnKeyPoint(keyPointName, KeyPointType.Intermediate));
                 }
-                keyPointIds.Add(CreateKeyPointAndReturnId(finishKeyPoint, KeyPointType.Last));
+                keyPoints.Add(CreateAndReturnKeyPoint(finishKeyPoint, KeyPointType.Last));
                 DateTime start = DateTime.ParseExact(appointment.Split("-")[0], "MM/dd/yyyy H:m", CultureInfo.InvariantCulture);
                 double duration = Convert.ToDouble(appointment.Split("-")[1]);
-                Tour tour = new Tour(-1, Guide.Id, name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPointIds, start, duration, images, Convert.ToInt32(maxNumberGuests), TourState.Inactive, -1);
+                Tour tour = new Tour(-1, Guide.Id, name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPoints.Select(k => k.Id).ToList(), start, duration, images, Convert.ToInt32(maxNumberGuests), TourState.Inactive, -1);
                 tourService.Create(tour);
                 guideScheduleService.Create(new GuideSchedule(-1, Guide.Id, tour.Id, start, start.AddHours(duration)));
             }
