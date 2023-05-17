@@ -32,7 +32,8 @@ namespace ProjectSims.WPF.ViewModel.Guest2ViewModel
         {
             if (SelectedNotification != null)
             {
-                var openWindow = new NotificationNewTourView(SelectedNotification);
+                NotificationNewTourViewModel viewModel = new NotificationNewTourViewModel(SelectedNotification);
+                var openWindow = new NotificationNewTourView(viewModel);
                 openWindow.Show();
             }
         }
