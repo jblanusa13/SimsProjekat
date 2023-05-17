@@ -45,7 +45,9 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
             keyPointService.Create(keyPoint);
             return keyPoint;
         }
-        public void CreateTour(string name,string language,string location,string maxNumberGuests,List<string> appointments,string startKeyPoint,List<string> otherKeyPoints,string finishKeyPoint,string description,List<string> images) 
+        public void CreateTour(string name,string language,string location,string maxNumberGuests,
+                List<string> appointments,string startKeyPoint,List<string> otherKeyPoints,string finishKeyPoint,
+                string description,List<string> images, bool createdByLocation, bool createdByLanguage) 
         {
             foreach(string appointment in appointments)
             {
@@ -64,6 +66,7 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
                 tourService.Create(tour);
                 guideScheduleService.Create(new GuideSchedule(-1, Guide.Id, tour.Id, start, start.AddHours(duration)));
             }
+            SendNotificationIfTourCreatedByMostWantedLanugageAllGuests(createdByLanguage, language);
             if(TourRequest != null)
             {
                 TourRequest.State = TourRequestState.Accepted;
@@ -73,6 +76,21 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
                 NotificationTour notification = new NotificationTour(-1, TourRequest.Guest2Id, TourRequest.GuideId,
                     lastAddedTours, content, DateTime.Now, false);
                 notificationTourService.Create(notification);
+            }
+        }
+        public void SendNotificationIfTourCreatedByMostWantedLanugageAllGuests(bool CreatedByLanguage,string language)
+        {
+            if (CreatedByLanguage != false)
+            {
+                List<TourRequest> requests = tourRequestService.GetAllUnrealizedRequestsToLanguage(language);
+                List<int> guest2Ids = tourRequestService.GetAllGuest2Ids(requests);
+                foreach (int guest2Id in guest2Ids)
+                {
+                    string content = "Obavjestenje o novim turama koju je vodic kreirao spram statistike o zahtjevima(najtrazeniji jezik).";
+                    NotificationTour notification = new NotificationTour(-1, guest2Id, Guide.Id,
+                        lastAddedTours, content, DateTime.Now, false);
+                    notificationTourService.Create(notification);
+                }
             }
         }
         public bool GuideIsAvailable(DateOnly date,int hour,int minute,double duration)

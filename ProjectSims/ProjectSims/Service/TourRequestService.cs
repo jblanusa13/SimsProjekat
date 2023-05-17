@@ -176,6 +176,35 @@ namespace ProjectSims.Service
             }
             return number;
         }
+        public List<TourRequest> GetAllUnrealizedRequests()
+        {
+            return tourRequestRepository.GetUnrealizedRequests();
+
+        }
+        public List<TourRequest> GetAllUnrealizedRequestsToLanguage(string language)
+        {
+            List<TourRequest> requests = GetAllUnrealizedRequests();
+            List<TourRequest> unrealizedRequests = new List<TourRequest>();
+            foreach(var request in requests)
+            {
+                if(request.Language.ToUpper() == language)
+                {
+                    unrealizedRequests.Add(request);
+                }
+            }
+            return unrealizedRequests;
+        }
+
+        public List<int> GetAllGuest2Ids(List<TourRequest> requests)
+        {
+            List<int> guest2Ids = new List<int>();
+            foreach (TourRequest request in requests)
+            {
+                if (!guest2Ids.Contains(request.Guest2Id))
+                    guest2Ids.Add(request.Guest2Id);
+            }
+            return guest2Ids;
+        }
         public void Create(TourRequest tourRequest)
         {
             tourRequestRepository.Create(tourRequest);
