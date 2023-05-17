@@ -148,7 +148,8 @@ namespace ProjectSims.WPF.View.Guest2View
                     }
                 case 7:
                     {
-                        SelectedTab.Content = new ShowNotificationTourView(guest2);
+                        ShowNotificationTourViewModel showNotificViewModel = new ShowNotificationTourViewModel(guest2);
+                        SelectedTab.Content = new ShowNotificationTourView(showNotificViewModel);
                         break;
                     }
             
