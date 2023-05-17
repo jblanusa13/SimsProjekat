@@ -80,6 +80,11 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             accommodationForRating.Show();    
         }
 
+        private void MyProfile_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeTab(5);
+        }
+
         public void ChangeTab(int tabNum)
         {
             switch (tabNum)
@@ -104,6 +109,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
                     }
                 case 5:
                     {
+                        NavigationService.Navigate(new Profile());
                         break;
                     }
                 case 6:

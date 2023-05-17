@@ -361,7 +361,7 @@
                          FontSize="16" FontFamily="Bahnschrift"
                         Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}"
                          BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold"
-                        FocusVisualStyle="{DynamicResource FocusControl}">
+                        FocusVisualStyle="{DynamicResource FocusControl}" Click="MyProfile_Click">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="10"/>

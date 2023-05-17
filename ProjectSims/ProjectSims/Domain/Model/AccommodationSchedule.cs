@@ -44,10 +44,10 @@ namespace ProjectSims.Domain.Model
             {
                 if (range != UnavailableDates.Last())
                 {
-                    UnavailableDatesString += range.CheckIn.ToString() + "-" + range.CheckOut.ToString() + ",";
+                    UnavailableDatesString += range.CheckIn.ToString("dd.MM.yyyy") + "-" + range.CheckOut.ToString("dd.MM.yyyy") + ",";
                 }
             }
-            UnavailableDatesString += UnavailableDates.Last().CheckIn + "-" + UnavailableDates.Last().CheckOut;
+            UnavailableDatesString += UnavailableDates.Last().CheckIn.ToString("dd.MM.yyyy") + "-" + UnavailableDates.Last().CheckOut.ToString("dd.MM.yyyy");
             string[] csvValues = {
                 Id.ToString(),
                 UnavailableDatesString,
