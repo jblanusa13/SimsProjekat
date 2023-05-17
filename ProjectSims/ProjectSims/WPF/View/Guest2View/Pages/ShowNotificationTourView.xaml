@@ -25,13 +25,13 @@
         
         <Border BorderBrush="Black" BorderThickness="2" CornerRadius="10,10,10,10" Grid.Column="1" HorizontalAlignment="Left" Height="524" Margin="100,36,0,0" Grid.Row="1" VerticalAlignment="Top" Width="900"/>
         
-        <ListView Grid.Row="1" Grid.Column="1" Margin="150,75,200,60" Cursor="Hand"
+        <ListView x:Name="listView" Grid.Row="1" Grid.Column="1" Margin="150,75,200,60" Cursor="Hand"
                   ItemsSource="{Binding ListNotification}"
                   SelectedItem="{Binding Path=SelectedNotification}" SelectionMode="Single" d:ItemsSource="{d:SampleData ItemCount=5}"
                   PreviewMouseDoubleClick ="OpenNotificationAboutNewTours_PreviewMouseDown" >
-            <ListView.ItemTemplate >
+            <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Height="150" Width="750">
+                    <Grid x:Name="grid" Height="150" Width="750">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="60"/>
                             <RowDefinition Height="*"/>

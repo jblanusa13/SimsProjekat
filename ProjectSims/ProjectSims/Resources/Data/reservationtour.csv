@@ -3,6 +3,8 @@
 2|0|5|16|InactiveTour|-1|False|False|50
 3|3|4|16|InactiveTour|-1|False|False|50
 4|0|2|14|InactiveTour|-1|False|False|53
-5|4|4|14|InactiveTour|-1|False|False|53
+5|4|4|14|ActiveTour|-1|False|False|53
 6|0|9|15|InactiveTour|-1|False|False|16
-7|4|4|15|InactiveTour|-1|False|False|16
+7|4|4|15|ActiveTour|-1|False|False|16
+8|2|6|13|Present|9|False|False|18
+9|4|8|13|Present|17|False|False|18
