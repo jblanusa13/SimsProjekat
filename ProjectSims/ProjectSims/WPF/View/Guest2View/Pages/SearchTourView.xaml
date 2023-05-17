@@ -52,7 +52,7 @@
             <TextBox x:Name="LanguageTextBox" HorizontalAlignment="Center" Margin="0,147,0,0" TextWrapping="Wrap" Text="" FontSize="15" VerticalAlignment="Top" Width="158" Height="27"/>
             <Label Content="Trajanje ture od:" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" Width="158" Margin="0,179,0,0"/>
             <TextBox x:Name="DurationStartTextBox" HorizontalAlignment="Left" Margin="21,214,0,0" TextWrapping="Wrap" Text="" FontSize="15" VerticalAlignment="Top" Width="50" Height="27"/>
-            <TextBox x:Name="DurationEndTextBox" HorizontalAlignment="Left" Margin="129,213,0,0" TextWrapping="Wrap" Text="" FontSize="15" VerticalAlignment="Top" Width="50" Height="27"/>
+            <TextBox x:Name="DurationEndTextBox" HorizontalAlignment="Left" Margin="129,214,0,0" TextWrapping="Wrap" Text="" FontSize="15" VerticalAlignment="Top" Width="50" Height="27"/>
             <Label Content="do:" FontSize="15" HorizontalAlignment="Center" Margin="0,213,0,0" VerticalAlignment="Top"/>
             <Label Content="Broj ljudi:" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" Width="158" Margin="0,248,0,0"/>
             <Button Click="Search_Click" Cursor="Hand" Content="Trazi" FontSize="18" HorizontalAlignment="Center" Margin="0,324,0,0" VerticalAlignment="Top" Width="108" Height="35" Background="#FF455DF6" Foreground="White"/>

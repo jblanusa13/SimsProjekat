@@ -23,6 +23,9 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
         private TourRequestService tourRequestService;
         private KeyPointService keyPointService;
         private GuideScheduleService guideScheduleService;
+        private NotificationTourService notificationTourService;
+        private List<int> lastAddedTours;
+
         public TourRequest TourRequest { get; set; }
         public Guide Guide { get; set; }
         public CreateTourViewModel(Guide guide,TourRequest tourRequest)
@@ -31,6 +34,8 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
             tourRequestService = new TourRequestService();
             keyPointService = new KeyPointService();
             guideScheduleService = new GuideScheduleService();
+            notificationTourService = new NotificationTourService();
+            lastAddedTours = new List<int>();
             Guide = guide;
             TourRequest = tourRequest;
         }
@@ -54,6 +59,8 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
                 DateTime start = DateTime.ParseExact(appointment.Split("-")[0], "MM/dd/yyyy H:m", CultureInfo.InvariantCulture);
                 double duration = Convert.ToDouble(appointment.Split("-")[1]);
                 Tour tour = new Tour(-1, Guide.Id, name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPoints.Select(k => k.Id).ToList(), start, duration, images, Convert.ToInt32(maxNumberGuests), TourState.Inactive, -1);
+                int lastAddedTour = tourService.NextId();
+                lastAddedTours.Add(lastAddedTour);
                 tourService.Create(tour);
                 guideScheduleService.Create(new GuideSchedule(-1, Guide.Id, tour.Id, start, start.AddHours(duration)));
             }
@@ -62,6 +69,10 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
                 TourRequest.State = TourRequestState.Accepted;
                 TourRequest.GuideId = Guide.Id;
                 tourRequestService.Update(TourRequest);
+                string content = "Obavjestenje o novim turama";
+                NotificationTour notification = new NotificationTour(-1, TourRequest.Guest2Id, TourRequest.GuideId,
+                    lastAddedTours, content, DateTime.Now, false);
+                notificationTourService.Create(notification);
             }
         }
         public bool GuideIsAvailable(DateOnly date,int hour,int minute,double duration)

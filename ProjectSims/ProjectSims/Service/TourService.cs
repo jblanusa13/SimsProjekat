@@ -52,6 +52,10 @@ namespace ProjectSims.Service
                 item.ActiveKeyPoint = keyPointRepository.GetById(item.ActiveKeyPointId);
             }        
         }
+        public int NextId()
+        {
+            return tourRepository.NextId();
+        }
         public List<Tour> GetAllTours()
         {
             return tourRepository.GetAll();

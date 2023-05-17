@@ -6,15 +6,15 @@
 5|Vojni muzej|False|Intermediate
 6|Pobednik|False|Intermediate
 7|Jaksiceva kula|False|Last
-8|Kalemegdan park|False|First
-9|Vojni muzej|False|Intermediate
-10|Pobednik|False|Intermediate
-11|Jaksiceva kula|False|Last
+8|Kalemegdan park|True|First
+9|Vojni muzej|True|Intermediate
+10|Pobednik|True|Intermediate
+11|Jaksiceva kula|True|Last
 12|Kalemegdan park|False|First
 13|Vojni muzej|False|Intermediate
 14|Pobednik|False|Intermediate
 15|Jaksiceva kula|False|Last
-16|Kalemegdan park|False|First
+16|Kalemegdan park|True|First
 17|Vojni muzej|False|Intermediate
 18|Pobednik|False|Intermediate
 19|Jaksiceva kula|False|Last

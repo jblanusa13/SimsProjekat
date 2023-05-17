@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest2View"
         mc:Ignorable="d"
-        Title="Upotrebi vaucer" Height="450" Width="450" WindowStartupLocation="CenterScreen">
+        Title="Upotrebi vaucer" Height="450" Width="450" WindowStartupLocation="CenterScreen" Topmost="True">
     <Grid>
         <Label Content="Ako zelite mozete upotrebiti 
                &#10;neki od sledecih vaucera (opciono):" HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" FontSize="24" Width="390"/>
