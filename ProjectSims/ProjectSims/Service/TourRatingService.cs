@@ -20,6 +20,7 @@ namespace ProjectSims.Service
         {
             tourRatingRepository = Injector.CreateInstance<ITourRatingRepository>();
             guest2Repository = Injector.CreateInstance<IGuest2Repository>();
+            tourRepository = Injector.CreateInstance<ITourRepository>();
             InitializeGuest();
             InitializeTour();
         }
