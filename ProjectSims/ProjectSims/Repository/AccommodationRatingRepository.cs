@@ -21,7 +21,7 @@ namespace ProjectSims.Repository
         public AccommodationRatingRepository()
         {
             ratingFileHandler = new AccommodationRatingFileHandler();
-          //  ratings = ratingFileHandler.Load();
+            ratings = ratingFileHandler.Load();
             observers = new List<IObserver>();
         }
         public AccommodationAndOwnerRating GetByReservationId(int reservationId)
