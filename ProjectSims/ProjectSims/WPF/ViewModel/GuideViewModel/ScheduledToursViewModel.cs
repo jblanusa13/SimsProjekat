@@ -28,10 +28,6 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
             Guide = guide;
             ScheduledTours = new ObservableCollection<Tour>(tourService.GetToursByStateAndGuideId(TourState.Inactive, Guide.Id));
         }
-        public bool IsLessThan48Hours(Tour SelectedTour)
-        {
-            return ((SelectedTour.StartOfTheTour - DateTime.Now).TotalHours < 48);
-        }
         public void CancelTour(Tour SelectedTour)
         {
             tourService.UpdateTourState(SelectedTour, TourState.Cancelled);

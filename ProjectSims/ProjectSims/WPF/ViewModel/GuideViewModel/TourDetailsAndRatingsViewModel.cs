@@ -36,7 +36,6 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
                 KeyPoints.Add(keyPointService.GetKeyPointById(keyPointId));
             }
             TourRatings = ratingService.GetAllRatingsByTour(selectedTour);
-            //TourRatings.ForEach(rating => rating.Guest = guestService.GetGuestById(rating.GuestId));
         }
     }
 }

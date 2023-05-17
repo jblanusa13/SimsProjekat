@@ -14,10 +14,20 @@ namespace ProjectSims.Service
     public class GuideService
     {
         private IGuideRepository guideRepository;
+        private IUserRepository userRepository;
 
         public GuideService()
         {
             guideRepository = Injector.CreateInstance<IGuideRepository>();
+            userRepository = Injector.CreateInstance<IUserRepository>();
+            InitializeUser();
+        }
+        private void InitializeUser()
+        {
+            foreach(var item in guideRepository.GetAll())
+            {
+                item.User = userRepository.GetById(item.UserId);
+            }
         }
         public Guide GetGuideByUserId(int userId)
         {

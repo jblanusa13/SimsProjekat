@@ -10,7 +10,6 @@ namespace ProjectSims.Domain.RepositoryInterface
 {
     public interface IGuideScheduleRepository : IGenericRepository<GuideSchedule, int>, ISubject
     {
-        public int NextId();
         public List<GuideSchedule> GetByGuideIdAndDate(int id,DateOnly date);
     }
 }

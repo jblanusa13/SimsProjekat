@@ -6,31 +6,140 @@
       xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="0" d:DesignWidth="1280"
-      Title="TourTrackingView" Background="#FF050518">
-    <ScrollViewer>
+      Title="TourTrackingView" Background="Transparent">
+    <Page.Resources>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Height" Value="45"/>
+        </Style>
+        <Style TargetType="{x:Type Image}">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Height" Value="65"/>
+            <Setter Property="Width" Value="65"/>
+        </Style>
+        <Style x:Key="ColumnHeader" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="Foreground" Value="#FF1B5886"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="IsHitTestVisible" Value="False"/>
+        </Style>
+        <Style TargetType="{x:Type Hyperlink}">
+            <Setter Property="Foreground" Value="#FF1B5886" />
+            <Setter Property="TextBlock.TextDecorations" Value="{x:Null}" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="MidnightBlue" />
+                    <Setter Property="TextBlock.TextDecorations" Value="Underline" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ColumnHeader1" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Background" Value="#D2FBA4"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="Foreground" Value="#FF1B5886"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="IsHitTestVisible" Value="False"/>
+        </Style>
+        <Style x:Key="TransparentStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border>
+                            <Border.Style>
+                                <Style TargetType="{x:Type Border}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Height" Value="28"/>
+                                            <Setter Property="Width" Value="28"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <Grid Background="Transparent">
+                                <ContentPresenter></ContentPresenter>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="TransparentStyle1" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border>
+                            <Border.Style>
+                                <Style TargetType="{x:Type Border}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Height" Value="64"/>
+                                            <Setter Property="Width" Value="64"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <Grid Background="Transparent">
+                                <ContentPresenter></ContentPresenter>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Border HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Height="40" Width="1280" BorderBrush="White" BorderThickness="0 0 0 1">
+            <Grid>
+                <Label Margin="20,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">
+                    <Hyperlink Click="Back_Click">
+                        <TextBlock Text="Praćenje ture"/>
+                    </Hyperlink>
+                </Label>
+                <Label Content="&#707;  Aktivna tura" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="130,10,0,0" FontSize="16"/>
+            </Grid>
+        </Border>
+        <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,40,0,0" Width="1280" Height="530">
         <Grid>
-            <TextBox x:Name="TourInfoTextBox" HorizontalAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Top" Width="900" Height="50" Foreground="White" FontSize="30" FontWeight="UltraBold" FontFamily="Broadway" BorderBrush="Transparent" Background="Transparent" IsReadOnly="True" BorderThickness="0"/>
-            <GroupBox Header="Pracenje stanica" FontSize="25" Foreground="White" FontWeight="UltraBold" FontFamily="Georgia" Margin="650,100,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="320" Height="520" BorderBrush="White" Background="Transparent" BorderThickness="0"/>
-            <ListView  ItemsSource="{Binding FinishedKeyPoints}" Margin="670,130,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="200" Background="LightGreen" FontWeight="Bold" FontFamily="Georgia" BorderBrush="Transparent">
-                <ListView.View>
-                    <GridView >
-                        <GridViewColumn Width="280" Header="Završene" >
+                <Label x:Name="TourInfoLabel" HorizontalAlignment="Center" Margin="0,50,0,0" FontSize="44" Height="60" FontWeight="Bold"/>
+                <Image Source="/Resources/Icons/Guide/checkpoints.png" Margin="0,190,200,0" HorizontalAlignment="Center"/>
+                <Button Style="{StaticResource TransparentStyle1}" Height="65" Width="65" Margin="0,50,50,00" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" BorderThickness="0" Click="FinishTour_Click" Cursor="Hand">
+                    <Image Source="/Resources/Icons/Guide/stop.png"/>
+                </Button>
+                <Label Content="Stanice" Margin="0,190,0,0" FontSize="36" Height="60" FontWeight="Medium" HorizontalAlignment="Center"/>
+                <ListView  ItemsSource="{Binding FinishedKeyPoints}" Margin="0,300,100,0" HorizontalAlignment="Right" VerticalAlignment="Top"  Width="500" Background="#ffc300" IsHitTestVisible="False">
+                    <ListView.View>
+                        <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeader1}" >
+                        <GridViewColumn Header="Završene" Width="490">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <CheckBox  Content="{Binding Name}" IsChecked="True" IsEnabled="False"/>
+                                        <CheckBox  Content="{Binding Name}" IsChecked="True" IsEnabled="False" Foreground="#FF1B5886" FontSize="18" FontFamily="Helvetica"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
-            <ListView x:Name="KeyPointListView" ItemsSource="{Binding UnFinishedKeyPoints}"  SelectedItem="{Binding Path=SelectedKeyPoint}" SelectionMode="Single" SelectionChanged="KeyPointSelected_SelectionChanged" Margin="670,340,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="200" Background="LightBlue" FontWeight="Bold" FontFamily="Georgia" BorderBrush="Transparent">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Nezavršene stanice" Width="280">
+                <ListView x:Name="KeyPointListView" ItemsSource="{Binding UnFinishedKeyPoints}"  SelectedItem="{Binding Path=SelectedKeyPoint}" SelectionMode="Single" SelectionChanged="KeyPointSelected_SelectionChanged" Margin="100,300,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Background="#ffc300">
+                    <ListView.View>
+                        <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeader}" >
+                        <GridViewColumn Header="Nezavršene stanice" Width="490">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <CheckBox  Content="{Binding Name}" IsChecked="False" IsEnabled="False"/>
+                                        <CheckBox  Content="{Binding Name}" IsChecked="False" IsEnabled="False" Foreground="#FF1B5886" FontSize="18" FontFamily="Helvetica"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -40,48 +149,81 @@
                     <Style TargetType="{x:Type ListViewItem}">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding RelativeSource={RelativeSource PreviousData}}" Value="{x:Null}">
-                                <Setter Property="Background" Value="#D2FBA4" />
-                            </DataTrigger>
+                                    <Setter Property="Background" Value="#D2FBA4" />
+                                </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </ListView.ItemContainerStyle>
             </ListView>
-            <Image Source="/Resources/Icons/Guide/mappin.png" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="940,360,0,0"/>
-            <ListView  ItemsSource="{Binding PresentGuests}" Margin="30,150,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="280" Height="200" Background="LightGreen" FontWeight="Bold" FontFamily="Georgia" BorderBrush="Black">
-                <ListView.View>
-                    <GridView >
-                        <GridViewColumn Width="135" Header="Ime" >
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBox  Text="{Binding Name}" IsEnabled="False"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Width="135" Header="Prezime" >
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBox  Text="{Binding Surname}" IsEnabled="False"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
+            <Image Source="/Resources/Icons/Guide/placeholder.png" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="560,330,0,0"/>
+                <Image Source="/Resources/Icons/Guide/people.png" Margin="0,540,220,0" HorizontalAlignment="Center"/>
+                <Label Content="Prisustvo" Margin="0,550,0,0" FontSize="36" Height="60" FontWeight="Medium" HorizontalAlignment="Center"/>
+                <ListView  ItemsSource="{Binding PresentGuests}" Margin="0,650,100,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="500"  Background="#ffc300" IsHitTestVisible="False">
+                    <ListView.Resources>
+                        <Style TargetType="{x:Type Label}">
+                            <Setter Property="Foreground" Value="#FF1B5886"/>
+                            <Setter Property="FontFamily" Value="Helvetica"/>
+                            <Setter Property="FontSize" Value="22"/>
+                        </Style>
+                    </ListView.Resources>
+                    <ListView.View>
+                        <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeader1}">
+                            <GridViewColumn Width="490" Header="Prisutni" >
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label >
+                                            <AccessText>
+                                                <MultiBinding StringFormat="{}{0}  {1}">
+                                                    <Binding Path="Name" />
+                                                    <Binding Path="Surname" />
+                                                </MultiBinding>
+                                            </AccessText>
+                                        </Label>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
                 </ListView.View>
             </ListView>
-            <DataGrid  x:Name="WaitingGuestsDataGrid" Width="280" 
-                       ItemsSource="{Binding WaitingGuests}"
-                       SelectionMode="Single" 
-                       SelectedItem="{Binding Path=SelectedGuest}" IsReadOnly="True" Height="200" 
-                        Background="White"
-                       AutoGenerateColumns="False" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="320,150,0,0">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Ime" FontFamily="Georgia" Binding="{Binding Name}" Width="140" />
-                    <DataGridTextColumn Header="Prezime" FontFamily="Georgia" Binding="{Binding Surname}" Width="140" />
-                </DataGrid.Columns>
-            </DataGrid>
-            <Button Click="FinishTour_Click" Content="Završi turu" HorizontalAlignment="Left" Margin="1000,550,0,0" VerticalAlignment="Top" Height="50" Width="200" Background="LightGreen"  Foreground="#FF050518" FontSize="30" FontWeight="Bold" FontFamily="Georgia"/>
-            <Button  Click="GuestSelect_Click" Content="Pozovi gosta" HorizontalAlignment="Left" Margin="500,370,0,0" VerticalAlignment="Top" Height="30" Width="100" Background="White"  Foreground="#FF050518" FontSize="15" FontWeight="Bold" FontFamily="Georgia"/>
-            <Label Content="Gosti koji još uvek nisu prisutni" HorizontalAlignment="Left" Margin="370,120,0,0" VerticalAlignment="Top" FontWeight="ExtraBold" FontFamily="Georgia" Foreground="White"/>
-            <Label Content="Prisutni gosti" HorizontalAlignment="Left" Margin="100,120,0,0" VerticalAlignment="Top" FontWeight="ExtraBold" FontFamily="Georgia" Foreground="White"/>
-        </Grid>
-    </ScrollViewer>
+                <ListView ItemsSource="{Binding WaitingGuests}"  SelectedItem="{Binding Path=SelectedGuest}" SelectionMode="Single" Margin="100,650,0,100" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Background="#ffc300">
+                    <ListView.Resources>
+                        <Style TargetType="{x:Type Label}">
+                            <Setter Property="Foreground" Value="#FF1B5886"/>
+                            <Setter Property="FontFamily" Value="Helvetica"/>
+                            <Setter Property="FontSize" Value="22"/>
+                            <Setter Property="Height" Value="30"/>
+                        </Style>
+                    </ListView.Resources>
+                    <ListView.View>
+                        <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeader}" >
+                            <GridViewColumn Header="Obavesti" Width="100">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Style="{StaticResource TransparentStyle}" Margin="30,0,0,0" Background="Transparent" BorderThickness="0" Click="NotifyGuest_Click" Cursor="Hand">
+                                          
+                                            <Image Source="/Resources/Icons/Guide/notification.png" Height="30" Width="30"/>
+                                        </Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Nisu potvrdili prisustvo" Width="390">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label >
+                                            <AccessText>
+                                                <MultiBinding StringFormat="{}{0}  {1}">
+                                                    <Binding Path="Name" />
+                                                    <Binding Path="Surname" />
+                                                </MultiBinding>
+                                            </AccessText>
+                                        </Label>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
 </Page>

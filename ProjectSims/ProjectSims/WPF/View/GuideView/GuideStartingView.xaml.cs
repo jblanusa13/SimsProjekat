@@ -40,11 +40,10 @@ namespace ProjectSims.View.GuideView
         private void Home_Click(object sender, RoutedEventArgs e)
         {
         }
-        private void Logout_Click(object sender, RoutedEventArgs e)
+        private void Account_Click(object sender, RoutedEventArgs e)
         {
-            Window login = new MainWindow();
-            login.Show();
-            Close();
+            Page accountPage = new AccountView(Guide);
+            GuideFrame.Content = accountPage;
         }
         private void Close_Click(object sender, RoutedEventArgs e)
         {

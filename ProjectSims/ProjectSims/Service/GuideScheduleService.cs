@@ -1,6 +1,7 @@
 ﻿using ProjectSims.Domain.Model;
 using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.Observer;
+using ProjectSims.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,30 @@ namespace ProjectSims.Service
     public class GuideScheduleService
     {
         private IGuideScheduleRepository guideScheduleRepository;
+        private IGuideRepository guideRepository;
+        private ITourRepository tourRepository;
 
         public GuideScheduleService()
         {
             guideScheduleRepository = Injector.CreateInstance<IGuideScheduleRepository>();
+            guideRepository = Injector.CreateInstance<IGuideRepository>();
+            tourRepository = Injector.CreateInstance<ITourRepository>();
+            InitializeTour();
+            InitializeGuide();
+        }
+        private void InitializeGuide()
+        {
+            foreach (var item in guideScheduleRepository.GetAll())
+            {
+                item.Guide = guideRepository.GetById(item.GuideId);
+            }
+        }
+        private void InitializeTour()
+        {
+            foreach (var item in guideScheduleRepository.GetAll())
+            {
+                item.Tour = tourRepository.GetById(item.TourId);
+            }
         }
         public List<GuideSchedule> GetAll()
         {

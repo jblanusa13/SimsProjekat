@@ -40,5 +40,9 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         {
             this.NavigationService.Navigate(new CreateTourView(Guide, null, null, suggestionsViewModel.GetMostWantedLocation()));
         }
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(this.Parent);
+        }
     }
 }
