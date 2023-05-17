@@ -13,7 +13,9 @@ namespace ProjectSims.Domain.Model
     {
         public int Id { get; set; }
         public int Guest2Id { get; set; }
+        public Guest2 Guest2 { get; set; }
         public int GuideId { get; set; }
+        public Guide Guide { get; set; }
         public TourRequestState State { get; set; }
         public string Location { get; set; }
         public string Description { get; set; }

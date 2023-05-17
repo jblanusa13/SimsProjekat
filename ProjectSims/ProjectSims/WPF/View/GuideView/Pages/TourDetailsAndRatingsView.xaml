@@ -6,8 +6,7 @@
       xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
       xmlns:conv="clr-namespace:CalcBinding;assembly=CalcBinding"
       mc:Ignorable="d" 
-     d:DesignHeight="2000" d:DesignWidth="1280"
-      Title="TourDetailsAndRatingsView">
+     d:DesignHeight="2000" d:DesignWidth="1280">
     <Page.Resources>
         <Style TargetType="{x:Type Label}">
         <Setter Property="Foreground" Value="White"/>
@@ -53,7 +52,7 @@
             <Image Source="/Resources/Icons/Guide/people.png" Margin="100,450,0,0"/>
             <TextBox Text="{Binding NumberOfPresentGuests}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="170,450,0,0" Width="1000" Height="150" FontSize="30" FontFamily="Helvetica" Foreground="White" Background="Transparent" BorderThickness="0" IsReadOnly="True"/>
             <Image Source="/Resources/Icons/Guide/checkpoints.png" Margin="100,550,0,0"/>
-            <ListView  ItemsSource="{Binding KeyPoints}" Margin="170,550,0,50" Width="300" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent" IsHitTestVisible="False">
+            <ListView  ItemsSource="{Binding SelectedTour.KeyPoints}" Margin="170,550,0,50" Width="300" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent" IsHitTestVisible="False">
                 <ListView.Resources>
                     <Style TargetType="{x:Type Label}">
                         <Setter Property="Foreground" Value="#FF1B5886"/>

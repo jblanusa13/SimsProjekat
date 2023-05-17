@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
       mc:Ignorable="d" 
-       d:DesignHeight="420" d:DesignWidth="1280">
+       d:DesignHeight="500" d:DesignWidth="1280">
     <Page.Resources>
         <Style TargetType="{x:Type Label}">
             <Setter Property="Foreground" Value="White"/>
@@ -22,7 +22,7 @@
             <Setter Property="Width" Value="50"/>
         </Style>
         <Style TargetType="{x:Type Hyperlink}">
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Foreground" Value="#FF1B5886" />
             <Setter Property="TextBlock.TextDecorations" Value="{x:Null}" />
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
@@ -32,7 +32,18 @@
             </Style.Triggers>
         </Style>
     </Page.Resources>
-    <Grid Background="Transparent">
+    <Grid>
+        <Border HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Height="40" Width="1280" BorderBrush="White" BorderThickness="0 0 0 1">
+            <Grid>
+                <Label Margin="20,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">
+                    <Hyperlink Click="Back_Click" IsEnabled="True">
+                    <TextBlock Text="Nova tura"/>
+                </Hyperlink>
+            </Label>
+            <Label Content="&#707;  Predlozi" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="100,10,0,0" FontSize="16"/>
+        </Grid>
+    </Border>
+    <Grid Background="Transparent" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
         <Image Source="/Resources/Icons/Guide/idea.png" Margin="480,50,0,0"/>
         <Label Content="Predlozi" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0" FontSize="44" Height="50" FontWeight="Bold"/>
         <Label Margin="50,150,0,0" Width="600" HorizontalAlignment="Left" VerticalAlignment="Top">
@@ -42,10 +53,11 @@
         </Label>
         <Image Source="/Resources/Images/Guide/languages.png" Width="450" Height="250" Margin="0,180,0,0"/>
         <Label Margin="650,150,0,0" Width="600" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Hyperlink Click="CreateTourByLocation_Click">
-                <TextBlock Text="{Binding MostWantedLocation, StringFormat='Kreiraj turu na najtrazenijoj lokaciji: {0}'}"/>
+                <Hyperlink Click="CreateTourByLocation_Click">
+                    <TextBlock Text="{Binding MostWantedLocation, StringFormat='Kreiraj turu na najtrazenijoj lokaciji: {0}'}"/>
             </Hyperlink>
         </Label>
         <Image Source="/Resources/Images/Guide/location.png" Width="450" Height="250" Margin="670,160,0,0" VerticalAlignment="Center"/>
+    </Grid>
     </Grid>
 </Page>

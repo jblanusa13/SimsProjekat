@@ -19,6 +19,7 @@ using System.Windows.Shapes;
 using ProjectSims.Observer;
 using System.Data;
 using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ProjectSims.WPF.View.GuideView.Pages
 {
@@ -41,8 +42,12 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             tourService.Subscribe(this);
             reservationService = new ReservationTourService();
             Guide = g;
-            TodayTours = new ObservableCollection<Tour>(tourService.GetToursByDateAndGuideId(DateTime.Now,Guide.Id));   
-        }
+            TodayTours = new ObservableCollection<Tour>(tourService.GetToursByDateAndGuideId(DateTime.Now,Guide.Id));
+            if (tourService.GetTourByStateAndGuideId(TourState.Active, Guide.Id) != null)
+            {
+                AvailableTour.IsHitTestVisible = false;
+            }
+            }
         private void StartTour_Click(object sender, RoutedEventArgs e)
         {
             if(tourService.GetTourByStateAndGuideId(TourState.Active,Guide.Id) == null)
@@ -57,6 +62,10 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 MessageBox.Show("Vec postoji aktivna tura!");
             }
            
+        }
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(this.Parent);
         }
         private void UpdateAvailableTours()
         {

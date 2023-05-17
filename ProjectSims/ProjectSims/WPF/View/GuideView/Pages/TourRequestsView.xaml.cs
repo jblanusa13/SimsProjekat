@@ -43,6 +43,10 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 this.NavigationService.Navigate(new AcceptTourView(SelectedTourRequest,Guide));
             }
         }
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+                this.NavigationService.Navigate(this.Parent);
+        }
         private void Search_Click(object sender, RoutedEventArgs e)
         {
             tourRequestViewModel.SearchRequests(LocationTextBox.Text,LanguageTextBox.Text,MaxNumberGuestsTextBox.Text,DateRange.SelectedDates.Cast<DateTime>().ToList());
