@@ -51,25 +51,9 @@ namespace ProjectSims.Repository
             return reservation;
         }
 
-        public List<AccommodationReservation> GetInLastYear()
+        public List<AccommodationReservation> GetForGuestInLastYear(int guestId)
         {
-            return reservations.Where(r => (r.CheckInDate >= DateOnly.FromDateTime(DateTime.Today).AddDays(-365))).ToList();
-        }
-
-        public void AddUnavailableDate(AccommodationSchedule schedule, DateRanges dateRange)
-        {
-            DateRanges helpVariable;
-
-            for (int i = 0; i < schedule.UnavailableDates.Count; i++)
-            {
-                if (dateRange.CheckIn < schedule.UnavailableDates[i].CheckIn)
-                {
-                    helpVariable = schedule.UnavailableDates[i];
-                    schedule.UnavailableDates[i] = dateRange;
-                    dateRange = helpVariable;
-                }
-            }
-            schedule.UnavailableDates.Add(dateRange);
+            return reservations.Where(r => (r.CheckInDate >= DateOnly.FromDateTime(DateTime.Today).AddDays(-365)) && r.GuestId == guestId).ToList();
         }
 
         public List<AccommodationReservation> GetAll()

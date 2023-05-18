@@ -8,6 +8,7 @@ using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.FileHandler;
 using ProjectSims.FileHandler.Images;
 using ProjectSims.Observer;
+using ProjectSims.WPF.View.Guest1View.MainPages;
 
 namespace ProjectSims.Repository
 {
@@ -31,6 +32,10 @@ namespace ProjectSims.Repository
 
         public int NextId()
         {
+            if (guests.Count == 0)
+            {
+                return 0;
+            }
             return guests.Max(t => t.Id) + 1;
         }
 

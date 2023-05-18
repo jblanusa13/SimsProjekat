@@ -32,6 +32,22 @@ namespace ProjectSims.Repository
             return schedule.UnavailableDates;
         }
 
+        public void AddUnavailableDate(AccommodationSchedule schedule, DateRanges dateRange)
+        {
+            DateRanges helpVariable;
+
+            for (int i = 0; i < schedule.UnavailableDates.Count; i++)
+            {
+                if (dateRange.CheckIn < schedule.UnavailableDates[i].CheckIn)
+                {
+                    helpVariable = schedule.UnavailableDates[i];
+                    schedule.UnavailableDates[i] = dateRange;
+                    dateRange = helpVariable;
+                }
+            }
+            schedule.UnavailableDates.Add(dateRange);
+        }
+
         public AccommodationSchedule GetById(int key)
         {
             return schedules.Find(r => r.Id == key);

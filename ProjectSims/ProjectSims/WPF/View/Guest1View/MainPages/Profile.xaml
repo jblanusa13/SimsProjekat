@@ -198,7 +198,8 @@
 
             <Grid Grid.Column="1">
                 <Border Grid.Column="1" BorderBrush="{DynamicResource FontsColor}"
-                        Margin="10,40,50,40" BorderThickness="1">
+                        Margin="10,40,50,40" BorderThickness="1"
+                        Background="{DynamicResource BlueShade}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="120"/>
@@ -221,13 +222,13 @@
                                        HorizontalContentAlignment="Right"
                                        FontSize="25" FontFamily="Bahnschrift"
                                        VerticalContentAlignment="Bottom"
-                                       Margin="0,0,10,0">Postali ste</Label>
+                                       Margin="0,0,10,0"></Label>
                             </Grid>
                             <Label Grid.Row="1" x:Name="CaptionSecond"
                                    HorizontalContentAlignment="Right"
                                    FontSize="25" FontFamily="Bahnschrift"
                                    VerticalContentAlignment="Top"
-                                   Margin="0,0,10,0">Super gost!</Label>
+                                   Margin="0,0,10,0"></Label>
                         </Grid>
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
@@ -239,7 +240,8 @@
                                 FontSize="16" FontFamily="Bahnschrift"
                                        VerticalContentAlignment="Center"
                                        Margin="60,0,0,0">Broj rezervacija ove godine:</Label>
-                            <TextBox Grid.Column="1" Margin="10,15,120,15"></TextBox>
+                            <TextBox x:Name="ReservationTb" 
+                                Grid.Column="1" Margin="10,15,120,15"></TextBox>
                         </Grid>
                         <Grid Grid.Row="2">
                             <Grid.ColumnDefinitions>
@@ -251,7 +253,8 @@
                                 FontSize="16" FontFamily="Bahnschrift"
                                        VerticalContentAlignment="Center"
                                        Margin="60,0,0,0">Broj preostalih bonus poena:</Label>
-                            <TextBox Grid.Column="1" Margin="10,15,120,15"></TextBox>
+                            <TextBox x:Name="BonusPointsTb"
+                                Grid.Column="1" Margin="10,15,120,15"></TextBox>
                         </Grid>
                         <Grid Grid.Row="3">
                             <Grid.ColumnDefinitions>

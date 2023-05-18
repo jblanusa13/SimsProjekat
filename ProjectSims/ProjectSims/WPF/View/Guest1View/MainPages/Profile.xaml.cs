@@ -24,6 +24,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
     {
         public Guest1 Guest { get; set; }
         private SuperGuestService superGuestService;
+        private AccommodationReservationService accommodationReservationService;
         public Profile(Guest1 guest)
         {
             InitializeComponent();
@@ -37,39 +38,44 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         {
             if (Guest.SuperGuestId != -1)
             {
-                if(Guest.SuperGuest.StartDate < DateOnly.FromDateTime(DateTime.Today).AddDays(-365))
+                if (Guest.SuperGuest.StartDate < DateOnly.FromDateTime(DateTime.Today).AddDays(-365))
                 {
                     superGuestService.RemoveSuperGuest(Guest);
                     NotSuperGuestView();
                 }
+                else
+                {
+                    SuperGuestView();
+                }
             }
-
-                if (superGuestService.HasTenReservations(Guest.Id))
+            else
             {
-                if (Guest.SuperGuestId == -1)
+                if (superGuestService.HasTenReservations(Guest.Id))
                 {
                     superGuestService.CreateSuperGuest(Guest);
+                    SuperGuestView();
                 }
-                SuperGuestView();
+                else
+                {
+                    NotSuperGuestView();
+                }
             }
-
-            if (Guest.SuperGuestId != -1)
-            {
-
-            }
-            NotSuperGuestView();
         }
 
         public void SuperGuestView()
         {
-            CaptionFirst.Content = "Postali ste";
+            CaptionFirst.Content = "Vi ste";
             CaptionSecond.Content = "Super gost!";
+            ReservationTb.Text = superGuestService.GetReservationsForGuestInLastYear(Guest.Id).ToString();
+            BonusPointsTb.Text = Guest.SuperGuest.BonusPoints.ToString();
         }
 
         public void NotSuperGuestView()
         {
             CaptionFirst.Content = "Koliko jos da biste postali";
             CaptionSecond.Content = "Super gost";
+            ReservationTb.Text = superGuestService.GetReservationsForGuestInLastYear(Guest.Id).ToString();
+            BonusPointsTb.IsEnabled = false;
         }
     }
 }
