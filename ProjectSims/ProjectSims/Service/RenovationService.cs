@@ -14,12 +14,12 @@ namespace ProjectSims.Service
     public class RenovationService
     {
         private IRenovationRepository renovationRepository;
-        private IAccommodationScheduleRepository scheduleRepository;
+        private IAccommodationScheduleRepository accommodationScheduleRepository;
 
         public RenovationService()
         {
             renovationRepository = Injector.CreateInstance<IRenovationRepository>();
-            scheduleRepository = Injector.CreateInstance<IAccommodationScheduleRepository>();
+            accommodationScheduleRepository = Injector.CreateInstance<IAccommodationScheduleRepository>();
         }
 
         public Renovation GetRenovation(int id)
@@ -36,9 +36,11 @@ namespace ProjectSims.Service
             int id = renovationRepository.NextId();
             Renovation renovation = new Renovation(id, dateRange, description, accomodationId, accommodation);
             renovationRepository.Create(renovation);
-            List<DateRanges> dateRanges = scheduleRepository.GetUnavailableDates(accomodationId);
+            List<DateRanges> dateRanges = accommodationScheduleRepository.GetUnavailableDates(accomodationId);
             dateRanges.Add(dateRange);
-            scheduleRepository.Create(new AccommodationSchedule(-1, dateRanges, accomodationId));
+            AccommodationSchedule schedule = accommodationScheduleRepository.GetById(accommodation.ScheduleId);
+            //
+            accommodationScheduleRepository.Update(schedule);
         }
     }
 }

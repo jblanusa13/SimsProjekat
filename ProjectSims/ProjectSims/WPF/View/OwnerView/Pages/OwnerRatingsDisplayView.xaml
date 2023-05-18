@@ -8,9 +8,11 @@
       d:DesignHeight="750" d:DesignWidth="430"
       Title="Requests">
     
-    <Grid ScrollViewer.CanContentScroll="True" 
-            TextBlock.TextAlignment="Center"
-        SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical">
+    <Grid ScrollViewer.CanContentScroll="True"
+          ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+          ScrollViewer.VerticalScrollBarVisibility="Hidden"
+          TextBlock.TextAlignment="Center"
+          SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical">
         
         <DataGrid x:Name="RatingTable"  
                           ItemsSource="{Binding Ratings}" 

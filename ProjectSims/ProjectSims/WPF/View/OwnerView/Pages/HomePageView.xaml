@@ -16,11 +16,13 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="2">
-            <Button Content="Precica" 
+            <Button Content="Smještaji"
+                    Click="Accommodations_Click"
                     Height="40"
                     Width="100"
                     Margin="75,45,255,0"/>
-            <Button Content="Precica"
+            <Button Content="Recenzije"
+                    Click="Ratings_Click"
                     Height="40"
                     Width="100"
                     Margin="255,45,75,0"/>

@@ -39,7 +39,7 @@ namespace ProjectSims.Domain.Model
 
         public Accommodation(int id, string name, int idLocation, Location location, AccommodationType type, 
             int guestsMaximum, int minimumReservationDays, int dismissalDays, 
-            List<string> images, int idOwner, int scheduleId, bool renovated) {
+            List<string> images, int idOwner, int scheduleId, AccommodationSchedule schedule, bool renovated) {
             Id = id;
             Name = name;
             IdLocation = idLocation;
@@ -51,6 +51,7 @@ namespace ProjectSims.Domain.Model
             Images = images;
             IdOwner = idOwner;
             ScheduleId = scheduleId;
+            Schedule = schedule;
             Renovated = renovated;
         }
 
@@ -71,7 +72,6 @@ namespace ProjectSims.Domain.Model
             IdOwner = Convert.ToInt32(values[8]);
             ScheduleId = Convert.ToInt32(values[9]);
             Renovated = Convert.ToBoolean(values[10]);
-            InitializeData();
         }
         public string[] ToCSV()
         {
@@ -83,7 +83,7 @@ namespace ProjectSims.Domain.Model
                     ImageString += image + ",";
                 }
             }
-            ImageString += Images.Last();
+            ImageString += Images.LastOrDefault();
             string[] csvValues =
             { 
                 Id.ToString(), 
@@ -99,14 +99,6 @@ namespace ProjectSims.Domain.Model
                 Renovated.ToString()
             };
             return csvValues;
-        }
-
-        public void InitializeData()
-        {
-            LocationRepository locationRepository = new LocationRepository();
-            AccommodationScheduleRepository scheduleRepository = new AccommodationScheduleRepository();
-            Location = locationRepository.GetById(IdLocation);
-            Schedule = scheduleRepository.GetById(ScheduleId);
         }
     }
 }

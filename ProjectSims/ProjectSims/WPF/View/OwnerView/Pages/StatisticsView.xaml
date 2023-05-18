@@ -48,7 +48,7 @@
                 <Grid Grid.Row="1">
                     <Label Content="Lokacija:" FontSize="13" HorizontalAlignment="Left" Margin="50,5,0,0" VerticalAlignment="Center" Height="30" Width="159"/>
                     <TextBox x:Name="LocationTextBox" HorizontalAlignment="Right" Margin="0,5,50,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="183" Height="26" Foreground="Black" IsEnabled="False">
-                        <MultiBinding StringFormat="{}{0} {1}">
+                        <MultiBinding StringFormat="{}{0}, {1}">
                             <Binding Path="SelectedAccommodation.Location.City"/>
                             <Binding Path="SelectedAccommodation.Location.Country"/>
                         </MultiBinding>

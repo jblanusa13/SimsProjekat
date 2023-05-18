@@ -32,6 +32,7 @@ namespace ProjectSims.View.OwnerView.Pages
     public partial class AccommodationRegistrationView : Page, INotifyPropertyChanged
     {
         public Owner Owner { get; set; }
+        public Image SelectedImage { get; set; }
         public AccommodationRegistrationViewModel accommodationRegistrationViewModel { get; set; }
 
         public List<string> relativePaths = new List<string>();
@@ -229,6 +230,17 @@ namespace ProjectSims.View.OwnerView.Pages
         {
             this.NavigationService.Navigate(new AccommodationsDisplay(Owner, TitleTextBlock));
             TitleTextBlock.Text = "Smještaji";
+        }
+
+        private void DeleteImage_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            SelectedImage = (Image)ImageList.SelectedItem;
+            if (SelectedImage != null && e.Key.Equals(Key.Delete))
+            {
+                BitmapImage image = (BitmapImage)SelectedImage.Source;
+                ImageList.Items.Remove(SelectedImage);
+                relativePaths.Remove(image.UriSource.ToString());
+            }
         }
     }
 }

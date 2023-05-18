@@ -14,7 +14,7 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
     public class AccommodationsDisplayViewModel : IObserver
     {
         public Owner Owner { get; set; }
-        public ObservableCollection<Accommodation> Accommodations { get; set; }
+        public ObservableCollection<Accommodation> AccommodationsForDisplay { get; set; }
         private AccommodationService accommodationService;
         private OwnerService ownerService;
         
@@ -22,7 +22,7 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
             Owner = o;
             accommodationService = new AccommodationService();
             accommodationService.Subscribe(this); 
-            Accommodations = new ObservableCollection<Accommodation>(accommodationService.GetAccommodationsByOwner(Owner.Id));
+            AccommodationsForDisplay = new ObservableCollection<Accommodation>(accommodationService.GetAccommodationsByOwner(Owner.Id));
             ownerService = new OwnerService();
         }
         public bool HasWaitingRequests(Owner owner)
@@ -37,10 +37,10 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
 
         public void Update()
         {
-            Accommodations.Clear();
-            foreach (Accommodation accommodation in accommodationService.GetAllAccommodations())
+            AccommodationsForDisplay.Clear();
+            foreach (Accommodation accommodation in accommodationService.GetAccommodationsByOwner(Owner.Id))
             {
-                Accommodations.Add(accommodation);
+                AccommodationsForDisplay.Add(accommodation);
             }
         }
     }

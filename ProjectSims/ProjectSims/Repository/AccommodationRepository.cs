@@ -47,10 +47,7 @@ namespace ProjectSims.Repository
         {
             accommodation.Id = NextId();
             accommodations.Add(accommodation); 
-            List<DateRanges> datumi = new List<DateRanges>();
-            schedules.Add(new AccommodationSchedule(accommodation.ScheduleId, datumi, accommodation.Id));
             accommodationFileHandler.Save(accommodations);
-            accommodationScheduleFileHandler.Save(schedules);
             NotifyObservers();
         }
 
@@ -69,6 +66,7 @@ namespace ProjectSims.Repository
                 accommodations[index] = accommodation;
             }
             accommodationFileHandler.Save(accommodations);
+            NotifyObservers();
         }
 
         public List<Accommodation> GetAll()

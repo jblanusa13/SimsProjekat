@@ -50,7 +50,7 @@ namespace ProjectSims.WPF.View.OwnerView
             this.DataContext = this;
             Owner = o;
             TitleTextBlock.Text = "Početna stranica";
-            SelectedTab.Content = new HomePage(Owner);
+            SelectedTab.Content = new HomePage(Owner, TitleTextBlock);
             guestRatingService = new GuestRatingService();
        }
 

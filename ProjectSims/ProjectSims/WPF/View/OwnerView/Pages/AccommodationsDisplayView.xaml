@@ -14,7 +14,7 @@
                   ScrollViewer.VerticalScrollBarVisibility="Hidden"
                   Grid.Row="0">
                 <DataGrid x:Name="AccommodationsTable"
-                          ItemsSource="{Binding Accommodations}"
+                          ItemsSource="{Binding AccommodationsForDisplay}"
                           AutoGenerateColumns="False"
                           CanUserResizeColumns="False"
                           IsReadOnly="True"

@@ -29,7 +29,7 @@ namespace ProjectSims.Repository
 
         public List<DateRanges> GetUnavailableDates(int accommodationId)
         {
-            AccommodationSchedule schedule = schedules.Find(s => s.AccommodationId == accommodationId);
+            AccommodationSchedule schedule = schedules.Find(s => s.Id == accommodationId);
             return schedule.UnavailableDates;
         }
 

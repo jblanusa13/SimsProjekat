@@ -107,10 +107,10 @@
     <Compile Update="WPF\View\OwnerView\OwnerStartingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WPF\View\OwnerView\Pages\AccommodationsDisplay.xaml.cs">
+    <Compile Update="WPF\View\OwnerView\Pages\AccommodationsDisplayView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WPF\View\OwnerView\Pages\HomePage.xaml.cs">
+    <Compile Update="WPF\View\OwnerView\Pages\HomePageView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\GuideView\Pages\TourRequestsView.xaml.cs">
@@ -119,22 +119,22 @@
     <Compile Update="WPF\View\GuideView\Pages\TourTrackingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WPF\View\OwnerView\Pages\OwnerRatingsDisplay.xaml.cs">
+    <Compile Update="WPF\View\OwnerView\Pages\OwnerRatingsDisplayView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WPF\View\OwnerView\Pages\Profile.xaml.cs">
+    <Compile Update="WPF\View\OwnerView\Pages\ProfileView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\OwnerView\Pages\RenovationView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WPF\View\OwnerView\Pages\ReportToGenerate.xaml.cs">
+    <Compile Update="WPF\View\OwnerView\Pages\ReportToGenerateView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WPF\View\OwnerView\Pages\Requests.xaml.cs">
+    <Compile Update="WPF\View\OwnerView\Pages\RequestsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WPF\View\OwnerView\Pages\SideMenu.xaml.cs">
+    <Compile Update="WPF\View\OwnerView\Pages\SideMenuView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\OwnerView\Pages\StatisticsView.xaml.cs">
@@ -256,7 +256,7 @@
     <Page Update="WPF\View\OwnerView\OwnerStartingView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WPF\View\OwnerView\Pages\AccommodationsDisplay.xaml">
+    <Page Update="WPF\View\OwnerView\Pages\AccommodationsDisplayView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\GuideView\Pages\TourRequestsView.xaml">
@@ -265,25 +265,25 @@
     <Page Update="WPF\View\GuideView\Pages\TourTrackingView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WPF\View\OwnerView\Pages\HomePage.xaml">
+    <Page Update="WPF\View\OwnerView\Pages\HomePageView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WPF\View\OwnerView\Pages\OwnerRatingsDisplay.xaml">
+    <Page Update="WPF\View\OwnerView\Pages\OwnerRatingsDisplayView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WPF\View\OwnerView\Pages\Profile.xaml">
+    <Page Update="WPF\View\OwnerView\Pages\ProfileView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\OwnerView\Pages\RenovationView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WPF\View\OwnerView\Pages\ReportToGenerate.xaml">
+    <Page Update="WPF\View\OwnerView\Pages\ReportToGenerateView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WPF\View\OwnerView\Pages\Requests.xaml">
+    <Page Update="WPF\View\OwnerView\Pages\RequestsView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WPF\View\OwnerView\Pages\SideMenu.xaml">
+    <Page Update="WPF\View\OwnerView\Pages\SideMenuView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\OwnerView\Pages\StatisticsView.xaml">

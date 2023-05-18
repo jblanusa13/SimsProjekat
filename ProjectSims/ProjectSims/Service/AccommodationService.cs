@@ -15,12 +15,31 @@ namespace ProjectSims.Service
     {
         private IAccommodationRepository accommodationRepository;
         private IAccommodationScheduleRepository scheduleRepository;
-        private IRenovationRepository renovationRepository;
+        private ILocationRepository locationRepository;
 
         public AccommodationService()
         {
             accommodationRepository = Injector.CreateInstance<IAccommodationRepository>();
             scheduleRepository = Injector.CreateInstance<IAccommodationScheduleRepository>();
+            locationRepository = Injector.CreateInstance<ILocationRepository>();
+            InitializeSchedule();
+            InitializeLocation();
+        }
+
+        private void InitializeSchedule()
+        {
+            foreach (Accommodation accommodation in GetAllAccommodations()) 
+            {
+                accommodation.Schedule = scheduleRepository.GetById(accommodation.ScheduleId);
+            }
+        }
+
+        private void InitializeLocation()
+        {
+            foreach (Accommodation accommodation in GetAllAccommodations())
+            {
+                accommodation.Location = locationRepository.GetById(accommodation.IdLocation);
+            }
         }
 
         public List<Accommodation> GetAllAccommodations()
@@ -47,6 +66,7 @@ namespace ProjectSims.Service
         {
             accommodation.ScheduleId = scheduleRepository.NextId();
             accommodationRepository.Create(accommodation);
+            scheduleRepository.Create(accommodation.Schedule);
         }
 
         public void Delete(Accommodation accommodation)
@@ -63,17 +83,20 @@ namespace ProjectSims.Service
         {
             foreach (var item in accommodations)
             {
-                foreach (var range in item.Schedule.UnavailableDates)
+                if (item.Schedule.UnavailableDates.Count != 0)
                 {
-                    if (range.CheckOut < DateOnly.FromDateTime(DateTime.Today) && !IsRenovatedYearAgo(range.CheckOut))
+                    foreach (var range in item.Schedule.UnavailableDates)
                     {
-                        item.Renovated = true;
+                        if (range.CheckOut < DateOnly.FromDateTime(DateTime.Today) && !IsRenovatedYearAgo(range.CheckOut))
+                        {
+                            item.Renovated = true;
+                        }
+                        else
+                        {
+                            item.Renovated = false;
+                        }
+                        accommodationRepository.Update(item);
                     }
-                    else
-                    {
-                        item.Renovated = false;
-                    }       
-                    accommodationRepository.Update(item);
                 }
             }
         }

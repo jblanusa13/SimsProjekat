@@ -52,7 +52,9 @@
                   ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                   ScrollViewer.VerticalScrollBarVisibility="Disabled"
                   ScrollViewer.PanningMode="HorizontalOnly"
-                  Margin="50,387,50,205">
+                  Margin="50,387,50,205"
+                  PreviewKeyDown="DeleteImage_PreviewKeyDown"
+                  SelectedItem="{Binding SelectedImage}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel  HorizontalAlignment="Center" Orientation="Horizontal"/>

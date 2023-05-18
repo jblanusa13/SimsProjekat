@@ -104,7 +104,7 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
             printDialog.PrintDocument(documentPaginator, "Izvestaj");
 
             TitleTextBlock.Text = "Početna stranica";
-            this.NavigationService.Navigate(new HomePage(Owner));
+            this.NavigationService.Navigate(new HomePage(Owner, TitleTextBlock));
         }
         
         private void YearComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
