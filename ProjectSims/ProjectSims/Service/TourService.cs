@@ -34,14 +34,14 @@ namespace ProjectSims.Service
             InitializeGuide();
             InitializeKeyPoints();
         }
-        private void InitializeGuide()
+        public void InitializeGuide()
         {
             foreach (var item in tourRepository.GetAll())
             {
                 item.Guide = guideRepository.GetById(item.GuideId);
             }
         }
-        private void InitializeKeyPoints()
+        public void InitializeKeyPoints()
         {
             foreach (var item in tourRepository.GetAll())
             {

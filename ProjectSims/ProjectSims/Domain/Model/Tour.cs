@@ -52,6 +52,7 @@ namespace ProjectSims.Domain.Model
             AvailableSeats = availableSeats;
             State = state;
             ActiveKeyPointId = activeKeyPointId;
+            KeyPoints = new List<KeyPoint>();
         }
 
         public static TourState GetState(string state)

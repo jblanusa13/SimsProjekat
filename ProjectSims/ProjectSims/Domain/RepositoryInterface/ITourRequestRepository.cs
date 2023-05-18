@@ -17,6 +17,7 @@ namespace ProjectSims.Domain.RepositoryInterface
         public List<TourRequest> GetByLanguage(string language);
         public List<TourRequest> GetByMaxNumberGuests(int maxNumberGuests);
         public List<TourRequest> GetRequestsInDateRange(DateOnly dateRangeStart, DateOnly dateRangeEnd);
-        public List<TourRequest> GetInLastYear();
+        public List<TourRequest> GetByYear(int year);
+        public List<TourRequest> GetByYearAndMonth(int year,int month);
     }
 }

@@ -5,6 +5,7 @@ using ProjectSims.Repository;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.PerformanceData;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -69,7 +70,27 @@ namespace ProjectSims.Service
         }
         public List<TourRequest> GetRequestsInLastYear()
         {
-            return tourRequestRepository.GetInLastYear();
+            return tourRequestRepository.GetAll().Where(r => (DateTime.Now - r.CreationDate).TotalDays <= 365).ToList();
+        }      
+        public Dictionary<int,int> GetNumberOfRequestsByYear(int year)
+        {
+            Dictionary<int,int> result = new Dictionary<int,int>();
+            List<int> years = tourRequestRepository.GetAll().Select(r=>r.CreationDate.Year).Distinct().ToList();
+            foreach(int y in years)
+            {
+                result[y] = tourRequestRepository.GetByYear(y).Count();
+            }
+            return result;           
+        }
+        public Dictionary<string, int> GetNumberOfRequestsByYearAndMonth(int year)
+        {
+            Dictionary<string, int> result = new Dictionary<string, int>();
+            List<int> months = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+            foreach (int m in months)
+            {
+                result[DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(m)] = tourRequestRepository.GetByYearAndMonth(year,m).Count();
+            }
+            return result;
         }
 
         public string GetMostWantedLanguageInLastYear()

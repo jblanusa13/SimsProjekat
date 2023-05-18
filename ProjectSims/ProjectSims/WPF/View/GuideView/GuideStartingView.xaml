@@ -82,7 +82,7 @@
                         <Image Source="/Resources/Icons/Guide/request.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Statistika zahteva" FontSize="28" Foreground="#FF1B5886" Height="30" HorizontalAlignment="Left">
+                <MenuItem Header="Statistika zahteva" Click="RequestStatistics_Click" FontSize="28" Foreground="#FF1B5886" Height="30" HorizontalAlignment="Left">
                     <MenuItem.Icon>
                         <Image Source="/Resources/Icons/Guide/statistics.png"/>
                     </MenuItem.Icon>
