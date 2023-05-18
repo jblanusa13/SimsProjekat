@@ -14,12 +14,15 @@ namespace ProjectSims.Service
     {
         private IGuest1Repository guestRepository;
         private IUserRepository userRepository;
+        private ISuperGuestRepository superGuestRepository;
         public Guest1Service()
         {
             guestRepository = Injector.CreateInstance<IGuest1Repository>();
             userRepository = Injector.CreateInstance<IUserRepository>();
+            superGuestRepository = Injector.CreateInstance<ISuperGuestRepository>();
 
             InitializeUser();
+            InitializeSuperGuest();
         }
 
         public Guest1 GetGuestByUserId(int userId)
@@ -37,6 +40,16 @@ namespace ProjectSims.Service
             foreach (var guest in guestRepository.GetAll())
             {
                 guest.User = userRepository.GetById(guest.UserId);
+            }
+        }
+        private void InitializeSuperGuest()
+        {
+            foreach (var guest in guestRepository.GetAll())
+            {
+                if (guest.SuperGuestId != -1)
+                {
+                    guest.SuperGuest = superGuestRepository.GetById(guest.SuperGuestId);
+                }
             }
         }
     }

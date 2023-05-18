@@ -10,5 +10,6 @@ namespace ProjectSims.Domain.RepositoryInterface
     public interface IAccommodationScheduleRepository : IGenericRepository<AccommodationSchedule, int>
     {
         public List<DateRanges> GetUnavailableDates(int accommodationId);
+        public void AddUnavailableDate(AccommodationSchedule schedule, DateRanges dateRange);
     }
 }

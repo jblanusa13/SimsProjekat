@@ -18,6 +18,7 @@ namespace ProjectSims.Service
         private IRequestRepository requestRepository;
         private IGuest1Repository guest1Repository;
         private IAccommodationRepository accommodationRepository;
+        private IAccommodationScheduleRepository accommodationScheduleRepository;
 
         public AccommodationReservationService()
         {
@@ -25,6 +26,7 @@ namespace ProjectSims.Service
             requestRepository = Injector.CreateInstance<IRequestRepository>();
             guest1Repository = Injector.CreateInstance<IGuest1Repository>();
             accommodationRepository = Injector.CreateInstance<IAccommodationRepository>();
+            accommodationScheduleRepository = Injector.CreateInstance<IAccommodationScheduleRepository>();
 
             InitializeGuest();
             InitializeAccommodation();
@@ -83,6 +85,11 @@ namespace ProjectSims.Service
             int id = reservationRepository.NextId();
             AccommodationReservation reservation = new AccommodationReservation(id, accommodationId, guestId, checkIn, checkOut, guestNumber, ReservationState.Active, false, false);
             reservationRepository.Create(reservation);
+
+            AccommodationSchedule schedule = accommodationRepository.GetById(accommodationId).Schedule;
+            DateRanges dateRange = new DateRanges(checkIn, checkOut);
+            accommodationScheduleRepository.AddUnavailableDate(schedule, dateRange);
+            accommodationScheduleRepository.Update(schedule);
         }
 
         public void Update(AccommodationReservation reservation)

@@ -18,10 +18,10 @@ namespace ProjectSims.Domain.Model
             UnavailableDates = new List<DateRanges>();
         }
 
-        public AccommodationSchedule(int id, List<DateRanges> unavailableDates, int accommodationId)
+        public AccommodationSchedule(int id, int accommodationId)
         {
             Id = id;
-            UnavailableDates = unavailableDates;
+            UnavailableDates = new List<DateRanges>();
             AccommodationId = accommodationId;
         }
 

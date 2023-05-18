@@ -109,7 +109,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
                     }
                 case 5:
                     {
-                        NavigationService.Navigate(new Profile());
+                        NavigationService.Navigate(new Profile(Guest));
                         break;
                     }
                 case 6:
