@@ -1010,3 +1010,4 @@ C:\Users\Korisnik\Desktop\Sims merge\SimsProjekat\ProjectSims\ProjectSims\obj\De
 C:\Users\Korisnik\Desktop\Sims merge\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ProjectSims.pdb
 C:\Users\Korisnik\Desktop\Sims merge\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ProjectSims.genruntimeconfig.cache
 C:\Users\Korisnik\Desktop\Sims merge\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ref\ProjectSims.dll
+C:\Users\Korisnik\Desktop\Sims merge\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Icons\Guest2\newnotification.png

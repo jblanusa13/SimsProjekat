@@ -67,7 +67,8 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
                 guideScheduleService.Create(new GuideSchedule(-1, Guide.Id, tour.Id, start, start.AddHours(duration)));
             }
             SendNotificationIfTourCreatedByMostWantedLanugageAllGuests(createdByLanguage, language);
-            if(TourRequest != null)
+            SendNotificationIfTourCreatedByMostWantedLocationAllGuests(createdByLocation, location);
+            if (TourRequest != null)
             {
                 TourRequest.State = TourRequestState.Accepted;
                 TourRequest.GuideId = Guide.Id;
@@ -86,7 +87,24 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
                 List<int> guest2Ids = tourRequestService.GetAllGuest2Ids(requests);
                 foreach (int guest2Id in guest2Ids)
                 {
-                    string content = "Obavjestenje o novim turama koju je vodic kreirao spram statistike o zahtjevima(najtrazeniji jezik).";
+                    string content = "Obavjestenje o novim turama koju je vodic kreirao spram statistike o svim zahtjevima" +
+                        "(najtrazeniji jezik).";
+                    NotificationTour notification = new NotificationTour(-1, guest2Id, Guide.Id,
+                        lastAddedTours, content, DateTime.Now, false);
+                    notificationTourService.Create(notification);
+                }
+            }
+        }
+        public void SendNotificationIfTourCreatedByMostWantedLocationAllGuests(bool CreatedByLocation, string location)
+        {
+            if (CreatedByLocation != false)
+            {
+                List<TourRequest> requests = tourRequestService.GetAllUnrealizedRequestsToLocation(location);
+                List<int> guest2Ids = tourRequestService.GetAllGuest2Ids(requests);
+                foreach (int guest2Id in guest2Ids)
+                {
+                    string content = "Obavjestenje o novim turama koju je vodic kreirao spram statistike o svim zahtjevima" +
+                        "(najtrazenija lokacija).";
                     NotificationTour notification = new NotificationTour(-1, guest2Id, Guide.Id,
                         lastAddedTours, content, DateTime.Now, false);
                     notificationTourService.Create(notification);

@@ -32,6 +32,15 @@ namespace ProjectSims.Service
         {
             return notificationTourRepository.GetByGuest2Id(guest2Id);
         }
+        public int GetNumberUnseenNotificationsByGuest2(int guest2Id)
+        {
+            int number = 0;
+            foreach(NotificationTour notificationTour in GetAllNotificationsByGuest2(guest2Id))
+            {
+                if (notificationTour.Seen == false) number++;
+            }
+            return number;
+        }
 
         public void Create(NotificationTour notificationTour)
         {

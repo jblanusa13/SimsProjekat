@@ -195,6 +195,20 @@ namespace ProjectSims.Service
             return unrealizedRequests;
         }
 
+        public List<TourRequest> GetAllUnrealizedRequestsToLocation(string location)
+        {
+            List<TourRequest> requests = GetAllUnrealizedRequests();
+            List<TourRequest> unrealizedRequests = new List<TourRequest>();
+            foreach (var request in requests)
+            {
+                if (request.Location.ToUpper() == location)
+                {
+                    unrealizedRequests.Add(request);
+                }
+            }
+            return unrealizedRequests;
+        }
+
         public List<int> GetAllGuest2Ids(List<TourRequest> requests)
         {
             List<int> guest2Ids = new List<int>();

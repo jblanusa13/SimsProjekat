@@ -16,17 +16,21 @@ using System.Windows.Shapes;
 using ProjectSims.WPF.View.Guest2View.Pages;
 using System.Windows.Threading;
 using ProjectSims.WPF.ViewModel.Guest2ViewModel;
+using ProjectSims.Observer;
+using System.Collections.ObjectModel;
 
 namespace ProjectSims.WPF.View.Guest2View
 {
     /// <summary>
     /// Interaction logic for Guest2StartingView.xaml
     /// </summary>
-    public partial class Guest2StartingView : Window
+    public partial class Guest2StartingView : Window, IObserver
     {
         private TourService tourService;
         private ReservationTourService reservationTourService;
         public Guest2 guest2 { get; set; }
+        public int NumberNotification { get; set; }
+        private NotificationTourService notificationTourService;
         public Guest2StartingView(Guest2 g)
         {
             InitializeComponent();
@@ -38,6 +42,8 @@ namespace ProjectSims.WPF.View.Guest2View
 
             reservationTourService = new ReservationTourService();
             tourService = new TourService();
+            notificationTourService = new NotificationTourService();
+            notificationTourService.Subscribe(this);
 
             if (reservationTourService.GetTourIdWhereGuestIsWaiting(guest2) != null)
             {
@@ -49,6 +55,7 @@ namespace ProjectSims.WPF.View.Guest2View
                     reservationTourService.UpdateGuestState(guest2,tour,Guest2State.Present);
                 }
             }
+            NumberNotification = notificationTourService.GetNumberUnseenNotificationsByGuest2(guest2.Id);
         }
 
         private void SetStatusBarClock()
@@ -161,6 +168,15 @@ namespace ProjectSims.WPF.View.Guest2View
             var startView = new MainWindow();
             startView.Show();
             Close();
+        }
+
+        private void UpdateNumberNotifications()
+        {
+            NumberNotification = notificationTourService.GetNumberUnseenNotificationsByGuest2(guest2.Id);
+        }
+        public void Update()
+        {
+            UpdateNumberNotifications();
         }
     }
 }

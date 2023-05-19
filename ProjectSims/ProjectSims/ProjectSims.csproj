@@ -22,6 +22,7 @@
     <None Remove="Resources\Icons\Guest2\icons8-help-50.png" />
     <None Remove="Resources\Icons\Guest2\icons8-home-page-64.png" />
     <None Remove="Resources\Icons\Guest2\icons8-male-user-48.png" />
+    <None Remove="Resources\Icons\Guest2\newnotification.png" />
     <None Remove="Resources\Icons\Guide\add.png" />
     <None Remove="Resources\Icons\Guide\addPhoto.png" />
     <None Remove="Resources\Icons\Guide\back.png" />
@@ -134,6 +135,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guest2\icons8-male-user-48.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guest2\newnotification.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\add.png">
