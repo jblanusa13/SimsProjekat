@@ -32,9 +32,9 @@ namespace ProjectSims.Service
             }
             return false;
         }
-        public List<AccommodationReservation> GetReservationsForGuestInLastYear(int guestId)
+        public int GetReservationNumberForGuestInLastYear(int guestId)
         {
-            return accommodationReservationRepository.GetForGuestInLastYear(guestId);
+            return accommodationReservationRepository.GetForGuestInLastYear(guestId).Count;
         }
 
         public void CreateSuperGuest(Guest1 guest)
@@ -56,6 +56,24 @@ namespace ProjectSims.Service
             guest.SuperGuestId = superGuestId;
             guest.SuperGuest = superGuest;
             guest1Repository.Update(guest);
+        }
+
+        public void CheckIfSuperGuest(Guest1 guest)
+        {
+            if (guest.SuperGuestId != -1)
+            {
+                if (guest.SuperGuest.StartDate < DateOnly.FromDateTime(DateTime.Today).AddDays(-365))
+                {
+                    RemoveSuperGuest(guest);
+                }
+            }
+            else
+            {
+                if (HasTenReservations(guest.Id))
+                {
+                    CreateSuperGuest(guest);
+                }
+            }
         }
     }
 }

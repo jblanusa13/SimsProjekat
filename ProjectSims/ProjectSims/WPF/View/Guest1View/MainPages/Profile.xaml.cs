@@ -24,7 +24,6 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
     {
         public Guest1 Guest { get; set; }
         private SuperGuestService superGuestService;
-        private AccommodationReservationService accommodationReservationService;
         public Profile(Guest1 guest)
         {
             InitializeComponent();
@@ -38,35 +37,20 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         {
             if (Guest.SuperGuestId != -1)
             {
-                if (Guest.SuperGuest.StartDate < DateOnly.FromDateTime(DateTime.Today).AddDays(-365))
-                {
-                    superGuestService.RemoveSuperGuest(Guest);
-                    NotSuperGuestView();
-                }
-                else
-                {
-                    SuperGuestView();
-                }
+                SuperGuestView();
             }
             else
             {
-                if (superGuestService.HasTenReservations(Guest.Id))
-                {
-                    superGuestService.CreateSuperGuest(Guest);
-                    SuperGuestView();
-                }
-                else
-                {
-                    NotSuperGuestView();
-                }
+                NotSuperGuestView();
             }
+
         }
 
         public void SuperGuestView()
         {
             CaptionFirst.Content = "Vi ste";
             CaptionSecond.Content = "Super gost!";
-            ReservationTb.Text = superGuestService.GetReservationsForGuestInLastYear(Guest.Id).ToString();
+            ReservationTb.Text = superGuestService.GetReservationNumberForGuestInLastYear(Guest.Id).ToString();
             BonusPointsTb.Text = Guest.SuperGuest.BonusPoints.ToString();
         }
 
@@ -74,8 +58,20 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         {
             CaptionFirst.Content = "Koliko jos da biste postali";
             CaptionSecond.Content = "Super gost";
-            ReservationTb.Text = superGuestService.GetReservationsForGuestInLastYear(Guest.Id).ToString();
-            BonusPointsTb.IsEnabled = false;
+            ReservationTb.Text = superGuestService.GetReservationNumberForGuestInLastYear(Guest.Id).ToString();
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
+
+        private void LogOut_Click(object sender, RoutedEventArgs e)
+        {
+            var login = new MainWindow();
+            login.Show();
+            Window parentWindow = Window.GetWindow(this);
+            parentWindow.Close();
         }
     }
 }

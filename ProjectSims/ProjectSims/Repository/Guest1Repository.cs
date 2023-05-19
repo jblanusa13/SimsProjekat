@@ -47,7 +47,7 @@ namespace ProjectSims.Repository
         }
         public void Update(Guest1 entity)
         {
-            int index = guests.FindIndex(guest => guest.Id == guest.Id);
+            int index = guests.FindIndex(guest => guest.Id == entity.Id);
             if (index != -1)
             {
                 guests[index] = entity;

@@ -33,6 +33,7 @@ namespace ProjectSims
         private UserService userService;
         private OwnerService ownerService;
         private Guest1Service guest1Service;
+        private SuperGuestService superGuestService;
         private Guest2Service guest2Service;
         private GuideService guideService;
         public MainWindow()
@@ -42,6 +43,7 @@ namespace ProjectSims
             userService = new UserService();
             ownerService = new OwnerService();
             guest1Service = new Guest1Service();
+            superGuestService = new SuperGuestService();
             guest2Service = new Guest2Service();
             guideService = new GuideService();
 
@@ -66,6 +68,7 @@ namespace ProjectSims
                     Guest1 guest1 = guest1Service.GetGuestByUserId(user.Id);
                     if(guest1 != null)
                     {
+                        superGuestService.CheckIfSuperGuest(guest1);
                         Guest1StartView guest1View = new Guest1StartView(guest1);
                         guest1View.Show();
                         Close();
