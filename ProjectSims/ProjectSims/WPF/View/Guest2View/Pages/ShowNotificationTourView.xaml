@@ -38,7 +38,7 @@
                         </Grid.RowDefinitions>
                         <Separator Background="Black" Margin="0,40,0,10"/>
                         <TextBlock x:Name="GuideNameText" Grid.Row="0" HorizontalAlignment="Left" Margin="10,8,0,0" TextWrapping="Wrap" Text="{Binding Guide.FullName}" VerticalAlignment="Top" FontSize="25"/>
-                        <TextBlock x:Name="DateSentText" Grid.Row="0" HorizontalAlignment="Left" Margin="488,8,0,0" TextWrapping="Wrap" Text="{Binding DateSentNotification}" VerticalAlignment="Top" FontSize="25"/>
+                        <TextBlock x:Name="DateSentText" Grid.Row="0" HorizontalAlignment="Left" Margin="460,8,0,0" TextWrapping="Wrap" Text="{Binding DateSentNotification}" VerticalAlignment="Top" FontSize="25"/>
                         <TextBlock x:Name="ContentNotificationText" HorizontalAlignment="Left" Margin="10,18,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding ContentNotification}" VerticalAlignment="Top" FontSize="20"/>
                     </Grid>
                     <DataTemplate.Triggers>

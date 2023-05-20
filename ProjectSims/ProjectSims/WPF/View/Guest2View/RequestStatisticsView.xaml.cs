@@ -29,13 +29,12 @@ namespace ProjectSims.WPF.View.Guest2View
         public RequestStatisticsView(RequestStatisticsViewModel requestStatisticsViewModel)
         {
             InitializeComponent();
-            this.DataContext = requestStatisticsViewModel;           
+            this.DataContext = requestStatisticsViewModel; 
         }
 
         private void ButtonBack(object sender, RoutedEventArgs e)
         {
             Close();
         }
-
     }
 }

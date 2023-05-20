@@ -18,18 +18,37 @@ using System.Windows.Threading;
 using ProjectSims.WPF.ViewModel.Guest2ViewModel;
 using ProjectSims.Observer;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace ProjectSims.WPF.View.Guest2View
 {
     /// <summary>
     /// Interaction logic for Guest2StartingView.xaml
     /// </summary>
-    public partial class Guest2StartingView : Window, IObserver
+    public partial class Guest2StartingView : Window, IObserver, INotifyPropertyChanged
     {
         private TourService tourService;
         private ReservationTourService reservationTourService;
         public Guest2 guest2 { get; set; }
-        public int NumberNotification { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private int numberNotification;
+        public int NumberNotification
+        {
+            get => numberNotification;
+            set
+            {
+                if(value != numberNotification)
+                {
+                    numberNotification = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         private NotificationTourService notificationTourService;
         public Guest2StartingView(Guest2 g)
         {

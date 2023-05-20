@@ -73,7 +73,7 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
                 TourRequest.State = TourRequestState.Accepted;
                 TourRequest.GuideId = Guide.Id;
                 tourRequestService.Update(TourRequest);
-                string content = "Obavjestenje o novim turama";
+                string content = "Obavjestenje o novim turama (Vas zahtjev je prihvacen)";
                 NotificationTour notification = new NotificationTour(-1, TourRequest.Guest2Id, TourRequest.GuideId,
                     lastAddedTours, content, DateTime.Now, false);
                 notificationTourService.Create(notification);

@@ -219,6 +219,23 @@ namespace ProjectSims.Service
             }
             return guest2Ids;
         }
+        public List<TourRequest> GetRequestsByYear(List<TourRequest> requests, string year)
+        {
+            List<TourRequest> wantedRequests = new List<TourRequest>();
+            if(year == "Svih vremena")
+            {
+                return requests;
+            }
+            foreach(var request in requests)
+            {
+                if(request.CreationDate.Year.ToString() == year)
+                {
+                    wantedRequests.Add(request);
+                }
+            }
+            return wantedRequests;
+        }
+        
         public void Create(TourRequest tourRequest)
         {
             tourRequestRepository.Create(tourRequest);
