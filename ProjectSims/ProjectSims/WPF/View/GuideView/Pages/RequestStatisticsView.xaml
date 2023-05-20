@@ -166,7 +166,7 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="Ukupan broj zahteva" Width="195">
+                                <GridViewColumn Header="Broj zahteva" Width="195">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <Label Content="{Binding Value}"/>
@@ -176,13 +176,29 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <lvc:CartesianChart Series="{Binding SeriesCollection}" Margin="0,20,50,80" HorizontalAlignment="Right" VerticalAlignment="Top" Height="400" Width="600" Hoverable="False" Foreground="White" FontSize="22" FontFamily="Helvetica" >
+                    <lvc:CartesianChart Series="{Binding SeriesCollection}" Margin="0,20,50,80" HorizontalAlignment="Right" VerticalAlignment="Top" Height="400" Width="600" Hoverable="True" Foreground="White" FontSize="22" FontFamily="Helvetica" LegendLocation="None">
+                        <lvc:CartesianChart.DataTooltip>
+                            <lvc:DefaultTooltip SelectionMode="OnlySender" Background="Transparent" FontFamily="Helvetica" BulletSize="18" FontSize="18"/>
+                        </lvc:CartesianChart.DataTooltip>
                         <lvc:CartesianChart.AxisX>
-                            <lvc:Axis Title="Godine"></lvc:Axis>
+                            <lvc:Axis Title="Godina" IsMerged="False" Foreground="White" FontSize="20" FontFamily="Helvetica">
+                                <lvc:Axis.Separator>
+                                    <lvc:Separator IsEnabled="False"/>
+                                </lvc:Axis.Separator>
+                            </lvc:Axis>
                         </lvc:CartesianChart.AxisX>
                         <lvc:CartesianChart.AxisY>
-                            <lvc:Axis Title="Broj zahteva na trazenom jeziku/lokaciji"></lvc:Axis>
+                            <lvc:Axis Title="Broj zahteva" Foreground="White" FontSize="20" FontFamily="Helvetica">
+                                <lvc:Axis.Separator>
+                                    <lvc:Separator IsEnabled="True" Step="1" StrokeThickness="0.3"/>
+                                </lvc:Axis.Separator>
+                            </lvc:Axis>
                         </lvc:CartesianChart.AxisY>
+
+
+
+
+
                     </lvc:CartesianChart>
                 </Grid>
             </Grid>

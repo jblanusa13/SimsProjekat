@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Reflection.PortableExecutable;
 using System.Text;
@@ -46,7 +47,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 SeriesCollection.Add(new ColumnSeries
                 {
                     Title = item.Key.ToString(),
-                    Values = new ChartValues<double> { item.Value }
+                    Values = new ChartValues<double> { item.Value },
                 });
             }
         }
@@ -57,34 +58,30 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             {
                 Column.Header = "Mesec";
                 StatisticsListView.Items.Clear();
+                SeriesCollection.Clear();
                 foreach(var item in tourRequestService.GetStatisticsData(LocationTextBox.Text, LanguageTextBox.Text, Convert.ToInt32(YearsComboBox.SelectedItem)))
                 {
                     StatisticsListView.Items.Add(item);
+                    SeriesCollection.Add(new ColumnSeries
+                    {
+                        Title = DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(item.Key),
+                        Values = new ChartValues<double> { item.Value }
+                    });
                 }
-                /*  foreach (var item in MonthStatisticsData)
-                  {
-                      SeriesCollection.Add(new ColumnSeries
-                      {
-                          Title = item.Key.ToString(),
-                          Values = new ChartValues<double> { item.Value }
-                      });
-                  }*/
             }
             else
             {
                 StatisticsListView.Items.Clear();
+                SeriesCollection.Clear();
                 foreach (var item in tourRequestService.GetStatisticsData(LocationTextBox.Text, LanguageTextBox.Text, -1))
                 {
                     StatisticsListView.Items.Add(item);
-                }
-              /*  foreach (var item in YearStatisticsData)
-                {
                     SeriesCollection.Add(new ColumnSeries
                     {
                         Title = item.Key.ToString(),
-                        Values = new ChartValues<double> { item.Value }
+                        Values = new ChartValues<double> { item.Value },
                     });
-                }*/
+                }
             }
         }
         public void Back_Click(object sender, RoutedEventArgs e)
