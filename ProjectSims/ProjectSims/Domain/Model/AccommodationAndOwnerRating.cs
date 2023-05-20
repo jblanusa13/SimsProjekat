@@ -85,19 +85,6 @@ namespace ProjectSims.Domain.Model
                 Images.Add(image);
             }
             RenovationId = Convert.ToInt32(values[8]);
-            InitializeData();
         }
-        
-        public void InitializeData()
-        {
-            //Reservation = Injector.CreateInstance<IAccommodationReservationRepository>().GetById(ReservationId);
-            //RenovationRecommendation = Injector.CreateInstance<IRenovationRecommendationRepository>().GetById(RenovationId);
-            AccommodationReservationRepository reservationRepository = new AccommodationReservationRepository();
-            RenovationRecommendationRepository recommendationRepository = new RenovationRecommendationRepository();
-
-            Reservation = reservationRepository.GetById(ReservationId);
-            RenovationRecommendation = recommendationRepository.GetById(RenovationId);
-        }
-
     }
 }

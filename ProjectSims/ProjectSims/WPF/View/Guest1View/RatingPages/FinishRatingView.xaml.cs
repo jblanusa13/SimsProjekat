@@ -26,6 +26,9 @@ namespace ProjectSims.WPF.View.Guest1View.RatingPages
         {
             InitializeComponent();
             this.viewModel = viewModel;
+            this.DataContext = viewModel;
+
+            BackButton.Focus();
         }
 
         private void FinishRating_Click(object sender, RoutedEventArgs e)

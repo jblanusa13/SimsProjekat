@@ -174,7 +174,7 @@ namespace ProjectSims.View.OwnerView.Pages
             {
                 accommodationRegistrationViewModel.RegisterAccommodation(LocationTextBox.Text, Pics, AccommodationNameTextBox.Text, Type, Convert.ToInt32(GuestsMaximumTextBox.Text), Convert.ToInt32(MinimumReservationDaysTextBox.Text), Convert.ToInt32(DismissalDaysTextBox.Text));
             }
-            this.NavigationService.Navigate(new AccommodationsDisplay(Owner, TitleTextBlock));
+            this.NavigationService.Navigate(new AccommodationsDisplayView(Owner, TitleTextBlock));
             TitleTextBlock.Text = "Smještaji";
         }
 
@@ -228,7 +228,7 @@ namespace ProjectSims.View.OwnerView.Pages
 
         private void Dismiss_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new AccommodationsDisplay(Owner, TitleTextBlock));
+            this.NavigationService.Navigate(new AccommodationsDisplayView(Owner, TitleTextBlock));
             TitleTextBlock.Text = "Smještaji";
         }
 

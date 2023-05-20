@@ -18,9 +18,9 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
     /// <summary>
     /// Interaction logic for ReportToGenerate.xaml
     /// </summary>
-    public partial class ReportToGenerate : Page
+    public partial class ReportToGenerateView : Page
     {
-        public ReportToGenerate()
+        public ReportToGenerateView()
         {
             InitializeComponent();
         }

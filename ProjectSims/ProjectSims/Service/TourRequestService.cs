@@ -4,6 +4,7 @@ using ProjectSims.Observer;
 using ProjectSims.Repository;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.PerformanceData;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,11 +14,29 @@ namespace ProjectSims.Service
     public class TourRequestService
     {
         private ITourRequestRepository tourRequestRepository;
-        private TourService tourService;
+        private IGuest2Repository guest2Repository;
+        private IGuideRepository guideRepository;
         public TourRequestService()
         {
             tourRequestRepository = Injector.CreateInstance<ITourRequestRepository>();
-            tourService = new TourService();
+            guest2Repository = Injector.CreateInstance<IGuest2Repository>();
+            guideRepository = Injector.CreateInstance<IGuideRepository>();
+            InitializeGuest();
+            InitializeGuide();
+        }
+        private void InitializeGuest()
+        {
+            foreach (var item in tourRequestRepository.GetAll())
+            {
+                item.Guest2 = guest2Repository.GetById(item.Guest2Id);
+            }
+        }
+        private void InitializeGuide()
+        {
+            foreach (var item in tourRequestRepository.GetAll())
+            {
+                item.Guide = guideRepository.GetById(item.GuideId);
+            }
         }
         public int NextId()
         {
@@ -47,6 +66,50 @@ namespace ProjectSims.Service
             if (dateRange.Count != 0)
                 wantedRequests.RemoveAll(request => !tourRequestRepository.GetRequestsInDateRange(DateOnly.FromDateTime(dateRange.First()), DateOnly.FromDateTime(dateRange.Last())).Contains(request));
             return wantedRequests;
+        }
+        public List<TourRequest> GetRequestsInLastYear()
+        {
+            return tourRequestRepository.GetInLastYear();
+        }
+
+        public string GetMostWantedLanguageInLastYear()
+        {
+            if (GetRequestsInLastYear != null)
+            {
+                List<String> languagesInLastYear = GetRequestsInLastYear().Select(r => r.Language.ToLower()).ToList();
+                return GetMostCommonElement(languagesInLastYear);
+            }
+            return null;
+        }
+        public string GetMostWantedLocationInLastYear()
+        {
+            if(GetRequestsInLastYear != null)
+            {
+                List<String> locationsInLastYear = GetRequestsInLastYear().Select(r => r.Location.ToLower()).ToList();
+                return GetMostCommonElement(locationsInLastYear);
+            }
+            return null;
+        }
+        public string GetMostCommonElement(List<string> list)
+        {
+            Dictionary<string, int> counts = new Dictionary<string, int>();
+            foreach (string element in list)
+            {
+                if (counts.ContainsKey(element))
+                {
+                    counts[element] += 1;
+                }
+                else
+                {
+                    counts.Add(element, 1);
+                }
+            }
+            int maxCount = counts.Values.Max();
+            if (counts.Where(c=> c.Value == maxCount).Count() > 1)
+            {
+                return null;
+            }
+            return counts.Aggregate((x, y) => x.Value > y.Value ? x : y).Key; ;
         }
         public List<TourRequest> GetByGuest2Id(int guest2Id)
         {

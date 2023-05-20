@@ -12,7 +12,7 @@ using System.Windows.Controls;
 
 namespace ProjectSims.WPF.ViewModel.OwnerViewModel
 {
-    public class RenovationViewModel 
+    public class RenovationScheduleViewModel 
     {
         public Owner Owner { get; set; }
         public TextBlock TitleTextBlock { get; set; }
@@ -21,14 +21,14 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
         public DateOnly FirstDate { get; set; }
         public DateOnly SecondDate { get; set; }
         public int Duration { get; set; }
-        private RenovationService renovationService;
+        private RenovationScheduleService renovationService;
         private AccommodationScheduleService accommodationScheduleService;
 
-        public RenovationViewModel(Accommodation selectedAccommodation, Owner owner) 
+        public RenovationScheduleViewModel(Accommodation selectedAccommodation, Owner owner) 
         {
             Owner = owner;
             SelectedAccommodation = selectedAccommodation;
-            renovationService = new RenovationService();
+            renovationService = new RenovationScheduleService();
             accommodationScheduleService = new AccommodationScheduleService();
             DateRanges = new ObservableCollection<DateRanges>();
         }

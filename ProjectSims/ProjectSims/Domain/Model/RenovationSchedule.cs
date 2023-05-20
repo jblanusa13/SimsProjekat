@@ -10,7 +10,7 @@ using ProjectSims.Serializer;
 
 namespace ProjectSims.Domain.Model
 {
-    public class Renovation : ISerializable
+    public class RenovationSchedule : ISerializable
     {
         public int Id { get; set; }
         public DateRanges DateRange { get; set; }
@@ -18,9 +18,9 @@ namespace ProjectSims.Domain.Model
         public int AccommodationId { get; set; }
         public Accommodation Accommodation { get; set; }
 
-        public Renovation() { }
+        public RenovationSchedule() { }
 
-        public Renovation(int id, DateRanges dateRange, string description, int accomodationId, Accommodation accommodation)
+        public RenovationSchedule(int id, DateRanges dateRange, string description, int accomodationId, Accommodation accommodation)
         {
             Id = id;
             DateRange = dateRange;
@@ -42,7 +42,7 @@ namespace ProjectSims.Domain.Model
         {
             string[] csvValues = {
                 Id.ToString(),
-                DateOnly.ParseExact(DateRange.CheckIn.ToString(), "dd.MM.yyyy") + "-" + DateOnly.ParseExact(DateRange.CheckOut.ToString(), "dd.MM.yyyy"),
+                DateRange.CheckIn.ToString("dd.MM.yyyy") + "-" + DateRange.CheckOut.ToString("dd.MM.yyyy"),
                 Description.ToString(),
                 AccommodationId.ToString()
             };

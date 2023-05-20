@@ -14,12 +14,41 @@ namespace ProjectSims.Service
     public class ReservationTourService
     {
         private IReservationTourRepository reservationTourRepository;
-        private Guest2Service guestService;
+        private IGuest2Repository guest2Repository;
+        private ITourRepository tourRepository;
+        private IKeyPointRepository keyPointRepository;
+
 
         public ReservationTourService()
         {
             reservationTourRepository = Injector.CreateInstance<IReservationTourRepository>();
-            guestService = new Guest2Service();
+            guest2Repository = Injector.CreateInstance<IGuest2Repository>();
+            tourRepository = Injector.CreateInstance<ITourRepository>();
+            keyPointRepository = Injector.CreateInstance<IKeyPointRepository>();
+            InitializeGuest();
+            InitializeTour();
+            InitializeKeyPoint();
+        }
+        private void InitializeGuest()
+        {
+            foreach (var item in reservationTourRepository.GetAll())
+            {
+                item.Guest2 = guest2Repository.GetById(item.Guest2Id);
+            }
+        }
+        private void InitializeTour()
+        {
+            foreach (var item in reservationTourRepository.GetAll())
+            {
+                item.Tour = tourRepository.GetById(item.TourId);
+            }
+        }
+        private void InitializeKeyPoint()
+        {
+            foreach (var item in reservationTourRepository.GetAll())
+            {
+                item.KeyPointWhereGuestArrived = keyPointRepository.GetById(item.KeyPointWhereGuestArrivedId);
+            }
         }
         public List<ReservationTour> GetAllReservations()
         {

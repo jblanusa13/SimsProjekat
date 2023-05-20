@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="400" d:DesignWidth="1280"
+      d:DesignHeight="1000" d:DesignWidth="1280"
       Title="FinishedToursView">
     <Page.Resources>
         <Style TargetType="{x:Type Label}">
@@ -42,11 +42,81 @@
             <Setter Property="Foreground" Value="#FF1B5886"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="IsHitTestVisible" Value="False"/>
-            
+        </Style>
+        <Style TargetType="{x:Type Hyperlink}">
+            <Setter Property="Foreground" Value="#FF1B5886" />
+            <Setter Property="TextBlock.TextDecorations" Value="{x:Null}" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="MidnightBlue" />
+                    <Setter Property="TextBlock.TextDecorations" Value="Underline" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="TransparentStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border>
+                            <Border.Style>
+                                <Style TargetType="{x:Type Border}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Height" Value="65"/>
+                                            <Setter Property="Width" Value="65"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <Grid Background="Transparent">
+                                <ContentPresenter></ContentPresenter>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="TransparentStyle1" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border>
+                            <Border.Style>
+                                <Style TargetType="{x:Type Border}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Height" Value="64"/>
+                                            <Setter Property="Width" Value="64"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <Grid Background="Transparent">
+                                <ContentPresenter></ContentPresenter>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </Page.Resources>
-    <ScrollViewer>
-        <Grid Background="Transparent">
+    <Grid>
+        <Grid>
+            <Border HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Height="40" Width="1280" BorderBrush="White" BorderThickness="0 0 0 1">
+                <Grid>
+                    <Label Margin="20,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">
+                        <Hyperlink Click="Back_Click">
+                            <TextBlock Text="Zahtevi"/>
+                        </Hyperlink>
+                    </Label>
+                    <Label Content="&#707;  Zahtevi za ture" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,10,0,0" FontSize="16"/>
+                </Grid>
+            </Border>
+        </Grid>
+        <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,40,0,0">
+            <Grid Background="Transparent">
             <Label Content="Lista zahteva" HorizontalAlignment="Center" Margin="0,50,0,0" FontSize="44" Height="50" FontWeight="Bold"/>
             <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,100,0,0" Width="1280" Height="140">
                 <Border BorderBrush="White" BorderThickness="2"/>
@@ -58,48 +128,62 @@
                 <Image Source="/Resources/Icons/Guide/language.png" Margin="710,70,0,0"/>
                 <TextBox x:Name="MaxNumberGuestsTextBox" Margin="800,70,0,0"  Width="70"/>
                 <Image Source="/Resources/Icons/Guide/people.png" Margin="890,70,0,0"/>
-                <Viewbox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1000,40,0,0" Height="110" Width="110">
-                    <Calendar Name="DateRange" FirstDayOfWeek="Monday" IsTodayHighlighted="True" SelectionMode="SingleRange"/>
+                <Viewbox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="970,35,0,0" Height="90" Width="110" Stretch="Fill">
+                    <Calendar Name="DateRange" FirstDayOfWeek="Monday" IsTodayHighlighted="True" SelectionMode="SingleRange" />
                 </Viewbox>
-                <Button Click ="Search_Click" Margin="0,70,20,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="65" Width="65" Background="Transparent" BorderThickness="0" Cursor="Hand">
+                    <Button Style="{StaticResource TransparentStyle1}" Click ="Search_Click" Margin="0,70,20,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="65" Width="65" Background="Transparent" BorderThickness="0" Cursor="Hand">
                     <Image Source="/Resources/Icons/Guide/search.png"/>
                 </Button>
             </Grid>
             <ListView  x:Name="TourRequestsListView" ItemsSource="{Binding TourRequests}" Margin="0,310,0,100" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionMode="Single" Width="1200" Background="#ffc300">
-                <ListView.Resources>
+                    <ItemsControl.ItemContainerStyle>
+                        <Style>
+                            <Style.Triggers>
+                                <Trigger Property="Control.IsMouseOver" Value="True">
+                                    <Setter Property="Control.BorderBrush" Value="#ffe7a0" />
+                                    <Setter Property="Control.BorderThickness" Value="1" />
+                                    <Setter Property="Control.Background" Value="Transparent" />
+                                    <Setter Property="Control.FontWeight" Value="Medium" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                    <ListView.Resources>
                     <Style TargetType="{x:Type Label}">
-                        <Setter Property="Foreground" Value="#FF1B5886"/>
-                        <Setter Property="FontFamily" Value="Helvetica"/>
-                        <Setter Property="FontSize" Value="22"/>
-                    </Style>
+                            <Setter Property="Foreground" Value="#FF1B5886"/>
+                            <Setter Property="FontFamily" Value="Helvetica"/>
+                            <Setter Property="FontSize" Value="22"/>
+                            <Setter Property="Height" Value="90"/>
+                            <Setter Property="Margin" Value="30,50,0,0"/>
+                     </Style>
                 </ListView.Resources>
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeader}">
                         <GridViewColumn Header="Lokacija" Width="300">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Label Content="{Binding Location}"  Margin="45,0,0,0"/>
+                                    <Label Content="{Binding Location}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Jezik" Width="300">
+                        <GridViewColumn Header="Jezik" Width="250">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Label Content="{Binding Language}" Margin="45,0,0,0"/>
-                                </DataTemplate>
+                                        <Label Content="{Binding Language}"/>
+                                    </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Broj ljudi" Width="100" >
+                        <GridViewColumn Header="Broj ljudi" Width="150" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Label Content="{Binding MaxNumberGuests}" Margin="25,0,0,0"/>
+                                    <Label Content="{Binding MaxNumberGuests}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Opseg datuma" Width="280">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Label Margin="45,0,0,0">
+                                    <Label >
                                         <AccessText>
                                             <MultiBinding StringFormat="{}{0} - {1}">
                                                 <Binding Path="DateRangeStart" />
@@ -110,11 +194,11 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Detalji i statistika" Width="210">
+                        <GridViewColumn Header="Detalji i prihvatanje ture" Width="210">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Height="20" Width="20" Background="Transparent" Click="Details_Click" BorderThickness="0" Margin="75,0,0,0">
-                                        <Image Source="/Resources/Icons/Guide/info.png"/>
+                                        <Button Style="{StaticResource TransparentStyle}" Height="70" Cursor="Hand" Width="70" Background="Transparent" Click="Details_Click" BorderThickness="0" Margin="60,0,0,0">
+                                            <Image Source="/Resources/Icons/Guide/info.png"/>
                                     </Button>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -125,4 +209,5 @@
             <Grid/>
         </Grid>
     </ScrollViewer>
+    </Grid>
 </Page>

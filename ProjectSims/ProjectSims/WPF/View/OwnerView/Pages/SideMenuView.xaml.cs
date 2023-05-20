@@ -21,11 +21,11 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
     /// <summary>
     /// Interaction logic for Menu.xaml
     /// </summary>
-    public partial class SideMenu : Page
+    public partial class SideMenuView : Page
     {
         public Owner Owner { get; set; }
         public TextBlock TitleTextBlock { get; set; }
-        public SideMenu(Owner o, TextBlock titleTextBlock)
+        public SideMenuView(Owner o, TextBlock titleTextBlock)
         {
             InitializeComponent();
             DataContext = this;
@@ -44,24 +44,24 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
         private void HomePage_Click(object sender, RoutedEventArgs e)
         {
             Window parentWindow = Window.GetWindow(this);
-            this.NavigationService.Navigate(new HomePage(Owner, TitleTextBlock));
+            this.NavigationService.Navigate(new HomePageView(Owner, TitleTextBlock));
             TitleTextBlock.Text = "Početna stranica";
         }
 
         private void Accommodations_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new AccommodationsDisplay(Owner, TitleTextBlock));
+            this.NavigationService.Navigate(new AccommodationsDisplayView(Owner, TitleTextBlock));
             TitleTextBlock.Text = "Smještaji";
         }
 
         private void Ratings_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new OwnerRatingsDisplay(Owner));
+            this.NavigationService.Navigate(new OwnerRatingsDisplayView(Owner));
             TitleTextBlock.Text = "Recenzije";
         }
         private void Profile_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new Profile(Owner));
+            this.NavigationService.Navigate(new ProfileView(Owner));
             TitleTextBlock.Text = "Profil";
         }
     }

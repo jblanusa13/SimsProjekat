@@ -62,6 +62,10 @@ namespace ProjectSims.Repository
         {
             return tourRequests.Where(r => r.State == TourRequestState.Waiting).ToList();
         }
+        public List<TourRequest> GetInLastYear()
+        {
+            return tourRequests.Where(r => (DateTime.Now - r.CreationDate).TotalDays <= 365).ToList();
+        }
         public TourRequest GetById(int id)
         {
             return tourRequests.Find(t => t.Id == id);

@@ -96,7 +96,7 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
         private void GenerateReport_Click(object sender, RoutedEventArgs e)
         {
             PrintDialog printDialog = new PrintDialog();
-            ReportToGenerate rtg = new ReportToGenerate();
+            ReportToGenerateView rtg = new ReportToGenerateView();
             /*rtg.ReportScroll.ScrollToTop();
             printDialog.PrintVisual(rtg.ReportScroll.Content as Visual, "IzvestajOZauzetostiProstorija");*/
             FlowDocument fd = rtg.Document;
@@ -104,7 +104,7 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
             printDialog.PrintDocument(documentPaginator, "Izvestaj");
 
             TitleTextBlock.Text = "Početna stranica";
-            this.NavigationService.Navigate(new HomePage(Owner, TitleTextBlock));
+            this.NavigationService.Navigate(new HomePageView(Owner, TitleTextBlock));
         }
         
         private void YearComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -44,8 +44,11 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             accommodationRatingService.Subscribe(this);
             guestRatingService.Subscribe(this);
 
-            MyRatings = new ObservableCollection<AccommodationAndOwnerRating>(accommodationRatingService.GetAllRatingsByGuestId(guest.Id));
             OwnerRatings = new ObservableCollection<GuestRating>(guestRatingService.GetAllRatingsForGuest(guest.Id));
+            MyRatings = new ObservableCollection<AccommodationAndOwnerRating>(accommodationRatingService.GetAllRatingsByGuestId(guest.Id));
+            
+
+            BackButton.Focus();
         }
 
         private void MyRatings_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -66,6 +69,15 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         {
             NavigationService.GoBack();
         }
+
+        public void LogOut_Click(object sender, RoutedEventArgs e)
+        {
+            var login = new MainWindow();
+            login.Show();
+            Window parentWindow = Window.GetWindow(this);
+            parentWindow.Close();
+        }
+
 
         public void Update()
         {

@@ -20,6 +20,7 @@ using ProjectSims.WPF.View.Guest1View.RatingPages;
 using ProjectSims.WPF.View.Guest1View;
 using ProjectSims.WPF.View.Guest1View.MainPages;
 using ProjectSims.WPF.ViewModel.Guest1ViewModel;
+using ProjectSims.View.Guest1View;
 
 namespace ProjectSims.WPF.View.Guest1View.MainPages
 {
@@ -40,6 +41,8 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             this.DataContext = ViewModel;
 
             Guest = guest;
+
+            HelpButton.Focus();
         }
         private void Theme_Click(object sender, RoutedEventArgs e)
         {
@@ -66,19 +69,20 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             ChangeTab(4);
         }
 
-        public void Reservation_Click(object sender, RoutedEventArgs e)
+        public void LogOut_Click(object sender, RoutedEventArgs e)
         {
-            SelectedAccommodation = (Accommodation)AccommodationsTable.SelectedItem;
-            if (SelectedAccommodation != null)
-            {
-                ChangeTab(6);
-            }
+            ChangeTab(6);
         }
 
         private void RateAccommodation_Click(object sender, RoutedEventArgs e)
         {
             RatingStartView accommodationForRating = new RatingStartView(Guest);
             accommodationForRating.Show();    
+        }
+
+        private void MyProfile_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeTab(5);
         }
 
         public void ChangeTab(int tabNum)
@@ -105,15 +109,36 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
                     }
                 case 5:
                     {
+                        NavigationService.Navigate(new Profile(Guest));
                         break;
                     }
                 case 6:
                     {
-                        NavigationService.Navigate(new AccommodationReservationView(SelectedAccommodation, Guest));
+                        var login = new MainWindow();
+                        login.Show();
+                        Window parentWindow = Window.GetWindow(this);
+                        parentWindow.Close();
                         break;
                     }
             }
         }
+
+        private void Accommodations_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedAccommodation = (Accommodation)AccommodationsTable.SelectedItem;
+        }
+
+        private void OpenReservationView(object sender, KeyEventArgs e)
+        {
+            if (SelectedAccommodation != null)
+            {
+                if ((e.Key.Equals(Key.Enter)) || (e.Key.Equals(Key.Return)))
+                {
+                    NavigationService.Navigate(new AccommodationReservationView(SelectedAccommodation, Guest));
+                }
+            }
+        }
+
 
         public void Search_Click(object sender, RoutedEventArgs e)
         {

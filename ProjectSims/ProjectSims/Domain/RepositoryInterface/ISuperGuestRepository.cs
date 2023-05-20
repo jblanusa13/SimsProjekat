@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Domain.Model;
+using ProjectSims.Observer;
 
 namespace ProjectSims.Domain.RepositoryInterface
 {
-    public interface IRenovationRepository : IGenericRepository<Renovation, int>
+    public interface ISuperGuestRepository : IGenericRepository<SuperGuest, int>, ISubject
     {
     }
 }

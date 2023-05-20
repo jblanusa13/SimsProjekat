@@ -20,11 +20,11 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
     /// <summary>
     /// Interaction logic for OwnerRatingsDisplay.xaml
     /// </summary>
-    public partial class OwnerRatingsDisplay : Page
+    public partial class OwnerRatingsDisplayView : Page
     {
         public OwnerRatingsDisplayViewModel ownerRatingsDisplayViewModel { get; set; }
         public Owner Owner { get; set; }
-        public OwnerRatingsDisplay(Owner o) 
+        public OwnerRatingsDisplayView(Owner o) 
         {
             InitializeComponent();
             Owner = o;

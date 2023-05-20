@@ -50,11 +50,26 @@
         <Setter Property="BorderBrush" Value="#ffaeaeae"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="13"/>
+        <Setter Property="Focusable" Value="True"/>
+    </Style>
+
+    <Style TargetType="DataGridCell" x:Key="DataGridCell">
+        <Setter Property="Focusable" Value="False"/>
     </Style>
 
     <Style TargetType="ListViewItem" x:Key="ListViewItem">
         <Setter Property="Background" Value="#1c1c1c"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="FocusControl">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle Margin="0" StrokeThickness="1.5" Stroke="#ebf5ff" StrokeDashArray="3 2"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
 </ResourceDictionary>

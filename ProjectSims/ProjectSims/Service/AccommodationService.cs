@@ -14,13 +14,13 @@ namespace ProjectSims.Service
     public class AccommodationService
     {
         private IAccommodationRepository accommodationRepository;
-        private IAccommodationScheduleRepository scheduleRepository;
+        private IAccommodationScheduleRepository accommodationScheduleRepository;
         private ILocationRepository locationRepository;
 
         public AccommodationService()
         {
             accommodationRepository = Injector.CreateInstance<IAccommodationRepository>();
-            scheduleRepository = Injector.CreateInstance<IAccommodationScheduleRepository>();
+            accommodationScheduleRepository = Injector.CreateInstance<IAccommodationScheduleRepository>();
             locationRepository = Injector.CreateInstance<ILocationRepository>();
             InitializeSchedule();
             InitializeLocation();
@@ -30,7 +30,7 @@ namespace ProjectSims.Service
         {
             foreach (Accommodation accommodation in GetAllAccommodations()) 
             {
-                accommodation.Schedule = scheduleRepository.GetById(accommodation.ScheduleId);
+                accommodation.Schedule = accommodationScheduleRepository.GetById(accommodation.ScheduleId);
             }
         }
 
@@ -64,9 +64,9 @@ namespace ProjectSims.Service
 
         public void Create(Accommodation accommodation)
         {
-            accommodation.ScheduleId = scheduleRepository.NextId();
+            accommodation.ScheduleId = accommodationScheduleRepository.NextId();
             accommodationRepository.Create(accommodation);
-            scheduleRepository.Create(accommodation.Schedule);
+            accommodationScheduleRepository.Create(accommodation.Schedule);
         }
 
         public void Delete(Accommodation accommodation)
@@ -78,38 +78,7 @@ namespace ProjectSims.Service
         {
             accommodationRepository.Update(accommodation);
         }
-
-        public void UpdateIfRenovated(List<Accommodation> accommodations)
-        {
-            foreach (var item in accommodations)
-            {
-                if (item.Schedule.UnavailableDates.Count != 0)
-                {
-                    foreach (var range in item.Schedule.UnavailableDates)
-                    {
-                        if (range.CheckOut < DateOnly.FromDateTime(DateTime.Today) && !IsRenovatedYearAgo(range.CheckOut))
-                        {
-                            item.Renovated = true;
-                        }
-                        else
-                        {
-                            item.Renovated = false;
-                        }
-                        accommodationRepository.Update(item);
-                    }
-                }
-            }
-        }
-
-        public bool IsRenovatedYearAgo(DateOnly checkOut)
-        {
-            if (checkOut.AddYears(1) < DateOnly.FromDateTime(DateTime.Today))
-            {
-                return true;
-            }
-            return false;
-        }
-
+               
         public void Subscribe(IObserver observer)
         {
             accommodationRepository.Subscribe(observer);

@@ -15,24 +15,29 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
     {
         public Owner Owner { get; set; }
         public ObservableCollection<Accommodation> AccommodationsForDisplay { get; set; }
+
         private AccommodationService accommodationService;
-        private OwnerService ownerService;
+        private RequestService requestService;
+        private AccommodationReservationService accommodationReservationService;
+        private RenovationScheduleService renovationScheduleService;
         
         public AccommodationsDisplayViewModel(Owner o) {
             Owner = o;
             accommodationService = new AccommodationService();
-            accommodationService.Subscribe(this); 
+            accommodationService.Subscribe(this);
+            accommodationReservationService = new AccommodationReservationService();
             AccommodationsForDisplay = new ObservableCollection<Accommodation>(accommodationService.GetAccommodationsByOwner(Owner.Id));
-            ownerService = new OwnerService();
+            requestService = new RequestService();
+            renovationScheduleService = new RenovationScheduleService();
         }
         public bool HasWaitingRequests(Owner owner)
         {
-            return ownerService.HasWaitingRequests(owner.Id);
+            return requestService.HasWaitingRequests(owner.Id);
         }
 
         public void UpdateAccommodationsIfRenovated()
         {
-            accommodationService.UpdateIfRenovated(accommodationService.GetAccommodationsByOwner(Owner.Id));
+            renovationScheduleService.UpdateIfRenovated(accommodationService.GetAccommodationsByOwner(Owner.Id));
         }
 
         public void Update()

@@ -16,6 +16,7 @@ namespace ProjectSims.Domain.Model
         public string Adress { get; set; }
         public string Email { get; set; }
         public int UserId { get; set; }
+        public User User { get; set; }
         public List<int> VoucherIds { get; set; }
         public DateTime BirthDate { get; set; }
         public string PhoneNumber { get; set; }

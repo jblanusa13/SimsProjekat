@@ -23,6 +23,12 @@ namespace ProjectSims.Repository
             owners = ownerFileHandler.Load();
             observers = new List<IObserver>();
         }
+
+        public Owner GetByUserId(int userId)
+        {
+            return owners.FirstOrDefault(o => o.UserId == userId);
+        }
+
         public void Create(Owner owner)
         {
             owner.Id = NextId();
@@ -108,6 +114,5 @@ namespace ProjectSims.Repository
                 Update(owner);
             }
         }
-
     }
 }

@@ -22,6 +22,10 @@ namespace ProjectSims.Repository
             users = userFileHandler.Load();
             observers = new List<IObserver>();
         }
+        public User GetByUsername(string username)
+        {
+            return users.FirstOrDefault(u => u.Username == username);
+        }
         public int NextId()
         {
             if (users.Count == 0)

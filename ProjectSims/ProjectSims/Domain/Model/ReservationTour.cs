@@ -12,10 +12,13 @@ namespace ProjectSims.Domain.Model
     {
         public int Id { get; set; }
         public int TourId { get; set; }
+        public Tour Tour { get; set; }
         public int NumberGuest { get; set; }
         public int Guest2Id { get; set; }
+        public Guest2 Guest2 { get; set; }
         public Guest2State State { get; set; }    
         public int KeyPointWhereGuestArrivedId { get; set; }
+        public KeyPoint KeyPointWhereGuestArrived { get; set; } 
         public bool UsedVoucher { get; set; }
         public bool RatedTour { get; set; }
         public int GuestAgeOnTour { get; set; }

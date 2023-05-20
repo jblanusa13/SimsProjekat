@@ -15,18 +15,9 @@ namespace ProjectSims.FileHandler
 
         private Serializer<Guide> _serializer;
 
-        private List<Guide> guides;
-
         public GuideFileHandler()
         {
             _serializer = new Serializer<Guide>();
-            guides = _serializer.FromCSV(FilePath);
-        }
-
-        public Guide GetByUserId(int id)
-        {
-            guides = _serializer.FromCSV(FilePath);
-            return guides.FirstOrDefault(g => g.UserId == id);
         }
 
         public List<Guide> Load()

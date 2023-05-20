@@ -40,11 +40,10 @@ namespace ProjectSims.View.GuideView
         private void Home_Click(object sender, RoutedEventArgs e)
         {
         }
-        private void Logout_Click(object sender, RoutedEventArgs e)
+        private void Account_Click(object sender, RoutedEventArgs e)
         {
-            Window login = new MainWindow();
-            login.Show();
-            Close();
+            Page accountPage = new AccountView(Guide);
+            GuideFrame.Content = accountPage;
         }
         private void Close_Click(object sender, RoutedEventArgs e)
         {
@@ -66,8 +65,13 @@ namespace ProjectSims.View.GuideView
         }
         private void CreateTour_Click(object sender, RoutedEventArgs e)
         {
-            Page createTourPage = new CreateTourView(Guide,null);
+            Page createTourPage = new CreateTourView(Guide,null,null,null);
             GuideFrame.Content = createTourPage;
+        }
+        private void Suggestions_Click(object sender, RoutedEventArgs e)
+        {
+            Page suggestionsPage = new SuggestionsView(Guide);
+            GuideFrame.Content = suggestionsPage;
         }
         private void ScheduledTours_Click(object sender, RoutedEventArgs e)
         {

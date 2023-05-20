@@ -259,7 +259,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 return true;
             }
         }
-        public CreateTourView(Guide guide, TourRequest tourRequest)
+        public CreateTourView(Guide guide, TourRequest tourRequest,string language,string location)
         {
             InitializeComponent();
             DataContext = this;
@@ -273,17 +273,37 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             TourDatePicker.BlackoutDates.AddDatesInPast();
             if (tourRequest != null)
             {
-                City = tourRequest.Location.Split(',')[0];
-                CityTextBox.IsReadOnly = true;
-                Country = tourRequest.Location.Split(',')[1];
-                CountryTextBox.IsReadOnly = true;
-                LanguageComboBox.SelectedValue = tourRequest.Language;
-                LanguageComboBox.IsReadOnly = true;
-                MaxNumberGuests = tourRequest.MaxNumberGuests.ToString();
-                MaxNumberGuestsTextBox.IsReadOnly = true;
-                TourDatePicker.DisplayDateStart = new DateTime(tourRequest.DateRangeStart.Year, tourRequest.DateRangeStart.Month, tourRequest.DateRangeStart.Day);
-                TourDatePicker.DisplayDateEnd = new DateTime(tourRequest.DateRangeEnd.Year, tourRequest.DateRangeEnd.Month, tourRequest.DateRangeEnd.Day);
+               SetRequestData(tourRequest);
             }
+            if(language != null)
+            {
+                SetLanguage(language);
+            }
+            if(location != null)
+            {
+                SetLocation(location);
+            }
+        }
+        public void SetRequestData(TourRequest tourRequest)
+        {
+            SetLocation(tourRequest.Location);
+            SetLanguage(tourRequest.Language);
+            MaxNumberGuests = tourRequest.MaxNumberGuests.ToString();
+            MaxNumberGuestsTextBox.IsReadOnly = true;
+            TourDatePicker.DisplayDateStart = new DateTime(tourRequest.DateRangeStart.Year, tourRequest.DateRangeStart.Month, tourRequest.DateRangeStart.Day);
+            TourDatePicker.DisplayDateEnd = new DateTime(tourRequest.DateRangeEnd.Year, tourRequest.DateRangeEnd.Month, tourRequest.DateRangeEnd.Day);
+        }
+        public void SetLocation(string location)
+        {
+            City = location.Split(',')[0];
+            CityTextBox.IsReadOnly = true;
+            Country = location.Split(',')[1];
+            CountryTextBox.IsReadOnly = true;
+        }
+        public void SetLanguage(string language)
+        {
+            LanguageComboBox.Items.Clear();
+            LanguageComboBox.Items.Add(language);
         }
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -369,11 +389,6 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             }
            else
                MessageBox.Show("Nisu validno popunjena polja!");
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }

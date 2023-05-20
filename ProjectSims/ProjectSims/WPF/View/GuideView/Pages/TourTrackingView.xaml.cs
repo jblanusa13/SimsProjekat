@@ -65,7 +65,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             {
                 PresentGuests.Add(guest2Controller.GetGuestById(id));
             }
-            TourInfoTextBox.Text = Tour.Name + "," + Tour.StartOfTheTour.ToString("dd.MM.yyyy HH:mm");
+            TourInfoLabel.Content = Tour.Name + "," + Tour.StartOfTheTour.ToString("dd.MM.yyyy HH:mm");
         }
         private void KeyPointSelected_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -97,12 +97,12 @@ namespace ProjectSims.WPF.View.GuideView.Pages
 
             }
         }
-        private void GuestSelect_Click(object sender, RoutedEventArgs e)
+        private void NotifyGuest_Click(object sender, RoutedEventArgs e)
         {
-            Guest2 guest = (Guest2)SelectedGuest;
-            if (guest != null)
+            SelectedGuest = ((FrameworkElement)sender).DataContext as Guest2;
+            if (SelectedGuest != null)
             {
-                reservationTourService.UpdateGuestState(guest,Tour,Guest2State.Waiting);
+                reservationTourService.UpdateGuestState(SelectedGuest, Tour,Guest2State.Waiting);
             }
             else
             {
@@ -118,6 +118,10 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             }
             NavigationService.Navigate(null);
 
+        }
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(this.Parent);
         }
         private void UpdateKeyPointList()
         {

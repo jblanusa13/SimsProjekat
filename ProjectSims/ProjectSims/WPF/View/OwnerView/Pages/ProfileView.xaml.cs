@@ -22,7 +22,7 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
     /// <summary>
     /// Interaction logic for Profile.xaml
     /// </summary>
-    public partial class Profile : Page, INotifyPropertyChanged
+    public partial class ProfileView : Page, INotifyPropertyChanged
     {
         public Owner Owner { get; set; }
         public ProfileViewModel profileViewModel { get; set; }
@@ -102,7 +102,7 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
             }
         }
 
-        public Profile(Owner o)
+        public ProfileView(Owner o)
         {
             InitializeComponent();
             Owner = o;

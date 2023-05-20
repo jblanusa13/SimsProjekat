@@ -15,10 +15,22 @@ namespace ProjectSims.Service
     public class GuestRatingService
     {
         private IGuestRatingRepository guestRatings;
+        private IAccommodationReservationRepository accommodationReservationRepository;
 
         public GuestRatingService()
         {
             guestRatings = Injector.CreateInstance<IGuestRatingRepository>();
+            accommodationReservationRepository = Injector.CreateInstance<IAccommodationReservationRepository>();
+
+            InitializeReservation();
+        }
+
+        private void InitializeReservation()
+        {
+            foreach(var rating in guestRatings.GetAll())
+            {
+                rating.Reservation = accommodationReservationRepository.GetById(rating.ReservationId);
+            }
         }
 
         public List<GuestRating> GetAllGuestAccommodations()
@@ -28,6 +40,8 @@ namespace ProjectSims.Service
 
         public List<GuestRating> GetAllRatingsForGuest(int guestId)
         {
+            guestRatings.ReloadRatingList();
+            InitializeReservation();
             List<GuestRating> ratings = guestRatings.GetAllForGuest(guestId);
             List<GuestRating> ratingsToShow = new List<GuestRating>();
             foreach(var rating in ratings)
@@ -44,6 +58,7 @@ namespace ProjectSims.Service
         public void Create(GuestRating guestRating)
         {
             guestRatings.Create(guestRating);
+            InitializeReservation();
         }
 
         public void Delete(GuestRating guestRating)
@@ -54,6 +69,7 @@ namespace ProjectSims.Service
         public void Update(GuestRating guestRating)
         {
             guestRatings.Update(guestRating);
+            InitializeReservation();
         }
 
         public void Subscribe(IObserver observer)

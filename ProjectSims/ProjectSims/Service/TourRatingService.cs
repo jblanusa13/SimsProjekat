@@ -13,9 +13,30 @@ namespace ProjectSims.Service
     public class TourRatingService
     {
         private ITourRatingRepository tourRatingRepository;
+        private IGuest2Repository guest2Repository;
+        private ITourRepository tourRepository;
+
         public TourRatingService()
         {
             tourRatingRepository = Injector.CreateInstance<ITourRatingRepository>();
+            guest2Repository = Injector.CreateInstance<IGuest2Repository>();
+            tourRepository = Injector.CreateInstance<ITourRepository>();
+            InitializeGuest();
+            InitializeTour();
+        }
+        private void InitializeGuest()
+        {
+            foreach(var item in tourRatingRepository.GetAll())
+            {
+                item.Guest = guest2Repository.GetById(item.GuestId);
+            }
+        }
+        private void InitializeTour()
+        {
+            foreach (var item in tourRatingRepository.GetAll())
+            {
+                item.Tour = tourRepository.GetById(item.TourId);
+            }
         }
         public List<TourAndGuideRating> GetAll()
         {

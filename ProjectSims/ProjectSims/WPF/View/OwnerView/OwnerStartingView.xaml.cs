@@ -50,7 +50,7 @@ namespace ProjectSims.WPF.View.OwnerView
             this.DataContext = this;
             Owner = o;
             TitleTextBlock.Text = "Početna stranica";
-            SelectedTab.Content = new HomePage(Owner, TitleTextBlock);
+            SelectedTab.Content = new HomePageView(Owner, TitleTextBlock);
             guestRatingService = new GuestRatingService();
        }
 
@@ -83,12 +83,12 @@ namespace ProjectSims.WPF.View.OwnerView
             {
                 case 0:
                     {
-                        SelectedTab.Content = new SideMenu(Owner, TitleTextBlock);
+                        SelectedTab.Content = new SideMenuView(Owner, TitleTextBlock);
                         break;
                     }
                 case 1:
                     {
-                        SelectedTab.Content = new Requests(Owner);
+                        SelectedTab.Content = new RequestsView(Owner);
                         break;
                     }
                 case 2:

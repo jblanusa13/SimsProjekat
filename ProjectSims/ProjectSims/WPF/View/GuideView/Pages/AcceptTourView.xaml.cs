@@ -33,7 +33,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         }
        public void AcceptTour_Click(object sender, RoutedEventArgs e) 
         {
-            this.NavigationService.Navigate(new CreateTourView(Guide, TourRequest));
+            this.NavigationService.Navigate(new CreateTourView(Guide, TourRequest,null,null));
         }
        public void Back_Click(object sender, RoutedEventArgs e) 
         { 

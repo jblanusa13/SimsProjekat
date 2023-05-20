@@ -25,6 +25,7 @@ namespace ProjectSims.WPF.View.Guest1View.BarPages
         {
             InitializeComponent();
         }
+
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             RatingStartView startView = (RatingStartView)Window.GetWindow(this);

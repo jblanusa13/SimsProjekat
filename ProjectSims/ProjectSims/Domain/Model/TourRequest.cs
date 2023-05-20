@@ -13,7 +13,9 @@ namespace ProjectSims.Domain.Model
     {
         public int Id { get; set; }
         public int Guest2Id { get; set; }
+        public Guest2 Guest2 { get; set; }
         public int GuideId { get; set; }
+        public Guide Guide { get; set; }
         public TourRequestState State { get; set; }
         public string Location { get; set; }
         public string Description { get; set; }
@@ -21,6 +23,7 @@ namespace ProjectSims.Domain.Model
         public int MaxNumberGuests { get; set; }
         public DateOnly DateRangeStart { get; set; }
         public DateOnly DateRangeEnd { get; set; }
+        public DateTime CreationDate { get; set; }
         public TourRequest()
         {
         }
@@ -35,6 +38,7 @@ namespace ProjectSims.Domain.Model
             MaxNumberGuests = maxNumberGuests;
             DateRangeStart = dateRangeStart;
             DateRangeEnd = dateRangeEnd;
+            CreationDate = DateTime.Now;
         }
 
         public static TourRequestState GetRequestState(string state)
@@ -68,10 +72,11 @@ namespace ProjectSims.Domain.Model
             MaxNumberGuests = Convert.ToInt32(values[7]);
             DateRangeStart = DateOnly.ParseExact(values[8], "dd/MM/yyyy", CultureInfo.InvariantCulture);
             DateRangeEnd = DateOnly.ParseExact(values[9], "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            CreationDate = DateTime.ParseExact(values[10], "dd/MM/yyyy", CultureInfo.InvariantCulture);
         }
         public string[] ToCSV()
         {
-            string[] csvvalues = { Id.ToString(), Guest2Id.ToString(), GuideId.ToString(), State.ToString(), Location, Description, Language, MaxNumberGuests.ToString(), DateRangeStart.ToString("dd/MM/yyyy"), DateRangeEnd.ToString("dd/MM/yyyy") };
+            string[] csvvalues = { Id.ToString(), Guest2Id.ToString(), GuideId.ToString(), State.ToString(), Location, Description, Language, MaxNumberGuests.ToString(), DateRangeStart.ToString("dd/MM/yyyy"), DateRangeEnd.ToString("dd/MM/yyyy"),CreationDate.ToString("dd/MM/yyyy") };
             return csvvalues;
         }
     }

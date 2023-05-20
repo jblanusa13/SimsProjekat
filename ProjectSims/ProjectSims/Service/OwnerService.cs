@@ -7,59 +7,66 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Domain.RepositoryInterface;
+using ProjectSims.Serializer;
 
 namespace ProjectSims.Service
 {
     public class OwnerService
     {
-        private IOwnerRepository owners;
-        private RequestService requestService;
+        private IOwnerRepository ownerRepository;
+        private IRequestRepository requestRepository;
+        private IAccommodationReservationRepository reservationRepository;
 
         public OwnerService()
         {
-            owners = Injector.CreateInstance<IOwnerRepository>();
-            requestService = new RequestService();
+            ownerRepository = Injector.CreateInstance<IOwnerRepository>();
+            requestRepository = Injector.CreateInstance<IRequestRepository>();
+            reservationRepository = Injector.CreateInstance<IAccommodationReservationRepository>();
+
+            InitializeReservation();
+        }
+
+        private void InitializeReservation()
+        {
+            foreach(Request request in requestRepository.GetAll())
+            {
+                request.Reservation = reservationRepository.GetById(request.ReservationId);
+            }
+        }
+
+        public Owner GetOwnerByUserId(int userId)
+        {
+            return ownerRepository.GetByUserId(userId);
         }
 
         public List<Owner> GetAllOwners()
         {
-            return owners.GetAll();
+            return ownerRepository.GetAll();
         }
 
-        public bool HasWaitingRequests(int ownerId)
-        {
-            foreach(Request request in requestService.GetAllRequestByOwner(ownerId))
-            {
-                if (request.State.Equals(RequestState.Waiting))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
         public void AddAccommodation(Owner owner, int accommodationId)
         {
-            owners.AddAccommodation(owner, accommodationId);
+            ownerRepository.AddAccommodation(owner, accommodationId);
         }
 
         public void Create(Owner owner)
         {
-            owners.Create(owner);
+            ownerRepository.Create(owner);
         }
 
         public void Delete(Owner owner)
         {
-            owners.Remove(owner);
+            ownerRepository.Remove(owner);
         }
 
         public void Update(Owner owner)
         {
-            owners.Update(owner);
+            ownerRepository.Update(owner);
         }
 
         public void Subscribe(IObserver observer)
         {
-            owners.Subscribe(observer);
+            ownerRepository.Subscribe(observer);
         }
     }
 }

@@ -10,5 +10,6 @@ namespace ProjectSims.Domain.RepositoryInterface
 {
     public interface IGuideRepository : IGenericRepository<Guide, int>, ISubject
     {
+        public Guide GetByUserId(int userId);
     }
 }

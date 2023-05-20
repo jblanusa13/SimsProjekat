@@ -8,23 +8,23 @@ using System.Threading.Tasks;
 
 namespace ProjectSims.FileHandler
 {
-    public class RenovationFileHandler
+    public class RenovationScheduleFileHandler
     {
         private const string FilePath = "../../../Resources/Data/renovation.csv";
 
-        private readonly Serializer<Renovation> _serializer;
+        private readonly Serializer<RenovationSchedule> _serializer;
 
-        public RenovationFileHandler()
+        public RenovationScheduleFileHandler()
         {
-            _serializer = new Serializer<Renovation>();
+            _serializer = new Serializer<RenovationSchedule>();
         }
 
-        public List<Renovation> Load()
+        public List<RenovationSchedule> Load()
         {
             return _serializer.FromCSV(FilePath);
         }
 
-        public void Save(List<Renovation> renovation)
+        public void Save(List<RenovationSchedule> renovation)
         {
             _serializer.ToCSV(FilePath, renovation);
         }

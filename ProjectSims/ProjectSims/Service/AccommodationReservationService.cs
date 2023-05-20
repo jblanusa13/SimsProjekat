@@ -17,18 +17,41 @@ namespace ProjectSims.Service
     public class AccommodationReservationService
     {
         private IAccommodationReservationRepository reservationRepository;
-        private RequestService requestService;
-        private RenovationRecommendationService renovationRecommendationService;
-        private AccommodationRatingService accommodationRatingService;
-        private AccommodationService accommodationService;
+        private IRequestRepository requestRepository;
+        private IGuest1Repository guest1Repository;
+        private IAccommodationRepository accommodationRepository;
+        private IAccommodationScheduleRepository accommodationScheduleRepository;
+        private IRenovationRecommendationRepository renovationRecommendationRepository;
+        private IAccommodationRatingRepository accommodationRatingRepository;
 
         public AccommodationReservationService()
         {
             reservationRepository = Injector.CreateInstance<IAccommodationReservationRepository>();
-            requestService = new RequestService();
-            renovationRecommendationService = new RenovationRecommendationService();
-            accommodationRatingService = new AccommodationRatingService();
-            accommodationService = new AccommodationService();
+            requestRepository = Injector.CreateInstance<IRequestRepository>();
+            guest1Repository = Injector.CreateInstance<IGuest1Repository>();
+            accommodationRepository = Injector.CreateInstance<IAccommodationRepository>();
+            accommodationScheduleRepository = Injector.CreateInstance<IAccommodationScheduleRepository>();
+            renovationRecommendationRepository = Injector.CreateInstance<IRenovationRecommendationRepository>();
+            accommodationRatingRepository = Injector.CreateInstance<IAccommodationRatingRepository>();
+
+            InitializeGuest();
+            InitializeAccommodation();
+        }
+
+        private void InitializeGuest()
+        {
+            foreach(var reservation in reservationRepository.GetAll())
+            {
+                reservation.Guest = guest1Repository.GetById(reservation.GuestId);
+            }
+        }
+
+        private void InitializeAccommodation()
+        {
+            foreach (var reservation in reservationRepository.GetAll())
+            {
+                reservation.Accommodation = accommodationRepository.GetById(reservation.AccommodationId);
+            }
         }
         public List<AccommodationReservation> GetAllReservations()
         {
@@ -92,7 +115,7 @@ namespace ProjectSims.Service
             int number = 0;
             foreach (AccommodationReservation reservation in reservations)
             {
-                foreach (Request request in requestService.GetAllRequestByOwner(reservation.Accommodation.IdOwner))
+                foreach (Request request in requestRepository.GetAllByOwner(reservation.Accommodation.IdOwner))
                 {
                     if (reservation.CheckInDate.Year.ToString().Equals(year) && reservation.Id == request.ReservationId)
                     {
@@ -108,7 +131,7 @@ namespace ProjectSims.Service
             int number = 0;
             foreach (AccommodationReservation reservation in reservations)
             {
-                foreach (Request request in requestService.GetAllRequestByOwner(reservation.Accommodation.IdOwner))
+                foreach (Request request in requestRepository.GetAllByOwner(reservation.Accommodation.IdOwner))
                 {
                     if (reservation.CheckInDate.Year.ToString().Equals(year) && reservation.CheckInDate.Month.ToString().Equals(month) && reservation.Id == request.ReservationId)
                     {
@@ -148,9 +171,9 @@ namespace ProjectSims.Service
         public int GetAllRenovationReccommendationsByYear(string year, int ownerId)
         {
             int number = 0;
-            foreach (AccommodationAndOwnerRating rating in accommodationRatingService.GetAllRatingsByOwnerId(ownerId))
+            foreach (AccommodationAndOwnerRating rating in accommodationRatingRepository.GetAllByOwnerId(ownerId))
             {
-                foreach (RenovationRecommendation renovation in renovationRecommendationService.GetAllRecommendations())
+                foreach (RenovationRecommendation renovation in renovationRecommendationRepository.GetAll())
                 {
                     if (rating.Reservation.CheckInDate.Year.ToString().Equals(year) && rating.RenovationId == renovation.Id)
                     {
@@ -164,9 +187,9 @@ namespace ProjectSims.Service
         public int GetAllRenovationReccommendationsByMonth(string month, string year, int ownerId)
         {
             int number = 0;
-            foreach (AccommodationAndOwnerRating rating in accommodationRatingService.GetAllRatingsByOwnerId(ownerId))
+            foreach (AccommodationAndOwnerRating rating in accommodationRatingRepository.GetAllByOwnerId(ownerId))
             {
-                foreach (RenovationRecommendation renovation in renovationRecommendationService.GetAllRecommendations())
+                foreach (RenovationRecommendation renovation in renovationRecommendationRepository.GetAll())
                 {
                     if (rating.Reservation.CheckInDate.Year.ToString().Equals(year) && rating.Reservation.CheckInDate.Month.ToString().Equals(month) && rating.RenovationId == renovation.Id)
                     {
@@ -195,8 +218,13 @@ namespace ProjectSims.Service
         public void CreateReservation(int accommodationId, int guestId, DateOnly checkIn, DateOnly checkOut, int guestNumber)
         {
             int id = reservationRepository.NextId();
-            AccommodationReservation reservation = new AccommodationReservation(id, accommodationId, guestId, checkIn, checkOut, guestNumber, ReservationState.Active, false, false);
+            AccommodationReservation reservation = new AccommodationReservation(id, accommodationId, guestId, checkIn, checkOut, guestNumber, ReservationState.Active, false, false, accommodationRepository.GetById(accommodationId));
             reservationRepository.Create(reservation);
+
+            AccommodationSchedule schedule = accommodationRepository.GetById(accommodationId).Schedule;
+            DateRanges dateRange = new DateRanges(checkIn, checkOut);
+            accommodationScheduleRepository.AddUnavailableDate(schedule, dateRange);
+            accommodationScheduleRepository.Update(schedule);
         }
 
         public void Update(AccommodationReservation reservation)
@@ -209,13 +237,19 @@ namespace ProjectSims.Service
             reservation.State = ReservationState.Canceled;
             reservationRepository.Update(reservation);
 
-            requestService.UpdateRequestsWhenCancelReservation(reservation);
+            UpdateRequestsWhenCancelReservation(reservation);         
+        }
+
+        public void UpdateRequestsWhenCancelReservation(AccommodationReservation reservation)
+        {
+            Request request = requestRepository.GetByReservationId(reservation.Id);
+            requestRepository.Remove(request);
         }
 
         public void CloseAccommodation(Accommodation selectedAccommodation)
         {
-            Accommodation accommodationToRemove = accommodationService.GetAccommodationsByOwner(selectedAccommodation.IdOwner).Find(accommodation => accommodation.Id == selectedAccommodation.Id);
-            accommodationService.Delete(accommodationToRemove);
+            Accommodation accommodationToRemove = accommodationRepository.GetAllByOwner(selectedAccommodation.IdOwner).Find(accommodation => accommodation.Id == selectedAccommodation.Id);
+            accommodationRepository.Remove(accommodationToRemove);
         }
 
         public bool CanCancel(AccommodationReservation reservation)

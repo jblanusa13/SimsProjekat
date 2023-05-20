@@ -1,0 +1,63 @@
+﻿<Page x:Class="ProjectSims.WPF.View.GuideView.Pages.SuggestionsView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
+      mc:Ignorable="d" 
+       d:DesignHeight="500" d:DesignWidth="1280">
+    <Page.Resources>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Height" Value="45"/>
+        </Style>
+        <Style TargetType="{x:Type Image}">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="50"/>
+        </Style>
+        <Style TargetType="{x:Type Hyperlink}">
+            <Setter Property="Foreground" Value="#FF1B5886" />
+            <Setter Property="TextBlock.TextDecorations" Value="{x:Null}" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="MidnightBlue" />
+                    <Setter Property="TextBlock.TextDecorations" Value="Underline" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Border HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Height="40" Width="1280" BorderBrush="White" BorderThickness="0 0 0 1">
+            <Grid>
+                <Label Margin="20,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">
+                    <Hyperlink Click="Back_Click" IsEnabled="True">
+                    <TextBlock Text="Nova tura"/>
+                </Hyperlink>
+            </Label>
+            <Label Content="&#707;  Predlozi" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="100,10,0,0" FontSize="16"/>
+        </Grid>
+    </Border>
+    <Grid Background="Transparent" Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <Image Source="/Resources/Icons/Guide/idea.png" Margin="480,50,0,0"/>
+        <Label Content="Predlozi" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0" FontSize="44" Height="50" FontWeight="Bold"/>
+        <Label Margin="50,150,0,0" Width="600" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Hyperlink Click="CreateTourByLanguage_Click">
+                <TextBlock Text="{Binding MostWantedLanguage, StringFormat='Kreiraj turu na najtrazenijem jeziku: {0}'}"/>
+            </Hyperlink>
+        </Label>
+        <Image Source="/Resources/Images/Guide/languages.png" Width="450" Height="250" Margin="0,180,0,0"/>
+        <Label Margin="650,150,0,0" Width="600" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Hyperlink Click="CreateTourByLocation_Click">
+                    <TextBlock Text="{Binding MostWantedLocation, StringFormat='Kreiraj turu na najtrazenijoj lokaciji: {0}'}"/>
+            </Hyperlink>
+        </Label>
+        <Image Source="/Resources/Images/Guide/location.png" Width="450" Height="250" Margin="670,160,0,0" VerticalAlignment="Center"/>
+    </Grid>
+    </Grid>
+</Page>

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Domain.RepositoryInterface;
+using ProjectSims.Serializer;
 
 namespace ProjectSims.Service
 {
@@ -14,12 +15,27 @@ namespace ProjectSims.Service
     {
        private IGuest2Repository guest2Repository;
        private VoucherService voucherService;
+        private IUserRepository userRepository;
 
         public Guest2Service()
         {
             guest2Repository = Injector.CreateInstance<IGuest2Repository>();
+            userRepository = Injector.CreateInstance<IUserRepository>();
             voucherService = new VoucherService();
+            InitializeUser();
         }
+        public Guest2 GetGuestByUserId(int userId)
+        {
+            return guest2Repository.GetByUserId(userId);
+        }
+        private void InitializeUser()
+        {
+            foreach (var item in guest2Repository.GetAll())
+            {
+                item.User = userRepository.GetById(item.UserId);
+            }
+        }
+
         public List<Guest2> GetAllGuests()
         {
             return guest2Repository.GetAll();

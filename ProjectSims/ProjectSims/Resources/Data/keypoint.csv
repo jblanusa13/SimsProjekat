@@ -1,8 +1,8 @@
-0|Kalemegdan park|False|First
-1|Vojni muzej|False|Intermediate
-2|Pobednik|False|Intermediate
-3|Jaksiceva kula|False|Last
-4|Kalemegdan park|False|First
+0|Kalemegdan park|True|First
+1|Vojni muzej|True|Intermediate
+2|Pobednik|True|Intermediate
+3|Jaksiceva kula|True|Last
+4|Kalemegdan park|True|First
 5|Vojni muzej|False|Intermediate
 6|Pobednik|False|Intermediate
 7|Jaksiceva kula|False|Last
@@ -26,3 +26,10 @@
 25|Terazije|False|Intermediate
 26|Muzej Iluzija|False|Intermediate
 27|Hotel Moskva|False|Last
+28|df|False|First
+29|sfd|False|Intermediate
+30|fsd|False|Last
+31|Montmartr|False|First
+32|Panteon|False|Intermediate
+33|Sorbona|False|Intermediate
+34|Latinski kvart|False|Last

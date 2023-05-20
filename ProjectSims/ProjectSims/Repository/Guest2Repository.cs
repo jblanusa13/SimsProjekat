@@ -23,6 +23,11 @@ namespace ProjectSims.Repository
             guests = guest2FileHandler.Load();
             observers = new List<IObserver>();
         }
+
+        public Guest2 GetByUserId(int userId)
+        {
+            return guests.FirstOrDefault(g => g.UserId == userId);
+        }
         public int NextId()
         {
             if (guests.Count == 0)

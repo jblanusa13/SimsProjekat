@@ -26,7 +26,7 @@ namespace ProjectSims
             { typeof(ITourRequestRepository), new TourRequestRepository() },
             { typeof(IGuideScheduleRepository), new GuideScheduleRepository() },    
             { typeof(IAccommodationRepository), new AccommodationRepository() },
-            { typeof(IRenovationRepository), new RenovationRepository() },
+            { typeof(IRenovationScheduleRepository), new RenovationScheduleRepository() },
             { typeof(IGuestRatingRepository), new GuestRatingRepository() },
             { typeof(ILocationRepository), new LocationRepository() },
             { typeof(ILastShownRepository), new LastShownRepository() },
@@ -36,7 +36,8 @@ namespace ProjectSims
             { typeof(IAccommodationRatingRepository), new AccommodationRatingRepository() },
             { typeof(IRenovationRecommendationRepository), new RenovationRecommendationRepository() },
             { typeof(IRequestRepository), new RequestRepository() },
-            { typeof(IAccommodationScheduleRepository), new AccommodationScheduleRepository() }
+            { typeof(IAccommodationScheduleRepository), new AccommodationScheduleRepository() },
+            { typeof(ISuperGuestRepository), new SuperGuestRepository() }
         };
        public static T CreateInstance<T>()
         {

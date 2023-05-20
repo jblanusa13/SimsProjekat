@@ -31,14 +31,14 @@ namespace ProjectSims.View.OwnerView.Pages
     /// <summary>
     /// Interaction logic for OwnerView.xaml
     /// </summary>
-    public partial class AccommodationsDisplay : Page
+    public partial class AccommodationsDisplayView : Page
     {
         public AccommodationsDisplayViewModel accommodationsDisplayViewModel;
         public Owner Owner { get; set; }
         public Accommodation SelectedAccommodation { get; set; }
         public TextBlock TitleTextBlock { get; set; }
 
-        public AccommodationsDisplay(Owner o, TextBlock titleTextBlock)
+        public AccommodationsDisplayView(Owner o, TextBlock titleTextBlock)
         {
             InitializeComponent();
             Owner = o;
@@ -78,7 +78,7 @@ namespace ProjectSims.View.OwnerView.Pages
             SelectedAccommodation = (Accommodation)AccommodationsTable.SelectedItem;
             if (SelectedAccommodation != null)
             {
-                this.NavigationService.Navigate(new RenovationView(Owner, TitleTextBlock, SelectedAccommodation));
+                this.NavigationService.Navigate(new RenovationScheduleView(Owner, TitleTextBlock, SelectedAccommodation));
                 TitleTextBlock.Text = "Renovacija smještaja";
             }
         }
