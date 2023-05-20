@@ -58,7 +58,7 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
                 keyPoints.Add(CreateAndReturnKeyPoint(finishKeyPoint, KeyPointType.Last));
                 DateTime start = DateTime.ParseExact(appointment.Split("-")[0], "MM/dd/yyyy H:m", CultureInfo.InvariantCulture);
                 double duration = Convert.ToDouble(appointment.Split("-")[1]);
-                Tour tour = new Tour(-1, Guide.Id, name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPoints.Select(k => k.Id).ToList(), start, duration, images, Convert.ToInt32(maxNumberGuests), TourState.Inactive, -1);
+                Tour tour = new Tour(-1, Guide.Id, name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPoints.Select(k => k.Id).ToList(), start, duration, images, Convert.ToInt32(maxNumberGuests), TourState.Inactive, -1,keyPoints);
                 int lastAddedTour = tourService.NextId();
                 lastAddedTours.Add(lastAddedTour);
                 tourService.Create(tour);

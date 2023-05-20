@@ -36,7 +36,7 @@ namespace ProjectSims.Domain.Model
             Images = new List<string>();
         }
 
-        public Tour(int id, int guideId, string name, string location, string description, string language, int maxNumberGuests,List<int> keyPointIds, DateTime startOfTheTour, double duration, List<String> images, int availableSeats, TourState state, int activeKeyPointId)
+        public Tour(int id, int guideId, string name, string location, string description, string language, int maxNumberGuests,List<int> keyPointIds, DateTime startOfTheTour, double duration, List<String> images, int availableSeats, TourState state, int activeKeyPointId,List<KeyPoint> keyPoints)
         {
             Id = id;
             GuideId = guideId;
@@ -52,7 +52,7 @@ namespace ProjectSims.Domain.Model
             AvailableSeats = availableSeats;
             State = state;
             ActiveKeyPointId = activeKeyPointId;
-            KeyPoints = new List<KeyPoint>();
+            KeyPoints = keyPoints;
         }
 
         public static TourState GetState(string state)

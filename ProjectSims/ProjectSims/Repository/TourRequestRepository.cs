@@ -62,14 +62,6 @@ namespace ProjectSims.Repository
         {
             return tourRequests.Where(r => r.State == TourRequestState.Waiting).ToList();
         }
-        public List<TourRequest> GetByYear(int year)
-        {
-            return tourRequests.Where(r => r.CreationDate.Year == year).ToList();
-        }
-        public List<TourRequest> GetByYearAndMonth(int year,int month)
-        {
-            return tourRequests.Where(r => r.CreationDate.Year == year && r.CreationDate.Month == month).ToList();
-        }
         public TourRequest GetById(int id)
         {
             return tourRequests.Find(t => t.Id == id);
@@ -81,11 +73,11 @@ namespace ProjectSims.Repository
         }
         public List<TourRequest> GetByLocation(string location)
         {
-            return tourRequests.Where(t => t.Location.ToLower().Contains(location)).ToList();
+            return tourRequests.Where(t => t.Location.ToLower() == location.ToLower()).ToList();
         }
         public List<TourRequest> GetByLanguage(string language)
         {
-            return tourRequests.Where(t => t.Language.ToLower().Contains(language)).ToList();
+            return tourRequests.Where(t => t.Language.ToLower() == language.ToLower()).ToList();
         }
         public List<TourRequest> GetByMaxNumberGuests(int maxNumberGuests)
         {
@@ -94,6 +86,14 @@ namespace ProjectSims.Repository
         public List<TourRequest> GetRequestsInDateRange(DateOnly dateRangeStart, DateOnly dateRangeEnd)
         {
             return tourRequests.Where(t => t.DateRangeStart.CompareTo(dateRangeStart) >= 0 && t.DateRangeEnd.CompareTo(dateRangeEnd) <= 0).ToList();
+        }
+        public List<TourRequest> GetByYear(int year)
+        {
+            return tourRequests.Where(t => t.CreationDate.Year == year).ToList();
+        }
+        public List<TourRequest> GetByMonth(int month)
+        {
+            return tourRequests.Where(t => t.CreationDate.Month == month).ToList();
         }
         public void Subscribe(IObserver observer)
         {

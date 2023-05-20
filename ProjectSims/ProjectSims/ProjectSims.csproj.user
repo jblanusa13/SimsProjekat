@@ -110,9 +110,6 @@
     <Compile Update="WPF\View\GuideView\GuideStartingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WPF\View\GuideView\Pages\RequestsGraphView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="WPF\View\GuideView\Pages\RequestStatisticsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -269,9 +266,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\GuideView\GuideStartingView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="WPF\View\GuideView\Pages\RequestsGraphView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\GuideView\Pages\RequestStatisticsView.xaml">

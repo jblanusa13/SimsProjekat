@@ -4,9 +4,12 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
+       xmlns:converters="clr-namespace:ProjectSims.WPF.Converters"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
       mc:Ignorable="d" 
       d:DesignWidth="1280">
     <Page.Resources>
+        <converters:MonthConverter x:Key="MonthConverter"/>
         <Style TargetType="{x:Type Label}">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Helvetica"/>
@@ -114,7 +117,7 @@
                 </Grid>
             </Border>
         </Grid>
-        <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,40,0,0" Height="450">
+        <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,40,0,0">
             <Grid Background="Transparent">
                 <Label Content="Statistika zahteva" HorizontalAlignment="Center" Margin="0,50,0,0" FontSize="44" Height="50" FontWeight="Bold"/>
                 <Grid Name="sasa" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,100,0,0" Width="1280" Height="140">
@@ -125,14 +128,62 @@
                     <Image Source="/Resources/Icons/Guide/location.png" Margin="410,70,0,0"/>
                     <TextBox x:Name="LanguageTextBox" Margin="500,70,0,0" Width="200"/>
                     <Image Source="/Resources/Icons/Guide/language.png" Margin="710,70,0,0"/>
-                    <ComboBox Name="YearComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="800,70,0,0" Height="50" Width="150" FontSize="22"/>
+                    <ComboBox Name="YearsComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="800,70,0,0" Height="50" Width="150" FontSize="22" />
                     <Image Source="/Resources/Icons/Guide/calendar.png" Margin="960,70,0,0"/>
                     <Button Style="{StaticResource TransparentStyle1}" Click ="ShowStatistics_Click" Margin="0,70,20,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="65" Width="65" Background="Transparent" BorderThickness="0" Cursor="Hand">
                         <Image Source="/Resources/Icons/Guide/show-statistics.png"/>
                     </Button>
                 </Grid>
                 <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,240,0,0" Width="1280" Background="Transparent">
-                    <Frame Name="StatisticsFrame" HorizontalAlignment="Center" VerticalAlignment="Top" Width="1277" NavigationUIVisibility="Hidden" FlowDirection="RightToLeft"/>
+                    <ListView Name="StatisticsListView"  Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,20,0,80" Background="#ffc300">
+                        <ItemsControl.ItemContainerStyle>
+                            <Style>
+                                <Style.Triggers>
+                                    <Trigger Property="Control.IsMouseOver" Value="True">
+                                        <Setter Property="Control.BorderBrush" Value="#ffe7a0" />
+                                        <Setter Property="Control.BorderThickness" Value="1" />
+                                        <Setter Property="Control.Background" Value="Transparent" />
+                                        <Setter Property="Control.FontWeight" Value="Medium" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+                        <ListView.Resources>
+                            <Style TargetType="{x:Type Label}">
+                                <Setter Property="Foreground" Value="#FF1B5886"/>
+                                <Setter Property="FontFamily" Value="Helvetica"/>
+                                <Setter Property="FontSize" Value="20"/>
+                                <Setter Property="Height" Value="40"/>
+                                <Setter Property="Margin" Value="60,10,0,0"/>
+                            </Style>
+                        </ListView.Resources>
+                        <ListView.View>
+                            <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeader}">
+                                <GridViewColumn x:Name="Column" Width="195">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Key,Converter={StaticResource MonthConverter}}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Ukupan broj zahteva" Width="195">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Value}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <lvc:CartesianChart Series="{Binding SeriesCollection}" Margin="0,20,50,80" HorizontalAlignment="Right" VerticalAlignment="Top" Height="400" Width="600" Hoverable="False" Foreground="White" FontSize="22" FontFamily="Helvetica" >
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Title="Godine"></lvc:Axis>
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Broj zahteva na trazenom jeziku/lokaciji"></lvc:Axis>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
                 </Grid>
             </Grid>
         </ScrollViewer>
