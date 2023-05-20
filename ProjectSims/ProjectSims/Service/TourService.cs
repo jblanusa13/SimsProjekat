@@ -34,17 +34,21 @@ namespace ProjectSims.Service
             InitializeGuide();
             InitializeKeyPoints();
         }
-        private void InitializeGuide()
+        public void InitializeGuide()
         {
             foreach (var item in tourRepository.GetAll())
             {
                 item.Guide = guideRepository.GetById(item.GuideId);
             }
         }
-        private void InitializeKeyPoints()
+        public void InitializeKeyPoints()
         {
             foreach (var item in tourRepository.GetAll())
             {
+                if(item.KeyPoints.Count() != 0)
+                {
+                    item.KeyPoints.Clear();
+                }
                foreach(int id in item.KeyPointIds)
                 {
                     item.KeyPoints.Add(keyPointRepository.GetById(id));
@@ -71,11 +75,6 @@ namespace ProjectSims.Service
         public Tour GetTourByStateAndGuideId(TourState state, int guideId)
         {
             return tourRepository.GetTourByStateAndGuideId(state, guideId);
-        }
-        public List<KeyPoint> GetTourKeyPoints(Tour tour)
-        {
-            List<int> keyPointIds = tour.KeyPointIds;
-            return keyPointIds.Select(id => keyPointService.GetKeyPointById(id)).ToList();
         }
         public List<Tour> GetToursByDateAndGuideId(DateTime date,int guideId)
         {

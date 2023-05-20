@@ -1,9 +1,10 @@
 0|13|-1|Invalid|Pariz,Francuska|Obavezan obilazak Luvra|Srpski|10|15/05/2023|16/05/2023|12/05/2023
-1|13|-1|Invalid|Bijeljina,BIH|Obavezan obilazak Etno sela Stanisici|Francuski|10|17/05/2023|31/05/2023|12/05/2023
-2|13|9|Accepted|Beograd,Srbija|Da ne traje vise od 2 sata i da se ne obilazi Kalemegdan|Francuski|20|17/05/2023|25/05/2023|12/05/2023
-3|13|9|Accepted|Amsterdam,Holandija|da se ide biciklom|Srpski|14|25/05/2023|02/06/2023|16/05/2021
+1|13|-1|Invalid|Bijeljina,BIH|Obavezan obilazak Etno sela Stanisici|Francuski|10|17/05/2023|31/05/2023|12/01/2020
+2|13|9|Accepted|Beograd,Srbija|Da ne traje vise od 2 sata i da se ne obilazi Kalemegdan|Francuski|20|17/05/2023|25/05/2023|12/05/2020
+3|13|-1|Waiting|Amsterdam,Holandija|da se ide biciklom|Srpski|14|25/05/2023|02/05/2023|16/05/2021
 4|13|-1|Waiting|Pariz,Francuska|Obavezan obilazak Monmartra|Engleski|5|26/05/2023|31/05/2023|12/05/2021
-5|13|-1|Waiting|Pariz,Francuska|Da se ne pesaci mnogo|Francuski|5|26/05/2023|31/05/2023|12/05/2022
-6|13|-1|Invalid|Bijeljina,BIH|Obavezan obilazak Etno sela Stanisici|Francuski|10|17/05/2023|31/05/2023|12/05/2023
-7|15|-1|Waiting|Pariz,Francuska|obilazak Ajfelovog tornja|Francuski|12|01/06/2023|15/06/2023|17/05/2023
-8|13|-1|Waiting|Pariz,Francuska|zahtev|Italijanski|23|01/06/2023|10/06/2023|19/05/2023
+5|13|-1|Waiting|Pariz,Francuska|Da se ne pesaci mnogo|Francuski|5|26/05/2023|31/05/2023|12/06/2022
+6|13|-1|Invalid|Bijeljina,BIH|Obavezan obilazak Etno sela Stanisici|Francuski|10|17/05/2023|31/05/2023|12/10/2023
+7|13|-1|Invalid|Berlin,Nemacka|opisopis|Nemački|10|22/05/2023|24/05/2023|19/09/2023
+8|13|-1|Waiting|Berlin,Nemacka|sadas|Srpski|3|24/05/2023|26/05/2023|19/08/2023
+9|13|-1|Waiting|Berlin,Nemacka|zahtev3|Francuski|3|24/05/2023|02/06/2023|19/06/2023

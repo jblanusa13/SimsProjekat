@@ -90,8 +90,13 @@ namespace ProjectSims.View.GuideView
         }
         private void TourRequests_Click(object sender, RoutedEventArgs e)
         {
-            Page finishedTourtourRequestsView = new TourRequestsView(Guide);
-            GuideFrame.Content = finishedTourtourRequestsView;
+            Page finishedTourRequestsView = new TourRequestsView(Guide);
+            GuideFrame.Content = finishedTourRequestsView;
+        }
+        private void RequestStatistics_Click(object sender, RoutedEventArgs e)
+        {
+            Page requestStatisticsView = new RequestStatisticsView(Guide);
+            GuideFrame.Content = requestStatisticsView;
         }
         public void Update()
         {
