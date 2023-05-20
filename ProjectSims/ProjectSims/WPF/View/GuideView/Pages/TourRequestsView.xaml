@@ -182,14 +182,14 @@
                         <GridViewColumn Header="Opseg datuma" Width="280">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Label >
+                                        <TextBlock Margin="0,50,0,0" Foreground="#FF1B5886" FontSize="22" FontFamily="Helvetica" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80" >
                                         <AccessText>
-                                            <MultiBinding StringFormat="{}{0} - {1}">
+                                            <MultiBinding StringFormat="{}{0:dd/MM/yyyy} - {1:dd/MM/yyyy}">
                                                 <Binding Path="DateRangeStart" />
-                                                <Binding Path="DateRangeEnd" />
+                                                <Binding Path="DateRangeEnd"/>
                                             </MultiBinding>
                                         </AccessText>
-                                    </Label>
+                                    </TextBlock>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

@@ -91,26 +91,18 @@ namespace ProjectSims.Service
         public List<TourRequest> GetRequestsByStatisticsParameters(string location, string language)
         {
             if (location == "" && language == "")
-            {
                 return tourRequestRepository.GetAll();
-            }
             else if (language == "")
-            {
                 return tourRequestRepository.GetByLocation(location);
-            }
             else if (location == "")
-            {
                 return tourRequestRepository.GetByLanguage(language);
-            }
             return tourRequestRepository.GetByLocation(location).Where(r => tourRequestRepository.GetByLanguage(language).Contains(r)).ToList();
-
         }
         public List<int> GetYears()
         {
             List<int> years = tourRequestRepository.GetAll().Select(r => r.CreationDate.Year).ToList();
             return years.Distinct().ToList();
         }
-
         public List<TourRequest> GetRequestsInLastYear()
         {
             return tourRequestRepository.GetAll().Where(r => (DateTime.Now - r.CreationDate).TotalDays <= 365).ToList();

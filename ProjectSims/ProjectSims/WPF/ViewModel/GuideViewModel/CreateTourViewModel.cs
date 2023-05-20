@@ -22,7 +22,6 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
         private TourService tourService;
         private TourRequestService tourRequestService;
         private KeyPointService keyPointService;
-        private GuideScheduleService guideScheduleService;
         private NotificationTourService notificationTourService;
         private List<int> lastAddedTours;
 
@@ -33,7 +32,6 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
             tourService = new TourService();
             tourRequestService = new TourRequestService();
             keyPointService = new KeyPointService();
-            guideScheduleService = new GuideScheduleService();
             notificationTourService = new NotificationTourService();
             lastAddedTours = new List<int>();
             Guide = guide;
@@ -64,7 +62,6 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
                 int lastAddedTour = tourService.NextId();
                 lastAddedTours.Add(lastAddedTour);
                 tourService.Create(tour);
-                guideScheduleService.Create(new GuideSchedule(-1, Guide.Id, tour.Id, start, start.AddHours(duration)));
             }
             SendNotificationIfTourCreatedByMostWantedLanugageAllGuests(createdByLanguage, language);
             SendNotificationIfTourCreatedByMostWantedLocationAllGuests(createdByLocation, location);
@@ -111,11 +108,11 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
                 }
             }
         }
-        public bool GuideIsAvailable(DateOnly date,int hour,int minute,double duration)
+        public bool GuideIsAvailable(DateTime date,int hour,int minute,double duration)
         {
             DateTime start = new DateTime(date.Year,date.Month,date.Day,hour, minute, 0);
             DateTime end = start.AddHours(duration);
-            foreach (var freeAppointment in guideScheduleService.GetFreeAppointmentsForThatDay(Guide.Id,date))
+            foreach (var freeAppointment in tourService.GetFreeAppointmentsForThatDay(Guide.Id,date))
             {
                 if ((start >= freeAppointment.Item1) && (start <= freeAppointment.Item2) && (end <= freeAppointment.Item2) && (end <= freeAppointment.Item2))
                     return true;

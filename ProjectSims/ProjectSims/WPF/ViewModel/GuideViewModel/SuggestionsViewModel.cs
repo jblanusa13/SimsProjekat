@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace ProjectSims.WPF.ViewModel.GuideViewModel
 {
@@ -17,7 +18,7 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
         public string MostWantedLanguage { get; set; }
         public string MostWantedLocation { get; set; }
         public Guide Guide { get; set; }
-        public SuggestionsViewModel(Guide g)
+        public SuggestionsViewModel(Guide g,Hyperlink languageHyperlink,Hyperlink locationHyperLink)
         { 
             tourRequestService = new TourRequestService();
             if (tourRequestService.GetMostWantedLanguageInLastYear() != null)
@@ -26,7 +27,8 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
             }
             else
             {
-                MostWantedLanguage = "Trenutno ne postoji jezik sa najvecim brojem zahteva!";
+                MostWantedLanguage = "Trenutno ne postoji!";
+                languageHyperlink.IsEnabled = false;
             }
             if (tourRequestService.GetMostWantedLocationInLastYear() != null)
             {
@@ -34,7 +36,8 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
             }
             else
             {
-                MostWantedLocation = "Trenutno ne postoji lokacija sa najvecim brojem zahteva!";
+                MostWantedLocation = "Trenutno ne postoji!";
+                locationHyperLink.IsEnabled = false;
             }
         }
         public string GetMostWantedLanguage()

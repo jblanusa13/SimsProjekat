@@ -361,7 +361,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 MessageTextBox.Text = "Odaberite termin!";
             else if (!Int32.TryParse(Hour, out hour) || hour < 0 || hour >= 24 || !Int32.TryParse(Minute, out minute) || minute < 0 || minute > 60 || !Double.TryParse(Duration, out duration))
                 MessageTextBox.Text = "Los format!";
-            else if (!createTourViewModel.GuideIsAvailable(DateOnly.FromDateTime(date), hour, minute, duration))
+            else if (!createTourViewModel.GuideIsAvailable(date, hour, minute, duration))
                 MessageTextBox.Text = "Termin je zauzet!";
             else
                 MessageTextBox.Text = "";
