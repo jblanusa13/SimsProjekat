@@ -59,13 +59,25 @@ namespace ProjectSims.Service
         {
             List<TourRequest> wantedRequests = tourRequestRepository.GetWaitingRequests();
             if (location != "")
-                wantedRequests.RemoveAll(request => !tourRequestRepository.GetByLocation(location).Contains(request));
+            {
+                List<TourRequest> tourRequestsByLocation = tourRequestRepository.GetByLocation(location);
+                wantedRequests.RemoveAll(request => !tourRequestsByLocation.Contains(request));
+            }
             if (language != "")
-                wantedRequests.RemoveAll(request => !tourRequestRepository.GetByLanguage(language).Contains(request));
+            {
+                List<TourRequest> tourRequestsByLanguage = tourRequestRepository.GetByLanguage(language);
+                wantedRequests.RemoveAll(request => !tourRequestsByLanguage.Contains(request));
+            }
             if (maxNumberGuests != "")
-                wantedRequests.RemoveAll(request => !tourRequestRepository.GetByMaxNumberGuests(int.Parse(maxNumberGuests)).Contains(request));
+            {
+                List<TourRequest> tourRequestsByMaxNumberGuests = tourRequestRepository.GetByMaxNumberGuests(int.Parse(maxNumberGuests));
+                wantedRequests.RemoveAll(request => !tourRequestsByMaxNumberGuests.Contains(request));
+            }
             if (dateRange.Count != 0)
-                wantedRequests.RemoveAll(request => !tourRequestRepository.GetRequestsInDateRange(DateOnly.FromDateTime(dateRange.First()), DateOnly.FromDateTime(dateRange.Last())).Contains(request));
+            {
+                List<TourRequest> tourRequestsInDateRange = tourRequestRepository.GetRequestsInDateRange(DateOnly.FromDateTime(dateRange.First()), DateOnly.FromDateTime(dateRange.Last()));
+                wantedRequests.RemoveAll(request => !tourRequestsInDateRange.Contains(request));
+            }
             return wantedRequests;
         }
         public Dictionary<int, int> GetStatisticsData(string location, string language, int year)
