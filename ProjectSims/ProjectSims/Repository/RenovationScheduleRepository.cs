@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ProjectSims.Domain.Model;
 using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.FileHandler;
+using ProjectSims.Observer;
 using ProjectSims.WPF.View.Guest1View.MainPages;
 
 namespace ProjectSims.Repository
@@ -14,6 +15,7 @@ namespace ProjectSims.Repository
     {
         private RenovationScheduleFileHandler renovationFileHandler;
         private List<RenovationSchedule> renovations;
+        private List<IObserver> observers;
 
         public RenovationScheduleRepository()
         {
@@ -23,6 +25,21 @@ namespace ProjectSims.Repository
 
         public List<RenovationSchedule> GetAll()
         {
+            return renovations;
+        }
+
+        public List<RenovationSchedule> GetPassedAndFutureRenovationsByOwner(int ownerId)
+        {
+            List<RenovationSchedule> renovations = new List<RenovationSchedule>();
+            foreach (RenovationSchedule renovation in GetAll())
+            {
+                if (renovation.Accommodation.IdOwner == ownerId 
+                    && !(DateOnly.FromDateTime(DateTime.Today) < renovation.DateRange.CheckOut
+                    && DateOnly.FromDateTime(DateTime.Today) > renovation.DateRange.CheckIn))
+                {
+                    renovations.Add(renovation);
+                }
+            }
             return renovations;
         }
 
@@ -85,6 +102,24 @@ namespace ProjectSims.Repository
         public RenovationSchedule GetById(int key)
         {
             return renovations.Find(r => r.Id == key);
+        }
+
+        public void Subscribe(IObserver observer)
+        {
+            observers.Add(observer);
+        }
+
+        public void Unsubscribe(IObserver observer)
+        {
+            observers.Remove(observer);
+        }
+
+        public void NotifyObservers()
+        {
+            foreach (var observer in observers)
+            {
+                observer.Update();
+            }
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using ProjectSims.Domain.Model;
 using ProjectSims.Domain.RepositoryInterface;
+using ProjectSims.Observer;
 using ProjectSims.Repository;
 
 namespace ProjectSims.Service
@@ -33,13 +34,17 @@ namespace ProjectSims.Service
         {
             return renovationScheduleRepository.GetAll();
         }
+
+        public List<RenovationSchedule> GetPassedAndFutureRenovationsByOwner(int ownerId)
+        {
+            return renovationScheduleRepository.GetPassedAndFutureRenovationsByOwner(ownerId);  
+        }
+
         public void CreateRenovation(DateRanges dateRange, string description, int accomodationId, Accommodation accommodation)
         {
             int id = renovationScheduleRepository.NextId();
-            RenovationSchedule renovation = new RenovationSchedule(id, dateRange, description, accomodationId, accommodation);
+            RenovationSchedule renovation = new RenovationSchedule(id, dateRange, description, accomodationId, accommodation, -1);
             renovationScheduleRepository.Create(renovation);
-            List<DateRanges> dateRanges = accommodationScheduleRepository.GetUnavailableDates(accomodationId);
-            dateRanges.Add(dateRange);
             AccommodationSchedule schedule = accommodationScheduleRepository.GetById(accommodation.ScheduleId);
             accommodationScheduleRepository.AddUnavailableDate(schedule, dateRange);
             accommodationScheduleRepository.Update(schedule);
@@ -73,5 +78,31 @@ namespace ProjectSims.Service
             return false;
         }
 
+        public int CalculateDurationForRenovation(RenovationSchedule renovation)
+        {
+            return renovation.DateRange.CheckOut.DayNumber - renovation.DateRange.CheckIn.DayNumber;
+        }
+
+        public bool CanQuitRenovation(RenovationSchedule renovation)
+        {
+            if (DateOnly.FromDateTime(DateTime.Today).AddDays(5) < renovation.DateRange.CheckIn)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void RemoveRenovation(RenovationSchedule renovation)
+        {
+            renovationScheduleRepository.Remove(renovation);
+            AccommodationSchedule schedule = accommodationScheduleRepository.GetById(renovation.Accommodation.ScheduleId);
+            schedule.UnavailableDates.Remove(renovation.DateRange);
+            accommodationScheduleRepository.Update(schedule);
+        }
+
+        public void Subscribe(IObserver observer)
+        {
+            accommodationRepository.Subscribe(observer);
+        }
     }
 }

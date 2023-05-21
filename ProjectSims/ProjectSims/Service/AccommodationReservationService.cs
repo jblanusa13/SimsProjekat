@@ -21,8 +21,6 @@ namespace ProjectSims.Service
         private IGuest1Repository guest1Repository;
         private IAccommodationRepository accommodationRepository;
         private IAccommodationScheduleRepository accommodationScheduleRepository;
-        private IRenovationRecommendationRepository renovationRecommendationRepository;
-        private IAccommodationRatingRepository accommodationRatingRepository;
 
         public AccommodationReservationService()
         {
@@ -31,8 +29,6 @@ namespace ProjectSims.Service
             guest1Repository = Injector.CreateInstance<IGuest1Repository>();
             accommodationRepository = Injector.CreateInstance<IAccommodationRepository>();
             accommodationScheduleRepository = Injector.CreateInstance<IAccommodationScheduleRepository>();
-            renovationRecommendationRepository = Injector.CreateInstance<IRenovationRecommendationRepository>();
-            accommodationRatingRepository = Injector.CreateInstance<IAccommodationRatingRepository>();
 
             InitializeGuest();
             InitializeAccommodation();
@@ -163,38 +159,6 @@ namespace ProjectSims.Service
                 if (reservation.CheckInDate.Year.ToString().Equals(year) && reservation.CheckInDate.Month.ToString().Equals(month) && reservation.State == ReservationState.Canceled)
                 {
                     number++;
-                }
-            }
-            return number;
-        }
-        
-        public int GetAllRenovationReccommendationsByYear(string year, int ownerId)
-        {
-            int number = 0;
-            foreach (AccommodationAndOwnerRating rating in accommodationRatingRepository.GetAllByOwnerId(ownerId))
-            {
-                foreach (RenovationRecommendation renovation in renovationRecommendationRepository.GetAll())
-                {
-                    if (rating.Reservation.CheckInDate.Year.ToString().Equals(year) && rating.RenovationId == renovation.Id)
-                    {
-                        number++;
-                    }
-                }
-            }
-            return number;
-        }
-
-        public int GetAllRenovationReccommendationsByMonth(string month, string year, int ownerId)
-        {
-            int number = 0;
-            foreach (AccommodationAndOwnerRating rating in accommodationRatingRepository.GetAllByOwnerId(ownerId))
-            {
-                foreach (RenovationRecommendation renovation in renovationRecommendationRepository.GetAll())
-                {
-                    if (rating.Reservation.CheckInDate.Year.ToString().Equals(year) && rating.Reservation.CheckInDate.Month.ToString().Equals(month) && rating.RenovationId == renovation.Id)
-                    {
-                        number++;
-                    }
                 }
             }
             return number;

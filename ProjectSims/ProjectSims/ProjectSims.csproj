@@ -383,4 +383,9 @@
   <ItemGroup>
     <Resource Include="WPF\View\Guest2View\travel-tour-logo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="WPF\View\OwnerView\Pages\RenovationsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
 </Project>

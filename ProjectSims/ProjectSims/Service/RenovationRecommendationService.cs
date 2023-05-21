@@ -12,10 +12,13 @@ namespace ProjectSims.Service
     public class RenovationRecommendationService
     {
         private IRenovationRecommendationRepository recommendationRepository;
+        private IAccommodationRatingRepository accommodationRatingRepository;
+
 
         public RenovationRecommendationService()
         {
             recommendationRepository = Injector.CreateInstance<IRenovationRecommendationRepository>();
+            accommodationRatingRepository = Injector.CreateInstance<IAccommodationRatingRepository>();
         }
 
         public RenovationRecommendation GetRecommendation(int id)
@@ -35,6 +38,5 @@ namespace ProjectSims.Service
             CreateRecommendation(renovationUrgency, recommendations);
             return recommendationRepository.GetAll().LastOrDefault();
         }
-
     }
 }

@@ -11,8 +11,7 @@
     <Grid ScrollViewer.CanContentScroll="True"
           ScrollViewer.HorizontalScrollBarVisibility="Hidden"
           ScrollViewer.VerticalScrollBarVisibility="Hidden"
-          TextBlock.TextAlignment="Center"
-          SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical">
+          TextBlock.TextAlignment="Center">
         
         <DataGrid x:Name="RatingTable"  
                           ItemsSource="{Binding Ratings}" 
@@ -23,7 +22,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Gost"
                                         FontSize="11"
-                                        Width="88"
+                                        Width="80"
                                         IsReadOnly="True">
                     <DataGridTextColumn.Binding>
                         <MultiBinding StringFormat="{}{0} {1}">
@@ -34,7 +33,7 @@
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Čistoća"
                                             Binding="{Binding Cleanliness}"
-                                            Width="*"
+                                            Width="65"
                                             IsReadOnly="True">
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Korektnost"
@@ -44,17 +43,17 @@
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Lokacija"
                                                 Binding="{Binding Location}"
-                                                Width="*"
+                                                Width="70"
                                                 IsReadOnly="True">
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Vrijednost za novac"
                                                 Binding="{Binding ValueForMoney}"
-                                                Width="*"
+                                                Width="70"
                                                 IsReadOnly="True">
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Komentar"
                                                     Binding="{Binding AddedComment}"
-                                                    Width="*"
+                                                    Width="70"
                                                     IsReadOnly="True">
                 </DataGridTextColumn>
             </DataGrid.Columns>

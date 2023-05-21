@@ -43,14 +43,14 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
             this.DataContext = requestsViewModel;
         }
 
-        private void AcceptButton_Click(object sender, RoutedEventArgs e)
+        private void Accept_Click(object sender, RoutedEventArgs e)
         {
             SelectedRequest = (Request)RequestsTable.SelectedItem;
             requestsViewModel.UpdateSelectedRequest(sender, SelectedRequest, CommentTextBox.Text);
             CommentTextBox.Text = "Unesite komentar ukoliko odbijate zahtjev...";
         }
 
-        private void RefuseButton_Click(object sender, RoutedEventArgs e)
+        private void Refuse_Click(object sender, RoutedEventArgs e)
         {
             SelectedRequest = (Request)RequestsTable.SelectedItem;
             requestsViewModel.UpdateSelectedRequest(sender, SelectedRequest, CommentTextBox.Text);

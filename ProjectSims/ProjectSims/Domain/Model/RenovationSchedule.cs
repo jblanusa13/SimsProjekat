@@ -17,16 +17,17 @@ namespace ProjectSims.Domain.Model
         public string Description { get; set; } 
         public int AccommodationId { get; set; }
         public Accommodation Accommodation { get; set; }
-
+        public int Duration { get; set; }
         public RenovationSchedule() { }
 
-        public RenovationSchedule(int id, DateRanges dateRange, string description, int accomodationId, Accommodation accommodation)
+        public RenovationSchedule(int id, DateRanges dateRange, string description, int accomodationId, Accommodation accommodation, int duration)
         {
             Id = id;
             DateRange = dateRange;
             Description = description;
             AccommodationId = accomodationId;
             Accommodation = accommodation;
+            Duration = duration;
         }
 
         public void FromCSV(string[] values)

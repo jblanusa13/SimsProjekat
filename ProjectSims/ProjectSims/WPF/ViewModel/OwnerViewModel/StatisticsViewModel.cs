@@ -18,6 +18,7 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
     public class StatisticsViewModel
     {
         private AccommodationReservationService accommodationReservationService;
+        private AccommodationRatingService accommodationRatingService;
         List<AccommodationReservation> Reservations { get; set; }
         public Owner Owner { get; set; }
         public TextBlock TitleTextBlock { get; set; }
@@ -36,6 +37,7 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
             TitleTextBlock = titleTextBlock;
             SelectedAccommodation = selectedAccommodetion;
             accommodationReservationService = new AccommodationReservationService();
+            accommodationRatingService = new AccommodationRatingService();
             Pointlabel = chartPoint => String.Format("{0}({1:P})", chartPoint.Y, chartPoint.Participation);
             Reservations = new List<AccommodationReservation>(accommodationReservationService.GetActiveAndCanceledByOwnerId(Owner.Id, SelectedAccommodation.Id));
 
@@ -68,7 +70,7 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
                 totalReservations.Add(accommodationReservationService.GetAllReservationsByYear(Reservations, year));
                 totalCanceledReservations.Add(accommodationReservationService.GetAllCanceledReservationsByYear(Reservations, year));
                 totalShiftedReservations.Add(accommodationReservationService.GetAllShiftedReservationsByYear(Reservations, year));
-                totalRenovationReccommendations.Add(accommodationReservationService.GetAllRenovationReccommendationsByYear(year, Owner.Id));
+                totalRenovationReccommendations.Add(accommodationRatingService.GetAllRenovationReccommendationsByYear(year, Owner.Id));
             }
             NumberOfReservationsByCriteria.Add(new ColumnSeries { Values = totalReservations, Title = "Rezervacija" });
             NumberOfReservationsByCriteria.Add(new ColumnSeries { Values = totalCanceledReservations, Title = "Otkazane" });
@@ -88,7 +90,7 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
                 totalReservations.Add(accommodationReservationService.GetAllReservationsByMonth(Reservations, month, year.ToString()));
                 totalCanceledReservations.Add(accommodationReservationService.GetAllCanceledReservationsByMonth(Reservations, month, year.ToString()));
                 totalShiftedReservations.Add(accommodationReservationService.GetAllShiftedReservationsByMonth(Reservations, month, year.ToString()));
-                totalRenovationReccommendations.Add(accommodationReservationService.GetAllRenovationReccommendationsByMonth(month, year.ToString(), Owner.Id));
+                totalRenovationReccommendations.Add(accommodationRatingService.GetAllRenovationReccommendationsByMonth(month, year.ToString(), Owner.Id));
             }
             NumberOfMonthReservationsByCriteria.Add(new ColumnSeries { Values = totalReservations, Title = "Rezervacija" });
             NumberOfMonthReservationsByCriteria.Add(new ColumnSeries { Values = totalCanceledReservations, Title = "Otkazane" });

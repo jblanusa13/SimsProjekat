@@ -79,6 +79,32 @@ namespace ProjectSims.Service
             return ratingRepository.GetAllByGuestId(guestId);
         }
 
+        public int GetAllRenovationReccommendationsByYear(string year, int ownerId)
+        {
+            int number = 0;
+            foreach (AccommodationAndOwnerRating rating in ratingRepository.GetAllByOwnerId(ownerId))
+            {
+                if (rating.Reservation.CheckInDate.Year.ToString().Equals(year) && rating.RenovationId != -1)
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+
+        public int GetAllRenovationReccommendationsByMonth(string month, string year, int ownerId)
+        {
+            int number = 0;
+            foreach (AccommodationAndOwnerRating rating in ratingRepository.GetAllByOwnerId(ownerId))
+            {
+                if (rating.Reservation.CheckInDate.Year.ToString().Equals(year) && rating.Reservation.CheckInDate.Month.ToString().Equals(month) && rating.RenovationId != -1)
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+
         public void CreateRating(int reservationId, AccommodationReservation reservation, int cleanliness, int ownerFairness, int location, int valueForMoney, string comment, List<string> imageList, int recommendationId, RenovationRecommendation recommendation)
         {
             int id = ratingRepository.NextId();

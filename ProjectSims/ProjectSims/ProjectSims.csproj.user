@@ -304,6 +304,9 @@
     <Page Update="WPF\View\OwnerView\Pages\ReportToGenerateView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="WPF\View\OwnerView\Pages\RenovationsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="WPF\View\OwnerView\Pages\RequestsView.xaml">
       <SubType>Designer</SubType>
     </Page>

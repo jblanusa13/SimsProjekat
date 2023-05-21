@@ -61,7 +61,7 @@
             </Grid>
 
             <Grid Grid.Row="2">
-                <lvc:CartesianChart Series="{Binding NumberOfReservationsByCriteria}" Margin="45,5,45,5">
+                <lvc:CartesianChart x:Name="YearChart" Series="{Binding NumberOfReservationsByCriteria}" Margin="45,5,45,5">
                     <lvc:CartesianChart.AxisX>
                         <lvc:Axis Title="Godina" Labels="{Binding LabelsForYears}"/>
                     </lvc:CartesianChart.AxisX>
@@ -132,8 +132,8 @@
                 Height="35" 
                 Width="133">
                     <StackPanel>
-                    <TextBlock  HorizontalAlignment="Center" Text="Registruj novi"/>
-                    <TextBlock  HorizontalAlignment="Center" Text="smještaj"/>
+                        <TextBlock  HorizontalAlignment="Center" Text="Registruj novi"/>
+                        <TextBlock  HorizontalAlignment="Center" Text="smještaj"/>
                     </StackPanel>
                 </Button>
                 <Button x:Name="ReportButton"

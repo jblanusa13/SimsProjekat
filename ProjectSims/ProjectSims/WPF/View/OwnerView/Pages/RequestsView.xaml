@@ -78,7 +78,7 @@
                 Width="120"
                 Content="Odobri"
                 Visibility="Visible"
-                Click="AcceptButton_Click" 
+                Click="Accept_Click" 
                 Grid.Row="1"/>
         <Button x:Name="RefuseButton"
                 Margin="255,140,0,0"
@@ -91,7 +91,7 @@
                 Width="120"
                 Content="Odbij"
                 Visibility="Visible"
-                Click="RefuseButton_Click" 
+                Click="Refuse_Click" 
                 Grid.Row="1"/>
     </Grid>
 </Page>

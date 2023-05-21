@@ -59,10 +59,17 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
             this.NavigationService.Navigate(new OwnerRatingsDisplayView(Owner));
             TitleTextBlock.Text = "Recenzije";
         }
+
         private void Profile_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new ProfileView(Owner));
             TitleTextBlock.Text = "Profil";
+        }
+
+        private void Renovations_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new RenovationsView(Owner, TitleTextBlock));
+            TitleTextBlock.Text = "Renoviranja";
         }
     }
 }
