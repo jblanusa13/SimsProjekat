@@ -39,7 +39,8 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
         }
         public KeyPoint CreateAndReturnKeyPoint(string name,KeyPointType type)
         {
-            KeyPoint keyPoint = new KeyPoint(keyPointService.NextId(),name,type);
+            int nextKeyId = keyPointService.NextId();
+            KeyPoint keyPoint = new KeyPoint(nextKeyId,name,type);
             keyPointService.Create(keyPoint);
             return keyPoint;
         }
@@ -63,8 +64,7 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
                 lastAddedTours.Add(lastAddedTour);
                 tourService.Create(tour);
             }
-            SendNotificationIfTourCreatedByMostWantedLanugageAllGuests(createdByLanguage, language);
-            SendNotificationIfTourCreatedByMostWantedLocationAllGuests(createdByLocation, location);
+            SendNotificationsAllGuests(createdByLanguage, language, createdByLocation, location);
             if (TourRequest != null)
             {
                 TourRequest.State = TourRequestState.Accepted;
@@ -76,7 +76,7 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
                 notificationTourService.Create(notification);
             }
         }
-        public void SendNotificationIfTourCreatedByMostWantedLanugageAllGuests(bool CreatedByLanguage,string language)
+        public void SendNotificationsAllGuests(bool CreatedByLanguage, string language, bool CreatedByLocation, string location)
         {
             if (CreatedByLanguage != false)
             {
@@ -86,14 +86,10 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
                 {
                     string content = "Obavjestenje o novim turama koju je vodic kreirao spram statistike o svim zahtjevima" +
                         "(najtrazeniji jezik).";
-                    NotificationTour notification = new NotificationTour(-1, guest2Id, Guide.Id,
-                        lastAddedTours, content, DateTime.Now, false);
+                    NotificationTour notification = CreateNotificationForGuest(guest2Id, content);
                     notificationTourService.Create(notification);
                 }
             }
-        }
-        public void SendNotificationIfTourCreatedByMostWantedLocationAllGuests(bool CreatedByLocation, string location)
-        {
             if (CreatedByLocation != false)
             {
                 List<TourRequest> requests = tourRequestService.GetAllUnrealizedRequestsToLocation(location);
@@ -102,11 +98,16 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
                 {
                     string content = "Obavjestenje o novim turama koju je vodic kreirao spram statistike o svim zahtjevima" +
                         "(najtrazenija lokacija).";
-                    NotificationTour notification = new NotificationTour(-1, guest2Id, Guide.Id,
-                        lastAddedTours, content, DateTime.Now, false);
+                    NotificationTour notification = CreateNotificationForGuest(guest2Id, content);
                     notificationTourService.Create(notification);
                 }
             }
+        }
+        private NotificationTour CreateNotificationForGuest(int guest2Id, string content)
+        {
+            NotificationTour notificaiton = new NotificationTour(-1, guest2Id, Guide.Id,
+                        lastAddedTours, content, DateTime.Now, false);
+            return notificaiton;
         }
         public bool GuideIsAvailable(DateTime date,int hour,int minute,double duration)
         {
