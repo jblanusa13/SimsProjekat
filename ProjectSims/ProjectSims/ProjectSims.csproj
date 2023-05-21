@@ -83,18 +83,25 @@
     <None Remove="Resources\Images\Guest2\travel-tour-logo.png" />
     <None Remove="Resources\Images\guests.png" />
     <None Remove="Resources\Images\Guide\background.jpg" />
+    <None Remove="Resources\Images\Guide\barcelona.jpg" />
+    <None Remove="Resources\Images\Guide\barcelona1.jpg" />
     <None Remove="Resources\Images\Guide\bck.jpg" />
     <None Remove="Resources\Images\Guide\bckgrnd.jpg" />
+    <None Remove="Resources\Images\Guide\etno-selo-stanisici.jpg" />
+    <None Remove="Resources\Images\Guide\Grad-Bijeljina.jpg" />
     <None Remove="Resources\Images\Guide\JaksicevaKula.jpg" />
     <None Remove="Resources\Images\Guide\kalemegdan1.jpg" />
     <None Remove="Resources\Images\Guide\klmgdn.jpg" />
     <None Remove="Resources\Images\Guide\knez.jpg" />
     <None Remove="Resources\Images\Guide\languages.png" />
     <None Remove="Resources\Images\Guide\location.png" />
+    <None Remove="Resources\Images\Guide\luvr.jpg" />
     <None Remove="Resources\Images\Guide\muzejIluzija.jpg" />
     <None Remove="Resources\Images\Guide\panteon.jpg" />
+    <None Remove="Resources\Images\Guide\pariz1.jpg" />
     <None Remove="Resources\Images\Guide\petrovaradin.jpg" />
     <None Remove="Resources\Images\Guide\Pobednik.jpg" />
+    <None Remove="Resources\Images\Guide\sagrada-familia.jpg" />
     <None Remove="Resources\Images\Guide\sat.jpg" />
     <None Remove="Resources\Images\Guide\VojniMuzej.jpg" />
     <None Remove="Resources\Images\home.png" />
@@ -282,6 +289,18 @@
     <Content Include="Resources\Images\Guest2\park-kalemegdan-1184267749.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Guide\barcelona.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guide\barcelona1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guide\etno-selo-stanisici.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guide\Grad-Bijeljina.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Guide\JaksicevaKula.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -300,16 +319,25 @@
     <Content Include="Resources\Images\Guide\location.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Guide\luvr.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Guide\muzejIluzija.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Guide\panteon.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Guide\pariz1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Guide\petrovaradin.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Guide\Pobednik.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guide\sagrada-familia.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Guide\sat.jpg">

@@ -95,14 +95,6 @@ namespace ProjectSims.Repository
         {
             return tourRequests.Where(t => t.DateRangeStart.CompareTo(dateRangeStart) >= 0 && t.DateRangeEnd.CompareTo(dateRangeEnd) <= 0).ToList();
         }
-        public List<TourRequest> GetByYear(int year)
-        {
-            return tourRequests.Where(t => t.CreationDate.Year == year).ToList();
-        }
-        public List<TourRequest> GetByMonth(int month)
-        {
-            return tourRequests.Where(t => t.CreationDate.Month == month).ToList();
-        }
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);

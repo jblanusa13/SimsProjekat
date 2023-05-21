@@ -109,7 +109,7 @@ namespace ProjectSims.Service
         }      
         public string GetMostWantedLanguageInLastYear()
         {
-            if (GetRequestsInLastYear != null)
+            if (GetRequestsInLastYear().Count() != 0)
             {
                 List<String> languagesInLastYear = GetRequestsInLastYear().Select(r => r.Language.ToLower()).ToList();
                 return GetMostCommonElement(languagesInLastYear);
@@ -118,7 +118,7 @@ namespace ProjectSims.Service
         }
         public string GetMostWantedLocationInLastYear()
         {
-            if(GetRequestsInLastYear != null)
+            if(GetRequestsInLastYear().Count() != 0)
             {
                 List<String> locationsInLastYear = GetRequestsInLastYear().Select(r => r.Location.ToLower()).ToList();
                 return GetMostCommonElement(locationsInLastYear);
