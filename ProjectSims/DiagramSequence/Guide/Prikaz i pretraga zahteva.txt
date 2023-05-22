@@ -1,0 +1,63 @@
+@startuml
+Actor Guide as G
+participant TourRequestService as TRS
+participant TourRequestRepository as TRR
+participant TourRequestFileHandler as TRFH
+participant TourRequestFileHandler as TRFH
+participant Serializer as SS
+
+G -> TRS ++ : GetWaitingRequests()
+TRS -> TRR ++ : GetWaitingRequests()
+TRR -> TRFH ++: Load()
+TRFH -> SS ++: FromCSV(../../../Resources/Data/tourrequest.csv)
+SS -> TRFH -- : tourRequests
+TRFH->TRR -- :  tourRequests.Where(r => r.State == TourRequestState.Waiting)
+TRR -> TRS -- :  waitingRequests
+
+G->TRS ++ : GetRequestsBySearchParameters(location, language, maxNumberGuests,dateRange)
+TRS -> TRR ++: GetWaitingRequests()
+TRR -> TRFH ++: Load()
+TRFH -> SS ++: FromCSV(../../../Resources/Data/tourrequest.csv)
+SS -> TRFH -- : tourRequests
+TRFH->TRR -- :  tourRequests.Where(r => r.State == TourRequestState.Waiting)
+TRR -> TRS -- :  wantedRequests
+
+opt location != ""
+TRS->TRR ++:GetByLocation(location)
+TRR -> TRS -- : tourRequestsByLocation
+ loop foreach r in wantedRequests 
+  opt !tourRequestsByLocation.Contains(r) 
+   TRS->TRS: wantedRequests.Remove(r)
+  end
+ end
+end
+opt language != ""
+TRS->TRR ++:GetByLanguage(language)
+TRR -> TRS -- : tourRequestsByLanguage
+ loop foreach r in wantedRequests 
+  opt !tourRequestsByLanguage.Contains(r) 
+   TRS->TRS: wantedRequests.Remove(r)
+  end
+ end
+end
+opt maxNumberGuests != ""
+TRS->TRR ++:GetByMaxNumberGuests (maxNumberGuests )
+TRR -> TRS -- : tourRequestsByMaxNumberGuests
+ loop foreach r in wantedRequests 
+  opt !tourRequestsByMaxNumberGuests.Contains(r) 
+   TRS->TRS: wantedRequests.Remove(r)
+  end
+ end
+end
+opt dateRange.Count != 0
+TRS->TRR ++:GetRequestsInDateRange(dateRange.First(), dateRange.Last())
+TRR -> TRS -- : tourRequestsInDateRange
+ loop foreach r in wantedRequests 
+  opt !tourRequestsInDateRange.Contains(r) 
+   TRS->TRS: wantedRequests.Remove(r)
+  end
+ end
+end
+TRS->G--:wantedRequests
+
+@enduml
