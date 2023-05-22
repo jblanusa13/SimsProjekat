@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace ProjectSims.Domain.RepositoryInterface
 {
-    public interface IGuideScheduleRepository : IGenericRepository<GuideSchedule, int>, ISubject
+    public interface INotificationTourRepository : IGenericRepository<NotificationTour, int>, ISubject
     {
-        public List<GuideSchedule> GetByGuideIdAndDate(int id,DateOnly date);
+        public List<NotificationTour> GetByGuest2Id(int guest2Id);
     }
 }

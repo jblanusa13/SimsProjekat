@@ -1,6 +1,6 @@
 ﻿using ProjectSims.Domain.Model;
 using ProjectSims.FileHandler;
-using ProjectSims.Service;
+using ProjectSims.WPF.ViewModel.Guest2ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,18 +23,11 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
     /// </summary>
     public partial class AccountView : Page
     {
-        public string UserNameAndSurname { get; set; }
-        public string AccountUsername { get; set; }
-        private UserService userService;
-        public Guest2 guest2 { get; set; }
-        public AccountView(Guest2 g)
+        public AccountView(AccountViewModel accountViewModel)
         {
             InitializeComponent();
-            DataContext = this;
-            guest2 = g;
-            UserNameAndSurname = g.Name + " " + g.Surname;
-            userService = new UserService();
-            AccountUsername = userService.GetUser(guest2.UserId).Username;
+            DataContext = accountViewModel;
+            
         }
     }
 }

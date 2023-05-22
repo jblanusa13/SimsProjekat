@@ -54,8 +54,19 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBox x:Name="UserBox" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="50" IsEnabled="False" FontSize="30" FontWeight="Bold" Background="#FF455DF6" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderBrush="#FF455DF6" SelectionTextBrush="Black"/>
-                <Image Grid.Column="2" Source="/Resources/Icons/Guest2/icons8-male-user-48.png" Margin="25,15,25,15" Cursor="Hand"/>
-                <Image Grid.Column="3" Source="/Resources/Icons/Guest2/icons8-bell-48.png" Margin="0,15,45,15" Cursor="Hand"/>
+                <Image Grid.Column="2" Source="/Resources/Icons/Guest2/icons8-male-user-48.png" Margin="25,15,25,15" Cursor="Hand" PreviewMouseDown="Account_PreviewMouseDown"/>
+                <Image x:Name="NotificationIcon" Grid.Column="3" Margin="0,15,45,15" Cursor="Hand" PreviewMouseDown="Notification_PreviewMouseDown">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Setter Property="Source" Value="/Resources/Icons/Guest2/newnotification.png"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=NumberNotification,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="0">
+                                    <Setter Property="Source" Value="/Resources/Icons/Guest2/icons8-bell-48.png"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
             </Grid>
 
             <Grid Grid.Row="2" Background="#FF455DF6">

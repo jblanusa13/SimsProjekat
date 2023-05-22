@@ -46,24 +46,26 @@
                 </ListView.Resources>
                 <ListView.View>
                         <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeader}" >
-                            <GridViewColumn Width="200">
+                            <GridViewColumn Width="240">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Image  Source="{Binding Images.[0]}" Margin="10,0,0,0"/>
-                                    </DataTemplate>
+                                    <Grid Height="180" Width="240" Margin="0,0,0,0">
+                                        <Image  Source="{Binding Images[0]}" Height="180" Width="240" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Grid>
+                                </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="Naziv" Width="350">
+                            <GridViewColumn Header="Naziv" Width="330">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <Label  Content="{Binding Name}" Margin="10,0,0,0"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="Pocetak" Width="180">
+                            <GridViewColumn Header="Pocetak" Width="200">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Label  Content="{Binding StartOfTheTour}" Margin="10,0,0,0"/>
+                                    <TextBlock Text="{Binding StartOfTheTour,StringFormat=dd/MM/yyyy HH:mm}" Margin="0,50,0,0" Foreground="#FF1B5886" FontSize="22" FontFamily="Helvetica" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -74,10 +76,10 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="Detalji i otkazivanje" Width="270">
+                            <GridViewColumn Header="Detalji/Otkaži" Width="180">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Name="CancelButton" Height="20" Width="20" Background="Transparent" Click="CancelTour_Click" BorderThickness="0">
+                                        <Button Name="CancelButton" Height="60" Width="60" Background="Transparent" Click="CancelTour_Click" BorderThickness="0" Margin="60,0,0,0">
                                             <Image Source="/Resources/Icons/Guide/info.png"/>
                                         </Button>
                                     </DataTemplate>

@@ -1,0 +1,113 @@
+@startuml
+actor "User" as U
+participant "MainWindow" as MW
+participant "SuperGuestService" as SGS
+participant "AccommodationReservationService" as RS
+participant "SuperGuestRepository" as SGR
+participant "Guest1Repository" as GR
+participant "AccommodationReservationRepository" as RR
+participant "SuperGuestFileHandler" as SGFH
+participant "Guest1FileHandler" as GFH
+participant "AccommodationReservationFileHandler" as RFH
+participant "Serializer" as S
+
+U -> MW ++ : SignIn()
+MW -> SGS ++ : CheckIfSuperGuest(guest)
+alt guest.SuperGuestId != -1
+opt guest.SuperGuest.StartDate <= DateOnly.FromDateTime(DateTime.Today).AddDays(-365)
+SGS -> SGS ++ : RemoveSuperGuest(guest)
+SGS -> SGR ++ : Remove(guest.SuperGuest)
+SGR -> SGFH ++ : Save(guests)
+SGFH -> S ++ : ToCSV(FilePath, guests)
+deactivate S
+deactivate SGFH
+deactivate SGR
+SGS -> SGS ++ : UpdateSuperGuestForGuest(guest, null, -1)
+SGS -> GR ++ : Update(guest)
+GR -> GFH ++ : Save(guests)
+GFH -> S ++ : ToCSV(FilePath, guests)
+deactivate S
+deactivate GFH
+deactivate GR
+deactivate SGS
+deactivate SGS
+SGS -> SGS ++ : HasTenReservations(guest.Id)
+SGS -> RR ++ : GetForGuestInLastYear(guestId)
+RR --> SGS -- : reservations
+loop reservation in reservations
+opt counter >= 10
+SGS --> SGS : true
+end
+end
+SGS --> SGS -- : false
+opt HasTenReservations
+SGS -> SGS ++ : CreateSuperGuest(guest)
+SGS -> SGR ++ : Create(superGuest)
+SGR -> SGFH ++ : Save(guests)
+SGFH -> S ++ : ToCSV(FilePath, guests)
+deactivate S
+deactivate SGFH
+deactivate SGR
+SGS -> SGS ++ : UpdateSuperGuestForGuest(guest, null, -1)
+SGS -> GR ++ : Update(guest)
+GR -> GFH ++ : Save(guests)
+GFH -> S ++ : ToCSV(FilePath, guests)
+deactivate S
+deactivate GFH
+deactivate GR
+deactivate SGS
+deactivate SGS
+end
+end
+else 
+SGS -> SGS ++ : HasTenReservations(guest.Id)
+SGS -> RR ++ : GetForGuestInLastYear(guestId)
+RR --> SGS -- : reservations
+loop reservation in reservations
+opt counter >= 10
+SGS --> SGS : true
+end
+end
+SGS --> SGS -- : false
+opt HasTenReservations
+SGS -> SGS ++ : CreateSuperGuest(guest)
+SGS -> SGR ++ : Create(superGuest)
+SGR -> SGFH ++ : Save(guests)
+SGFH -> S ++ : ToCSV(FilePath, guests)
+deactivate S
+deactivate SGFH
+deactivate SGR
+SGS -> SGS ++ : UpdateSuperGuestForGuest(guest, null, -1)
+SGS -> GR ++ : Update(guest)
+GR -> GFH ++ : Save(guests)
+GFH -> S ++ : ToCSV(FilePath, guests)
+deactivate S
+deactivate GFH
+deactivate GR
+deactivate SGS
+deactivate SGS
+end
+end
+deactivate SGS
+deactivate MW
+U -> RS ++ :  CreateReservation(accommodationId, guestId, checkIn, checkOut, guestNumber)
+RS -> RR ++ : Create(reservation)
+RR -> RFH ++ : Save(reservations)
+RFH -> S ++ : ToCSV(FilePath, reservations)
+deactivate S
+deactivate RFH
+deactivate RR
+RS -> RS ++ : TakeBonusPointIfSuperGuest(guestId)
+RS -> GR ++ : GetById(guestId)
+GR --> RS -- : guest
+opt guest.SuperGuestId != -1 && guest.SuperGuest.BonusPoints > 0
+RS -> SGR ++ : Update(superGuest)
+SGR -> SGFH ++ : Save(guests)
+SGFH -> S ++ : ToCSV(FilePath, guests)
+deactivate S
+deactivate SGFH
+deactivate SGR
+end
+deactivate RS
+deactivate RS
+@enduml

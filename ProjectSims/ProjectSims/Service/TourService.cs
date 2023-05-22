@@ -34,23 +34,31 @@ namespace ProjectSims.Service
             InitializeGuide();
             InitializeKeyPoints();
         }
-        private void InitializeGuide()
+        public void InitializeGuide()
         {
             foreach (var item in tourRepository.GetAll())
             {
                 item.Guide = guideRepository.GetById(item.GuideId);
             }
         }
-        private void InitializeKeyPoints()
+        public void InitializeKeyPoints()
         {
             foreach (var item in tourRepository.GetAll())
             {
+                if(item.KeyPoints.Count() != 0)
+                {
+                    item.KeyPoints.Clear();
+                }
                foreach(int id in item.KeyPointIds)
                 {
                     item.KeyPoints.Add(keyPointRepository.GetById(id));
                 }
                 item.ActiveKeyPoint = keyPointRepository.GetById(item.ActiveKeyPointId);
             }        
+        }
+        public int NextId()
+        {
+            return tourRepository.NextId();
         }
         public List<Tour> GetAllTours()
         {
@@ -67,11 +75,6 @@ namespace ProjectSims.Service
         public Tour GetTourByStateAndGuideId(TourState state, int guideId)
         {
             return tourRepository.GetTourByStateAndGuideId(state, guideId);
-        }
-        public List<KeyPoint> GetTourKeyPoints(Tour tour)
-        {
-            List<int> keyPointIds = tour.KeyPointIds;
-            return keyPointIds.Select(id => keyPointService.GetKeyPointById(id)).ToList();
         }
         public List<Tour> GetToursByDateAndGuideId(DateTime date,int guideId)
         {
@@ -95,7 +98,34 @@ namespace ProjectSims.Service
             else
                 return null;
         }
-       public void Create(Tour tour) 
+        public List<Tuple<DateTime, DateTime>> GetGuidesDailySchedule(int guideId, DateTime date)
+        {
+            List<Tuple<DateTime, DateTime>> appointments = new List<Tuple<DateTime, DateTime>>();
+            foreach (var tour in tourRepository.GetToursByDateAndGuideId(date, guideId))
+            {
+                appointments.Add(new Tuple<DateTime, DateTime>(tour.StartOfTheTour, tour.StartOfTheTour.AddHours(tour.Duration)));
+            }
+            return appointments.OrderBy(x => x.Item1).ToList();
+        }
+        public List<Tuple<DateTime, DateTime>> GetFreeAppointmentsForThatDay(int guideId, DateTime date)
+        {
+            List<Tuple<DateTime, DateTime>> dailySchedule = GetGuidesDailySchedule(guideId, date);
+            DateTime dayBegin = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
+            DateTime dayEnd = new DateTime(date.Year, date.Month, date.Day, 23, 59, 59);
+            if (dailySchedule.Count != 0)
+            {
+                List<Tuple<DateTime, DateTime>> freeAppointments = new List<Tuple<DateTime, DateTime>>();
+                freeAppointments.Add(new Tuple<DateTime, DateTime>(dayBegin, dailySchedule.First().Item1));
+                for (int i = 0; i < dailySchedule.Count - 1; i++)
+                {
+                    freeAppointments.Add(new Tuple<DateTime, DateTime>(dailySchedule[1].Item2, dailySchedule[i + 1].Item1));
+                }
+                freeAppointments.Add(new Tuple<DateTime, DateTime>(dailySchedule.Last().Item2, dayEnd));
+                return freeAppointments;
+            }
+            return new List<Tuple<DateTime, DateTime>>() { new Tuple<DateTime, DateTime>(dayBegin, dayEnd) };
+        }
+        public void Create(Tour tour) 
        {
             tourRepository.Create(tour);
        }
