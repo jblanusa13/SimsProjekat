@@ -35,7 +35,7 @@ namespace ProjectSims.Domain.Model
             string[] csvvalues =
             {
                 Id.ToString(),
-                StartDate.ToString(),
+                StartDate.ToString("dd.MM.yyyy"),
                 BonusPoints.ToString()
             };
             return csvvalues;

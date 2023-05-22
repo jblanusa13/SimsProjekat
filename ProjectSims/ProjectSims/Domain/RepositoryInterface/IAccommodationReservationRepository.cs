@@ -12,6 +12,6 @@ namespace ProjectSims.Domain.RepositoryInterface
     {
         public List<AccommodationReservation> GetByGuest(int guestId);
         public AccommodationReservation GetReservation(int guestId, int accommodationId, DateOnly checkInDate, DateOnly checkOutDate);
-        public List<AccommodationReservation> GetInLastYear();
+        public List<AccommodationReservation> GetForGuestInLastYear(int guestId);
     }
 }

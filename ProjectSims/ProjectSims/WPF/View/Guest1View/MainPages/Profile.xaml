@@ -23,7 +23,8 @@
             </Grid.ColumnDefinitions>
             <Button Margin="10" x:Name="BackButton"
                          Background="{DynamicResource SecondGrayShade}" BorderBrush="{DynamicResource SecondGrayShade}"
-                        FocusVisualStyle="{DynamicResource FocusControl}">
+                        FocusVisualStyle="{DynamicResource FocusControl}"
+                    Click="Back_Click">
                 <fa:ImageAwesome Icon="ArrowCircleLeft" Foreground="{DynamicResource FontsColor}"/>
             </Button>
 
@@ -116,11 +117,10 @@
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
 
-                <Label Grid.Row="1" Margin="80,10,10,0" 
+                <Label Grid.Row="1" Margin="100,10,10,0" 
                        VerticalContentAlignment="Bottom"
                        FontSize="35" FontFamily="Bahnschrift"
-                       Foreground="{DynamicResource FontsColor}"
-                       >
+                       Foreground="{DynamicResource FontsColor}">
                     <AccessText>
                         <MultiBinding StringFormat="{}{0}  {1}">
                             <Binding Path="Guest.Name" />
@@ -130,13 +130,13 @@
                 </Label>
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="240"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
                            FontSize="16" FontFamily="Bahnschrift"
-                           Margin="80,0,0,0"
+                           Margin="100,0,0,0"
                            VerticalContentAlignment="Center">Korisnicko ime:</Label>
                     <Label Grid.Column="1"
                            FontSize="16" FontFamily="Bahnschrift"
@@ -146,13 +146,13 @@
                 </Grid>
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="240"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
                            FontSize="16" FontFamily="Bahnschrift"
-                           Margin="80,0,0,0"
+                           Margin="100,0,0,0"
                            VerticalContentAlignment="Center">Adresa:</Label>
                     <Label Grid.Column="1"
                            FontSize="16" FontFamily="Bahnschrift"
@@ -162,13 +162,13 @@
                 </Grid>
                 <Grid Grid.Row="4">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="240"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
                            FontSize="16" FontFamily="Bahnschrift"
-                           Margin="80,0,0,0"
+                           Margin="100,0,0,0"
                            VerticalContentAlignment="Center">Mejl adresa:</Label>
                     <Label Grid.Column="1"
                            FontSize="16" FontFamily="Bahnschrift"
@@ -182,10 +182,11 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="0"
-                            Margin="80,30,40,10" FontFamily="Bahnschrift"
+                            Margin="100,30,40,10" FontFamily="Bahnschrift"
                             FontSize="12"
                             Foreground="{DynamicResource FontsColor}"
-                            Background="{DynamicResource SecondGrayShade}">
+                            Background="{DynamicResource SecondGrayShade}"
+                            Click="LogOut_Click">
                         Odjavi se
                         <Button.Resources>
                             <Style TargetType="Border">
@@ -198,7 +199,8 @@
 
             <Grid Grid.Column="1">
                 <Border Grid.Column="1" BorderBrush="{DynamicResource FontsColor}"
-                        Margin="10,40,50,40" BorderThickness="1">
+                        Margin="10,40,50,40" BorderThickness="1"
+                        Background="{DynamicResource BlueShade}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="120"/>
@@ -217,41 +219,51 @@
                                     <ColumnDefinition Width="80"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" x:Name="GridC">
+                                    
+                                </Grid>
                                 <Label Grid.Column="1" x:Name="CaptionFirst"
                                        HorizontalContentAlignment="Right"
                                        FontSize="25" FontFamily="Bahnschrift"
                                        VerticalContentAlignment="Bottom"
-                                       Margin="0,0,10,0">Postali ste</Label>
+                                       Margin="0,0,10,0"></Label>
                             </Grid>
                             <Label Grid.Row="1" x:Name="CaptionSecond"
                                    HorizontalContentAlignment="Right"
                                    FontSize="25" FontFamily="Bahnschrift"
                                    VerticalContentAlignment="Top"
-                                   Margin="0,0,10,0">Super gost!</Label>
+                                   Margin="0,0,10,0"></Label>
                         </Grid>
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
-                                <ColumnDefinition Width="170"/>
+                                <ColumnDefinition Width="150"/>
                             </Grid.ColumnDefinitions>
 
                             <Label Grid.Column="0"
                                 FontSize="16" FontFamily="Bahnschrift"
                                        VerticalContentAlignment="Center"
-                                       Margin="60,0,0,0">Broj rezervacija ove godine:</Label>
-                            <TextBox Grid.Column="1" Margin="10,15,120,15"></TextBox>
+                                       Margin="80,0,0,0">Broj rezervacija ove godine:</Label>
+                            <TextBox x:Name="ReservationTb" 
+                                Grid.Column="1" Margin="10,15,100,20"
+                                     IsEnabled="False"
+                                     FontSize="17"
+                                     VerticalContentAlignment="Center"></TextBox>
                         </Grid>
                         <Grid Grid.Row="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
-                                <ColumnDefinition Width="170"/>
+                                <ColumnDefinition Width="150"/>
                             </Grid.ColumnDefinitions>
 
                             <Label Grid.Column="0"
                                 FontSize="16" FontFamily="Bahnschrift"
                                        VerticalContentAlignment="Center"
-                                       Margin="60,0,0,0">Broj preostalih bonus poena:</Label>
-                            <TextBox Grid.Column="1" Margin="10,15,120,15"></TextBox>
+                                       Margin="80,0,0,0">Broj preostalih bonus poena:</Label>
+                            <TextBox x:Name="BonusPointsTb"
+                                Grid.Column="1" Margin="10,15,100,20"
+                                     IsEnabled="False"
+                                     FontSize="17" VerticalContentAlignment="Center"></TextBox>
                         </Grid>
                         <Grid Grid.Row="3">
                             <Grid.ColumnDefinitions>

@@ -21,6 +21,7 @@ namespace ProjectSims.Service
         private IGuest1Repository guest1Repository;
         private IAccommodationRepository accommodationRepository;
         private IAccommodationScheduleRepository accommodationScheduleRepository;
+        private ISuperGuestRepository superGuestRepository;
 
         public AccommodationReservationService()
         {
@@ -29,6 +30,7 @@ namespace ProjectSims.Service
             guest1Repository = Injector.CreateInstance<IGuest1Repository>();
             accommodationRepository = Injector.CreateInstance<IAccommodationRepository>();
             accommodationScheduleRepository = Injector.CreateInstance<IAccommodationScheduleRepository>();
+            superGuestRepository = Injector.CreateInstance<ISuperGuestRepository>();
 
             InitializeGuest();
             InitializeAccommodation();
@@ -157,6 +159,19 @@ namespace ProjectSims.Service
             DateRanges dateRange = new DateRanges(checkIn, checkOut);
             accommodationScheduleRepository.AddUnavailableDate(schedule, dateRange);
             accommodationScheduleRepository.Update(schedule);
+
+            TakeBonusPointIfSuperGuest(guestId);
+        }
+
+        public void TakeBonusPointIfSuperGuest(int guestId)
+        {
+            Guest1 guest = guest1Repository.GetById(guestId);
+            if (guest.SuperGuestId != -1 && guest.SuperGuest.BonusPoints > 0)
+            {
+                SuperGuest superGuest = guest.SuperGuest;
+                superGuest.BonusPoints--;
+                superGuestRepository.Update(superGuest);
+            }
         }
 
         public void Update(AccommodationReservation reservation)

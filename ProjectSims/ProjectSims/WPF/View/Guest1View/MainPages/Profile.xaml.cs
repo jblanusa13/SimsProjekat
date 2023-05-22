@@ -37,39 +37,41 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         {
             if (Guest.SuperGuestId != -1)
             {
-                if(Guest.SuperGuest.StartDate < DateOnly.FromDateTime(DateTime.Today).AddDays(-365))
-                {
-                    superGuestService.RemoveSuperGuest(Guest);
-                    NotSuperGuestView();
-                }
-            }
-
-                if (superGuestService.HasTenReservations(Guest.Id))
-            {
-                if (Guest.SuperGuestId == -1)
-                {
-                    superGuestService.CreateSuperGuest(Guest);
-                }
                 SuperGuestView();
             }
-
-            if (Guest.SuperGuestId != -1)
+            else
             {
-
+                NotSuperGuestView();
             }
-            NotSuperGuestView();
+
         }
 
         public void SuperGuestView()
         {
-            CaptionFirst.Content = "Postali ste";
+            CaptionFirst.Content = "Vi ste";
             CaptionSecond.Content = "Super gost!";
+            ReservationTb.Text = superGuestService.GetReservationNumberForGuestInLastYear(Guest.Id).ToString();
+            BonusPointsTb.Text = Guest.SuperGuest.BonusPoints.ToString();
         }
 
         public void NotSuperGuestView()
         {
             CaptionFirst.Content = "Koliko jos da biste postali";
             CaptionSecond.Content = "Super gost";
+            ReservationTb.Text = superGuestService.GetReservationNumberForGuestInLastYear(Guest.Id).ToString();
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
+
+        private void LogOut_Click(object sender, RoutedEventArgs e)
+        {
+            var login = new MainWindow();
+            login.Show();
+            Window parentWindow = Window.GetWindow(this);
+            parentWindow.Close();
         }
     }
 }

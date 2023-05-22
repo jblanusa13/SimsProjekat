@@ -67,11 +67,6 @@ namespace ProjectSims.Repository
             return unavailableDates;
         }
 
-        public AccommodationSchedule GetById(int key)
-        {
-            return schedules.Find(r => r.Id == key);
-        }
-
         public void AddUnavailableDate(AccommodationSchedule schedule, DateRanges dateRange)
         {
             DateRanges helpVariable;
@@ -86,6 +81,11 @@ namespace ProjectSims.Repository
                 }
             }
             schedule.UnavailableDates.Add(dateRange);
+        }
+
+        public AccommodationSchedule GetById(int key)
+        {
+            return schedules.Find(r => r.Id == key);
         }
 
         public int NextId()

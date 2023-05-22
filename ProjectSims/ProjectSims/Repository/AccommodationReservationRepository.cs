@@ -51,9 +51,9 @@ namespace ProjectSims.Repository
             return reservation;
         }
 
-        public List<AccommodationReservation> GetInLastYear()
+        public List<AccommodationReservation> GetForGuestInLastYear(int guestId)
         {
-            return reservations.Where(r => (r.CheckInDate >= DateOnly.FromDateTime(DateTime.Today).AddDays(-365))).ToList();
+            return reservations.Where(r => (r.CheckInDate >= DateOnly.FromDateTime(DateTime.Today).AddDays(-365)) && r.GuestId == guestId).ToList();
         }
 
         public List<AccommodationReservation> GetAll()
