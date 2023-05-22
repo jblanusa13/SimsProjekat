@@ -50,6 +50,7 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
                 }
             }
         }
+
         public StatisticsView(Owner o, TextBlock titleTextBlock, Accommodation selectedAccommodetion)
         {
             InitializeComponent();
@@ -109,12 +110,22 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
         
         private void YearComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ComboBoxItem SelectedYear = (ComboBoxItem)YearComboBox.SelectedItem;
-            if (YearComboBox.SelectedItem !=null) 
+            ShowChart();
+        }
+
+        private void YearComboBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            ShowChart();
+        }
+
+        private void ShowChart()
+        {
+            if (!string.IsNullOrEmpty(YearComboBox.Text))
             {
-                statisticsViewModel.DisplayTheNumberOfMonthReservationsByCriteria(SelectedYear);
+                statisticsViewModel.DisplayTheNumberOfMonthReservationsByCriteria(YearComboBox.Text);
                 MonthChart.Visibility = Visibility.Visible;
                 MostVisitedTextBox.Visibility = Visibility.Visible;
+                MostVisitedLabel.Visibility = Visibility.Visible;
             }
         }
     }

@@ -45,6 +45,34 @@ namespace ProjectSims.Service
             return requestRepository.GetAll();
         }
 
+        public int GetAllShiftedReservationsByYear(string year, int ownerId)
+        {
+            int number = 0;
+            foreach (Request request in requestRepository.GetAllByOwner(ownerId))
+            {
+                if (request.Reservation.CheckInDate.Year.ToString().Equals(year) && request.State==RequestState.Approved)
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+
+        public int GetAllShiftedReservationsByMonth(string month, string year, int ownerId)
+        {
+            int number = 0;
+            foreach (Request request in requestRepository.GetAllByOwner(ownerId))
+            {
+                if (request.Reservation.CheckInDate.Year.ToString().Equals(year) 
+                    && request.Reservation.CheckInDate.Month.ToString().Equals(month) 
+                    && request.State == RequestState.Approved)
+                {
+                    number++;
+                }       
+            }
+            return number;
+        }
+
         public void CreateRequest(int reservationId, DateOnly dateChange)
         {
             int id = requestRepository.NextId();

@@ -19,7 +19,8 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
     {
         private AccommodationReservationService accommodationReservationService;
         private AccommodationRatingService accommodationRatingService;
-        List<AccommodationReservation> Reservations { get; set; }
+        private RequestService requestService;
+        public List<AccommodationReservation> Reservations { get; set; }
         public Owner Owner { get; set; }
         public TextBlock TitleTextBlock { get; set; }
         public Accommodation SelectedAccommodation { get; set; }
@@ -38,8 +39,9 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
             SelectedAccommodation = selectedAccommodetion;
             accommodationReservationService = new AccommodationReservationService();
             accommodationRatingService = new AccommodationRatingService();
+            requestService = new RequestService();
             Pointlabel = chartPoint => String.Format("{0}({1:P})", chartPoint.Y, chartPoint.Participation);
-            Reservations = new List<AccommodationReservation>(accommodationReservationService.GetActiveAndCanceledByOwnerId(Owner.Id, SelectedAccommodation.Id));
+            Reservations = new List<AccommodationReservation>(accommodationReservationService.GetAllReservationsByAccommodationId(SelectedAccommodation.Id));
 
             NumberOfReservationsByCriteria = new SeriesCollection();
             YearLabels = new[] { "2019", "2020", "2021", "2022", "2023" };
@@ -69,7 +71,7 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
             {
                 totalReservations.Add(accommodationReservationService.GetAllReservationsByYear(Reservations, year));
                 totalCanceledReservations.Add(accommodationReservationService.GetAllCanceledReservationsByYear(Reservations, year));
-                totalShiftedReservations.Add(accommodationReservationService.GetAllShiftedReservationsByYear(Reservations, year));
+                totalShiftedReservations.Add(requestService.GetAllShiftedReservationsByYear(year, Owner.Id));
                 totalRenovationReccommendations.Add(accommodationRatingService.GetAllRenovationReccommendationsByYear(year, Owner.Id));
             }
             NumberOfReservationsByCriteria.Add(new ColumnSeries { Values = totalReservations, Title = "Rezervacija" });
@@ -79,18 +81,19 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
             Values = value => value.ToString("D");
         }
 
-        public void DisplayTheNumberOfMonthReservationsByCriteria(ComboBoxItem year)
+        public void DisplayTheNumberOfMonthReservationsByCriteria(string year)
         {
+            NumberOfMonthReservationsByCriteria.Clear();
             var totalReservations = new ChartValues<int>();
             var totalCanceledReservations = new ChartValues<int>();
             var totalShiftedReservations = new ChartValues<int>();
             var totalRenovationReccommendations = new ChartValues<int>();
             foreach (string month in MonthLabels)
             {
-                totalReservations.Add(accommodationReservationService.GetAllReservationsByMonth(Reservations, month, year.ToString()));
-                totalCanceledReservations.Add(accommodationReservationService.GetAllCanceledReservationsByMonth(Reservations, month, year.ToString()));
-                totalShiftedReservations.Add(accommodationReservationService.GetAllShiftedReservationsByMonth(Reservations, month, year.ToString()));
-                totalRenovationReccommendations.Add(accommodationRatingService.GetAllRenovationReccommendationsByMonth(month, year.ToString(), Owner.Id));
+                totalReservations.Add(accommodationReservationService.GetAllReservationsByMonth(Reservations, month, year));
+                totalCanceledReservations.Add(accommodationReservationService.GetAllCanceledReservationsByMonth(Reservations, month, year));
+                totalShiftedReservations.Add(requestService.GetAllShiftedReservationsByMonth(month, year, Owner.Id));
+                totalRenovationReccommendations.Add(accommodationRatingService.GetAllRenovationReccommendationsByMonth(month, year, Owner.Id));
             }
             NumberOfMonthReservationsByCriteria.Add(new ColumnSeries { Values = totalReservations, Title = "Rezervacija" });
             NumberOfMonthReservationsByCriteria.Add(new ColumnSeries { Values = totalCanceledReservations, Title = "Otkazane" });

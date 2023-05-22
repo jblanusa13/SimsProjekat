@@ -36,7 +36,7 @@ namespace ProjectSims.Service
 
         private void InitializeGuest()
         {
-            foreach(var reservation in reservationRepository.GetAll())
+            foreach (var reservation in reservationRepository.GetAll())
             {
                 reservation.Guest = guest1Repository.GetById(reservation.GuestId);
             }
@@ -65,14 +65,14 @@ namespace ProjectSims.Service
                 }
             }
             return reservations;
-        }  
-        
-        public List<AccommodationReservation> GetActiveAndCanceledByOwnerId(int ownerId, int accommodationId)
+        }
+
+        public List<AccommodationReservation> GetAllReservationsByAccommodationId(int accommodationId)
         {
             List<AccommodationReservation> reservations = new List<AccommodationReservation>();
             foreach (var reservation in GetAllReservations())
             {
-                if (reservation.Accommodation.IdOwner == ownerId && reservation.AccommodationId == accommodationId)
+                if (reservation.AccommodationId == accommodationId)
                 {
                     reservations.Add(reservation);
                 }
@@ -106,38 +106,6 @@ namespace ProjectSims.Service
             return number;
         }
 
-        public int GetAllShiftedReservationsByYear(List<AccommodationReservation> reservations, string year)
-        {
-            int number = 0;
-            foreach (AccommodationReservation reservation in reservations)
-            {
-                foreach (Request request in requestRepository.GetAllByOwner(reservation.Accommodation.IdOwner))
-                {
-                    if (reservation.CheckInDate.Year.ToString().Equals(year) && reservation.Id == request.ReservationId)
-                    {
-                        number++;
-                    }
-                }
-            }
-            return number;
-        }
-
-        public int GetAllShiftedReservationsByMonth(List<AccommodationReservation> reservations, string month, string year)
-        {
-            int number = 0;
-            foreach (AccommodationReservation reservation in reservations)
-            {
-                foreach (Request request in requestRepository.GetAllByOwner(reservation.Accommodation.IdOwner))
-                {
-                    if (reservation.CheckInDate.Year.ToString().Equals(year) && reservation.CheckInDate.Month.ToString().Equals(month) && reservation.Id == request.ReservationId)
-                    {
-                        number++;
-                    }
-                }
-            }
-            return number;
-        }
-        
         public int GetAllCanceledReservationsByYear(List<AccommodationReservation> reservations, string year)
         {
             int number = 0;
@@ -150,7 +118,7 @@ namespace ProjectSims.Service
             }
             return number;
         }
-        
+
         public int GetAllCanceledReservationsByMonth(List<AccommodationReservation> reservations, string month, string year)
         {
             int number = 0;
@@ -163,7 +131,7 @@ namespace ProjectSims.Service
             }
             return number;
         }
-        
+
         public AccommodationReservation GetReservation(int id)
         {
             return reservationRepository.GetById(id);
@@ -173,7 +141,7 @@ namespace ProjectSims.Service
         {
             return reservationRepository.GetByGuest(guestId);
         }
-        
+
         public AccommodationReservation GetReservation(int guestId, int accommodationId, DateOnly checkInDate, DateOnly checkOutDate)
         {
             return reservationRepository.GetReservation(guestId, accommodationId, checkInDate, checkOutDate);
@@ -201,7 +169,7 @@ namespace ProjectSims.Service
             reservation.State = ReservationState.Canceled;
             reservationRepository.Update(reservation);
 
-            UpdateRequestsWhenCancelReservation(reservation);         
+            UpdateRequestsWhenCancelReservation(reservation);
         }
 
         public void UpdateRequestsWhenCancelReservation(AccommodationReservation reservation)
@@ -219,7 +187,7 @@ namespace ProjectSims.Service
         public bool CanCancel(AccommodationReservation reservation)
         {
             int dismissalDays = reservation.Accommodation.DismissalDays;
-            if(DateOnly.FromDateTime(DateTime.Today) <= reservation.CheckInDate.AddDays(-dismissalDays))
+            if (DateOnly.FromDateTime(DateTime.Today) <= reservation.CheckInDate.AddDays(-dismissalDays))
             {
                 return true;
             }
@@ -233,7 +201,7 @@ namespace ProjectSims.Service
             guestReservations = GetReservationByGuest(guest.Id);
             foreach (AccommodationReservation reservation in guestReservations)
             {
-                if(DateOnly.FromDateTime(DateTime.Today) <= reservation.CheckOutDate.AddDays(5) && DateOnly.FromDateTime(DateTime.Today) >= reservation.CheckOutDate && reservation.RatedAccommodation == false)
+                if (DateOnly.FromDateTime(DateTime.Today) <= reservation.CheckOutDate.AddDays(5) && DateOnly.FromDateTime(DateTime.Today) >= reservation.CheckOutDate && reservation.RatedAccommodation == false)
                 {
                     accommodationsForRating.Add(reservation);
                 }
@@ -267,3 +235,4 @@ namespace ProjectSims.Service
         }
     }
 }
+

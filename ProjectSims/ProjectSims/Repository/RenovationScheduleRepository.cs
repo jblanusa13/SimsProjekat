@@ -56,7 +56,7 @@ namespace ProjectSims.Repository
             return dates;
         }
 
-        public DateOnly FindMaxDate(List<DateOnly> dates)
+        public DateOnly GetMaxDate(List<DateOnly> dates)
         {
             if (dates.Count != 0)
             {

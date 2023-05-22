@@ -55,7 +55,7 @@ namespace ProjectSims.Service
             foreach (var accommodation in accommodations)
             {
                 List<DateOnly> dates = renovationScheduleRepository.GetPassedRenovationDatesforAccommodation(accommodation.Id);
-                DateOnly dateOfLastRenovation = renovationScheduleRepository.FindMaxDate(dates);
+                DateOnly dateOfLastRenovation = renovationScheduleRepository.GetMaxDate(dates);
 
                 if (IsRenovatedYearAgo(dateOfLastRenovation) || dateOfLastRenovation == new DateOnly(1, 1, 1))
                 {
