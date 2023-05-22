@@ -56,7 +56,7 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
         public void Update()
         {
             RequestList.Clear();
-            foreach (Request request in requestService.GetAllRequests())
+            foreach (Request request in requestService.GetAllRequests().Where(r => r.State == RequestState.Waiting))
             {
                 RequestList.Add(request);
             }

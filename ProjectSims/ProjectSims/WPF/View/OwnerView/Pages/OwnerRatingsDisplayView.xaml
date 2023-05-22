@@ -52,7 +52,7 @@
                                                 IsReadOnly="True">
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Komentar"
-                                                    Binding="{Binding AddedComment}"
+                                                    Binding="{Binding Comment}"
                                                     Width="70"
                                                     IsReadOnly="True">
                 </DataGridTextColumn>

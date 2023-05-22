@@ -16,11 +16,13 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
         public Owner Owner { get; set; }
         public ObservableCollection<AccommodationAndOwnerRating> Ratings { get; set; }
         private AccommodationRatingService ratingService;
+        private AccommodationReservationService reservationService;
 
         public OwnerRatingsDisplayViewModel(Owner o)
         {
             Owner = o;
             ratingService = new AccommodationRatingService();
+            reservationService = new AccommodationReservationService();
             Ratings = new ObservableCollection<AccommodationAndOwnerRating>(ratingService.GetRatingsWhereGuestRated(o.Id));
              
         }
