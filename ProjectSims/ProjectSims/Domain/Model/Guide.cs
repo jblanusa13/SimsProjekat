@@ -12,6 +12,13 @@ namespace ProjectSims.Domain.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
+        public string FullName
+        {
+            get
+            {
+                return Name + " " + Surname;
+            }
+        }
         public string Adress { get; set; }
         public string Email { get; set; }
         public int UserId { get; set; }

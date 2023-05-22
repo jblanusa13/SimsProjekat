@@ -259,6 +259,8 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 return true;
             }
         }
+        public bool CreatedTourByLanguage { get; set; }
+        public bool CreatedTourByLocation { get; set; }
         public CreateTourView(Guide guide, TourRequest tourRequest,string language,string location)
         {
             InitializeComponent();
@@ -271,6 +273,8 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             AddKeyPointButton.IsEnabled = false;
             AddAppointmentButton.IsEnabled = false;
             TourDatePicker.BlackoutDates.AddDatesInPast();
+            CreatedTourByLanguage = false;
+            CreatedTourByLocation = false;
             if (tourRequest != null)
             {
                SetRequestData(tourRequest);
@@ -278,10 +282,12 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             if(language != null)
             {
                 SetLanguage(language);
+                CreatedTourByLanguage = true;
             }
             if(location != null)
             {
                 SetLocation(location);
+                CreatedTourByLocation = true;
             }
         }
         public void SetRequestData(TourRequest tourRequest)
@@ -355,7 +361,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 MessageTextBox.Text = "Odaberite termin!";
             else if (!Int32.TryParse(Hour, out hour) || hour < 0 || hour >= 24 || !Int32.TryParse(Minute, out minute) || minute < 0 || minute > 60 || !Double.TryParse(Duration, out duration))
                 MessageTextBox.Text = "Los format!";
-            else if (!createTourViewModel.GuideIsAvailable(DateOnly.FromDateTime(date), hour, minute, duration))
+            else if (!createTourViewModel.GuideIsAvailable(date, hour, minute, duration))
                 MessageTextBox.Text = "Termin je zauzet!";
             else
                 MessageTextBox.Text = "";
@@ -384,7 +390,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         {
            if (IsValid)
            {
-                createTourViewModel.CreateTour(TourName,TourLanguage,City + "," + Country,MaxNumberGuests, Appointments,StartKeyPoint,OtherKeyPoints,FinishKeyPoint,Description,Images);
+                createTourViewModel.CreateTour(TourName,TourLanguage,City + "," + Country,MaxNumberGuests, Appointments,StartKeyPoint,OtherKeyPoints,FinishKeyPoint,Description,Images,CreatedTourByLocation,CreatedTourByLanguage);
                 this.NavigationService.Navigate(new ScheduledToursView(Guide));
             }
            else

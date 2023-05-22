@@ -28,7 +28,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         public SuggestionsView(Guide g)
         {
             InitializeComponent();
-            suggestionsViewModel = new SuggestionsViewModel(g);
+            suggestionsViewModel = new SuggestionsViewModel(g,LanguageHyperLink,LocationHyperLink);
             this.DataContext = suggestionsViewModel;
             Guide = g;
         }
