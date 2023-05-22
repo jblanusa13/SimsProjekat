@@ -54,7 +54,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         private void MyRatings_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             AccommodationAndOwnerRating accommodationAndOwnerRating = (AccommodationAndOwnerRating)MyRatingsTable.SelectedItem;
-            MyRatingsTb.Text = accommodationAndOwnerRating.AddedComment;
+            MyRatingsTb.Text = accommodationAndOwnerRating.Comment;
             MyRatingsNameLabel.Content = accommodationAndOwnerRating.Reservation.Accommodation.Name;
         }
 

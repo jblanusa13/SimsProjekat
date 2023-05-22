@@ -16,13 +16,11 @@ namespace ProjectSims.Repository
     {
         private SuperGuestFileHandler guestFileHandler;
         private List<SuperGuest> guests;
-        private List<IObserver> observers;
 
         public SuperGuestRepository()
         {
             guestFileHandler = new SuperGuestFileHandler();
             guests = guestFileHandler.Load();
-            observers = new List<IObserver>();
         }
 
         public List<SuperGuest> GetAll()
@@ -44,46 +42,25 @@ namespace ProjectSims.Repository
             entity.Id = NextId();
             guests.Add(entity);
             guestFileHandler.Save(guests);
-            NotifyObservers();
         }
         public void Update(SuperGuest entity)
         {
-            int index = guests.FindIndex(guest => guest.Id == guest.Id);
+            int index = guests.FindIndex(guest => guest.Id == entity.Id);
             if (index != -1)
             {
                 guests[index] = entity;
             }
             guestFileHandler.Save(guests);
-            NotifyObservers();
         }
 
         public void Remove(SuperGuest entity)
         {
             guests.Remove(entity);
             guestFileHandler.Save(guests);
-            NotifyObservers();
         }
         public SuperGuest GetById(int key)
         {
             return guests.Find(guest => guest.Id == key);
-        }
-
-        public void Subscribe(IObserver observer)
-        {
-            observers.Add(observer);
-        }
-
-        public void Unsubscribe(IObserver observer)
-        {
-            observers.Remove(observer);
-        }
-
-        public void NotifyObservers()
-        {
-            foreach (var observer in observers)
-            {
-                observer.Update();
-            }
         }
     }
 }

@@ -62,9 +62,14 @@ namespace ProjectSims.Service
         {
             if (guest.SuperGuestId != -1)
             {
-                if (guest.SuperGuest.StartDate < DateOnly.FromDateTime(DateTime.Today).AddDays(-365))
+                if (guest.SuperGuest.StartDate <= DateOnly.FromDateTime(DateTime.Today).AddDays(-365))
                 {
                     RemoveSuperGuest(guest);
+
+                    if (HasTenReservations(guest.Id))
+                    {
+                        CreateSuperGuest(guest);
+                    }
                 }
             }
             else

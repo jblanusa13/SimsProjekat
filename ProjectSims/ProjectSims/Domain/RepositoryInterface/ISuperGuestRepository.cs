@@ -8,7 +8,7 @@ using ProjectSims.Observer;
 
 namespace ProjectSims.Domain.RepositoryInterface
 {
-    public interface ISuperGuestRepository : IGenericRepository<SuperGuest, int>, ISubject
+    public interface ISuperGuestRepository : IGenericRepository<SuperGuest, int>
     {
     }
 }
