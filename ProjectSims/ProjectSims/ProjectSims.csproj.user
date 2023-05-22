@@ -32,6 +32,9 @@
     <Compile Update="WPF\View\Guest2View\HelpForTourRequest.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WPF\View\Guest2View\NotificationNewTourView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\Guest2View\Pages\AccountView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -57,6 +60,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\Guest2View\Guest2TrackingTourView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest2View\Pages\ShowNotificationTourView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\Guest2View\Pages\ShowTourRequestsView.xaml.cs">
@@ -105,6 +111,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\GuideView\GuideStartingView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\RequestStatisticsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\GuideView\Pages\SuggestionsView.xaml.cs">
@@ -187,6 +196,9 @@
     <Page Update="WPF\View\Guest2View\HelpForTourRequest.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="WPF\View\Guest2View\NotificationNewTourView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="WPF\View\Guest2View\Pages\AccountView.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -209,6 +221,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\Guest2View\Pages\ActivatedToursView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest2View\Pages\ShowNotificationTourView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\Guest2View\Pages\ShowTourRequestsView.xaml">
@@ -257,6 +272,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\GuideView\GuideStartingView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\GuideView\Pages\RequestStatisticsView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\GuideView\Pages\SuggestionsView.xaml">

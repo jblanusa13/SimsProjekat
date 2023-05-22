@@ -1,7 +1,7 @@
-0|13|-1|Invalid|Pariz,Francuska|Obavezan obilazak Luvra|Srpski|10|15/05/2023|16/05/2023|12/05/2023
-1|13|-1|Invalid|Bijeljina,BIH|Obavezan obilazak Etno sela Stanisici|Francuski|10|17/05/2023|31/05/2023|12/05/2023
-2|13|9|Accepted|Beograd,Srbija|Da ne traje vise od 2 sata i da se ne obilazi Kalemegdan|Francuski|20|17/05/2023|25/05/2023|12/05/2023
-3|13|-1|Waiting|Amsterdam,Holandija|da se ide biciklom|Srpski|14|25/05/2023|02/06/2023|16/05/2021
-4|13|-1|Waiting|Pariz,Francuska|Obavezan obilazak Monmartra|Engleski|5|26/05/2023|31/05/2023|12/05/2021
-5|13|-1|Waiting|Pariz,Francuska|Da se ne pesaci mnogo|Francuski|5|26/05/2023|31/05/2023|12/05/2022
-6|13|-1|Invalid|Bijeljina,BIH|Obavezan obilazak Etno sela Stanisici|Francuski|10|17/05/2023|31/05/2023|12/05/2023
+0|13|9|Accepted|Bijeljina,BIH|Obavezan obilazak Etno sela Stanisici!|Srpski|10|31/05/2023|10/06/2023|21/12/2022
+1|13|-1|Waiting|Bijeljina,BIH|Da ne traje vise od 5 sati|Francuski|10|25/05/2023|31/05/2023|21/01/2023
+2|13|-1|Waiting|Pariz,Francuska|Da ne mora mnogo da se seta|Francuski|20|24/05/2023|01/06/2023|21/02/2023
+3|16|-1|Waiting|Pariz,Francuska|Obavezna poseta Luvra|Srpski|15|25/05/2023|31/05/2023|21/03/2022
+4|16|-1|Waiting|Bijeljina,BIH|Obavezan obilazak Etno sela Stanisici!|Srpski|20|27/05/2023|23/06/2023|21/08/2020
+5|16|-1|Waiting|Beograd,Srbija|Obavezna stanica Muzej iluzija!|Srpski|30|25/05/2023|31/05/2023|21/07/2021
+6|15|-1|Waiting|Pariz,Francuska|Da se ne pesaci mnogo|Francuski|15|22/06/2023|06/07/2023|21/05/2022

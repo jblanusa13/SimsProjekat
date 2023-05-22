@@ -62,6 +62,10 @@ namespace ProjectSims.Repository
         {
             return tourRequests.Where(r => r.State == TourRequestState.Waiting).ToList();
         }
+        public List<TourRequest> GetUnrealizedRequests()
+        {
+            return tourRequests.Where(r => r.State != TourRequestState.Accepted).ToList();
+        }
         public List<TourRequest> GetInLastYear()
         {
             return tourRequests.Where(r => (DateTime.Now - r.CreationDate).TotalDays <= 365).ToList();
@@ -77,11 +81,11 @@ namespace ProjectSims.Repository
         }
         public List<TourRequest> GetByLocation(string location)
         {
-            return tourRequests.Where(t => t.Location.ToLower().Contains(location)).ToList();
+            return tourRequests.Where(t => t.Location.ToLower() == location.ToLower()).ToList();
         }
         public List<TourRequest> GetByLanguage(string language)
         {
-            return tourRequests.Where(t => t.Language.ToLower().Contains(language)).ToList();
+            return tourRequests.Where(t => t.Language.ToLower() == language.ToLower()).ToList();
         }
         public List<TourRequest> GetByMaxNumberGuests(int maxNumberGuests)
         {
