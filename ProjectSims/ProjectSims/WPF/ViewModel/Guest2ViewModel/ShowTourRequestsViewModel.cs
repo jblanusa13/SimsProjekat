@@ -14,7 +14,10 @@ namespace ProjectSims.WPF.ViewModel.Guest2ViewModel
     public class ShowTourRequestsViewModel : IObserver
     {
         private TourRequestService tourRequestService;
+        private RequestForComplexTourService requestForComplexTourService;
         public ObservableCollection<TourRequest> ListRequests { get; set; }
+
+        public ObservableCollection<RequestForComplexTour> ListRequestForComplextTour { get; set; }
         public Guest2 guest2 { get; set; }
         public ShowTourRequestsViewModel(Guest2 g)
         {
@@ -22,7 +25,10 @@ namespace ProjectSims.WPF.ViewModel.Guest2ViewModel
             guest2 = g;
             tourRequestService = new TourRequestService();
             tourRequestService.Subscribe(this);
+            requestForComplexTourService = new RequestForComplexTourService();
+            requestForComplexTourService.Subscribe(this);
             ListRequests = new ObservableCollection<TourRequest>(tourRequestService.GetByGuest2Id(guest2.Id));
+            ListRequestForComplextTour = new ObservableCollection<RequestForComplexTour>(requestForComplexTourService.GetByGuest2Id(guest2.Id));
         }
 
         private void UpdateTourRequestsFile()
@@ -47,14 +53,29 @@ namespace ProjectSims.WPF.ViewModel.Guest2ViewModel
                 ListRequests.Add(request);
             }
         }
+        private void UpdateListRequestForComplextTour()
+        {
+            ListRequestForComplextTour.Clear();
+            foreach (var request in requestForComplexTourService.GetByGuest2Id(guest2.Id))
+            {
+                ListRequestForComplextTour.Add(request);
+            }
+        }
+
         public void Update()
         {
             UpdateListRequest();
+            UpdateListRequestForComplextTour();
         }
         public void ButtonCreateRequest(object sender)
         {
             var createRequest = new CreateTourRequestView(guest2);
             createRequest.Show();
+        }
+        public void ButtonCreateRequestForComplexTour(object sender)
+        {
+            var createRequestForComplexTour = new CreateRequestForComplexTourView(guest2);
+            createRequestForComplexTour.Show();
         }
         public void ImageAndLabel_MouseLeftButtonDown(object sender)
         {

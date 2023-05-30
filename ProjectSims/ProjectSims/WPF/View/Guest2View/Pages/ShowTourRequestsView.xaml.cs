@@ -44,5 +44,10 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
         {
             viewModel.Statistic_MouseLeftButtonDown(sender);
         }
+
+        private void ButtonCreateRequestForComplexTour (object sender, RoutedEventArgs e)
+        {
+            viewModel.ButtonCreateRequestForComplexTour(sender);
+        }
     }
 }

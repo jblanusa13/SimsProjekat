@@ -8,7 +8,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="1200"
       Title="ShowTourRequestsView">
-    
+
     <Page.Resources>
         <converters:TourRequestStateConverter x:Key="StateConverter"/>
     </Page.Resources>
@@ -54,8 +54,8 @@
                 </DataGrid.Columns>
 
             </DataGrid>
-            <Button Grid.Row="2" Content="Detalji o zahtjevu" Margin="70,18,353,18" FontSize="18" Cursor="Hand"/>
-            <Button Grid.Row="2" Content="Kreiraj novi" Margin="308,18,115,18" FontSize="18" Cursor="Hand" Click="ButtonCreateRequest"/>
+            <Button Grid.Row="2" Content="Detalji o zahtjevu" Margin="70,18,336,18" FontSize="18" Cursor="Hand"/>
+            <Button Grid.Row="2" Content="Kreiraj novi" Margin="288,18,115,18" FontSize="18" Cursor="Hand" Click="ButtonCreateRequest"/>
 
             <Label Grid.Row="3" Content="Statistika o svim vasim zahtjevima:" Margin="30,10,292,40" FontSize="16" HorizontalAlignment="Right" />
             <Label Grid.Row="3" Margin="283,5,0,35" MouseLeftButtonDown="Statistic_MouseLeftButtonDown" HorizontalAlignment="Left" Foreground="#FF275CCF">
@@ -85,7 +85,33 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-            </Label> 
+            </Label>
+        </Grid>
+
+        <Grid Grid.Column="2" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="350"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="549" Margin="0,5,0,0" Width="550" CornerRadius="8,8,8,8" Grid.RowSpan="4" VerticalAlignment="Top"/>
+
+            <Label Grid.Row="0" Content="Zahtjevi za slozene ture:" FontSize="40" HorizontalAlignment="Left" Width="425" Margin="10,10,0,0" />
+
+            <Button Grid.Row="2" Content="Detalji o zahtjevu" Margin="70,18,336,18" FontSize="18" Cursor="Hand"/>
+            <Button Grid.Row="2" Content="Kreiraj novi" Margin="288,18,115,18" FontSize="18" Cursor="Hand" Click="ButtonCreateRequestForComplexTour" />
+            <DataGrid Grid.Row="1" Margin="70,25,115,25"
+                SelectionMode="Single" AutoGenerateColumns="False"
+                ItemsSource="{Binding ListRequestForComplextTour}"
+                SelectedItem="{Binding SelectedComplexRequest}" IsReadOnly="True" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Broj zahtjeva" Binding="{Binding Id}" Width="120"/>
+                    <DataGridTextColumn Header="Broj obicnih tura" Binding="{Binding NumberRequest}"  Width="130"/>
+                    <DataGridTextColumn Header="Status" Binding="{Binding State, Converter={StaticResource StateConverter}}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
 
 
         </Grid>
