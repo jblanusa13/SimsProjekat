@@ -20,7 +20,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-            <Image Source="/Resources/Icons/Guest2/icons8-home-page-64.png" Cursor="Hand" HorizontalAlignment="Left" Height="54" VerticalAlignment="Center" Width="56"/>
+            <Image Source="/Resources/Icons/Guest2/icons8-home-page-64.png" Cursor="Hand" PreviewMouseDown="Home_PreviewMouseDown" HorizontalAlignment="Left" Height="54" VerticalAlignment="Center" Width="56"/>
             <Label Content="/Nalog" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left"/>
         </StackPanel>
         <Label Content="Podaci o vasem nalogu:" Grid.Row="1" Grid.Column="1" Margin="112,0,0,0" VerticalAlignment="Center" Height="80" FontSize="40" HorizontalAlignment="Left" Width="854" />
@@ -38,9 +38,9 @@
         <Label Grid.Column="1" Content="Telefon:" FontSize="18" HorizontalAlignment="Left" Margin="225,262,0,0" Grid.Row="2" VerticalAlignment="Top"/>
         <TextBlock Grid.Column="1" FontSize="18" HorizontalAlignment="Left" Margin="305,267,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding guest2.PhoneNumber}" VerticalAlignment="Top"/>
 
-        <Button Grid.Column="1" Content="Vasa obavjestenja" Cursor="Hand" Width="160" Height="45" FontSize="18" HorizontalAlignment="Left" Margin="194,381,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+        <Button Grid.Column="1" Content="Vasa obavjestenja" Click="Notification_Click" Cursor="Hand" Width="160" Height="45" FontSize="18" HorizontalAlignment="Left" Margin="194,381,0,0" Grid.Row="2" VerticalAlignment="Top"/>
         <Button Grid.Column="1" Content="Izmeni podatke" Cursor="Hand" Width="160" Height="45" FontSize="18" HorizontalAlignment="Left" Margin="432,381,0,0" Grid.Row="2" VerticalAlignment="Top"/>
-        <Button Grid.Column="1" Content="Odjavi se" Cursor="Hand" Width="160" Height="45" FontSize="18" HorizontalAlignment="Left" Margin="669,381,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+        <Button Grid.Column="1" Content="Odjavi se" Click="Logout_Click" Cursor="Hand" Width="160" Height="45" FontSize="18" HorizontalAlignment="Left" Margin="669,381,0,0" Grid.Row="2" VerticalAlignment="Top"/>
 
 
     </Grid>

@@ -40,5 +40,10 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
         {
             viewModel.ButtonRatingTour(sender);
         }
+
+        private void Home_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.NavigationService.Navigate(new StartView(viewModel.guest2));
+        }
     }
 }
