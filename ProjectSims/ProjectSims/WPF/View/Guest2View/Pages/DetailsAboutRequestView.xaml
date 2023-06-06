@@ -1,0 +1,45 @@
+﻿<Page x:Class="ProjectSims.WPF.View.Guest2View.Pages.DetailsAboutRequestView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest2View.Pages"
+      xmlns:converters="clr-namespace:ProjectSims.WPF.Converters"
+      mc:Ignorable="d" 
+      d:DesignHeight="650" d:DesignWidth="1200"
+      Title="DetailsAboutRequestView">
+    <Page.Resources>
+        <converters:TourRequestStateConverter x:Key="StateConverter"/>
+    </Page.Resources>
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+            <Image Source="/Resources/Icons/Guest2/icons8-home-page-64.png" Cursor="Hand" HorizontalAlignment="Left" Height="54" VerticalAlignment="Center" Width="56"/>
+            <Label Content="/Zahtjevi" PreviewMouseDown="Zahtjevi_PreviewMouseDown" Cursor="Hand" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <Label Content="/Detalji o zahtjevu za obicnu turu" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" Width="451"/>
+        </StackPanel>
+        <Label Grid.Column="1" Content="Detalji o kreiranom zahtjevu za obicnu turu:" FontSize="34" HorizontalAlignment="Left" Margin="35,25,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label Grid.Column="1" Content="Lokacija ture:" FontSize="15" HorizontalAlignment="Left" Margin="105,102,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <TextBox Grid.Column="1" IsEnabled="False" HorizontalAlignment="Left" Margin="110,132,0,0" Grid.Row="1" FontSize="15" VerticalContentAlignment="Bottom" TextWrapping="Wrap" Text="{Binding request.Location}" VerticalAlignment="Top" Width="410" Height="29" BorderThickness="0,0,0,2" BorderBrush="Black"/>
+        <Label Grid.Column="1" Content="Opis ture:" FontSize="15" HorizontalAlignment="Left" Margin="105,172,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <TextBox Grid.Column="1" IsEnabled="False" HorizontalAlignment="Left" FontSize="15" BorderThickness="2,2,2,2" BorderBrush="Black" Margin="110,207,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding request.Description}" VerticalAlignment="Top" Width="410" Height="97"/>
+        <Label Grid.Column="1" Content="Jezik:" FontSize="15" HorizontalAlignment="Left" Margin="110,309,0,0" Grid.Row="1" VerticalAlignment="Top" Width="51"/>
+        <TextBox Grid.Column="1" IsEnabled="False" HorizontalAlignment="Left" Margin="116,339,0,0" Grid.Row="1" FontSize="15" VerticalContentAlignment="Bottom" TextWrapping="Wrap" Text="{Binding request.Language}" VerticalAlignment="Top" Width="182" Height="29" BorderThickness="0,0,0,2" BorderBrush="Black"/>
+        <Label Grid.Column="1" Content="Broj gostiju:" FontSize="15" HorizontalAlignment="Left" Margin="334,309,0,0" Grid.Row="1" VerticalAlignment="Top" Width="96"/>
+        <TextBox Grid.Column="1" IsEnabled="False" HorizontalAlignment="Left" Margin="339,339,0,0" Grid.Row="1" FontSize="15" VerticalContentAlignment="Bottom" TextWrapping="Wrap" Text="{Binding request.MaxNumberGuests}" VerticalAlignment="Top" Width="181" Height="29" BorderThickness="0,0,0,2" BorderBrush="Black"/>
+        <Label Grid.Column="1" Content="Datum pocetka ture:" FontSize="15" HorizontalAlignment="Left" Margin="110,377,0,0" Grid.Row="1" VerticalAlignment="Top" Width="152"/>
+        <TextBox x:Name="DateStartbox" Grid.Column="1" IsEnabled="False" HorizontalAlignment="Left" Margin="116,407,0,0" Grid.Row="1" FontSize="15" VerticalContentAlignment="Bottom" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="182" Height="29" BorderThickness="0,0,0,2" BorderBrush="Black"/>
+        <Label Grid.Column="1" Content="Datum zavrsetka ture:" FontSize="15" HorizontalAlignment="Left" Margin="334,377,0,0" Grid.Row="1" VerticalAlignment="Top" Width="161"/>
+        <TextBox x:Name="DateEndbox" Grid.Column="1" IsEnabled="False" HorizontalAlignment="Left" Margin="339,407,0,0" Grid.Row="1" FontSize="15" VerticalContentAlignment="Bottom" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="181" Height="29" BorderThickness="0,0,0,2" BorderBrush="Black"/>
+        <Label Grid.Column="1" Content="Status:" FontSize="15" HorizontalAlignment="Left" Margin="110,445,0,0" Grid.Row="1" VerticalAlignment="Top" Width="51"/>
+        <TextBox Grid.Column="1" IsEnabled="False" HorizontalAlignment="Left" Margin="116,475,0,0" Grid.Row="1" FontSize="15" VerticalContentAlignment="Bottom" TextWrapping="Wrap" Text="{Binding request.State, Converter={StaticResource StateConverter}}" VerticalAlignment="Top" Width="182" Height="29" BorderThickness="0,0,0,2" BorderBrush="Black"/>
+        <Button Grid.Column="1" Click="BackButton" Cursor="Hand" Content="&#60;Nazad" FontSize="18" Height="45" Width="95" HorizontalAlignment="Left" Margin="991,10,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+    </Grid>
+</Page>

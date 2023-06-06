@@ -24,6 +24,8 @@ namespace ProjectSims.Domain.Model
         public DateOnly DateRangeStart { get; set; }
         public DateOnly DateRangeEnd { get; set; }
         public DateTime CreationDate { get; set; }
+
+        //public bool RequestForComplexTour { get; set; }
         public TourRequest()
         {
         }
