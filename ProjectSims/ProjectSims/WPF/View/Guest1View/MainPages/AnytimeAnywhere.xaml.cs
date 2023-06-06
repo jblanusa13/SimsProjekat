@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ProjectSims.WPF.ViewModel.Guest1ViewModel;
 
 namespace ProjectSims.WPF.View.Guest1View.MainPages
 {
@@ -20,25 +21,40 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
     /// </summary>
     public partial class AnytimeAnywhere : Page
     {
-        public AnytimeAnywhere()
+        private bool isDark;
+        AnywhereAnytimeViewModel viewModel;
+        public AnytimeAnywhere(bool isDark)
         {
             InitializeComponent();
+            this.isDark = isDark;
+            viewModel = new AnywhereAnytimeViewModel();
+            this.DataContext = viewModel;
         }
 
         private void Theme_Click(object sender, RoutedEventArgs e)
         {
             App app = (App)Application.Current;
 
-            if (ButtonTheme.Content == FindResource("SunIcon"))
+            if (isDark)
             {
                 app.ChangeTheme(new Uri("Themes/Light.xaml", UriKind.Relative));
-                ButtonTheme.Content = FindResource("MoonIcon");
+                isDark = false;
             }
             else
             {
                 app.ChangeTheme(new Uri("Themes/Dark.xaml", UriKind.Relative));
-                ButtonTheme.Content = FindResource("SunIcon");
+                isDark = true;
             }
+        }
+
+        private void FirstDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LastDatePicker.DisplayDateStart = FirstDatePicker.SelectedDate;
+        }
+
+        private void LastDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            FirstDatePicker.DisplayDateEnd = LastDatePicker.SelectedDate;
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
