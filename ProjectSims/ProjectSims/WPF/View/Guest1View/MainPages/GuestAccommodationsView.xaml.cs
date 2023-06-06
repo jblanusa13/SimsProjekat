@@ -60,10 +60,16 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             }
         }
 
+        public void Anywhere_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeTab(1);
+        }
+
         private void MyReservations_Click(object sender, RoutedEventArgs e)
         {
             ChangeTab(2);
         }
+    
         private void ShowRatings_Click(object sender, RoutedEventArgs e)
         {
             ChangeTab(4);
@@ -95,6 +101,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
                     }
                 case 1:
                     {
+                        NavigationService.Navigate(new AnytimeAnywhere());
                         break;
                     }
                 case 2:

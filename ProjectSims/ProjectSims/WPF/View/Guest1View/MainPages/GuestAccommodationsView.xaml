@@ -14,8 +14,16 @@
             <Setter Property="Background" Value="{DynamicResource DataGridBackground}"></Setter>
             <Setter Property="BorderBrush" Value="{DynamicResource SecondGrayShade}"></Setter>
         </Style>
-        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridHeader}"/>
-        <Style TargetType="DataGridRow" BasedOn="{StaticResource DataGridRow}"/>
+        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridHeader}">
+            <Setter Property="Background" Value="{DynamicResource HeaderBackground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource DataGridBorder}"/>
+            <Setter Property="Foreground" Value="{DynamicResource DataGridForeground}"/>
+        </Style>
+        <Style TargetType="DataGridRow" BasedOn="{StaticResource DataGridRow}">
+            <Setter Property="Background" Value="{DynamicResource RowBackground}"/>
+            <Setter Property="Foreground" Value="{DynamicResource DataGridForeground}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
         <Style TargetType="DataGridCell" BasedOn="{StaticResource DataGridCell}">
             <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusControl}"/>
         </Style>
@@ -54,7 +62,8 @@
 
                     <Label Grid.Row="1" HorizontalContentAlignment="Center" FontFamily="Bahnschrift"
                            FontSize="9"
-                           VerticalContentAlignment="Top">Pomoc</Label>
+                           VerticalContentAlignment="Top"
+                           Foreground="{DynamicResource FontsColor}">Pomoc</Label>
                 </Grid>
 
                 <Grid Grid.Column="1">
@@ -165,13 +174,14 @@
                 <DataGrid Grid.Row="1" Name="AccommodationsTable" ItemsSource="{Binding Path=Accommodations, UpdateSourceTrigger=PropertyChanged}"
                         Margin="10,0,10,0" HeadersVisibility="Column"
                       PreviewKeyDown="OpenReservationView"
-                      SelectionChanged="Accommodations_SelectionChanged">
+                      SelectionChanged="Accommodations_SelectionChanged"
+                      >
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" Width="170"></DataGridTextColumn>
                         <DataGridTextColumn Header="Grad" Binding="{Binding Location.City}" Width="150"></DataGridTextColumn>
                         <DataGridTextColumn Header="Drzava" Binding="{Binding Location.Country}" Width="130"></DataGridTextColumn>
                         <DataGridTextColumn Header="Tip smestaja" Binding="{Binding Type}" Width="100"></DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding GuestsMaximum}" Width="110">
+                        <DataGridTextColumn Binding="{Binding GuestsMaximum}" Width="105">
                             <DataGridTextColumn.HeaderTemplate>
                                 <DataTemplate>
                                     <Grid>
@@ -180,8 +190,8 @@
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
 
-                                        <Label Content="Maksimalan"/>
-                                        <Label Content="broj gostiju" Grid.Row="1"/>
+                                        <Label Content="Maksimalan" Foreground="{DynamicResource DataGridForeground}"/>
+                                        <Label Content="broj gostiju" Grid.Row="1" Foreground="{DynamicResource DataGridForeground}"/>
                                     </Grid>
                                 </DataTemplate>
                             </DataGridTextColumn.HeaderTemplate>
@@ -195,8 +205,8 @@
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
 
-                                        <Label Content="Minimalan broj"/>
-                                        <Label Content="dana za rezervaciju" Grid.Row="1"/>
+                                        <Label Content="Minimalan broj" Foreground="{DynamicResource DataGridForeground}"/>
+                                        <Label Content="dana za rezervaciju" Grid.Row="1" Foreground="{DynamicResource DataGridForeground}"/>
                                     </Grid>
                                 </DataTemplate>
                             </DataGridTextColumn.HeaderTemplate>
@@ -301,7 +311,8 @@
                         HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
                         FontSize="16"  BorderBrush="{DynamicResource FirstGrayShade}"
                         Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" FontWeight="Bold"
-                        FocusVisualStyle="{DynamicResource FocusControl}">
+                        FocusVisualStyle="{DynamicResource FocusControl}"
+                            Click="Anywhere_Click">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="10"/>

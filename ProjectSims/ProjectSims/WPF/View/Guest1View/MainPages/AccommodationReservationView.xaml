@@ -15,8 +15,16 @@
             <Setter Property="Background" Value="{DynamicResource DataGridBackground}"></Setter>
             <Setter Property="BorderBrush" Value="{DynamicResource SecondGrayShade}"></Setter>
         </Style>
-        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridHeader}"/>
-        <Style TargetType="DataGridRow" BasedOn="{StaticResource DataGridRow}"/>
+        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridHeader}">
+            <Setter Property="Background" Value="{DynamicResource HeaderBackground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource DataGridBorder}"/>
+            <Setter Property="Foreground" Value="{DynamicResource DataGridForeground}"/>
+        </Style>
+        <Style TargetType="DataGridRow" BasedOn="{StaticResource DataGridRow}">
+            <Setter Property="Background" Value="{DynamicResource RowBackground}"/>
+            <Setter Property="Foreground" Value="{DynamicResource DataGridForeground}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
         <Style TargetType="DataGridCell" BasedOn="{StaticResource DataGridCell}">
             <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusControl}"/>
         </Style>

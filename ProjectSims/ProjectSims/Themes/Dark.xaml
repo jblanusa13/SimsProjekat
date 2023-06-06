@@ -3,21 +3,49 @@
                     xmlns:fa="http://schemas.fontawesome.io/icons/">
 
     <fa:ImageAwesome Icon="SunOutline" x:Key="SunIcon" Foreground="#FF687EA7"/>
+    <fa:ImageAwesome Icon="Language" x:Key="LanguageIcon" Foreground="#FF687EA7" Margin="5"/>
+    <fa:ImageAwesome Icon="BellOutline" x:Key="NotificationsIcon" Foreground="#FF687EA7" Margin="5"/>
 
+    <fa:ImageAwesome Icon="SunOutline" x:Key="SunIconReservation" Foreground="#FF687EA7" Margin="5"/>
+    <fa:ImageAwesome Icon="Language" x:Key="LanguageIconReservation" Foreground="#FF687EA7" Margin="5"/>
+    <fa:ImageAwesome Icon="BellOutline" x:Key="NotificationsIconReservation" Foreground="#FF687EA7" Margin="5"/>
+
+    <fa:ImageAwesome Icon="SunOutline" x:Key="SunIconRatings" Foreground="#FF687EA7" Margin="10"/>
+    <fa:ImageAwesome Icon="Language" x:Key="LanguageIconRatings" Foreground="#FF687EA7" Margin="10"/>
+    <fa:ImageAwesome Icon="BellOutline" x:Key="NotificationsIconRatings" Foreground="#FF687EA7" Margin="10"/>
+
+    <fa:ImageAwesome Icon="SunOutline" x:Key="SunIconProfile" Foreground="#FF687EA7" Margin="10"/>
+    <fa:ImageAwesome Icon="Language" x:Key="LanguageIconProfile" Foreground="#FF687EA7" Margin="10"/>
+    <fa:ImageAwesome Icon="BellOutline" x:Key="NotificationsIconProfile" Foreground="#FF687EA7" Margin="10"/>
+
+    <fa:ImageAwesome Icon="SunOutline" x:Key="SunIconAnywhere" Foreground="#FF687EA7" Margin="10"/>
+    <fa:ImageAwesome Icon="Language" x:Key="LanguageIconAnywhere" Foreground="#FF687EA7" Margin="10"/>
+    <fa:ImageAwesome Icon="BellOutline" x:Key="NotificationsIconAnywhere" Foreground="#FF687EA7" Margin="10"/>
+
+    <fa:ImageAwesome Icon="QuestionCircle" x:Key="QuestionIcon" Foreground="#FF687EA7" Margin="0,10,0,0"/>
+    
     <fa:ImageAwesome Icon="WindowMinimize" x:Key="MainWindowMinimizeIcon"  Width="10" HorizontalAlignment="Center" Foreground="#FF687EA7"/>
+    <fa:ImageAwesome Icon="WindowMaximize" x:Key="MainWindowMaximizeIcon"  Width="10" HorizontalAlignment="Center" Foreground="#FF687EA7"/>
     <fa:ImageAwesome Icon="WindowRestore" x:Key="MainWindowRestoreIcon" Width="15" Foreground="#FF687EA7"/>
     <fa:ImageAwesome Icon="WindowClose" x:Key="MainWindowCloseIcon" Width="20" Foreground="#FF687EA7"/>
 
     <fa:ImageAwesome Icon="WindowMinimize" x:Key="RatingsMinimizeIcon"  Width="10" HorizontalAlignment="Center" Foreground="#FF687EA7"/>
+    <fa:ImageAwesome Icon="WindowMaximize" x:Key="RatingsMaximizeIcon"  Width="10" HorizontalAlignment="Center" Foreground="#FF687EA7"/>
     <fa:ImageAwesome Icon="WindowRestore" x:Key="RatingsRestoreIcon" Width="15" Foreground="#FF687EA7"/>
     <fa:ImageAwesome Icon="WindowClose" x:Key="RatingsCloseIcon" Width="20" Foreground="#FF687EA7"/>
-    
+
+    <SolidColorBrush Color="#FF687EA7" x:Key="BarFont"></SolidColorBrush>
+    <SolidColorBrush Color="#353535" x:Key="HeaderBackground"></SolidColorBrush>
+    <SolidColorBrush Color="#242424" x:Key="RowBackground"></SolidColorBrush>
+    <SolidColorBrush Color="#ffaeaeae" x:Key="DataGridBorder"></SolidColorBrush>
+    <SolidColorBrush Color="#ffaeaeae" x:Key="DataGridForeground"></SolidColorBrush>
+
     <BitmapImage x:Key="Logo" UriSource="/Resources/Icons/Guest1/travel-tour-logo-dark.png" />
     <SolidColorBrush Color="#1c1c1c" x:Key="FirstGrayShade"></SolidColorBrush>
     <SolidColorBrush Color="#242424" x:Key="SecondGrayShade"></SolidColorBrush>
     <SolidColorBrush Color="#0c181f" x:Key="BlueShade"></SolidColorBrush>
     <SolidColorBrush Color="#353535" x:Key="BarShade"></SolidColorBrush>
-    <SolidColorBrush Color="#ebf5ff" x:Key="TextboxColor"></SolidColorBrush>
+    <SolidColorBrush Color="#ffaeaeae" x:Key="TextboxColor"></SolidColorBrush>
     <SolidColorBrush Color="#ffaeaeae" x:Key="FontsColor"></SolidColorBrush>
     <SolidColorBrush Color="#1c1c1c" x:Key="DataGridBackground"></SolidColorBrush>
     <SolidColorBrush Color="#1c1c1c" x:Key="ListViewBackground"></SolidColorBrush>
@@ -31,26 +59,28 @@
         <Setter Property="SelectionMode" Value="Single"/>
         <Setter Property="AutoGenerateColumns" Value="False"/>
         <Setter Property="IsReadOnly" Value="True"/>
+        <Setter Property="HorizontalGridLinesBrush" Value="#f0f0f0"/>
+        <Setter Property="VerticalGridLinesBrush" Value="#f0f0f0"/>
+        <Setter Property="BorderThickness" Value="2"/>
     </Style>
 
     <Style TargetType="DataGridColumnHeader" x:Key="DataGridHeader">
         <Setter Property="Background" Value="#353535"/>
         <Setter Property="Foreground" Value="#ebf5ff"/>
         <Setter Property="BorderBrush" Value="White"/>
-        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderThickness" Value="0.5"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="FontSize" Value="14"/>
-        <Setter Property="BorderBrush" Value="#1c1c1c"/>
         <Setter Property="Height" Value="20"/>
     </Style>
 
     <Style TargetType="DataGridRow" x:Key="DataGridRow">
         <Setter Property="Background" Value="#242424"/>
-        <Setter Property="Foreground" Value="#ffaeaeae"/>
+        <Setter Property="Foreground" Value="#353535"/>
         <Setter Property="BorderBrush" Value="#ffaeaeae"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="13"/>
-        <Setter Property="Focusable" Value="True"/>
+        <Setter Property="BorderThickness" Value="0"/>
     </Style>
 
     <Style TargetType="DataGridCell" x:Key="DataGridCell">
