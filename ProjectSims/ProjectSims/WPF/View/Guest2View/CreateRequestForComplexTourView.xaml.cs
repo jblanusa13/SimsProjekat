@@ -222,7 +222,8 @@ namespace ProjectSims.WPF.View.Guest2View
                 return;
             }
             List<int> requestIds = new List<int>();
-            foreach(var request in requests)
+            List<TourRequest> sortedRequests = requests.OrderBy(r => r.DateRangeStart).ToList();
+            foreach (var request in sortedRequests)
             {
                 requestIds.Add(tourRequestService.NextId());
                 tourRequestService.Create(request);

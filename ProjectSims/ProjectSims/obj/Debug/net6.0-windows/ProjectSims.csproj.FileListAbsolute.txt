@@ -474,3 +474,7 @@ C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\obj
 C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\Guest2View\CreateRequestForComplexTourView.g.cs
 C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\Guest2View\CreateRequestForComplexTourView.baml
 C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\logoapp.png
+C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\Guest2View\Pages\DetailsAboutRequestView.g.cs
+C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\Guest2View\Pages\DetailsAboutRequestView.baml
+C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\Guest2View\Pages\DetailsAboutComplexRequestView.g.cs
+C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\WPF\View\Guest2View\Pages\DetailsAboutComplexRequestView.baml

@@ -2,12 +2,14 @@
 using ProjectSims.Observer;
 using ProjectSims.Service;
 using ProjectSims.WPF.View.Guest2View;
+using ProjectSims.WPF.View.Guest2View.Pages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ProjectSims.WPF.ViewModel.Guest2ViewModel
 {
@@ -16,12 +18,16 @@ namespace ProjectSims.WPF.ViewModel.Guest2ViewModel
         private TourRequestService tourRequestService;
         private RequestForComplexTourService requestForComplexTourService;
         public ObservableCollection<TourRequest> ListRequests { get; set; }
+        public TourRequest SelectedRequest { get; set; }
 
         public ObservableCollection<RequestForComplexTour> ListRequestForComplextTour { get; set; }
+
+        public RequestForComplexTour SelectedComplexRequest { get; set; }
         public Guest2 guest2 { get; set; }
         public ShowTourRequestsViewModel(Guest2 g)
         {
             UpdateTourRequestsFile();
+            UpdateRequestForComplexTour();
             guest2 = g;
             tourRequestService = new TourRequestService();
             tourRequestService.Subscribe(this);
@@ -44,6 +50,22 @@ namespace ProjectSims.WPF.ViewModel.Guest2ViewModel
                     requestService.Update(request);
                 }
             }
+        }
+
+        private void UpdateRequestForComplexTour()
+        {
+            RequestForComplexTourService requestForComplexTourService = new RequestForComplexTourService();
+            DateOnly today = DateOnly.FromDateTime(DateTime.Today).AddDays(2);
+            List<RequestForComplexTour> requests = new List<RequestForComplexTour>(requestForComplexTourService.GetAllRequests());
+            foreach(RequestForComplexTour request in requests)
+            {
+                if (today >= request.TourRequests.First().DateRangeStart && request.State == TourRequestState.Waiting)
+                {
+                    request.State = TourRequestState.Invalid;
+                    requestForComplexTourService.Update(request);
+                }
+            }
+
         }
         private void UpdateListRequest()
         {

@@ -54,7 +54,7 @@
                 </DataGrid.Columns>
 
             </DataGrid>
-            <Button Grid.Row="2" Content="Detalji o zahtjevu" Margin="70,18,336,18" FontSize="18" Cursor="Hand"/>
+            <Button Grid.Row="2" Click="DetailsAboutRequestClick" Content="Detalji o zahtjevu" Margin="70,18,336,18" FontSize="18" Cursor="Hand"/>
             <Button Grid.Row="2" Content="Kreiraj novi" Margin="288,18,115,18" FontSize="18" Cursor="Hand" Click="ButtonCreateRequest"/>
 
             <Label Grid.Row="3" Content="Statistika o svim vasim zahtjevima:" Margin="30,10,292,40" FontSize="16" HorizontalAlignment="Right" />
@@ -100,7 +100,7 @@
 
             <Label Grid.Row="0" Content="Zahtjevi za slozene ture:" FontSize="40" HorizontalAlignment="Left" Width="425" Margin="10,10,0,0" />
 
-            <Button Grid.Row="2" Content="Detalji o zahtjevu" Margin="70,18,336,18" FontSize="18" Cursor="Hand"/>
+            <Button Grid.Row="2" Click="DetailsAboutComplexRequestClick" Content="Detalji o zahtjevu" Margin="70,18,336,18" FontSize="18" Cursor="Hand"/>
             <Button Grid.Row="2" Content="Kreiraj novi" Margin="288,18,115,18" FontSize="18" Cursor="Hand" Click="ButtonCreateRequestForComplexTour" />
             <DataGrid Grid.Row="1" Margin="70,25,115,25"
                 SelectionMode="Single" AutoGenerateColumns="False"

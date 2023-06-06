@@ -7,13 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="550" Width="700" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid Background="#FF3B3378">
-        <Label Content="Korisnicko ime:" HorizontalAlignment="Left" Margin="216,185,0,0" VerticalAlignment="Top" FontSize="16" Foreground="White"/>
-        <Label Content="Lozinka:" HorizontalAlignment="Left" Margin="216,275,0,0" VerticalAlignment="Top" Width="86" Foreground="White" FontSize="16"/>
-        <TextBox x:Name="UsernameTextBox" HorizontalAlignment="Center" Margin="0,215,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="268" Height="32" FontSize="20" VerticalContentAlignment="Center" Background="#FF455DF6" Foreground="White" SelectionBrush="#FF0078D7"/>
-        <PasswordBox x:Name="PasswordTextBox" VerticalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,306,0,0" VerticalAlignment="Top" Width="268" Height="31" FontSize="20" Background="#FF455DF6" Foreground="White"/>
-        <Button Content="Uloguj se" Cursor="Hand" HorizontalAlignment="Center" Margin="0,377,0,0" VerticalAlignment="Top" FontSize="18" Width="136" Height="45" Click="SignIn" IsDefault="True" Background="#FF455DF6" Foreground="White"/>
+        <Border HorizontalAlignment="Left" Height="444" Margin="106,0,0,0" BorderBrush="#FF706D6D" BorderThickness="3" CornerRadius="6,6,6,6" VerticalAlignment="Center" Width="450"/>
+        <Label Content="Korisnicko ime:" HorizontalAlignment="Left" Margin="178,185,0,0" VerticalAlignment="Top" FontSize="16" Foreground="White" Width="132"/>
+        <Label Content="Lozinka:" HorizontalAlignment="Left" Margin="178,257,0,0" VerticalAlignment="Top" Width="87" Foreground="White" FontSize="16"/>
+        <TextBox x:Name="UsernameTextBox" Margin="178,215,216,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="32" FontSize="20" VerticalContentAlignment="Center" Background="#FF455DF6" Foreground="White" SelectionBrush="#FF0078D7"/>
+        <PasswordBox x:Name="PasswordTextBox" VerticalContentAlignment="Center" Margin="178,288,216,0" VerticalAlignment="Top" Height="31" FontSize="20" Background="#FF455DF6" Foreground="White"/>
+        <Button Content="Uloguj se" Cursor="Hand" HorizontalAlignment="Left" Margin="263,349,0,0" VerticalAlignment="Top" FontSize="18" Width="136" Height="45" Click="SignIn" IsDefault="True" Background="#FF455DF6" Foreground="White"/>
         <Image HorizontalAlignment="Left" Height="126" Margin="114,55,0,0" VerticalAlignment="Top" Width="160" Source="logoapp.png"/>
-        <TextBlock HorizontalAlignment="Left" Margin="282,97,0,0" TextWrapping="Wrap" FontSize="60" Text="Travel&amp;Tour" VerticalAlignment="Top" Foreground="#FF455DF6" FontFamily="Romantic"/>
+        <TextBlock HorizontalAlignment="Left" Margin="279,108,0,0" TextWrapping="Wrap" FontSize="50" Text="Travel&amp;Tour" VerticalAlignment="Top" Foreground="#FF455DF6" FontFamily="Romantic"/>
+        <Rectangle Height="2" Margin="178,420,216,0" Stroke="#FF706D6D" VerticalAlignment="Top"/>
+
 
     </Grid>
 </Window>

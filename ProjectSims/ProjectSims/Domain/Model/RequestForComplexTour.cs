@@ -29,6 +29,7 @@ namespace ProjectSims.Domain.Model
             RequestIds = requestsIds;
             NumberRequest = numberRequest;
             State = state;
+            TourRequests = new List<TourRequest>();
         }
 
         public string[] ToCSV()

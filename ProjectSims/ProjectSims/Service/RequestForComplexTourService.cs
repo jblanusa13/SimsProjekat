@@ -20,25 +20,30 @@ namespace ProjectSims.Service
             guest2Repository = Injector.CreateInstance<IGuest2Repository>();
             tourRequestRepository = Injector.CreateInstance<ITourRequestRepository>();
             InitializeGuest();
-            //InitializeTourRequests();
+            InitializeTourRequests();
         }
         private void InitializeGuest()
         {
             foreach (var item in complexTourRequestRepository.GetAll())
             {
+                if(item.Guest2 != null)
+                {
+                    return;
+                }
                 item.Guest2 = guest2Repository.GetById(item.Guest2Id);
             }
         }
-        /*private void InitializeTourRequests()
+        private void InitializeTourRequests()
         {
             foreach (var item in complexTourRequestRepository.GetAll())
             {
                 foreach(var requestId in item.RequestIds)
                 {
-                    item.TourRequests.Add(tourRequestRepository.GetById(requestId));
+                    if (!item.TourRequests.Contains(tourRequestRepository.GetById(requestId)))
+                        item.TourRequests.Add(tourRequestRepository.GetById(requestId));
                 }
             }
-        }*/
+        }
         public int NextId()
         {
             return complexTourRequestRepository.NextId();
