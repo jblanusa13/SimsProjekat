@@ -5,6 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.MainPages"
       xmlns:fa="http://schemas.fontawesome.io/icons/" 
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:viewmodel="clr-namespace:ProjectSims.WPF.ViewModel.Guest1ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="540" d:DesignWidth="1067"
       Title="AnytimeAnywhere">
@@ -27,6 +29,13 @@
         <Style TargetType="DataGridCell" BasedOn="{StaticResource DataGridCell}">
             <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusControl}"/>
         </Style>
+
+        <ControlTemplate x:Key="ValidationTemplate">
+            <StackPanel>
+                <AdornedElementPlaceholder x:Name="textBox" />
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="9" FontFamily="Bahnschrift" />
+            </StackPanel>
+        </ControlTemplate>
     </Page.Resources>
 
     <Grid Background="{DynamicResource FirstGrayShade}">
@@ -62,7 +71,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
-                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="20"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
@@ -73,7 +82,7 @@
                         Background="{DynamicResource SecondGrayShade}"
                             BorderBrush="{DynamicResource BarShade}"
                             FocusVisualStyle="{DynamicResource FocusControl}">
-                        <DynamicResource ResourceKey="MoonIconAnywhere"></DynamicResource>
+                        <DynamicResource ResourceKey="PaintIconAnywhere"></DynamicResource>
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="10"/>
@@ -150,7 +159,15 @@
                     <DatePicker Name="FirstDatePicker" Margin="15,25,10,10" Height="28"
                                             Background="{DynamicResource TextboxColor}"
                                             FocusVisualStyle="{DynamicResource FocusControl}"
-                                            Text="{Binding FirstDate, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
+                                            DisplayDateStart="{x:Static sys:DateTime.Today}"
+                                            SelectedDateChanged="FirstDatePicker_SelectedDateChanged">
+                        <DatePicker.Resources>
+                            <Style TargetType="DatePickerTextBox">
+                                <Setter Property="IsReadOnly" Value="True"/>
+                                <Setter Property="Background" Value="{DynamicResource TextboxColor}"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                            </Style>
+                        </DatePicker.Resources>
                     </DatePicker>
                 </Grid>
                 <Grid Grid.Row="2">
@@ -158,7 +175,17 @@
                     <DatePicker Name="LastDatePicker" Margin="15,25,10,10" Height="28"
                                             Background="{DynamicResource TextboxColor}"
                                             FocusVisualStyle="{DynamicResource FocusControl}"
-                                            Text="{Binding LastDate, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></DatePicker>
+                                            DisplayDateStart="{x:Static sys:DateTime.Today}"
+                                            SelectedDateChanged="LastDatePicker_SelectedDateChanged"
+                               >
+                        <DatePicker.Resources>
+                            <Style TargetType="DatePickerTextBox">
+                                <Setter Property="IsReadOnly" Value="True"/>
+                                <Setter Property="Background" Value="{DynamicResource TextboxColor}"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                            </Style>
+                        </DatePicker.Resources>
+                    </DatePicker>
                 </Grid>
                 <Grid Grid.Row="3">
                     <Label Margin="10,0" FontSize="14" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}">Broj dana:</Label>
@@ -166,17 +193,20 @@
                     <TextBox Name="TextboxDaysNumber"
                                          Margin="15,25,10,0" Height="28" VerticalAlignment="Top"
                                          Background="{DynamicResource TextboxColor}"
+                                         Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
                                          Text="{Binding DaysNumber, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
                     </TextBox>
                 </Grid>
                 <Grid Grid.Row="4">
                     <Label Margin="10,5" FontSize="14" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}">Broj gostiju:</Label>
                     <TextBox x:Name="TextboxGuestNumber" Margin="15,25,10,10" Background="{DynamicResource TextboxColor}" Height="28"
+                             Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
                                          Text="{Binding GuestNumber, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
                     </TextBox>
                 </Grid>
                 <Grid Grid.Row="5">
-                    <Button Margin="15,0,80,35" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}"
+                    <Button Margin="15,0,80,35" Command="{Binding SearchCommand}"
+                            FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}"
                                         Background="{DynamicResource SecondGrayShade}"
                                         FocusVisualStyle="{DynamicResource FocusControl}">Pretrazi
                         <Button.Resources>
@@ -197,29 +227,27 @@
                 <Grid Grid.Row="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="22"/>
-                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="30"/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="1" FontSize="12" 
-                           Margin="20,0,0,0"
-                           Foreground="{DynamicResource FontsColor}"
-                           FontFamily="Bahnschrift">Da biste rezervisali,</Label>
+                    
                     <Label Grid.Row="2" FontSize="12" 
                            Margin="20,0,0,0"
                            Foreground="{DynamicResource FontsColor}"
-                           FontFamily="Bahnschrift">pritisnite Enter na zeljenom opsegu datuma</Label>
+                           FontFamily="Bahnschrift">Pritisnite Enter na zeljenom smestaju, da biste pretrazili slobodne datume</Label>
                 </Grid>
 
                 <Grid Grid.Row="1">
-                    <DataGrid Grid.Row="1" Name="AnywhereTable" ItemsSource="{Binding AvailableDates, UpdateSourceTrigger=PropertyChanged}" 
+                    <DataGrid Grid.Row="1" Name="AnywhereTable" ItemsSource="{Binding AvailableAccommodations, UpdateSourceTrigger=PropertyChanged}" 
                                       Margin="20,0,20,35" 
                                       AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single"
-                                      HeadersVisibility="Column">
+                                      HeadersVisibility="Column"
+                                      PreviewKeyDown="ShowDates"
+                                      SelectedItem="{Binding SelectedAccommodation, UpdateSourceTrigger=PropertyChanged}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Naziv" Binding="{Binding CheckIn}" Width="1.3*"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Grad"  Binding="{Binding CheckOut}" Width="1*"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Drzava" Binding="{Binding CheckIn}" Width="1*"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Tip smestaja"  Binding="{Binding CheckOut}" Width="0.8*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" Width="1.3*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Grad"  Binding="{Binding Location.City}" Width="1*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Drzava" Binding="{Binding Location.Country}" Width="1*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Tip smestaja"  Binding="{Binding Type}" Width="0.8*"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -242,9 +270,11 @@
 
 
                 <DataGrid Grid.Row="1" Name="DatesTable" ItemsSource="{Binding AvailableDates, UpdateSourceTrigger=PropertyChanged}" 
+                                      SelectedItem="{Binding SelectedDate, UpdateSourceTrigger=PropertyChanged}"
                                       Margin="20,10,20,10" 
                                       AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single"
-                                      HeadersVisibility="Column">
+                                      HeadersVisibility="Column"
+                                      PreviewKeyDown="Reserve">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Dolazak" Binding="{Binding CheckIn}" Width="1*"></DataGridTextColumn>
                         <DataGridTextColumn Header="Odlazak"  Binding="{Binding CheckOut}" Width="1*"></DataGridTextColumn>
@@ -258,7 +288,8 @@
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="0" Margin="30,10,20,35" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}"
                                         Background="{DynamicResource SecondGrayShade}"
-                                        FocusVisualStyle="{DynamicResource FocusControl}">Rezervisi
+                                        FocusVisualStyle="{DynamicResource FocusControl}"
+                                        Command="{Binding ReserveCommand}">Rezervisi
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="15"/>

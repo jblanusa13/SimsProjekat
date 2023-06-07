@@ -32,6 +32,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         public GuestAccommodationsViewModel ViewModel { get; set; }
         public Guest1 Guest { get; set; }
         public Accommodation SelectedAccommodation { get; set; }
+        //private bool isDark;
 
         public GuestAccommodationsView(Guest1 guest)
         {
@@ -43,20 +44,22 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             Guest = guest;
 
             HelpButton.Focus();
+
+            //isDark = false;
         }
         private void Theme_Click(object sender, RoutedEventArgs e)
         {
             App app = (App)Application.Current;
 
-            if(ButtonTheme.Content == FindResource("SunIcon"))
+            if(App.IsDark)
             {
                 app.ChangeTheme(new Uri("Themes/Light.xaml", UriKind.Relative));
-                ButtonTheme.Content = FindResource("MoonIcon");
+                App.IsDark = false;
             }
             else
             {
                 app.ChangeTheme(new Uri("Themes/Dark.xaml", UriKind.Relative));
-                ButtonTheme.Content = FindResource("SunIcon");
+                App.IsDark = true;
             }
         }
 
@@ -101,7 +104,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
                     }
                 case 1:
                     {
-                        NavigationService.Navigate(new AnytimeAnywhere());
+                        NavigationService.Navigate(new AnytimeAnywhere(Guest));
                         break;
                     }
                 case 2:

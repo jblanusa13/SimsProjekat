@@ -52,10 +52,12 @@ C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\bin
 C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guest2\download.jpg
 C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guest2\images.jpg
 C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guest2\park-kalemegdan-1184267749.jpg
+C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guide\banja_luka_tournimage_2023.jpg
 C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guide\barcelona.jpg
 C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guide\barcelona1.jpg
 C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guide\etno-selo-stanisici.jpg
 C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guide\Grad-Bijeljina.jpg
+C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guide\gradske-sluzbe20757.jpg
 C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guide\JaksicevaKula.jpg
 C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guide\kalemegdan1.jpg
 C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guide\klmgdn.jpg
@@ -259,5 +261,3 @@ C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\obj
 C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ProjectSims.pdb
 C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ProjectSims.genruntimeconfig.cache
 C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\obj\Debug\net6.0-windows\ref\ProjectSims.dll
-C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guide\banja_luka_tournimage_2023.jpg
-C:\Users\Korisnik\Desktop\Projekat Sims\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Images\Guide\gradske-sluzbe20757.jpg

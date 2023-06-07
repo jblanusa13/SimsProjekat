@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ProjectSims.Domain.Model;
+using ProjectSims.WPF.ViewModel.Guest1ViewModel;
 
 namespace ProjectSims.WPF.View.Guest1View.MainPages
 {
@@ -20,25 +22,56 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
     /// </summary>
     public partial class AnytimeAnywhere : Page
     {
-        public AnytimeAnywhere()
+        AnywhereAnytimeViewModel viewModel;
+
+        public AnytimeAnywhere(Guest1 guest)
         {
             InitializeComponent();
+            viewModel = new AnywhereAnytimeViewModel(FirstDatePicker, LastDatePicker, DatesTable, guest);
+            this.DataContext = viewModel;
+        }
+
+        private void ShowDates(object sender, KeyEventArgs e)
+        {
+            if ((e.Key.Equals(Key.Enter)) || (e.Key.Equals(Key.Return)))
+            {
+                viewModel.ShowDates();
+            }
+        }
+
+        private void Reserve(object sender, KeyEventArgs e)
+        {
+            if ((e.Key.Equals(Key.Enter)) || (e.Key.Equals(Key.Return)))
+            {
+                viewModel.Reserve();
+                NavigationService.GoBack();
+            }
         }
 
         private void Theme_Click(object sender, RoutedEventArgs e)
         {
             App app = (App)Application.Current;
 
-            if (ButtonTheme.Content == FindResource("SunIcon"))
+            if (App.IsDark)
             {
                 app.ChangeTheme(new Uri("Themes/Light.xaml", UriKind.Relative));
-                ButtonTheme.Content = FindResource("MoonIcon");
+                App.IsDark = false;
             }
             else
             {
                 app.ChangeTheme(new Uri("Themes/Dark.xaml", UriKind.Relative));
-                ButtonTheme.Content = FindResource("SunIcon");
+                App.IsDark = true;
             }
+        }
+
+        private void FirstDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LastDatePicker.DisplayDateStart = FirstDatePicker.SelectedDate;
+        }
+
+        private void LastDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            FirstDatePicker.DisplayDateEnd = LastDatePicker.SelectedDate;
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
