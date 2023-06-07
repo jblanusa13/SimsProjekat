@@ -31,6 +31,7 @@ namespace ProjectSims.WPF.View.Guest2View
         private TourService tourService;
         private ReservationTourService reservationTourService;
         private Guest2Service guest2Service;
+        private VoucherService voucherService;
         public Guest2 guest2 { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -65,6 +66,7 @@ namespace ProjectSims.WPF.View.Guest2View
             notificationTourService = new NotificationTourService();
             notificationTourService.Subscribe(this);
             guest2Service = new Guest2Service();
+            voucherService = new VoucherService();
 
             if (reservationTourService.GetTourIdWhereGuestIsWaiting(guest2) != null)
             {
@@ -78,6 +80,7 @@ namespace ProjectSims.WPF.View.Guest2View
                 }
             }
             NumberNotification = notificationTourService.GetNumberUnseenNotificationsByGuest2(guest2.Id);
+            voucherService.UpdateValidVouchers();
         }
 
         public void CheckGuestReservation()

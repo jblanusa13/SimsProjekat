@@ -70,7 +70,7 @@ namespace ProjectSims.Service
         public void GiveVoucher(int id)
         {
             Guest2 guest = guest2Repository.GetById(id);
-            Voucher voucher = new Voucher(voucherService.NextId(),DateTime.Now,DateTime.Now.AddYears(1),false);
+            Voucher voucher = new Voucher(voucherService.NextId(),DateTime.Now,DateTime.Now.AddYears(1),false,true);
             voucherService.Create(voucher);
             guest.VoucherIds.Add(voucher.Id);
             Update(guest);
@@ -78,7 +78,7 @@ namespace ProjectSims.Service
         public void GiveVoucherForGuestWhenFiveTimePresent(int id)
         {
             Guest2 guest = guest2Repository.GetById(id);
-            Voucher voucher = new Voucher(voucherService.NextId(), DateTime.Now, DateTime.Now.AddMonths(6), false);
+            Voucher voucher = new Voucher(voucherService.NextId(), DateTime.Now, DateTime.Now.AddMonths(6), false,true);
             voucherService.Create(voucher);
             guest.VoucherIds.Add(voucher.Id);
             Update(guest);

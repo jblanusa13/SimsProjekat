@@ -16,12 +16,13 @@
                        ItemsSource="{Binding ListVoucher}"
                        SelectionMode="Single" 
                        IsReadOnly="True" Height="250"
-                       AutoGenerateColumns="False" Margin="95,149,583,251"  >
+                       AutoGenerateColumns="False" Margin="95,149,540,251"  >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Broj vaucera" Binding="{Binding Id}" Width="100" />
                 <DataGridTextColumn Header="Datum kreiranja" Binding="{Binding CreationDate}" Width="150" />
                 <DataGridTextColumn Header="Datum do kada vazi" Binding="{Binding ExpirationDate}" Width="150" />
-                <DataGridCheckBoxColumn Header="Iskoriscen" Binding="{Binding Used}" Width="*" />
+                <DataGridCheckBoxColumn Header="Iskoriscen" Binding="{Binding Used}" Width="70" />
+                <DataGridCheckBoxColumn Header="Vazeci" Binding="{Binding ValidVoucher}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Kako se sticu vauceri &#10;i cemu sluze?" HorizontalAlignment="Left" Margin="744,69,0,0" VerticalAlignment="Top" Width="287" Height="86" FontSize="28"/>
