@@ -32,7 +32,6 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         public GuestAccommodationsViewModel ViewModel { get; set; }
         public Guest1 Guest { get; set; }
         public Accommodation SelectedAccommodation { get; set; }
-        //private bool isDark;
 
         public GuestAccommodationsView(Guest1 guest)
         {
@@ -44,8 +43,6 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             Guest = guest;
 
             HelpButton.Focus();
-
-            //isDark = false;
         }
         private void Theme_Click(object sender, RoutedEventArgs e)
         {
@@ -105,7 +102,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             {
                 case 0:
                     {
-                        NavigationService.Navigate(new Forum());
+                        NavigationService.Navigate(new Forum(Guest));
                         break;
                     }
                 case 1:

@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ProjectSims.Domain.Model;
+using ProjectSims.WPF.ViewModel.Guest1ViewModel;
 
 namespace ProjectSims.WPF.View.Guest1View.MainPages
 {
@@ -20,8 +22,11 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
     /// </summary>
     public partial class Forum : Page
     {
-        public Forum()
+        private ForumViewModel viewModel;
+        public Forum(Guest1 guest)
         {
+            viewModel = new ForumViewModel(guest);
+            this.DataContext = viewModel;
             InitializeComponent();
         }
 
