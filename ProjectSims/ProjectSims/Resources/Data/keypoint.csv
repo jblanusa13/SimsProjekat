@@ -41,4 +41,12 @@
 40|Muzej Semberije|True|First
 41|Manastir Svete Petke|True|Intermediate
 42|Trg|True|Intermediate
-43|Etno selo Stanisici|False|Last
+43|Etno selo Stanisici|True|Last
+44|Prva stanica|True|First
+45|Druga stanica|True|Intermediate
+46|Treca stanica|True|Last
+47|Prva stanica|True|First
+48|Druga stanica|True|Intermediate
+49|Treca stanica|True|Last
+50|Prva|False|First
+51|Druga|False|Last

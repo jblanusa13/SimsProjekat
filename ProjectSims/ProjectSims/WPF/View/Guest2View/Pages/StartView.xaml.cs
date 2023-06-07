@@ -27,6 +27,7 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
         public Guest2 guest2 { get; set; }
         private TourService tourService;
         private ReservationTourService reservationTourService;
+        private Guest2Service guest2Service;
         public List<ReservationTour> reservations { get; set; }
         public Tour tour { get; set; }
         public Image image { get; set; }
@@ -36,6 +37,7 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
             DataContext = this;
             tourService = new TourService();
             reservationTourService = new ReservationTourService();
+            guest2Service = new Guest2Service();
             guest2 = g;
             tour = tourService.GetMostVisitedTourLastMonth();
             reservations = reservationTourService.GetReservationsForGuest(guest2.Id);
@@ -63,7 +65,7 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
                 {
                     ImageList.Items.Add("Nije moguce utvriditi format URL adrese.");
                 }
-               
+
                 ScheduleAppointmentCollection appointmentCollection = new ScheduleAppointmentCollection();
 
                 foreach (ReservationTour reservation in reservations)
@@ -72,17 +74,16 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
                     guest2Appoinment.StartTime = reservation.Tour.StartOfTheTour;
                     guest2Appoinment.EndTime = reservation.Tour.StartOfTheTour.AddHours(reservation.Tour.Duration);
                     guest2Appoinment.Subject = reservation.Tour.Name;
-                    if(reservation.Tour.State == TourState.Cancelled)
+                    if (reservation.Tour.State == TourState.Cancelled)
                     {
                         guest2Appoinment.AppointmentBackground = new SolidColorBrush(Colors.Red);
-                    }else if(reservation.Tour.State == TourState.Active)
+                    } else if (reservation.Tour.State == TourState.Active)
                     {
                         guest2Appoinment.AppointmentBackground = new SolidColorBrush(Colors.Green);
                     }
                     appointmentCollection.Add(guest2Appoinment);
                 }
                 Schedule.ItemsSource = appointmentCollection;
-
             }
         }
 

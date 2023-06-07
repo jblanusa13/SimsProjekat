@@ -38,5 +38,9 @@
                &#10;upotrebiti vaucer."            
                HorizontalAlignment="Left" Margin="744,288,0,0" VerticalAlignment="Top" FontSize="16" Width="287"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="388" Margin="719,66,0,0" VerticalAlignment="Top" Width="361" CornerRadius="8,8,8,8"/>
+        <Label Content="Izvjestaj o svim trenutno vazecim vaucerima:" FontSize="16" HorizontalAlignment="Left" Margin="121,469,0,0" VerticalAlignment="Top"/>
+        <Button Content="Generisi" HorizontalAlignment="Left" Click="GeneratePDF_Click" Cursor="Hand" FontSize="18" Width="110" Height="35" Margin="448,465,0,0" VerticalAlignment="Top"/>
+
+
     </Grid>
 </Page>

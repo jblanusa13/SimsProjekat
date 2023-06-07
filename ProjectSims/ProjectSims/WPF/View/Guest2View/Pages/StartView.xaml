@@ -28,7 +28,7 @@
             </Grid.ColumnDefinitions>
             <Border BorderBrush="Black" BorderThickness="2" CornerRadius="8,8,8,8" HorizontalAlignment="Left" Height="380" VerticalAlignment="Center" Width="480" Margin="10,0,0,0"/>
 
-            <Label Grid.Column="0" Content="Najposjecenija tura ovog meseca:" FontSize="20" HorizontalAlignment="Left" Margin="76,7,0,0" VerticalAlignment="Top"/>
+            <Label Grid.Column="0" Content="Najposjecenija tura u prethodnih mjesec dana:" FontSize="20" HorizontalAlignment="Left" Margin="46,7,0,0" VerticalAlignment="Top"/>
             <Label Content="Naziv ture:" FontSize="13" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="76,44,0,0" VerticalAlignment="Top" Width="231" Height="25"/>
             <Label Content="Lokacija(Grad i Drzava):" FontSize="13"  HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="76,99,0,0" VerticalAlignment="Top" Width="231" Height="25"/>
             <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Margin="76,69,0,0" TextWrapping="Wrap" Text="{Binding tour.Name}" VerticalAlignment="Top" VerticalContentAlignment="Bottom" Width="328" Height="25" FontSize="13" IsEnabled="False" BorderThickness="0,0,0,3" BorderBrush="Black"/>

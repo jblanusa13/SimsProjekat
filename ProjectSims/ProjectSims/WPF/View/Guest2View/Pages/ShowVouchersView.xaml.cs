@@ -36,5 +36,10 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
         {
             this.NavigationService.Navigate(new StartView(viewModel.guest2));
         }
+
+        private void GeneratePDF_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
     }
 }

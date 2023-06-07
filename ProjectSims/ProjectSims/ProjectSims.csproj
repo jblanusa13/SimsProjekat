@@ -84,12 +84,14 @@
     <None Remove="Resources\Images\Guest2\travel-tour-logo.png" />
     <None Remove="Resources\Images\guests.png" />
     <None Remove="Resources\Images\Guide\background.jpg" />
+    <None Remove="Resources\Images\Guide\banja_luka_tournimage_2023.jpg" />
     <None Remove="Resources\Images\Guide\barcelona.jpg" />
     <None Remove="Resources\Images\Guide\barcelona1.jpg" />
     <None Remove="Resources\Images\Guide\bck.jpg" />
     <None Remove="Resources\Images\Guide\bckgrnd.jpg" />
     <None Remove="Resources\Images\Guide\etno-selo-stanisici.jpg" />
     <None Remove="Resources\Images\Guide\Grad-Bijeljina.jpg" />
+    <None Remove="Resources\Images\Guide\gradske-sluzbe20757.jpg" />
     <None Remove="Resources\Images\Guide\JaksicevaKula.jpg" />
     <None Remove="Resources\Images\Guide\kalemegdan1.jpg" />
     <None Remove="Resources\Images\Guide\klmgdn.jpg" />
@@ -293,6 +295,9 @@
     <Content Include="Resources\Images\Guest2\park-kalemegdan-1184267749.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Guide\banja_luka_tournimage_2023.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Guide\barcelona.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -303,6 +308,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Guide\Grad-Bijeljina.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guide\gradske-sluzbe20757.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Guide\JaksicevaKula.jpg">

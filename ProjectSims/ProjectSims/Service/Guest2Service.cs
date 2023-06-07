@@ -75,6 +75,14 @@ namespace ProjectSims.Service
             guest.VoucherIds.Add(voucher.Id);
             Update(guest);
         }
+        public void GiveVoucherForGuestWhenFiveTimePresent(int id)
+        {
+            Guest2 guest = guest2Repository.GetById(id);
+            Voucher voucher = new Voucher(voucherService.NextId(), DateTime.Now, DateTime.Now.AddMonths(6), false);
+            voucherService.Create(voucher);
+            guest.VoucherIds.Add(voucher.Id);
+            Update(guest);
+        }
     }
 }
 

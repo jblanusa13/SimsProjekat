@@ -30,6 +30,7 @@ namespace ProjectSims.WPF.View.Guest2View
     {
         private TourService tourService;
         private ReservationTourService reservationTourService;
+        private Guest2Service guest2Service;
         public Guest2 guest2 { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -63,6 +64,7 @@ namespace ProjectSims.WPF.View.Guest2View
             tourService = new TourService();
             notificationTourService = new NotificationTourService();
             notificationTourService.Subscribe(this);
+            guest2Service = new Guest2Service();
 
             if (reservationTourService.GetTourIdWhereGuestIsWaiting(guest2) != null)
             {
@@ -72,9 +74,27 @@ namespace ProjectSims.WPF.View.Guest2View
                 if (answer == MessageBoxResult.Yes)
                 {
                     reservationTourService.UpdateGuestState(guest2,tour,Guest2State.Present);
+                    CheckGuestReservation();
                 }
             }
             NumberNotification = notificationTourService.GetNumberUnseenNotificationsByGuest2(guest2.Id);
+        }
+
+        public void CheckGuestReservation()
+        {
+            int number = 0;
+            foreach (ReservationTour reservation in reservationTourService.GetReservationsForGuest(guest2.Id))
+            {
+                if (reservation.State == Guest2State.Present && reservation.Tour.StartOfTheTour > DateTime.Now.AddYears(-1))
+                {
+                    number++;
+                }
+            }
+            if (number % 5 == 0)
+            {
+                guest2Service.GiveVoucherForGuestWhenFiveTimePresent(guest2.Id);
+                MessageBox.Show("Cestitamo!Uspjesno ste osvojili vaucer jer ste u prethodnih godinu dana prisustvovali na 5 tura!");
+            }
         }
 
         private void SetStatusBarClock()
