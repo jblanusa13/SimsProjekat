@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="logoapp.png" />
     <None Remove="Resources\Icons\Guest1\travel-tour-logo-dark.png" />
     <None Remove="Resources\Icons\Guest1\travel-tour-logo-light.png" />
     <None Remove="Resources\Icons\Guest2\icons8-add-file-60.png" />
@@ -130,6 +131,9 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="logoapp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Icons\Guest2\icons8-add-file-60.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -44,5 +44,39 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
         {
             viewModel.Statistic_MouseLeftButtonDown(sender);
         }
+
+        private void ButtonCreateRequestForComplexTour (object sender, RoutedEventArgs e)
+        {
+            viewModel.ButtonCreateRequestForComplexTour(sender);
+        }
+
+        private void DetailsAboutRequestClick(object sender, RoutedEventArgs e)
+        {
+            if (viewModel.SelectedRequest != null)
+            {
+                this.NavigationService.Navigate(new DetailsAboutRequestView(viewModel.SelectedRequest));
+            }
+            else
+            {
+                MessageBox.Show("Morate selektovati zahtjev za koji zelite da vidite detalje.");
+            }
+        }
+
+        private void DetailsAboutComplexRequestClick(object sender, RoutedEventArgs e)
+        {
+            if (viewModel.SelectedComplexRequest != null)
+            {
+                this.NavigationService.Navigate(new DetailsAboutComplexRequestView(viewModel.SelectedComplexRequest));
+            }
+            else
+            {
+                MessageBox.Show("Morate selektovati zahtjev za koji zelite da vidite detalje.");
+            }
+        }
+
+        /*private void Home_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.NavigationService.Navigate(new Guest2StartingView(viewModel.guest2));
+        }*/
     }
 }

@@ -24,6 +24,7 @@ namespace ProjectSims
             { typeof(IKeyPointRepository), new KeyPointRepository() },
             { typeof(IUserRepository), new UserRepository() },
             { typeof(ITourRequestRepository), new TourRequestRepository() },
+            { typeof(IRequestForComplexTourRepository), new RequestForComplexTourRepository() },
             { typeof(INotificationTourRepository), new NotificationTourRepository() },
             { typeof(IAccommodationRepository), new AccommodationRepository() },
             { typeof(IRenovationScheduleRepository), new RenovationScheduleRepository() },
