@@ -94,12 +94,18 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             ChangeTab(5);
         }
 
+        private void Forum_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeTab(0);
+        }
+
         public void ChangeTab(int tabNum)
         {
             switch (tabNum)
             {
                 case 0:
                     {
+                        NavigationService.Navigate(new Forum());
                         break;
                     }
                 case 1:

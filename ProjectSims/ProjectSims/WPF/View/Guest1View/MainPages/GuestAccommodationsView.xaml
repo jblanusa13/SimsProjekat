@@ -355,7 +355,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Button Grid.Row="4" Content="Forum"
+                    <Button Grid.Row="4" Content="Forum" Click="Forum_Click"
                         HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
                          FontSize="16" FontFamily="Bahnschrift"
                         Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}"
@@ -385,7 +385,7 @@
             </Grid>
             <Grid Grid.Row="2">
                 <Button Content="Odjavi se" Click="LogOut_Click" Margin="30,10" VerticalAlignment="Top" Height="30"
-                        Background="{DynamicResource ButtonsColor}" Foreground="{DynamicResource FontsColor}"
+                        Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}"
                         FontFamily="Bahnschrift"
                          BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold"
                         FocusVisualStyle="{DynamicResource FocusControl}">
