@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Domain.Model;
 using ProjectSims.Domain.RepositoryInterface;
+using ProjectSims.Repository;
 using ProjectSims.WPF.View.OwnerView.Pages;
 
 namespace ProjectSims.Service
@@ -12,12 +13,14 @@ namespace ProjectSims.Service
    public class AccommodationScheduleService
     {
         private IAccommodationScheduleRepository scheduleRepository;
+        private IAccommodationRepository accommodationRepository;
         private DateOnly firstDate;
         private DateOnly lastDate;
         
         public AccommodationScheduleService()
         {
             scheduleRepository = Injector.CreateInstance<IAccommodationScheduleRepository>();
+            accommodationRepository = Injector.CreateInstance<IAccommodationRepository>();
         }
 
         public List<DateRanges> FindDates(DateOnly firstDate, DateOnly lastDate, int daysNumber, int accommodationId)
@@ -140,6 +143,27 @@ namespace ProjectSims.Service
                 }
             }
             return true;
+        }
+
+        public List<Accommodation> FindAvailableAccommodations(DateOnly firstDate, DateOnly lastDate, int daysNumber, int guestNumber)
+        {
+            List<Accommodation> availableAccommodations = new List<Accommodation> ();
+            foreach (Accommodation accommodation in accommodationRepository.GetAll())
+            {
+                if (daysNumber < accommodation.MinimumReservationDays || guestNumber > accommodation.GuestsMaximum)
+                {
+                    continue;
+                }
+
+                if (FindDates(firstDate, lastDate, daysNumber, accommodation.Id).Count == 0)
+                {
+                    continue;
+                }
+
+                availableAccommodations.Add(accommodation);
+            }
+
+            return availableAccommodations;
         }
     }
 }
