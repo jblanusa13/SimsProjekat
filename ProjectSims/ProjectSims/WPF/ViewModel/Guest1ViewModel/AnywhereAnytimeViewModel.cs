@@ -47,8 +47,8 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             }
         }
 
-        private string _firstDate;
-        public string FirstDate
+        private DateOnly _firstDate;
+        public DateOnly FirstDate
         {
             get => _firstDate;
             set
@@ -62,8 +62,8 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             }
         }
 
-        private string _lastDate;
-        public string LastDate
+        private DateOnly _lastDate;
+        public DateOnly LastDate
         {
             get => _lastDate;
             set
@@ -81,28 +81,77 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
 
         public ObservableCollection<Accommodation> AvailableAccommodations { get; set; }
         public ObservableCollection<DateRanges> AvailableDates { get; set; }
-        public Accommodation SelectedAccommodation { get; set; }
+        private Accommodation selectedAccommodation;
+        public Accommodation SelectedAccommodation 
+        {
+            get => selectedAccommodation;
+            set
+            {
+                if (value != selectedAccommodation)
+                {
+                    selectedAccommodation = value;
+                    OnPropertyChanged();
+                    AvailableDates.Clear();
+                }
+            }          
+        }
+
+        private DateRanges selectedDate;
+        public DateRanges SelectedDate
+        {
+            get => selectedDate;
+            set
+            {
+                if (value != selectedDate)
+                {
+                    selectedDate = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         public MyICommand SearchCommand { get; set; }
-        public MyICommand ShowDatesCommand { get; set; }
-        public AnywhereAnytimeViewModel()
+        public MyICommand ReserveCommand { get; set; }
+        public DatePicker First { get; set; }
+        public DatePicker Last { get; set; }
+        public DataGrid DatesTable { get; set; }
+        private AccommodationReservationService reservationService;
+
+        private Guest1 guest;
+        public AnywhereAnytimeViewModel(DatePicker first, DatePicker last, DataGrid datesTable, Guest1 guest)
         {
             SearchCommand = new MyICommand(OnSearch, CanSearch);
-            ShowDatesCommand = new MyICommand(OnShow, CanShow);
+            ReserveCommand = new MyICommand(OnReserve);
             AvailableAccommodations = new ObservableCollection<Accommodation>();
             AvailableDates = new ObservableCollection<DateRanges>();
             scheduleService = new AccommodationScheduleService();
+            First = first;
+            Last = last;
+            DatesTable = datesTable;
+
+            reservationService = new AccommodationReservationService();
+
+            this.guest = guest;
         }
 
-        private bool CanShow()
+        public void ShowDates()
         {
-            return SelectedAccommodation != null;
+            if(SelectedAccommodation != null)
+            {
+                List<DateRanges> availableDates = new List<DateRanges>();
+                availableDates = scheduleService.FindDates(FirstDate, LastDate, Convert.ToInt32(DaysNumber), SelectedAccommodation.Id);
+                UpdateDatesTable(availableDates);
+                DatesTable.Focus();
+            }
         }
-        public void OnShow()
+        public void OnReserve()
         {
-            List<DateRanges> availableDates = new List<DateRanges>();
-            availableDates = scheduleService.FindDates(DateOnly.Parse(FirstDate), DateOnly.Parse(LastDate), Convert.ToInt32(DaysNumber), SelectedAccommodation.Id);
-            UpdateDatesTable(availableDates);
+            Reserve();
+        }
+
+        public void Reserve()
+        {
+            reservationService.CreateReservation(SelectedAccommodation.Id, guest.Id, SelectedDate.CheckIn, SelectedDate.CheckOut, Convert.ToInt32(GuestNumber));
         }
 
         public void UpdateDatesTable(List<DateRanges> availableDates)
@@ -115,8 +164,8 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         }
         private bool CanSearch()
         {
-            bool firstDateSelected = string.IsNullOrEmpty(FirstDate);
-            bool lastDateSelected = string.IsNullOrEmpty(LastDate);
+            bool firstDateSelected = First.SelectedDate == null;
+            bool lastDateSelected = Last.SelectedDate == null;
 
             return IsValid && ((firstDateSelected && !lastDateSelected || !firstDateSelected && lastDateSelected) ? false : true);
         }
@@ -125,15 +174,21 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         {
             List<Accommodation> availableAccommodations = new List<Accommodation>();
 
-            if(string.IsNullOrEmpty(FirstDate) && string.IsNullOrEmpty(LastDate))
+            
+            if (First.SelectedDate == null && Last.SelectedDate == null)
             {
-                availableAccommodations = scheduleService.FindAvailableAccommodations(DateOnly.FromDateTime(DateTime.Today), DateOnly.FromDateTime(DateTime.Today).AddDays(365), Convert.ToInt32(DaysNumber), Convert.ToInt32(GuestNumber));
+                FirstDate = DateOnly.FromDateTime(DateTime.Today);
+                LastDate = DateOnly.FromDateTime(DateTime.Today).AddDays(365);
+                
             }
             else
             {
-                availableAccommodations = scheduleService.FindAvailableAccommodations(DateOnly.Parse(FirstDate), DateOnly.Parse(LastDate), Convert.ToInt32(DaysNumber), Convert.ToInt32(GuestNumber));
+                FirstDate = DateOnly.FromDateTime((DateTime)First.SelectedDate);
+                LastDate = DateOnly.FromDateTime((DateTime)Last.SelectedDate);    
             }
+            availableAccommodations = scheduleService.FindAvailableAccommodations(FirstDate, LastDate, Convert.ToInt32(DaysNumber), Convert.ToInt32(GuestNumber));
 
+            AvailableDates.Clear();
             UpdateAccommodationsTable(availableAccommodations);
         }
 

@@ -13,6 +13,7 @@ namespace ProjectSims
     /// </summary>
     public partial class App : Application
     {
+        public static bool IsDark = false;
         public void ChangeTheme(Uri uri)
         {
             App.Current.Resources.Clear();

@@ -24,8 +24,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
     {
         public Guest1 Guest { get; set; }
         private SuperGuestService superGuestService;
-        private bool isDark;
-        public Profile(Guest1 guest, bool isDark)
+        public Profile(Guest1 guest)
         {
             InitializeComponent();
             DataContext = this;
@@ -33,22 +32,21 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             superGuestService = new SuperGuestService();
             CheckSuperGuest();
 
-            this.isDark = isDark;
         }
 
         private void Theme_Click(object sender, RoutedEventArgs e)
         {
             App app = (App)Application.Current;
 
-            if (isDark)
+            if (App.IsDark)
             {
                 app.ChangeTheme(new Uri("Themes/Light.xaml", UriKind.Relative));
-                isDark = false;
+                App.IsDark = false;
             }
             else
             {
                 app.ChangeTheme(new Uri("Themes/Dark.xaml", UriKind.Relative));
-                isDark = true;
+                App.IsDark = true;
             }
         }
 

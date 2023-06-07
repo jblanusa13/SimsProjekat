@@ -82,7 +82,7 @@
                         Background="{DynamicResource SecondGrayShade}"
                             BorderBrush="{DynamicResource BarShade}"
                             FocusVisualStyle="{DynamicResource FocusControl}">
-                        <DynamicResource ResourceKey="MoonIconReservation"></DynamicResource>
+                        <DynamicResource ResourceKey="PaintIconReservation"></DynamicResource>
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="10"/>
