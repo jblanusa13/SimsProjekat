@@ -33,8 +33,8 @@
             <Label Content="{Binding SelectedTourRequest.MaxNumberGuests}" Margin="170,350,0,0"/>
             <Image Source="/Resources/Icons/Guide/description.png" Margin="100,450,0,0"/>
             <TextBox Text="{Binding SelectedTourRequest.Description}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="170,450,0,0" Width="1000" Height="150" FontSize="30" FontFamily="Helvetica" Foreground="White" Background="Transparent" BorderThickness="0" IsReadOnly="True"/>
-            <Image Source="/Resources/Icons/Guide/calendar.png" Margin="100,700,0,0"/>
-            <Label Margin="170,700,0,0">
+            <Image Source="/Resources/Icons/Guide/calendar.png" Margin="100,600,0,0"/>
+            <Label Margin="170,600,0,0">
                 <AccessText>
                     <MultiBinding StringFormat="{}{0} - {1}">
                         <Binding Path="SelectedTourRequest.DateRangeStart" />
@@ -42,6 +42,10 @@
                     </MultiBinding>
                 </AccessText>
             </Label>
+            <Label Margin="100,660,0,0" Content="Odaberite termin i trajanje:"/>
+            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,700,0,0" Width="200" Height="40" Background="Transparent"/>
+            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="350,700,0,0" Width="150" Height="40" Background="Transparent"/>
+            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="550,700,0,0" Width="100" Height="40" Background="Transparent"/>
             <Button Name="AcceptTour" Margin="0,800,300,0" Height="85" Width="85" HorizontalAlignment="Center" VerticalAlignment="Top"  Background="Transparent" BorderThickness="0" Click="AcceptTour_Click" Cursor="Hand">
                 <Image Source="/Resources/Icons/Guide/checked.png" Height="80" Width="80" Cursor="Hand">
                     <Image.Effect>
