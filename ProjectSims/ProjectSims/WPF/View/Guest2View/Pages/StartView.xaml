@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest2View.Pages"
+      xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
       mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="1200"
       Title="StartView" Background="White">
@@ -13,7 +14,7 @@
             <RowDefinition Height="250"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Center" Height="230" VerticalAlignment="Center" Width="1180" CornerRadius="8,8,8,8"/>
+        <Border BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Center" Height="230" VerticalAlignment="Center" Width="1166" CornerRadius="8,8,8,8"/>
         <Label Content="Dobro dosli" FontSize="40" HorizontalAlignment="Left" Margin="67,33,0,0" VerticalAlignment="Top"/>
         <Label x:Name="GuestNameLabel" Content="" FontSize="40" HorizontalAlignment="Left" Margin="289,33,0,0" VerticalAlignment="Top" Width="172" Height="63"/>
         <Label Content="        Dobro dosli u Travel&amp;Tour aplikaciju. Unutar ove aplikacije mozete traziti i rezervisati                 &#xA;turisticke ture koje su Vam zanimljive, ocjenjivati vodica i ture na kojima ste bili, kreirati                 &#xA;zahtjeve za sopstvene ture i jos mnostvo toga. Uzivajte!"
@@ -25,9 +26,21 @@
                 <ColumnDefinition Width="530"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Content="Najposjecenija tura ovog meseca:" FontSize="20" HorizontalAlignment="Left" Margin="70,38,0,0" VerticalAlignment="Top"/>
-            <Label Grid.Column="1" Content="Vase rezervisane ture:" FontSize="20" HorizontalAlignment="Left" Margin="135,38,0,0" VerticalAlignment="Top"/>
-            <Viewbox Grid.Column="1" Width="400" Height="260" Stretch="Fill" StretchDirection="Both"/>
+            <Border BorderBrush="Black" BorderThickness="2" CornerRadius="8,8,8,8" HorizontalAlignment="Left" Height="380" VerticalAlignment="Center" Width="480" Margin="10,0,0,0"/>
+
+            <Label Grid.Column="0" Content="Najposjecenija tura ovog meseca:" FontSize="20" HorizontalAlignment="Left" Margin="76,7,0,0" VerticalAlignment="Top"/>
+            <Label Content="Naziv ture:" FontSize="13" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="76,44,0,0" VerticalAlignment="Top" Width="231" Height="25"/>
+            <Label Content="Lokacija(Grad i Drzava):" FontSize="13"  HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="76,99,0,0" VerticalAlignment="Top" Width="231" Height="25"/>
+            <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Margin="76,69,0,0" TextWrapping="Wrap" Text="{Binding tour.Name}" VerticalAlignment="Top" VerticalContentAlignment="Bottom" Width="328" Height="25" FontSize="13" IsEnabled="False" BorderThickness="0,0,0,3" BorderBrush="Black"/>
+            <TextBox x:Name="LocationTextBox" HorizontalAlignment="Left" FontSize="13" Margin="76,124,0,0" TextWrapping="Wrap" Text="{Binding tour.Location}" VerticalContentAlignment="Bottom" VerticalAlignment="Top" Width="328" Height="25" IsEnabled="False" BorderThickness="0,0,0,3" BorderBrush="Black"/>
+            <ListView x:Name="ImageList" Margin="38,160,82,34"/>
+
+            <Border BorderBrush="Black" BorderThickness="2" Grid.Column="1" CornerRadius="8,8,8,8" Height="380" Margin="3,0,10,0" VerticalAlignment="Center"/>
+            <Label Grid.Column="1" Content="Vase rezervisane ture:" FontSize="20" HorizontalAlignment="Left" Margin="70,7,0,0" VerticalAlignment="Top"/>
+            <syncfusion:SfScheduler x:Name="Schedule" ShowBusyIndicator="True" ViewType="Week" FirstDayOfWeek="Monday" Grid.Column="1" Margin="30,46,30,35" Loaded="Schedule_Loaded"/>
+
+
+
         </Grid>
 
 

@@ -38,7 +38,7 @@
             </DataGrid.Columns>
 
         </DataGrid>
-        <Button Grid.Row="2" Grid.Column="1" Content="Ocjeni turu" FontSize="18" HorizontalAlignment="Left" Margin="821,335,0,0" VerticalAlignment="Top" Height="31" Width="145" Click="ButtonRatingTour"/>
+        <Button Grid.Row="2" Grid.Column="1" Cursor="Hand" Content="Ocjeni turu" FontSize="18" HorizontalAlignment="Left" Margin="821,335,0,0" VerticalAlignment="Top" Height="31" Width="145" Click="ButtonRatingTour"/>
 
     </Grid>
 </Page>

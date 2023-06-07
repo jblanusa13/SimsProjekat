@@ -387,6 +387,7 @@
     </PackageReference>
     <PackageReference Include="ceTe.DynamicPDF.CoreSuite.NET" Version="12.4.0" />
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+    <PackageReference Include="Syncfusion.SfScheduler.WPF" Version="21.2.9" />
 	  <PackageReference Include="Tulpep.NotificationWindow" Version="1.1.38">
 		  <TreatAsUsed>true</TreatAsUsed>
 	  </PackageReference>
