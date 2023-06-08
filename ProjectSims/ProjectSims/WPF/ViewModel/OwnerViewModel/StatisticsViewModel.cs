@@ -3,20 +3,28 @@ using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using ProjectSims.Domain.Model;
 using ProjectSims.Service;
+using ProjectSims.Validation;
 using ProjectSims.WPF.View.Guest1View.Requests;
 using ProjectSims.WPF.View.OwnerView.Pages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace ProjectSims.WPF.ViewModel.OwnerViewModel
 {
-    public class StatisticsViewModel
+    public class StatisticsViewModel : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         private AccommodationReservationService accommodationReservationService;
         private AccommodationRatingService accommodationRatingService;
         private RequestService requestService;
@@ -32,7 +40,24 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
         public ObservableCollection<string> LabelsForMonths { get; set; }
         public SeriesCollection NumberOfReservationsByCriteria { get; set; }
         public SeriesCollection NumberOfMonthReservationsByCriteria { get; set; }
-        public StatisticsViewModel(Owner o, TextBlock titleTextBlock, Accommodation selectedAccommodetion, ComboBox yearComboBox)
+
+        private int _mostVisitedMonth;
+        public int MostVisitedMonth
+        {
+            get => _mostVisitedMonth;
+
+            set
+            {
+                if (value != _mostVisitedMonth)
+                {
+                    _mostVisitedMonth = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public ChartValues<int> TotalReservations { get; set; }
+        public StatisticsViewModel(Owner o, TextBlock titleTextBlock, Accommodation selectedAccommodetion, ComboBox yearComboBox, int mostVisitedMonth)
         {
             Owner = o;
             TitleTextBlock = titleTextBlock;
@@ -42,6 +67,8 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
             requestService = new RequestService();
             Pointlabel = chartPoint => String.Format("{0}({1:P})", chartPoint.Y, chartPoint.Participation);
             Reservations = new List<AccommodationReservation>(accommodationReservationService.GetAllReservationsByAccommodationId(SelectedAccommodation.Id));
+            MostVisitedMonth = mostVisitedMonth;
+            TotalReservations = new ChartValues<int>();
 
             NumberOfReservationsByCriteria = new SeriesCollection();
             YearLabels = new[] { "2019", "2020", "2021", "2022", "2023" };
@@ -60,7 +87,7 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
                 LabelsForMonths.Add(l);
             }
         }
-    
+
         public void DisplayTheNumberOfReservationsByCriteria()
         {
             var totalReservations = new ChartValues<int>();
@@ -100,6 +127,20 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
             NumberOfMonthReservationsByCriteria.Add(new ColumnSeries { Values = totalShiftedReservations, Title = "Pomjerene" });
             NumberOfMonthReservationsByCriteria.Add(new ColumnSeries { Values = totalRenovationReccommendations, Title = "Prijedlozi za renovaciju" });
             Values = value => value.ToString("D");
+            TotalReservations = totalReservations;
+        }
+
+        public int DisplayMostVisitedMonth()
+        {
+            MostVisitedMonth = TotalReservations[0];
+            for (int i = 1; i < TotalReservations.Count(); i++)
+            {
+                if (TotalReservations[i] > MostVisitedMonth)
+                {
+                    MostVisitedMonth = i + 1;
+                }
+            }
+            return MostVisitedMonth;
         }
 
         public void CloseAccommodation(Accommodation SelectedAccommodation)

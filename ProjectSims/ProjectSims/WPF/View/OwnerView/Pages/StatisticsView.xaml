@@ -70,7 +70,7 @@
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
             </Grid>
-            
+
             <Grid Grid.Row="3">
                 <Label Content="Izaberite godinu:" 
                        FontSize="13" 
@@ -86,7 +86,7 @@
                     <ComboBoxItem>2019</ComboBoxItem>
                 </ComboBox>
             </Grid>
-            
+
             <Grid Grid.Row="4">
                 <lvc:CartesianChart x:Name="MonthChart" Visibility="Hidden" Series="{Binding NumberOfMonthReservationsByCriteria}" Margin="45,5,45,5">
                     <lvc:CartesianChart.AxisX>
@@ -95,9 +95,9 @@
                     <lvc:CartesianChart.AxisY>
                         <lvc:Axis Title="Ukupan broj" Labels="{Binding Values}" MinValue="0"/>
                     </lvc:CartesianChart.AxisY>
-                </lvc:CartesianChart>     
+                </lvc:CartesianChart>
             </Grid>
-            
+
             <Grid Grid.Row="5">
                 <Label x:Name="MostVisitedLabel"
                        Content="Najviše posjećen u:" 
@@ -107,7 +107,7 @@
                        Margin="50,0,0,0" 
                        VerticalAlignment="Center" 
                        Width="200"/>
-                <TextBox x:Name="MostVisitedTextBox" Visibility="Hidden" HorizontalAlignment="Right" Margin="0,0,50,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="183" Height="26" Foreground="Black" FontSize="13" IsEnabled="False"/>
+                <TextBox x:Name="MostVisitedTextBox" Text="{Binding MostVisitedMonth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Visibility="Hidden" IsEnabled="False" HorizontalAlignment="Right" Margin="0,0,50,0" VerticalAlignment="Center" Width="183" Height="26" Foreground="Black" FontSize="13"/>
             </Grid>
             <Grid Grid.Row="6">
                 <Button x:Name="CloseAccommodationButton"
