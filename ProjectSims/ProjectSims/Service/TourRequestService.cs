@@ -17,11 +17,15 @@ namespace ProjectSims.Service
         private ITourRequestRepository tourRequestRepository;
         private IGuest2Repository guest2Repository;
         private IGuideRepository guideRepository;
+        private IRequestForComplexTourRepository requestForComplexTourRepository;
+        private ITourRepository tourRepository;
         public TourRequestService()
         {
             tourRequestRepository = Injector.CreateInstance<ITourRequestRepository>();
             guest2Repository = Injector.CreateInstance<IGuest2Repository>();
             guideRepository = Injector.CreateInstance<IGuideRepository>();
+            requestForComplexTourRepository = Injector.CreateInstance<IRequestForComplexTourRepository>();
+            tourRepository = Injector.CreateInstance<ITourRepository>();
             InitializeGuest();
             InitializeGuide();
         }
@@ -47,9 +51,20 @@ namespace ProjectSims.Service
         {
             return tourRequestRepository.GetAll();
         }
-        public List<TourRequest> GetWaitingRequests()
+        public List<TourRequest> GetAvailableRequestsForGuide(int guideId)
         {
-            return tourRequestRepository.GetWaitingRequests();
+            List<TourRequest> availableRequestsForGuide = tourRequestRepository.GetWaitingRequests();
+            List<TourRequest> waitingRequestsForComplexTour = tourRequestRepository.GetWaitingRequestsForComplexTour();
+            foreach (var simpleRequest in waitingRequestsForComplexTour)
+            {
+                RequestForComplexTour requestForComplexTour = requestForComplexTourRepository.GetBySimpleRequestId(simpleRequest.Id);
+                List<TourRequest> otherRequests = requestForComplexTour.TourRequests;
+                List<int> guidesWhoAcceptedIds = otherRequests.Select(t=>t.GuideId).ToList();
+                if (guidesWhoAcceptedIds.Contains(guideId)){
+                    availableRequestsForGuide.Remove(simpleRequest);
+                }
+            }
+            return availableRequestsForGuide;
         }
         public TourRequest GetById(int id)
         {

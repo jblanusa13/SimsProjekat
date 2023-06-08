@@ -98,6 +98,12 @@ namespace ProjectSims.View.GuideView
             Page requestStatisticsView = new RequestStatisticsView(Guide);
             GuideFrame.Content = requestStatisticsView;
         }
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            var startView = new MainWindow();
+            startView.Show();
+            Window.GetWindow(this).Close();
+        }
         public void Update()
         {
             ActiveTour = tourService.GetTourByStateAndGuideId(TourState.Active, Guide.Id);

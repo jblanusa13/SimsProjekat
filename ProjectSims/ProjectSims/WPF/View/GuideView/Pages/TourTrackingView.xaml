@@ -106,10 +106,10 @@
             <Grid>
                 <Label Margin="20,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">
                     <Hyperlink Click="Back_Click">
-                        <TextBlock Text="Praćenje ture"/>
+                        <TextBlock Text="Početna"/>
                     </Hyperlink>
                 </Label>
-                <Label Content="&#707;  Aktivna tura" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="130,10,0,0" FontSize="16"/>
+                <Label Content="&#707; Aktivna tura" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,10,0,0" FontSize="16"/>
             </Grid>
         </Border>
         <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,40,0,0" Width="1280" Height="530">
