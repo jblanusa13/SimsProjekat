@@ -2,23 +2,23 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:fa="http://schemas.fontawesome.io/icons/">
 
-    <fa:ImageAwesome Icon="PaintBrush" x:Key="SunIcon" Foreground="#FF687EA7"/>
+    <fa:ImageAwesome Icon="PaintBrush" x:Key="PaintIcon" Foreground="#FF687EA7" Margin="5"/>
     <fa:ImageAwesome Icon="Language" x:Key="LanguageIcon" Foreground="#FF687EA7" Margin="5"/>
     <fa:ImageAwesome Icon="BellOutline" x:Key="NotificationsIcon" Foreground="#FF687EA7" Margin="5"/>
 
-    <fa:ImageAwesome Icon="PaintBrush" x:Key="SunIconReservation" Foreground="#FF687EA7" Margin="5"/>
+    <fa:ImageAwesome Icon="PaintBrush" x:Key="PaintIconReservation" Foreground="#FF687EA7" Margin="5"/>
     <fa:ImageAwesome Icon="Language" x:Key="LanguageIconReservation" Foreground="#FF687EA7" Margin="5"/>
     <fa:ImageAwesome Icon="BellOutline" x:Key="NotificationsIconReservation" Foreground="#FF687EA7" Margin="5"/>
 
-    <fa:ImageAwesome Icon="PaintBrush" x:Key="SunIconRatings" Foreground="#FF687EA7" Margin="10"/>
+    <fa:ImageAwesome Icon="PaintBrush" x:Key="PaintIconRatings" Foreground="#FF687EA7" Margin="10"/>
     <fa:ImageAwesome Icon="Language" x:Key="LanguageIconRatings" Foreground="#FF687EA7" Margin="10"/>
     <fa:ImageAwesome Icon="BellOutline" x:Key="NotificationsIconRatings" Foreground="#FF687EA7" Margin="10"/>
 
-    <fa:ImageAwesome Icon="PaintBrush" x:Key="SunIconProfile" Foreground="#FF687EA7" Margin="10"/>
+    <fa:ImageAwesome Icon="PaintBrush" x:Key="PaintIconProfile" Foreground="#FF687EA7" Margin="10"/>
     <fa:ImageAwesome Icon="Language" x:Key="LanguageIconProfile" Foreground="#FF687EA7" Margin="10"/>
     <fa:ImageAwesome Icon="BellOutline" x:Key="NotificationsIconProfile" Foreground="#FF687EA7" Margin="10"/>
 
-    <fa:ImageAwesome Icon="PaintBrush" x:Key="SunIconAnywhere" Foreground="#FF687EA7" Margin="10"/>
+    <fa:ImageAwesome Icon="PaintBrush" x:Key="PaintIconAnywhere" Foreground="#FF687EA7" Margin="10"/>
     <fa:ImageAwesome Icon="Language" x:Key="LanguageIconAnywhere" Foreground="#FF687EA7" Margin="10"/>
     <fa:ImageAwesome Icon="BellOutline" x:Key="NotificationsIconAnywhere" Foreground="#FF687EA7" Margin="10"/>
 

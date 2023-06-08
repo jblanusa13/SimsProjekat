@@ -60,11 +60,12 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="30"/>
                     </Grid.RowDefinitions>
-                    <Button Grid.Row="0" x:Name="ButtonTheme" Margin="0,15,0,0"
+                    <Button Grid.Row="0" x:Name="PaintTheme" Margin="0,15,0,0"
                         Background="{DynamicResource SecondGrayShade}"
                             BorderBrush="{DynamicResource BarShade}"
-                            FocusVisualStyle="{DynamicResource FocusControl}">
-                        <DynamicResource ResourceKey="MoonIconRatings"></DynamicResource>
+                            FocusVisualStyle="{DynamicResource FocusControl}"
+                            Click="Theme_Click">
+                        <DynamicResource ResourceKey="PaintIconRatings"></DynamicResource>
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="10"/>

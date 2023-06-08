@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ProjectSims.Domain.Model;
 using ProjectSims.WPF.ViewModel.Guest1ViewModel;
 
 namespace ProjectSims.WPF.View.Guest1View.MainPages
@@ -21,29 +22,45 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
     /// </summary>
     public partial class AnytimeAnywhere : Page
     {
-        private bool isDark;
         AnywhereAnytimeViewModel viewModel;
-        public AnytimeAnywhere(bool isDark)
+
+        public AnytimeAnywhere(Guest1 guest)
         {
             InitializeComponent();
-            this.isDark = isDark;
-            viewModel = new AnywhereAnytimeViewModel();
+            viewModel = new AnywhereAnytimeViewModel(FirstDatePicker, LastDatePicker, DatesTable, guest);
             this.DataContext = viewModel;
+        }
+
+        private void ShowDates(object sender, KeyEventArgs e)
+        {
+            if ((e.Key.Equals(Key.Enter)) || (e.Key.Equals(Key.Return)))
+            {
+                viewModel.ShowDates();
+            }
+        }
+
+        private void Reserve(object sender, KeyEventArgs e)
+        {
+            if ((e.Key.Equals(Key.Enter)) || (e.Key.Equals(Key.Return)))
+            {
+                viewModel.Reserve();
+                NavigationService.GoBack();
+            }
         }
 
         private void Theme_Click(object sender, RoutedEventArgs e)
         {
             App app = (App)Application.Current;
 
-            if (isDark)
+            if (App.IsDark)
             {
                 app.ChangeTheme(new Uri("Themes/Light.xaml", UriKind.Relative));
-                isDark = false;
+                App.IsDark = false;
             }
             else
             {
                 app.ChangeTheme(new Uri("Themes/Dark.xaml", UriKind.Relative));
-                isDark = true;
+                App.IsDark = true;
             }
         }
 

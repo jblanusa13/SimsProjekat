@@ -22,11 +22,13 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
     public partial class DetailsAboutRequestView : Page
     {
         public TourRequest request { get; set; }
-        public DetailsAboutRequestView(TourRequest r)
+        public Guest2 guest2 { get; set; }
+        public DetailsAboutRequestView(TourRequest r,Guest2 g)
         {
             InitializeComponent();
             this.DataContext = this;
             request = r;
+            guest2 = g;
             DateStartbox.Text = request.DateRangeStart.ToString();
             DateEndbox.Text = request.DateRangeEnd.ToString();
         }
@@ -39,6 +41,11 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
         private void Zahtjevi_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             this.NavigationService.GoBack();
+        }
+
+        private void Home_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.NavigationService.Navigate(new StartView(guest2));
         }
     }
 }

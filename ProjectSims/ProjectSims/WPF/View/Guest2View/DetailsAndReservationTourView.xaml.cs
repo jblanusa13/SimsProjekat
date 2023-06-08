@@ -93,28 +93,6 @@ namespace ProjectSims.WPF.View.Guest2View
             //show picture in listview
             foreach (var fullFilePath in tourSelected.Images)
             {
-                /*BitmapImage bitmap = new BitmapImage();
-                bitmap.BeginInit();
-                if(Uri.IsWellFormedUriString(fullFilePath, UriKind.Absolute))
-                {
-                    bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
-                    bitmap.EndInit();
-
-                    image = new Image();
-
-                    image.Source = bitmap;
-
-                    image.Width = 350;
-                    image.Height = 200;
-
-                    ImageList.Items.Add(image);
-                }
-                else
-                {
-                    ImageList.Items.Add("The format of the URL could not be determined.");
-                }*/
-
-                //kad se ubaci filepicker kod kreiranja tura i kad se u tour.csv budu cuvale relativne putanje
                 BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
                 if (Uri.IsWellFormedUriString(fullFilePath, UriKind.RelativeOrAbsolute))

@@ -46,7 +46,7 @@
                             BorderBrush="{DynamicResource BarShade}"
                             FocusVisualStyle="{DynamicResource FocusControl}"
                             Click="Theme_Click">
-                        <DynamicResource ResourceKey="MoonIconProfile"></DynamicResource>
+                        <DynamicResource ResourceKey="PaintIconProfile"></DynamicResource>
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="10"/>

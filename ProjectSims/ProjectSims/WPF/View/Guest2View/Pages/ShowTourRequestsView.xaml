@@ -25,7 +25,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-            <Image Source="/Resources/Icons/Guest2/icons8-home-page-64.png" Cursor="Hand" HorizontalAlignment="Left" Height="54" VerticalAlignment="Center" Width="56"/>
+            <Image Source="/Resources/Icons/Guest2/icons8-home-page-64.png" Cursor="Hand" PreviewMouseDown="Home_PreviewMouseDown" HorizontalAlignment="Left" Height="54" VerticalAlignment="Center" Width="56"/>
             <Label Content="/Zahtjevi" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left"/>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,40,15">

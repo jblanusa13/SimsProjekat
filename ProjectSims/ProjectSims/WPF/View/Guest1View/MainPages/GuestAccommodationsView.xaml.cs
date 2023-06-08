@@ -32,7 +32,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         public GuestAccommodationsViewModel ViewModel { get; set; }
         public Guest1 Guest { get; set; }
         public Accommodation SelectedAccommodation { get; set; }
-        private bool isDark;
+        //private bool isDark;
 
         public GuestAccommodationsView(Guest1 guest)
         {
@@ -45,21 +45,21 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
 
             HelpButton.Focus();
 
-            isDark = false;
+            //isDark = false;
         }
         private void Theme_Click(object sender, RoutedEventArgs e)
         {
             App app = (App)Application.Current;
 
-            if(isDark)
+            if(App.IsDark)
             {
                 app.ChangeTheme(new Uri("Themes/Light.xaml", UriKind.Relative));
-                isDark = false;
+                App.IsDark = false;
             }
             else
             {
                 app.ChangeTheme(new Uri("Themes/Dark.xaml", UriKind.Relative));
-                isDark = true;
+                App.IsDark = true;
             }
         }
 
@@ -104,7 +104,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
                     }
                 case 1:
                     {
-                        NavigationService.Navigate(new AnytimeAnywhere(isDark));
+                        NavigationService.Navigate(new AnytimeAnywhere(Guest));
                         break;
                     }
                 case 2:
@@ -119,7 +119,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
                     }
                 case 5:
                     {
-                        NavigationService.Navigate(new Profile(Guest, isDark));
+                        NavigationService.Navigate(new Profile(Guest));
                         break;
                     }
                 case 6:
@@ -144,7 +144,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             {
                 if ((e.Key.Equals(Key.Enter)) || (e.Key.Equals(Key.Return)))
                 {
-                    NavigationService.Navigate(new AccommodationReservationView(SelectedAccommodation, Guest, isDark));
+                    NavigationService.Navigate(new AccommodationReservationView(SelectedAccommodation, Guest));
                 }
             }
         }

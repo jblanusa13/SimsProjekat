@@ -21,7 +21,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-            <Image Source="/Resources/Icons/Guest2/icons8-home-page-64.png" Cursor="Hand" HorizontalAlignment="Left" Height="54" VerticalAlignment="Center" Width="56"/>
+            <Image Source="/Resources/Icons/Guest2/icons8-home-page-64.png" Cursor="Hand" PreviewMouseDown="Home_PreviewMouseDown" HorizontalAlignment="Left" Height="54" VerticalAlignment="Center" Width="56"/>
             <Label Content="/Pracenje tura" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
         </StackPanel>
@@ -40,7 +40,7 @@
             </DataGrid.Columns>
 
         </DataGrid>
-        <Button Grid.Row="2" Grid.Column="1" Content="Prati turu" FontSize="18" HorizontalAlignment="Left" Margin="821,335,0,0" VerticalAlignment="Top" Height="31" Width="145" Click="ButtonTrackingTour"/>
+        <Button Grid.Row="2" Grid.Column="1" Cursor="Hand" Content="Prati turu" FontSize="18" HorizontalAlignment="Left" Margin="821,335,0,0" VerticalAlignment="Top" Height="31" Width="145" Click="ButtonTrackingTour"/>
 
 
 

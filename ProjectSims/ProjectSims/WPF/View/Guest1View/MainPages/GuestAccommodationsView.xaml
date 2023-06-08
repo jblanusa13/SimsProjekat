@@ -239,7 +239,7 @@
                     <Button Grid.Row="0" x:Name="ButtonTheme" Margin="0,5" Click="Theme_Click"
                         Background="{DynamicResource BlueShade}" BorderBrush="{DynamicResource FirstGrayShade}"
                             FocusVisualStyle="{DynamicResource FocusControl}">
-                        <DynamicResource ResourceKey="MoonIcon"></DynamicResource>
+                        <DynamicResource ResourceKey="PaintIcon"></DynamicResource>
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="10"/>
