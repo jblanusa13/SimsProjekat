@@ -56,7 +56,11 @@ namespace ProjectSims.Service
         {
             return complexTourRequestRepository.GetByGuest2Id(guest2Id);
         }
-
+        public List<int> GetGuidesWhoAcceptedSimpleRequestsIds(int id)
+        {
+            RequestForComplexTour requestForComplexTour  = GetById(id);
+            return requestForComplexTour.TourRequests.Select(r => r.GuideId).ToList();
+        }
         public RequestForComplexTour GetById(int id)
         {
             return complexTourRequestRepository.GetById(id);

@@ -59,7 +59,7 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
                 keyPoints.Add(CreateAndReturnKeyPoint(finishKeyPoint, KeyPointType.Last));
                 DateTime start = DateTime.ParseExact(appointment.Split("-")[0], "MM/dd/yyyy H:m", CultureInfo.InvariantCulture);
                 double duration = Convert.ToDouble(appointment.Split("-")[1]);
-                Tour tour = new Tour(-1, Guide.Id, name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPoints.Select(k => k.Id).ToList(), start, duration, images, Convert.ToInt32(maxNumberGuests), TourState.Inactive, -1,keyPoints);
+                Tour tour = new Tour(-1, Guide.Id, name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPoints.Select(k => k.Id).ToList(), start, duration, images, Convert.ToInt32(maxNumberGuests), TourState.Inactive, -1,keyPoints,-1);
                 int lastAddedTour = tourService.NextId();
                 lastAddedTours.Add(lastAddedTour);
                 tourService.Create(tour);
@@ -111,13 +111,13 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
         }
         public bool GuideIsAvailable(DateTime date,int hour,int minute,double duration)
         {
-            DateTime start = new DateTime(date.Year,date.Month,date.Day,hour, minute, 0);
-            DateTime end = start.AddHours(duration);
-            foreach (var freeAppointment in tourService.GetFreeAppointmentsForThatDay(Guide.Id,date))
-            {
-                if ((start >= freeAppointment.Item1) && (start <= freeAppointment.Item2) && (end <= freeAppointment.Item2) && (end <= freeAppointment.Item2))
-                    return true;
-            }
+           // DateTime start = new DateTime(date.Year,date.Month,date.Day,hour, minute, 0);
+            //DateTime end = start.AddHours(duration);
+            //foreach (var freeAppointment in tourService.GetFreeAppointmentsForThatDay(Guide.Id,date))
+           // {
+              //  if ((start >= freeAppointment.Item1) && (start <= freeAppointment.Item2) && (end <= freeAppointment.Item2) && (end <= freeAppointment.Item2))
+                //    return true;
+          //  }
             return false ;
         }
     }

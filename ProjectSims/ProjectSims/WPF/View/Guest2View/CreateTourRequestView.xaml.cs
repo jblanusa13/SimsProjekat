@@ -175,7 +175,7 @@ namespace ProjectSims.WPF.View.Guest2View
                     MessageBox.Show("Morate popuniti opseg datuma!");
                     return;
                 }
-                TourRequest tourRequest = new TourRequest(guest2.Id,-1,TourRequestState.Waiting,Location,Description,TourLanguage,MaxNumberGuests,DateOnly.Parse(DateStart.Text), DateOnly.Parse(DateEnd.Text));
+                TourRequest tourRequest = new TourRequest(guest2.Id,-1,TourRequestState.Waiting,Location,Description,TourLanguage,MaxNumberGuests,DateOnly.Parse(DateStart.Text), DateOnly.Parse(DateEnd.Text),false);
                 tourRequestService.Create(tourRequest);
                 Close();
             }

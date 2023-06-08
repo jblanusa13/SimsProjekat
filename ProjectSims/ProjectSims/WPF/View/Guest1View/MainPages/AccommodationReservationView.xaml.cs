@@ -108,10 +108,11 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         public DateRanges SelectedDates;
 
         private AccommodationReservationService reservationService;
+        private bool isDark;
 
 
         public Guest1 Guest { get; set; }
-        public AccommodationReservationView(Accommodation SelectedAccommodation, Guest1 guest)
+        public AccommodationReservationView(Accommodation SelectedAccommodation, Guest1 guest, bool isDark)
         {
             InitializeComponent();
             DataContext = this;
@@ -126,6 +127,8 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             LoadImages(SelectedAccommodation.Images);
 
             BackButton.Focus();
+
+            this.isDark = isDark;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -138,15 +141,15 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         {
             App app = (App)Application.Current;
 
-            if (ButtonTheme.Content == FindResource("SunIcon"))
+            if (isDark)
             {
                 app.ChangeTheme(new Uri("Themes/Light.xaml", UriKind.Relative));
-                ButtonTheme.Content = FindResource("MoonIcon");
+                isDark = false;
             }
             else
             {
                 app.ChangeTheme(new Uri("Themes/Dark.xaml", UriKind.Relative));
-                ButtonTheme.Content = FindResource("SunIcon");
+                isDark = true;
             }
         }
 
@@ -170,6 +173,11 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         private void FirstDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             LastDatePicker.DisplayDateStart = FirstDatePicker.SelectedDate;                   
+        }
+
+        private void LastDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            FirstDatePicker.DisplayDateEnd = LastDatePicker.SelectedDate;
         }
 
         private void FindDates_Click(object sender, RoutedEventArgs e)

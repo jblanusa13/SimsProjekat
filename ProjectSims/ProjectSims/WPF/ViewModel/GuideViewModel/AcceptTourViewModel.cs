@@ -14,7 +14,11 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
     public class AcceptTourViewModel
     {
         public TourRequest SelectedTourRequest { get; set; }
-        public AcceptTourViewModel(TourRequest selectedTourRequest)
+        public List<DateTime> AvailableDates;
+        public List<DateTime> AvailableAppointments;
+        public List<DateTime> AvailableDurations;
+
+        public AcceptTourViewModel(TourRequest selectedTourRequest,ComboBox DateCombobox, ComboBox TimeCombobox, ComboBox DurationCombobox)
         {
             SelectedTourRequest = selectedTourRequest;
         }

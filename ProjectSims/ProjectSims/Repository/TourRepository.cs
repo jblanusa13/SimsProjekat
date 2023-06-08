@@ -66,14 +66,17 @@ namespace ProjectSims.Repository
         {
             return tours.Where(t => t.State == state && t.GuideId == guideId).ToList();
         }
+        public Tour GetByRequestId(int requestId)
+        {
+            return tours.Find(t => t.TourRequestId == requestId);
+        }
         public Tour GetTourByStateAndGuideId(TourState state, int guideId)
         {
             return tours.Find(t=> t.State == state && t.GuideId == guideId);
         }
         public List<Tour> GetToursByDateAndGuideId(DateTime date, int guideId)
         {
-            List<Tour> inactiveTours = GetToursByStateAndGuideId(TourState.Inactive, guideId);
-            return inactiveTours.Where(t => t.StartOfTheTour.Date == date.Date).ToList();
+            return tours.Where(t => t.StartOfTheTour.Date == date && t.GuideId == guideId).ToList();
         }
         public void Subscribe(IObserver observer)
         {

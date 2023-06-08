@@ -202,7 +202,7 @@ namespace ProjectSims.WPF.View.Guest2View
                     return;
                 }
                 
-                TourRequest tourRequest = new TourRequest(guest2.Id, -1, TourRequestState.Waiting, Location, Description, TourLanguage, MaxNumberGuests, DateOnly.Parse(DateStart.Text), DateOnly.Parse(DateEnd.Text));
+                TourRequest tourRequest = new TourRequest(guest2.Id, -1, TourRequestState.Waiting, Location, Description, TourLanguage, MaxNumberGuests, DateOnly.Parse(DateStart.Text), DateOnly.Parse(DateEnd.Text),true);
                 requests.Add(tourRequest);
                 Location = "";
                 Description = "";
