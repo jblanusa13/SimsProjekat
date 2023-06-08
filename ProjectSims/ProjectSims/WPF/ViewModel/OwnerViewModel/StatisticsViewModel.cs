@@ -132,14 +132,18 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
 
         public int DisplayMostVisitedMonth()
         {
-            MostVisitedMonth = TotalReservations[0];
+            double[] daysInMonths = new double[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+            MostVisitedMonth = 0;
+            double unavailability = TotalReservations[0] / daysInMonths[0];
             for (int i = 1; i < TotalReservations.Count(); i++)
             {
-                if (TotalReservations[i] > MostVisitedMonth)
+                if (TotalReservations[i]/ daysInMonths[i] > unavailability)
                 {
-                    MostVisitedMonth = i + 1;
+                    MostVisitedMonth = i;
+                    unavailability = TotalReservations[i] / daysInMonths[i];
                 }
             }
+            MostVisitedMonth += 1;
             return MostVisitedMonth;
         }
 

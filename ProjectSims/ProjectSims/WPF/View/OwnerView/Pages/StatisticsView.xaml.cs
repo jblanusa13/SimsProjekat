@@ -140,7 +140,6 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
             {
                 statisticsViewModel.DisplayTheNumberOfMonthReservationsByCriteria(YearComboBox.Text);
                 MostVisitedMonth = statisticsViewModel.DisplayMostVisitedMonth();
-                //MostVisitedTextBox.Text = statisticsViewModel.DisplayMostVisitedMonth().ToString();
                 MonthChart.Visibility = Visibility.Visible;
                 MostVisitedTextBox.Visibility = Visibility.Visible;
                 MostVisitedLabel.Visibility = Visibility.Visible;
