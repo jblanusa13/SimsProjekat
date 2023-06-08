@@ -32,10 +32,9 @@
     <fa:ImageAwesome Icon="WindowRestore" x:Key="MainWindowRestoreIcon" Width="15" Foreground="#FF114642"/>
     <fa:ImageAwesome Icon="WindowClose" x:Key="MainWindowCloseIcon" Width="20" Foreground="#FF114642"/>
 
-    <fa:ImageAwesome Icon="WindowMinimize" x:Key="RatingsMinimizeIcon"  Width="10" HorizontalAlignment="Center" Foreground="#FF114642"/>
-    <fa:ImageAwesome Icon="WindowMaximize" x:Key="RatingsMaximizeIcon"  Width="10" HorizontalAlignment="Center" Foreground="#FF114642"/>
-    <fa:ImageAwesome Icon="WindowRestore" x:Key="RatingsRestoreIcon" Width="15" Foreground="#FF114642"/>
     <fa:ImageAwesome Icon="WindowClose" x:Key="RatingsCloseIcon" Width="20" Foreground="#FF114642"/>
+
+    <fa:ImageAwesome Icon="WindowClose" x:Key="ForumCloseIcon" Width="20" Foreground="#FF114642"/>
 
     <SolidColorBrush Color="#FF114642" x:Key="BarFont"></SolidColorBrush>
     <SolidColorBrush Color="#d8d8d8" x:Key="HeaderBackground"></SolidColorBrush>

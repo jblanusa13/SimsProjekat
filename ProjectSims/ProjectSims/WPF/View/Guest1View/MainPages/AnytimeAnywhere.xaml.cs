@@ -48,22 +48,6 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             }
         }
 
-        private void Theme_Click(object sender, RoutedEventArgs e)
-        {
-            App app = (App)Application.Current;
-
-            if (App.IsDark)
-            {
-                app.ChangeTheme(new Uri("Themes/Light.xaml", UriKind.Relative));
-                App.IsDark = false;
-            }
-            else
-            {
-                app.ChangeTheme(new Uri("Themes/Dark.xaml", UriKind.Relative));
-                App.IsDark = true;
-            }
-        }
-
         private void FirstDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             LastDatePicker.DisplayDateStart = FirstDatePicker.SelectedDate;

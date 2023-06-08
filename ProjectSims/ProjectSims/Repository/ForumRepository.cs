@@ -21,6 +21,10 @@ namespace ProjectSims.Repository
             forums = forumFileHandler.Load();
             observers = new List<IObserver>();
         }
+        public List<Forum> GetAllByGuest(int guestId)
+        {
+            return forums.Where(g => g.GuestId == guestId).ToList();
+        }
         public List<Forum> GetAll()
         {
             return forums;

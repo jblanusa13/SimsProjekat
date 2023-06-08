@@ -13,6 +13,8 @@ namespace ProjectSims.Domain.Model
     public class Forum : ISerializable
     {
         public int Id { get; set; }
+        public int GuestId { get; set; }
+        public Guest1 Guest { get; set; }
         public int LocationId { get; set; }
         public Location Location { get; set; }
         public string Comment { get; set; }
@@ -23,27 +25,31 @@ namespace ProjectSims.Domain.Model
 
         }
 
-        public Forum(int id, int locationId, Location location, string comment, ForumStatus status)
+        public Forum(int id, int locationId, Location location, string comment, ForumStatus status, int guestId, Guest1 guest)
         {
             Id = id;
             LocationId = locationId;
             Location = location;
             Comment = comment;
             Status = status;
+            GuestId = guestId;
+            Guest = guest;
         }
 
         public void FromCSV(string[] values)
         {
             Id = Convert.ToInt32(values[0]);
-            LocationId = Convert.ToInt32(values[1]);
-            Comment = values[2];
-            Status = Enum.Parse<ForumStatus>(values[3]);
+            GuestId = Convert.ToInt32(values[1]);
+            LocationId = Convert.ToInt32(values[2]);
+            Comment = values[3];
+            Status = Enum.Parse<ForumStatus>(values[4]);
         }
         public string[] ToCSV()
         {
             string[] csvValues =
             {
                 Id.ToString(),
+                GuestId.ToString(),
                 LocationId.ToString(),
                 Comment,
                 Status.ToString()

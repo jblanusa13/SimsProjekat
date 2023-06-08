@@ -78,7 +78,7 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="25"/>
                     </Grid.RowDefinitions>
-                    <Button Grid.Row="0" x:Name="ButtonTheme" Margin="5,20,5,0" Click="Theme_Click"
+                    <Button Grid.Row="0" x:Name="ButtonTheme" Margin="5,20,5,0" Command="{Binding ThemeCommand}"
                         Background="{DynamicResource SecondGrayShade}"
                             BorderBrush="{DynamicResource BarShade}"
                             FocusVisualStyle="{DynamicResource FocusControl}">

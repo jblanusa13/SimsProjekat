@@ -10,5 +10,6 @@ namespace ProjectSims.Domain.RepositoryInterface
 {
     public interface IForumRepository : IGenericRepository<Forum, int>, ISubject
     {
+        public List<Forum> GetAllByGuest(int guestId);
     }
 }

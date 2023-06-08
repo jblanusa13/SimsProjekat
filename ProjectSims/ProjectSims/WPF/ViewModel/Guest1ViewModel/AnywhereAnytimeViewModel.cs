@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
@@ -112,16 +113,20 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
 
         public MyICommand SearchCommand { get; set; }
         public MyICommand ReserveCommand { get; set; }
+        public MyICommand ThemeCommand { get; set; }
         public DatePicker First { get; set; }
         public DatePicker Last { get; set; }
         public DataGrid DatesTable { get; set; }
         private AccommodationReservationService reservationService;
 
         private Guest1 guest;
+
+        public NavigationService NavService { get; set; }
         public AnywhereAnytimeViewModel(DatePicker first, DatePicker last, DataGrid datesTable, Guest1 guest)
         {
             SearchCommand = new MyICommand(OnSearch, CanSearch);
             ReserveCommand = new MyICommand(OnReserve);
+            ThemeCommand = new MyICommand(OnTheme);
             AvailableAccommodations = new ObservableCollection<Accommodation>();
             AvailableDates = new ObservableCollection<DateRanges>();
             scheduleService = new AccommodationScheduleService();
@@ -142,6 +147,21 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 availableDates = scheduleService.FindDates(FirstDate, LastDate, Convert.ToInt32(DaysNumber), SelectedAccommodation.Id);
                 UpdateDatesTable(availableDates);
                 DatesTable.Focus();
+            }
+        }
+        public void OnTheme()
+        {
+            App app = (App)Application.Current;
+
+            if (App.IsDark)
+            {
+                app.ChangeTheme(new Uri("Themes/Light.xaml", UriKind.Relative));
+                App.IsDark = false;
+            }
+            else
+            {
+                app.ChangeTheme(new Uri("Themes/Dark.xaml", UriKind.Relative));
+                App.IsDark = true;
             }
         }
         public void OnReserve()

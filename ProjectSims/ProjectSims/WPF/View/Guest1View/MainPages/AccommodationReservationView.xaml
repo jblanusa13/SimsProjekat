@@ -316,7 +316,7 @@
                             </Grid>
 
                             <Grid Grid.Row="5">
-                                <Button Margin="15,20,10,15" Click="FindDates_Click" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}"
+                                <Button Margin="15,20,10,15" Command="{Binding FindDatesCommand}" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}"
                                         Background="{DynamicResource SecondGrayShade}"
                                         FocusVisualStyle="{DynamicResource FocusControl}">Pretrazi datume
                                     <Button.Resources>
@@ -352,6 +352,7 @@
                             
 
                             <DataGrid Grid.Row="1" Name="DatesTable" ItemsSource="{Binding AvailableDates, UpdateSourceTrigger=PropertyChanged}" 
+                                      SelectedItem="{Binding SelectedDates, UpdateSourceTrigger=PropertyChanged}"
                                       Margin="30,10,30,10" 
                                       AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single"
                                       HeadersVisibility="Column"

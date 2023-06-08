@@ -75,7 +75,7 @@
                 <Label Grid.Column="1" Content="Drzava:" HorizontalAlignment="Left" Margin="17,15,0,0" VerticalAlignment="Top"
                        Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"/>
                 <TextBox Grid.Column="0" Name="TextboxName"  HorizontalAlignment="Left" Margin="30,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="25"
-                         Background="{DynamicResource TextboxColor}">
+                         Background="{DynamicResource TextboxColor}" Text="{Binding City, UpdateSourceTrigger=PropertyChanged}">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -83,7 +83,7 @@
                     </TextBox.Resources>
                 </TextBox>
                 <TextBox Grid.Column="1" Name="TextboxCity" HorizontalAlignment="Left" Margin="17,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="25"
-                         Background="{DynamicResource TextboxColor}">
+                         Background="{DynamicResource TextboxColor}" Text="{Binding Country, UpdateSourceTrigger=PropertyChanged}">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -92,7 +92,8 @@
                 </TextBox>
                 <Button Grid.Column="2" Content="Pretraga"  Margin="-50,40,0,0" VerticalAlignment="Top" Width="90" Height="25"
                         Background="{DynamicResource SecondGrayShade}" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"
-                        FocusVisualStyle="{DynamicResource FocusControl}">
+                        FocusVisualStyle="{DynamicResource FocusControl}"
+                        Command="{Binding SearchCommand}">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -100,9 +101,9 @@
                     </Button.Resources>
                 </Button>
 
-                <Button Grid.Column="4" Content="Nadji moje forume"  Margin="-20,40,0,0" VerticalAlignment="Top" Width="130" Height="25"
+                <Button Grid.Column="4" Content="{Binding ButtonContent}"  Margin="-20,40,0,0" VerticalAlignment="Top" Width="130" Height="25"
                         Background="{DynamicResource SecondGrayShade}" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"
-                        FocusVisualStyle="{DynamicResource FocusControl}">
+                        FocusVisualStyle="{DynamicResource FocusControl}" Command="{Binding FindMyForumsCommand}">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -230,7 +231,7 @@
                         </Button.Resources>
                     </Button>
 
-                    <Button Grid.Row="3" Content="Pokreni novi forum"
+                    <Button Grid.Row="3" Content="Pokreni novi forum" Command="{Binding StartNewForumCommand}"
                         HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
                          FontSize="16"  FontFamily="Bahnschrift"
                         Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}"
