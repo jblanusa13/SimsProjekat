@@ -15,8 +15,16 @@
             <Setter Property="Background" Value="{DynamicResource DataGridBackground}"></Setter>
             <Setter Property="BorderBrush" Value="{DynamicResource SecondGrayShade}"></Setter>
         </Style>
-        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridHeader}"/>
-        <Style TargetType="DataGridRow" BasedOn="{StaticResource DataGridRow}"/>
+        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridHeader}">
+            <Setter Property="Background" Value="{DynamicResource HeaderBackground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource DataGridBorder}"/>
+            <Setter Property="Foreground" Value="{DynamicResource DataGridForeground}"/>
+        </Style>
+        <Style TargetType="DataGridRow" BasedOn="{StaticResource DataGridRow}">
+            <Setter Property="Background" Value="{DynamicResource RowBackground}"/>
+            <Setter Property="Foreground" Value="{DynamicResource DataGridForeground}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
         <Style TargetType="DataGridCell" BasedOn="{StaticResource DataGridCell}">
             <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusControl}"/>
         </Style>
@@ -74,7 +82,7 @@
                         Background="{DynamicResource SecondGrayShade}"
                             BorderBrush="{DynamicResource BarShade}"
                             FocusVisualStyle="{DynamicResource FocusControl}">
-                        <DynamicResource ResourceKey="MoonIconReservation"></DynamicResource>
+                        <DynamicResource ResourceKey="PaintIconReservation"></DynamicResource>
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="10"/>
@@ -259,6 +267,13 @@
                                             FocusVisualStyle="{DynamicResource FocusControl}"
                                             Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
                                             Text="{Binding FirstDate, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
+                                    <DatePicker.Resources>
+                                        <Style TargetType="DatePickerTextBox">
+                                            <Setter Property="IsReadOnly" Value="True"/>
+                                            <Setter Property="Background" Value="{DynamicResource TextboxColor}"/>
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </DatePicker.Resources>
                                 </DatePicker>
                             </Grid>
 
@@ -266,10 +281,19 @@
                                 <Label Margin="10,5" FontSize="14" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}">Krajnji datum pretrage:</Label>
                                 <DatePicker Name="LastDatePicker" Margin="15,35,10,10" Height="28"
                                             DisplayDateStart="{x:Static sys:DateTime.Today}"
+                                            SelectedDateChanged="LastDatePicker_SelectedDateChanged"
                                             Background="{DynamicResource TextboxColor}"
                                             FocusVisualStyle="{DynamicResource FocusControl}"
                                             Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
-                                            Text="{Binding LastDate, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></DatePicker>
+                                            Text="{Binding LastDate, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
+                                    <DatePicker.Resources>
+                                        <Style TargetType="DatePickerTextBox">
+                                            <Setter Property="IsReadOnly" Value="True"/>
+                                            <Setter Property="Background" Value="{DynamicResource TextboxColor}"/>
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </DatePicker.Resources>
+                                </DatePicker>
                             </Grid>
 
                             <Grid Grid.Row="3">

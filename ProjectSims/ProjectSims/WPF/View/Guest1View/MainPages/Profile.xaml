@@ -44,8 +44,9 @@
                     <Button Grid.Row="0" x:Name="ButtonTheme" Margin="0,5" 
                         Background="{DynamicResource SecondGrayShade}"
                             BorderBrush="{DynamicResource BarShade}"
-                            FocusVisualStyle="{DynamicResource FocusControl}">
-                        <DynamicResource ResourceKey="MoonIconProfile"></DynamicResource>
+                            FocusVisualStyle="{DynamicResource FocusControl}"
+                            Click="Theme_Click">
+                        <DynamicResource ResourceKey="PaintIconProfile"></DynamicResource>
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="10"/>
@@ -137,12 +138,14 @@
                     <Label Grid.Column="0"
                            FontSize="16" FontFamily="Bahnschrift"
                            Margin="100,0,0,0"
-                           VerticalContentAlignment="Center">Korisnicko ime:</Label>
+                           VerticalContentAlignment="Center"
+                           Foreground="{DynamicResource FontsColor}">Korisnicko ime:</Label>
                     <Label Grid.Column="1"
                            FontSize="16" FontFamily="Bahnschrift"
                            VerticalContentAlignment="Center"
                            Margin="10,0,0,0"
-                           Content="{Binding Guest.User.Username}"></Label>
+                           Content="{Binding Guest.User.Username}"
+                           Foreground="{DynamicResource FontsColor}"></Label>
                 </Grid>
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
@@ -153,12 +156,14 @@
                     <Label Grid.Column="0"
                            FontSize="16" FontFamily="Bahnschrift"
                            Margin="100,0,0,0"
-                           VerticalContentAlignment="Center">Adresa:</Label>
+                           VerticalContentAlignment="Center"
+                           Foreground="{DynamicResource FontsColor}">Adresa:</Label>
                     <Label Grid.Column="1"
                            FontSize="16" FontFamily="Bahnschrift"
                            VerticalContentAlignment="Center"
                            Margin="10,0,0,0"
-                           Content="{Binding Guest.Address}"></Label>
+                           Content="{Binding Guest.Address}"
+                           Foreground="{DynamicResource FontsColor}"></Label>
                 </Grid>
                 <Grid Grid.Row="4">
                     <Grid.ColumnDefinitions>
@@ -169,12 +174,14 @@
                     <Label Grid.Column="0"
                            FontSize="16" FontFamily="Bahnschrift"
                            Margin="100,0,0,0"
-                           VerticalContentAlignment="Center">Mejl adresa:</Label>
+                           VerticalContentAlignment="Center"
+                           Foreground="{DynamicResource FontsColor}">Mejl adresa:</Label>
                     <Label Grid.Column="1"
                            FontSize="16" FontFamily="Bahnschrift"
                            VerticalContentAlignment="Center"
                            Margin="10,0,0,0"
-                           Content="{Binding Guest.Email}"></Label>
+                           Content="{Binding Guest.Email}"
+                           Foreground="{DynamicResource FontsColor}"></Label>
                 </Grid>
                 <Grid Grid.Row="5">
                     <Grid.ColumnDefinitions>
@@ -226,13 +233,15 @@
                                        HorizontalContentAlignment="Right"
                                        FontSize="25" FontFamily="Bahnschrift"
                                        VerticalContentAlignment="Bottom"
-                                       Margin="0,0,10,0"></Label>
+                                       Margin="0,0,10,0"
+                                       Foreground="{DynamicResource FontsColor}"></Label>
                             </Grid>
                             <Label Grid.Row="1" x:Name="CaptionSecond"
                                    HorizontalContentAlignment="Right"
                                    FontSize="25" FontFamily="Bahnschrift"
                                    VerticalContentAlignment="Top"
-                                   Margin="0,0,10,0"></Label>
+                                   Margin="0,0,10,0"
+                                   Foreground="{DynamicResource FontsColor}"></Label>
                         </Grid>
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
@@ -243,7 +252,8 @@
                             <Label Grid.Column="0"
                                 FontSize="16" FontFamily="Bahnschrift"
                                        VerticalContentAlignment="Center"
-                                       Margin="80,0,0,0">Broj rezervacija ove godine:</Label>
+                                       Margin="80,0,0,0"
+                                   Foreground="{DynamicResource FontsColor}">Broj rezervacija ove godine:</Label>
                             <TextBox x:Name="ReservationTb" 
                                 Grid.Column="1" Margin="10,15,100,20"
                                      IsEnabled="False"
@@ -259,7 +269,8 @@
                             <Label Grid.Column="0"
                                 FontSize="16" FontFamily="Bahnschrift"
                                        VerticalContentAlignment="Center"
-                                       Margin="80,0,0,0">Broj preostalih bonus poena:</Label>
+                                       Margin="80,0,0,0"
+                                   Foreground="{DynamicResource FontsColor}">Broj preostalih bonus poena:</Label>
                             <TextBox x:Name="BonusPointsTb"
                                 Grid.Column="1" Margin="10,15,100,20"
                                      IsEnabled="False"

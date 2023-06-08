@@ -11,6 +11,9 @@
     <Compile Update="WPF\View\Guest1View\BarPages\RatingWindowBar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WPF\View\Guest1View\MainPages\Profile.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\Guest1View\MainPages\RatingsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -26,7 +29,13 @@
     <Compile Update="WPF\View\Guest1View\RatingPages\AccommodationRatingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WPF\View\Guest2View\CreateRequestForComplexTourView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\Guest2View\HelpForTourRequest.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest2View\NotificationNewTourView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\Guest2View\Pages\AccountView.xaml.cs">
@@ -56,6 +65,15 @@
     <Compile Update="WPF\View\Guest2View\Guest2TrackingTourView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WPF\View\Guest2View\Pages\DetailsAboutComplexRequestView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest2View\Pages\DetailsAboutRequestView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest2View\Pages\ShowNotificationTourView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\Guest2View\Pages\ShowTourRequestsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -63,6 +81,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\GuideView\Pages\AcceptTourView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\AccountView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\GuideView\Pages\CommentAndRatingsView.xaml.cs">
@@ -101,40 +122,25 @@
     <Compile Update="WPF\View\GuideView\GuideStartingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\RequestStatisticsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\SuggestionsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\TourDetailsAndCancelling.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\OwnerView\Pages\GuestRatingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\OwnerView\OwnerStartingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WPF\View\OwnerView\Pages\AccommodationsDisplayView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="WPF\View\OwnerView\Pages\HomePageView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="WPF\View\GuideView\Pages\TourRequestsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\GuideView\Pages\TourTrackingView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="WPF\View\OwnerView\Pages\OwnerRatingsDisplayView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="WPF\View\OwnerView\Pages\ProfileView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="WPF\View\OwnerView\Pages\ReportToGenerateView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="WPF\View\OwnerView\Pages\RequestsView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="WPF\View\OwnerView\Pages\SideMenuView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="WPF\View\OwnerView\Pages\StatisticsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -154,6 +160,9 @@
     <Page Update="WPF\View\Guest1View\BarPages\RatingWindowBar.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="WPF\View\Guest1View\MainPages\Profile.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="WPF\View\Guest1View\MainPages\RatingsView.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -166,6 +175,9 @@
     <Page Update="WPF\View\Guest1View\Requests\MyRequests.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="WPF\View\Guest2View\CreateRequestForComplexTourView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="WPF\View\Guest2View\CreateTourRequestView.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -176,6 +188,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\Guest2View\HelpForTourRequest.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest2View\NotificationNewTourView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\Guest2View\Pages\AccountView.xaml">
@@ -202,6 +217,15 @@
     <Page Update="WPF\View\Guest2View\Pages\ActivatedToursView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="WPF\View\Guest2View\Pages\DetailsAboutComplexRequestView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest2View\Pages\DetailsAboutRequestView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest2View\Pages\ShowNotificationTourView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="WPF\View\Guest2View\Pages\ShowTourRequestsView.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -209,6 +233,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\GuideView\Pages\AcceptTourView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\GuideView\Pages\AccountView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\GuideView\Pages\CommentAndRatingsView.xaml">
@@ -247,40 +274,25 @@
     <Page Update="WPF\View\GuideView\GuideStartingView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="WPF\View\GuideView\Pages\RequestStatisticsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\GuideView\Pages\SuggestionsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\GuideView\Pages\TourDetailsAndCancelling.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="WPF\View\OwnerView\Pages\GuestRatingView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\OwnerView\OwnerStartingView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WPF\View\OwnerView\Pages\AccommodationsDisplayView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="WPF\View\GuideView\Pages\TourRequestsView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\GuideView\Pages\TourTrackingView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="WPF\View\OwnerView\Pages\HomePageView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="WPF\View\OwnerView\Pages\OwnerRatingsDisplayView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="WPF\View\OwnerView\Pages\ProfileView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="WPF\View\OwnerView\Pages\ReportToGenerateView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="WPF\View\OwnerView\Pages\RequestsView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="WPF\View\OwnerView\Pages\SideMenuView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="WPF\View\OwnerView\Pages\StatisticsView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

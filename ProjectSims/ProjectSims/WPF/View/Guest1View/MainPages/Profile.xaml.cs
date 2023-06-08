@@ -31,6 +31,23 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             Guest = guest;
             superGuestService = new SuperGuestService();
             CheckSuperGuest();
+
+        }
+
+        private void Theme_Click(object sender, RoutedEventArgs e)
+        {
+            App app = (App)Application.Current;
+
+            if (App.IsDark)
+            {
+                app.ChangeTheme(new Uri("Themes/Light.xaml", UriKind.Relative));
+                App.IsDark = false;
+            }
+            else
+            {
+                app.ChangeTheme(new Uri("Themes/Dark.xaml", UriKind.Relative));
+                App.IsDark = true;
+            }
         }
 
         public void CheckSuperGuest()

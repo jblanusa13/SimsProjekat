@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="logoapp.png" />
     <None Remove="Resources\Icons\Guest1\travel-tour-logo-dark.png" />
     <None Remove="Resources\Icons\Guest1\travel-tour-logo-light.png" />
     <None Remove="Resources\Icons\Guest2\icons8-add-file-60.png" />
@@ -22,6 +23,7 @@
     <None Remove="Resources\Icons\Guest2\icons8-help-50.png" />
     <None Remove="Resources\Icons\Guest2\icons8-home-page-64.png" />
     <None Remove="Resources\Icons\Guest2\icons8-male-user-48.png" />
+    <None Remove="Resources\Icons\Guest2\newnotification.png" />
     <None Remove="Resources\Icons\Guide\add.png" />
     <None Remove="Resources\Icons\Guide\addPhoto.png" />
     <None Remove="Resources\Icons\Guide\back.png" />
@@ -54,6 +56,7 @@
     <None Remove="Resources\Icons\Guide\request.png" />
     <None Remove="Resources\Icons\Guide\schedule.png" />
     <None Remove="Resources\Icons\Guide\search.png" />
+    <None Remove="Resources\Icons\Guide\show-statistics.png" />
     <None Remove="Resources\Icons\Guide\star.png" />
     <None Remove="Resources\Icons\Guide\start.png" />
     <None Remove="Resources\Icons\Guide\statistics.png" />
@@ -81,18 +84,27 @@
     <None Remove="Resources\Images\Guest2\travel-tour-logo.png" />
     <None Remove="Resources\Images\guests.png" />
     <None Remove="Resources\Images\Guide\background.jpg" />
+    <None Remove="Resources\Images\Guide\banja_luka_tournimage_2023.jpg" />
+    <None Remove="Resources\Images\Guide\barcelona.jpg" />
+    <None Remove="Resources\Images\Guide\barcelona1.jpg" />
     <None Remove="Resources\Images\Guide\bck.jpg" />
     <None Remove="Resources\Images\Guide\bckgrnd.jpg" />
+    <None Remove="Resources\Images\Guide\etno-selo-stanisici.jpg" />
+    <None Remove="Resources\Images\Guide\Grad-Bijeljina.jpg" />
+    <None Remove="Resources\Images\Guide\gradske-sluzbe20757.jpg" />
     <None Remove="Resources\Images\Guide\JaksicevaKula.jpg" />
     <None Remove="Resources\Images\Guide\kalemegdan1.jpg" />
     <None Remove="Resources\Images\Guide\klmgdn.jpg" />
     <None Remove="Resources\Images\Guide\knez.jpg" />
     <None Remove="Resources\Images\Guide\languages.png" />
     <None Remove="Resources\Images\Guide\location.png" />
+    <None Remove="Resources\Images\Guide\luvr.jpg" />
     <None Remove="Resources\Images\Guide\muzejIluzija.jpg" />
     <None Remove="Resources\Images\Guide\panteon.jpg" />
+    <None Remove="Resources\Images\Guide\pariz1.jpg" />
     <None Remove="Resources\Images\Guide\petrovaradin.jpg" />
     <None Remove="Resources\Images\Guide\Pobednik.jpg" />
+    <None Remove="Resources\Images\Guide\sagrada-familia.jpg" />
     <None Remove="Resources\Images\Guide\sat.jpg" />
     <None Remove="Resources\Images\Guide\VojniMuzej.jpg" />
     <None Remove="Resources\Images\home.png" />
@@ -121,6 +133,9 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="logoapp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Icons\Guest2\icons8-add-file-60.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -134,6 +149,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guest2\icons8-male-user-48.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guest2\newnotification.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\add.png">
@@ -211,6 +229,9 @@
     <Content Include="Resources\Icons\Guide\search.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Icons\Guide\show-statistics.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Icons\Guide\start.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -274,6 +295,24 @@
     <Content Include="Resources\Images\Guest2\park-kalemegdan-1184267749.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Guide\banja_luka_tournimage_2023.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guide\barcelona.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guide\barcelona1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guide\etno-selo-stanisici.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guide\Grad-Bijeljina.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guide\gradske-sluzbe20757.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Guide\JaksicevaKula.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -292,16 +331,25 @@
     <Content Include="Resources\Images\Guide\location.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Guide\luvr.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Guide\muzejIluzija.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Guide\panteon.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Guide\pariz1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Guide\petrovaradin.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Guide\Pobednik.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guide\sagrada-familia.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Guide\sat.jpg">
@@ -347,6 +395,7 @@
     </PackageReference>
     <PackageReference Include="ceTe.DynamicPDF.CoreSuite.NET" Version="12.4.0" />
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+    <PackageReference Include="Syncfusion.SfScheduler.WPF" Version="21.2.9" />
 	  <PackageReference Include="Tulpep.NotificationWindow" Version="1.1.38">
 		  <TreatAsUsed>true</TreatAsUsed>
 	  </PackageReference>

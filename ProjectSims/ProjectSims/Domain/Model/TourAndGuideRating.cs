@@ -72,12 +72,7 @@ namespace ProjectSims.Domain.Model
                 Images.Add(image);
             }
             IsValid = Convert.ToBoolean(values[8]);
-            //InitializeData();
         }
-       // public void InitializeData()
-        //{
-           // Guest2Service guest2Service = new Guest2Service();
-           // Guest = guest2Service.GetGuestById(GuestId);
-       // }
+
     }
 }

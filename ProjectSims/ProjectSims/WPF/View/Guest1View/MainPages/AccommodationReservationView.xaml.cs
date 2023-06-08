@@ -138,15 +138,15 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         {
             App app = (App)Application.Current;
 
-            if (ButtonTheme.Content == FindResource("SunIcon"))
+            if (App.IsDark)
             {
                 app.ChangeTheme(new Uri("Themes/Light.xaml", UriKind.Relative));
-                ButtonTheme.Content = FindResource("MoonIcon");
+                App.IsDark = false;
             }
             else
             {
                 app.ChangeTheme(new Uri("Themes/Dark.xaml", UriKind.Relative));
-                ButtonTheme.Content = FindResource("SunIcon");
+                App.IsDark = true;
             }
         }
 
@@ -170,6 +170,11 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         private void FirstDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             LastDatePicker.DisplayDateStart = FirstDatePicker.SelectedDate;                   
+        }
+
+        private void LastDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            FirstDatePicker.DisplayDateEnd = LastDatePicker.SelectedDate;
         }
 
         private void FindDates_Click(object sender, RoutedEventArgs e)

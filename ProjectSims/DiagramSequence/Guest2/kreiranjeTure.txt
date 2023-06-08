@@ -1,0 +1,143 @@
+@startuml
+actor "Guide" as G
+participant CreateTourView as CTV
+participant CreateTourViewModel as CTVM
+participant KeyPointService as KPS
+participant KeyPointRepository as KPR
+participant KeyPointFileHandler as KPFH
+participant TourService as TS
+participant TourRepository as TR
+participant TourFileHandler as TFH
+database CSV as CSV
+
+G -> CTV : CreateTour_Click()
+activate CTV
+alt isValid
+ CTV -> CTVM : CreateTour()
+  note left 
+  name,language
+  location
+  maxNumberGuests
+  appoinments
+  startKeyPoint
+  otherKeyPoints
+  finishKeyPoint
+  description
+  images
+  createdByLocation
+  createdByLanguage
+  end note
+ activate CTVM
+
+loop string appoinment in appoinments
+ CTVM -> CTVM : keyPoints = new List<KeyPoint>()
+   CTVM -> CTVM:CreateAndReturnKeyPoint(startKeyPoint, KeyPointType.First)
+   activate CTVM
+    CTVM -> KPS : NextId()
+    activate KPS
+     KPS -> KPR : NextId()
+     activate KPR
+      return nextKeyId
+    return nextKeyId
+    CTVM -> CTVM : keyPoint = new KeyPoint(nextKeyId,name,type)
+    CTVM -> KPS : Create(keyPoint)
+    activate KPS
+      KPS -> KPR : Create(keyPoint)
+      activate KPR
+        KPR -> KPFH : Save(keyPoints)
+        activate KPFH
+          KPFH -> CSV : ToCsv(FilePath, keyPoints)
+        deactivate KPFH
+      deactivate KPR
+    deactivate KPS
+   return keyPoint
+   CTVM -> CTVM : keyPoints.Add(keyPoint)
+   loop string keyPointName in otherKeyPoints
+     CTVM -> CTVM: CreateAndReturnKeyPoint(keyPointName, KeyPointType.Intermediate)
+   activate CTVM
+    CTVM -> KPS : NextId()
+    activate KPS
+     KPS -> KPR : NextId()
+     activate KPR
+      return nextKeyId
+    return nextKeyId
+    CTVM -> CTVM : keyPoint = new KeyPoint(nextKeyId,name,type)
+    CTVM -> KPS : Create(keyPoint)
+    activate KPS
+      KPS -> KPR : Create(keyPoint)
+      activate KPR
+      KPR -> KPFH : Save(keyPoints)
+        activate KPFH
+          KPFH -> CSV : ToCsv(FilePath, keyPoints)
+        deactivate KPFH
+      deactivate KPR
+    deactivate KPS
+   return keyPoint
+   CTVM -> CTVM : keyPoints.Add(keyPoint)
+   end loop
+   CTVM -> CTVM: CreateAndReturnKeyPoint(finishKeyPoint, KeyPointType.Last)
+   activate CTVM
+    CTVM -> KPS : NextId()
+    activate KPS
+     KPS -> KPR : NextId()
+     activate KPR
+      return nextKeyId
+    return nextKeyId
+    CTVM -> CTVM : keyPoint = new KeyPoint(nextKeyId,name,type)
+    CTVM -> KPS : Create(keyPoint)
+    activate KPS
+      KPS -> KPR : Create(keyPoint)
+      activate KPR
+        KPR -> KPFH : Save(keyPoints)
+        activate KPFH
+          KPFH -> CSV : ToCsv(FilePath, keyPoints)
+        deactivate KPFH
+      deactivate KPR
+    deactivate KPS
+   return keyPoint
+   CTVM -> CTVM : keyPoints.Add(keyPoint)
+
+   CTVM -> TS : NextId()
+   activate TS
+   TS -> TR: NextId()
+   activate TR
+   return nextTourId
+   return lastAddedTour
+
+   CTVM -> CTVM : lastAddedTours.Add(lastAddedTour)
+
+   CTVM->TS: Create(new Tour())
+   note left
+    -1,Guide.Id,name,
+   location, description, 
+    language,
+    maxNumberGuests, 
+    keyPoints,
+    start,
+    duration,
+    images, 
+    maxNumberGuests,
+   TourState.Inactive,
+   -1
+   end note
+   activate TS
+     TS -> TR : Create(tour)
+     activate TR
+      TR -> TR : NextId()
+      activate TR
+      return tour.Id
+      TR -> TFH: Save(tours)
+      activate TFH
+       TFH -> CSV: ToCSV(FilePath, tours)
+      deactivate TFH 
+     deactivate TR
+   deactivate TS
+
+end loop
+   deactivate CTVM
+ else 
+  G <-- CTV : MessageBox.Show(nisu validna)
+  deactivate CTV
+end alt
+
+@enduml

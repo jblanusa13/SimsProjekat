@@ -53,5 +53,18 @@ namespace ProjectSims.Service
         {
             voucherRepository.Subscribe(observer);
         }
+
+        internal void UpdateValidVouchers()
+        {
+            List<Voucher> vouchers = new List<Voucher>(GetAllVouchers()); 
+            foreach(Voucher voucher in vouchers)
+            {
+                if(voucher.ExpirationDate < DateTime.Now && voucher.ValidVoucher == true)
+                {
+                    voucher.ValidVoucher = false;
+                    Update(voucher);
+                }
+            }
+        }
     }
 }
