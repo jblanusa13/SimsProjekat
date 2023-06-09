@@ -24,18 +24,20 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
     {
         public Owner Owner { get; set; }
         public TextBlock TitleTextBlock { get; set; }
+        public Frame SelectedTab { get; set; }
 
-        public HomePageView(Owner o, TextBlock titleTextBlock)
+        public HomePageView(Owner o, TextBlock titleTextBlock, Frame selectedTab)
         {
             InitializeComponent();
             DataContext = this;
             Owner = o;
             TitleTextBlock = titleTextBlock;
+            SelectedTab = selectedTab;
         }
 
         private void Accommodations_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new AccommodationsDisplayView(Owner, TitleTextBlock));
+            this.NavigationService.Navigate(new AccommodationsDisplayView(Owner, TitleTextBlock, SelectedTab));
             TitleTextBlock.Text = "Smještaji";
         }
 

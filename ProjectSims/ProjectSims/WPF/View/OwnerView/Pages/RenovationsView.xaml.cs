@@ -34,14 +34,16 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
         public Owner Owner;
         public TextBlock TitleTextBlock { get; set; }
         public RenovationSchedule SelectedRenovation { get; set; }
+        public Frame SelectedTab { get; set; }
         public RenovationsViewModel renovationViewModel { get; set; }
         private RenovationScheduleService renovationService;
 
-        public RenovationsView(Owner o, TextBlock titleTextBlock)
+        public RenovationsView(Owner o, TextBlock titleTextBlock, Frame selectedTab)
         {
             InitializeComponent();
             Owner = o;
             TitleTextBlock = titleTextBlock;
+            SelectedTab = selectedTab;
             renovationService = new RenovationScheduleService();
             renovationViewModel = new RenovationsViewModel(SelectedRenovation, Owner);
             this.DataContext = renovationViewModel;
@@ -55,7 +57,7 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new HomePageView(Owner, TitleTextBlock));
+            this.NavigationService.Navigate(new HomePageView(Owner, TitleTextBlock, SelectedTab));
         }
     }
 }

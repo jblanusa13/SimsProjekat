@@ -48,6 +48,10 @@ namespace ProjectSims.Service
         {
             ownerRepository.AddAccommodation(owner, accommodationId);
         }
+        public void RemoveAccommodation(Owner owner, int accommodationId)
+        {
+            ownerRepository.RemoveAccommodation(owner, accommodationId);
+        }
 
         public void Create(Owner owner)
         {

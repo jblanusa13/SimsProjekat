@@ -82,7 +82,7 @@ namespace ProjectSims.Service
             return reservations;
         }
 
-        public int GetAllReservationsByYear(List<AccommodationReservation> reservations, string year)
+        public int CountAllReservationsByYear(List<AccommodationReservation> reservations, string year)
         {
             int number = 0;
             foreach (AccommodationReservation reservation in reservations)
@@ -93,6 +93,19 @@ namespace ProjectSims.Service
                 }
             }
             return number;
+        }
+
+        public List<AccommodationReservation> GettAllReservationsByYear(List<AccommodationReservation> reservations, string year)
+        {
+            List<AccommodationReservation> filteredReservations = new List<AccommodationReservation>();
+            foreach (AccommodationReservation reservation in reservations)
+            {
+                if (reservation.CheckInDate.Year.ToString().Equals(year))
+                {
+                    filteredReservations.Add(reservation);
+                }
+            }
+            return filteredReservations;
         }
 
         public int GetAllReservationsByMonth(List<AccommodationReservation> reservations, string month, string year)
@@ -191,12 +204,6 @@ namespace ProjectSims.Service
         {
             Request request = requestRepository.GetByReservationId(reservation.Id);
             requestRepository.Remove(request);
-        }
-
-        public void CloseAccommodation(Accommodation selectedAccommodation)
-        {
-            Accommodation accommodationToRemove = accommodationRepository.GetAllByOwner(selectedAccommodation.IdOwner).Find(accommodation => accommodation.Id == selectedAccommodation.Id);
-            accommodationRepository.Remove(accommodationToRemove);
         }
 
         public bool CanCancel(AccommodationReservation reservation)
