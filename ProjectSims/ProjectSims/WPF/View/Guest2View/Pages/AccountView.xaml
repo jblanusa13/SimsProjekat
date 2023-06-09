@@ -39,7 +39,7 @@
         <TextBlock Grid.Column="1" FontSize="18" HorizontalAlignment="Left" Margin="305,267,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding guest2.PhoneNumber}" VerticalAlignment="Top"/>
 
         <Button Grid.Column="1" Content="Vasa obavjestenja" Click="Notification_Click" Cursor="Hand" Width="160" Height="45" FontSize="18" HorizontalAlignment="Left" Margin="194,381,0,0" Grid.Row="2" VerticalAlignment="Top"/>
-        <Button Grid.Column="1" Content="Izmeni podatke" Cursor="Hand" Width="160" Height="45" FontSize="18" HorizontalAlignment="Left" Margin="432,381,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+        <Button Grid.Column="1" Content="Izmeni podatke" Click="UpdateAccount_Click" Cursor="Hand" Width="160" Height="45" FontSize="18" HorizontalAlignment="Left" Margin="432,381,0,0" Grid.Row="2" VerticalAlignment="Top"/>
         <Button Grid.Column="1" Content="Odjavi se" Click="Logout_Click" Cursor="Hand" Width="160" Height="45" FontSize="18" HorizontalAlignment="Left" Margin="669,381,0,0" Grid.Row="2" VerticalAlignment="Top"/>
 
 
