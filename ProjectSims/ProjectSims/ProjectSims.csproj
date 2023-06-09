@@ -82,6 +82,7 @@
     <None Remove="Resources\Images\Guest2\kofer.jpg" />
     <None Remove="Resources\Images\Guest2\park-kalemegdan-1184267749.jpg" />
     <None Remove="Resources\Images\Guest2\travel-tour-logo.png" />
+    <None Remove="Resources\Images\Guest2\whitelogo.png" />
     <None Remove="Resources\Images\guests.png" />
     <None Remove="Resources\Images\Guide\background.jpg" />
     <None Remove="Resources\Images\Guide\banja_luka_tournimage_2023.jpg" />
@@ -295,6 +296,9 @@
     <Content Include="Resources\Images\Guest2\park-kalemegdan-1184267749.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Guest2\whitelogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Guide\banja_luka_tournimage_2023.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -394,6 +398,7 @@
       <TreatAsUsed>true</TreatAsUsed>
     </PackageReference>
     <PackageReference Include="ceTe.DynamicPDF.CoreSuite.NET" Version="12.4.0" />
+    <PackageReference Include="iTextSharp" Version="5.5.13.3" />
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
     <PackageReference Include="Syncfusion.SfScheduler.WPF" Version="21.2.9" />
 	  <PackageReference Include="Tulpep.NotificationWindow" Version="1.1.38">
