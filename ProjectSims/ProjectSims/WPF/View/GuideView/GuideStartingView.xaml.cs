@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using ProjectSims.Service;
 using ProjectSims.Observer;
 using System.Windows.Navigation;
+using ProjectSims.WPF.ViewModel.GuideViewModel;
 
 namespace ProjectSims.View.GuideView
 {
@@ -42,8 +43,7 @@ namespace ProjectSims.View.GuideView
         }
         private void Account_Click(object sender, RoutedEventArgs e)
         {
-            Page accountPage = new AccountView(Guide);
-            GuideFrame.Content = accountPage;
+            GuideFrame.Content = new GuideAccountView(Guide);
         }
         private void Close_Click(object sender, RoutedEventArgs e)
         {
