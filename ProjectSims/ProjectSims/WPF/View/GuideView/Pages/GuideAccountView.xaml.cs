@@ -1,4 +1,7 @@
 ﻿using ProjectSims.Domain.Model;
+using ProjectSims.Service;
+using ProjectSims.View.GuideView;
+using ProjectSims.WPF.View.Guest1View;
 using ProjectSims.WPF.ViewModel.GuideViewModel;
 using System;
 using System.Collections.Generic;
@@ -22,17 +25,49 @@ namespace ProjectSims.WPF.View.GuideView.Pages
     /// </summary>
     public partial class GuideAccountView : Page
     {
+        private TourService tourService { get; set; }
+        private GuideService guideService { get; set; }
+        private Guest2Service guest2Service { get; set; }
+        private UserService userService { get; set; }
+        private ReservationTourService reservationTourService { get; set; }
         public Guide Guide { get; set; }
         public GuideAccountView(Guide guide)
         {
             InitializeComponent();
             DataContext = this;
             Guide = guide;
+            tourService = new TourService();
+            reservationTourService = new ReservationTourService();
+            guest2Service = new Guest2Service();
+            userService  = new UserService();   
+            guideService= new GuideService();
         }
         public void Dismissal_Click(object sender, RoutedEventArgs e)
         {
-
+            List<Tour> scheduledTours = tourService.GetToursByStateAndGuideId(TourState.Inactive, Guide.Id);
+            List<Guest2> guests = reservationTourService.GetGuestsForScheduledToursByGuideId(Guide.Id);
+            if (scheduledTours.Count > 0)
+            {
+                foreach (var scheduledTour in scheduledTours)
+                {
+                    scheduledTour.State = TourState.Cancelled;
+                    tourService.Update(scheduledTour);
+                }
+            }
+            if (guests.Count > 0)
+            {
+                foreach (var guest in guests)
+                {
+                    guest2Service.GiveVoucher(guest.Id, 2);
+                }
+            }
+            userService.Delete(Guide.User);
+            guideService.Delete(Guide);
+            var startView = new MainWindow();
+            startView.Show();
+            Window.GetWindow(this).Close();
         }
+    
         public void Logout_Click(object sender, RoutedEventArgs e)
         {
 

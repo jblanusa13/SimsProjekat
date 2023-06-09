@@ -33,7 +33,7 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
             tourService.UpdateTourState(SelectedTour, TourState.Cancelled);
             List<int> guestIds = reservationTourService.GetGuestIdsByTourAndState(SelectedTour, Guest2State.InactiveTour);
             if (guestIds.Count > 0)
-                guestIds.ForEach(id => guest2Service.GiveVoucher(id));
+                guestIds.ForEach(id => guest2Service.GiveVoucher(id,1));
         }
         public void Update()
         {

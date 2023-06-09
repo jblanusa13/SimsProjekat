@@ -20,7 +20,6 @@ namespace ProjectSims.Service
         {
             guideRepository = Injector.CreateInstance<IGuideRepository>();
             userRepository = Injector.CreateInstance<IUserRepository>();
-            InitializeUser();
         }
         private void InitializeUser()
         {
