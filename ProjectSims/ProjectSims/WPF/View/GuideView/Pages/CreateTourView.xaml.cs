@@ -391,7 +391,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
            if (IsValid)
            {
                 createTourViewModel.CreateTour(TourName,TourLanguage,City + "," + Country,MaxNumberGuests, Appointments,StartKeyPoint,OtherKeyPoints,FinishKeyPoint,Description,Images,CreatedTourByLocation,CreatedTourByLanguage);
-                this.NavigationService.Navigate(new ScheduledToursView(Guide));
+               // this.NavigationService.Navigate(new ScheduledToursView(Guide));
             }
            else
                MessageBox.Show("Nisu validno popunjena polja!");

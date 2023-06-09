@@ -75,8 +75,7 @@ namespace ProjectSims.View.GuideView
         }
         private void ScheduledTours_Click(object sender, RoutedEventArgs e)
         {
-            Page scheduledToursView = new ScheduledToursView(Guide);
-            GuideFrame.Content = scheduledToursView;
+            GuideFrame.Content = new ScheduledToursView(Guide,GuideFrame.NavigationService);
         }
         private void FinishedToursStatistics_Click(object sender, RoutedEventArgs e)
         {
