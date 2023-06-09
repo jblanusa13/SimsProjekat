@@ -10,22 +10,112 @@ using System.Windows.Controls;
 using ProjectSims.Observer;
 using System.Windows.Controls.Primitives;
 using ProjectSims.FileHandler;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows;
+using System.Windows.Navigation;
+using ProjectSims.WPF.View.Guest1View.MainPages;
+using ProjectSims.WPF.View.Guest1View;
 
 namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
 {
-    public partial class GuestAccommodationsViewModel : IObserver
+    public partial class GuestAccommodationsViewModel : IObserver, INotifyPropertyChanged
     {
         private AccommodationService accommodationService;
         public ObservableCollection<Accommodation> Accommodations { get; set; }
         public Guest1 Guest { get; set; }
 
-        public string NameSearch { get; set; }
-        public string CitySearch { get; set; }
-        public string CountrySearch { get; set; }
-        public string TypeSearch { get; set; }
-        public string GuestsNumberSearch { get; set; }
-        public string DaysNumberSearch { get; set; }
-        public GuestAccommodationsViewModel(Guest1 guest)
+        private string name;
+        public string Name
+        {
+            get => name;
+            set
+            {
+                if (value != name)
+                {
+                    name = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private string city;
+        public string City
+        {
+            get => city;
+            set
+            {
+                if (value != city)
+                {
+                    city = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private string country;
+        public string Country
+        {
+            get => country;
+            set
+            {
+                if (value != country)
+                {
+                    country = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private string type;
+        public string Type
+        {
+            get => type;
+            set
+            {
+                if (value != type)
+                {
+                    type = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private string guestNumber;
+        public string GuestNumber
+        {
+            get => guestNumber;
+            set
+            {
+                if (value != guestNumber)
+                {
+                    guestNumber = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string daysNumber;
+        public string DaysNumber
+        {
+            get => daysNumber;
+            set
+            {
+                if (value != daysNumber)
+                {
+                    daysNumber = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public MyICommand SearchCommand { get; set; }
+        public MyICommand ThemeCommand { get; set; }
+        public MyICommand AnywhereCommand { get; set; }
+        public MyICommand MyReservationsCommand { get; set; }
+        public MyICommand ShowRatingsCommand { get; set; }
+        public MyICommand RateAccommodationCommand { get; set; }
+        public MyICommand ForumCommand { get; set; }
+        public MyICommand ProfileCommand { get; set; }
+        public MyICommand<GuestAccommodationsView> LogOutCommand { get; set; }
+        public NavigationService NavService { get; set; }
+        public GuestAccommodationsViewModel(Guest1 guest, NavigationService navigation)
         {
             accommodationService = new AccommodationService();
 
@@ -33,16 +123,69 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             Accommodations = new ObservableCollection<Accommodation>(accommodationService.GetAllAccommodationsForGuestView());
 
             Guest = guest;
-        }
-        public void Search(string name, string city, string country, string type, string guestsNumber, string daysNumber)
-        {
-            NameSearch = name;
-            CitySearch = city;
-            CountrySearch = country;
-            TypeSearch = type;
-            GuestsNumberSearch = guestsNumber;
-            DaysNumberSearch = daysNumber;
 
+            SearchCommand = new MyICommand(OnSearch);
+            ThemeCommand = new MyICommand(OnTheme);
+            AnywhereCommand = new MyICommand(OnAnywhere);
+            MyReservationsCommand = new MyICommand(OnMyReservations);
+            ShowRatingsCommand = new MyICommand(OnShowRatings);
+            RateAccommodationCommand = new MyICommand(OnRate);
+            ForumCommand = new MyICommand(OnForum);
+            ProfileCommand = new MyICommand(OnProfile);
+            LogOutCommand = new MyICommand<GuestAccommodationsView>(OnLogOut);
+
+            NavService = navigation;
+        }
+        public void OnAnywhere()
+        {
+            NavService.Navigate(new AnytimeAnywhere(Guest, NavService));
+        }
+        public void OnMyReservations()
+        {
+            NavService.Navigate(new MyReservations(Guest, NavService));
+        }
+        public void OnShowRatings()
+        {
+            NavService.Navigate(new RatingsView(Guest));
+        }
+        public void OnRate()
+        {
+            RatingStartView accommodationForRating = new RatingStartView(Guest);
+            accommodationForRating.Show();
+        }
+        public void OnForum()
+        {
+            NavService.Navigate(new View.Guest1View.MainPages.Forum(Guest, NavService));
+        }
+        public void OnProfile()
+        {
+            NavService.Navigate(new Profile(Guest));
+        }
+        private void OnLogOut(GuestAccommodationsView page)
+        {
+            var login = new MainWindow();
+            login.Show();
+            Window parentWindow = Window.GetWindow(page);
+            parentWindow.Close();
+        }
+        private void OnTheme()
+        {
+            App app = (App)Application.Current;
+
+            if (App.IsDark)
+            {
+                app.ChangeTheme(new Uri("Themes/Light.xaml", UriKind.Relative));
+                App.IsDark = false;
+            }
+            else
+            {
+                app.ChangeTheme(new Uri("Themes/Dark.xaml", UriKind.Relative));
+                App.IsDark = true;
+            }
+        }
+
+        public void OnSearch()
+        {
             Accommodations.Clear();
             foreach (Accommodation accommodation in accommodationService.GetAllAccommodations())
             {
@@ -57,12 +200,12 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         {
             bool ContainsName, ContainsCity, ContainsCountry, ContainsType, GuestsNumberIsLower, DaysNumberIsGreater;
 
-            ContainsName = string.IsNullOrEmpty(NameSearch) ? true : accommodation.Name.ToLower().Contains(NameSearch.ToLower());
-            ContainsCity = string.IsNullOrEmpty(CitySearch) ? true : accommodation.Location.City.ToLower().Contains(CitySearch.ToLower());
-            ContainsCountry = string.IsNullOrEmpty(CountrySearch) ? true : accommodation.Location.Country.ToLower().Contains(CountrySearch.ToLower());
-            ContainsType = string.IsNullOrEmpty(TypeSearch) ? true : accommodation.Type.ToString().ToLower().Contains(TypeSearch.ToLower());
-            GuestsNumberIsLower = string.IsNullOrEmpty(GuestsNumberSearch) ? true : Convert.ToInt32(GuestsNumberSearch) <= accommodation.GuestsMaximum && Convert.ToInt32(GuestsNumberSearch) >= 0;
-            DaysNumberIsGreater = string.IsNullOrEmpty(DaysNumberSearch) ? true : Convert.ToInt32(DaysNumberSearch) >= accommodation.DismissalDays;
+            ContainsName = string.IsNullOrEmpty(Name) ? true : accommodation.Name.ToLower().Contains(Name.ToLower());
+            ContainsCity = string.IsNullOrEmpty(City) ? true : accommodation.Location.City.ToLower().Contains(City.ToLower());
+            ContainsCountry = string.IsNullOrEmpty(Country) ? true : accommodation.Location.Country.ToLower().Contains(Country.ToLower());
+            ContainsType = string.IsNullOrEmpty(Type) ? true : accommodation.Type.ToString().ToLower().Contains(Type.ToLower());
+            GuestsNumberIsLower = string.IsNullOrEmpty(GuestNumber) ? true : Convert.ToInt32(GuestNumber) <= accommodation.GuestsMaximum && Convert.ToInt32(GuestNumber) >= 0;
+            DaysNumberIsGreater = string.IsNullOrEmpty(DaysNumber) ? true : Convert.ToInt32(DaysNumber) >= accommodation.DismissalDays;
 
 
             return ContainsName && ContainsCity && ContainsCountry && ContainsType && GuestsNumberIsLower && DaysNumberIsGreater;
@@ -75,6 +218,13 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             {
                 Accommodations.Add(accommodation);
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

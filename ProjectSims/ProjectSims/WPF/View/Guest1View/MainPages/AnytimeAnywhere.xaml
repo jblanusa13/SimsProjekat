@@ -54,7 +54,7 @@
 
             <Grid Grid.Column="0">
                 <Button Margin="10" x:Name="BackButton"
-                        Click="Back_Click" Background="{DynamicResource SecondGrayShade}" BorderBrush="{DynamicResource SecondGrayShade}"
+                        Command="{Binding CancelCommand}" Background="{DynamicResource SecondGrayShade}" BorderBrush="{DynamicResource SecondGrayShade}"
                         FocusVisualStyle="{DynamicResource FocusControl}">
                     <fa:ImageAwesome Icon="ArrowCircleLeft" Foreground="{DynamicResource FontsColor}"/>
                 </Button>
@@ -296,7 +296,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Button Grid.Column="1" Margin="20,10,30,35" FontFamily="Bahnschrift" Click="Cancel_Click" Foreground="{DynamicResource FontsColor}"
+                    <Button Grid.Column="1" Margin="20,10,30,35" FontFamily="Bahnschrift" Command="{Binding CancelCommand}" Foreground="{DynamicResource FontsColor}"
                                         Background="{DynamicResource SecondGrayShade}"
                                         FocusVisualStyle="{DynamicResource FocusControl}">Otkazi
                         <Button.Resources>

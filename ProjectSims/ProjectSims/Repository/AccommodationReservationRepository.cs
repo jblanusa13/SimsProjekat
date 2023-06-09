@@ -24,7 +24,19 @@ namespace ProjectSims.Repository
             reservations = reservationFileHandler.Load();
             observers = new List<IObserver>();
         }
-        public List<AccommodationReservation> GetByGuest(int guestId)
+        public List<AccommodationReservation> GetAllCanceledByGuest(int guestId)
+        {
+            List<AccommodationReservation> canceledReservations = new List<AccommodationReservation>();
+            foreach (AccommodationReservation reservation in reservations)
+            {
+                if (reservation.GuestId == guestId && reservation.State == ReservationState.Canceled)
+                {
+                    canceledReservations.Add(reservation);
+                }
+            }
+            return canceledReservations;
+        }
+        public List<AccommodationReservation> GetAllActiveByGuest(int guestId)
         {
             List<AccommodationReservation> guestReservations = new List<AccommodationReservation>();
             foreach (AccommodationReservation reservation in reservations)
@@ -40,7 +52,7 @@ namespace ProjectSims.Repository
         public AccommodationReservation GetReservation(int guestId, int accommodationId, DateOnly checkInDate, DateOnly checkOutDate)
         {
             AccommodationReservation reservation = null;
-            List<AccommodationReservation> reservations = GetByGuest(guestId);
+            List<AccommodationReservation> reservations = GetAllActiveByGuest(guestId);
             foreach (var item in reservations)
             {
                 if (item.CheckInDate == checkInDate && item.CheckOutDate == checkOutDate && item.AccommodationId == accommodationId)

@@ -33,10 +33,10 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
     public partial class AccommodationReservationView : Page
     {
         private AccommodationReservationViewModel viewModel;
-        public AccommodationReservationView(Accommodation SelectedAccommodation, Guest1 guest)
+        public AccommodationReservationView(Accommodation SelectedAccommodation, Guest1 guest, NavigationService navigation)
         {
             InitializeComponent();
-            viewModel = new AccommodationReservationViewModel(guest, SelectedAccommodation);
+            viewModel = new AccommodationReservationViewModel(guest, SelectedAccommodation, this, navigation);
             DataContext = viewModel;
 
             LoadImages(SelectedAccommodation.Images);
@@ -61,56 +61,12 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             }
         }
 
-        private void FirstDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            LastDatePicker.DisplayDateStart = FirstDatePicker.SelectedDate;                   
-        }
-
-        private void LastDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            FirstDatePicker.DisplayDateEnd = LastDatePicker.SelectedDate;
-        }
-
-        private void Confirm_Click(object sender, RoutedEventArgs e)
-        {
-            SelectedDates = (DateRanges)DatesTable.SelectedItem;
-            if (SelectedDates != null)
-            {
-                DateRanges dates = (DateRanges)DatesTable.SelectedItem;
-
-                reservationService.CreateReservation(Accommodation.Id, Guest.Id, dates.CheckIn, dates.CheckOut, Convert.ToInt32(GuestNumber));
-                NavigationService.GoBack();
-            }
-        }
-
-        private void Dates_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            SelectedDates = (DateRanges)DatesTable.SelectedItem;
-        }
-
         private void Reserve(object sender, KeyEventArgs e)
         {
-            if (SelectedDates != null)
+            if ((e.Key.Equals(Key.Enter)) || (e.Key.Equals(Key.Return)))
             {
-                if ((e.Key.Equals(Key.Enter)) || (e.Key.Equals(Key.Return)))
-                {
-                    DateRanges dates = (DateRanges)DatesTable.SelectedItem;
-
-                    reservationService.CreateReservation(Accommodation.Id, Guest.Id, dates.CheckIn, dates.CheckOut, Convert.ToInt32(GuestNumber));
-                    NavigationService.GoBack();
-                }
+                viewModel.Reserve();
             }
         }
-
-        private void Cancel_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
-        }
-
-        private void Back_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
-        }
-
     }
 }

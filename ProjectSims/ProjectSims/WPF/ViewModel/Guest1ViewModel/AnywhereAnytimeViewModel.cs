@@ -114,6 +114,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public MyICommand SearchCommand { get; set; }
         public MyICommand ReserveCommand { get; set; }
         public MyICommand ThemeCommand { get; set; }
+        public MyICommand CancelCommand { get; set; }
         public DatePicker First { get; set; }
         public DatePicker Last { get; set; }
         public DataGrid DatesTable { get; set; }
@@ -122,11 +123,12 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         private Guest1 guest;
 
         public NavigationService NavService { get; set; }
-        public AnywhereAnytimeViewModel(DatePicker first, DatePicker last, DataGrid datesTable, Guest1 guest)
+        public AnywhereAnytimeViewModel(DatePicker first, DatePicker last, DataGrid datesTable, Guest1 guest, NavigationService navigation)
         {
             SearchCommand = new MyICommand(OnSearch, CanSearch);
             ReserveCommand = new MyICommand(OnReserve);
             ThemeCommand = new MyICommand(OnTheme);
+            CancelCommand = new MyICommand(OnCancel);
             AvailableAccommodations = new ObservableCollection<Accommodation>();
             AvailableDates = new ObservableCollection<DateRanges>();
             scheduleService = new AccommodationScheduleService();
@@ -135,6 +137,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             DatesTable = datesTable;
 
             reservationService = new AccommodationReservationService();
+            NavService = navigation;
 
             this.guest = guest;
         }
@@ -148,6 +151,10 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 UpdateDatesTable(availableDates);
                 DatesTable.Focus();
             }
+        }
+        public void OnCancel()
+        {
+            NavService.GoBack();
         }
         public void OnTheme()
         {
@@ -172,6 +179,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public void Reserve()
         {
             reservationService.CreateReservation(SelectedAccommodation.Id, guest.Id, SelectedDate.CheckIn, SelectedDate.CheckOut, Convert.ToInt32(GuestNumber));
+            NavService.GoBack();
         }
 
         public void UpdateDatesTable(List<DateRanges> availableDates)

@@ -22,12 +22,10 @@ namespace ProjectSims.WPF.View.Guest1View.ForumPages
     /// </summary>
     public partial class CreateForum : Page
     {
-        private CreateForumViewModel viewModel;
         public CreateForum(Guest1 guest)
         {
             InitializeComponent();
-            viewModel = new CreateForumViewModel(guest);
-            this.DataContext = viewModel;
+            this.DataContext = new CreateForumViewModel(guest);
         }
     }
 }

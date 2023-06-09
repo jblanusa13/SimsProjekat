@@ -38,6 +38,12 @@
     <Compile Update="WPF\View\Guest1View\RatingStartView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WPF\View\Guest1View\Report\CanceledReport.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\Report\ReportToGenerate.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\Guest1View\Requests\MyRequests.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -200,6 +206,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\Guest1View\RatingStartView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\Report\CanceledReport.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\Report\ReportToGenerate.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\Guest1View\Requests\MyRequests.xaml">
