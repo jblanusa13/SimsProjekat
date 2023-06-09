@@ -240,12 +240,12 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
 
         public string FindMostVisitedYear()
         {
-            Dictionary<string, double> bussynessThroughYears = CountBusynessForEachYear(Reservations);
-            KeyValuePair<string, double> mostVisited = bussynessThroughYears.FirstOrDefault();
+            Dictionary<string, double[]> busynessThroughYears = CountBusynessAndReservationCountForEachYear(Reservations);
+            KeyValuePair<string, double[]> mostVisited = busynessThroughYears.FirstOrDefault();
             MostVisitedYear = mostVisited.Key;
-            foreach (var item in bussynessThroughYears)
+            foreach (var item in busynessThroughYears)
             {
-                if (item.Value > mostVisited.Value) 
+                if (item.Value[0] > mostVisited.Value[0]) 
                 {
                     mostVisited = item;
                     MostVisitedYear = mostVisited.Key;
@@ -256,23 +256,51 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
 
         public void DisplayLink() 
         {
-            if (SelectedAccommodation.Id == FindMostBusyAccommodation())
+            if (SelectedAccommodation.Id == FindMostBusyAccommodation() && SelectedAccommodation.Id == FindMaxCountAccommodation())
             {
                 StatisticsView.PopularLocationTextBlock.Visibility = System.Windows.Visibility.Visible;
             }
-            else if(SelectedAccommodation.Id == FindLeastBusyAccommodation())
+            else if(SelectedAccommodation.Id == FindLeastBusyAccommodation() && SelectedAccommodation.Id == FindMinCountAccommodation())
             {
                 StatisticsView.UnpopularLocationTextBlock.Visibility = System.Windows.Visibility.Visible;
             }
         }
 
-        public int FindMostBusyAccommodation()
+        public int FindMaxCountAccommodation()
         {
-            Dictionary<int, double> allBusyness = FindBusinessForAllAccommodations();
-            KeyValuePair<int, double> most = allBusyness.FirstOrDefault();
+            Dictionary<int, double[]> allBusyness = FindStatisticsForAllAccommodations();
+            KeyValuePair<int, double[]> max = allBusyness.FirstOrDefault();
             foreach (var item in allBusyness)
             {
-                if (item.Value > most.Value)
+                if (item.Value[1] > max.Value[1])
+                {
+                    max = item;
+                }
+            }
+            return max.Key;
+        }
+
+        public int FindMinCountAccommodation()
+        {
+            Dictionary<int, double[]> allBusyness = FindStatisticsForAllAccommodations();
+            KeyValuePair<int, double[]> min = allBusyness.FirstOrDefault();
+            foreach (var item in allBusyness)
+            {
+                if (item.Value[1] < min.Value[1])
+                {
+                    min = item;
+                }
+            }
+            return min.Key;
+        }
+
+        public int FindMostBusyAccommodation()
+        {
+            Dictionary<int, double[]> allBusyness = FindStatisticsForAllAccommodations();
+            KeyValuePair<int, double[]> most = allBusyness.FirstOrDefault();
+            foreach (var item in allBusyness)
+            {
+                if (item.Value[0] > most.Value[0])
                 {
                     most = item;
                 }
@@ -282,11 +310,11 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
 
         public int FindLeastBusyAccommodation()
         {
-            Dictionary<int, double> allBusyness = FindBusinessForAllAccommodations();
-            KeyValuePair<int,double> least = allBusyness.First();
+            Dictionary<int, double[]> allBusyness = FindStatisticsForAllAccommodations();
+            KeyValuePair<int,double[]> least = allBusyness.First();
             foreach (var item in allBusyness)
             {
-                if (item.Value < least.Value)
+                if (item.Value[0] < least.Value[0])
                 {
                     least = item;
                 }
@@ -294,51 +322,50 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
             return least.Key;
         }
 
-        public Dictionary<int, double> FindBusinessForAllAccommodations() 
+        public Dictionary<int, double[]> FindStatisticsForAllAccommodations() 
         {
-            Dictionary<int, double> busyness = new Dictionary<int, double>();
+            Dictionary<int, double[]> accommodationsStatistics = new Dictionary<int, double[]>();
             List<Accommodation> accommodations = accommodationService.GetAccommodationsByOwner(Owner.Id);
             foreach (Accommodation accommodation in accommodations)
             {
                 List<AccommodationReservation> reservations = accommodationReservationService.GetAllReservationsByAccommodationId(accommodation.Id);
-                busyness.Add(accommodation.Id, CountBusynessInYears(reservations));
+                accommodationsStatistics.Add(accommodation.Id, SumBusynessAndReservationCountForEachYear(reservations));
             }
-            return busyness;
-        }
-        
-        public double CountBusynessInYears(List<AccommodationReservation> reservations)
-        {
-            return SumBusynessForEachYear(reservations) / 5;
+            return accommodationsStatistics;
         }
 
-        public double SumBusynessForEachYear(List<AccommodationReservation> reservations) 
+        public double[] SumBusynessAndReservationCountForEachYear(List<AccommodationReservation> reservations) 
         {
-            double sum = 0;
-            Dictionary<string, double> busyness = CountBusynessForEachYear(reservations);
+            double[] sumAndCount = new double[] { 0, 0 };
+            Dictionary<string, double[]> busyness = CountBusynessAndReservationCountForEachYear(reservations);
             foreach (var item in busyness) 
             {
-                sum += item.Value;
+                sumAndCount[0] += item.Value[0];
+                sumAndCount[1] += item.Value[1];
             }
-            return sum;
+            return sumAndCount;
         }
 
-        public Dictionary<string, double> CountBusynessForEachYear(List<AccommodationReservation> reservations)
+        public Dictionary<string, double[]> CountBusynessAndReservationCountForEachYear(List<AccommodationReservation> reservations)
         {
-            Dictionary<string, double> bussynessInYears = new Dictionary<string, double>();
+            Dictionary<string, double[]> bussynessAndReservationCountInYears = new Dictionary<string, double[]>();
             foreach (var year in YearLabels)
             {
-                bussynessInYears.Add(year, CountBusynessInOneYear(reservations, year));
+                bussynessAndReservationCountInYears.Add(year, new double[] { CountBusynessAndReservationCountInOneYear(reservations, year)[0], 
+                                                                             CountBusynessAndReservationCountInOneYear(reservations, year)[1] } );
             }
-            return bussynessInYears;
+            return bussynessAndReservationCountInYears;
         }
 
-        public double CountBusynessInOneYear(List<AccommodationReservation> reservations, string year) 
+        public double[] CountBusynessAndReservationCountInOneYear(List<AccommodationReservation> reservations, string year) 
         {
-            double busyness = 0;
+            double[] busyness = new double[2] { 0, 0 };
             foreach (var item in accommodationReservationService.GettAllReservationsByYear(reservations, year))         {
-                busyness += (item.CheckOutDate.DayNumber - item.CheckInDate.DayNumber);
+                busyness[0] += (item.CheckOutDate.DayNumber - item.CheckInDate.DayNumber);
+                busyness[1]++;
             }
-            return busyness / 365.0;
+            busyness[0] = busyness[0] / 365.0;
+            return busyness;
         }
     }
 }
