@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace ProjectSims
 {
@@ -14,6 +15,7 @@ namespace ProjectSims
     public partial class App : Application
     {
         public static bool IsDark = false;
+        
         public void ChangeTheme(Uri uri)
         {
             App.Current.Resources.Clear();

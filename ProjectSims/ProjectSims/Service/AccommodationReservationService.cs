@@ -55,6 +55,15 @@ namespace ProjectSims.Service
         {
             return reservationRepository.GetAll();
         }
+        public List<AccommodationReservation> GetActiveReservationsByGuest(int guestId)
+        {
+            return reservationRepository.GetAllActiveByGuest(guestId);
+        }
+        public List<AccommodationReservation> GetCanceledReservationsByGuest(int guestId)
+        {
+            return reservationRepository.GetAllCanceledByGuest(guestId);
+        }
+
 
         public List<AccommodationReservation> GetAllByOwnerId(int id)
         {
@@ -152,11 +161,6 @@ namespace ProjectSims.Service
             return reservationRepository.GetById(id);
         }
 
-        public List<AccommodationReservation> GetReservationByGuest(int guestId)
-        {
-            return reservationRepository.GetByGuest(guestId);
-        }
-
         public AccommodationReservation GetReservation(int guestId, int accommodationId, DateOnly checkInDate, DateOnly checkOutDate)
         {
             return reservationRepository.GetReservation(guestId, accommodationId, checkInDate, checkOutDate);
@@ -220,7 +224,7 @@ namespace ProjectSims.Service
             List<AccommodationReservation> guestReservations = new List<AccommodationReservation>();
             List<AccommodationReservation> accommodationsForRating = new List<AccommodationReservation>();
 
-            guestReservations = GetReservationByGuest(guest.Id);
+            guestReservations = GetActiveReservationsByGuest(guest.Id);
             foreach (AccommodationReservation reservation in guestReservations)
             {
                 if (DateOnly.FromDateTime(DateTime.Today) <= reservation.CheckOutDate.AddDays(5) && DateOnly.FromDateTime(DateTime.Today) >= reservation.CheckOutDate && reservation.RatedAccommodation == false)

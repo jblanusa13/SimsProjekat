@@ -38,7 +38,8 @@ namespace ProjectSims
             { typeof(IRenovationRecommendationRepository), new RenovationRecommendationRepository() },
             { typeof(IRequestRepository), new RequestRepository() },
             { typeof(IAccommodationScheduleRepository), new AccommodationScheduleRepository() },
-            { typeof(ISuperGuestRepository), new SuperGuestRepository() }
+            { typeof(ISuperGuestRepository), new SuperGuestRepository() },
+            { typeof(IForumRepository), new ForumRepository() }
         };
        public static T CreateInstance<T>()
         {

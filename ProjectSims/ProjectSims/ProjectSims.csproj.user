@@ -5,10 +5,25 @@
     <Compile Update="WPF\CustomControls\NumericBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WPF\View\Guest1View\BarPages\ForumStatusBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\BarPages\ForumWindowBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\Guest1View\BarPages\RatingStatusBar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\Guest1View\BarPages\RatingWindowBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\ForumPages\CreateForum.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\ForumStartView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\MainPages\Forum.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\Guest1View\MainPages\Profile.xaml.cs">
@@ -21,6 +36,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\Guest1View\RatingStartView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\Report\CanceledReport.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\Report\ReportToGenerate.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\Guest1View\Requests\MyRequests.xaml.cs">
@@ -154,10 +175,25 @@
     <Page Update="Themes\Light.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="WPF\View\Guest1View\BarPages\ForumStatusBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\BarPages\ForumWindowBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="WPF\View\Guest1View\BarPages\RatingStatusBar.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\Guest1View\BarPages\RatingWindowBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\ForumPages\CreateForum.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\ForumStartView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\MainPages\Forum.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\Guest1View\MainPages\Profile.xaml">
@@ -170,6 +206,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\Guest1View\RatingStartView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\Report\CanceledReport.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\Report\ReportToGenerate.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\Guest1View\Requests\MyRequests.xaml">
