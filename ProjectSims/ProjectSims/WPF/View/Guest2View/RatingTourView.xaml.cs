@@ -92,8 +92,7 @@ namespace ProjectSims.WPF.View.Guest2View
             {
                 imageList.Add("");
             }
-            TourAndGuideRating tourRating = new TourAndGuideRating(guest2.Id, guest2, tourRate.Id, knowledgeGuide, languageGuide,
-                interestingTour, AddedComentBox.Text, imageList);
+            TourAndGuideRating tourRating = new TourAndGuideRating(guest2.Id, guest2, tourRate.Id, knowledgeGuide, languageGuide, interestingTour, AddedComentBox.Text, imageList);
             tourRatingService.Create(tourRating);
             ReservationTour reservation = reservationTourService.GetReservationByGuestAndTour(tourRate, guest2);
             reservation.RatedTour = true;

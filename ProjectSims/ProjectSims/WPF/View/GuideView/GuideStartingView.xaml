@@ -11,8 +11,11 @@
             <Button HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40,0,0,0" Height="60" Width="60" Background="Transparent" BorderThickness="0">
                 <Image Source="\Resources\Icons\Guide\question.png" Cursor="Hand"/>
             </Button>
-            <Button HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,40,0" Height="60" Width="60" Background="Transparent" BorderThickness="0">
+            <Button HorizontalAlignment="Right" Click="Account_Click" VerticalAlignment="Center" Margin="0,0,40,0" Height="60" Width="60" Background="Transparent" BorderThickness="0">
                 <Image Source="\Resources\Icons\Guide\profile.png" Cursor="Hand"/>
+            </Button>
+            <Button HorizontalAlignment="Right" Click="Logout_Click" VerticalAlignment="Center" Margin="0,0,110,0" Height="60" Width="60" Background="Transparent" BorderThickness="0">
+                <Image Source="\Resources\Icons\Guide\logout1.png" Cursor="Hand"/>
             </Button>
             <Image Source="/Resources/Icons/Guide/logo.png" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="100"/>
         </Grid>
@@ -82,7 +85,7 @@
                         <Image Source="/Resources/Icons/Guide/request.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Statistika zahteva" FontSize="28" Foreground="#FF1B5886" Height="30" HorizontalAlignment="Left">
+                <MenuItem Header="Statistika zahteva" Click="RequestStatistics_Click" FontSize="28" Foreground="#FF1B5886" Height="30" HorizontalAlignment="Left">
                     <MenuItem.Icon>
                         <Image Source="/Resources/Icons/Guide/statistics.png"/>
                     </MenuItem.Icon>

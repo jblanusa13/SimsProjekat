@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using ProjectSims.Service;
 using ProjectSims.Observer;
 using System.Windows.Navigation;
+using ProjectSims.WPF.ViewModel.GuideViewModel;
 
 namespace ProjectSims.View.GuideView
 {
@@ -40,11 +41,9 @@ namespace ProjectSims.View.GuideView
         private void Home_Click(object sender, RoutedEventArgs e)
         {
         }
-        private void Logout_Click(object sender, RoutedEventArgs e)
+        private void Account_Click(object sender, RoutedEventArgs e)
         {
-            Window login = new MainWindow();
-            login.Show();
-            Close();
+            GuideFrame.Content = new GuideAccountView(Guide);
         }
         private void Close_Click(object sender, RoutedEventArgs e)
         {
@@ -91,8 +90,19 @@ namespace ProjectSims.View.GuideView
         }
         private void TourRequests_Click(object sender, RoutedEventArgs e)
         {
-            Page finishedTourtourRequestsView = new TourRequestsView(Guide);
-            GuideFrame.Content = finishedTourtourRequestsView;
+            Page finishedTourRequestsView = new TourRequestsView(Guide);
+            GuideFrame.Content = finishedTourRequestsView;
+        }
+        private void RequestStatistics_Click(object sender, RoutedEventArgs e)
+        {
+            Page requestStatisticsView = new RequestStatisticsView(Guide);
+            GuideFrame.Content = requestStatisticsView;
+        }
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            var startView = new MainWindow();
+            startView.Show();
+            Window.GetWindow(this).Close();
         }
         public void Update()
         {

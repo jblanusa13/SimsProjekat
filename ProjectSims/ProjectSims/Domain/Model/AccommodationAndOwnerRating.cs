@@ -19,7 +19,7 @@ namespace ProjectSims.Domain.Model
         public double OwnerFairness { get; set; }
         public double Location { get; set; }
         public double ValueForMoney { get; set; }
-        public string AddedComment { get; set; }
+        public string Comment { get; set; }
         public List<string> Images { get; set; }
         public int RenovationId { get; set; }
         public RenovationRecommendation RenovationRecommendation { get; set; }
@@ -38,7 +38,7 @@ namespace ProjectSims.Domain.Model
             OwnerFairness = ownerFairness;
             Location = location;
             ValueForMoney = valueForMoney;
-            AddedComment = addedComment;
+            Comment = addedComment;
             Images = images;
             RenovationId = renovationId;
             RenovationRecommendation = renovationRecommendation;
@@ -64,7 +64,7 @@ namespace ProjectSims.Domain.Model
                 OwnerFairness.ToString(), 
                 Location.ToString(), 
                 ValueForMoney.ToString(),
-                AddedComment, 
+                Comment, 
                 ImageString,
                 RenovationId.ToString()
             };
@@ -79,25 +79,12 @@ namespace ProjectSims.Domain.Model
             OwnerFairness = Convert.ToDouble(values[3]);
             Location = Convert.ToDouble(values[4]);
             ValueForMoney = Convert.ToDouble(values[5]);
-            AddedComment = values[6];
+            Comment = values[6];
             foreach (string image in values[7].Split(","))
             {
                 Images.Add(image);
             }
             RenovationId = Convert.ToInt32(values[8]);
-            InitializeData();
         }
-        
-        public void InitializeData()
-        {
-            //Reservation = Injector.CreateInstance<IAccommodationReservationRepository>().GetById(ReservationId);
-            //RenovationRecommendation = Injector.CreateInstance<IRenovationRecommendationRepository>().GetById(RenovationId);
-            AccommodationReservationRepository reservationRepository = new AccommodationReservationRepository();
-            RenovationRecommendationRepository recommendationRepository = new RenovationRecommendationRepository();
-
-            Reservation = reservationRepository.GetById(ReservationId);
-            RenovationRecommendation = recommendationRepository.GetById(RenovationId);
-        }
-
     }
 }

@@ -12,8 +12,12 @@
     <Page.Resources>
         <Style TargetType="DataGrid" BasedOn="{StaticResource DataGridStyle}">
             <Setter Property="Background" Value="{DynamicResource DataGridBackground}"></Setter>
-            <Setter Property="ColumnHeaderStyle" Value="{DynamicResource DataGridHeader}"></Setter>
-            <Setter Property="RowStyle" Value="{DynamicResource DataGridRow}"></Setter>
+            <Setter Property="BorderBrush" Value="{DynamicResource SecondGrayShade}"></Setter>
+        </Style>
+        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridHeader}"/>
+        <Style TargetType="DataGridRow" BasedOn="{StaticResource DataGridRow}"/>
+        <Style TargetType="DataGridCell" BasedOn="{StaticResource DataGridCell}">
+            <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusControl}"/>
         </Style>
     </Page.Resources>
 
@@ -31,7 +35,11 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
-                <Button Margin="0,10" Click="Back_Click" Background="{DynamicResource SecondGrayShade}" BorderBrush="{DynamicResource SecondGrayShade}">
+                <Button Margin="0,10" Click="Back_Click" 
+                        x:Name="BackButton"
+                        Background="{DynamicResource SecondGrayShade}" 
+                        BorderBrush="{DynamicResource SecondGrayShade}"
+                        FocusVisualStyle="{DynamicResource FocusControl}">
                     <fa:ImageAwesome Icon="ArrowCircleLeft" Foreground="{DynamicResource FontsColor}" Width="40"/>
                 </Button>
             </Grid>
@@ -42,9 +50,19 @@
         </Grid>
 
         <Grid Grid.Row="1">
-            <DataGrid Name="AccommodationsForRatingTable" Margin="50,50,50,10"
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label FontSize="13" FontFamily="Bahnschrift"
+                   Foreground="{DynamicResource FontsColor}"
+                   Margin="50,25,0,0">Da biste ocenili, pritisnite Enter na zeljenom smestaju</Label>
+            <DataGrid Grid.Row="1" Name="AccommodationsForRatingTable" Margin="50,0,50,10"
                       ItemsSource="{Binding Reservations, UpdateSourceTrigger=PropertyChanged}"
-                      AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
+                      AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single"
+                      HeadersVisibility="Column"
+                      SelectionChanged="Reservations_SelectionChanged"
+                      PreviewKeyDown="Rate">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv" Binding="{Binding Accommodation.Name}" Width="200"></DataGridTextColumn>
                     <DataGridTextColumn Header="Dolazak" Binding="{Binding CheckInDate}" Width="150"></DataGridTextColumn>
@@ -61,7 +79,10 @@
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0" Margin="50,30,190,20" Click="RateAccommodation_Click"
-                    Background="{DynamicResource SecondGrayShade}" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">
+                    Background="{DynamicResource SecondGrayShade}"
+                    Foreground="{DynamicResource FontsColor}" 
+                    FontFamily="Bahnschrift"
+                    FocusVisualStyle="{DynamicResource FocusControl}">
                 Oceni
                 <Button.Resources>
                     <Style TargetType="Border">
@@ -70,7 +91,10 @@
                 </Button.Resources>
             </Button>
             <Button Grid.Column="1" Margin="190,30,50,20" Click="Cancel_Click"
-                    Background="{DynamicResource SecondGrayShade}" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">
+                    Background="{DynamicResource SecondGrayShade}" 
+                    Foreground="{DynamicResource FontsColor}" 
+                    FontFamily="Bahnschrift"
+                    FocusVisualStyle="{DynamicResource FocusControl}">
                 Otkazi
                 <Button.Resources>
                     <Style TargetType="Border">

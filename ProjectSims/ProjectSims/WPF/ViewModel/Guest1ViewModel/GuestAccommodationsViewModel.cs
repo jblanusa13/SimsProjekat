@@ -9,12 +9,13 @@ using ProjectSims.Service;
 using System.Windows.Controls;
 using ProjectSims.Observer;
 using System.Windows.Controls.Primitives;
+using ProjectSims.FileHandler;
 
 namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
 {
     public partial class GuestAccommodationsViewModel : IObserver
     {
-        private readonly AccommodationService accommodationService;
+        private AccommodationService accommodationService;
         public ObservableCollection<Accommodation> Accommodations { get; set; }
         public Guest1 Guest { get; set; }
 
@@ -27,6 +28,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public GuestAccommodationsViewModel(Guest1 guest)
         {
             accommodationService = new AccommodationService();
+
             accommodationService.Subscribe(this);
             Accommodations = new ObservableCollection<Accommodation>(accommodationService.GetAllAccommodationsForGuestView());
 

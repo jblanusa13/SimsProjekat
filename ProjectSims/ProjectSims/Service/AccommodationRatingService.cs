@@ -15,10 +15,33 @@ namespace ProjectSims.Service
     public class AccommodationRatingService
     {
         private IAccommodationRatingRepository ratingRepository;
+        private IAccommodationReservationRepository reservationRepository;
+        private IRenovationRecommendationRepository renovationRecommendationRepository;
 
         public AccommodationRatingService()
         {
             ratingRepository = Injector.CreateInstance<IAccommodationRatingRepository>();
+            reservationRepository = Injector.CreateInstance<IAccommodationReservationRepository>();
+            renovationRecommendationRepository = Injector.CreateInstance<IRenovationRecommendationRepository>();
+
+            InitializeRecommendation();
+            InitializeReservation();
+        }
+
+        public void InitializeReservation()
+        {
+            foreach(var rating in ratingRepository.GetAll())
+            {
+                rating.Reservation = reservationRepository.GetById(rating.ReservationId);
+            }
+        }
+
+        public void InitializeRecommendation()
+        {
+            foreach (var rating in ratingRepository.GetAll())
+            {
+                rating.RenovationRecommendation = renovationRecommendationRepository.GetById(rating.RenovationId);
+            }
         }
 
         public List<AccommodationAndOwnerRating> GetAllRatings()
@@ -28,6 +51,9 @@ namespace ProjectSims.Service
 
         public List<AccommodationAndOwnerRating> GetRatingsWhereGuestRated(int ownerId)
         {
+            ratingRepository.ReloadRatingList();
+            InitializeRecommendation();
+            InitializeReservation();
             List<AccommodationAndOwnerRating> ratings = new List<AccommodationAndOwnerRating>();
             foreach (var rating in GetAllRatings()) 
             {
@@ -51,6 +77,32 @@ namespace ProjectSims.Service
         public List<AccommodationAndOwnerRating> GetAllRatingsByGuestId(int guestId)
         {
             return ratingRepository.GetAllByGuestId(guestId);
+        }
+
+        public int GetAllRenovationReccommendationsByYear(string year, int ownerId)
+        {
+            int number = 0;
+            foreach (AccommodationAndOwnerRating rating in ratingRepository.GetAllByOwnerId(ownerId))
+            {
+                if (rating.Reservation.CheckInDate.Year.ToString().Equals(year) && rating.RenovationId != -1)
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+
+        public int GetAllRenovationReccommendationsByMonth(string month, string year, int ownerId)
+        {
+            int number = 0;
+            foreach (AccommodationAndOwnerRating rating in ratingRepository.GetAllByOwnerId(ownerId))
+            {
+                if (rating.Reservation.CheckInDate.Year.ToString().Equals(year) && rating.Reservation.CheckInDate.Month.ToString().Equals(month) && rating.RenovationId != -1)
+                {
+                    number++;
+                }
+            }
+            return number;
         }
 
         public void CreateRating(int reservationId, AccommodationReservation reservation, int cleanliness, int ownerFairness, int location, int valueForMoney, string comment, List<string> imageList, int recommendationId, RenovationRecommendation recommendation)

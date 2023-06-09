@@ -1,0 +1,85 @@
+@startuml
+hide footbox
+
+actor "Owner" as O
+participant "RenovationScheduleService" as RSS
+participant "AccommodationScheduleService" as ASS
+participant "AccommodationService" as AS
+participant "AccommodationScheduleRepository" as ASR
+participant "RenovationScheduleRepository" as RSR
+participant "AccommodationRepository" as AR
+
+O -> ASS ++ : FindDates(firstDate, secondDate, duration, SelectedAccommodation.Id)
+ASS -> ASR ++ : GetUnavailableDates(accommodationId)
+ASR --> ASS -- : unavailableDates
+loop foreach unavailableDate in unavailableDates
+ASS -> ASS ++ : IsInRange(unavailableDate.CheckIn)
+ASS --> ASS -- : unavailableDate.CheckIn >= firstDate && unavailableDate.CheckIn <= lastDate
+ASS -> ASS ++ : IsInRange(unavailableDate.CheckOut)
+ASS --> ASS -- : unavailableDate.CheckOut >= firstDate && unavailableDate.CheckOut <= lastDate
+opt (!(unavailableDate.CheckIn >= firstDate && unavailableDate.CheckIn <= lastDate) && (unavailableDate.CheckOut >= firstDate && unavailableDate.CheckOut <= lastDate)) \n || (IsInRange(unavailableDate.CheckIn) && IsInRange(unavailableDate.CheckOut)) \n || (IsInRange(unavailableDate.CheckIn) && !IsInRange(unavailableDate.CheckOut))
+ASS -> ASS ++ : CheckAvailableDates(unavailableDate, daysNumber)
+loop firstDate != unavailableDate.CheckOut
+loop daysNumber times
+opt firstDate.AddDays(i) >= unavailableDate.CheckIn && firstDate.AddDays(i) <= unavailableDate.CheckOut
+break
+end
+end
+end
+
+opt isAvailable
+end
+ASS --> ASS -- : checkedAvailableDates
+loop foreach date in checkedAvailableDates              
+end
+end
+end    
+end
+
+opt this.firstDate != lastDate
+loop this.firstDate.AddDays(daysNumber) <= lastDate
+end
+end
+            
+ASS --> O --: availableDates
+
+
+O -> RSS ++ : CreateRenovation(dateRange, description, SelectedAccommodation.Id, SelectedAccommodation)
+RSS -> RSR ++ : NextId()
+RSR --> RSS -- : id
+RSS -> RSR ++ : Create(id, dateRange, description, accomodationId, accommodation, -1)
+deactivate RSR
+RSS -> ASR ++ : GetById(accommodation.ScheduleId)
+ASR --> RSS : schedule
+deactivate ASR
+RSS -> ASR ++ : AddUnavailableDate(schedule, dateRange)
+loop schedule.UnavailableDates.Count times
+opt dateRange.CheckIn < schedule.UnavailableDates[i].CheckIn
+end
+end
+deactivate ASR
+RSS -> ASR ++ : Update(schedule)
+deactivate ASR
+deactivate RSS
+
+O -> RSS ++ : UpdateIfRenovated(accommodations)
+loop foreach accommodation in accommodations
+RSS -> RSR ++ : GetPassedRenovationDatesforAccommodation(accommodation.Id)
+RSR --> RSS -- : dates
+RSS -> RSR ++ : GetMaxDate(dates)
+RSR --> RSS -- : dateOfLastRenovation
+RSS -> RSS ++ : IsRenovatedYearAgo(dateOfLastRenovation)
+alt dateOfLastRenovation.AddYears(1) < DateOnly.FromDateTime(DateTime.Today))
+RSS --> RSS : true
+else
+RSS --> RSS : false
+end
+deactivate RSS
+alt IsRenovatedYearAgo(dateOfLastRenovation) || dateOfLastRenovation == new DateOnly(1, 1, 1)
+else
+end
+RSS -> AR ++ : Update(accommodation)
+deactivate AR  
+end
+deactivate RSS
+@enduml

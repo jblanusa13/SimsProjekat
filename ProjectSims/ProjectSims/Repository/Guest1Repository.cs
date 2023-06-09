@@ -14,14 +14,18 @@ namespace ProjectSims.Repository
     {
         private Guest1FileHandler guestFileHandler;
         private List<Guest1> guests;
-        private List<IObserver> observers;
 
         public Guest1Repository()
         {
             guestFileHandler = new Guest1FileHandler();
             guests = guestFileHandler.Load();
-            observers = new List<IObserver>();
         }
+
+        public Guest1 GetByUserId(int userId)
+        {
+            return guests.FirstOrDefault(g => g.UserId == userId);
+        }
+
         public List<Guest1> GetAll()
         {
             return guests;
@@ -37,46 +41,25 @@ namespace ProjectSims.Repository
             entity.Id = NextId();
             guests.Add(entity);
             guestFileHandler.Save(guests);
-            NotifyObservers();
         }
         public void Update(Guest1 entity)
         {
-            int index = guests.FindIndex(guest => guest.Id == guest.Id);
+            int index = guests.FindIndex(guest => guest.Id == entity.Id);
             if (index != -1)
             {
                 guests[index] = entity;
             }
             guestFileHandler.Save(guests);
-            NotifyObservers();
         }
 
         public void Remove(Guest1 entity)
         { 
             guests.Remove(entity);
             guestFileHandler.Save(guests);
-            NotifyObservers();
         }
         public Guest1 GetById(int key)
         {
             return guests.Find(guest => guest.Id == key);
-        }
-
-        public void Subscribe(IObserver observer)
-        { 
-            observers.Add(observer);
-        }
-
-        public void Unsubscribe(IObserver observer)
-        {
-            observers.Remove(observer);
-        }
-
-        public void NotifyObservers()
-        {
-            foreach (var observer in observers)
-            {
-                observer.Update();
-            }
         }
     }
 }

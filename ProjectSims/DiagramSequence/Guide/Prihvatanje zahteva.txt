@@ -1,0 +1,126 @@
+@startuml
+Actor Guide as G
+participant TourService as TS
+participant TourRequestService as TRS
+participant NotificationTourService as NTS
+participant KeyPointService as KS
+participant TourRepository as TR
+participant KeyPointRepository as KR
+participant TourRequestRepository as TRR
+participant NotificationTourRepository as NTR
+participant TourFileHandler as TFH
+participant KeyPointFileHandler as KFH
+participant TourRequestFileHandler as TRFH
+participant NotificationTourFileHandler as NTFH
+participant Serializer as SS
+
+
+G->TS++:GetFreeAppointmentsForThatDay(Guide.Id,date)
+TS->TS++:GetGuidesDailySchedule(guideId, date)
+TS->TR++:GetToursByDateAndGuideId(date, guideId)
+TR->TR++:GetToursByStateAndGuideId(Inactive, guideId)
+TR->TFH++:Load()
+TFH->SS++:FromCSV(FilePath)
+SS->TFH--:tours
+TFH->TR--:tours
+TR->TR--:inactiveGuidesTours
+TR->TS--:inactiveGuidesToursOnDate
+TS->TS--:dailySchedule
+opt dailySchedule.Count !=0 
+  TS->TS++:freeAppointments = new List<Tuple<DateTime, DateTime>>();
+  TS->TS++:freeAppointments.Add(new Tuple<DateTime, DateTime>(dayBegin, dailySchedule.First().Item1));
+  loop for (int i = 0; i < dailySchedule.Count - 1; i++)
+     TS->TS++: freeAppointments.Add(new Tuple<DateTime, DateTime>(dailySchedule[1].Item2, dailySchedule[i + 1].Item1));
+  end
+     TS->TS++:freeAppointments.Add(new Tuple<DateTime, DateTime>(dailySchedule.Last().Item2, dayEnd))
+TS->G--:freeAppointments
+end
+TS->G--:new List<Tuple<DateTime, DateTime>>() { new Tuple<DateTime, DateTime>(dayBegin, dayEnd) }
+
+G -> KS ++: NextId()
+KS->KR ++:NextId()
+KR->KFH ++: Load()
+KFH->SS ++:FromCSV(FilePath)
+SS->KFH --:keyPoints
+KFH->KR --:keyPoints
+ opt keyPoints.Count == 0               
+    KR ->KS --:0
+ end
+KR->KS --: keyPoints.Max(k => k.Id) + 1
+KS->G --:nextId
+G->KS ++:Create(keyPoint)
+KS->KR ++:Create(keyPoint)
+KR->KR ++: keyPoints.Add(keyPoint)
+KR->KFH++:Save(keyPoints)
+KFH->SS:ToCSV(FilePath,keyPoints)
+deactivate SS
+deactivate KFH
+deactivate KR
+deactivate KS
+
+G -> TS ++: NextId()
+TS->TR ++:NextId()
+TR->TFH ++: Load()
+TFH->SS ++:FromCSV(FilePath)
+SS->TFH --:tours
+TFH->TR --:tours
+ opt tours.Count == 0               
+    TR->TR --:0
+ end
+TS->G --:lastAddedTour
+G->TS ++:Create(tour)
+TS->TR ++:Create(tour)
+TR->TR++:tour.Id = NextId()
+TR->TFH ++: Load()
+TFH->SS ++:FromCSV(FilePath)
+SS->TFH --:tours
+TFH->TR --:tours
+ opt tours.Count == 0               
+    TR->TR --:0
+ end
+TR->TR --:tours.Max(t => t.Id) + 1
+TR->TR ++: tours.Add(tour)
+TR->TFH++:Save(tours)
+TFH->SS:ToCSV(FilePath,tours)
+deactivate SS
+deactivate TFH
+deactivate TR
+deactivate TS
+
+G->TRS:Update(TourRequest)
+TRS->TRR:Update(tourRequest)
+TRR->TRFH:Load()
+TRFH->SS:FromCSV(FilePath)
+SS->TRFH:tourRequests
+TRFH->TRR:tourRequests
+opt tourRequests.FindIndex(t => t.Id == tourRequest.Id) != -1
+ TRR->TRR:tourRequests[index] = tourRequest
+end
+TRR->TRFH:Save(tourRequests)
+TRFH->SS:ToCSV(FilePath,tourRequests)
+deactivate SS
+deactivate TRFH
+deactivate TRR
+deactivate TRS
+G->NTS:Create(notification)
+NTS->NTR:Create(notificationTour)
+NTR->NTR++:notificationTour.Id = NextId()
+NTR->NTFH++: Load()
+NTFH->SS ++:FromCSV(FilePath)
+SS->NTFH--:notificationTours
+NTFH->NTR --:notificationTours
+ opt notificationTours.Count == 0               
+    NTR->NTR --:0
+ end
+NTR->NTR --:notificationTours.Max(t => t.Id) + 1
+NTR->NTR++: notificationTours.Add(notificationTour)
+NTR->NTFH++:Save(notificationTours)
+NTFH->SS:ToCSV(FilePath,notificationTours)
+deactivate SS
+deactivate TFH
+deactivate TR
+deactivate TS
+
+
+
+@enduml

@@ -22,9 +22,18 @@ namespace ProjectSims.Service
             return userRepository.GetById(id);
         }
 
+        public User GetByUsername(string username)
+        {
+            return userRepository.GetByUsername(username);
+        }
+
         public void Update(User user) 
         {
             userRepository.Update(user);
+        }
+        public void Delete(User user)
+        {
+            userRepository.Remove(user);
         }
     }
 }

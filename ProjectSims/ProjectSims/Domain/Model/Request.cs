@@ -24,7 +24,7 @@ namespace ProjectSims.Domain.Model
         public bool Reserved { get; set; }
         public Request() { }
 
-        public Request(int id, int reservationId, DateOnly changeDate, RequestState state, string comment, bool reserved)
+        public Request(int id, int reservationId, DateOnly changeDate, RequestState state, string comment, bool reserved, AccommodationReservation reservation)
         {
             Id = id;
             ReservationId = reservationId;
@@ -32,6 +32,7 @@ namespace ProjectSims.Domain.Model
             State = state;
             OwnerComment = comment;
             Reserved = reserved;
+            Reservation = reservation;
         }
 
         public void FromCSV(string[] values)
@@ -42,7 +43,6 @@ namespace ProjectSims.Domain.Model
             State = Enum.Parse<RequestState>(values[3]);
             OwnerComment = values[4];
             Reserved = Convert.ToBoolean(values[5]);
-            InitializeData();
         }
 
         public string[] ToCSV()
@@ -56,13 +56,6 @@ namespace ProjectSims.Domain.Model
                 Reserved.ToString()
             };
             return csvvalues;
-        }
-
-        public void InitializeData()
-        {
-            AccommodationReservationRepository reservationRepository = new AccommodationReservationRepository();
-
-            Reservation = reservationRepository.GetById(ReservationId);
         }
     }
 }

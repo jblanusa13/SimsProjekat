@@ -6,7 +6,6 @@
       xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.MainPages"
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
       xmlns:fa="http://schemas.fontawesome.io/icons/" 
-      xmlns:val="clr-namespace:ProjectSims.Validation"
       mc:Ignorable="d" 
       d:DesignHeight="540" d:DesignWidth="1067"
       Title="AccommodationReservation">
@@ -14,9 +13,31 @@
     <Page.Resources>
         <Style TargetType="DataGrid" BasedOn="{StaticResource DataGridStyle}">
             <Setter Property="Background" Value="{DynamicResource DataGridBackground}"></Setter>
-            <Setter Property="ColumnHeaderStyle" Value="{DynamicResource DataGridHeader}"></Setter>
-            <Setter Property="RowStyle" Value="{DynamicResource DataGridRow}"></Setter>
+            <Setter Property="BorderBrush" Value="{DynamicResource SecondGrayShade}"></Setter>
         </Style>
+        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridHeader}">
+            <Setter Property="Background" Value="{DynamicResource HeaderBackground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource DataGridBorder}"/>
+            <Setter Property="Foreground" Value="{DynamicResource DataGridForeground}"/>
+        </Style>
+        <Style TargetType="DataGridRow" BasedOn="{StaticResource DataGridRow}">
+            <Setter Property="Background" Value="{DynamicResource RowBackground}"/>
+            <Setter Property="Foreground" Value="{DynamicResource DataGridForeground}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        <Style TargetType="DataGridCell" BasedOn="{StaticResource DataGridCell}">
+            <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusControl}"/>
+        </Style>
+        <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItem}">
+            <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusControl}"/>
+        </Style>
+
+        <ControlTemplate x:Key="ValidationTemplate">
+            <StackPanel>
+                <AdornedElementPlaceholder x:Name="textBox" />
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="9" FontFamily="Bahnschrift" />
+            </StackPanel>
+        </ControlTemplate>
     </Page.Resources>
 
     <Grid Background="{DynamicResource FirstGrayShade}">
@@ -29,29 +50,92 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="60"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="320"/>
             </Grid.ColumnDefinitions>
             
             <Grid Grid.Column="0">
-                <Button Margin="10" Click="Back_Click" Background="{DynamicResource SecondGrayShade}" BorderBrush="{DynamicResource SecondGrayShade}">
+                <Button Margin="10" x:Name="BackButton"
+                        Click="Back_Click" Background="{DynamicResource SecondGrayShade}" BorderBrush="{DynamicResource SecondGrayShade}"
+                        FocusVisualStyle="{DynamicResource FocusControl}">
                     <fa:ImageAwesome Icon="ArrowCircleLeft" Foreground="{DynamicResource FontsColor}"/>
                 </Button>
             </Grid>
 
             <Grid Grid.Column="1">
-                <Label Content="{Binding Accommodation.Name}" Margin="10,05" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></Label>
+                <Label Content="{Binding Accommodation.Name}" Margin="10,13,0,0" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></Label>
             </Grid>
 
             <Grid Grid.Column="2">
-                <Button x:Name="ButtonTheme" Margin="10,10,230,20" Click="Theme_Click"
-                        Background="{DynamicResource SecondGrayShade}">
-                    <DynamicResource ResourceKey="MoonIcon"></DynamicResource>
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="20"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="80"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="25"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" x:Name="ButtonTheme" Margin="0,5" Click="Theme_Click"
+                        Background="{DynamicResource SecondGrayShade}"
+                            BorderBrush="{DynamicResource BarShade}"
+                            FocusVisualStyle="{DynamicResource FocusControl}">
+                        <DynamicResource ResourceKey="PaintIconReservation"></DynamicResource>
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Label Grid.Row="1" Content="Tema" FontFamily="Bahnschrift" 
+                           Foreground="{DynamicResource FontsColor}" 
+                           FontSize="10" HorizontalContentAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="25"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" x:Name="ButtonLanguage" Margin="0,5"
+                        Background="{DynamicResource SecondGrayShade}" 
+                            BorderBrush="{DynamicResource BarShade}"
+                            FocusVisualStyle="{DynamicResource FocusControl}">
+                        <DynamicResource ResourceKey="LanguageIconReservation"></DynamicResource>
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Label Grid.Row="1" Content="Jezik" FontFamily="Bahnschrift" 
+                           Foreground="{DynamicResource FontsColor}" HorizontalContentAlignment="Center"
+                           FontSize="10"/>
+                </Grid>
+                <Grid Grid.Column="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="25"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" x:Name="ButtonNotifications" Margin="0,5"
+                        Background="{DynamicResource SecondGrayShade}" 
+                            BorderBrush="{DynamicResource BarShade}"
+                            FocusVisualStyle="{DynamicResource FocusControl}">
+                        <DynamicResource ResourceKey="NotificationsIconReservation"></DynamicResource>
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Label Grid.Row="1" Content="Obavestenja" FontFamily="Bahnschrift" 
+                           Foreground="{DynamicResource FontsColor}" 
+                           HorizontalContentAlignment="Center"
+                           FontSize="10"/>
+                </Grid>
+                
+                
             </Grid>
         </Grid>
 
@@ -69,7 +153,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
-                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="195"/>
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0" Margin="0,10,0,0">
@@ -82,7 +166,7 @@
                     <Label Grid.Column="1" Margin="0,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{Binding Accommodation.Location.City}"></Label>
                 </Grid>
 
-                <Grid Grid.Row="1" Margin="0,10,0,0">
+                <Grid Grid.Row="1" Margin="0,5,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="250"/>
@@ -92,7 +176,7 @@
                     <Label Grid.Column="1" Margin="0,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{Binding Accommodation.Location.Country}"></Label>
                 </Grid>
 
-                <Grid Grid.Row="2" Margin="0,10,0,0">
+                <Grid Grid.Row="2" Margin="0,5,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="250"/>
@@ -102,7 +186,7 @@
                     <Label Grid.Column="1" Margin="0,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{Binding Accommodation.Type}"></Label>
                 </Grid>
 
-                <Grid Grid.Row="3" Margin="0,10,0,0">
+                <Grid Grid.Row="3" Margin="0,5,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="250"/>
@@ -112,7 +196,7 @@
                     <Label Grid.Column="1" Margin="0,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{Binding Accommodation.GuestsMaximum}"></Label>
                 </Grid>
 
-                <Grid Grid.Row="4" Margin="0,10,0,0">
+                <Grid Grid.Row="4" Margin="0,5,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="250"/>
@@ -122,7 +206,7 @@
                     <Label Grid.Column="1" Margin="0,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{Binding Accommodation.MinimumReservationDays}"></Label>
                 </Grid>
 
-                <Grid Grid.Row="5" Margin="0,10,0,0">
+                <Grid Grid.Row="5" Margin="0,5,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="250"/>
@@ -179,7 +263,17 @@
                                 <DatePicker Name="FirstDatePicker" Margin="15,35,10,10" Height="28"
                                             DisplayDateStart="{x:Static sys:DateTime.Today}"
                                             SelectedDateChanged="FirstDatePicker_SelectedDateChanged"
-                                            Background="{DynamicResource TextboxColor}">
+                                            Background="{DynamicResource TextboxColor}"
+                                            FocusVisualStyle="{DynamicResource FocusControl}"
+                                            Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                                            Text="{Binding FirstDate, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
+                                    <DatePicker.Resources>
+                                        <Style TargetType="DatePickerTextBox">
+                                            <Setter Property="IsReadOnly" Value="True"/>
+                                            <Setter Property="Background" Value="{DynamicResource TextboxColor}"/>
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </DatePicker.Resources>
                                 </DatePicker>
                             </Grid>
 
@@ -187,7 +281,19 @@
                                 <Label Margin="10,5" FontSize="14" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}">Krajnji datum pretrage:</Label>
                                 <DatePicker Name="LastDatePicker" Margin="15,35,10,10" Height="28"
                                             DisplayDateStart="{x:Static sys:DateTime.Today}"
-                                            Background="{DynamicResource TextboxColor}"></DatePicker>
+                                            SelectedDateChanged="LastDatePicker_SelectedDateChanged"
+                                            Background="{DynamicResource TextboxColor}"
+                                            FocusVisualStyle="{DynamicResource FocusControl}"
+                                            Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                                            Text="{Binding LastDate, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
+                                    <DatePicker.Resources>
+                                        <Style TargetType="DatePickerTextBox">
+                                            <Setter Property="IsReadOnly" Value="True"/>
+                                            <Setter Property="Background" Value="{DynamicResource TextboxColor}"/>
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </DatePicker.Resources>
+                                </DatePicker>
                             </Grid>
 
                             <Grid Grid.Row="3">
@@ -195,59 +301,24 @@
 
                                 <TextBox Name="TextboxDaysNumber"
                                          Margin="15,35,10,0" Height="28" VerticalAlignment="Top"
-                                         Background="{DynamicResource TextboxColor}">
-                                    <TextBox.Text>
-                                        <Binding Path="DaysNumber" UpdateSourceTrigger="PropertyChanged">
-                                            <Binding.ValidationRules>
-                                                <val:StringToInt ValidationStep="RawProposedValue"/>
-                                                <val:MinInt ValidationStep="ConvertedProposedValue" Min="2"/>
-                                            </Binding.ValidationRules>
-                                        </Binding>
-                                    </TextBox.Text>
-                                    <Validation.ErrorTemplate>
-                                        <ControlTemplate>
-                                            <Grid>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition/>
-                                                    <RowDefinition/>
-                                                </Grid.RowDefinitions>
-                                                <AdornedElementPlaceholder Grid.Row="0"/>
-                                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
-                                            </Grid>
-                                        </ControlTemplate>
-                                    </Validation.ErrorTemplate>
+                                         Background="{DynamicResource TextboxColor}"
+                                         Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                                         Text="{Binding DaysNumber, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
                                 </TextBox>
                             </Grid>
 
                             <Grid Grid.Row="4">
                                 <Label Margin="10,5" FontSize="14" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}">Broj gostiju:</Label>
-                                <TextBox Margin="15,35,10,10" Background="{DynamicResource TextboxColor}" Height="28">
-                                    <TextBox.Text>
-                                        <Binding Path="GuestNumber" UpdateSourceTrigger="PropertyChanged">
-                                            <Binding.ValidationRules>
-                                                <val:StringToInt ValidationStep="RawProposedValue"/>
-                                                <val:MaxInt ValidationStep="ConvertedProposedValue" Max="6"/>
-                                            </Binding.ValidationRules>
-                                        </Binding>
-                                    </TextBox.Text>
-                                    <Validation.ErrorTemplate>
-                                        <ControlTemplate>
-                                            <Grid>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition/>
-                                                    <RowDefinition/>
-                                                </Grid.RowDefinitions>
-                                                <AdornedElementPlaceholder Grid.Row="0"/>
-                                                <TextBlock Grid.Row="1" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
-                                            </Grid>
-                                        </ControlTemplate>
-                                    </Validation.ErrorTemplate>
+                                <TextBox x:Name="TextboxGuestNumber" Margin="15,35,10,10" Background="{DynamicResource TextboxColor}" Height="28"
+                                         Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                                         Text="{Binding GuestNumber, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
                                 </TextBox>
                             </Grid>
 
                             <Grid Grid.Row="5">
                                 <Button Margin="15,20,10,15" Click="FindDates_Click" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}"
-                                        Background="{DynamicResource SecondGrayShade}">Pretrazi datume
+                                        Background="{DynamicResource SecondGrayShade}"
+                                        FocusVisualStyle="{DynamicResource FocusControl}">Pretrazi datume
                                     <Button.Resources>
                                         <Style TargetType="Border">
                                             <Setter Property="CornerRadius" Value="10"/>
@@ -259,27 +330,47 @@
 
                         <Grid Grid.Column="1">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="80"/>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="60"/>
                             </Grid.RowDefinitions>
 
-                            <DataGrid Grid.Row="0" Name="DatesTable" ItemsSource="{Binding AvailableDates, UpdateSourceTrigger=PropertyChanged}" 
-                                      Margin="30,80,30,10" 
+                            <Grid Grid.Row="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="22"/>
+                                    <RowDefinition Height="22"/>
+                                </Grid.RowDefinitions>
+
+                                <Label Grid.Row="1" FontSize="12" 
+                                   Margin="30,0,0,0"
+                                       Foreground="{DynamicResource FontsColor}">Da biste rezervisali,</Label>
+                                <Label Grid.Row="2" FontSize="12" 
+                                   Margin="30,0,0,0"
+                                       Foreground="{DynamicResource FontsColor}">pritisnite Enter na zeljenom opsegu datuma</Label>
+                            </Grid>
+                            
+
+                            <DataGrid Grid.Row="1" Name="DatesTable" ItemsSource="{Binding AvailableDates, UpdateSourceTrigger=PropertyChanged}" 
+                                      Margin="30,10,30,10" 
                                       AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single"
-                                      HeadersVisibility="Column">
+                                      HeadersVisibility="Column"
+                                      SelectionChanged="Dates_SelectionChanged"
+                                      PreviewKeyDown="Reserve">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Dolazak" Binding="{Binding CheckIn}" Width="150"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Odlazak"  Binding="{Binding CheckOut}" Width="*"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Dolazak" Binding="{Binding CheckIn}" Width="1*"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Odlazak"  Binding="{Binding CheckOut}" Width="1*"></DataGridTextColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
-                            <Grid Grid.Row="1">
+                            <Grid Grid.Row="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Button Grid.Column="0" Margin="30,20,10,15" FontFamily="Bahnschrift" Click="Confirm_Click" Foreground="{DynamicResource FontsColor}"
-                                        Background="{DynamicResource SecondGrayShade}">Potvrdi rezervaciju
+                                        Background="{DynamicResource SecondGrayShade}"
+                                        FocusVisualStyle="{DynamicResource FocusControl}">Potvrdi rezervaciju
                                     <Button.Resources>
                                         <Style TargetType="Border">
                                             <Setter Property="CornerRadius" Value="10"/>
@@ -287,7 +378,8 @@
                                     </Button.Resources>
                                 </Button>
                                 <Button Grid.Column="1" Margin="30,20,30,15" FontFamily="Bahnschrift" Click="Cancel_Click" Foreground="{DynamicResource FontsColor}"
-                                        Background="{DynamicResource SecondGrayShade}">Otkazi
+                                        Background="{DynamicResource SecondGrayShade}"
+                                        FocusVisualStyle="{DynamicResource FocusControl}">Otkazi
                                     <Button.Resources>
                                         <Style TargetType="Border">
                                             <Setter Property="CornerRadius" Value="10"/>

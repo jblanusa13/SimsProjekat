@@ -14,12 +14,9 @@ namespace ProjectSims.FileHandler
 
         private Serializer<User> _serializer;
 
-        private List<User> users;
-
         public UserFileHandler()
         {
             _serializer = new Serializer<User>();
-            //users = _serializer.FromCSV(FilePath);
         }
 
         public List<User> Load()
@@ -30,17 +27,6 @@ namespace ProjectSims.FileHandler
         public void Save(List<User> users)
         {
             _serializer.ToCSV(FilePath, users);
-        }
-
-        public User GetByUsername(string username)
-        {
-            users = _serializer.FromCSV(FilePath);
-            return users.FirstOrDefault(u => u.Username == username);
-        }
-        public User Get(int id)
-        {
-            users = _serializer.FromCSV(FilePath);
-            return users.FirstOrDefault(u => u.Id == id);
         }
     }
 }

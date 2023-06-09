@@ -23,6 +23,10 @@ namespace ProjectSims.Repository
             guides = guideFileHandler.Load();
             observers = new List<IObserver>();
         }
+        public Guide GetByUserId(int userId)
+        {
+            return guides.FirstOrDefault(g => g.UserId == userId);
+        }
 
         public int NextId()
         {

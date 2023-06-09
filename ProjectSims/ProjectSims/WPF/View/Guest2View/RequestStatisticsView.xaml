@@ -25,9 +25,25 @@
 
         <lvc:PieChart Grid.Row="1" Grid.Column="0" Series="{Binding PieSeries}" LegendLocation="Right" Hoverable="False" FontSize="13" FontWeight="Bold" Margin="60,49,60,30"/>
         <Label Content="Procenat (ne)prihvacenih zahtjeva:" FontSize="13" HorizontalAlignment="Left" Margin="110,17,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label Content="Izaberite godinu:" FontSize="13" HorizontalAlignment="Left" Margin="450,17,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <ComboBox Grid.Row="1" Margin="450,44,44,251" Text="{Binding Path=Year, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+            <ComboBoxItem IsSelected="True">Svih vremena</ComboBoxItem>
+            <ComboBoxItem>2023</ComboBoxItem>
+            <ComboBoxItem>2022</ComboBoxItem>
+            <ComboBoxItem>2021</ComboBoxItem>
+            <ComboBoxItem>2020</ComboBoxItem>
+        </ComboBox>
 
         <Label Content="Prosecan broj ljudi u zahtjevima koji su prihvaceni:" FontSize="13" HorizontalAlignment="Left" Margin="110,37,0,0" Grid.Row="2" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="154,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding AverageNumberOfPeople}" VerticalAlignment="Center" FontSize="100" Foreground="#FF2195F2"/>
+        <TextBlock HorizontalAlignment="Left" Margin="154,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding AverageNumberOfPeople, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" FontSize="100" Foreground="#FF2195F2"/>
+        <Label Content="Izaberite godinu:" FontSize="13" HorizontalAlignment="Left" Margin="450,37,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+        <ComboBox Grid.Row="2" Margin="450,64,44,251" Text="{Binding YearForAveragePeople, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <ComboBoxItem IsSelected="True" Content="Svih vremena"/>
+            <ComboBoxItem Content="2023"/>
+            <ComboBoxItem Content="2022"/>
+            <ComboBoxItem Content="2021"/>
+            <ComboBoxItem Content="2020"/>
+        </ComboBox>
 
         <lvc:CartesianChart Grid.Row="1" Grid.Column="1" Series="{Binding NumberRequestForLanguageSeriesCollection}" LegendLocation="Top" Margin="20,49,31,30">
             <lvc:CartesianChart.AxisX>

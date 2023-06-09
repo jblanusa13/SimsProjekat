@@ -14,31 +14,69 @@ namespace ProjectSims.Service
 {
     public class RequestService
     {
-        private DateRangesService dateRangesService;
+        private AccommodationScheduleRepository accommodationScheduleRepository;
         private IRequestRepository requestRepository;
+        private IAccommodationReservationRepository accommodationReservationRepository;
         public RequestService()
         {
-            dateRangesService = new DateRangesService();
+            accommodationScheduleRepository = new AccommodationScheduleRepository();
             requestRepository = Injector.CreateInstance<IRequestRepository>();
+            accommodationReservationRepository = Injector.CreateInstance<IAccommodationReservationRepository>();
+
+            InitializeReservation();    
+        }
+
+        private void InitializeReservation()
+        {
+            foreach(var request in requestRepository.GetAll())
+            {
+                request.Reservation = accommodationReservationRepository.GetById(request.ReservationId);
+            }
         }
 
         public List<Request> GetAllRequestByGuest(int guestId)
         {
             return requestRepository.GetAllByGuest(guestId);
         }
-        public List<Request> GetAllRequestByOwner(int ownerId)
-        {
-            return requestRepository.GetAllByOwner(ownerId);
-        }
+
         public List<Request> GetAllRequests()
         {
+            InitializeReservation();
             return requestRepository.GetAll();
+        }
+
+        public int GetAllShiftedReservationsByYear(string year, int ownerId)
+        {
+            int number = 0;
+            foreach (Request request in requestRepository.GetAllByOwner(ownerId))
+            {
+                if (request.Reservation.CheckInDate.Year.ToString().Equals(year) && request.State==RequestState.Approved)
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+
+        public int GetAllShiftedReservationsByMonth(string month, string year, int ownerId)
+        {
+            int number = 0;
+            foreach (Request request in requestRepository.GetAllByOwner(ownerId))
+            {
+                if (request.Reservation.CheckInDate.Year.ToString().Equals(year) 
+                    && request.Reservation.CheckInDate.Month.ToString().Equals(month) 
+                    && request.State == RequestState.Approved)
+                {
+                    number++;
+                }       
+            }
+            return number;
         }
 
         public void CreateRequest(int reservationId, DateOnly dateChange)
         {
             int id = requestRepository.NextId();
-            Request request = new Request(id, reservationId, dateChange, RequestState.Waiting, "", false);
+            Request request = new Request(id, reservationId, dateChange, RequestState.Waiting, "", false, accommodationReservationRepository.GetById(reservationId));
             SetReservedForRequest(request);
             requestRepository.Create(request);
         }
@@ -50,20 +88,25 @@ namespace ProjectSims.Service
         {
             requestRepository.Remove(request);
         }
-
-        public void UpdateRequestsWhenCancelReservation(AccommodationReservation reservation)
+        public bool HasWaitingRequests(int ownerId)
         {
-            Request request = requestRepository.GetByReservationId(reservation.Id);
-            requestRepository.Remove(request);
+            foreach (Request request in requestRepository.GetAllByOwner(ownerId))
+            {
+                if (request.State.Equals(RequestState.Waiting))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
-
         private void SetReservedForRequest(Request request)
         {
-            List<DateRanges> unavailableDates = dateRangesService.FindUnavailableDatesForRequest(request);
+            List<DateRanges> unavailableDates = accommodationScheduleRepository.GetUnavailableDates(request.Reservation.AccommodationId);
+            //dateRangesService.FindUnavailableDatesForRequest(request);
 
-            foreach (var date in dateRangesService.FindUnavailableDatesForRequest(request))
+            foreach (var date in accommodationScheduleRepository.FindUnavailableDatesForRequest(request))
             {
-                if (dateRangesService.IsInRange(request, date.CheckIn, date.CheckOut))
+                if (accommodationScheduleRepository.IsAvailableRequestedDate(request, date.CheckIn, date.CheckOut))
                 {
                     request.Reserved = true;
                 }

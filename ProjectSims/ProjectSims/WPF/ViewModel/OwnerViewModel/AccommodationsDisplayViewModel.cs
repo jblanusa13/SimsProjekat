@@ -14,28 +14,38 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
     public class AccommodationsDisplayViewModel : IObserver
     {
         public Owner Owner { get; set; }
-        public ObservableCollection<Accommodation> Accommodations { get; set; }
+        public ObservableCollection<Accommodation> AccommodationsForDisplay { get; set; }
+
         private AccommodationService accommodationService;
-        private OwnerService ownerService;
+        private RequestService requestService;
+        private AccommodationReservationService accommodationReservationService;
+        private RenovationScheduleService renovationScheduleService;
         
         public AccommodationsDisplayViewModel(Owner o) {
             Owner = o;
             accommodationService = new AccommodationService();
-            accommodationService.Subscribe(this); 
-            Accommodations = new ObservableCollection<Accommodation>(accommodationService.GetAllByOwnerId(Owner.Id));
-            ownerService = new OwnerService();
+            accommodationService.Subscribe(this);
+            accommodationReservationService = new AccommodationReservationService();
+            AccommodationsForDisplay = new ObservableCollection<Accommodation>(accommodationService.GetAccommodationsByOwner(Owner.Id));
+            requestService = new RequestService();
+            renovationScheduleService = new RenovationScheduleService();
         }
         public bool HasWaitingRequests(Owner owner)
         {
-            return ownerService.HasWaitingRequests(owner.Id);
+            return requestService.HasWaitingRequests(owner.Id);
+        }
+
+        public void UpdateAccommodationsIfRenovated()
+        {
+            renovationScheduleService.UpdateIfRenovated(accommodationService.GetAccommodationsByOwner(Owner.Id));
         }
 
         public void Update()
         {
-            Accommodations.Clear();
-            foreach (Accommodation accommodation in accommodationService.GetAllAccommodations())
+            AccommodationsForDisplay.Clear();
+            foreach (Accommodation accommodation in accommodationService.GetAccommodationsByOwner(Owner.Id))
             {
-                Accommodations.Add(accommodation);
+                AccommodationsForDisplay.Add(accommodation);
             }
         }
     }

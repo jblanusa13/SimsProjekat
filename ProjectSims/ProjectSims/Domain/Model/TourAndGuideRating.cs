@@ -15,6 +15,7 @@ namespace ProjectSims.Domain.Model
         public int GuestId { get; set; }
         public Guest2 Guest { get; set; }
         public int TourId { get; set; }
+        public Tour Tour { get; set; }
         public int KnowledgeGuide { get; set; }
         public int LanguageGuide { get; set; }
         public int InterestingTour { get; set; }
@@ -71,12 +72,7 @@ namespace ProjectSims.Domain.Model
                 Images.Add(image);
             }
             IsValid = Convert.ToBoolean(values[8]);
-            //InitializeData();
         }
-       // public void InitializeData()
-        //{
-           // Guest2Service guest2Service = new Guest2Service();
-           // Guest = guest2Service.GetGuestById(GuestId);
-       // }
+
     }
 }

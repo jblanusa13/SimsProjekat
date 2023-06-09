@@ -1,4 +1,5 @@
 ﻿using ProjectSims.Domain.Model;
+using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.FileHandler;
 using ProjectSims.Observer;
 using System;
@@ -9,11 +10,10 @@ using System.Threading.Tasks;
 
 namespace ProjectSims.Repository
 {
-    class LastShownRepository
+    public class LastShownRepository : ILastShownRepository
     {
         private LastShownFileHandler lastShownFileHandler;
         private List<LastShown> lastShownList;
-
         private List<IObserver> observers;
 
         public LastShownRepository()
@@ -22,10 +22,25 @@ namespace ProjectSims.Repository
             lastShownList = lastShownFileHandler.Load();
             observers = new List<IObserver>();
         }
-
-        public void Add(LastShown lastShownItem)
+        public int NextId()
         {
-            lastShownList.Add(lastShownItem);
+            return -1;
+        }
+
+        public void Create(LastShown entity)
+        {
+            lastShownList.Add(entity);
+            lastShownFileHandler.Save(lastShownList);
+            NotifyObservers();
+        }
+
+        public void Update(LastShown entity)
+        {
+        }
+
+        public void Remove(LastShown entity)
+        {
+            lastShownList.Remove(entity);
             lastShownFileHandler.Save(lastShownList);
             NotifyObservers();
         }
@@ -34,7 +49,10 @@ namespace ProjectSims.Repository
         {
             return lastShownList;
         }
-
+        public LastShown GetById(int key)
+        {
+            return GetAll().First();
+        }
         public void NotifyObservers()
         {
             foreach (var observer in observers)

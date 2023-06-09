@@ -15,12 +15,14 @@ namespace ProjectSims.Repository
     {
         private UserFileHandler userFileHandler;
         private List<User> users;
-        private List<IObserver> observers;
         public UserRepository()
         {
             userFileHandler = new UserFileHandler();
             users = userFileHandler.Load();
-            observers = new List<IObserver>();
+        }
+        public User GetByUsername(string username)
+        {
+            return users.FirstOrDefault(u => u.Username == username);
         }
         public int NextId()
         {
@@ -35,13 +37,11 @@ namespace ProjectSims.Repository
             user.Id = NextId();
             users.Add(user);
             userFileHandler.Save(users);
-            NotifyObservers();
         }
         public void Remove(User user)
         {
             users.Remove(user);
             userFileHandler.Save(users);
-            NotifyObservers();
         }
         public void Update(User user)
         {
@@ -51,7 +51,6 @@ namespace ProjectSims.Repository
                 users[index] = user;
             }
             userFileHandler.Save(users);
-            NotifyObservers();
         }
         public User GetById(int id)
         {
@@ -60,21 +59,6 @@ namespace ProjectSims.Repository
         public List<User> GetAll()
         {
             return userFileHandler.Load();
-        }
-        public void Subscribe(IObserver observer)
-        {
-            observers.Add(observer);
-        }
-        public void Unsubscribe(IObserver observer)
-        {
-            observers.Remove(observer);
-        }
-        public void NotifyObservers()
-        {
-            foreach (var observer in observers)
-            {
-                observer.Update();
-            }
         }
     }
 }

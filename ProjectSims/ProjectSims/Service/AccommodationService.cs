@@ -7,18 +7,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Domain.RepositoryInterface;
+using System.Collections.ObjectModel;
 
 namespace ProjectSims.Service
 {
     public class AccommodationService
     {
         private IAccommodationRepository accommodationRepository;
-        private IAccommodationScheduleRepository scheduleRepository;
+        private IAccommodationScheduleRepository accommodationScheduleRepository;
+        private ILocationRepository locationRepository;
 
         public AccommodationService()
         {
             accommodationRepository = Injector.CreateInstance<IAccommodationRepository>();
-            scheduleRepository = Injector.CreateInstance<IAccommodationScheduleRepository>();
+            accommodationScheduleRepository = Injector.CreateInstance<IAccommodationScheduleRepository>();
+            locationRepository = Injector.CreateInstance<ILocationRepository>();
+            InitializeSchedule();
+            InitializeLocation();
+        }
+
+        private void InitializeSchedule()
+        {
+            foreach (Accommodation accommodation in GetAllAccommodations()) 
+            {
+                accommodation.Schedule = accommodationScheduleRepository.GetById(accommodation.ScheduleId);
+            }
+        }
+
+        private void InitializeLocation()
+        {
+            foreach (Accommodation accommodation in GetAllAccommodations())
+            {
+                accommodation.Location = locationRepository.GetById(accommodation.IdLocation);
+            }
         }
 
         public List<Accommodation> GetAllAccommodations()
@@ -31,17 +52,9 @@ namespace ProjectSims.Service
             return GetAllAccommodations();
         }
 
-        public List<Accommodation> GetAllByOwnerId(int ownerId) 
+        public List<Accommodation> GetAccommodationsByOwner(int ownerId) 
         {
-            List<Accommodation> accommodations = new List<Accommodation>();
-            foreach (var item in GetAllAccommodations())
-            {
-                if (item.IdOwner == ownerId)
-                {
-                    accommodations.Add(item);
-                }
-            }
-            return accommodations;
+            return accommodationRepository.GetAllByOwner(ownerId);
         }
 
         public Accommodation GetAccommodation(int id)
@@ -51,8 +64,9 @@ namespace ProjectSims.Service
 
         public void Create(Accommodation accommodation)
         {
-            accommodation.ScheduleId = scheduleRepository.NextId();
+            accommodation.ScheduleId = accommodationScheduleRepository.NextId();
             accommodationRepository.Create(accommodation);
+            accommodationScheduleRepository.Create(accommodation.Schedule);
         }
 
         public void Delete(Accommodation accommodation)
@@ -64,7 +78,7 @@ namespace ProjectSims.Service
         {
             accommodationRepository.Update(accommodation);
         }
-
+               
         public void Subscribe(IObserver observer)
         {
             accommodationRepository.Subscribe(observer);

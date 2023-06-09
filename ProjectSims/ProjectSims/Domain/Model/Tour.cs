@@ -14,25 +14,31 @@ namespace ProjectSims.Domain.Model
     {
         public int Id { get; set; }
         public int GuideId { get; set; }
+        public Guide Guide { get; set; }
         public string Name { get; set; }
         public string Location { get; set; }
         public string Description { get; set; }
         public string Language { get; set; }
         public int MaxNumberGuests { get; set; }
         public List<int> KeyPointIds { get; set; }
+        public List<KeyPoint> KeyPoints {get; set;}
         public DateTime StartOfTheTour { get; set; }
         public double Duration { get; set; }
         public List<string> Images { get; set; }
         public int AvailableSeats { get; set; }
         public TourState State { get; set; }
         public int ActiveKeyPointId { get; set; }
+        public KeyPoint ActiveKeyPoint { get; set; }
+        public int TourRequestId { get; set; }
+        public TourRequest TourRequest { get; set; }
         public Tour() 
         {
             KeyPointIds = new List<int>();
+            KeyPoints = new List<KeyPoint>();
             Images = new List<string>();
         }
 
-        public Tour(int id, int guideId, string name, string location, string description, string language, int maxNumberGuests,List<int> keyPointIds, DateTime startOfTheTour, double duration, List<String> images, int availableSeats, TourState state,int activeKeyPointId)
+        public Tour(int id, int guideId, string name, string location, string description, string language, int maxNumberGuests,List<int> keyPointIds, DateTime startOfTheTour, double duration, List<String> images, int availableSeats, TourState state, int activeKeyPointId, List<KeyPoint> keyPoints, int tourRequestId)
         {
             Id = id;
             GuideId = guideId;
@@ -48,6 +54,8 @@ namespace ProjectSims.Domain.Model
             AvailableSeats = availableSeats;
             State = state;
             ActiveKeyPointId = activeKeyPointId;
+            KeyPoints = new List<KeyPoint>();
+            TourRequestId = tourRequestId;
         }
 
         public static TourState GetState(string state)
@@ -93,6 +101,7 @@ namespace ProjectSims.Domain.Model
             AvailableSeats = Convert.ToInt32(values[11]);
             State = (TourState)Enum.Parse(typeof(TourState), values[12]);
             ActiveKeyPointId = Convert.ToInt32(values[13]);
+            TourRequestId = Convert.ToInt32(values[14]);
         }
 
         public string[] ToCSV()
@@ -117,7 +126,7 @@ namespace ProjectSims.Domain.Model
             }
             ImageString += Images.Last();
 
-            string[] csvvalues = { Id.ToString(), GuideId.ToString(), Name, Location, Description, Language, MaxNumberGuests.ToString(), KeyPointIdArray, StartOfTheTour.ToString("dd/MM/yyyy HH:mm:ss"), Duration.ToString(), ImageString, AvailableSeats.ToString(),State.ToString(),ActiveKeyPointId.ToString()};
+            string[] csvvalues = { Id.ToString(), GuideId.ToString(), Name, Location, Description, Language, MaxNumberGuests.ToString(), KeyPointIdArray, StartOfTheTour.ToString("dd/MM/yyyy HH:mm:ss"), Duration.ToString(), ImageString, AvailableSeats.ToString(),State.ToString(),ActiveKeyPointId.ToString(),TourRequestId.ToString()};
             return csvvalues;
         }
     }

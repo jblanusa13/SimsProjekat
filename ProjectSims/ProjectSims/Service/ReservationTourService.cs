@@ -8,18 +8,48 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics.Eventing.Reader;
 using ProjectSims.Domain.RepositoryInterface;
+using ProjectSims.WPF.View.Guest1View.MainPages;
 
 namespace ProjectSims.Service
 {
     public class ReservationTourService
     {
         private IReservationTourRepository reservationTourRepository;
-        private Guest2Service guestService;
+        private IGuest2Repository guest2Repository;
+        private ITourRepository tourRepository;
+        private IKeyPointRepository keyPointRepository;
+
 
         public ReservationTourService()
         {
             reservationTourRepository = Injector.CreateInstance<IReservationTourRepository>();
-            guestService = new Guest2Service();
+            guest2Repository = Injector.CreateInstance<IGuest2Repository>();
+            tourRepository = Injector.CreateInstance<ITourRepository>();
+            keyPointRepository = Injector.CreateInstance<IKeyPointRepository>();
+            InitializeGuest();
+            InitializeTour();
+            InitializeKeyPoint();
+        }
+        private void InitializeGuest()
+        {
+            foreach (var item in reservationTourRepository.GetAll())
+            {
+                item.Guest2 = guest2Repository.GetById(item.Guest2Id);
+            }
+        }
+        private void InitializeTour()
+        {
+            foreach (var item in reservationTourRepository.GetAll())
+            {
+                item.Tour = tourRepository.GetById(item.TourId);
+            }
+        }
+        private void InitializeKeyPoint()
+        {
+            foreach (var item in reservationTourRepository.GetAll())
+            {
+                item.KeyPointWhereGuestArrived = keyPointRepository.GetById(item.KeyPointWhereGuestArrivedId);
+            }
         }
         public List<ReservationTour> GetAllReservations()
         {
@@ -28,6 +58,17 @@ namespace ProjectSims.Service
         public List<ReservationTour> GetReservationsByTour(Tour tour)
         {
             return reservationTourRepository.GetReservationsByTour(tour);
+        }
+        public List<Guest2> GetGuestsForScheduledToursByGuideId(int guideId)
+        {
+            List<Tour> scheduledTours = tourRepository.GetToursByStateAndGuideId(TourState.Inactive,guideId);
+            List<ReservationTour> reservations = new List<ReservationTour>();
+            foreach (var scheduledTour in scheduledTours)
+            {
+                reservations.AddRange(reservationTourRepository.GetReservationsByTour(scheduledTour));
+            }
+            List<Guest2> loadedGuests = reservations.Select(r=>r.Guest2).ToList();
+            return loadedGuests.Distinct().ToList();
         }
         public List<ReservationTour> GetReservationsByTourAndState(Tour tour,Guest2State state)
         {
@@ -61,7 +102,7 @@ namespace ProjectSims.Service
             double numberOfPresentGuests = (double)GetNumberOfPresentGuests(tour);
             if (numberOfPresentGuestsWithVoucher != 0)
             {
-                double percentage = (numberOfPresentGuestsWithVoucher /numberOfPresentGuests) *100;
+                double percentage = (numberOfPresentGuestsWithVoucher / numberOfPresentGuests) *100;
                 return Math.Round(percentage, 2);
             }
             else
@@ -125,6 +166,10 @@ namespace ProjectSims.Service
         public void Subscribe(IObserver observer)
         {
             reservationTourRepository.Subscribe(observer);
+        }
+        public List<ReservationTour> GetReservationsForGuest(int guest2Id)
+        {
+            return GetAllReservations().Where(r => r.Guest2Id == guest2Id).ToList();
         }
     }
 }

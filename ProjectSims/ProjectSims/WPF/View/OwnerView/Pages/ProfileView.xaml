@@ -1,0 +1,44 @@
+﻿<Page x:Class="ProjectSims.WPF.View.OwnerView.Pages.ProfileView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectSims.WPF.View.OwnerView.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="750" d:DesignWidth="450"
+      Title="Profile">
+    <StackPanel>
+        <Border>
+            <Grid Height="460"  Margin="25 29 25 0" Background="#ebf5ff">
+                <Label Content="Ime i prezime:" FontSize="16"  HorizontalAlignment="Left" Margin="29,65,0,0" VerticalAlignment="Top" Width="225" Height="55"/>
+                <Label Content="Korisničko ime:" FontSize="16" HorizontalAlignment="Left" Margin="29,125,0,0" VerticalAlignment="Top" Height="30" Width="225"/>
+                <Label Content="Lozinka:" FontSize="16" HorizontalAlignment="Left" Margin="29,185,0,0" VerticalAlignment="Top" Width="225"/>
+                <Label Content="Email:" FontSize="16" HorizontalAlignment="Left" Margin="29,245,0,0" VerticalAlignment="Top" Width="225"/>
+                <Label Content="Adresa:" FontSize="16" HorizontalAlignment="Left" Margin="29,305,0,0" VerticalAlignment="Top" Width="225"/>
+                <Label Content="Supervlasnik:"  FontSize="16" HorizontalAlignment="Left" Margin="29,365,0,0" VerticalAlignment="Top" Width="225"/>
+                <TextBox x:Name="NameTextBox"  FontSize="14" HorizontalAlignment="Left" Height="22" Margin="195,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" IsEnabled="True">
+                    <TextBox.Text>
+                        <MultiBinding StringFormat="{}{0} {1}">
+                            <Binding Path="Owner.Name"/>
+                            <Binding Path="Owner.Surname"/>
+                        </MultiBinding>
+                    </TextBox.Text>        
+                </TextBox>
+                <TextBox x:Name="UsernameTextBox" FontSize="14" Text="{Binding Path=Owner.User.Username, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Height="22" Margin="195,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151"/>
+                <TextBox x:Name="PasswordTextBox" FontSize="14" Text="{Binding Path=Owner.User.Password, TargetNullValue='', UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Height="22" Margin="195,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" IsEnabled="True"/>
+                <TextBox x:Name="EmailTextBox" FontSize="14" Text="{Binding Path=Owner.Email, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, TargetNullValue=''}" HorizontalAlignment="Left" Height="22" Margin="195,249,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" IsEnabled="True"/>
+                <TextBox x:Name="AddressTextBox" FontSize="14" Text="{Binding Path=Owner.Address, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Height="22" Margin="195,309,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" IsEnabled="True"/>
+                <CheckBox x:Name="SuperOwnerCheckBox" IsChecked="{Binding Owner.SuperOwner, Mode=TwoWay}" HorizontalAlignment="Left" Height="27" Margin="258,369,0,0" VerticalAlignment="Top" Width="26" IsEnabled="False" RenderTransformOrigin="0.115,0.404"/>
+            </Grid>
+        </Border>
+        <Button Content="Izmijeni"
+                Click="Change_Click"
+                FontSize="16"
+                HorizontalAlignment="Center" 
+                Height="29" 
+                Margin="0,80,0,0" 
+                VerticalAlignment="Top" 
+                Width="90" 
+                IsDefault="True"/>
+    </StackPanel>
+</Page>

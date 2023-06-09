@@ -28,7 +28,7 @@ namespace ProjectSims.Domain.Model
 
         public AccommodationReservation() { }
 
-        public AccommodationReservation(int id, int accommodationId, int guestId,  DateOnly checkInDate, DateOnly checkOutDate, int guestNumber, ReservationState state, bool ratedAccommodation, bool ratedGuest)
+        public AccommodationReservation(int id, int accommodationId, int guestId,  DateOnly checkInDate, DateOnly checkOutDate, int guestNumber, ReservationState state, bool ratedAccommodation, bool ratedGuest, Accommodation accommodation)
         {
             Id = id;
             AccommodationId = accommodationId;
@@ -39,6 +39,7 @@ namespace ProjectSims.Domain.Model
             State = state;
             RatedAccommodation = ratedAccommodation;
             RatedGuest = ratedGuest;
+            Accommodation = accommodation;
         }
 
         public void FromCSV(string[] values)
@@ -52,7 +53,6 @@ namespace ProjectSims.Domain.Model
             State = Enum.Parse<ReservationState>(values[6]);
             RatedAccommodation = Convert.ToBoolean(values[7]);
             RatedGuest = Convert.ToBoolean(values[8]);
-            InitializeData();
         }
 
         public string[] ToCSV()
@@ -69,15 +69,6 @@ namespace ProjectSims.Domain.Model
                 RatedGuest.ToString()
             };
             return csvvalues;
-        }
-        public void InitializeData()
-        {
-            //Guest = Injector.CreateInstance<IGuest1Repository>().GetById(GuestId);
-            AccommodationRepository accommodationRepository = new AccommodationRepository();
-            Guest1Repository guest1Repository = new Guest1Repository();
-
-            Accommodation = accommodationRepository.GetById(AccommodationId);
-            Guest = guest1Repository.GetById(GuestId);
         }
     }
 }

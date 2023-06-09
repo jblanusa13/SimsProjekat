@@ -27,7 +27,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         public AcceptTourView(TourRequest tourRequest,Guide guide)
         {
             InitializeComponent();
-            this.DataContext = new AcceptTourViewModel(tourRequest);
+            this.DataContext = new AcceptTourViewModel(tourRequest,DateComboBox,TimeComboBox,DurationComboBox);
             Guide = guide;
             TourRequest=tourRequest;
         }

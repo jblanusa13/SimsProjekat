@@ -4,9 +4,9 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
+      xmlns:conv="clr-namespace:CalcBinding;assembly=CalcBinding"
       mc:Ignorable="d" 
-      d:DesignHeight="1000" d:DesignWidth="1280"
-      Title="FinishedToursView">
+      d:DesignHeight="1000" d:DesignWidth="1280">
     <Page.Resources>
         <Style TargetType="{x:Type Label}">
             <Setter Property="Foreground" Value="White"/>
@@ -63,8 +63,8 @@
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <Setter Property="Background" Value="Transparent"/>
-                                            <Setter Property="Height" Value="65"/>
-                                            <Setter Property="Width" Value="65"/>
+                                            <Setter Property="Height" Value="35"/>
+                                            <Setter Property="Width" Value="35"/>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>
@@ -87,8 +87,8 @@
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <Setter Property="Background" Value="Transparent"/>
-                                            <Setter Property="Height" Value="64"/>
-                                            <Setter Property="Width" Value="64"/>
+                                            <Setter Property="Height" Value="65"/>
+                                            <Setter Property="Width" Value="65"/>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>
@@ -115,7 +115,7 @@
                 </Grid>
             </Border>
         </Grid>
-        <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,40,0,0">
+        <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,40,0,0" Height="450">
             <Grid Background="Transparent">
             <Label Content="Lista zahteva" HorizontalAlignment="Center" Margin="0,50,0,0" FontSize="44" Height="50" FontWeight="Bold"/>
             <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,100,0,0" Width="1280" Height="140">
@@ -152,52 +152,60 @@
                     <Style TargetType="{x:Type Label}">
                             <Setter Property="Foreground" Value="#FF1B5886"/>
                             <Setter Property="FontFamily" Value="Helvetica"/>
-                            <Setter Property="FontSize" Value="22"/>
-                            <Setter Property="Height" Value="90"/>
-                            <Setter Property="Margin" Value="30,50,0,0"/>
-                     </Style>
+                            <Setter Property="FontSize" Value="18"/>
+                            <Setter Property="Height" Value="40"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
                 </ListView.Resources>
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeader}">
-                        <GridViewColumn Header="Lokacija" Width="300">
+                        <GridViewColumn Header="Lokacija" Width="250">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Label Content="{Binding Location}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Jezik" Width="250">
+                            <GridViewColumn Header="Jezik"  Width="150">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                         <Label Content="{Binding Language}"/>
                                     </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Broj ljudi" Width="150" >
+                            <GridViewColumn Header="Broj ljudi" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Label Content="{Binding MaxNumberGuests}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Opseg datuma" Width="280">
+                            <GridViewColumn Header="Opseg datuma"  Width="250">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Label >
+                                        <TextBlock Margin="0,50,0,0" Foreground="#FF1B5886" FontSize="18" FontFamily="Helvetica" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80" >
                                         <AccessText>
-                                            <MultiBinding StringFormat="{}{0} - {1}">
+                                            <MultiBinding StringFormat="{}{0:dd/MM/yyyy} - {1:dd/MM/yyyy}">
                                                 <Binding Path="DateRangeStart" />
-                                                <Binding Path="DateRangeEnd" />
+                                                <Binding Path="DateRangeEnd"/>
                                             </MultiBinding>
                                         </AccessText>
-                                    </Label>
+                                    </TextBlock>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Detalji i prihvatanje ture" Width="210">
+                            <GridViewColumn Header="Vrsta zahteva"  Width="180">
+                            <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text = "{conv:Binding (RequestForComplexTour?\'deo slozenog\':\'obican\')}" Foreground="#FF1B5886"  Background="Transparent" FontFamily="Helvetica" FontSize="18" BorderThickness="0"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                            <GridViewColumn Header="Detalji i prihvatanje ture" Width="260">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                        <Button Style="{StaticResource TransparentStyle}" Height="70" Cursor="Hand" Width="70" Background="Transparent" Click="Details_Click" BorderThickness="0" Margin="60,0,0,0">
+                                        <Button Style="{StaticResource TransparentStyle}" Height="45" Cursor="Hand" Width="45" Background="Transparent" Click="Details_Click" BorderThickness="0" Margin="60,0,0,0">
                                             <Image Source="/Resources/Icons/Guide/info.png"/>
                                     </Button>
                                 </DataTemplate>

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjectSims.Domain.RepositoryInterface
 {
-    interface IGuestRatingRepository : IGenericRepository<GuestRating, int>, ISubject
+    public interface IGuestRatingRepository : IGenericRepository<GuestRating, int>, ISubject
     {
         public List<GuestRating> GetAllForGuest(int guestId);
         public void ReloadRatingList();

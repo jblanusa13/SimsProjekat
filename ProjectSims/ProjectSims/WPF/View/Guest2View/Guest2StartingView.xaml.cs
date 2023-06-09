@@ -16,17 +16,42 @@ using System.Windows.Shapes;
 using ProjectSims.WPF.View.Guest2View.Pages;
 using System.Windows.Threading;
 using ProjectSims.WPF.ViewModel.Guest2ViewModel;
+using ProjectSims.Observer;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace ProjectSims.WPF.View.Guest2View
 {
     /// <summary>
     /// Interaction logic for Guest2StartingView.xaml
     /// </summary>
-    public partial class Guest2StartingView : Window
+    public partial class Guest2StartingView : Window, IObserver, INotifyPropertyChanged
     {
         private TourService tourService;
         private ReservationTourService reservationTourService;
+        private Guest2Service guest2Service;
+        private VoucherService voucherService;
         public Guest2 guest2 { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private int numberNotification;
+        public int NumberNotification
+        {
+            get => numberNotification;
+            set
+            {
+                if(value != numberNotification)
+                {
+                    numberNotification = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private NotificationTourService notificationTourService;
         public Guest2StartingView(Guest2 g)
         {
             InitializeComponent();
@@ -38,6 +63,10 @@ namespace ProjectSims.WPF.View.Guest2View
 
             reservationTourService = new ReservationTourService();
             tourService = new TourService();
+            notificationTourService = new NotificationTourService();
+            notificationTourService.Subscribe(this);
+            guest2Service = new Guest2Service();
+            voucherService = new VoucherService();
 
             if (reservationTourService.GetTourIdWhereGuestIsWaiting(guest2) != null)
             {
@@ -47,7 +76,27 @@ namespace ProjectSims.WPF.View.Guest2View
                 if (answer == MessageBoxResult.Yes)
                 {
                     reservationTourService.UpdateGuestState(guest2,tour,Guest2State.Present);
+                    CheckGuestReservation();
                 }
+            }
+            NumberNotification = notificationTourService.GetNumberUnseenNotificationsByGuest2(guest2.Id);
+            voucherService.UpdateValidVouchers();
+        }
+
+        public void CheckGuestReservation()
+        {
+            int number = 0;
+            foreach (ReservationTour reservation in reservationTourService.GetReservationsForGuest(guest2.Id))
+            {
+                if (reservation.State == Guest2State.Present && reservation.Tour.StartOfTheTour > DateTime.Now.AddYears(-1))
+                {
+                    number++;
+                }
+            }
+            if (number % 5 == 0)
+            {
+                guest2Service.GiveVoucherForGuestWhenFiveTimePresent(guest2.Id);
+                MessageBox.Show("Cestitamo!Uspjesno ste osvojili vaucer jer ste u prethodnih godinu dana prisustvovali na 5 tura!");
             }
         }
 
@@ -93,6 +142,14 @@ namespace ProjectSims.WPF.View.Guest2View
         {
             ChangeTab(6);
         }
+        private void Notification_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ChangeTab(7);
+        }
+        private void Account_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ChangeTab(6);
+        }
 
         public void ChangeTab(int tabNum)
         {
@@ -134,9 +191,17 @@ namespace ProjectSims.WPF.View.Guest2View
                     }
                 case 6:
                     {
-                        SelectedTab.Content = new AccountView(guest2);
+                        AccountViewModel accountViewModel = new AccountViewModel(guest2);
+                        SelectedTab.Content = new AccountView(accountViewModel);
                         break;
                     }
+                case 7:
+                    {
+                        ShowNotificationTourViewModel showNotificViewModel = new ShowNotificationTourViewModel(guest2);
+                        SelectedTab.Content = new ShowNotificationTourView(showNotificViewModel);
+                        break;
+                    }
+            
             }
         }
 
@@ -145,6 +210,15 @@ namespace ProjectSims.WPF.View.Guest2View
             var startView = new MainWindow();
             startView.Show();
             Close();
+        }
+
+        private void UpdateNumberNotifications()
+        {
+            NumberNotification = notificationTourService.GetNumberUnseenNotificationsByGuest2(guest2.Id);
+        }
+        public void Update()
+        {
+            UpdateNumberNotifications();
         }
     }
 }

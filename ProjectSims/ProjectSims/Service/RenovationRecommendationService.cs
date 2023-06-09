@@ -12,10 +12,13 @@ namespace ProjectSims.Service
     public class RenovationRecommendationService
     {
         private IRenovationRecommendationRepository recommendationRepository;
+        private IAccommodationRatingRepository accommodationRatingRepository;
+
 
         public RenovationRecommendationService()
         {
             recommendationRepository = Injector.CreateInstance<IRenovationRecommendationRepository>();
+            accommodationRatingRepository = Injector.CreateInstance<IAccommodationRatingRepository>();
         }
 
         public RenovationRecommendation GetRecommendation(int id)
@@ -23,10 +26,6 @@ namespace ProjectSims.Service
             return recommendationRepository.GetById(id);
         }
 
-        public List<RenovationRecommendation> GetAllRecommendations()
-        {
-            return recommendationRepository.GetAll();
-        }
         public void CreateRecommendation(int renovationUrgency, string recommendations)
         {
             int id = recommendationRepository.NextId();
@@ -37,8 +36,7 @@ namespace ProjectSims.Service
         public RenovationRecommendation GetNewRecommendation(int renovationUrgency, string recommendations)
         {
             CreateRecommendation(renovationUrgency, recommendations);
-            return GetAllRecommendations().LastOrDefault();
+            return recommendationRepository.GetAll().LastOrDefault();
         }
-
     }
 }

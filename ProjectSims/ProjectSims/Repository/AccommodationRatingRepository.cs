@@ -21,7 +21,7 @@ namespace ProjectSims.Repository
         public AccommodationRatingRepository()
         {
             ratingFileHandler = new AccommodationRatingFileHandler();
-          //  ratings = ratingFileHandler.Load();
+            ratings = ratingFileHandler.Load();
             observers = new List<IObserver>();
         }
         public AccommodationAndOwnerRating GetByReservationId(int reservationId)
@@ -34,7 +34,7 @@ namespace ProjectSims.Repository
 
             foreach(AccommodationAndOwnerRating rating in ratings)
             {
-                if(rating.Reservation.Guest.Id == guestId)
+                if(rating.Reservation.GuestId == guestId)
                 {
                     ratingsByGuest.Add(rating);
                 }
@@ -42,9 +42,22 @@ namespace ProjectSims.Repository
 
             return ratingsByGuest;
         }
+        
+        public List<AccommodationAndOwnerRating> GetAllByOwnerId(int ownerId)
+        {
+            List<AccommodationAndOwnerRating> ownerRatings = new List<AccommodationAndOwnerRating>();
+            foreach(AccommodationAndOwnerRating rating in ratings)
+            {
+                if(rating.Reservation.Accommodation.IdOwner == ownerId)
+                {
+                    ownerRatings.Add(rating);
+                }
+            }
+            return ownerRatings;
+        }
+        
         public List<AccommodationAndOwnerRating> GetAll()
         {
-            ReloadRatingList();
             return ratings;
         }
 

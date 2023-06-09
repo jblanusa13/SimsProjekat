@@ -28,11 +28,5 @@ namespace ProjectSims.FileHandler
         {
             _serializer.ToCSV(FilePath, owners);
         }
-
-        public Owner GetByUserId(int id)
-        {
-            List<Owner> owners = _serializer.FromCSV(FilePath);
-            return owners.FirstOrDefault(o => o.UserId == id);
-        }
     }
 }

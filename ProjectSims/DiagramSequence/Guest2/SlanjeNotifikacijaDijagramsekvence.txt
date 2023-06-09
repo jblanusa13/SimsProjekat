@@ -1,0 +1,106 @@
+@startuml
+participant CreateTourViewModel as CTVM
+participant TourRequestService as TRS
+participant TourRequestRepository as TRR
+participant NotificationTourService as NTS
+participant NotificationTourRepository as NTR
+participant NotificationTourFileHandle as NTFH
+database CSV as CSV
+
+activate CTVM
+CTVM -> CTVM : SendNotificationsAllGuests()
+note left 
+createdByLanguage,language,
+createdByLocation,location
+end note
+activate CTVM
+opt createdByLanguage!=false
+ 
+ CTVM -> TRS : GetAllUnrealizedRequestsToLanguage(language)
+ activate TRS
+ TRS -> TRS : GetAllUnrealizedRequests()
+ activate TRS
+ TRS -> TRR : GetUnrealizedRequests()
+ activate TRR
+ TRS <-- TRR : requests
+ deactivate TRR
+ return requests
+ TRS->TRS : unrealizedRequest = new List<TourRequest>()
+ loop var request in requests
+  opt request.Language.ToUpper() == language
+   TRS -> TRS : unrealizedRequest.Add(request)
+  end opt
+ end loop
+ CTVM <-- TRS : requests
+ deactivate TRS
+ 
+ CTVM -> TRS : GetAllGuest2Ids(requests)
+ activate TRS
+ CTVM <-- TRS : guest2Ids
+ deactivate TRS
+
+  loop guest2Id in guest2Ids
+    CTVM -> CTVM: CreateNotificationForGuest(guest2Id,content)
+    activate CTVM
+    return notification
+    CTVM -> NTS : Create(notification)
+    activate NTS
+    NTS -> NTR : Create(notificationTour)
+    activate NTR
+      NTR -> NTR: NextId()
+      activate NTR
+      return notificationTour.Id
+      NTR -> NTFH : Save(notificationTours)
+      activate NTFH
+      NTFH -> CSV : ToCSV(FilePath, notificationTours)
+      deactivate NTFH
+    deactivate NTR
+    deactivate NTS
+  end loop
+end opt
+opt createdByLocation!=false
+  CTVM -> TRS : GetAllUnrealizedRequestsToLocation(location)
+  activate TRS
+  TRS -> TRS : GetAllUnrealizedRequests()
+  activate TRS
+  TRS -> TRR : GetUnrealizedRequests()
+  activate TRR
+  TRS <-- TRR : requests
+  deactivate TRR
+  return requests
+ TRS->TRS : unrealizedRequest = new List<TourRequest>()
+ loop var request in requests
+  opt request.Location.ToUpper() == location
+   TRS -> TRS : unrealizedRequest.Add(request)
+  end opt
+ end loop
+ CTVM <-- TRS : requests
+ deactivate TRS
+ 
+ CTVM -> TRS : GetAllGuest2Ids(requests)
+ activate TRS
+ CTVM <-- TRS : guest2Ids
+ deactivate TRS
+
+  loop guest2Id in guest2Ids
+    CTVM -> CTVM: CreateNotificationForGuest(guest2Id,content)
+    activate CTVM
+    return notification
+    CTVM -> NTS : Create(notification)
+    activate NTS
+    NTS -> NTR : Create(notificationTour)
+    activate NTR
+      NTR -> NTR: NextId()
+      activate NTR
+      return notificationTour.Id
+      NTR -> NTFH : Save(notificationTours)
+      activate NTFH
+      NTFH -> CSV : ToCSV(FilePath, notificationTours)
+      deactivate NTFH
+    deactivate NTR
+    deactivate NTS
+  end loop
+end opt
+deactivate CTVM
+deactivate CTVM
+@enduml

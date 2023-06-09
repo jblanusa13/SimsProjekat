@@ -1,5 +1,6 @@
 ﻿using ProjectSims.Domain.Model;
 using ProjectSims.FileHandler;
+using ProjectSims.WPF.ViewModel.Guest2ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,18 +23,33 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
     /// </summary>
     public partial class AccountView : Page
     {
-        public string UserNameAndSurname { get; set; }
-        public string AccountUsername { get; set; }
-        private UserFileHandler userFile;
-        public Guest2 guest2 { get; set; }
-        public AccountView(Guest2 g)
+        AccountViewModel viewModel;
+        public AccountView(AccountViewModel accountViewModel)
         {
             InitializeComponent();
-            DataContext = this;
-            guest2 = g;
-            UserNameAndSurname = g.Name + " " + g.Surname;
-            userFile = new UserFileHandler();
-            AccountUsername = userFile.Get(guest2.UserId).Username;
+            DataContext = accountViewModel;
+            viewModel = accountViewModel;
+            
+        }
+
+        private void Notification_Click(object sender, RoutedEventArgs e)
+        {
+            ShowNotificationTourViewModel showNotificationTourViewModel = new ShowNotificationTourViewModel(viewModel.guest2);
+            this.NavigationService.Navigate(new ShowNotificationTourView(showNotificationTourViewModel));
+            
+        }
+
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            var startView = new MainWindow();
+            startView.Show();
+            var currentWindow = Window.GetWindow(this);
+            currentWindow.Close();
+        }
+
+        private void Home_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.NavigationService.Navigate(new StartView(viewModel.guest2));
         }
     }
 }

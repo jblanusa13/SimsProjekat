@@ -22,6 +22,7 @@ using System.Collections.ObjectModel;
 using ProjectSims.WPF.ViewModel.OwnerViewModel;
 using ProjectSims.WPF.View.OwnerView;
 using System.IO;
+using System.Windows.Media;
 
 namespace ProjectSims.View.OwnerView.Pages
 {
@@ -31,6 +32,7 @@ namespace ProjectSims.View.OwnerView.Pages
     public partial class AccommodationRegistrationView : Page, INotifyPropertyChanged
     {
         public Owner Owner { get; set; }
+        public Image SelectedImage { get; set; }
         public AccommodationRegistrationViewModel accommodationRegistrationViewModel { get; set; }
 
         public List<string> relativePaths = new List<string>();
@@ -142,13 +144,18 @@ namespace ProjectSims.View.OwnerView.Pages
 
         public TextBlock TitleTextBlock { get; set; }
         
-        public AccommodationRegistrationView(Owner o, TextBlock titleTextBlock)
+        public AccommodationRegistrationView(Owner o, TextBlock titleTextBlock, Accommodation selectedAccommodation)
         {
             InitializeComponent();
             Owner = o;
             TitleTextBlock = titleTextBlock;
             accommodationRegistrationViewModel = new AccommodationRegistrationViewModel(Owner);
             this.DataContext = accommodationRegistrationViewModel;
+            if (selectedAccommodation != null)
+            {
+                LocationTextBox.Text = selectedAccommodation.Location.ToString();
+                LocationTextBox.IsEnabled = false;
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -167,7 +174,7 @@ namespace ProjectSims.View.OwnerView.Pages
             {
                 accommodationRegistrationViewModel.RegisterAccommodation(LocationTextBox.Text, Pics, AccommodationNameTextBox.Text, Type, Convert.ToInt32(GuestsMaximumTextBox.Text), Convert.ToInt32(MinimumReservationDaysTextBox.Text), Convert.ToInt32(DismissalDaysTextBox.Text));
             }
-            this.NavigationService.Navigate(new AccommodationsDisplay(Owner, TitleTextBlock));
+            this.NavigationService.Navigate(new AccommodationsDisplayView(Owner, TitleTextBlock));
             TitleTextBlock.Text = "Smještaji";
         }
 
@@ -205,8 +212,7 @@ namespace ProjectSims.View.OwnerView.Pages
                 bitmap.EndInit();
                 Images = new Image();
                 Images.Source = bitmap;
-                Images.Width = 170;
-                Images.Height = 100;
+                Images.Stretch = Stretch.Fill;
                 ImageList.Items.Add(Images);
         }
 
@@ -222,8 +228,19 @@ namespace ProjectSims.View.OwnerView.Pages
 
         private void Dismiss_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new AccommodationsDisplay(Owner, TitleTextBlock));
+            this.NavigationService.Navigate(new AccommodationsDisplayView(Owner, TitleTextBlock));
             TitleTextBlock.Text = "Smještaji";
+        }
+
+        private void DeleteImage_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            SelectedImage = (Image)ImageList.SelectedItem;
+            if (SelectedImage != null && e.Key.Equals(Key.Delete))
+            {
+                BitmapImage image = (BitmapImage)SelectedImage.Source;
+                ImageList.Items.Remove(SelectedImage);
+                relativePaths.Remove(image.UriSource.ToString());
+            }
         }
     }
 }

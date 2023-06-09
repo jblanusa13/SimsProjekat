@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims.View.OwnerView.Pages"
         mc:Ignorable="d"
-        Title="Registracija smjestaja" Height="750" Width="430">
+        Height="750" Width="430">
     <Page.Resources>
         <ControlTemplate x:Key="ValidationTemplate">
             <Border BorderBrush="Red" BorderThickness="0.5" Height="22" Width="151">
@@ -48,14 +48,16 @@
                 Width="151" 
                 RenderTransformOrigin="1.194,0.155" 
                 IsDefault="True"/>
-        <ListView x:Name="ImageList" 
-                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
+        <ListView x:Name="ImageList"
+                  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
                   ScrollViewer.PanningMode="HorizontalOnly"
-                  Margin="50,387,50,205">
+                  Margin="50,387,50,205"
+                  PreviewKeyDown="DeleteImage_PreviewKeyDown"
+                  SelectedItem="{Binding SelectedImage}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal"/>
+                    <StackPanel  HorizontalAlignment="Center" Orientation="Horizontal"/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>

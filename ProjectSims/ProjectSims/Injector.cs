@@ -24,17 +24,21 @@ namespace ProjectSims
             { typeof(IKeyPointRepository), new KeyPointRepository() },
             { typeof(IUserRepository), new UserRepository() },
             { typeof(ITourRequestRepository), new TourRequestRepository() },
-            { typeof(IGuideScheduleRepository), new GuideScheduleRepository() },    
+            { typeof(IRequestForComplexTourRepository), new RequestForComplexTourRepository() },
+            { typeof(INotificationTourRepository), new NotificationTourRepository() },
             { typeof(IAccommodationRepository), new AccommodationRepository() },
+            { typeof(IRenovationScheduleRepository), new RenovationScheduleRepository() },
             { typeof(IGuestRatingRepository), new GuestRatingRepository() },
             { typeof(ILocationRepository), new LocationRepository() },
+            { typeof(ILastShownRepository), new LastShownRepository() },
             { typeof(IOwnerRepository), new OwnerRepository() },
             { typeof(IAccommodationReservationRepository), new AccommodationReservationRepository() },
             { typeof(IGuest1Repository), new Guest1Repository() },
             { typeof(IAccommodationRatingRepository), new AccommodationRatingRepository() },
             { typeof(IRenovationRecommendationRepository), new RenovationRecommendationRepository() },
             { typeof(IRequestRepository), new RequestRepository() },
-            { typeof(IAccommodationScheduleRepository), new AccommodationScheduleRepository() }
+            { typeof(IAccommodationScheduleRepository), new AccommodationScheduleRepository() },
+            { typeof(ISuperGuestRepository), new SuperGuestRepository() }
         };
        public static T CreateInstance<T>()
         {

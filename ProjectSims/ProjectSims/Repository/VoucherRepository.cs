@@ -76,7 +76,7 @@ namespace ProjectSims.Repository
             foreach (int id in ids)
             {
                 Voucher voucher = GetById(id);
-                if (voucher.Used == false) {
+                if (voucher.Used == false && voucher.ValidVoucher == true) {
                     vouchers.Add(voucher);
                 }
             }

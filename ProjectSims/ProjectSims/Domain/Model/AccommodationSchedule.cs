@@ -11,30 +11,30 @@ namespace ProjectSims.Domain.Model
     {
         public int Id { get; set; }
         public List<DateRanges> UnavailableDates { get; set; }
-        public int AccommodationId { get; set; }
 
         public AccommodationSchedule()
         {
             UnavailableDates = new List<DateRanges>();
         }
 
-        public AccommodationSchedule(int id, List<DateRanges> unavailableDates, int accommodationId)
+        public AccommodationSchedule(int id, List<DateRanges> unavailableDates)
         {
             Id = id;
             UnavailableDates = unavailableDates;
-            AccommodationId = accommodationId;
         }
 
         public void FromCSV(string[] values)
         {
             Id = Convert.ToInt32(values[0]);
             List<DateRanges> unavailableDates = new List<DateRanges>();
-            foreach (string value in values[1].Split(","))
+            if (values[1] != string.Empty)
             {
-                unavailableDates.Add(new DateRanges(DateOnly.ParseExact(value.Split("-")[0], "dd.MM.yyyy"), DateOnly.ParseExact(value.Split("-")[1], "dd.MM.yyyy")));
+                foreach (string value in values[1].Split(","))
+                {
+                    unavailableDates.Add(new DateRanges(DateOnly.ParseExact(value.Split("-")[0], "dd.MM.yyyy"), DateOnly.ParseExact(value.Split("-")[1], "dd.MM.yyyy")));
+                }
             }
             UnavailableDates = unavailableDates;
-            AccommodationId = Convert.ToInt32(values[2]);
         }
 
         public string[] ToCSV()
@@ -44,14 +44,16 @@ namespace ProjectSims.Domain.Model
             {
                 if (range != UnavailableDates.Last())
                 {
-                    UnavailableDatesString += range.CheckIn.ToString() + "-" + range.CheckOut.ToString() + ",";
+                    UnavailableDatesString += range.CheckIn.ToString("dd.MM.yyyy") + "-" + range.CheckOut.ToString("dd.MM.yyyy") + ",";
                 }
             }
-            UnavailableDatesString += UnavailableDates.Last().CheckIn + "-" + UnavailableDates.Last().CheckOut;
+            if(UnavailableDatesString != "")
+            {
+                UnavailableDatesString += UnavailableDates.Last().CheckIn.ToString("dd.MM.yyyy") + "-" + UnavailableDates.Last().CheckOut.ToString("dd.MM.yyyy");
+            }
             string[] csvValues = {
                 Id.ToString(),
                 UnavailableDatesString,
-                AccommodationId.ToString()
             };
             return csvValues;
         }
