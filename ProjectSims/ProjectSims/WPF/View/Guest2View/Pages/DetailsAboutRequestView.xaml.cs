@@ -29,8 +29,8 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
             this.DataContext = this;
             request = r;
             guest2 = g;
-            DateStartbox.Text = request.DateRangeStart.ToString();
-            DateEndbox.Text = request.DateRangeEnd.ToString();
+            DateStartbox.Text = request.DateRangeStart.ToString("dd.MM.yyyy");
+            DateEndbox.Text = request.DateRangeEnd.ToString("dd.MM.yyyy");
         }
 
         private void BackButton(object sender, RoutedEventArgs e)

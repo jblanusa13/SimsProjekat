@@ -93,8 +93,13 @@ namespace ProjectSims.Service
                 document.Add(dateTimeParagraph);
 
                 document.Close();
-
-                MessageBox.Show("PDF fajl je uspjesno izgenerisan.");
+                if(File.Exists(filePath))
+                {
+                    ProcessStartInfo startInfo = new ProcessStartInfo(filePath);
+                    startInfo.UseShellExecute = true;
+                    Process.Start(startInfo);
+                }
+                
             }
             catch (Exception ex)
             {

@@ -87,7 +87,7 @@ namespace ProjectSims.WPF.View.Guest2View
                 }
             }
 
-            DateStartTextBox.Text = tourSelected.StartOfTheTour.ToString();
+            DateStartTextBox.Text = tourSelected.StartOfTheTour.ToString("dd.MM.yyyy HH:mm");
             DurationTextBox.Text = tourSelected.Duration.ToString();
 
             //show picture in listview
