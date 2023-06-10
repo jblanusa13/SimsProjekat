@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
       xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="ProjectSims.WPF.View.GuideView.Pages.CreateTourView"
+      xmlns:custom="clr-namespace:ProjectSims.WPF.CustomControls"
       mc:Ignorable="d" 
       d:DesignHeight="2000" d:DesignWidth="1280"
       Title="CreateTourView">
@@ -86,27 +87,17 @@
                             <Setter Property="VerticalAlignment" Value="Center"/>
                             <Setter Property="HorizontalAlignment" Value="Left"/>
                         </Style>
-                        <Style TargetType="TextBox">
-                            <Setter Property="FontSize" Value="26"/>
-                            <Setter Property="FontFamily" Value="Helvetica"/>
-                            <Setter Property="Background" Value="Transparent"/>
-                            <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="VerticalAlignment" Value="Center"/>
-                            <Setter Property="HorizontalAlignment" Value="Left"/>
-                            <Setter Property="Height" Value="40"/>
-                            <Setter Property="Width" Value="80"/>
-                        </Style>
                     </Grid.Resources>
                     <Label Content="Dan" Margin="15,0,0,0"/>
                     <Viewbox HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,0,0,0" Height="40" Width="150" Stretch="Fill">
                         <DatePicker Name="TourDatePicker"  SelectedDate="{Binding Date, Mode=TwoWay}" SelectedDateChanged="AppointmentInput_Changed"/>
                     </Viewbox>
                     <Label Content="Sat" Margin="280,0,0,0"/>
-                    <TextBox Name="HourTextBox" Text="{Binding Hour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" TextChanged="AppointmentInput_Changed" Margin="340,0,0,0" />
+                    <custom:HourNumericBox HorizontalAlignment="Left"  Margin="330,0,0,0" FontSize="18" VerticalAlignment="Center" Value="{Binding Hour, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                     <Label Content="Minut" Margin="470,0,0,0"/>
-                    <TextBox Name="MinuteTextBox" Text="{Binding Minute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" TextChanged="AppointmentInput_Changed" Margin="560,0,0,0" />
+                    <custom:MinuteNumericBox HorizontalAlignment="Left"  Margin="550,0,0,0" FontSize="18" VerticalAlignment="Center" Value="{Binding Minute, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                     <Label Content="Trajanje" Margin="690,0,0,0"/>
-                    <TextBox Name="DurationTextBox" Text="{Binding Duration, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" TextChanged="AppointmentInput_Changed"  Margin="800,0,0,0"/>
+                    <custom:HourNumericBox HorizontalAlignment="Left"  Margin="790,0,0,0" FontSize="18" VerticalAlignment="Center" Value="{Binding Duration, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                 </Grid>
             </GroupBox>
             <TextBox Name="MessageTextBox" Margin="0,715,0,0" FontSize="20" Foreground="Red" IsReadOnly="True" BorderThickness="0" HorizontalAlignment="Center"/>

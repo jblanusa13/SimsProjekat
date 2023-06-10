@@ -48,7 +48,6 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
                 }
             }
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

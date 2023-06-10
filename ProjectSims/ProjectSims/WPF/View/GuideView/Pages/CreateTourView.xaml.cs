@@ -35,6 +35,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         public List<string> Appointments { get; set; }
         public Guide Guide { get; set; }
         public List<string> Images { get; set; }
+
         private string _tourName;
         public string TourName
         {
@@ -100,8 +101,8 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 }
             }
         }
-        private string _hour;
-        public string Hour
+        private int _hour;
+        public int Hour
         {
             get => _hour;
             set
@@ -113,8 +114,8 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 }
             }
         }
-        private string _minute;
-        public string Minute
+        private int _minute;
+        public int Minute
         {
             get => _minute;
             set
@@ -152,8 +153,8 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 }
             }
         }
-        private string _duration;
-        public string Duration
+        private int _duration;
+        public int Duration
         {
             get => _duration;
             set
@@ -353,19 +354,12 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         }
         public bool IsCorrectAppointment()
         {
-            int hour;
-            int minute;
-            double duration;
             DateTime date = TourDatePicker.SelectedDate.GetValueOrDefault();
-            if (TourDatePicker.SelectedDate == null || string.IsNullOrEmpty(Hour) || string.IsNullOrEmpty(Minute) || string.IsNullOrEmpty(Duration))
-                MessageTextBox.Text = "Odaberite termin!";
-            else if (!Int32.TryParse(Hour, out hour) || hour < 0 || hour >= 24 || !Int32.TryParse(Minute, out minute) || minute < 0 || minute > 60 || !Double.TryParse(Duration, out duration))
-                MessageTextBox.Text = "Los format!";
-            else if (!createTourViewModel.GuideIsAvailable(date, hour, minute, duration))
-                MessageTextBox.Text = "Termin je zauzet!";
+           if (!createTourViewModel.GuideIsAvailable(date, Hour, Minute, Duration))
+                   MessageTextBox.Text = "Termin je zauzet!";
             else
-                MessageTextBox.Text = "";
-            return string.IsNullOrEmpty(MessageTextBox.Text);
+               MessageTextBox.Text = "";
+           return string.IsNullOrEmpty(MessageTextBox.Text);
         }
         public void AppointmentInput_Changed(object sender, EventArgs e)
         {
@@ -375,9 +369,9 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         {
             Appointments.Add(TourDatePicker.SelectedDate.GetValueOrDefault().ToString("MM/dd/yyyy") + " " + Hour + ":" + Minute + "-" + Duration);
             TourDatePicker.SelectedDate = null;
-            HourTextBox.Text = "";
-            MinuteTextBox.Text = "";
-            DurationTextBox.Text = "";
+            //HourTextBox.Text = "";
+            //MinuteTextBox.Text = "";
+            //DurationTextBox.Text = "";
             AddAppointmentButton.IsEnabled = false;
         }
         public void AddKeyPoint_Click(object sender, RoutedEventArgs e)

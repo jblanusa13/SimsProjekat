@@ -78,6 +78,10 @@ namespace ProjectSims.Repository
         {
             return tours.Where(t => t.StartOfTheTour.Date == date && t.GuideId == guideId).ToList();
         }
+        public List<Tour> GetToursByLanguageAndGuideId(string language, int guideId)
+        {
+            return tours.Where(t => t.Language == language && t.GuideId == guideId).ToList();
+        }
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);

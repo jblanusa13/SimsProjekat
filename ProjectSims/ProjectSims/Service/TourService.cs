@@ -24,8 +24,8 @@ namespace ProjectSims.Service
         private IKeyPointRepository keyPointRepository;
         private ITourRequestRepository tourRequestRepository;
         private IRequestForComplexTourRepository requestForComplexTourRepository;
-        private KeyPointService keyPointService;
         private ReservationTourService reservationService;
+
         public TourService()
         {
             tourRepository = Injector.CreateInstance<ITourRepository>();
@@ -33,7 +33,6 @@ namespace ProjectSims.Service
             keyPointRepository = Injector.CreateInstance<IKeyPointRepository>();
             tourRequestRepository = Injector.CreateInstance<ITourRequestRepository>();
             requestForComplexTourRepository = Injector.CreateInstance<IRequestForComplexTourRepository>();
-            keyPointService = new KeyPointService();
             reservationService = new ReservationTourService();
             InitializeGuide();
             InitializeKeyPoints();
@@ -336,7 +335,7 @@ namespace ProjectSims.Service
         public Tour GetMostVisitedTourLastMonth()
         {
             List<Tour> tours = new List<Tour>();
-            foreach(var tour in GetAllTours())
+            foreach(var tour in tourRepository.GetAll())
             {
                 if(tour.State == TourState.Finished && tour.StartOfTheTour > DateTime.Now.AddMonths(-1))
                 {

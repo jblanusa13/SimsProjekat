@@ -109,16 +109,16 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
                         lastAddedTours, content, DateTime.Now, false);
             return notificaiton;
         }
-        public bool GuideIsAvailable(DateTime date,int hour,int minute,double duration)
+        public bool GuideIsAvailable(DateTime date,int hour,int minute,int duration)
         {
-           // DateTime start = new DateTime(date.Year,date.Month,date.Day,hour, minute, 0);
-            //DateTime end = start.AddHours(duration);
-            //foreach (var freeAppointment in tourService.GetFreeAppointmentsForThatDay(Guide.Id,date))
-           // {
-              //  if ((start >= freeAppointment.Item1) && (start <= freeAppointment.Item2) && (end <= freeAppointment.Item2) && (end <= freeAppointment.Item2))
-                //    return true;
-          //  }
-            return false ;
+           DateTime start = new DateTime(date.Year,date.Month,date.Day,hour, minute, 0);
+           DateTime end = start.AddHours(duration);
+            List<Tuple<DateTime, DateTime>> freeAppointments = tourService.GetFreeAppointmentsByDateAndGuide(Guide.Id, date);
+            if(freeAppointments.Contains(new Tuple<DateTime, DateTime>(start, end)))
+            {
+                return true;
+            }
+           return false ;
         }
     }
 }

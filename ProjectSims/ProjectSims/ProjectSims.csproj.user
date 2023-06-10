@@ -2,6 +2,12 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="WPF\CustomControls\HourNumericBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\CustomControls\MinuteNumericBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\CustomControls\NumericBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -145,6 +151,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="WPF\CustomControls\HourNumericBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\CustomControls\MinuteNumericBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="WPF\CustomControls\NumericBox.xaml">
       <SubType>Designer</SubType>
     </Page>
