@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="700" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="MainWindow" Height="550" Width="700" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="/logoapp.png">
     <Grid Background="#FF3B3378">
         <Border HorizontalAlignment="Left" Height="444" Margin="106,0,0,0" BorderBrush="#FF706D6D" BorderThickness="3" CornerRadius="6,6,6,6" VerticalAlignment="Center" Width="450"/>
         <Label Content="Korisnicko ime:" HorizontalAlignment="Left" Margin="178,185,0,0" VerticalAlignment="Top" FontSize="16" Foreground="White" Width="132"/>

@@ -191,29 +191,6 @@ namespace ProjectSims.Service
             return wantedTours;
         }
         //if text empty return -1
-        //if text isn't integer or < 0 return -2
-        public int ConvertToInt(String text)
-        {
-            int number;
-            if (string.IsNullOrEmpty(text))
-            {
-                number = -1;
-            }
-            else if (!int.TryParse(text, out number))
-            {
-                MessageBox.Show("Wrong input! Number guests on tour must be a integer!");
-                return -2;
-            }
-            else if (number < 0)
-            {
-                MessageBox.Show("The number of people on the tour can't be negative!");
-                return -2;
-            }
-
-            return number;
-        }
-
-        //if text empty return -1
         //if text isn't double or < 0 return -2
         public double ConvertToDouble(String text)
         {
@@ -295,6 +272,20 @@ namespace ProjectSims.Service
         public bool IsActivated(Tour tour)
         {
             return (tour.State == TourState.Active);
+        }
+
+        public Tour GetMostVisitedTourLastMonth()
+        {
+            List<Tour> tours = new List<Tour>();
+            foreach(var tour in GetAllTours())
+            {
+                if(tour.State == TourState.Finished && tour.StartOfTheTour > DateTime.Now.AddMonths(-1))
+                {
+                    tours.Add(tour);
+                }
+            }
+            List<Tour> sortedTours = tours.OrderByDescending(t => t.MaxNumberGuests - t.AvailableSeats).ToList();
+            return sortedTours.First();
         }
 
     }

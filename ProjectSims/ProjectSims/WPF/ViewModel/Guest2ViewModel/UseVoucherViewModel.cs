@@ -44,6 +44,7 @@ namespace ProjectSims.WPF.ViewModel.Guest2ViewModel
             if (SelectedVoucher != null)
             {
                 SelectedVoucher.Used = true;
+                SelectedVoucher.ValidVoucher = false;
                 voucherService.Update(SelectedVoucher);
                 reservation = new ReservationTour(tour.Id, numberGuests, guest2.Id, -1, true, false, guestAgeOnTour);
             }

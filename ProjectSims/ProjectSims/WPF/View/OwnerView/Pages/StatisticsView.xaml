@@ -3,11 +3,14 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"            
+      xmlns:converters="clr-namespace:ProjectSims.WPF.Converters"
       xmlns:local="clr-namespace:ProjectSims.WPF.View.OwnerView.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="1115" d:DesignWidth="430">
-
+      d:DesignHeight="1215" d:DesignWidth="430">
+    <Page.Resources>
+        <converters:MonthConverter x:Key="MonthConverter"/>
+    </Page.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Hidden"
                   HorizontalScrollBarVisibility="Disabled"
                   CanContentScroll="True">
@@ -18,6 +21,7 @@
                 <RowDefinition Height="300"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="300"></RowDefinition>
+                <RowDefinition Height="100"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="65"></RowDefinition>
             </Grid.RowDefinitions>
@@ -70,7 +74,7 @@
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
             </Grid>
-            
+
             <Grid Grid.Row="3">
                 <Label Content="Izaberite godinu:" 
                        FontSize="13" 
@@ -86,7 +90,7 @@
                     <ComboBoxItem>2019</ComboBoxItem>
                 </ComboBox>
             </Grid>
-            
+
             <Grid Grid.Row="4">
                 <lvc:CartesianChart x:Name="MonthChart" Visibility="Hidden" Series="{Binding NumberOfMonthReservationsByCriteria}" Margin="45,5,45,5">
                     <lvc:CartesianChart.AxisX>
@@ -95,59 +99,54 @@
                     <lvc:CartesianChart.AxisY>
                         <lvc:Axis Title="Ukupan broj" Labels="{Binding Values}" MinValue="0"/>
                     </lvc:CartesianChart.AxisY>
-                </lvc:CartesianChart>     
+                </lvc:CartesianChart>
             </Grid>
-            
+
             <Grid Grid.Row="5">
-                <Label x:Name="MostVisitedLabel"
-                       Content="Najviše posjećen u:" 
+                <Label x:Name="MostVisitedMonthLabel"
+                       Content="Najposjećeniji mjesec:" 
                        FontSize="13" 
                        Visibility="Hidden"
                        HorizontalAlignment="Left" 
-                       Margin="50,0,0,0" 
+                       Margin="50,0,0,40" 
                        VerticalAlignment="Center" 
                        Width="200"/>
-                <TextBox x:Name="MostVisitedTextBox" Visibility="Hidden" HorizontalAlignment="Right" Margin="0,0,50,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="183" Height="26" Foreground="Black" FontSize="13" IsEnabled="False"/>
+                <TextBox x:Name="MostVisitedMonthTextBox" Text="{Binding MostVisitedMonth, Converter={StaticResource MonthConverter}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Visibility="Hidden" IsEnabled="False" HorizontalAlignment="Right" Margin="0,0,50,40" VerticalAlignment="Center" Width="183" Height="26" Foreground="Black" FontSize="13"/>
+                <Label x:Name="MostVisitedYearLabel"
+                       Content="Najposjećenija godina:" 
+                       FontSize="13" 
+                       Visibility="Hidden"
+                       HorizontalAlignment="Left" 
+                       Margin="50,40,0,0" 
+                       VerticalAlignment="Center" 
+                       Width="200"/>
+                <TextBox x:Name="MostVisitedYearTextBox" Text="{Binding MostVisitedYear, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Visibility="Hidden" IsEnabled="False" HorizontalAlignment="Right" Margin="0,40,50,0" VerticalAlignment="Center" Width="183" Height="26" Foreground="Black" FontSize="13"/>
             </Grid>
+
             <Grid Grid.Row="6">
-                <Button x:Name="CloseAccommodationButton"
-                Margin="8 0 0 0"
-                Click="CloseAccommodation_Click"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                TextElement.FontSize="12"
-                TextElement.FontStretch="UltraExpanded"                
-                TextElement.FontWeight="Medium" 
-                Height="35"
-                Width="133"
-                Content="Zatvori smještaj"
-                Grid.Row="1"/>
-                <Button x:Name="RegisterButton"
-                Click="RegisterNew_Click"
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Center"
-                TextElement.FontSize="12"
-                TextElement.FontStretch="UltraExpanded"
-                TextElement.FontWeight="Medium" 
-                Height="35" 
-                Width="133">
-                    <StackPanel>
-                        <TextBlock  HorizontalAlignment="Center" Text="Registruj novi"/>
-                        <TextBlock  HorizontalAlignment="Center" Text="smještaj"/>
-                    </StackPanel>
-                </Button>
+                <TextBlock x:Name="PopularLocationTextBlock" Visibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Hyperlink Command="{Binding PopularLocationCommand}">
+                            Popularna lokacija! :) Otvorite smještaj na ovoj lokaciji.
+                        </Hyperlink>
+                </TextBlock>
+                <TextBlock x:Name="UnpopularLocationTextBlock" Visibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Hyperlink Command="{Binding UnpopularLocationCommand}">
+                            Nepopularna lokacija! :( Zatvorite smještaj na ovoj lokaciji.
+                        </Hyperlink>
+                </TextBlock>
+            </Grid>
+
+            <Grid Grid.Row="7">
                 <Button x:Name="ReportButton"
                 Click="GenerateReport_Click"
-                Margin="0 0 8 0"
-                HorizontalAlignment="Right"
+                HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 TextElement.FontSize="12"
                 TextElement.FontStretch="UltraExpanded"
                 TextElement.FontWeight="Medium" 
                 Height="35"
                 Width="133"
-                Content="Generiši izvještaj"
-                Grid.Row="1"/>
+                Content="Generiši izvještaj"/>
             </Grid>
         </Grid>
     </ScrollViewer>

@@ -25,11 +25,21 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
     /// </summary>
     public partial class ShowVouchersView : Page
     {
+        ShowVouchersViewModel viewModel;
         public ShowVouchersView(ShowVouchersViewModel vouchersViewModel)
         {
             InitializeComponent();
             this.DataContext = vouchersViewModel;
+            viewModel = vouchersViewModel;
         }
-      
+        private void Home_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.NavigationService.Navigate(new StartView(viewModel.guest2));
+        }
+
+        private void GeneratePDF_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.GeneratePdf();
+        }
     }
 }

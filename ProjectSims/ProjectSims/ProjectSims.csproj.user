@@ -101,6 +101,9 @@
     <Compile Update="WPF\View\Guest2View\RequestStatisticsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WPF\View\Guest2View\UpdateAccountView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\GuideView\Pages\AcceptTourView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -272,6 +275,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\Guest2View\RequestStatisticsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest2View\UpdateAccountView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\GuideView\Pages\AcceptTourView.xaml">

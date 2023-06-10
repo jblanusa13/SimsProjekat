@@ -155,5 +155,9 @@ namespace ProjectSims.Service
         {
             reservationTourRepository.Subscribe(observer);
         }
+        public List<ReservationTour> GetReservationsForGuest(int guest2Id)
+        {
+            return GetAllReservations().Where(r => r.Guest2Id == guest2Id).ToList();
+        }
     }
 }

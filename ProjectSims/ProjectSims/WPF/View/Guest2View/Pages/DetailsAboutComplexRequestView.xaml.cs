@@ -27,15 +27,16 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
         public ObservableCollection<TourRequest> ListRequests { get; set; }
 
         private RequestForComplexTourService requestForComplexTourService;
-
         public TourRequest SelectedRequest { get; set; }
+        public Guest2 guest2 { get; set; }
 
-        public DetailsAboutComplexRequestView(RequestForComplexTour complexRequest)
+        public DetailsAboutComplexRequestView(RequestForComplexTour complexRequest,Guest2 g)
         {
             InitializeComponent();
             this.DataContext = this;
             requestForComplexTourService = new RequestForComplexTourService();
             request = complexRequest;
+            guest2 = g;
             ListRequests = new ObservableCollection<TourRequest>(request.TourRequests);
         }
 
@@ -47,6 +48,11 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
         private void Zahtjevi_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             this.NavigationService.GoBack();
+        }
+
+        private void Home_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.NavigationService.Navigate(new StartView(guest2));
         }
     }
 }

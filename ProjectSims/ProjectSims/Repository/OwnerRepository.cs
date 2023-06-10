@@ -114,5 +114,10 @@ namespace ProjectSims.Repository
                 Update(owner);
             }
         }
+        public void RemoveAccommodation(Owner owner, int accommodationId)
+        {
+            owner.AccommodationIds.Remove(accommodationId);
+            Update(owner);
+        }
     }
 }

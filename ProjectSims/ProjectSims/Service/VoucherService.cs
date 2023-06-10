@@ -53,5 +53,31 @@ namespace ProjectSims.Service
         {
             voucherRepository.Subscribe(observer);
         }
+
+        public void UpdateValidVouchers()
+        {
+            List<Voucher> vouchers = new List<Voucher>(GetAllVouchers()); 
+            foreach(Voucher voucher in vouchers)
+            {
+                if(voucher.ExpirationDate < DateTime.Now && voucher.ValidVoucher == true)
+                {
+                    voucher.ValidVoucher = false;
+                    Update(voucher);
+                }
+            }
+        }
+
+        public List<Voucher> GetValidVouchers(Guest2 guest2)
+        {
+            List<Voucher> vouchers = new List<Voucher>();
+            foreach(Voucher v in GetVouchersWithIds(guest2.VoucherIds))
+            {
+                if(v.ValidVoucher == true)
+                {
+                    vouchers.Add(v);
+                }
+            }
+            return vouchers;
+        }
     }
 }

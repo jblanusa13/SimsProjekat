@@ -142,5 +142,9 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
                 ListTour.Add(tour);
             }
         }
+        private void Home_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.NavigationService.Navigate(new StartView(guest2));
+        }
     }
 }

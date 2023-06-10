@@ -54,7 +54,7 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
         {
             if (viewModel.SelectedRequest != null)
             {
-                this.NavigationService.Navigate(new DetailsAboutRequestView(viewModel.SelectedRequest));
+                this.NavigationService.Navigate(new DetailsAboutRequestView(viewModel.SelectedRequest,viewModel.guest2));
             }
             else
             {
@@ -66,17 +66,16 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
         {
             if (viewModel.SelectedComplexRequest != null)
             {
-                this.NavigationService.Navigate(new DetailsAboutComplexRequestView(viewModel.SelectedComplexRequest));
+                this.NavigationService.Navigate(new DetailsAboutComplexRequestView(viewModel.SelectedComplexRequest,viewModel.guest2));
             }
             else
             {
                 MessageBox.Show("Morate selektovati zahtjev za koji zelite da vidite detalje.");
             }
         }
-
-        /*private void Home_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        private void Home_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.NavigationService.Navigate(new Guest2StartingView(viewModel.guest2));
-        }*/
+            this.NavigationService.Navigate(new StartView(viewModel.guest2));
+        }
     }
 }
