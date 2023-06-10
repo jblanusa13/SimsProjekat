@@ -28,7 +28,7 @@
 
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="225,26,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding UserNameAndSurname}" FontSize="40" VerticalAlignment="Top"/>
         <Label Grid.Column="1" Content="Korisnicko ime:" FontSize="18" HorizontalAlignment="Left" Margin="225,102,0,0" Grid.Row="2" VerticalAlignment="Top"/>
-        <TextBlock Grid.Column="1" FontSize="18" HorizontalAlignment="Left" Margin="358,107,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding guest2.User.Username}" VerticalAlignment="Top"/>
+        <TextBlock Grid.Column="1" FontSize="18" HorizontalAlignment="Left" Margin="358,107,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding Username}" VerticalAlignment="Top"/>
         <Label Grid.Column="1" Content="Email adresa:" FontSize="18" HorizontalAlignment="Left" Margin="225,142,0,0" Grid.Row="2" VerticalAlignment="Top"/>
         <TextBlock Grid.Column="1" FontSize="18" HorizontalAlignment="Left" Margin="345,147,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding guest2.Email}" VerticalAlignment="Top"/>
         <Label Grid.Column="1" Content="Datum rodjenja:" FontSize="18" HorizontalAlignment="Left" Margin="225,183,0,0" Grid.Row="2" VerticalAlignment="Top"/>

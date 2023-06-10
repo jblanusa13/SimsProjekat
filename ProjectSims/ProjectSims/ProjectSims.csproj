@@ -123,6 +123,7 @@
     <None Remove="Resources\Images\Owner\Accommodations\visnjin_dom2.jpg" />
     <None Remove="Resources\Images\Owner\Accommodations\visnjin_dom3.jpg" />
     <None Remove="Resources\Images\rightarrow.png" />
+    <None Remove="WPF\View\Guest2View\logoapp.png" />
     <None Remove="WPF\View\Guest2View\travel-tour-logo.png" />
   </ItemGroup>
   <ItemGroup>
@@ -435,6 +436,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="WPF\View\Guest2View\logoapp.png" />
     <Resource Include="WPF\View\Guest2View\travel-tour-logo.png" />
   </ItemGroup>
   <ItemGroup>
