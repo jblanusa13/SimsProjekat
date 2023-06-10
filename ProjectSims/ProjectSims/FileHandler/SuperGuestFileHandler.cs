@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ProjectSims.Domain.Model;
 using ProjectSims.Serializer;
 
-namespace ProjectSims.FileHandler.Images
+namespace ProjectSims.FileHandler
 {
     public class SuperGuestFileHandler
     {

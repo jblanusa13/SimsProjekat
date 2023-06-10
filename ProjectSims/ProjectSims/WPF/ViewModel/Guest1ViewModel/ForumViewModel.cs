@@ -13,6 +13,7 @@ using ProjectSims.Observer;
 using ProjectSims.Service;
 using ProjectSims.WPF.View.Guest1View;
 using ProjectSims.Commands;
+using ProjectSims.WPF.View.Guest1View.MainPages;
 
 namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
 {
@@ -63,11 +64,13 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         private ForumService forumService;
         public RelayCommand SearchCommand { get; set; }
         public RelayCommand FindMyForumsCommand { get; set; }
+        public RelayCommand ShowForumCommand { get; set; }
         public RelayCommand StartNewForumCommand { get; set; }
         public RelayCommand ThemeCommand { get; set; }
         public RelayCommand CancelCommand { get; set; }
-        public MyICommand<View.Guest1View.MainPages.Forum> LogOutCommand { get; set; }
+        public MyICommand<View.Guest1View.MainPages.ForumView> LogOutCommand { get; set; }
         public ObservableCollection<Forum> Forums { get; set; }
+        public Forum SelectedForum { get; set; }
         private Guest1 guest;
         public NavigationService NavService { get; set; }
         public ForumViewModel(Guest1 guest, NavigationService navigation)
@@ -76,17 +79,18 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             Forums = new ObservableCollection<Forum>(forumService.GetAllForums());
             SearchCommand = new RelayCommand(Execute_SearchCommand);
             FindMyForumsCommand = new RelayCommand(Execute_FindMyForumsCommand);
+            ShowForumCommand = new RelayCommand(Execute_ShowForumCommand, CanExecute_ShowForumCommand);
             StartNewForumCommand = new RelayCommand(Execute_StartNewForumCommand);
             ThemeCommand = new RelayCommand(Execute_ThemeCommand);
             CancelCommand = new RelayCommand(Execute_CancelCommand);
-            LogOutCommand = new MyICommand<View.Guest1View.MainPages.Forum>(OnLogOut);
+            LogOutCommand = new MyICommand<View.Guest1View.MainPages.ForumView>(OnLogOut);
 
             ButtonContent = "Nadji moje forume";
 
             this.guest = guest;
             NavService = navigation;
         }
-        private void OnLogOut(View.Guest1View.MainPages.Forum page)
+        private void OnLogOut(View.Guest1View.MainPages.ForumView page)
         {
             var login = new MainWindow();
             login.Show();
@@ -114,6 +118,14 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 App.IsDark = true;
             }
         }
+        public bool CanExecute_ShowForumCommand(object obj)
+        {
+            return SelectedForum != null; 
+        }
+        public void Execute_ShowForumCommand(object obj)
+        {
+            NavService.Navigate(new ForumCommentsView(guest, NavService));
+        }
         public void Execute_StartNewForumCommand(object obj)
         {
             ForumStartView createForum = new ForumStartView(guest);
@@ -123,7 +135,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public void Execute_SearchCommand(object obj)
         {
             Forums.Clear();
-            foreach (Forum forum in forumService.GetAllForums())
+            foreach (var forum in forumService.GetAllForums())
             {
                 if (CheckSearchConditions(forum))
                 {

@@ -411,16 +411,6 @@
 	  </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="FileHandler\Images\draganovi_konaci1.jpg" />
-    <Resource Include="FileHandler\Images\filipovic1.jpg" />
-    <Resource Include="FileHandler\Images\jovanovic1.jpg" />
-    <Resource Include="FileHandler\Images\jovanovic2.jpg" />
-    <Resource Include="FileHandler\Images\kod_labuda.jpg" />
-    <Resource Include="FileHandler\Images\kod_labuda1.jpg" />
-    <Resource Include="FileHandler\Images\mladenovic.jpg" />
-    <Resource Include="FileHandler\Images\mladenovic2.jpg" />
-    <Resource Include="FileHandler\Images\visnjin_dom1.jpg" />
-    <Resource Include="FileHandler\Images\visnjin_dom2.jpg" />
     <Content Include="Resources\Images\Owner\Accommodations\draganovi_konaci.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

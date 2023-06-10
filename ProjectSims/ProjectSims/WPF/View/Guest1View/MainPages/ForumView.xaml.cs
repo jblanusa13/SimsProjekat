@@ -20,12 +20,20 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
     /// <summary>
     /// Interaction logic for Forum.xaml
     /// </summary>
-    public partial class Forum : Page
+    public partial class ForumView : Page
     {
-        public Forum(Guest1 guest, NavigationService navigation)
+        public ForumView(Guest1 guest, NavigationService navigation)
         {
             this.DataContext = new ForumViewModel(guest, navigation);
             InitializeComponent();
+        }
+
+        private void ForumsTable_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key.Equals(Key.S))
+            {
+                ShowButton.Focus();
+            }
         }
     }
 }

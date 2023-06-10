@@ -158,7 +158,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         }
         public void Execute_ForumCommand(object obj)
         {
-            NavService.Navigate(new View.Guest1View.MainPages.Forum(Guest, NavService));
+            NavService.Navigate(new View.Guest1View.MainPages.ForumView(Guest, NavService));
         }
         public void Execute_ProfileCommand(object obj)
         {

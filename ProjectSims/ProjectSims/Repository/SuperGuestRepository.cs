@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using ProjectSims.Domain.Model;
 using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.FileHandler;
-using ProjectSims.FileHandler.Images;
 using ProjectSims.Observer;
 using ProjectSims.WPF.View.Guest1View.MainPages;
 
