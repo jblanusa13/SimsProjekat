@@ -82,7 +82,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             string country = Location.Split(", ")[1];
             Location location = locationService.GetLocationByCityAndCountry(city, country);
 
-            forumService.CreateRating(guest, location, Comment);
+            forumService.CreateForum(guest, location, Comment);
 
             ForumStartView startView = (ForumStartView)Window.GetWindow(page);
             startView.Close();

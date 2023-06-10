@@ -76,6 +76,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public ForumViewModel(Guest1 guest, NavigationService navigation)
         {
             forumService = new ForumService();
+            forumService.Subscribe(this);
             Forums = new ObservableCollection<Forum>(forumService.GetAllForums());
             SearchCommand = new RelayCommand(Execute_SearchCommand);
             FindMyForumsCommand = new RelayCommand(Execute_FindMyForumsCommand);
@@ -124,7 +125,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         }
         public void Execute_ShowForumCommand(object obj)
         {
-            NavService.Navigate(new ForumCommentsView(guest, NavService));
+            NavService.Navigate(new ForumCommentsView(guest, NavService, SelectedForum));
         }
         public void Execute_StartNewForumCommand(object obj)
         {

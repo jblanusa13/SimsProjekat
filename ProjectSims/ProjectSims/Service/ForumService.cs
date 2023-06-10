@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Domain.Model;
 using ProjectSims.Domain.RepositoryInterface;
+using ProjectSims.Observer;
+using ProjectSims.Repository;
 
 namespace ProjectSims.Service
 {
@@ -48,12 +50,22 @@ namespace ProjectSims.Service
             return forumRepository.GetAllByGuest(guestId);
         }
 
-        public void CreateRating(Guest1 guest, Location location, string comment)
+        public void CreateForum(Guest1 guest, Location location, string comment)
         {
             int id = forumRepository.NextId();
             Forum forum = new Forum(id, location.Id, location, comment, ForumStatus.Otvoren, guest.Id, guest);
             forumRepository.Create(forum);
         }
 
+        public void CloseForum(int forumId)
+        {
+            Forum forumToClose = forumRepository.GetById(forumId);
+            forumToClose.Status = ForumStatus.Zatvoren;
+            forumRepository.Update(forumToClose);
+        }
+        public void Subscribe(IObserver observer)
+        {
+            forumRepository.Subscribe(observer);
+        }
     }
 }

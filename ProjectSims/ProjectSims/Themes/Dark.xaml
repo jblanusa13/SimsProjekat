@@ -99,7 +99,11 @@
 
     <Style TargetType="ListViewItem" x:Key="ListViewItem">
         <Setter Property="Background" Value="#1c1c1c"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="BorderBrush" Value="#ffaeaeae"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="#ffaeaeae"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontFamily" Value="Bahnschrift"/>
     </Style>
 
     <Style x:Key="FocusControl">

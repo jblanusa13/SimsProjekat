@@ -1,2 +1,6 @@
-0|1|-1|Super je|true
-1|-1|1|Dobar mi je smestaj majke mi|false
+0|0|1|-1|Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.|True|True|0
+1|0|-1|1|Dobar mi je smestaj majke mi|False|False|
+2|1|0|-1|super|True|True|
+3|1|0|-1|ne valja nicemu|True|True|
+4|1|0|-1|vrh|True|True|
+5|4|0|-1|fff|False|True|

@@ -22,10 +22,10 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
     /// </summary>
     public partial class ForumCommentsView : Page
     {
-        public ForumCommentsView(Guest1 guest, NavigationService navigation)
+        public ForumCommentsView(Guest1 guest, NavigationService navigation, Forum forum)
         {
             InitializeComponent();
-            DataContext = new ForumCommentsViewModel();
+            DataContext = new ForumCommentsViewModel(guest, navigation, this, forum);
         }
     }
 }
