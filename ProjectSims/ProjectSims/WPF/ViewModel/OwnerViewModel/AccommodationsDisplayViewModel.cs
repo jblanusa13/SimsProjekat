@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace ProjectSims.WPF.ViewModel.OwnerViewModel
 {
@@ -20,9 +21,11 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
         private RequestService requestService;
         private AccommodationReservationService accommodationReservationService;
         private RenovationScheduleService renovationScheduleService;
-        
-        public AccommodationsDisplayViewModel(Owner o) {
+        public NavigationService NavService { get; set; }
+
+        public AccommodationsDisplayViewModel(Owner o, NavigationService navService) {
             Owner = o;
+            NavService = navService;
             accommodationService = new AccommodationService();
             accommodationService.Subscribe(this);
             accommodationReservationService = new AccommodationReservationService();

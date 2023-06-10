@@ -155,7 +155,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         }
         public void OnForum()
         {
-            NavService.Navigate(new View.Guest1View.MainPages.Forum(Guest, NavService));
+            //NavService.Navigate(new View.Guest1View.MainPages.Forum(Guest, NavService));
         }
         public void OnProfile()
         {

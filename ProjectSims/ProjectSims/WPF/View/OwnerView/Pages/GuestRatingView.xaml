@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims.View.OwnerView.Pages"
         mc:Ignorable="d"
-        Height="750" Width="450">
+        Height="750" Width="430">
     <Page.Resources>
         <ControlTemplate x:Key="ValidationTemplate">
             <Border BorderBrush="Red" BorderThickness="0.5" Height="22" Width="151">
@@ -16,7 +16,7 @@
             </Border>
         </ControlTemplate>
     </Page.Resources>
-    <Grid Margin="25,25,25,25" Cursor="Arrow">
+    <Grid Margin="25,25,15,25" Cursor="Arrow">
         <Label Content="Gost:" HorizontalAlignment="Left" Margin="5,20,0,0" VerticalAlignment="Top" Height="26"/>
         <Label Content="Smještaj:" HorizontalAlignment="Left" Margin="5,50,0,0" VerticalAlignment="Top" Height="26"/>
         <Label Content="Tip:" HorizontalAlignment="Left" Margin="5,80,0,0" VerticalAlignment="Top" Height="26"/>

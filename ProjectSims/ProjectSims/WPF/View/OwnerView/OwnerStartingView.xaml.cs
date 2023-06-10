@@ -20,6 +20,7 @@ using ProjectSims.View.OwnerView.Pages;
 using System.IO;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Navigation;
 
 namespace ProjectSims.WPF.View.OwnerView
 {
@@ -32,7 +33,7 @@ namespace ProjectSims.WPF.View.OwnerView
         private GuestRatingService guestRatingService { get; set; }
 
         private string _title;
-        public string Title
+        public string PageTitle
         {
             get => _title;
             set
@@ -49,8 +50,8 @@ namespace ProjectSims.WPF.View.OwnerView
             InitializeComponent();
             this.DataContext = this;
             Owner = o;
-            TitleTextBlock.Text = "Početna stranica";
-            SelectedTab.Content = new HomePageView(Owner, TitleTextBlock, SelectedTab);
+            PageTitle = "Početna stranica";
+            SelectedTab.Content = new HomePageView(Owner, TitleTextBlock, SelectedTab.NavigationService);
             guestRatingService = new GuestRatingService();
        }
 
@@ -61,19 +62,19 @@ namespace ProjectSims.WPF.View.OwnerView
 
         private void ButtonMenu(object sender, RoutedEventArgs e)
         {
-            TitleTextBlock.Text = "";
+            PageTitle = "";
             ChangeTab(0);
         }
 
         private void ButtonRequests(object sender, RoutedEventArgs e)
         {
-            TitleTextBlock.Text = "Zahtjevi";
+            PageTitle = "Zahtjevi";
             ChangeTab(1);
         }
 
         private void ButtonNotifications(object sender, RoutedEventArgs e)
         {
-            TitleTextBlock.Text = "Obavještenja";
+            PageTitle = "Obavještenja";
             ChangeTab(2);
         }
 
@@ -83,7 +84,7 @@ namespace ProjectSims.WPF.View.OwnerView
             {
                 case 0:
                     {
-                        SelectedTab.Content = new SideMenuView(Owner, TitleTextBlock, SelectedTab);
+                        SelectedTab.Content = new SideMenuView(Owner, TitleTextBlock, SelectedTab.NavigationService);
                         break;
                     }
                 case 1:

@@ -15,6 +15,53 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="FileHandler\Images\Guest1\DraganoviKonaciKoliba.jpg" />
+    <None Remove="FileHandler\Images\Guest1\DraganoviKonaciTrem.jpg" />
+    <None Remove="FileHandler\Images\Guest1\DraganoviKonaciUnutra.jpg" />
+    <None Remove="FileHandler\Images\Guest1\JovanovicDnevna.jpg" />
+    <None Remove="FileHandler\Images\Guest1\JovanovicKuca.jpg" />
+    <None Remove="FileHandler\Images\Guest1\JovanovicSoba.jpg" />
+    <None Remove="FileHandler\Images\Guest1\KodLabudaDnevna.jpg" />
+    <None Remove="FileHandler\Images\Guest1\KodLabudaKupatilo.jpg" />
+    <None Remove="FileHandler\Images\Guest1\KodLabudaSpavaca.jpg" />
+    <None Remove="FileHandler\Images\Guest1\MladenovicKuhinja.jpg" />
+    <None Remove="FileHandler\Images\Guest1\MladenovicTrem.jpg" />
+    <None Remove="FileHandler\Images\Guest2\download.jpg" />
+    <None Remove="FileHandler\Images\Guest2\images.jpg" />
+    <None Remove="FileHandler\Images\Guest2\kofer.jpg" />
+    <None Remove="FileHandler\Images\Guest2\park-kalemegdan-1184267749.jpg" />
+    <None Remove="FileHandler\Images\Guest2\travel-tour-logo.png" />
+    <None Remove="FileHandler\Images\Guide\banja_luka_tournimage_2023.jpg" />
+    <None Remove="FileHandler\Images\Guide\barcelona.jpg" />
+    <None Remove="FileHandler\Images\Guide\barcelona1.jpg" />
+    <None Remove="FileHandler\Images\Guide\etno-selo-stanisici.jpg" />
+    <None Remove="FileHandler\Images\Guide\Grad-Bijeljina.jpg" />
+    <None Remove="FileHandler\Images\Guide\gradske-sluzbe20757.jpg" />
+    <None Remove="FileHandler\Images\Guide\JaksicevaKula.jpg" />
+    <None Remove="FileHandler\Images\Guide\kalemegdan1.jpg" />
+    <None Remove="FileHandler\Images\Guide\klmgdn.jpg" />
+    <None Remove="FileHandler\Images\Guide\knez.jpg" />
+    <None Remove="FileHandler\Images\Guide\languages.png" />
+    <None Remove="FileHandler\Images\Guide\location.png" />
+    <None Remove="FileHandler\Images\Guide\luvr.jpg" />
+    <None Remove="FileHandler\Images\Guide\muzejIluzija.jpg" />
+    <None Remove="FileHandler\Images\Guide\panteon.jpg" />
+    <None Remove="FileHandler\Images\Guide\pariz1.jpg" />
+    <None Remove="FileHandler\Images\Guide\petrovaradin.jpg" />
+    <None Remove="FileHandler\Images\Guide\Pobednik.jpg" />
+    <None Remove="FileHandler\Images\Guide\sagrada-familia.jpg" />
+    <None Remove="FileHandler\Images\Guide\sat.jpg" />
+    <None Remove="FileHandler\Images\Guide\VojniMuzej.jpg" />
+    <None Remove="FileHandler\Images\Owner\Accommodations\draganovi_konaci.jpg" />
+    <None Remove="FileHandler\Images\Owner\Accommodations\filipovic2.jpg" />
+    <None Remove="FileHandler\Images\Owner\Accommodations\jovanovic1.jpg" />
+    <None Remove="FileHandler\Images\Owner\Accommodations\jovanovic2.jpg" />
+    <None Remove="FileHandler\Images\Owner\Accommodations\kod_labuda1.jpg" />
+    <None Remove="FileHandler\Images\Owner\Accommodations\kod_labuda2.jpg" />
+    <None Remove="FileHandler\Images\Owner\Accommodations\mladenovic1.jpg" />
+    <None Remove="FileHandler\Images\Owner\Accommodations\visnjin_dom1.jpg" />
+    <None Remove="FileHandler\Images\Owner\Accommodations\visnjin_dom2.jpg" />
+    <None Remove="FileHandler\Images\Owner\Accommodations\visnjin_dom3.jpg" />
     <None Remove="logoapp.png" />
     <None Remove="Resources\Icons\Guest1\travel-tour-logo-dark.png" />
     <None Remove="Resources\Icons\Guest1\travel-tour-logo-light.png" />
@@ -133,6 +180,147 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FileHandler\Images\Guest1\DraganoviKonaciKoliba.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guest1\DraganoviKonaciTrem.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guest1\DraganoviKonaciUnutra.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guest1\JovanovicDnevna.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guest1\JovanovicKuca.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guest1\JovanovicSoba.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guest1\KodLabudaDnevna.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guest1\KodLabudaKupatilo.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guest1\KodLabudaSpavaca.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guest1\MladenovicKuhinja.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guest1\MladenovicTrem.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guest2\download.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guest2\images.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guest2\kofer.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guest2\park-kalemegdan-1184267749.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guest2\travel-tour-logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guide\banja_luka_tournimage_2023.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guide\barcelona.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guide\barcelona1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guide\etno-selo-stanisici.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guide\Grad-Bijeljina.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guide\gradske-sluzbe20757.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guide\JaksicevaKula.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guide\kalemegdan1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guide\klmgdn.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guide\knez.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guide\languages.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guide\location.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guide\luvr.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guide\muzejIluzija.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guide\panteon.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guide\pariz1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guide\petrovaradin.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guide\Pobednik.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guide\sagrada-familia.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guide\sat.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Guide\VojniMuzej.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Owner\Accommodations\draganovi_konaci.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Owner\Accommodations\filipovic2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Owner\Accommodations\jovanovic1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Owner\Accommodations\jovanovic2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Owner\Accommodations\kod_labuda1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Owner\Accommodations\kod_labuda2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Owner\Accommodations\mladenovic1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Owner\Accommodations\visnjin_dom1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Owner\Accommodations\visnjin_dom2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FileHandler\Images\Owner\Accommodations\visnjin_dom3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="logoapp.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -404,16 +592,6 @@
 	  </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="FileHandler\Images\draganovi_konaci1.jpg" />
-    <Resource Include="FileHandler\Images\filipovic1.jpg" />
-    <Resource Include="FileHandler\Images\jovanovic1.jpg" />
-    <Resource Include="FileHandler\Images\jovanovic2.jpg" />
-    <Resource Include="FileHandler\Images\kod_labuda.jpg" />
-    <Resource Include="FileHandler\Images\kod_labuda1.jpg" />
-    <Resource Include="FileHandler\Images\mladenovic.jpg" />
-    <Resource Include="FileHandler\Images\mladenovic2.jpg" />
-    <Resource Include="FileHandler\Images\visnjin_dom1.jpg" />
-    <Resource Include="FileHandler\Images\visnjin_dom2.jpg" />
     <Content Include="Resources\Images\Owner\Accommodations\draganovi_konaci.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -421,6 +599,7 @@
 
   <ItemGroup>
     <Folder Include="Resources\Images\Guest1\" />
+    <Folder Include="WPF\View\Guest1View\ForumPages\" />
     <Resource Include="Resources\Icons\Guest1\travel-tour-logo-dark.png" />
     <Resource Include="Resources\Icons\Guest1\travel-tour-logo-light.png" />
   </ItemGroup>

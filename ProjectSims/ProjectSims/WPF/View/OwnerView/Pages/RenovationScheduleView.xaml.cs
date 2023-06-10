@@ -28,18 +28,18 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
         public Owner Owner { get; set; }
         public TextBlock TitleTextBlock { get; set; }
         public Accommodation SelectedAccommodation { get; set; }
-        public Frame SelectedTab { get; set; }
+        public NavigationService NavService { get; set; }
         public RenovationScheduleViewModel renovationViewModel { get; set; }
 
-        public RenovationScheduleView(Owner owner, TextBlock titleTextBlock, Accommodation selectedAccommodation, Frame selectedTab)
+        public RenovationScheduleView(Owner owner, TextBlock titleTextBlock, Accommodation selectedAccommodation, NavigationService navService)
         {
             InitializeComponent();
             Owner = owner;
             TitleTextBlock = titleTextBlock;
             SelectedAccommodation = selectedAccommodation;
-            SelectedTab = selectedTab;
-            renovationViewModel = new RenovationScheduleViewModel(SelectedAccommodation, Owner);
-            this.DataContext = renovationViewModel;
+            NavService = navService;
+            renovationViewModel = new RenovationScheduleViewModel(SelectedAccommodation, Owner, NavService);
+            DataContext = renovationViewModel;
         }
 
         private void Confirm_Click(object sender, RoutedEventArgs e)
@@ -47,14 +47,14 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
             if ((DateRanges)DateRangesDataGrid.SelectedItem != null && !string.IsNullOrWhiteSpace(DescriptionTextBox.Text)) 
             {
                 renovationViewModel.CreateRenovation((DateRanges)DateRangesDataGrid.SelectedItem, DescriptionTextBox.Text);
-                this.NavigationService.Navigate(new AccommodationsDisplayView(Owner, TitleTextBlock, SelectedTab));
+                NavService.Navigate(new AccommodationsDisplayView(Owner, TitleTextBlock, NavService));
                 TitleTextBlock.Text = "Smještaji";
             }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new AccommodationsDisplayView(Owner, TitleTextBlock, SelectedTab));
+            NavService.Navigate(new AccommodationsDisplayView(Owner, TitleTextBlock, NavService));
             TitleTextBlock.Text = "Smještaji";
         }
         

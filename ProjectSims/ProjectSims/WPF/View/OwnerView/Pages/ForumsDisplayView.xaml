@@ -1,0 +1,61 @@
+﻿<Page x:Class="ProjectSims.WPF.View.OwnerView.Pages.ForumsDisplayView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectSims.WPF.View.OwnerView.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="750" d:DesignWidth="430"
+      Title="ForumsDisplay">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid ScrollViewer.CanContentScroll="True" 
+                  SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical" 
+                  Width="430">
+            <DataGrid x:Name="ForumsTable"  
+                          ItemsSource="{Binding Path = Forums, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding Path=SelectedForum, UpdateSourceTrigger=PropertyChanged}"
+                          Margin="0,0,0,0" 
+                          Height="700"
+                          AutoGenerateColumns="False" 
+                          IsReadOnly="True" 
+                          SelectionMode="Single" 
+                          Grid.Row="0"
+                          VerticalAlignment="Top"
+                          HeadersVisibility="Column">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Lokacija"
+                                            Width="*"
+                                            IsReadOnly="True">
+                        <DataGridTextColumn.Binding>
+                            <MultiBinding StringFormat="{}{0}, {1}">
+                                <Binding Path="Location.City"/>
+                                <Binding Path="Location.Country"/>
+                            </MultiBinding>
+                        </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+                    <DataGridCheckBoxColumn Header="Veoma koristan"
+                                                Binding="{Binding Usefulness,
+                                                          Mode=TwoWay,
+                                                          BindsDirectlyToSource=True}"
+                                                Width="*"
+                                                IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Button Command="{Binding OpenCommand}"
+                    Width="120" 
+                    Height="34" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"
+                    Content="Otvori"/>
+        </Grid>
+    </Grid>
+</Page>

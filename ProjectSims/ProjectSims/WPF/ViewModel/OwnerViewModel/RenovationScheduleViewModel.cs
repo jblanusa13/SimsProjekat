@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Navigation;
 
 namespace ProjectSims.WPF.ViewModel.OwnerViewModel
 {
@@ -23,11 +24,13 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
         public int Duration { get; set; }
         private RenovationScheduleService renovationService;
         private AccommodationScheduleService accommodationScheduleService;
+        public NavigationService NavService { get; set; }
 
-        public RenovationScheduleViewModel(Accommodation selectedAccommodation, Owner owner) 
+        public RenovationScheduleViewModel(Accommodation selectedAccommodation, Owner owner, NavigationService navService) 
         {
             Owner = owner;
             SelectedAccommodation = selectedAccommodation;
+            NavService = navService;
             renovationService = new RenovationScheduleService();
             accommodationScheduleService = new AccommodationScheduleService();
             DateRanges = new ObservableCollection<DateRanges>();

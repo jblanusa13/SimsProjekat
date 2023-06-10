@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Domain.Model;
 using ProjectSims.Domain.RepositoryInterface;
+using ProjectSims.Observer;
+using ProjectSims.Repository;
 
 namespace ProjectSims.Service
 {
@@ -12,6 +14,7 @@ namespace ProjectSims.Service
     {
         private IForumRepository forumRepository;
         private ILocationRepository locationRepository;
+        private IAccommodationRepository accommodationRepository;
         private IGuest1Repository guest1Repository;
 
         public ForumService()
@@ -19,6 +22,7 @@ namespace ProjectSims.Service
             forumRepository = Injector.CreateInstance<IForumRepository>();
             locationRepository = Injector.CreateInstance<ILocationRepository>();
             guest1Repository = Injector.CreateInstance<IGuest1Repository>();
+            accommodationRepository = Injector.CreateInstance<IAccommodationRepository>();
 
             InitializeLocation();
             InitializeGuest();
@@ -48,11 +52,32 @@ namespace ProjectSims.Service
             return forumRepository.GetAllByGuest(guestId);
         }
 
+        public List<Forum> GetAllForumsByOwner(Owner owner)
+        {
+            List<Forum> forums = new List<Forum>();
+            foreach (var id in owner.AccommodationIds)
+            {
+                Accommodation accommodation = accommodationRepository.GetById(id);
+                foreach (var forum in GetAllForums())
+                {
+                    if (forum.LocationId == accommodation.IdLocation)
+                    {
+                        forums.Add(forum);
+                    }
+                }
+            }
+            return forums;
+        }
+
         public void CreateRating(Guest1 guest, Location location, string comment)
         {
             int id = forumRepository.NextId();
             Forum forum = new Forum(id, location.Id, location, comment, ForumStatus.Otvoren, guest.Id, guest);
             forumRepository.Create(forum);
+        }
+        public void Subscribe(IObserver observer)
+        {
+            forumRepository.Subscribe(observer);
         }
 
     }

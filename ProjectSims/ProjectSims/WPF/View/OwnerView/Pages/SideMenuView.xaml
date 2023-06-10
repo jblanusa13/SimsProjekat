@@ -66,6 +66,7 @@
         </Grid>
         <Grid Grid.Row="4" Grid.ColumnSpan="2">
             <Button Content="Forumi"
+                    Click="Forum_Click"
                     FontSize="18"
                     FontWeight="DemiBold"
                     VerticalAlignment="Center"

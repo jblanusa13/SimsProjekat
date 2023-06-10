@@ -24,12 +24,13 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
     {
         public OwnerRatingsDisplayViewModel ownerRatingsDisplayViewModel { get; set; }
         public Owner Owner { get; set; }
-        public OwnerRatingsDisplayView(Owner o) 
+        public NavigationService NavService { get; set; }
+        public OwnerRatingsDisplayView(Owner o, NavigationService navService) 
         {
             InitializeComponent();
             Owner = o;
-            ownerRatingsDisplayViewModel = new OwnerRatingsDisplayViewModel(Owner);
-            this.DataContext = ownerRatingsDisplayViewModel;
+            NavService = navService;
+            DataContext = new OwnerRatingsDisplayViewModel(Owner, NavService);
         }
     }
 }

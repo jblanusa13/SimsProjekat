@@ -8,23 +8,23 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Navigation;
 
 namespace ProjectSims.WPF.ViewModel.OwnerViewModel
 {
     public class OwnerRatingsDisplayViewModel : IObserver
     { 
         public Owner Owner { get; set; }
+        public NavigationService NavService { get; set; }
         public ObservableCollection<AccommodationAndOwnerRating> Ratings { get; set; }
         private AccommodationRatingService ratingService;
-        private AccommodationReservationService reservationService;
 
-        public OwnerRatingsDisplayViewModel(Owner o)
+        public OwnerRatingsDisplayViewModel(Owner o, NavigationService navService)
         {
             Owner = o;
+            NavService = navService;
             ratingService = new AccommodationRatingService();
-            reservationService = new AccommodationReservationService();
             Ratings = new ObservableCollection<AccommodationAndOwnerRating>(ratingService.GetRatingsWhereGuestRated(o.Id));
-             
         }
         public void Update()
         {

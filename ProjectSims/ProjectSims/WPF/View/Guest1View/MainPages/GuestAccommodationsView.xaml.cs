@@ -56,7 +56,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             {
                 if ((e.Key.Equals(Key.Enter)) || (e.Key.Equals(Key.Return)))
                 {
-                    NavService.Navigate(new AccommodationReservationView(SelectedAccommodation, Guest, NavigationService));
+                    //NavService.Navigate(new AccommodationReservationView(SelectedAccommodation, Guest, NavService));
                 }
             }
         }

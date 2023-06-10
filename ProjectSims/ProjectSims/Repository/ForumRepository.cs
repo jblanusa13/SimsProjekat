@@ -25,6 +25,7 @@ namespace ProjectSims.Repository
         {
             return forums.Where(g => g.GuestId == guestId).ToList();
         }
+ 
         public List<Forum> GetAll()
         {
             return forums;

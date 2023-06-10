@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:ProjectSims.WPF.View.OwnerView"
         mc:Ignorable="d"
         WindowStyle="None"
-        Title="OwnerUI" Height="750" Width="430" 
+        Height="750" Width="430" 
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         Loaded="Window_Loaded">
@@ -23,7 +23,7 @@
 
             <Grid Grid.Row="0" Background="#dfe9eb">
                 <TextBlock x:Name="TitleTextBlock"
-                       Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"
+                       Text="{Binding PageTitle, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                        FontSize="20"
                        FontWeight="DemiBold"
                        HorizontalAlignment="Center"

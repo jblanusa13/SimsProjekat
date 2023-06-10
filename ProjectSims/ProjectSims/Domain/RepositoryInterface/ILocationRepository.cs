@@ -12,7 +12,6 @@ namespace ProjectSims.Domain.RepositoryInterface
         public int GetIdByLocation(string location);
         public void Add(string location);
         public bool Exist(string location);
-
         public List<string> GetAllCities();
         public List<string> GetAllCountries();
         public List<string> GetAllCitiesByCountry(string country);

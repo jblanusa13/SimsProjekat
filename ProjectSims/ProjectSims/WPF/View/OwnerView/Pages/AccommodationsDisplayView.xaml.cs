@@ -25,6 +25,7 @@ using ProjectSims.WPF.View.OwnerView;
 using ProjectSims.WPF.ViewModel.OwnerViewModel;
 using ProjectSims.WPF.View.GuideView.Pages;
 using ProjectSims.WPF.View.OwnerView.Pages;
+using System.Windows.Navigation;
 
 namespace ProjectSims.View.OwnerView.Pages
 {
@@ -37,16 +38,16 @@ namespace ProjectSims.View.OwnerView.Pages
         public Owner Owner { get; set; }
         public Accommodation SelectedAccommodation { get; set; }
         public TextBlock TitleTextBlock { get; set; }
-        public Frame SelectedTab { get; set; }
+        public NavigationService NavService { get; set; }
 
-        public AccommodationsDisplayView(Owner o, TextBlock titleTextBlock, Frame selectedTab)
+        public AccommodationsDisplayView(Owner o, TextBlock titleTextBlock, NavigationService navService)
         {
             InitializeComponent();
             Owner = o;
             TitleTextBlock = titleTextBlock;
-            SelectedTab = selectedTab;
-            accommodationsDisplayViewModel = new AccommodationsDisplayViewModel(Owner);
-            this.DataContext = accommodationsDisplayViewModel;
+            NavService = navService;
+            accommodationsDisplayViewModel = new AccommodationsDisplayViewModel(Owner, NavService);
+            DataContext = accommodationsDisplayViewModel;
             NotifyAboutRequest();
             accommodationsDisplayViewModel.UpdateAccommodationsIfRenovated();
         }
@@ -61,7 +62,7 @@ namespace ProjectSims.View.OwnerView.Pages
 
         private void Registrate_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new AccommodationRegistrationView(Owner, TitleTextBlock, null, SelectedTab));
+            NavService.Navigate(new AccommodationRegistrationView(Owner, TitleTextBlock, null, NavService));
             TitleTextBlock.Text = "Registracija smještaja";
         }
 
@@ -70,7 +71,7 @@ namespace ProjectSims.View.OwnerView.Pages
             SelectedAccommodation = (Accommodation)AccommodationsTable.SelectedItem;
             if (SelectedAccommodation != null)
             {
-                this.NavigationService.Navigate(new StatisticsView(Owner, TitleTextBlock, SelectedAccommodation, SelectedTab));
+                NavService.Navigate(new StatisticsView(Owner, TitleTextBlock, SelectedAccommodation, NavService));
                 TitleTextBlock.Text = "Statistika smještaja";
             }
         }
@@ -80,7 +81,7 @@ namespace ProjectSims.View.OwnerView.Pages
             SelectedAccommodation = (Accommodation)AccommodationsTable.SelectedItem;
             if (SelectedAccommodation != null)
             {
-                this.NavigationService.Navigate(new RenovationScheduleView(Owner, TitleTextBlock, SelectedAccommodation, SelectedTab));
+                NavService.Navigate(new RenovationScheduleView(Owner, TitleTextBlock, SelectedAccommodation, NavService));
                 TitleTextBlock.Text = "Renovacija smještaja";
             }
         }
