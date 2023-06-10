@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Domain.Model;
+using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.FileHandler;
 using ProjectSims.Observer;
 
 namespace ProjectSims.Repository
 {
-    public class ForumCommentRepository
+    public class ForumCommentRepository : IForumCommentRepository
     {
         private ForumCommentFileHandler commentFileHandler;
         private List<ForumComment> comments;
