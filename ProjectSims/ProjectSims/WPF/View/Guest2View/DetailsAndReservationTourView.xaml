@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest2View"
         xmlns:custom="clr-namespace:ProjectSims.WPF.CustomControls"
         mc:Ignorable="d"
-        Title="Detalji o turi i njena rezervacija" Height="800" Width="1400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Topmost="True" Icon="/WPF/View/Guest2View/travel-tour-logo.png">
+        Title="Detalji o turi i njena rezervacija" Height="800" Width="1400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Topmost="True" Icon="/WPF/View/Guest2View/logoapp.png">
     <Grid>
         <Border BorderBrush="Black" BorderThickness="3" HorizontalAlignment="Left" Height="671" Margin="23,23,0,0" VerticalAlignment="Top" Width="848" CornerRadius="10,10,10,10"/>
         <Label Content="Prikaz informacija o turi:" FontSize="36" HorizontalAlignment="Left" Margin="37,34,0,0" VerticalAlignment="Top" Width="430" Height="58" FontWeight="Bold"/>

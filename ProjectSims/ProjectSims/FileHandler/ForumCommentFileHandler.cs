@@ -8,13 +8,13 @@ using ProjectSims.Serializer;
 
 namespace ProjectSims.FileHandler
 {
-    public class OwnerCommentFileHandler
+    public class ForumCommentFileHandler
     {
-        private const string FilePath = "../../../Resources/Data/ownerComment.csv";
+        private const string FilePath = "../../../Resources/Data/forumComment.csv";
 
 
         private Serializer<ForumComment> _serializer;
-        public OwnerCommentFileHandler()
+        public ForumCommentFileHandler()
         {
             _serializer = new Serializer<ForumComment>();
         }
@@ -23,9 +23,9 @@ namespace ProjectSims.FileHandler
             return _serializer.FromCSV(FilePath);
         }
 
-        public void Save(List<ForumComment> ownerComment)
+        public void Save(List<ForumComment> comment)
         {
-            _serializer.ToCSV(FilePath, ownerComment);
+            _serializer.ToCSV(FilePath, comment);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using ProjectSims.Domain.Model;
+﻿using ProjectSims.Commands;
+using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 using ProjectSims.Service;
 using ProjectSims.WPF.View.Guest1View.MainPages;

@@ -39,7 +39,7 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
 
         private void GeneratePDF_Click(object sender, RoutedEventArgs e)
         {
-           
+            viewModel.GeneratePdf();
         }
     }
 }

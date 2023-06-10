@@ -16,17 +16,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProjectSims.WPF.View.OwnerView.Pages
+namespace ProjectSims.WPF.View.Guest1View.MainPages
 {
     /// <summary>
     /// Interaction logic for ForumComments.xaml
     /// </summary>
-    public partial class OpenedForum : Page
+    public partial class ForumCommentsView : Page
     {
-        public OpenedForum(Owner owner, NavigationService navService, Forum selectedForum)
+        public ForumCommentsView(Guest1 guest, NavigationService navigation)
         {
             InitializeComponent();
-            DataContext = new OpenedForumViewModel(owner, navService, selectedForum);
+            DataContext = new ForumCommentsViewModel();
         }
     }
 }

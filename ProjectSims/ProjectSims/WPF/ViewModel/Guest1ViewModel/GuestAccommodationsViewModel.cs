@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using ProjectSims.Observer;
 using System.Windows.Controls.Primitives;
 using ProjectSims.FileHandler;
+using ProjectSims.Commands;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -104,15 +105,16 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 }
             }
         }
-
-        public MyICommand SearchCommand { get; set; }
-        public MyICommand ThemeCommand { get; set; }
-        public MyICommand AnywhereCommand { get; set; }
-        public MyICommand MyReservationsCommand { get; set; }
-        public MyICommand ShowRatingsCommand { get; set; }
-        public MyICommand RateAccommodationCommand { get; set; }
-        public MyICommand ForumCommand { get; set; }
-        public MyICommand ProfileCommand { get; set; }
+        public Accommodation SelectedAccommodation { get; set; }
+        public RelayCommand SearchCommand { get; set; }
+        public RelayCommand ThemeCommand { get; set; }
+        public RelayCommand AnywhereCommand { get; set; }
+        public RelayCommand MyReservationsCommand { get; set; }
+        public RelayCommand ShowRatingsCommand { get; set; }
+        public RelayCommand RateAccommodationCommand { get; set; }
+        public RelayCommand ForumCommand { get; set; }
+        public RelayCommand ProfileCommand { get; set; }
+        public RelayCommand ReservationCommand { get; set; }
         public MyICommand<GuestAccommodationsView> LogOutCommand { get; set; }
         public NavigationService NavService { get; set; }
         public GuestAccommodationsViewModel(Guest1 guest, NavigationService navigation)
@@ -124,42 +126,50 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
 
             Guest = guest;
 
-            SearchCommand = new MyICommand(OnSearch);
-            ThemeCommand = new MyICommand(OnTheme);
-            AnywhereCommand = new MyICommand(OnAnywhere);
-            MyReservationsCommand = new MyICommand(OnMyReservations);
-            ShowRatingsCommand = new MyICommand(OnShowRatings);
-            RateAccommodationCommand = new MyICommand(OnRate);
-            ForumCommand = new MyICommand(OnForum);
-            ProfileCommand = new MyICommand(OnProfile);
+            SearchCommand = new RelayCommand(Execute_SearchCommand);
+            ThemeCommand = new RelayCommand(Execute_ThemeCommand);
+            AnywhereCommand = new RelayCommand(Execute_AnywhereCommand);
+            MyReservationsCommand = new RelayCommand(Execute_MyReservationsCommand);
+            ShowRatingsCommand = new RelayCommand(Execute_ShowRatingsCommand);
+            RateAccommodationCommand = new RelayCommand(Execute_RateAccommodationCommand);
+            ForumCommand = new RelayCommand(Execute_ForumCommand);
+            ProfileCommand = new RelayCommand(Execute_ProfileCommand);
+            ReservationCommand = new RelayCommand(Execute_ReservationCommand);
             LogOutCommand = new MyICommand<GuestAccommodationsView>(OnLogOut);
 
             NavService = navigation;
         }
-        public void OnAnywhere()
+        public void Execute_AnywhereCommand(object obj)
         {
             NavService.Navigate(new AnytimeAnywhere(Guest, NavService));
         }
-        public void OnMyReservations()
+        public void Execute_MyReservationsCommand(object obj)
         {
             NavService.Navigate(new MyReservations(Guest, NavService));
         }
-        public void OnShowRatings()
+        public void Execute_ShowRatingsCommand(object obj)
         {
             NavService.Navigate(new RatingsView(Guest));
         }
-        public void OnRate()
+        public void Execute_RateAccommodationCommand(object obj)
         {
             RatingStartView accommodationForRating = new RatingStartView(Guest);
             accommodationForRating.Show();
         }
-        public void OnForum()
+        public void Execute_ForumCommand(object obj)
         {
-            //NavService.Navigate(new View.Guest1View.MainPages.Forum(Guest, NavService));
+            NavService.Navigate(new View.Guest1View.MainPages.ForumView(Guest, NavService));
         }
-        public void OnProfile()
+        public void Execute_ProfileCommand(object obj)
         {
             NavService.Navigate(new Profile(Guest));
+        }
+        public void Execute_ReservationCommand(object obj)
+        {
+            if (obj.Equals(System.Windows.Input.Key.Enter) || obj.Equals(System.Windows.Input.Key.Return))
+            {
+                NavService.Navigate(new AccommodationReservationView(SelectedAccommodation, Guest, NavService));
+            }
         }
         private void OnLogOut(GuestAccommodationsView page)
         {
@@ -168,7 +178,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             Window parentWindow = Window.GetWindow(page);
             parentWindow.Close();
         }
-        private void OnTheme()
+        private void Execute_ThemeCommand(object obj)
         {
             App app = (App)Application.Current;
 
@@ -184,7 +194,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             }
         }
 
-        public void OnSearch()
+        public void Execute_SearchCommand(object obj)
         {
             Accommodations.Clear();
             foreach (Accommodation accommodation in accommodationService.GetAllAccommodations())

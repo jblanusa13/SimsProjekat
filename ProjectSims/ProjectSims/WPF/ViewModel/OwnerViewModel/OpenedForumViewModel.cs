@@ -1,4 +1,5 @@
-﻿using ProjectSims.Domain.Model;
+﻿using ProjectSims.Commands;
+using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 using ProjectSims.Service;
 using System;
@@ -16,10 +17,10 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
     {
         public Owner Owner { get; set; }
         public Guest1 Guest { get; set; }
-        public ObservableCollection<OwnerComment> Comments { get; set; }
+        public ObservableCollection<ForumComment> Comments { get; set; }
         public Forum SelectedForum { get; set; }
         public NavigationService NavService { get; set; }
-        public ForumService forumService { get; set; }
+        public ForumCommentService commentService { get; set; }
         public RelayCommand ReportCommand { get; set; }
         public RelayCommand CommentCommand { get; set; }
 
@@ -28,9 +29,9 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
             Owner = owner;
             NavService = navService;
             SelectedForum = selectedForum;
-            forumService = new ForumService();
-            forumService.Subscribe(this);
-            Comments = new ObservableCollection<OwnerComment>(forumService.GetAllForums());
+            commentService = new ForumCommentService();
+            commentService.Subscribe(this);
+            Comments = new ObservableCollection<ForumComment>(commentService.GetAllForumComments());
             ReportCommand = new RelayCommand(Execute_ReportCommand, CanExecute_Command);
             CommentCommand = new RelayCommand(Execute_CommentCommand, CanExecute_Command);
         }
@@ -53,9 +54,9 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
         public void Update()
         {
             Comments.Clear();
-            foreach (ForumComment comemnt in forumService.GetAllForums())
+            foreach (ForumComment comment in commentService.GetAllForumComments())
             {
-                Comments.Add(forum);
+                Comments.Add(comment);
             }
         }
     }

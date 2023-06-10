@@ -6,7 +6,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest2View"
         mc:Ignorable="d"
-        Title="Kreiraj zahtjev za slozenu turu" Height="600" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Kreiraj zahtjev za slozenu turu" Height="600" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/WPF/View/Guest2View/logoapp.png">
     <Window.Resources>
         <ControlTemplate x:Key="ValidationTemplate">
             <StackPanel>

@@ -30,11 +30,11 @@ namespace ProjectSims.Service
             }
         }
 
-        public List<OwnerComment> GetAllOwnerComments()
+        public List<ForumComment> GetAllOwnerComments()
         {
             return commentRepository.GetAll();
         }
-        public List<OwnerComment> GetAllCommentsByOwner(int ownerId)
+        public List<ForumComment> GetAllCommentsByOwner(int ownerId)
         {
             return commentRepository.GetAllByOwner(ownerId);
         }

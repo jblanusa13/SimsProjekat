@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest2View"
         mc:Ignorable="d"
-        Title="Pracenje ture uzivo" Height="450" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Pracenje ture uzivo" Height="450" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="/WPF/View/Guest2View/logoapp.png">
     <Grid Background="#FF455DF6">
         <Label Content="Naziv ture:" FontSize="13" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="24,16,0,0" VerticalAlignment="Top" Height="27" Width="86" Foreground="White"/>
         <TextBox HorizontalAlignment="Left" FontSize="13" Margin="26,42,0,0" TextWrapping="Wrap" Text="{Binding tour.Name}" VerticalAlignment="Top" Width="289" IsEnabled="False" BorderThickness="0,0,0,2" Height="21"  Background="#FF455DF6" BorderBrush="Black"/>

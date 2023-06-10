@@ -6,7 +6,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest2View"
         mc:Ignorable="d"
-        Title="Kreiraj zahtjev za turu" Height="600" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Kreiraj zahtjev za turu" Height="600" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/WPF/View/Guest2View/logoapp.png">
     <Window.Resources>
         <ControlTemplate x:Key="ValidationTemplate">
             <StackPanel>
@@ -18,7 +18,7 @@
     <Grid>
         <Label Content="Kreiraj zahtjev za" FontSize="28" HorizontalAlignment="Left" Margin="34,40,0,0" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="256,45,0,0" TextWrapping="Wrap" FontSize="28"  Text="obicnu turu:" TextDecorations="Underline" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Button Content="&#60;Nazad" Click="ButtonBack" FontSize="18" HorizontalAlignment="Left" Margin="672,19,0,0" VerticalAlignment="Top" Width="100" Height="45"/>
+        <Button Content="&#60;Nazad" Cursor="Hand" Click="ButtonBack" FontSize="18" HorizontalAlignment="Left" Margin="672,19,0,0" VerticalAlignment="Top" Width="100" Height="45"/>
         <Border BorderBrush="Black" BorderThickness="3,3,3,3" HorizontalAlignment="Left" Height="446" Margin="75,92,0,0" VerticalAlignment="Top" Width="596" CornerRadius="10,10,10,10"/>
         <Label Content="Lokacija ture(Grad,Drzava):" FontSize="13" HorizontalAlignment="Left" Margin="152,120,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" FontSize="13" Margin="152,152,0,0" TextWrapping="Wrap" Text="{Binding Path=Location,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" VerticalAlignment="Top" Width="437" Height="27" BorderThickness="2" BorderBrush="Black"/>
@@ -57,8 +57,8 @@
                 </LinearGradientBrush>
             </DatePicker.BorderBrush>
         </DatePicker>
-        <Button Content="Odustani" Click="ButtonCancel" FontSize="18" Width="136" Height="40" HorizontalAlignment="Left" Margin="205,478,0,0" VerticalAlignment="Top"/>
-        <Button Content="Kreiraj zahtjev" Click="ButtonCreateTourRequest" FontSize="18" Width="136" Height="40" HorizontalAlignment="Left" Margin="400,478,0,0" VerticalAlignment="Top"/>
+        <Button Content="Odustani" Cursor="Hand" Click="ButtonCancel" FontSize="18" Width="136" Height="40" HorizontalAlignment="Left" Margin="205,478,0,0" VerticalAlignment="Top"/>
+        <Button Content="Kreiraj zahtjev" Cursor="Hand" Click="ButtonCreateTourRequest" FontSize="18" Width="136" Height="40" HorizontalAlignment="Left" Margin="400,478,0,0" VerticalAlignment="Top"/>
 
 
     </Grid>

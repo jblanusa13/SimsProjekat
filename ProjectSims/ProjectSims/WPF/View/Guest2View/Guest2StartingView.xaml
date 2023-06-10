@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest2View"
         mc:Ignorable="d"
-        Title="Pocetni prozor" Height="800" Width="1400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Normal" >
+        Title="Pocetni prozor" Height="800" Width="1400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Normal" Icon="/WPF/View/Guest2View/logoapp.png" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>

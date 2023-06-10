@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using ProjectSims.Domain.Model;
 using ProjectSims.Service;
 using ProjectSims.WPF.View.Guest1View.MainPages;
+using ProjectSims.Commands;
 
 namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
 {
@@ -28,7 +29,6 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 {
                     _guestNumber = value;
                     OnPropertyChanged();
-                    SearchCommand.RaiseCanExecuteChanged();
                 }
             }
         }
@@ -43,7 +43,6 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 {
                     _daysNumber = value;
                     OnPropertyChanged();
-                    SearchCommand.RaiseCanExecuteChanged();
                 }
             }
         }
@@ -58,7 +57,6 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 {
                     _firstDate = value;
                     OnPropertyChanged();
-                    SearchCommand.RaiseCanExecuteChanged();
                 }
             }
         }
@@ -73,7 +71,6 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 {
                     _lastDate = value;
                     OnPropertyChanged();
-                    SearchCommand.RaiseCanExecuteChanged();
                 }
             }
         }
@@ -111,10 +108,10 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             }
         }
 
-        public MyICommand SearchCommand { get; set; }
-        public MyICommand ReserveCommand { get; set; }
-        public MyICommand ThemeCommand { get; set; }
-        public MyICommand CancelCommand { get; set; }
+        public RelayCommand SearchCommand { get; set; }
+        public RelayCommand ReserveCommand { get; set; }
+        public RelayCommand ThemeCommand { get; set; }
+        public RelayCommand CancelCommand { get; set; }
         public DatePicker First { get; set; }
         public DatePicker Last { get; set; }
         public DataGrid DatesTable { get; set; }
@@ -125,10 +122,10 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public NavigationService NavService { get; set; }
         public AnywhereAnytimeViewModel(DatePicker first, DatePicker last, DataGrid datesTable, Guest1 guest, NavigationService navigation)
         {
-            SearchCommand = new MyICommand(OnSearch, CanSearch);
-            ReserveCommand = new MyICommand(OnReserve);
-            ThemeCommand = new MyICommand(OnTheme);
-            CancelCommand = new MyICommand(OnCancel);
+            SearchCommand = new RelayCommand(Execute_SearchCommand, CanExecute_SearchCommand);
+            ReserveCommand = new RelayCommand(Execute_ReserveCommand);
+            ThemeCommand = new RelayCommand(Execute_ThemeCommand);
+            CancelCommand = new RelayCommand(Execute_CancelCommand);
             AvailableAccommodations = new ObservableCollection<Accommodation>();
             AvailableDates = new ObservableCollection<DateRanges>();
             scheduleService = new AccommodationScheduleService();
@@ -152,11 +149,11 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 DatesTable.Focus();
             }
         }
-        public void OnCancel()
+        public void Execute_CancelCommand(object obj)
         {
             NavService.GoBack();
         }
-        public void OnTheme()
+        public void Execute_ThemeCommand(object obj)
         {
             App app = (App)Application.Current;
 
@@ -171,7 +168,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 App.IsDark = true;
             }
         }
-        public void OnReserve()
+        public void Execute_ReserveCommand(object obj)
         {
             Reserve();
         }
@@ -190,7 +187,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 AvailableDates.Add(dateRange);
             }
         }
-        private bool CanSearch()
+        private bool CanExecute_SearchCommand(object obj)
         {
             bool firstDateSelected = First.SelectedDate == null;
             bool lastDateSelected = Last.SelectedDate == null;
@@ -198,7 +195,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             return IsValid && ((firstDateSelected && !lastDateSelected || !firstDateSelected && lastDateSelected) ? false : true);
         }
 
-        private void OnSearch()
+        private void Execute_SearchCommand(object obj)
         {
             List<Accommodation> availableAccommodations = new List<Accommodation>();
 

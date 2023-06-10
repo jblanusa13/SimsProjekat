@@ -5,7 +5,9 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:fa="http://schemas.fontawesome.io/icons/"
+      xmlns:commands="clr-namespace:ProjectSims.Commands"
       xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.MainPages"
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       mc:Ignorable="d" 
       d:DesignHeight="540" d:DesignWidth="1067"
       Title="GuestAccommodationsView">
@@ -180,8 +182,7 @@
                        Margin="10,0,0,0" HorizontalContentAlignment="Stretch">Da biste rezervisali, pritisnite Enter na zeljenom smestaju</Label>
                 <DataGrid Grid.Row="1" Name="AccommodationsTable" ItemsSource="{Binding Path=Accommodations, UpdateSourceTrigger=PropertyChanged}"
                       Margin="10,0,10,0" HeadersVisibility="Column"
-                      PreviewKeyDown="OpenReservationView"
-                      SelectionChanged="Accommodations_SelectionChanged"
+                      SelectedItem="{Binding SelectedAccommodation, UpdateSourceTrigger=PropertyChanged}"
                       >
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" Width="170"></DataGridTextColumn>
@@ -219,6 +220,14 @@
                             </DataGridTextColumn.HeaderTemplate>
                         </DataGridTextColumn>
                     </DataGrid.Columns>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewKeyDown" >
+                            <i:InvokeCommandAction Command="{Binding ReservationCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <i:Interaction.Behaviors>
+                        <commands:PreviewKeyDownWithArgsBehaviour PreviewKeyDownCommand="{Binding ReservationCommand}" />
+                    </i:Interaction.Behaviors>
                 </DataGrid>
             </Grid>
         </Grid>
