@@ -13,6 +13,7 @@ using ProjectSims.Service;
 using ProjectSims.Observer;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using ProjectSims.Commands;
 
 namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
 {

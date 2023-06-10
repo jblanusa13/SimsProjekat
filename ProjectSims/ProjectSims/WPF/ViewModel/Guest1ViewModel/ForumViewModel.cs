@@ -12,6 +12,7 @@ using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 using ProjectSims.Service;
 using ProjectSims.WPF.View.Guest1View;
+using ProjectSims.Commands;
 
 namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
 {
@@ -60,11 +61,11 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         }
 
         private ForumService forumService;
-        public MyICommand SearchCommand { get; set; }
-        public MyICommand FindMyForumsCommand { get; set; }
-        public MyICommand StartNewForumCommand { get; set; }
-        public MyICommand ThemeCommand { get; set; }
-        public MyICommand CancelCommand { get; set; }
+        public RelayCommand SearchCommand { get; set; }
+        public RelayCommand FindMyForumsCommand { get; set; }
+        public RelayCommand StartNewForumCommand { get; set; }
+        public RelayCommand ThemeCommand { get; set; }
+        public RelayCommand CancelCommand { get; set; }
         public MyICommand<View.Guest1View.MainPages.Forum> LogOutCommand { get; set; }
         public ObservableCollection<Forum> Forums { get; set; }
         private Guest1 guest;
@@ -73,11 +74,11 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         {
             forumService = new ForumService();
             Forums = new ObservableCollection<Forum>(forumService.GetAllForums());
-            SearchCommand = new MyICommand(OnSearch);
-            FindMyForumsCommand = new MyICommand(OnFind);
-            StartNewForumCommand = new MyICommand(OnStart);
-            ThemeCommand = new MyICommand(OnTheme);
-            CancelCommand = new MyICommand(OnCancel);
+            SearchCommand = new RelayCommand(Execute_SearchCommand);
+            FindMyForumsCommand = new RelayCommand(Execute_FindMyForumsCommand);
+            StartNewForumCommand = new RelayCommand(Execute_StartNewForumCommand);
+            ThemeCommand = new RelayCommand(Execute_ThemeCommand);
+            CancelCommand = new RelayCommand(Execute_CancelCommand);
             LogOutCommand = new MyICommand<View.Guest1View.MainPages.Forum>(OnLogOut);
 
             ButtonContent = "Nadji moje forume";
@@ -93,12 +94,12 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             parentWindow.Close();
         }
 
-        private void OnCancel()
+        private void Execute_CancelCommand(object obj)
         {
             NavService.GoBack();
         }
 
-        private void OnTheme()
+        private void Execute_ThemeCommand(object obj)
         {
             App app = (App)Application.Current;
 
@@ -113,13 +114,13 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 App.IsDark = true;
             }
         }
-        public void OnStart()
+        public void Execute_StartNewForumCommand(object obj)
         {
             ForumStartView createForum = new ForumStartView(guest);
             createForum.Show();
         }
 
-        public void OnSearch()
+        public void Execute_SearchCommand(object obj)
         {
             Forums.Clear();
             foreach (Forum forum in forumService.GetAllForums())
@@ -141,7 +142,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             return ContainsCity && ContainsCountry;
         }
 
-        public void OnFind()
+        public void Execute_FindMyForumsCommand(object obj)
         {
             if (ButtonContent == "Nadji moje forume")
             {

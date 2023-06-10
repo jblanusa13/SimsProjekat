@@ -15,6 +15,7 @@ using ProjectSims.Service;
 using ProjectSims.WPF.View.Guest1View.MainPages;
 using ProjectSims.WPF.View.Guest1View.Report;
 using ProjectSims.WPF.View.Guest1View.Requests;
+using ProjectSims.Commands;
 
 namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
 {

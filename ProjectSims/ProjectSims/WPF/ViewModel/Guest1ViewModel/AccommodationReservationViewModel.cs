@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using ProjectSims.Domain.Model;
 using ProjectSims.Service;
 using ProjectSims.WPF.View.Guest1View.MainPages;
+using ProjectSims.Commands;
 
 namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
 {
@@ -42,7 +43,6 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 {
                     _guestNumber = value;
                     OnPropertyChanged();
-                    FindDatesCommand.RaiseCanExecuteChanged();
                 }
             }
         }
@@ -57,7 +57,6 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 {
                     _daysNumber = value;
                     OnPropertyChanged();
-                    FindDatesCommand.RaiseCanExecuteChanged();
                 }
             }
         }
@@ -67,12 +66,12 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
 
         private AccommodationReservationService reservationService;
         public Guest1 Guest { get; set; }
-        public MyICommand FindDatesCommand { get; set; }
-        public MyICommand ThemeCommand { get; set; }
-        public MyICommand ConfirmCommand { get; set; }
-        public MyICommand CancelCommand { get; set; }
-        public MyICommand FirstChangedCommand { get; set; }
-        public MyICommand LastChangedCommand { get; set; }
+        public RelayCommand FindDatesCommand { get; set; }
+        public RelayCommand ThemeCommand { get; set; }
+        public RelayCommand ConfirmCommand { get; set; }
+        public RelayCommand CancelCommand { get; set; }
+        public RelayCommand FirstChangedCommand { get; set; }
+        public RelayCommand LastChangedCommand { get; set; }
         public NavigationService NavService { get; set; }
         public AccommodationReservationView ReservationView { get; set; }
 
@@ -87,28 +86,28 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             AvailableDates = new ObservableCollection<DateRanges>();
             reservationService = new AccommodationReservationService();
 
-            FindDatesCommand = new MyICommand(OnFind, CanFind);
-            ConfirmCommand = new MyICommand(OnConfirm, CanConfirm);
-            ThemeCommand = new MyICommand(OnTheme);
-            CancelCommand = new MyICommand(OnCancel);
-            FirstChangedCommand = new MyICommand(OnFirstChanged);
-            LastChangedCommand = new MyICommand(OnLastChanged);
+            FindDatesCommand = new RelayCommand(Execute_FindDatesCommand, CanExecute_FindDatesCommand);
+            ConfirmCommand = new RelayCommand(Execute_ConfirmCommand, CanExecute_ConfirmCommand);
+            ThemeCommand = new RelayCommand(Execute_ThemeCommand);
+            CancelCommand = new RelayCommand(Execute_CancelCommand);
+            FirstChangedCommand = new RelayCommand(Execute_FirstChangedCommand);
+            LastChangedCommand = new RelayCommand(Execute_LastChangedCommand);
             ValidateFirst();
             ValidateLast();
         }
 
-        public void OnCancel()
+        public void Execute_CancelCommand(object obj)
         {
             NavService.GoBack();
         }
 
-        public bool CanFind()
+        public bool CanExecute_FindDatesCommand(object obj)
         {
             return IsValid && ReservationView.FirstDatePicker.SelectedDate != null &&
                         ReservationView.LastDatePicker.SelectedDate != null;
         }
 
-        public void OnFind()
+        public void Execute_FindDatesCommand(object obj)
         {
             AccommodationScheduleService scheduleService = new AccommodationScheduleService();
             List<DateRanges> availableDates = new List<DateRanges>();
@@ -127,12 +126,12 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             UpdateDatesTable(availableDates);
         }
 
-        public bool CanConfirm()
+        public bool CanExecute_ConfirmCommand(object obj)
         {
             return SelectedDates != null;
         }
 
-        public void OnConfirm()
+        public void Execute_ConfirmCommand(object obj)
         {
             Reserve();
             NavService.GoBack();
@@ -150,7 +149,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 AvailableDates.Add(dateRange);
             }
         }
-        private void OnTheme()
+        private void Execute_ThemeCommand(object obj)
         {
             App app = (App)Application.Current;
 
@@ -165,12 +164,12 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 App.IsDark = true;
             }
         }
-        public void OnFirstChanged()
+        public void Execute_FirstChangedCommand(object obj)
         {
             ReservationView.LastDatePicker.DisplayDateStart = ReservationView.FirstDatePicker.SelectedDate;
             ValidateFirst();
         }
-        public void OnLastChanged()
+        public void Execute_LastChangedCommand(object obj)
         {
             ReservationView.FirstDatePicker.DisplayDateEnd = ReservationView.LastDatePicker.SelectedDate;
             ValidateLast();
