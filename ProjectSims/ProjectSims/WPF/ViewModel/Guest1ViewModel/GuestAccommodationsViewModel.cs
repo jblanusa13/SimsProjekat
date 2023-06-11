@@ -114,7 +114,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public RelayCommand RateAccommodationCommand { get; set; }
         public RelayCommand ForumCommand { get; set; }
         public RelayCommand ProfileCommand { get; set; }
-        public RelayCommand ReservationCommand { get; set; }
+        //public RelayCommand ReservationCommand { get; set; }
         public MyICommand<GuestAccommodationsView> LogOutCommand { get; set; }
         public NavigationService NavService { get; set; }
         public GuestAccommodationsViewModel(Guest1 guest, NavigationService navigation)
@@ -134,7 +134,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             RateAccommodationCommand = new RelayCommand(Execute_RateAccommodationCommand);
             ForumCommand = new RelayCommand(Execute_ForumCommand);
             ProfileCommand = new RelayCommand(Execute_ProfileCommand);
-            ReservationCommand = new RelayCommand(Execute_ReservationCommand);
+            //ReservationCommand = new RelayCommand(Execute_ReservationCommand);
             LogOutCommand = new MyICommand<GuestAccommodationsView>(OnLogOut);
 
             NavService = navigation;
@@ -164,13 +164,13 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         {
             NavService.Navigate(new Profile(Guest));
         }
-        public void Execute_ReservationCommand(object obj)
+     /*   public void Execute_ReservationCommand(object obj)
         {
             if (obj.Equals(System.Windows.Input.Key.Enter) || obj.Equals(System.Windows.Input.Key.Return))
             {
                 NavService.Navigate(new AccommodationReservationView(SelectedAccommodation, Guest, NavService));
             }
-        }
+        }*/
         private void OnLogOut(GuestAccommodationsView page)
         {
             var login = new MainWindow();

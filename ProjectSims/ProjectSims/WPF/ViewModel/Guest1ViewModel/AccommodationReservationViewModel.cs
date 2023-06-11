@@ -124,6 +124,8 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             }
 
             UpdateDatesTable(availableDates);
+
+            ReservationView.DatesTable.Focus();
         }
 
         public bool CanExecute_ConfirmCommand(object obj)

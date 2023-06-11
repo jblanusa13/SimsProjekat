@@ -153,17 +153,39 @@
                                 <ColumnDefinition Width="200"/>
                             </Grid.ColumnDefinitions>
 
-                            <Label Grid.Column="0" Content="Mara Maric je postavila komentar:"
+                            <Grid Grid.Column="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label FontSize="16" FontFamily="Bahnschrift"
+                                    Foreground="{DynamicResource FontsColor}"
+                                    Margin="5,23,0,0" Content="{Binding Forum.Guest.Name}"></Label>
+                                    <Label FontSize="16" FontFamily="Bahnschrift"
+                                    Foreground="{DynamicResource FontsColor}"
+                                    Margin="0,23,0,0" Content="{Binding Forum.Guest.Surname}"></Label>
+                                    <Label Grid.Column="0" Content="je postavio/la komentar:"
                                    FontSize="16" FontFamily="Bahnschrift"
                                     Foreground="{DynamicResource FontsColor}"
-                                    Margin="10,23,0,0"></Label>
+                                    Margin="0,23,0,0"></Label>
+                                </StackPanel>
+                            </Grid>
 
+                            <Grid Grid.Column="1" x:Name="UsefulGrid">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="40"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" FontSize="13" FontFamily="Bahnschrift"
+                                    Foreground="{DynamicResource FontsColor}"
+                                       Margin="60,15,0,0">Veoma koristan</Label>
+                                <Grid Grid.Column="1">
+                                    <fa:ImageAwesome Icon="Star" Foreground="{DynamicResource BarFont}" Margin="0,10,10,10"></fa:ImageAwesome>
+                                </Grid>
+                            </Grid>
                             
                         </Grid>
 
                         <Grid Grid.Row="1">
                             <TextBox Margin="10,0" FontSize="12" FontFamily="Bahnschrift"
-                                    Foreground="#001330" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugia"
+                                    Foreground="#001330" Text="{Binding Forum.Comment}"
                                      TextWrapping="Wrap" IsReadOnly="True" IsReadOnlyCaretVisible="True"
                                      Background="{DynamicResource TextboxColor}"></TextBox>
                         </Grid>
@@ -186,7 +208,9 @@
                                                         </MultiBinding>
                                                     </AccessText>
                                                 </TextBlock>
-                                                <Label Content="{conv:Binding (GuestVisited?\'Posetio!\':\'\')}" Margin="570,0,0,0"/>
+                                                <Label Content="Broj prijava: " Margin="530,0,0,0"/>
+                                                <Label Content="{Binding ReportNumber}" Margin="605,0,0,0" Foreground="Red"/>
+                                                <Label Content="{conv:Binding (GuestVisited?\'Posetio!\':\'\')}" Margin="470,0,0,0"/>
                                             </Grid>
                                             <TextBlock TextWrapping="Wrap" Text="{Binding Comment}" Margin="5,0,0,0" FontSize="10"/>
                                         </StackPanel>

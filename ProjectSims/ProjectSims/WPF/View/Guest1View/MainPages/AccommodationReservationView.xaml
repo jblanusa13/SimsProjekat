@@ -378,7 +378,7 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <Button Grid.Column="0" Margin="30,20,10,15" FontFamily="Bahnschrift" Command="{Binding ConfirmCommand}" 
+                                <Button x:Name="ReserveBtn" Grid.Column="0" Margin="30,20,10,15" FontFamily="Bahnschrift" Command="{Binding ConfirmCommand}" 
                                         Foreground="{DynamicResource FontsColor}"
                                         Background="{DynamicResource SecondGrayShade}"
                                         FocusVisualStyle="{DynamicResource FocusControl}">Potvrdi rezervaciju

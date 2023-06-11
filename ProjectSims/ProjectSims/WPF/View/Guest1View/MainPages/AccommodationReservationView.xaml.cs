@@ -65,8 +65,9 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         {
             if ((e.Key.Equals(Key.Enter)) || (e.Key.Equals(Key.Return)))
             {
-                viewModel.Reserve();
+                ReserveBtn.Focus();
             }
         }
+
     }
 }

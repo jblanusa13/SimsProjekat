@@ -87,13 +87,14 @@ namespace ProjectSims.Service
             List<AccommodationReservation> guestReservations = reservationRepository.GetAllActiveByGuest(guest.Id);
             foreach (AccommodationReservation reservation in guestReservations)
             {
-                if(reservation.Accommodation.Location == forum.Location)
+                if(reservation.Accommodation.Location == forum.Location && reservation.CheckOutDate <= DateOnly.FromDateTime(DateTime.Today))
                 {
                     return true;
                 }
             }
             return false;
         }
+
         public void Subscribe(IObserver observer)
         {
             forumCommentRepository.Subscribe(observer);

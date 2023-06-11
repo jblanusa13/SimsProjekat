@@ -183,7 +183,8 @@
                 <DataGrid Grid.Row="1" Name="AccommodationsTable" ItemsSource="{Binding Path=Accommodations, UpdateSourceTrigger=PropertyChanged}"
                       Margin="10,0,10,0" HeadersVisibility="Column"
                       SelectedItem="{Binding SelectedAccommodation, UpdateSourceTrigger=PropertyChanged}"
-                      >
+                      PreviewKeyDown="OpenReservationView"
+                          SelectionChanged="Accommodations_SelectionChanged">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" Width="170"></DataGridTextColumn>
                         <DataGridTextColumn Header="Grad" Binding="{Binding Location.City}" Width="150"></DataGridTextColumn>
@@ -220,14 +221,14 @@
                             </DataGridTextColumn.HeaderTemplate>
                         </DataGridTextColumn>
                     </DataGrid.Columns>
-                    <i:Interaction.Triggers>
+                    <!--<i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewKeyDown" >
                             <i:InvokeCommandAction Command="{Binding ReservationCommand}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <i:Interaction.Behaviors>
                         <commands:PreviewKeyDownWithArgsBehaviour PreviewKeyDownCommand="{Binding ReservationCommand}" />
-                    </i:Interaction.Behaviors>
+                    </i:Interaction.Behaviors>-->
                 </DataGrid>
             </Grid>
         </Grid>

@@ -72,6 +72,20 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             {
                 SetViewForOpenForum();
             }
+
+            SetUsefulForum();
+        }
+
+        public void SetUsefulForum()
+        {
+            if (forumService.CheckIfVeryUseful(Forum))
+            {
+                ForumCommentsView.UsefulGrid.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ForumCommentsView.UsefulGrid.Visibility = Visibility.Hidden;
+            }
         }
 
         public void SetCloseButton()
@@ -89,7 +103,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public void SetViewForClosedForum()
         {
             ForumCommentsView.CommentTb.IsEnabled = false;
-            ForumCommentsView.CommentTb.Text = "Ovaj forum je zatvoren";
+            Comment = "Ovaj forum je zatvoren";
             ForumCommentsView.CommentLabel.Visibility = Visibility.Hidden;
             ForumCommentsView.CommentBtn.Visibility = Visibility.Hidden;
         }
@@ -97,7 +111,6 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public void SetViewForOpenForum()
         {
             ForumCommentsView.CommentTb.IsEnabled = true;
-            ForumCommentsView.CommentTb.Text = "";
             ForumCommentsView.CommentLabel.Visibility = Visibility.Visible;
             ForumCommentsView.CommentBtn.Visibility = Visibility.Visible;
         }

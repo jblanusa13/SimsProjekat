@@ -15,12 +15,14 @@ namespace ProjectSims.Service
         private IForumRepository forumRepository;
         private ILocationRepository locationRepository;
         private IGuest1Repository guest1Repository;
+        private IForumCommentRepository commentRepository;
 
         public ForumService()
         {
             forumRepository = Injector.CreateInstance<IForumRepository>();
             locationRepository = Injector.CreateInstance<ILocationRepository>();
             guest1Repository = Injector.CreateInstance<IGuest1Repository>();
+            commentRepository = Injector.CreateInstance<IForumCommentRepository>();
 
             InitializeLocation();
             InitializeGuest();
@@ -67,5 +69,29 @@ namespace ProjectSims.Service
         {
             forumRepository.Subscribe(observer);
         }
+
+        public bool CheckIfVeryUseful(Forum forum)
+        {
+            return IsVeryUsefulForum(commentRepository.GetAllByForumId(forum.Id));
+        }
+
+        public bool IsVeryUsefulForum(List<ForumComment> comments)
+        {
+            int guestCommentsCounter = 0;
+            int ownerCommentsCounter = 0;
+            foreach (ForumComment comment in comments)
+            {
+                if (comment.IsGuest && comment.GuestVisited)
+                {
+                    guestCommentsCounter++;
+                }
+                else
+                {
+                    ownerCommentsCounter++;
+                }
+            }
+            return guestCommentsCounter >= 20 && ownerCommentsCounter >= 10;
+        }
+
     }
 }
