@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest2View"
         mc:Ignorable="d"
-        Title="NotificationNewTourView" Height="400" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Topmost="True">
+        Title="Obavjestenja" Height="400" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Topmost="True" Icon="/WPF/View/Guest2View/logoapp.png">
     <Grid>
         <Label Content="Od vodica:" HorizontalAlignment="Left" FontSize="28" Margin="38,35,0,0" VerticalAlignment="Top"/>
         <Label Content="{Binding notificationTour.Guide.FullName}" FontSize="28" HorizontalAlignment="Left" Margin="185,35,0,0" VerticalAlignment="Top"/>

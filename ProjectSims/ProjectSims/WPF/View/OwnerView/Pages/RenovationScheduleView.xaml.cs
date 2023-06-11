@@ -28,14 +28,16 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
         public Owner Owner { get; set; }
         public TextBlock TitleTextBlock { get; set; }
         public Accommodation SelectedAccommodation { get; set; }
+        public Frame SelectedTab { get; set; }
         public RenovationScheduleViewModel renovationViewModel { get; set; }
 
-        public RenovationScheduleView(Owner owner, TextBlock titleTextBlock, Accommodation selectedAccommodation)
+        public RenovationScheduleView(Owner owner, TextBlock titleTextBlock, Accommodation selectedAccommodation, Frame selectedTab)
         {
             InitializeComponent();
             Owner = owner;
             TitleTextBlock = titleTextBlock;
             SelectedAccommodation = selectedAccommodation;
+            SelectedTab = selectedTab;
             renovationViewModel = new RenovationScheduleViewModel(SelectedAccommodation, Owner);
             this.DataContext = renovationViewModel;
         }
@@ -45,14 +47,14 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
             if ((DateRanges)DateRangesDataGrid.SelectedItem != null && !string.IsNullOrWhiteSpace(DescriptionTextBox.Text)) 
             {
                 renovationViewModel.CreateRenovation((DateRanges)DateRangesDataGrid.SelectedItem, DescriptionTextBox.Text);
-                this.NavigationService.Navigate(new AccommodationsDisplayView(Owner, TitleTextBlock));
+                this.NavigationService.Navigate(new AccommodationsDisplayView(Owner, TitleTextBlock, SelectedTab));
                 TitleTextBlock.Text = "Smještaji";
             }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new AccommodationsDisplayView(Owner, TitleTextBlock));
+            this.NavigationService.Navigate(new AccommodationsDisplayView(Owner, TitleTextBlock, SelectedTab));
             TitleTextBlock.Text = "Smještaji";
         }
         

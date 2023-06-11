@@ -94,7 +94,6 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             parentWindow.Close();
         }
 
-
         public void Update()
         {
             MyRatings.Clear();
