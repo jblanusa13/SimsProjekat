@@ -7,22 +7,24 @@ using ProjectSims.WPF.View.OwnerView.Pages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Navigation;
 
 namespace ProjectSims.WPF.ViewModel.OwnerViewModel
 {
-    public class ForumsDisplayViewModel : IObserver
+    public class ForumsDisplayViewModel : IObserver, INotifyPropertyChanged
     {
         public ObservableCollection<Forum> Forums { get; set; }
         public Forum SelectedForum { get; set; }
         public Owner Owner { get; set; }
-        public Guest1 Guest { get; set; }
         private ForumService forumService;
         public NavigationService NavService { get; set; }
         public RelayCommand OpenCommand { get; set; }
+
         public ForumsDisplayViewModel(Owner owner, NavigationService navService) 
         {
             Owner = owner;
@@ -31,10 +33,11 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
             forumService.Subscribe(this);
             Forums = new ObservableCollection<Forum>(forumService.GetAllForumsByOwner(Owner));
             OpenCommand = new RelayCommand(Execute_OpenCommand, CanExecute_OpenCommand);
+            forumService.SetUsefulnessForEachForum(Owner);
         }
         public void Execute_OpenCommand(object obj)
         {
-            NavService.Navigate(new OpenedForum(Owner, NavService, SelectedForum));
+            NavService.Navigate(new OpenedForumView(Owner, NavService, SelectedForum));
         }
 
         public bool CanExecute_OpenCommand(object obj)
@@ -49,6 +52,12 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
             {
                 Forums.Add(forum);
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

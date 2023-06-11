@@ -57,7 +57,7 @@ namespace ProjectSims.WPF.View.OwnerView
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            guestRatingService.NotifyOwnerAboutRating();
+            guestRatingService.NotifyOwnerAboutRating(Owner.Id);
         }
 
         private void ButtonMenu(object sender, RoutedEventArgs e)
@@ -94,6 +94,7 @@ namespace ProjectSims.WPF.View.OwnerView
                     }
                 case 2:
                     {
+                        SelectedTab.Content = new NotificationsView(Owner, SelectedTab.NavigationService);
                         break;
                     }
             }

@@ -21,7 +21,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" Background="#dfe9eb">
+            <Grid Grid.Row="0" Background="White">
                 <TextBlock x:Name="TitleTextBlock"
                        Text="{Binding PageTitle, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                        FontSize="20"

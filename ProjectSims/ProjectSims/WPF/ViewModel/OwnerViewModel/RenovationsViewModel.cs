@@ -48,15 +48,7 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
             renovationService = new RenovationScheduleService();
             renovationService.Subscribe(this);
             RenovationList = new ObservableCollection<RenovationSchedule>(renovationService.GetPassedAndFutureRenovationsByOwner(Owner.Id));
-            SetDurationForEachRenovation();
-        }
-
-        public void SetDurationForEachRenovation()
-        {
-            foreach (var renovation in renovationService.GetPassedAndFutureRenovationsByOwner(Owner.Id))
-            {
-                renovation.Duration = renovationService.CalculateDurationForRenovation(renovation);
-            }
+            renovationService.SetDurationForEachRenovation(Owner);
         }
 
         public void QuitRenovation(RenovationSchedule renovation)

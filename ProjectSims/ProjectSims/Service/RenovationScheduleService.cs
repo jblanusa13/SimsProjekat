@@ -104,5 +104,13 @@ namespace ProjectSims.Service
         {
             accommodationRepository.Subscribe(observer);
         }
+
+        public void SetDurationForEachRenovation(Owner owner)
+        {
+            foreach (var renovation in GetPassedAndFutureRenovationsByOwner(owner.Id))
+            {
+                renovation.Duration = CalculateDurationForRenovation(renovation);
+            }
+        }
     }
 }

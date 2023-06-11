@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ceTe.DynamicPDF.Forms;
 using ProjectSims.Domain.Model;
 using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.Observer;
@@ -13,6 +14,7 @@ namespace ProjectSims.Service
     public class ForumService
     {
         private IForumRepository forumRepository;
+        private IForumCommentRepository commentRepository;
         private ILocationRepository locationRepository;
         private IAccommodationRepository accommodationRepository;
         private IGuest1Repository guest1Repository;
@@ -20,6 +22,7 @@ namespace ProjectSims.Service
         public ForumService()
         {
             forumRepository = Injector.CreateInstance<IForumRepository>();
+            commentRepository = Injector.CreateInstance<IForumCommentRepository>();
             locationRepository = Injector.CreateInstance<ILocationRepository>();
             guest1Repository = Injector.CreateInstance<IGuest1Repository>();
             accommodationRepository = Injector.CreateInstance<IAccommodationRepository>();
@@ -60,7 +63,7 @@ namespace ProjectSims.Service
                 Accommodation accommodation = accommodationRepository.GetById(id);
                 foreach (var forum in GetAllForums())
                 {
-                    if (forum.LocationId == accommodation.IdLocation)
+                    if (forum.LocationId == accommodation.IdLocation && forum.Status == ForumStatus.Otvoren)
                     {
                         forums.Add(forum);
                     }
@@ -69,16 +72,45 @@ namespace ProjectSims.Service
             return forums;
         }
 
-        public void CreateRating(Guest1 guest, Location location, string comment)
+        public void CreateForum(Guest1 guest, Location location, string comment)
         {
             int id = forumRepository.NextId();
-            Forum forum = new Forum(id, location.Id, location, comment, ForumStatus.Otvoren, guest.Id, guest);
+            Forum forum = new Forum(id, location.Id, location, comment, ForumStatus.Otvoren, guest.Id, guest, false);
             forumRepository.Create(forum);
         }
         public void Subscribe(IObserver observer)
         {
             forumRepository.Subscribe(observer);
         }
+        public bool CheckIfVeryUseful(Forum forum)
+        {
+            return IsVeryUsefulForum(commentRepository.GetAllByForumId(forum.Id));
+        }
 
+        public bool IsVeryUsefulForum(List<ForumComment> comments)
+        {
+            int guestCommentsCounter = 0;
+            int ownerCommentsCounter = 0;
+            foreach (ForumComment comment in comments)
+            {
+                if (comment.IsGuest && comment.GuestVisited)
+                {
+                    guestCommentsCounter++;
+                }
+                else
+                {
+                    ownerCommentsCounter++;
+                }
+            }
+            return guestCommentsCounter >= 20 && ownerCommentsCounter >= 10;
+        }
+
+        public void SetUsefulnessForEachForum(Owner owner)
+        { 
+            foreach (var forum in GetAllForumsByOwner(owner))
+            {
+                forum.IsVeryUseful = CheckIfVeryUseful(forum);
+            }
+        }
     }
 }

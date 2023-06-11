@@ -1,7 +1,4 @@
-﻿using ProjectSims.Domain.Model;
-using ProjectSims.WPF.ViewModel.Guest1ViewModel;
-using ProjectSims.WPF.ViewModel.OwnerViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProjectSims.WPF.View.OwnerView.Pages
+namespace ProjectSims.WPF.View.Guest1View.BarPages
 {
     /// <summary>
-    /// Interaction logic for ForumComments.xaml
+    /// Interaction logic for ForumStatusBar.xaml
     /// </summary>
-    public partial class OpenedForum : Page
+    public partial class ForumStatusBar : Page
     {
-        public OpenedForum(Owner owner, NavigationService navService, Forum selectedForum)
+        public ForumStatusBar()
         {
             InitializeComponent();
-            DataContext = new OpenedForumViewModel(owner, navService, selectedForum);
         }
     }
 }

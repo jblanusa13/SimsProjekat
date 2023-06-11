@@ -5,10 +5,22 @@
     <Compile Update="WPF\CustomControls\NumericBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WPF\View\Guest1View\BarPages\ForumStatusBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\BarPages\ForumWindowBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\Guest1View\BarPages\RatingStatusBar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\Guest1View\BarPages\RatingWindowBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\ForumPages\CreateForum.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\ForumStartView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\Guest1View\MainPages\AccommodationReservationView.xaml.cs">
@@ -137,10 +149,13 @@
     <Compile Update="WPF\View\GuideView\Pages\TourDetailsAndCancelling.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WPF\View\OwnerView\NotificationsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\OwnerView\Pages\ForumsDisplayView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WPF\View\OwnerView\Pages\OpenedForum.xaml.cs">
+    <Compile Update="WPF\View\OwnerView\Pages\OpenedForumView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\OwnerView\Pages\GuestRatingView.xaml.cs">
@@ -166,10 +181,22 @@
     <Page Update="Themes\Light.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="WPF\View\Guest1View\BarPages\ForumStatusBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\BarPages\ForumWindowBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="WPF\View\Guest1View\BarPages\RatingStatusBar.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\Guest1View\BarPages\RatingWindowBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\ForumPages\CreateForum.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\ForumStartView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\Guest1View\MainPages\AccommodationReservationView.xaml">
@@ -301,10 +328,13 @@
     <Page Update="WPF\View\GuideView\Pages\TourDetailsAndCancelling.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="WPF\View\OwnerView\NotificationsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="WPF\View\OwnerView\Pages\ForumsDisplayView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WPF\View\OwnerView\Pages\OpenedForum.xaml">
+    <Page Update="WPF\View\OwnerView\Pages\OpenedForumView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\OwnerView\Pages\GuestRatingView.xaml">

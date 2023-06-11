@@ -46,5 +46,11 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
             NavService.Navigate(new OwnerRatingsDisplayView(Owner, NavService));
             TitleTextBlock.Text = "Recenzije";
         }
+
+        private void Forumi_Click(object sender, RoutedEventArgs e)
+        {
+            NavService.Navigate(new ForumsDisplayView(Owner, NavService));
+            TitleTextBlock.Text = "Forumi";
+        }
     }
 }

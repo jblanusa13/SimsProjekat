@@ -1,0 +1,125 @@
+﻿<Page x:Class="ProjectSims.WPF.View.Guest1View.ForumPages.CreateForum"
+      x:Name="CreateForumPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.ForumPages"
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+      mc:Ignorable="d" 
+      xmlns:fa="http://schemas.fontawesome.io/icons/" 
+      d:DesignHeight="590" d:DesignWidth="750"
+      Title="CreateForum">
+
+    <Page.Resources>
+        <ControlTemplate x:Key="ValidationTemplate">
+            <StackPanel>
+                <AdornedElementPlaceholder x:Name="textBox" />
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="9" FontFamily="Bahnschrift" />
+            </StackPanel>
+        </ControlTemplate>
+    </Page.Resources>
+
+    <Grid Background="{DynamicResource FirstGrayShade}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="{DynamicResource SecondGrayShade}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Button Margin="10" x:Name="BackButton"
+                         Background="{DynamicResource SecondGrayShade}" BorderBrush="{DynamicResource SecondGrayShade}"
+                        FocusVisualStyle="{DynamicResource FocusControl}"
+                        Command="{Binding CancelCommand}"
+                        CommandParameter="{Binding ElementName=CreateForumPage}">
+                    <fa:ImageAwesome Icon="ArrowCircleLeft" Foreground="{DynamicResource FontsColor}"/>
+                </Button>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Label Content="Pokrenite novi forum" Margin="0,22,0,0" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></Label>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Label Content="Lokacija:" HorizontalAlignment="Left" Margin="60,55,0,0" VerticalAlignment="Top"
+                       Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" FontSize="16"/>
+            <ComboBox Name="TextboxName"  HorizontalAlignment="Left" Margin="60,80,0,0" VerticalAlignment="Top" Width="200" Height="25"
+                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}"  FontSize="16" FontFamily="Bahnschrift" 
+                     Background="{DynamicResource TextboxColor}" ItemsSource="{Binding Path=Locations, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                      SelectedItem="{Binding Path=Location, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                      >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged" >
+                        <i:InvokeCommandAction 
+				            Command="{Binding CityChangedCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
+
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" FontSize="15"
+                   Margin="30,13,0,0">Unesite pitanje ili komentar:</Label>
+            <TextBox Grid.Row="1" Name="TextboxComment" HorizontalAlignment="Left" Margin="30,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="680" Height="200"
+                     Validation.ErrorTemplate="{StaticResource ValidationTemplate}"   
+                     Background="{DynamicResource TextboxColor}" Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Margin="50,30,190,30" 
+                    Background="{DynamicResource SecondGrayShade}"
+                    Foreground="{DynamicResource FontsColor}" 
+                    FontFamily="Bahnschrift"
+                    FocusVisualStyle="{DynamicResource FocusControl}"
+                    Command="{Binding StartForumCommand}"
+                    CommandParameter="{Binding ElementName=CreateForumPage}">
+                Pokreni
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Grid.Column="1" Margin="190,30,50,30" 
+                    Background="{DynamicResource SecondGrayShade}" 
+                    Foreground="{DynamicResource FontsColor}" 
+                    FontFamily="Bahnschrift"
+                    FocusVisualStyle="{DynamicResource FocusControl}"
+                    Command="{Binding CancelCommand}"
+                    CommandParameter="{Binding ElementName=CreateForumPage}">
+                Otkazi
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+    </Grid>
+</Page>

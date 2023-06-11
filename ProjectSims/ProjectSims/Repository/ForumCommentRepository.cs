@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectSims.Domain.Model;
+using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.FileHandler;
 using ProjectSims.Observer;
 
 namespace ProjectSims.Repository
 {
-    public class ForumCommentRepository
+    public class ForumCommentRepository : IForumCommentRepository
     {
         private ForumCommentFileHandler commentFileHandler;
         private List<ForumComment> comments;
@@ -20,11 +21,14 @@ namespace ProjectSims.Repository
             comments = commentFileHandler.Load();
             observers = new List<IObserver>();
         }
+        public List<ForumComment> GetAllByForumId(int forumId)
+        {
+            return comments.Where(c => c.ForumId == forumId).ToList();
+        }
         public List<ForumComment> GetAll()
         {
             return comments;
-        }
-
+        }  
         public int NextId()
         {
             return comments.Max(t => t.Id) + 1;

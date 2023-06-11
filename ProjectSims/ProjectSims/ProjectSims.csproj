@@ -422,7 +422,6 @@
 
   <ItemGroup>
     <Folder Include="Resources\Images\Guest1\" />
-    <Folder Include="WPF\View\Guest1View\ForumPages\" />
     <Resource Include="Resources\Icons\Guest1\travel-tour-logo-dark.png" />
     <Resource Include="Resources\Icons\Guest1\travel-tour-logo-light.png" />
   </ItemGroup>

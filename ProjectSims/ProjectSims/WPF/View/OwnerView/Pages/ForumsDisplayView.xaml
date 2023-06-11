@@ -8,7 +8,17 @@
       d:DesignHeight="750" d:DesignWidth="430"
       Title="ForumsDisplay">
 
-    <Grid>
+
+    <Grid Background="#FF383378">
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Background" Value="AliceBlue"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="BorderBrush" Value="LightSteelBlue"/>
+                <Setter Property="BorderThickness" Value="1"/>
+            </Style>
+        </Grid.Resources>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
@@ -18,7 +28,7 @@
                   SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical" 
                   Width="430">
             <DataGrid x:Name="ForumsTable"  
-                          ItemsSource="{Binding Path = Forums, UpdateSourceTrigger=PropertyChanged}"
+                          ItemsSource="{Binding Path=Forums, UpdateSourceTrigger=PropertyChanged}"
                           SelectedItem="{Binding Path=SelectedForum, UpdateSourceTrigger=PropertyChanged}"
                           Margin="0,0,0,0" 
                           Height="700"
@@ -40,9 +50,10 @@
                         </DataGridTextColumn.Binding>
                     </DataGridTextColumn>
                     <DataGridCheckBoxColumn Header="Veoma koristan"
-                                                Binding="{Binding Usefulness,
+                                                Binding="{Binding IsVeryUseful,
                                                           Mode=TwoWay,
-                                                          BindsDirectlyToSource=True}"
+                                                          BindsDirectlyToSource=True,
+                                                          UpdateSourceTrigger=PropertyChanged}"
                                                 Width="*"
                                                 IsReadOnly="True"/>
                 </DataGrid.Columns>

@@ -77,33 +77,35 @@ namespace ProjectSims.Service
             guestRatings.Subscribe(observer);
         }
 
-        public void NotifyOwnerAboutRating()
+        public List<AccommodationReservation> NotifyOwnerAboutRating(int ownerId)
         {
+            List<AccommodationReservation> reservations = new List<AccommodationReservation>();
             string fileName = "../../../Resources/Data/lastShown.csv";
             try
             {
                 string lastShownText = File.ReadAllText(fileName);
                 DateOnly lastShownDate = DateOnly.Parse(lastShownText);
-                NotifyIfAnyGuestUnrated(fileName, lastShownDate, lastShownText);
+                reservations = NotifyIfAnyGuestUnrated(fileName, lastShownDate, lastShownText, ownerId);
             }
-            catch (Exception)
+            catch (FileNotFoundException)
             {
-
+                File.WriteAllText(fileName, DateOnly.FromDateTime(DateTime.Today).ToString());
             }
+            return reservations;
         }
 
-        public void NotifyIfAnyGuestUnrated(string fileName, DateOnly lastShownDate, string lastShowntext)
+        public List<AccommodationReservation> NotifyIfAnyGuestUnrated(string fileName, DateOnly lastShownDate, string lastShowntext, int ownerId)
         {
             AccommodationReservationService accommodationReservationService = new AccommodationReservationService();
-
+            List <AccommodationReservation> reservations = new List<AccommodationReservation>();
             if (lastShownDate < DateOnly.FromDateTime(DateTime.Today))
             {
-                if (accommodationReservationService.IsAnyGuestRatable())
+                if (accommodationReservationService.IsAnyGuestRatable(ownerId).Count != 0)
                 {
-                    MessageBox.Show("Imate neocijenjenih gostiju!", "Ocjenjivanje gostiju", MessageBoxButton.OK);
                     File.WriteAllText(fileName, DateOnly.FromDateTime(DateTime.Today).ToString());
                 }
             }
+            return accommodationReservationService.IsAnyGuestRatable(ownerId);
         }
     }
 }

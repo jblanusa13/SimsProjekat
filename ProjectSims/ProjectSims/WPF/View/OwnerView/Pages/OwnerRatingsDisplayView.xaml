@@ -11,8 +11,9 @@
     <Grid ScrollViewer.CanContentScroll="True"
           ScrollViewer.HorizontalScrollBarVisibility="Hidden"
           ScrollViewer.VerticalScrollBarVisibility="Hidden"
-          TextBlock.TextAlignment="Center">
-        
+          TextBlock.TextAlignment="Center"
+          Background="#ff383378">
+
         <DataGrid x:Name="RatingTable"  
                           ItemsSource="{Binding Ratings}" 
                           AutoGenerateColumns="False" 

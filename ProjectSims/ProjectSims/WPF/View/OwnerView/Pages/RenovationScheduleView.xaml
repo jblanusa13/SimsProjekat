@@ -6,7 +6,15 @@
       xmlns:local="clr-namespace:ProjectSims.WPF.View.OwnerView.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="750" d:DesignWidth="430">
-    <Grid Margin="0,2,0,-2">
+    <Grid Margin="0,2,0,-2" Background="#ff383378">
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Background" Value="AliceBlue"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="BorderBrush" Value="LightSteelBlue"/>
+                <Setter Property="BorderThickness" Value="1"/>
+            </Style>
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition ></RowDefinition>
             <RowDefinition ></RowDefinition>
