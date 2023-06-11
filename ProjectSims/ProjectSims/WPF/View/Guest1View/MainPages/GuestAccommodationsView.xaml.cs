@@ -60,8 +60,6 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
                 }
             }
         }
-
     }
-
 }
 

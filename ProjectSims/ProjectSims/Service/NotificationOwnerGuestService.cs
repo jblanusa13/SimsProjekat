@@ -20,6 +20,10 @@ namespace ProjectSims.Service
         {
             return notificationRepository.NextId();
         }
+        public List<NotificationOwnerGuest> GetAllForGuest(int guestId)
+        {
+            return notificationRepository.GetAllForGuest(guestId);
+        }
         public List<NotificationOwnerGuest> GetAllNotifications()
         {
             return notificationRepository.GetAll();

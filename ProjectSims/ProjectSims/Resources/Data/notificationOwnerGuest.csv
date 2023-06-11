@@ -1,3 +1,4 @@
-0|0|1|-1|3|Obavjestenje o novom forumu|False
-1|0|1|13|-1|Obavjestenje o novom zahtjevu|False
-2|1|2|14|-1|Obavjestenje o novom zahtjevu|False
+0|0|1|-1|3|Obavjestenje o novom forumu
+1|0|1|13|-1|Zahtev je odbijen
+2|1|2|14|-1|Zahtev je odobren
+3|0|1|13|-1|Zahtev je odobren

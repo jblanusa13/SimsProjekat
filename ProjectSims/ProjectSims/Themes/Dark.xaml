@@ -44,6 +44,9 @@
 
     <fa:ImageAwesome Icon="WindowClose" x:Key="ForumCloseIcon" Width="20" Foreground="#FF687EA7"/>
 
+    <fa:ImageAwesome Icon="WindowClose" x:Key="NotifCloseIcon" Width="20" Foreground="#FF687EA7"/>
+
+    <fa:ImageAwesome Icon="WindowClose" x:Key="HelpCloseIcon" Width="20" Foreground="#FF687EA7"/>
 
     <SolidColorBrush Color="#FF687EA7" x:Key="BarFont"></SolidColorBrush>
     <SolidColorBrush Color="#353535" x:Key="HeaderBackground"></SolidColorBrush>

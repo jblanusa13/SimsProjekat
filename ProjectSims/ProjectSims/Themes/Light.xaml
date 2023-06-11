@@ -40,6 +40,10 @@
 
     <fa:ImageAwesome Icon="WindowClose" x:Key="ForumCloseIcon" Width="20" Foreground="#FF114642"/>
 
+    <fa:ImageAwesome Icon="WindowClose" x:Key="NotifCloseIcon" Width="20" Foreground="#FF114642"/>
+
+    <fa:ImageAwesome Icon="WindowClose" x:Key="HelpCloseIcon" Width="20" Foreground="#FF114642"/>
+
     <fa:ImageAwesome Icon="FilePdfOutline" x:Key="FirstReport" Foreground="#FF114642" Margin="0,10,0,10"/>
     <fa:ImageAwesome Icon="FilePdfOutline" x:Key="SecondReport" Foreground="#FF114642" Margin="0,10,0,10"/>
 

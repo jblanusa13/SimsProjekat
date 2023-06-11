@@ -11,6 +11,12 @@
     <Compile Update="WPF\View\Guest1View\BarPages\ForumWindowBar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WPF\View\Guest1View\BarPages\NotifStatusBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\BarPages\NotifWindowBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\Guest1View\BarPages\RatingStatusBar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -30,6 +36,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\Guest1View\MainPages\RatingsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\NotifAndHelp\NotificationsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\Guest1View\RatingPages\FinishRatingView.xaml.cs">
@@ -190,6 +199,12 @@
     <Page Update="WPF\View\Guest1View\BarPages\ForumWindowBar.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="WPF\View\Guest1View\BarPages\NotifStatusBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\BarPages\NotifWindowBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="WPF\View\Guest1View\BarPages\RatingStatusBar.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -209,6 +224,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\Guest1View\MainPages\RatingsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\NotifAndHelp\NotificationsView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\Guest1View\RatingPages\FinishRatingView.xaml">

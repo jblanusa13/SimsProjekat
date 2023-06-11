@@ -293,7 +293,8 @@
                     </Grid.RowDefinitions>
                     <Button Grid.Row="0" x:Name="ButtonNotifications" Margin="0,5"
                         Background="{DynamicResource BlueShade}" BorderBrush="{DynamicResource FirstGrayShade}"
-                            FocusVisualStyle="{DynamicResource FocusControl}">
+                            FocusVisualStyle="{DynamicResource FocusControl}"
+                            Command="{Binding NotifCommand}">
                         <DynamicResource ResourceKey="NotificationsIcon"></DynamicResource>
                         <Button.Resources>
                             <Style TargetType="Border">

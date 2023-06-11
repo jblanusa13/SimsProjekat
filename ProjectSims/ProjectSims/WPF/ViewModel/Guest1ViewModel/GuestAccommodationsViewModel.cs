@@ -17,6 +17,7 @@ using System.Windows;
 using System.Windows.Navigation;
 using ProjectSims.WPF.View.Guest1View.MainPages;
 using ProjectSims.WPF.View.Guest1View;
+using ProjectSims.WPF.View.Guest1View.NotifAndHelp;
 
 namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
 {
@@ -113,6 +114,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public RelayCommand ShowRatingsCommand { get; set; }
         public RelayCommand RateAccommodationCommand { get; set; }
         public RelayCommand ForumCommand { get; set; }
+        public RelayCommand NotifCommand { get; set; }
         public RelayCommand ProfileCommand { get; set; }
         //public RelayCommand ReservationCommand { get; set; }
         public MyICommand<GuestAccommodationsView> LogOutCommand { get; set; }
@@ -135,6 +137,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             ForumCommand = new RelayCommand(Execute_ForumCommand);
             ProfileCommand = new RelayCommand(Execute_ProfileCommand);
             //ReservationCommand = new RelayCommand(Execute_ReservationCommand);
+            NotifCommand = new RelayCommand(Execute_NotifCommand);
             LogOutCommand = new MyICommand<GuestAccommodationsView>(OnLogOut);
 
             NavService = navigation;
@@ -194,6 +197,11 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             }
         }
 
+        private void Execute_NotifCommand(object obj)
+        {
+            NotificationsView notificationsView = new NotificationsView(Guest);
+            notificationsView.Show();
+        }
         public void Execute_SearchCommand(object obj)
         {
             Accommodations.Clear();
