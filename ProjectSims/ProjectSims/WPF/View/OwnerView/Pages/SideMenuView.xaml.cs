@@ -77,7 +77,13 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
         private void Forum_Click(object sender, RoutedEventArgs e)
         {
             NavService.Navigate(new ForumsDisplayView(Owner, NavService));
-            TitleTextBlock.Text = "Forum"; 
+            TitleTextBlock.Text = "Forumi"; 
+        }
+        
+        private void Tutorial_Click(object sender, RoutedEventArgs e)
+        {
+            NavService.Navigate(new TutorialView(Owner, NavService));
+            TitleTextBlock.Text = "Tutorijal"; 
         }
     }
 }

@@ -170,6 +170,9 @@
     <Compile Update="WPF\View\GuideView\Pages\TourTrackingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WPF\View\OwnerView\Pages\TutorialView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="WPF\CustomControls\NumericBox.xaml">
@@ -347,6 +350,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\GuideView\Pages\TourTrackingView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\OwnerView\Pages\TutorialView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

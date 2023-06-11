@@ -36,17 +36,12 @@ namespace ProjectSims.View.OwnerView.Pages
     {
         public AccommodationsDisplayViewModel accommodationsDisplayViewModel;
         public Owner Owner { get; set; }
-        public Accommodation SelectedAccommodation { get; set; }
-        public TextBlock TitleTextBlock { get; set; }
-        public NavigationService NavService { get; set; }
 
         public AccommodationsDisplayView(Owner o, TextBlock titleTextBlock, NavigationService navService)
         {
             InitializeComponent();
             Owner = o;
-            TitleTextBlock = titleTextBlock;
-            NavService = navService;
-            accommodationsDisplayViewModel = new AccommodationsDisplayViewModel(Owner, NavService);
+            accommodationsDisplayViewModel = new AccommodationsDisplayViewModel(Owner, navService, this, titleTextBlock);
             DataContext = accommodationsDisplayViewModel;
             NotifyAboutRequest();
             accommodationsDisplayViewModel.UpdateAccommodationsIfRenovated();
@@ -57,32 +52,6 @@ namespace ProjectSims.View.OwnerView.Pages
             if (accommodationsDisplayViewModel.HasWaitingRequests(Owner))
             {
                 MessageBox.Show("Imate zahteve na čekanju!");
-            }
-        }
-
-        private void Registrate_Click(object sender, RoutedEventArgs e)
-        {
-            NavService.Navigate(new AccommodationRegistrationView(Owner, TitleTextBlock, null, NavService));
-            TitleTextBlock.Text = "Registracija smještaja";
-        }
-
-        private void Statistics_Click(object sender, RoutedEventArgs e)
-        {
-            SelectedAccommodation = (Accommodation)AccommodationsTable.SelectedItem;
-            if (SelectedAccommodation != null)
-            {
-                NavService.Navigate(new StatisticsView(Owner, TitleTextBlock, SelectedAccommodation, NavService));
-                TitleTextBlock.Text = "Statistika smještaja";
-            }
-        }
-
-        private void Renovate_Click(object sender, RoutedEventArgs e)
-        {
-            SelectedAccommodation = (Accommodation)AccommodationsTable.SelectedItem;
-            if (SelectedAccommodation != null)
-            {
-                NavService.Navigate(new RenovationScheduleView(Owner, TitleTextBlock, SelectedAccommodation, NavService));
-                TitleTextBlock.Text = "Renovacija smještaja";
             }
         }
     }
