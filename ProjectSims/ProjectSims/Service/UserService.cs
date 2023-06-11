@@ -31,5 +31,9 @@ namespace ProjectSims.Service
         {
             userRepository.Update(user);
         }
+        public void Delete(User user)
+        {
+            userRepository.Remove(user);
+        }
     }
 }

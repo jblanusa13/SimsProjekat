@@ -53,7 +53,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             tourService.UpdateTourState(SelectedTour, TourState.Cancelled);
             List<int> guestIds = reservationService.GetGuestIdsByTourAndState(SelectedTour, Guest2State.InactiveTour);
             if (guestIds.Count > 0)
-                guestIds.ForEach(id => guest2Service.GiveVoucher(id));
+                guestIds.ForEach(id => guest2Service.GiveVoucher(id,1));
             this.NavigationService.GoBack();
         }
         public void Back_Click(object sender, EventArgs e)

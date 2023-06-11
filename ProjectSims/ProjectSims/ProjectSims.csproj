@@ -34,7 +34,9 @@
     <None Remove="Resources\Icons\Guide\close.png" />
     <None Remove="Resources\Icons\Guide\create.png" />
     <None Remove="Resources\Icons\Guide\description.png" />
+    <None Remove="Resources\Icons\Guide\dismissal.png" />
     <None Remove="Resources\Icons\Guide\duration.png" />
+    <None Remove="Resources\Icons\Guide\favourites.png" />
     <None Remove="Resources\Icons\Guide\filter.png" />
     <None Remove="Resources\Icons\Guide\guests.png" />
     <None Remove="Resources\Icons\Guide\help.png" />
@@ -44,23 +46,27 @@
     <None Remove="Resources\Icons\Guide\language.png" />
     <None Remove="Resources\Icons\Guide\location.png" />
     <None Remove="Resources\Icons\Guide\logo.png" />
-    <None Remove="Resources\Icons\Guide\logout.png" />
+    <None Remove="Resources\Icons\Guide\logout1.png" />
+    <None Remove="Resources\Icons\Guide\logout2.png" />
     <None Remove="Resources\Icons\Guide\mapPin.png" />
     <None Remove="Resources\Icons\Guide\notification.png" />
     <None Remove="Resources\Icons\Guide\people.png" />
     <None Remove="Resources\Icons\Guide\placeholder.png" />
     <None Remove="Resources\Icons\Guide\profile.png" />
+    <None Remove="Resources\Icons\Guide\profile2.png" />
     <None Remove="Resources\Icons\Guide\question.png" />
     <None Remove="Resources\Icons\Guide\rating.png" />
     <None Remove="Resources\Icons\Guide\report.png" />
     <None Remove="Resources\Icons\Guide\request.png" />
     <None Remove="Resources\Icons\Guide\schedule.png" />
     <None Remove="Resources\Icons\Guide\search.png" />
+    <None Remove="Resources\Icons\Guide\shines.png" />
     <None Remove="Resources\Icons\Guide\show-statistics.png" />
     <None Remove="Resources\Icons\Guide\star.png" />
     <None Remove="Resources\Icons\Guide\start.png" />
     <None Remove="Resources\Icons\Guide\statistics.png" />
     <None Remove="Resources\Icons\Guide\stop.png" />
+    <None Remove="Resources\Icons\Guide\superGuide.png" />
     <None Remove="Resources\Icons\Guide\tourname.png" />
     <None Remove="Resources\Icons\Guide\travel-tour-logo.png" />
     <None Remove="Resources\Icons\Guide\user.png" />
@@ -177,7 +183,13 @@
     <Content Include="Resources\Icons\Guide\description.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Icons\Guide\dismissal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Icons\Guide\duration.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\favourites.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\filter.png">
@@ -201,6 +213,12 @@
     <Content Include="Resources\Icons\Guide\logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Icons\Guide\logout1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\logout2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Icons\Guide\notification.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -211,6 +229,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\profile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\profile2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\question.png">
@@ -231,6 +252,9 @@
     <Content Include="Resources\Icons\Guide\search.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Icons\Guide\shines.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Icons\Guide\show-statistics.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -241,6 +265,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\stop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\superGuide.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\tourname.png">
@@ -403,6 +430,8 @@
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
     <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
     <PackageReference Include="Syncfusion.SfScheduler.WPF" Version="21.2.9" />
+    <PackageReference Include="MvvmLight" Version="5.4.1.1" />
+    <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
 	  <PackageReference Include="Tulpep.NotificationWindow" Version="1.1.38">
 		  <TreatAsUsed>true</TreatAsUsed>
 	  </PackageReference>

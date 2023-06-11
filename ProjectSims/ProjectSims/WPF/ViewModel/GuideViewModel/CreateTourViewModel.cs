@@ -17,38 +17,39 @@ using System.Globalization;
 
 namespace ProjectSims.WPF.ViewModel.GuideViewModel
 {
-    public partial class CreateTourViewModel 
+    public partial class CreateTourViewModel
     {
         private TourService tourService;
+        private GuideService guideService;
         private TourRequestService tourRequestService;
         private KeyPointService keyPointService;
         private NotificationTourService notificationTourService;
         private List<int> lastAddedTours;
-
         public TourRequest TourRequest { get; set; }
         public Guide Guide { get; set; }
-        public CreateTourViewModel(Guide guide,TourRequest tourRequest)
+        public CreateTourViewModel(Guide guide, TourRequest tourRequest)
         {
             tourService = new TourService();
             tourRequestService = new TourRequestService();
             keyPointService = new KeyPointService();
+            guideService = new GuideService();
             notificationTourService = new NotificationTourService();
             lastAddedTours = new List<int>();
             Guide = guide;
             TourRequest = tourRequest;
         }
-        public KeyPoint CreateAndReturnKeyPoint(string name,KeyPointType type)
+        public KeyPoint CreateAndReturnKeyPoint(string name, KeyPointType type)
         {
             int nextKeyId = keyPointService.NextId();
-            KeyPoint keyPoint = new KeyPoint(nextKeyId,name,type);
+            KeyPoint keyPoint = new KeyPoint(nextKeyId, name, type);
             keyPointService.Create(keyPoint);
             return keyPoint;
         }
-        public void CreateTour(string name,string language,string location,string maxNumberGuests,
-                List<string> appointments,string startKeyPoint,List<string> otherKeyPoints,string finishKeyPoint,
-                string description,List<string> images, bool createdByLocation, bool createdByLanguage) 
+        public void CreateTour(string name, string language, string location, string maxNumberGuests,
+                List<Tuple<DateTime, int>> appointments, string startKeyPoint, List<string> otherKeyPoints, string finishKeyPoint,
+                string description, List<string> images, bool createdByLocation, bool createdByLanguage)
         {
-            foreach(string appointment in appointments)
+            foreach (var appointment in appointments)
             {
                 List<KeyPoint> keyPoints = new List<KeyPoint>();
                 keyPoints.Add(CreateAndReturnKeyPoint(startKeyPoint, KeyPointType.First));
@@ -57,24 +58,25 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
                     keyPoints.Add(CreateAndReturnKeyPoint(keyPointName, KeyPointType.Intermediate));
                 }
                 keyPoints.Add(CreateAndReturnKeyPoint(finishKeyPoint, KeyPointType.Last));
-                DateTime start = DateTime.ParseExact(appointment.Split("-")[0], "MM/dd/yyyy H:m", CultureInfo.InvariantCulture);
-                double duration = Convert.ToDouble(appointment.Split("-")[1]);
-                Tour tour = new Tour(-1, Guide.Id, name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPoints.Select(k => k.Id).ToList(), start, duration, images, Convert.ToInt32(maxNumberGuests), TourState.Inactive, -1,keyPoints);
+                DateTime start = appointment.Item1;
+                double duration = appointment.Item2;
+                Tour tour = new Tour(-1, Guide.Id, name, location, description, language, Convert.ToInt32(maxNumberGuests), keyPoints.Select(k => k.Id).ToList(), start, duration, images, Convert.ToInt32(maxNumberGuests), TourState.Inactive, -1, keyPoints, -1);
                 int lastAddedTour = tourService.NextId();
                 lastAddedTours.Add(lastAddedTour);
                 tourService.Create(tour);
+                if (TourRequest != null)
+                {
+                    TourRequest.State = TourRequestState.Accepted;
+                    TourRequest.AcceptedStartOfAppointment = tour.StartOfTheTour;
+                    TourRequest.AcceptedEndOfAppointment = tour.StartOfTheTour.AddHours(tour.Duration);
+                    TourRequest.GuideId = Guide.Id;
+                    tourRequestService.Update(TourRequest);
+                    string content = "Obavjestenje o novim turama (Vas zahtjev je prihvacen)";
+                    NotificationTour notification = new NotificationTour(-1, TourRequest.Guest2Id, TourRequest.GuideId, lastAddedTours, content, DateTime.Now, false);
+                    notificationTourService.Create(notification);
+                }
             }
             SendNotificationsAllGuests(createdByLanguage, language, createdByLocation, location);
-            if (TourRequest != null)
-            {
-                TourRequest.State = TourRequestState.Accepted;
-                TourRequest.GuideId = Guide.Id;
-                tourRequestService.Update(TourRequest);
-                string content = "Obavjestenje o novim turama (Vas zahtjev je prihvacen)";
-                NotificationTour notification = new NotificationTour(-1, TourRequest.Guest2Id, TourRequest.GuideId,
-                    lastAddedTours, content, DateTime.Now, false);
-                notificationTourService.Create(notification);
-            }
         }
         public void SendNotificationsAllGuests(bool CreatedByLanguage, string language, bool CreatedByLocation, string location)
         {
@@ -109,16 +111,11 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
                         lastAddedTours, content, DateTime.Now, false);
             return notificaiton;
         }
-        public bool GuideIsAvailable(DateTime date,int hour,int minute,double duration)
+        public bool GuideIsAvailable(DateTime date, int hour, int minute, int duration)
         {
-            DateTime start = new DateTime(date.Year,date.Month,date.Day,hour, minute, 0);
+            DateTime start = new DateTime(date.Year, date.Month, date.Day, hour, minute, 0);
             DateTime end = start.AddHours(duration);
-            foreach (var freeAppointment in tourService.GetFreeAppointmentsForThatDay(Guide.Id,date))
-            {
-                if ((start >= freeAppointment.Item1) && (start <= freeAppointment.Item2) && (end <= freeAppointment.Item2) && (end <= freeAppointment.Item2))
-                    return true;
-            }
-            return false ;
+            return guideService.CheckIfGuideIsAvailable(start, end, Guide.Id);
         }
     }
 }

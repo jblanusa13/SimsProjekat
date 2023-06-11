@@ -2,6 +2,7 @@
 using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.Observer;
 using ProjectSims.Repository;
+using Syncfusion.UI.Xaml.Scheduler;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.PerformanceData;
@@ -17,11 +18,15 @@ namespace ProjectSims.Service
         private ITourRequestRepository tourRequestRepository;
         private IGuest2Repository guest2Repository;
         private IGuideRepository guideRepository;
+        private IRequestForComplexTourRepository requestForComplexTourRepository;
+        private ITourRepository tourRepository;
         public TourRequestService()
         {
             tourRequestRepository = Injector.CreateInstance<ITourRequestRepository>();
             guest2Repository = Injector.CreateInstance<IGuest2Repository>();
             guideRepository = Injector.CreateInstance<IGuideRepository>();
+            requestForComplexTourRepository = Injector.CreateInstance<IRequestForComplexTourRepository>();
+            tourRepository = Injector.CreateInstance<ITourRepository>();
             InitializeGuest();
             InitializeGuide();
         }
@@ -47,9 +52,34 @@ namespace ProjectSims.Service
         {
             return tourRequestRepository.GetAll();
         }
-        public List<TourRequest> GetWaitingRequests()
+        public List<int> GetGuideOfComplexTourIds(RequestForComplexTour requestForComplexTour)
         {
-            return tourRequestRepository.GetWaitingRequests();
+            List<TourRequest> simpleRequests = requestForComplexTour.TourRequests;
+            return simpleRequests.Select(s => s.GuideId).ToList();
+        }
+        public bool  CheckIfGuideAcceptPartOfComplexTour(TourRequest request,int guideId)
+        {
+            RequestForComplexTour requestForComplexTour = requestForComplexTourRepository.GetBySimpleRequestId(request.Id);
+            return GetGuideOfComplexTourIds(requestForComplexTour).Contains(guideId);
+        }
+        public List<TourRequest> GetAvailableRequestsForGuide(int guideId)
+        {
+            List<TourRequest> availableRequestsForGuide = new List<TourRequest>();
+            foreach (var request in tourRequestRepository.GetWaitingRequests())
+            {
+                if (request.RequestForComplexTour)
+                {
+                    if (!CheckIfGuideAcceptPartOfComplexTour(request, guideId))
+                    {
+                        availableRequestsForGuide.Add(request);
+                    }
+                }
+                else
+                {
+                    availableRequestsForGuide.Add(request);
+                }
+            }
+            return availableRequestsForGuide;
         }
         public TourRequest GetById(int id)
         {
@@ -109,6 +139,18 @@ namespace ProjectSims.Service
             else if (location == "")
                 return tourRequestRepository.GetByLanguage(language);
             return tourRequestRepository.GetByLocation(location).Where(r => tourRequestRepository.GetByLanguage(language).Contains(r)).ToList();
+        }
+        public List<DateOnly> GetDaysBetweenRange(TourRequest tourRequest)
+        {
+            List<DateOnly> days = new List<DateOnly>();
+            DateOnly day = tourRequest.DateRangeStart;
+            int numberOfDays = (tourRequest.DateRangeEnd.DayNumber - tourRequest.DateRangeStart.DayNumber);
+            for(int i=0; i <= numberOfDays; i++)
+            {
+                days.Add(day);
+                day = day.AddDays(1);
+            }
+            return days;
         }
         public List<int> GetYears()
         {
