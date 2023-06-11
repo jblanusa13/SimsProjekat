@@ -158,7 +158,7 @@
     <Compile Update="WPF\View\GuideView\Pages\TourDetailsAndCancelling.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WPF\View\OwnerView\NotificationsView.xaml.cs">
+    <Compile Update="WPF\View\OwnerView\Pages\NotificationsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\OwnerView\Pages\ForumsDisplayView.xaml.cs">
@@ -349,7 +349,7 @@
     <Page Update="WPF\View\GuideView\Pages\TourDetailsAndCancelling.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WPF\View\OwnerView\NotificationsView.xaml">
+    <Page Update="WPF\View\OwnerView\Pages\NotificationsView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\OwnerView\Pages\ForumsDisplayView.xaml">
