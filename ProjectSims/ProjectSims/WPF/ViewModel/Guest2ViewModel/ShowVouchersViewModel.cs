@@ -14,12 +14,16 @@ namespace ProjectSims.WPF.ViewModel.Guest2ViewModel
         public ObservableCollection<Voucher> ListVoucher { get; set; }
 
         private VoucherService voucherService;
-
         public ShowVouchersViewModel(Guest2 g) 
         {
             guest2 = g;
             voucherService = new VoucherService();
             ListVoucher = new ObservableCollection<Voucher>(voucherService.GetVouchersWithIds(guest2.VoucherIds));
+        }
+
+        internal void GeneratePdf()
+        {
+            PDFService.GenerateValidVouchersPDF(voucherService.GetValidVouchers(guest2));
         }
     }
 }

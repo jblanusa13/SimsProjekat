@@ -37,12 +37,14 @@ namespace ProjectSims.View.OwnerView.Pages
         public Owner Owner { get; set; }
         public Accommodation SelectedAccommodation { get; set; }
         public TextBlock TitleTextBlock { get; set; }
+        public Frame SelectedTab { get; set; }
 
-        public AccommodationsDisplayView(Owner o, TextBlock titleTextBlock)
+        public AccommodationsDisplayView(Owner o, TextBlock titleTextBlock, Frame selectedTab)
         {
             InitializeComponent();
             Owner = o;
             TitleTextBlock = titleTextBlock;
+            SelectedTab = selectedTab;
             accommodationsDisplayViewModel = new AccommodationsDisplayViewModel(Owner);
             this.DataContext = accommodationsDisplayViewModel;
             NotifyAboutRequest();
@@ -59,7 +61,7 @@ namespace ProjectSims.View.OwnerView.Pages
 
         private void Registrate_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new AccommodationRegistrationView(Owner, TitleTextBlock, null));
+            this.NavigationService.Navigate(new AccommodationRegistrationView(Owner, TitleTextBlock, null, SelectedTab));
             TitleTextBlock.Text = "Registracija smještaja";
         }
 
@@ -68,7 +70,7 @@ namespace ProjectSims.View.OwnerView.Pages
             SelectedAccommodation = (Accommodation)AccommodationsTable.SelectedItem;
             if (SelectedAccommodation != null)
             {
-                this.NavigationService.Navigate(new StatisticsView(Owner, TitleTextBlock, SelectedAccommodation));
+                this.NavigationService.Navigate(new StatisticsView(Owner, TitleTextBlock, SelectedAccommodation, SelectedTab));
                 TitleTextBlock.Text = "Statistika smještaja";
             }
         }
@@ -78,7 +80,7 @@ namespace ProjectSims.View.OwnerView.Pages
             SelectedAccommodation = (Accommodation)AccommodationsTable.SelectedItem;
             if (SelectedAccommodation != null)
             {
-                this.NavigationService.Navigate(new RenovationScheduleView(Owner, TitleTextBlock, SelectedAccommodation));
+                this.NavigationService.Navigate(new RenovationScheduleView(Owner, TitleTextBlock, SelectedAccommodation, SelectedTab));
                 TitleTextBlock.Text = "Renovacija smještaja";
             }
         }

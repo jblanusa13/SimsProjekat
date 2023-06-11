@@ -24,12 +24,14 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
     public partial class SideMenuView : Page
     {
         public Owner Owner { get; set; }
+        public Frame SelectedTab { get; set; }
         public TextBlock TitleTextBlock { get; set; }
-        public SideMenuView(Owner o, TextBlock titleTextBlock)
+        public SideMenuView(Owner o, TextBlock titleTextBlock, Frame selectedTab)
         {
             InitializeComponent();
             DataContext = this;
             Owner = o;
+            SelectedTab = selectedTab;
             TitleTextBlock = titleTextBlock;
         }
 
@@ -44,13 +46,13 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
         private void HomePage_Click(object sender, RoutedEventArgs e)
         {
             Window parentWindow = Window.GetWindow(this);
-            this.NavigationService.Navigate(new HomePageView(Owner, TitleTextBlock));
+            this.NavigationService.Navigate(new HomePageView(Owner, TitleTextBlock, SelectedTab));
             TitleTextBlock.Text = "Početna stranica";
         }
 
         private void Accommodations_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new AccommodationsDisplayView(Owner, TitleTextBlock));
+            this.NavigationService.Navigate(new AccommodationsDisplayView(Owner, TitleTextBlock, SelectedTab));
             TitleTextBlock.Text = "Smještaji";
         }
 
@@ -68,7 +70,7 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
 
         private void Renovations_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new RenovationsView(Owner, TitleTextBlock));
+            this.NavigationService.Navigate(new RenovationsView(Owner, TitleTextBlock, SelectedTab));
             TitleTextBlock.Text = "Renoviranja";
         }
     }

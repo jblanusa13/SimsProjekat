@@ -35,6 +35,7 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
         public Owner Owner { get; set; }
         public TextBlock TitleTextBlock { get; set; }
         public Accommodation SelectedAccommodation { get; set; }
+        public Frame SelectedTab { get; set; }
         public StatisticsViewModel statisticsViewModel { get; set; }
 
         private Image _image;
@@ -67,13 +68,29 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
             }
         }
 
-        public StatisticsView(Owner o, TextBlock titleTextBlock, Accommodation selectedAccommodetion)
+        private string _mostVisitedYear;
+        public string MostVisitedYear
+        {
+            get => _mostVisitedYear;
+
+            set
+            {
+                if (value != _mostVisitedYear)
+                {
+                    _mostVisitedYear = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public StatisticsView(Owner o, TextBlock titleTextBlock, Accommodation selectedAccommodetion, Frame selectedTab)
         {
             InitializeComponent();
             Owner = o;
             TitleTextBlock = titleTextBlock;
             SelectedAccommodation = selectedAccommodetion;
-            statisticsViewModel = new StatisticsViewModel(Owner, TitleTextBlock, SelectedAccommodation, YearComboBox, MostVisitedMonth);
+            SelectedTab = selectedTab;
+            statisticsViewModel = new StatisticsViewModel(Owner, this, TitleTextBlock, SelectedAccommodation, MostVisitedMonth, this.MostVisitedYear, selectedTab);
             InitializeImages();
             this.DataContext = statisticsViewModel;
         }
@@ -99,14 +116,9 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
             }
         }
 
-        private void CloseAccommodation_Click(object sender, RoutedEventArgs e)
-        {
-            statisticsViewModel.CloseAccommodation(SelectedAccommodation);
-        }
-
         private void RegisterNew_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new AccommodationRegistrationView(Owner, TitleTextBlock, SelectedAccommodation));
+            this.NavigationService.Navigate(new AccommodationRegistrationView(Owner, TitleTextBlock, SelectedAccommodation, SelectedTab));
             TitleTextBlock.Text = "Registracija smještaja";
         }
 
@@ -121,7 +133,7 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
             printDialog.PrintDocument(documentPaginator, "Izvestaj");
 
             TitleTextBlock.Text = "Početna stranica";
-            this.NavigationService.Navigate(new HomePageView(Owner, TitleTextBlock));
+            this.NavigationService.Navigate(new HomePageView(Owner, TitleTextBlock, SelectedTab));
         }
 
         private void YearComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -140,9 +152,12 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
             {
                 statisticsViewModel.DisplayTheNumberOfMonthReservationsByCriteria(YearComboBox.Text);
                 MostVisitedMonth = statisticsViewModel.DisplayMostVisitedMonth();
+                MostVisitedYear = statisticsViewModel.FindMostVisitedYear();
                 MonthChart.Visibility = Visibility.Visible;
-                MostVisitedTextBox.Visibility = Visibility.Visible;
-                MostVisitedLabel.Visibility = Visibility.Visible;
+                MostVisitedMonthTextBox.Visibility = Visibility.Visible;
+                MostVisitedYearTextBox.Visibility = Visibility.Visible;
+                MostVisitedMonthLabel.Visibility = Visibility.Visible; 
+                MostVisitedYearLabel.Visibility = Visibility.Visible;
             }
         }
     }

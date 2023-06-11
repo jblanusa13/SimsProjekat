@@ -51,5 +51,11 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
         {
             this.NavigationService.Navigate(new StartView(viewModel.guest2));
         }
+
+        private void UpdateAccount_Click(object sender, RoutedEventArgs e)
+        {
+            var updateView = new UpdateAccountView(viewModel.guest2);
+            updateView.Show();  
+        }
     }
 }

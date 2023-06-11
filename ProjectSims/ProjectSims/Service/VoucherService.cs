@@ -54,7 +54,7 @@ namespace ProjectSims.Service
             voucherRepository.Subscribe(observer);
         }
 
-        internal void UpdateValidVouchers()
+        public void UpdateValidVouchers()
         {
             List<Voucher> vouchers = new List<Voucher>(GetAllVouchers()); 
             foreach(Voucher voucher in vouchers)
@@ -65,6 +65,19 @@ namespace ProjectSims.Service
                     Update(voucher);
                 }
             }
+        }
+
+        public List<Voucher> GetValidVouchers(Guest2 guest2)
+        {
+            List<Voucher> vouchers = new List<Voucher>();
+            foreach(Voucher v in GetVouchersWithIds(guest2.VoucherIds))
+            {
+                if(v.ValidVoucher == true)
+                {
+                    vouchers.Add(v);
+                }
+            }
+            return vouchers;
         }
     }
 }

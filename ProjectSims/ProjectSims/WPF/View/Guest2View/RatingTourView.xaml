@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest2View"
         mc:Ignorable="d"
-        Title="RatingTourView" Height="600" Width="1100" WindowStartupLocation="CenterScreen" >
+        Title="Ocjeni turu i vodica" Height="600" Width="1100" WindowStartupLocation="CenterScreen" Icon="/WPF/View/Guest2View/logoapp.png" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="55"/>
@@ -41,12 +41,12 @@
         <Label Content="Mozete ostaviti slike:" HorizontalAlignment="Left" Margin="40,348,0,0" Grid.Row="1" VerticalAlignment="Top" HorizontalContentAlignment="Right"/>
         <TextBox x:Name="ImagesBox" IsEnabled="False" HorizontalAlignment="Left" Margin="175,348,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="270" Height="68" Background="#FFB9BDF9"/>
 
-        <Button Content="Ocjeni" FontSize="18" HorizontalAlignment="Left" Margin="209,436,0,0" Grid.Row="1" VerticalAlignment="Top" Height="40" Width="117" Background="Blue" Foreground="White" Click="Rating_Click"/>
+        <Button Content="Ocjeni" Cursor="Hand" FontSize="18" HorizontalAlignment="Left" Margin="209,436,0,0" Grid.Row="1" VerticalAlignment="Top" Height="40" Width="117" Background="Blue" Foreground="White" Click="Rating_Click"/>
         <Button HorizontalAlignment="Left" Margin="450,377,0,0" Grid.Row="1" VerticalAlignment="Top" Height="39" Width="40" Click="BrowseButton_Click" Background="#FF9A9CE8">
-            <Image Source="/Resources/Icons/Guest2/icons8-add-file-60.png" Height="29"/>
+            <Image Source="/Resources/Icons/Guest2/icons8-add-file-60.png" Cursor="Hand" Height="29"/>
         </Button>
-        <Button Content="&#60;Nazad" Click="ButtonClose" FontSize="18" Width="90" Height="46" HorizontalAlignment="Left" Margin="976,5,0,0" VerticalAlignment="Top"/>
-
+        <Button Content="&#60;Nazad" Cursor="Hand" Click="ButtonClose" FontSize="18" Width="90" Height="46" HorizontalAlignment="Left" Margin="976,5,0,0" VerticalAlignment="Top"/>
+ 
         <Border BorderThickness="1" HorizontalAlignment="Left" Height="483" Margin="540,7,0,0" Grid.Row="1" VerticalAlignment="Top" Width="530" BorderBrush="Blue" CornerRadius="10,10,10,10" Background="#FF2F97DC"/>
         <Label Content="Detalji o turi i vodicu:" Grid.Row="1" HorizontalAlignment="Left" Margin="575,15,0,0" VerticalAlignment="Top" FontSize="28"/>
         <Label Content="Naziv ture:" FontSize="12" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="575,65,0,0" VerticalAlignment="Top"  Grid.Row="1"/>
