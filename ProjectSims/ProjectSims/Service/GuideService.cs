@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.Serializer;
 using System.Windows.Input;
+using Syncfusion.Windows.Shared;
 
 namespace ProjectSims.Service
 {
@@ -56,6 +57,45 @@ namespace ProjectSims.Service
             }
             return null;
         }
+        public List<Tuple<DateTime, DateTime>> GetGuidesDailySchedule(int id, DateTime date)
+        {
+            List<Tuple<DateTime, DateTime>> appointments = new List<Tuple<DateTime, DateTime>>();
+            foreach (var tour in tourRepository.GetToursByStateAndGuideId(TourState.Inactive, id))
+            {
+                if (tour.StartOfTheTour.Date == date.Date)
+                {
+                    appointments.Add(new Tuple<DateTime, DateTime>(tour.StartOfTheTour, tour.StartOfTheTour.AddHours(tour.Duration)));
+                }
+            }
+            return appointments.OrderBy(x => x.Item1).ToList();
+        }
+        public List<Tuple<DateTime, DateTime>> GetGuidesFreeAppointmentsByDate(int guideId, DateTime date)
+        {
+            List<Tuple<DateTime, DateTime>> dailySchedule = GetGuidesDailySchedule(guideId, date);
+            DateTime dayBegin = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
+            DateTime dayEnd = new DateTime(date.Year, date.Month, date.Day, 23, 59, 59);
+            if (dailySchedule.Count != 0)
+            {
+                List<Tuple<DateTime, DateTime>> freeAppointments = new List<Tuple<DateTime, DateTime>>();
+                freeAppointments.Add(new Tuple<DateTime, DateTime>(dayBegin, dailySchedule.First().Item1));
+                for (int i = 0; i < dailySchedule.Count - 1; i++)
+                {
+                    freeAppointments.Add(new Tuple<DateTime, DateTime>(dailySchedule[1].Item2, dailySchedule[i + 1].Item1));
+                }
+                freeAppointments.Add(new Tuple<DateTime, DateTime>(dailySchedule.Last().Item2, dayEnd));
+                return freeAppointments;
+            }
+            return new List<Tuple<DateTime, DateTime>>() { new Tuple<DateTime, DateTime>(dayBegin, dayEnd) };
+        }
+        public bool CheckIfGuideIsAvailable(DateTime start,DateTime end,int id)
+        {
+            foreach (var freeAppointment in GetGuidesFreeAppointmentsByDate(id, start.Date))
+            {
+                if ((start >= freeAppointment.Item1) && (start <= freeAppointment.Item2) && (end <= freeAppointment.Item2) && (end <= freeAppointment.Item2))
+                    return true;
+            }
+            return false;
+        }
         public List<String> GetLanguagesOfGuideFinishedTours(int id)
         {
             List<Tour> guideFinishedTours = tourRepository.GetToursByStateAndGuideId(TourState.Finished, id);
@@ -80,7 +120,7 @@ namespace ProjectSims.Service
         public int GetSuperguideState(string language,int id)
         {
             List<Tour> tours = GetGuidesToursInLastYearByLanguage(language, id);
-            List<Tour> wantedTours = tours.Where(t => (CalculateAverageLanguageRatingOnTour(t) > 9)).ToList();
+            List<Tour> wantedTours = tours.Where(t => (CalculateAverageLanguageRatingOnTour(t) > 4)).ToList();
             return wantedTours.Count();
         }
         public bool IsSuperGuideForLanguage(string language, int id)

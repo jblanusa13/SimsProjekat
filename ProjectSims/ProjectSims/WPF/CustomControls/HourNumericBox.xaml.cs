@@ -40,7 +40,7 @@ namespace ProjectSims.WPF.CustomControls
         private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             // Handle arrow keys to increment/decrement value
-            if (e.Key == Key.Up && Value < 24)
+            if (e.Key == Key.Up && Value < 23)
             {
                 Value++;
                 e.Handled = true;
@@ -76,9 +76,9 @@ namespace ProjectSims.WPF.CustomControls
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(Value > 24)
+            if(Value > 23)
             {
-                Value = 0;
+                Value = 23;
             }
         }
     }

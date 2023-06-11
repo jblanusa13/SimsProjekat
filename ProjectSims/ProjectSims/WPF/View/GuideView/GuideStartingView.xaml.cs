@@ -65,7 +65,7 @@ namespace ProjectSims.View.GuideView
         }
         private void CreateTour_Click(object sender, RoutedEventArgs e)
         {
-            Page createTourPage = new CreateTourView(Guide,null,null,null);
+            Page createTourPage = new CreateTourView(Guide,null,null,null,new DateTime(0001,1,1),0);
             GuideFrame.Content = createTourPage;
         }
         private void Suggestions_Click(object sender, RoutedEventArgs e)

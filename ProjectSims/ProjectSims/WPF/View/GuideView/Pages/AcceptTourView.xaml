@@ -44,14 +44,10 @@
                 </AccessText>
             </Label>
             <Label Margin="100,660,0,0" Content="Odaberite termin i trajanje:"/>
-            <ComboBox Name="DateComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,700,0,0" Width="200" Height="40">
-                <ComboBox.Resources>
-                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
-                </ComboBox.Resources>
-            </ComboBox>
-            <ComboBox Name="TimeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="350,700,0,0" Width="150" Height="40" Background="Transparent"/>
+            <ComboBox Name="DateComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,700,0,0" Width="200" Height="40" SelectionChanged="TimeSelected_SelectionChanged"/>
+            <ComboBox Name="TimeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="350,700,0,0" Width="150" Height="40" Background="Transparent" SelectionChanged="TimeSelected_SelectionChanged"/>
             <ComboBox Name="DurationComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="550,700,0,0" Width="100" Height="40" Background="Transparent"/>
-            <Button Name="AcceptTour" Margin="0,800,300,0" Height="85" Width="85" HorizontalAlignment="Center" VerticalAlignment="Top"  Background="Transparent" BorderThickness="0" Click="AcceptTour_Click" Cursor="Hand">
+            <Button Name="AcceptTour" Margin="0,800,300,0" Height="85" Width="85" HorizontalAlignment="Center" VerticalAlignment="Top"  Background="Transparent" BorderThickness="0" Cursor="Hand" Command="{Binding AcceptTourCommand}">
                 <Image Source="/Resources/Icons/Guide/checked.png" Height="80" Width="80" Cursor="Hand">
                     <Image.Effect>
                         <DropShadowEffect/>

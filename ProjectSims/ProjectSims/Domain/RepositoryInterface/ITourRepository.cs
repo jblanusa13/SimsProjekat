@@ -14,7 +14,6 @@ namespace ProjectSims.Domain.RepositoryInterface
         public List<Tour> GetToursByStateAndGuideId(TourState state, int guideId);
         public Tour GetTourByStateAndGuideId(TourState state, int guideId);
         public List<Tour> GetToursByDateAndGuideId(DateTime date,int guideId);
-        public Tour GetByRequestId(int requestId);
         public List<Tour> GetToursByLanguageAndGuideId(string language, int guideId);
 
     }

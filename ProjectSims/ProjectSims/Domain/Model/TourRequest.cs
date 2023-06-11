@@ -25,6 +25,8 @@ namespace ProjectSims.Domain.Model
         public DateOnly DateRangeEnd { get; set; }
         public DateTime CreationDate { get; set; }
         public bool RequestForComplexTour { get; set; }
+        public DateTime AcceptedStartOfAppointment { get; set; }
+        public DateTime AcceptedEndOfAppointment { get; set; }
         public TourRequest()
         {
         }
@@ -41,6 +43,8 @@ namespace ProjectSims.Domain.Model
             DateRangeEnd = dateRangeEnd;
             CreationDate = DateTime.Now;
             RequestForComplexTour = requestForComplexTour;
+            AcceptedStartOfAppointment = new DateTime(0001, 1, 1);
+            AcceptedEndOfAppointment = new DateTime(0001, 1, 1);
 
         }
 
@@ -77,10 +81,12 @@ namespace ProjectSims.Domain.Model
             DateRangeEnd = DateOnly.ParseExact(values[9], "dd/MM/yyyy", CultureInfo.InvariantCulture);
             CreationDate = DateTime.ParseExact(values[10], "dd/MM/yyyy", CultureInfo.InvariantCulture);
             RequestForComplexTour = Convert.ToBoolean(values[11]);
+            AcceptedStartOfAppointment = DateTime.ParseExact(values[12], "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+            AcceptedEndOfAppointment = DateTime.ParseExact(values[13], "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
         }
         public string[] ToCSV()
         {
-            string[] csvvalues = { Id.ToString(), Guest2Id.ToString(), GuideId.ToString(), State.ToString(), Location, Description, Language, MaxNumberGuests.ToString(), DateRangeStart.ToString("dd/MM/yyyy"), DateRangeEnd.ToString("dd/MM/yyyy"),CreationDate.ToString("dd/MM/yyyy"),RequestForComplexTour.ToString() };
+            string[] csvvalues = { Id.ToString(), Guest2Id.ToString(), GuideId.ToString(), State.ToString(), Location, Description, Language, MaxNumberGuests.ToString(), DateRangeStart.ToString("dd/MM/yyyy"), DateRangeEnd.ToString("dd/MM/yyyy"),CreationDate.ToString("dd/MM/yyyy"),RequestForComplexTour.ToString(), AcceptedStartOfAppointment.ToString("dd/MM/yyyy HH:mm:ss") , AcceptedEndOfAppointment.ToString("dd/MM/yyyy HH:mm:ss") };
             return csvvalues;
         }
     }
