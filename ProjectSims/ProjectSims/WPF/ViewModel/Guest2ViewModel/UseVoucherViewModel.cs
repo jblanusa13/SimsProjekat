@@ -37,7 +37,7 @@ namespace ProjectSims.WPF.ViewModel.Guest2ViewModel
 
         }
 
-        public string ReservationClick(object sender)
+        public string Reservation()
         {
             ReservationTour reservation = new ReservationTour();
             int guestAgeOnTour = guest2Service.GetAgeOnTour(guest2, tour);

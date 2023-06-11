@@ -26,7 +26,7 @@ namespace ProjectSims.WPF.ViewModel.Guest2ViewModel
             ListTour = new ObservableCollection<Tour>(tourService.GetToursWhichActivatedWhereGuestPresent(guest2.Id));
         }
 
-        public void ButtonTrackingTour(object sender)
+        public void TrackingTour()
         {
             if (SelectedTour != null)
             {

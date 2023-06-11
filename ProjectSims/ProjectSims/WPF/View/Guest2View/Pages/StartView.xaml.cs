@@ -16,7 +16,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Syncfusion.UI.Xaml.Scheduler;
-using System.Globalization;
 
 namespace ProjectSims.WPF.View.Guest2View.Pages
 {
@@ -91,7 +90,6 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
         private void Schedule_Loaded(object sender, RoutedEventArgs e)
         {
             Schedule.DisplayDate = DateTime.Now;
-            CultureInfo serbianCulture = new CultureInfo("sr-RS");
         }
     }
 }

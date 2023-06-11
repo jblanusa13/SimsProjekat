@@ -39,6 +39,21 @@ namespace ProjectSims.Service
                 item.Guide = guideRepository.GetById(item.GuideId);
             }
         }
+
+        public void UpdateTourRequestsFile()
+        {            
+            DateOnly today = DateOnly.FromDateTime(DateTime.Today).AddDays(2);
+            List<TourRequest> requests = new List<TourRequest>(GetAllRequests());
+            foreach (TourRequest request in requests)
+            {
+                if (today >= request.DateRangeStart && request.State == TourRequestState.Waiting)
+                {
+                    request.State = TourRequestState.Invalid;
+                    Update(request);
+                }
+            }
+        }
+
         public int NextId()
         {
             return tourRequestRepository.NextId();

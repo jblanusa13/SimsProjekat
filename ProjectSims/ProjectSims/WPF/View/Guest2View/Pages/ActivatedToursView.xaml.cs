@@ -34,7 +34,7 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
 
         private void ButtonTrackingTour(object sender, RoutedEventArgs e)
         {
-            viewModel.ButtonTrackingTour(sender);
+            viewModel.TrackingTour();
         }
         private void Home_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
