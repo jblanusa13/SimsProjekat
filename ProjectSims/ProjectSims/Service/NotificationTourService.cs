@@ -3,6 +3,7 @@ using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.Observer;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,7 @@ namespace ProjectSims.Service
         {
             return notificationTourRepository.GetByGuest2Id(guest2Id);
         }
+
         public int GetNumberUnseenNotificationsByGuest2(int guest2Id)
         {
             int number = 0;

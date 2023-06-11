@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
-using ProjectSims.Domain.Model;
+﻿using ProjectSims.Domain.Model;
 using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.WPF.ViewModel.GuideViewModel;
 using Syncfusion.Windows.Shared;

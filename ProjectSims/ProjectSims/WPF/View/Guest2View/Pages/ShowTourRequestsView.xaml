@@ -48,8 +48,8 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Lokacija" Binding="{Binding Location}" Width="90"/>
                     <DataGridTextColumn Header="Jezik" Binding="{Binding Language}" Width="70"/>
-                    <DataGridTextColumn Header="Pocetni datum" Binding="{Binding DateRangeStart}" Width="120"/>
-                    <DataGridTextColumn Header="Krajnji datum" Binding="{Binding DateRangeEnd}" Width="120"/>
+                    <DataGridTextColumn Header="Pocetni datum" Binding="{Binding DateRangeStart, StringFormat={}{0:dd.MM.yyyy}}" Width="120"/>
+                    <DataGridTextColumn Header="Krajnji datum" Binding="{Binding DateRangeEnd, StringFormat={}{0:dd.MM.yyyy}}" Width="120"/>
                     <DataGridTextColumn Header="Status" Binding="{Binding State, Converter={StaticResource StateConverter}}" Width="*"/>
                 </DataGrid.Columns>
 

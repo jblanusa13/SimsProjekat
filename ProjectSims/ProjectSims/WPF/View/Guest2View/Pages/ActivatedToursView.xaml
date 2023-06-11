@@ -35,7 +35,7 @@
                 <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" Width="220"/>
                 <DataGridTextColumn Header="Lokacija" Binding="{Binding Location}" Width="140"/>
                 <DataGridTextColumn Header="Jezik" Binding="{Binding Language}" Width="70"/>
-                <DataGridTextColumn Header="Datum pocetka ture" Binding="{Binding StartOfTheTour}" Width="180"/>
+                <DataGridTextColumn Header="Datum pocetka ture" Binding="{Binding StartOfTheTour, StringFormat={}{0:dd.MM.yyyy HH:mm}}" Width="180"/>
                 <DataGridTextColumn Header="Trajanje(sati)" Binding="{Binding Duration}" Width="*"/>
             </DataGrid.Columns>
 

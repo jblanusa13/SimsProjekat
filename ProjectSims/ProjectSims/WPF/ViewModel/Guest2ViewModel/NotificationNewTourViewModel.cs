@@ -42,7 +42,7 @@ namespace ProjectSims.WPF.ViewModel.Guest2ViewModel
             ListTour = new ObservableCollection<Tour>(tours);
         }
 
-        public void SeeMoreDetailsButton(object sender)
+        public void SeeMoreDetails()
         {
             if (SelectedTour != null)
             {

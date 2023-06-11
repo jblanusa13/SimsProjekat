@@ -45,6 +45,21 @@ namespace ProjectSims.Service
                 }
             }
         }
+
+        public void UpdateRequestForComplexTour()
+        {
+            DateOnly today = DateOnly.FromDateTime(DateTime.Today).AddDays(2);
+            List<RequestForComplexTour> requests = new List<RequestForComplexTour>(GetAllRequests());
+            foreach (RequestForComplexTour request in requests)
+            {
+                if (today >= request.TourRequests.First().DateRangeStart && request.State == TourRequestState.Waiting)
+                {
+                    request.State = TourRequestState.Invalid;
+                    Update(request);
+                }
+            }
+        }
+
         public int NextId()
         {
             return complexTourRequestRepository.NextId();

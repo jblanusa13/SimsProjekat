@@ -22,7 +22,7 @@
                 <DataGridTextColumn Header="Lokacija" Binding="{Binding Location}" Width="110" />
                 <DataGridTextColumn Header="Jezik" Binding="{Binding Language}" Width="70" />
                 <DataGridTextColumn Header="Maksimalan broj ljudi" Binding="{Binding MaxNumberGuests}" Width="130" />
-                <DataGridTextColumn Header="Pocetak ture" Binding="{Binding StartOfTheTour}" Width="140" />
+                <DataGridTextColumn Header="Pocetak ture" Binding="{Binding StartOfTheTour, StringFormat={}{0:dd.MM.yyyy HH:mm}}" Width="140" />
                 <DataGridTextColumn Header="Trajanje (sati)" Binding="{Binding Duration}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
