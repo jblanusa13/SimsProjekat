@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.MainPages"
+      xmlns:ns="clr-namespace:ProjectSims.Localization"
       xmlns:fa="http://schemas.fontawesome.io/icons/"
       mc:Ignorable="d" 
       d:DesignHeight="540" d:DesignWidth="1067"
@@ -44,7 +45,7 @@
             </Button>
 
             <Grid Grid.Column="1">
-                <Label Margin="10,18,10,10" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Ocene</Label>
+                <Label Margin="10,18,10,10" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" Content="{ns:Loc Ocene}"></Label>
             </Grid>
 
             <Grid Grid.Column="2">
@@ -72,7 +73,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Label Grid.Row="1" Content="Tema" FontFamily="Bahnschrift" 
+                    <Label Grid.Row="1" Content="{ns:Loc Tema}" FontFamily="Bahnschrift" 
                            Foreground="{DynamicResource FontsColor}" 
                            FontSize="10" HorizontalContentAlignment="Center"
                            VerticalContentAlignment="Top"/>
@@ -93,7 +94,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Label Grid.Row="1" Content="Jezik" FontFamily="Bahnschrift" 
+                    <Label Grid.Row="1" Content="{ns:Loc Jezik}" FontFamily="Bahnschrift" 
                            Foreground="{DynamicResource FontsColor}" HorizontalContentAlignment="Center"
                            FontSize="10" VerticalContentAlignment="Top"/>
                 </Grid>
@@ -113,7 +114,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Label Grid.Row="1" Content="Obavestenja" FontFamily="Bahnschrift" 
+                    <Label Grid.Row="1" Content="{ns:Loc Obavestenja}" FontFamily="Bahnschrift" 
                            Foreground="{DynamicResource FontsColor}" 
                            HorizontalContentAlignment="Center"
                            FontSize="10" VerticalContentAlignment="Top"/>
@@ -123,7 +124,7 @@
 
         <Grid Grid.Row="1">
             <TabControl Margin="50,20,50,10">
-                <TabItem Header="Moji utisci" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" >
+                <TabItem Header="{ns:Loc MojiUtisci}" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" >
                     <Grid Background="{DynamicResource BlueShade}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -169,7 +170,7 @@
                                 </Grid.RowDefinitions>
 
                                 <Label Grid.Row="1" FontSize="15" Margin="30,0,0,0"
-                                       Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Moj komentar za smestaj</Label>
+                                       Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" Content="{ns:Loc MojKomentarZaSmestaj}"></Label>
                                 <Label Grid.Row="2" Name="MyRatingsNameLabel" FontSize="15" Margin="30,0,0,0"
                                        Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></Label>
                             </Grid>
@@ -179,7 +180,7 @@
                         </Grid>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Utisci vlasnika" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">
+                <TabItem Header="{ns:Loc UtisciVlasnika}" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">
                     <Grid Background="{DynamicResource BlueShade}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -229,7 +230,7 @@
                                 </Grid.RowDefinitions>
 
                                 <Label Grid.Row="1" FontSize="15" Margin="30,0,0,0"
-                                       Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Komentar vlasnika smestaja</Label>
+                                       Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" Content="{ns:Loc KomentarVlasnikaSmestaja}"></Label>
                                 <Label Grid.Row="2" Name="OwnerRatingsNameLabel" FontSize="15" Margin="30,0,0,0"
                                        Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></Label>
                             </Grid>
@@ -250,7 +251,7 @@
             <Button Grid.Column="1" Margin="80,20,70,15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}"
                                         Background="{DynamicResource SecondGrayShade}"
                     Click="LogOut_Click"
-                    FocusVisualStyle="{DynamicResource FocusControl}">Odjavi se
+                    FocusVisualStyle="{DynamicResource FocusControl}" Content="{ns:Loc OdjaviSe}">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>

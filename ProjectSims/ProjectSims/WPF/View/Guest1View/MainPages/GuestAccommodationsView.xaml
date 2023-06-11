@@ -8,6 +8,7 @@
       xmlns:commands="clr-namespace:ProjectSims.Commands"
       xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.MainPages"
       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+      xmlns:ns="clr-namespace:ProjectSims.Localization"
       mc:Ignorable="d" 
       d:DesignHeight="540" d:DesignWidth="1067"
       Title="GuestAccommodationsView">
@@ -44,6 +45,7 @@
         <KeyBinding Gesture="Ctrl+L" Command="{Binding LogOutCommand}" CommandParameter="{Binding ElementName=AccommodationsPage}"></KeyBinding>
         <KeyBinding Gesture="Ctrl+T" Command="{Binding ThemeCommand}"></KeyBinding>
         <KeyBinding Gesture="Ctrl+N" Command="{Binding NotifCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+J" Command="{Binding LanguageCommand}"></KeyBinding>
     </Page.InputBindings>
 
     <Grid Background="White">
@@ -80,11 +82,13 @@
                     <Label Grid.Row="1" HorizontalContentAlignment="Center" FontFamily="Bahnschrift"
                            FontSize="9"
                            VerticalContentAlignment="Top"
-                           Foreground="{DynamicResource FontsColor}">Pomoc</Label>
+                           Foreground="{DynamicResource FontsColor}"
+                           Content="{ns:Loc Pomoc}"></Label>
                 </Grid>
 
                 <Grid Grid.Column="1">
-                    <TextBlock Foreground="{DynamicResource FontsColor}"  HorizontalAlignment="Right" Margin="50,25,0,10" FontSize="40" FontFamily="Bahnschrift">Rezervacija smestaja</TextBlock>
+                    <TextBlock Foreground="{DynamicResource FontsColor}"  HorizontalAlignment="Right" Margin="50,25,0,10" FontSize="40" FontFamily="Bahnschrift"
+                               Text="{ns:Loc RezervacijaSmestaja}"></TextBlock>
                 </Grid>
 
                 <Grid Grid.Column="2">
@@ -106,17 +110,17 @@
                 </Grid.ColumnDefinitions>
                 
 
-                <Label Grid.Column="0" Content="Naziv:" HorizontalAlignment="Left" Margin="25,35,0,0" VerticalAlignment="Top"
+                <Label Grid.Column="0" Content="{ns:Loc Naziv:}" HorizontalAlignment="Left" Margin="25,35,0,0" VerticalAlignment="Top"
                        Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"/>
-                <Label Grid.Column="1" Content="Grad:" HorizontalAlignment="Left" Margin="17,35,0,0" VerticalAlignment="Top"
+                <Label Grid.Column="1" Content="{ns:Loc Grad:}" HorizontalAlignment="Left" Margin="17,35,0,0" VerticalAlignment="Top"
                        Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"/>
-                <Label Grid.Column="2" Content="Drzava:" HorizontalAlignment="Left" Margin="17,35,0,0" VerticalAlignment="Top"
+                <Label Grid.Column="2" Content="{ns:Loc Drzava:}" HorizontalAlignment="Left" Margin="17,35,0,0" VerticalAlignment="Top"
                        Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"/>
-                <Label Grid.Column="3" Content="Tip smestaja:" HorizontalAlignment="Left" Margin="17,35,0,0" VerticalAlignment="Top"
+                <Label Grid.Column="3" Content="{ns:Loc TipSmestaja:}" HorizontalAlignment="Left" Margin="17,35,0,0" VerticalAlignment="Top"
                        Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"/>
-                <Label Grid.Column="4" Content="Broj gostiju:" HorizontalAlignment="Left" Margin="17,35,0,0" VerticalAlignment="Top"
+                <Label Grid.Column="4" Content="{ns:Loc BrojGostiju:}" HorizontalAlignment="Left" Margin="17,35,0,0" VerticalAlignment="Top"
                        Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"/>
-                <Label Grid.Column="5" Content="Broj dana:" HorizontalAlignment="Left" Margin="17,35,0,0" VerticalAlignment="Top"
+                <Label Grid.Column="5" Content="{ns:Loc BrojDana:}" HorizontalAlignment="Left" Margin="17,35,0,0" VerticalAlignment="Top"
                        Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"/>
                 <TextBox Grid.Column="0" Name="TextboxName"  HorizontalAlignment="Left" Margin="25,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Height="25"
                          Background="{DynamicResource TextboxColor}"
@@ -172,7 +176,7 @@
                         </Style>
                     </TextBox.Resources>
                 </TextBox>
-                <Button Grid.Column="6" Content="Pretraga" Command="{Binding SearchCommand}" HorizontalAlignment="Center" Margin="0,60,0,0" VerticalAlignment="Top" Width="80" Height="25"
+                <Button Grid.Column="6" Content="{ns:Loc Pretraga}" Command="{Binding SearchCommand}" HorizontalAlignment="Center" Margin="0,60,0,0" VerticalAlignment="Top" Width="80" Height="25"
                         Background="{DynamicResource SecondGrayShade}" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"
                         FocusVisualStyle="{DynamicResource FocusControl}">
                     <Button.Resources>
@@ -277,7 +281,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Label Grid.Row="1" Content="Tema" FontFamily="Bahnschrift" 
+                    <Label Grid.Row="1" Content="{ns:Loc Tema}" FontFamily="Bahnschrift" 
                            Foreground="{DynamicResource FontsColor}" 
                            FontSize="8" HorizontalContentAlignment="Center"/>
                 </Grid>
@@ -288,7 +292,8 @@
                     </Grid.RowDefinitions>
                     <Button Grid.Row="0" x:Name="ButtonLanguage" Margin="0,5"
                         Background="{DynamicResource BlueShade}" BorderBrush="{DynamicResource FirstGrayShade}"
-                            FocusVisualStyle="{DynamicResource FocusControl}">
+                            FocusVisualStyle="{DynamicResource FocusControl}"
+                            Command="{Binding LanguageCommand}">
                         <DynamicResource ResourceKey="LanguageIcon"></DynamicResource>
                         <Button.Resources>
                             <Style TargetType="Border">
@@ -296,7 +301,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Label Grid.Row="1" Content="Jezik" FontFamily="Bahnschrift" 
+                    <Label Grid.Row="1" Content="{ns:Loc Jezik}" FontFamily="Bahnschrift" 
                            Foreground="{DynamicResource FontsColor}" HorizontalContentAlignment="Center"
                            FontSize="8"/>
                 </Grid>
@@ -316,7 +321,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Label Grid.Row="1" Content="Obavestenja" FontFamily="Bahnschrift" 
+                    <Label Grid.Row="1" Content="{ns:Loc Obavestenja}" FontFamily="Bahnschrift" 
                            Foreground="{DynamicResource FontsColor}" 
                            HorizontalContentAlignment="Center"
                            FontSize="8"/>
@@ -339,7 +344,7 @@
                         <RowDefinition Height="65"/>
                     </Grid.RowDefinitions>
 
-                    <Button Content="Bilo kad/Bilo gde"
+                    <Button Content="{ns:Loc BiloKadBiloGde}"
                         HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
                         FontSize="16"  BorderBrush="{DynamicResource FirstGrayShade}"
                         Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" FontWeight="Bold"
@@ -351,7 +356,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Button Grid.Row="1" Content="Moje rezervacije"
+                    <Button Grid.Row="1" Content="{ns:Loc MojeRezervacije}"
                         HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
                          FontSize="16" FontFamily="Bahnschrift"
                         Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}"
@@ -364,7 +369,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Button Grid.Row="2" Content="Ocenite smestaj"
+                    <Button Grid.Row="2" Content="{ns:Loc OceniteSmestaj}"
                         HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
                          FontSize="16" FontFamily="Bahnschrift"
                         Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}"
@@ -377,7 +382,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Button Grid.Row="3" Content="Prikaz ocena"
+                    <Button Grid.Row="3" Content="{ns:Loc PrikazOcena}"
                         HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
                          FontSize="16" FontFamily="Bahnschrift"
                         Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}"
@@ -390,7 +395,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Button Grid.Row="4" Content="Forum" 
+                    <Button Grid.Row="4" Content="{ns:Loc Forum}" 
                         HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
                          FontSize="16" FontFamily="Bahnschrift"
                         Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}"
@@ -403,7 +408,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Button Grid.Row="5" Content="Moj nalog"
+                    <Button Grid.Row="5" Content="{ns:Loc MojNalog}"
                         HorizontalAlignment="Center" VerticalAlignment="Top" Height="65" Width="210"
                          FontSize="16" FontFamily="Bahnschrift"
                         Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}"
@@ -421,7 +426,7 @@
                
             </Grid>
             <Grid Grid.Row="2">
-                <Button Content="Odjavi se"  Margin="30,10" VerticalAlignment="Top" Height="30"
+                <Button Content="{ns:Loc OdjaviSe}"  Margin="30,10" VerticalAlignment="Top" Height="30"
                         Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}"
                         FontFamily="Bahnschrift"
                          BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold"

@@ -7,6 +7,7 @@
       xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.MainPages"
       xmlns:fa="http://schemas.fontawesome.io/icons/"
       xmlns:conv="clr-namespace:CalcBinding;assembly=CalcBinding"
+      xmlns:ns="clr-namespace:ProjectSims.Localization"
       mc:Ignorable="d" 
       d:DesignHeight="540" d:DesignWidth="1067"
       Title="ForumComments">
@@ -20,6 +21,7 @@
         <KeyBinding Gesture="Ctrl+P" Command="{Binding LeaveCommentCommand}"></KeyBinding>
         <KeyBinding Gesture="Ctrl+T" Command="{Binding ThemeCommand}"></KeyBinding>
         <KeyBinding Gesture="Ctrl+N" Command="{Binding NotifCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+J" Command="{Binding LanguageCommand}"></KeyBinding>
         <KeyBinding Gesture="Ctrl+L" Command="{Binding LogOutCommand}" CommandParameter="{Binding ElementName=ForumCommentsPage}"></KeyBinding>
     </Page.InputBindings>
 
@@ -58,7 +60,7 @@
                 <Button x:Name="CloseButton" Margin="5,25,40,25" FontSize="14" FontFamily="Bahnschrift"
                            Foreground="{DynamicResource FontsColor}"
                             Background="{DynamicResource SecondGrayShade}"
-                        Command="{Binding CloseForumCommand}">Zatvori forum
+                        Command="{Binding CloseForumCommand}" Content="{ns:Loc ZatvoriForum}"> 
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="20"/>
@@ -92,7 +94,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Label Grid.Row="1" Content="Tema" FontFamily="Bahnschrift" 
+                    <Label Grid.Row="1" Content="{ns:Loc Tema}" FontFamily="Bahnschrift" 
                            Foreground="{DynamicResource FontsColor}" 
                            FontSize="10" HorizontalContentAlignment="Center"/>
                 </Grid>
@@ -104,15 +106,17 @@
                     <Button Grid.Row="0" x:Name="ButtonLanguage" Margin="0,5"
                         Background="{DynamicResource SecondGrayShade}" 
                             BorderBrush="{DynamicResource BarShade}"
-                            FocusVisualStyle="{DynamicResource FocusControl}">
-                        <DynamicResource ResourceKey="LanguageIconProfile"></DynamicResource>
+                            FocusVisualStyle="{DynamicResource FocusControl}"
+                            Command="{Binding LanguageCommand}">
+                        <DynamicResource ResourceKey="LanguageIconProfile"
+                                          ></DynamicResource>
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="10"/>
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Label Grid.Row="1" Content="Jezik" FontFamily="Bahnschrift" 
+                    <Label Grid.Row="1" Content="{ns:Loc Jezik}" FontFamily="Bahnschrift" 
                            Foreground="{DynamicResource FontsColor}" HorizontalContentAlignment="Center"
                            FontSize="10"/>
                 </Grid>
@@ -132,7 +136,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Label Grid.Row="1" Content="Obavestenja" FontFamily="Bahnschrift" 
+                    <Label Grid.Row="1" Content="{ns:Loc Obavestenja}" FontFamily="Bahnschrift" 
                            Foreground="{DynamicResource FontsColor}" 
                            HorizontalContentAlignment="Center"
                            FontSize="10"/>
@@ -170,7 +174,7 @@
                                     <Label FontSize="16" FontFamily="Bahnschrift"
                                     Foreground="{DynamicResource FontsColor}"
                                     Margin="0,23,0,0" Content="{Binding Forum.Guest.Surname}"></Label>
-                                    <Label Grid.Column="0" Content="je postavio/la komentar:"
+                                    <Label Grid.Column="0" Content="{ns:Loc jePostavioKomentar:}"
                                    FontSize="16" FontFamily="Bahnschrift"
                                     Foreground="{DynamicResource FontsColor}"
                                     Margin="0,23,0,0"></Label>
@@ -184,7 +188,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0" FontSize="13" FontFamily="Bahnschrift"
                                     Foreground="{DynamicResource FontsColor}"
-                                       Margin="60,15,0,0">Veoma koristan</Label>
+                                       Margin="60,15,0,0" Content="{ns:Loc VeomaKoristan}"></Label>
                                 <Grid Grid.Column="1">
                                     <fa:ImageAwesome Icon="Star" Foreground="{DynamicResource BarFont}" Margin="0,10,10,10"></fa:ImageAwesome>
                                 </Grid>
@@ -240,7 +244,7 @@
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">
-                    <Label x:Name="CommentLabel" Content="Ostavite komentar: " FontSize="16" FontFamily="Bahnschrift"
+                    <Label x:Name="CommentLabel" Content="{ns:Loc OstaviteKomentar:}" FontSize="16" FontFamily="Bahnschrift"
                            Foreground="{DynamicResource FontsColor}"
                            Margin="20,60,0,0"></Label>
                 </Grid>
@@ -255,7 +259,7 @@
                     <Button x:Name="CommentBtn" Margin="200,10,20,40" FontSize="14" FontFamily="Bahnschrift"
                            Foreground="{DynamicResource FontsColor}"
                             Background="{DynamicResource SecondGrayShade}"
-                            Command="{Binding LeaveCommentCommand}">Postavi
+                            Command="{Binding LeaveCommentCommand}" Content="{ns:Loc Postavi}">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="20"/>
@@ -269,7 +273,7 @@
                            Foreground="{DynamicResource FontsColor}"
                             Background="{DynamicResource SecondGrayShade}"
                             Command="{Binding LogOutCommand}"
-                            CommandParameter="{Binding ElementName=ForumCommentsPage}">Odjavi se
+                            CommandParameter="{Binding ElementName=ForumCommentsPage}" Content="{ns:Loc OdjaviSe}">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="20"/>

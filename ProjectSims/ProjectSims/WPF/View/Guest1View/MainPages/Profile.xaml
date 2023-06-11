@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.MainPages"
       xmlns:fa="http://schemas.fontawesome.io/icons/"
+      xmlns:ns="clr-namespace:ProjectSims.Localization"
       mc:Ignorable="d" 
       d:DesignHeight="540" d:DesignWidth="1067"
       Title="Profile">
@@ -29,7 +30,7 @@
             </Button>
 
             <Grid Grid.Column="1">
-                <Label Content="Moj nalog" Margin="40,13,0,0" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></Label>
+                <Label Content="{ns:Loc MojNalog}" Margin="40,13,0,0" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></Label>
             </Grid>
 
             <Grid Grid.Column="2">
@@ -57,7 +58,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Label Grid.Row="1" Content="Tema" FontFamily="Bahnschrift" 
+                    <Label Grid.Row="1" Content="{ns:Loc Tema}" FontFamily="Bahnschrift" 
                            Foreground="{DynamicResource FontsColor}" 
                            FontSize="10" HorizontalContentAlignment="Center"/>
                 </Grid>
@@ -77,7 +78,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Label Grid.Row="1" Content="Jezik" FontFamily="Bahnschrift" 
+                    <Label Grid.Row="1" Content="{ns:Loc Jezik}" FontFamily="Bahnschrift" 
                            Foreground="{DynamicResource FontsColor}" HorizontalContentAlignment="Center"
                            FontSize="10"/>
                 </Grid>
@@ -97,7 +98,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Label Grid.Row="1" Content="Obavestenja" FontFamily="Bahnschrift" 
+                    <Label Grid.Row="1" Content="{ns:Loc Obavestenja}" FontFamily="Bahnschrift" 
                            Foreground="{DynamicResource FontsColor}" 
                            HorizontalContentAlignment="Center"
                            FontSize="10"/>
@@ -143,7 +144,7 @@
                            FontSize="16" FontFamily="Bahnschrift"
                            Margin="100,0,0,0"
                            VerticalContentAlignment="Center"
-                           Foreground="{DynamicResource FontsColor}">Korisnicko ime:</Label>
+                           Foreground="{DynamicResource FontsColor}" Content="{ns:Loc KorisnickoIme:}"></Label>
                     <Label Grid.Column="1"
                            FontSize="16" FontFamily="Bahnschrift"
                            VerticalContentAlignment="Center"
@@ -161,7 +162,7 @@
                            FontSize="16" FontFamily="Bahnschrift"
                            Margin="100,0,0,0"
                            VerticalContentAlignment="Center"
-                           Foreground="{DynamicResource FontsColor}">Adresa:</Label>
+                           Foreground="{DynamicResource FontsColor}" Content="{ns:Loc Adresa:}"></Label>
                     <Label Grid.Column="1"
                            FontSize="16" FontFamily="Bahnschrift"
                            VerticalContentAlignment="Center"
@@ -179,7 +180,7 @@
                            FontSize="16" FontFamily="Bahnschrift"
                            Margin="100,0,0,0"
                            VerticalContentAlignment="Center"
-                           Foreground="{DynamicResource FontsColor}">Mejl adresa:</Label>
+                           Foreground="{DynamicResource FontsColor}" Content="{ns:Loc MejlAdresa:}"></Label>
                     <Label Grid.Column="1"
                            FontSize="16" FontFamily="Bahnschrift"
                            VerticalContentAlignment="Center"
@@ -197,8 +198,7 @@
                             FontSize="12"
                             Foreground="{DynamicResource FontsColor}"
                             Background="{DynamicResource SecondGrayShade}"
-                            Click="LogOut_Click">
-                        Odjavi se
+                            Click="LogOut_Click" Content="{ns:Loc OdjaviSe}">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="15"/>
@@ -257,7 +257,7 @@
                                 FontSize="16" FontFamily="Bahnschrift"
                                        VerticalContentAlignment="Center"
                                        Margin="80,0,0,0"
-                                   Foreground="{DynamicResource FontsColor}">Broj rezervacija ove godine:</Label>
+                                   Foreground="{DynamicResource FontsColor}" Content="{ns:Loc BrojRezervacijaOveGodine:}"></Label>
                             <TextBox x:Name="ReservationTb" 
                                 Grid.Column="1" Margin="10,15,100,20"
                                      IsEnabled="False"
@@ -274,7 +274,7 @@
                                 FontSize="16" FontFamily="Bahnschrift"
                                        VerticalContentAlignment="Center"
                                        Margin="80,0,0,0"
-                                   Foreground="{DynamicResource FontsColor}">Broj preostalih bonus poena:</Label>
+                                   Foreground="{DynamicResource FontsColor}" Content="{ns:Loc BrojPreostaihBonusPoena:}"></Label>
                             <TextBox x:Name="BonusPointsTb"
                                 Grid.Column="1" Margin="10,15,100,20"
                                      IsEnabled="False"
@@ -296,7 +296,7 @@
                                        FontFamily="Bahnschrift" 
                                        Foreground="{DynamicResource FontsColor}"
                                        Margin="32,0,0,0"
-                                       VerticalContentAlignment="Top">Sta je super gost</Label>
+                                       VerticalContentAlignment="Top" Content="{ns:Loc StaJeSuperGost}"></Label>
                             </Grid>
                         </Grid>
                     </Grid>

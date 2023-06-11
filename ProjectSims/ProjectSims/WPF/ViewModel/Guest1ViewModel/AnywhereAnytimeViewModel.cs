@@ -116,6 +116,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public RelayCommand ThemeCommand { get; set; }
         public RelayCommand NotifCommand { get; set; }
         public RelayCommand CancelCommand { get; set; }
+        public RelayCommand LanguageCommand { get; set; }
         public RelayCommand HelpCommand { get; set; }
         public DatePicker First { get; set; }
         public DatePicker Last { get; set; }
@@ -133,6 +134,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             NotifCommand = new RelayCommand(Execute_NotifCommand);
             CancelCommand = new RelayCommand(Execute_CancelCommand);
             HelpCommand = new RelayCommand(Execute_HelpCommand);
+            LanguageCommand = new RelayCommand(Execute_LanguageCommand);
             AvailableAccommodations = new ObservableCollection<Accommodation>();
             AvailableDates = new ObservableCollection<DateRanges>();
             scheduleService = new AccommodationScheduleService();
@@ -180,6 +182,23 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 app.ChangeTheme(new Uri("Themes/Dark.xaml", UriKind.Relative));
                 App.IsDark = true;
             }
+        }
+
+        private void Execute_LanguageCommand(object obj)
+        {
+            App app = (App)Application.Current;
+
+            if (App.CurrentLanguage == "sr-LATN")
+            {
+                app.ChangeLanguage("en-US");
+                App.CurrentLanguage = "en-US";
+            }
+            else
+            {
+                app.ChangeLanguage("sr-LATN");
+                App.CurrentLanguage = "sr-LATN";
+            }
+
         }
         private void Execute_NotifCommand(object obj)
         {

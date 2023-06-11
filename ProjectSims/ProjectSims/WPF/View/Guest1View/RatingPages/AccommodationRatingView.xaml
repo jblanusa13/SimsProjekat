@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.RatingPages"
+      xmlns:ns="clr-namespace:ProjectSims.Localization"
       mc:Ignorable="d" 
       d:DesignHeight="590" d:DesignWidth="750"
       Title="AccommodationRating">
@@ -28,7 +29,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Background="{DynamicResource SecondGrayShade}">
-            <TextBlock Margin="20,20,200,70" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Ocenjivanje smestaja</TextBlock>
+            <TextBlock Margin="20,20,200,70" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" Text="{ns:Loc OcenjivanjeSmestaja}"></TextBlock>
             <Label Margin="20,80,200,20" FontSize="28" Content="{Binding AccommodationReservation.Accommodation.Name}"
                    Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></Label>
         </Grid>
@@ -55,7 +56,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Margin="50,10,0,0" FontSize="14" Height="35"
-                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Cistoca*:</Label>
+                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" Content="{ns:Loc Cistoca*:}"></Label>
                     <ComboBox x:Name="CleanlinessCb"
                               Grid.Column="1"
                               Margin="50,15,50,20"
@@ -78,7 +79,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Margin="50,10,0,0" FontSize="14" Height="35"
-                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Korektnost vlasnika*:</Label>
+                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" Content="{ns:Loc KorektnostVlasnika*:}"></Label>
                     <ComboBox Name="FairnessCb"
                               Grid.Column="1"
                               Margin="50,15,50,20"
@@ -100,7 +101,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Margin="50,10,0,0" FontSize="14" Height="35"
-                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Lokacija*:</Label>
+                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" Content="{ns:Loc Lokacija*:}"></Label>
                     <ComboBox Name="LocationCb"
                               Grid.Column="1"
                               Margin="50,15,50,20"
@@ -122,7 +123,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Margin="50,10,0,0" FontSize="14" Height="35"
-                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Vrednost za novac*:</Label>
+                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" Content="{ns:Loc VrednostZaNovac*:}"></Label>
                     <ComboBox Name="ValueForMoneyCb"
                               Grid.Column="1"
                               Margin="50,15,50,20"
@@ -144,7 +145,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Margin="50,0,0,30" FontSize="14" Height="35"
-                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Komentar:</Label>
+                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" Content="{ns:Loc Komentar:}"></Label>
                     <TextBox Name="CommentTb" Grid.Column="1" Margin="50,20,0,20" 
                              Background="{DynamicResource TextboxColor}"
                              TextWrapping="Wrap"></TextBox>
@@ -164,12 +165,11 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Margin="30,20,20,20" FontSize="14"
-                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Dodajte slike smestaja:</Label>
+                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" Content="{ns:Loc DodajteSlikeSmestaja:}"></Label>
                     <Button Grid.Column="1" Margin="0,20,40,20" Click="Browse_Click"
                             Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"
                             Background="{DynamicResource SecondGrayShade}"
-                            FocusVisualStyle="{DynamicResource FocusControl}">
-                        Uvezi
+                            FocusVisualStyle="{DynamicResource FocusControl}" Content="{ns:Loc Uvezi}">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="20"/>
@@ -203,8 +203,7 @@
             <Button Grid.Column="0" Margin="30,20,240,20" Click="Cancel_Click"
                     Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"
                     Background="{DynamicResource SecondGrayShade}"
-                    FocusVisualStyle="{DynamicResource FocusControl}">
-                Odustani
+                    FocusVisualStyle="{DynamicResource FocusControl}" Content="{ns:Loc Odustani}">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>
@@ -214,8 +213,7 @@
             <Button Grid.Column="1" Margin="240,20,30,20" Click="Confirm_Click"
                     Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"
                             Background="{DynamicResource SecondGrayShade}"
-                    FocusVisualStyle="{DynamicResource FocusControl}">
-                Dalje
+                    FocusVisualStyle="{DynamicResource FocusControl}" Content="{ns:Loc Dalje}">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>

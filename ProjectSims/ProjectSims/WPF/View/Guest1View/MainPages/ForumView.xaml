@@ -6,6 +6,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.MainPages"
       xmlns:fa="http://schemas.fontawesome.io/icons/" 
+      xmlns:ns="clr-namespace:ProjectSims.Localization"
       mc:Ignorable="d" 
       d:DesignHeight="540" d:DesignWidth="1067"
       Title="Forum">
@@ -39,6 +40,7 @@
         <KeyBinding Gesture="Ctrl+M" Command="{Binding FindMyForumsCommand}"></KeyBinding>
         <KeyBinding Gesture="Ctrl+P" Command="{Binding StartNewForumCommand}"></KeyBinding>
         <KeyBinding Gesture="Ctrl+S" Command="{Binding SearchCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+J" Command="{Binding LanguageCommand}"></KeyBinding>
     </Page.InputBindings>
 
     <Grid Background="{DynamicResource FirstGrayShade}">
@@ -70,7 +72,7 @@
                 </Grid>
 
                 <Grid Grid.Column="1">
-                    <TextBlock Foreground="{DynamicResource FontsColor}" Margin="300,20,0,10" FontSize="45" FontFamily="Bahnschrift">Dobro dosli na forum!</TextBlock>
+                    <TextBlock Foreground="{DynamicResource FontsColor}" Margin="300,20,0,10" FontSize="45" FontFamily="Bahnschrift" Text="{ns:Loc DobroDosliNaForum}"></TextBlock>
                 </Grid>
             </Grid>
 
@@ -82,9 +84,9 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1.2*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="Grad:" HorizontalAlignment="Left" Margin="30,15,0,0" VerticalAlignment="Top"
+                <Label Grid.Column="0" Content="{ns:Loc Grad:}" HorizontalAlignment="Left" Margin="30,15,0,0" VerticalAlignment="Top"
                        Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"/>
-                <Label Grid.Column="1" Content="Drzava:" HorizontalAlignment="Left" Margin="17,15,0,0" VerticalAlignment="Top"
+                <Label Grid.Column="1" Content="{ns:Loc Drzava:}" HorizontalAlignment="Left" Margin="17,15,0,0" VerticalAlignment="Top"
                        Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"/>
                 <TextBox Grid.Column="0" Name="TextboxName"  HorizontalAlignment="Left" Margin="30,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="25"
                          Background="{DynamicResource TextboxColor}" Text="{Binding City, UpdateSourceTrigger=PropertyChanged}">
@@ -102,7 +104,7 @@
                         </Style>
                     </TextBox.Resources>
                 </TextBox>
-                <Button Grid.Column="2" Content="Pretraga"  Margin="-50,40,0,0" VerticalAlignment="Top" Width="90" Height="25"
+                <Button Grid.Column="2" Content="{ns:Loc Pretraga}"  Margin="-50,40,0,0" VerticalAlignment="Top" Width="90" Height="25"
                         Background="{DynamicResource SecondGrayShade}" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"
                         FocusVisualStyle="{DynamicResource FocusControl}"
                         Command="{Binding SearchCommand}">
@@ -169,7 +171,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Label Grid.Row="1" Content="Tema" FontFamily="Bahnschrift" 
+                    <Label Grid.Row="1" Content="{ns:Loc Tema}" FontFamily="Bahnschrift" 
                            Foreground="{DynamicResource FontsColor}" 
                            FontSize="8" HorizontalContentAlignment="Center"/>
                 </Grid>
@@ -180,7 +182,8 @@
                     </Grid.RowDefinitions>
                     <Button Grid.Row="0" x:Name="ButtonLanguage" Margin="0,5"
                         Background="{DynamicResource BlueShade}" BorderBrush="{DynamicResource FirstGrayShade}"
-                            FocusVisualStyle="{DynamicResource FocusControl}">
+                            FocusVisualStyle="{DynamicResource FocusControl}"
+                             Command="{Binding LanguageCommand}">
                         <DynamicResource ResourceKey="LanguageIconForum"></DynamicResource>
                         <Button.Resources>
                             <Style TargetType="Border">
@@ -188,7 +191,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Label Grid.Row="1" Content="Jezik" FontFamily="Bahnschrift" 
+                    <Label Grid.Row="1" Content="{ns:Loc Jezik}" FontFamily="Bahnschrift" 
                            Foreground="{DynamicResource FontsColor}" HorizontalContentAlignment="Center"
                            FontSize="8"/>
                 </Grid>
@@ -207,7 +210,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Label Grid.Row="1" Content="Obavestenja" FontFamily="Bahnschrift" 
+                    <Label Grid.Row="1" Content="{ns:Loc Obavestenja}" FontFamily="Bahnschrift" 
                            Foreground="{DynamicResource FontsColor}" 
                            HorizontalContentAlignment="Center"
                            FontSize="8"/>
@@ -231,7 +234,7 @@
                     </Grid.RowDefinitions>
 
                     
-                    <Button x:Name="ShowButton" Grid.Row="1" Content="Prikazi forum"
+                    <Button x:Name="ShowButton" Grid.Row="1" Content="{ns:Loc PrikaziForum}"
                         HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
                          FontSize="16"  FontFamily="Bahnschrift"
                         Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}"
@@ -245,7 +248,7 @@
                         </Button.Resources>
                     </Button>
 
-                    <Button Grid.Row="3" Content="Pokreni novi forum" Command="{Binding StartNewForumCommand}"
+                    <Button Grid.Row="3" Content="{ns:Loc PokreniNoviForum}" Command="{Binding StartNewForumCommand}"
                         HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="210"
                          FontSize="16"  FontFamily="Bahnschrift"
                         Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}"
@@ -262,7 +265,7 @@
 
             </Grid>
             <Grid Grid.Row="2">
-                <Button Content="Odjavi se" Margin="30,10" VerticalAlignment="Top" Height="30"
+                <Button Content="{ns:Loc OdjaviSe}" Margin="30,10" VerticalAlignment="Top" Height="30"
                         Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}"
                         FontFamily="Bahnschrift"
                          BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold"

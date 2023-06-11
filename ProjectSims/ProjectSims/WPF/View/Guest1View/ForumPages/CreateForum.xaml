@@ -5,6 +5,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.ForumPages"
+      xmlns:ns="clr-namespace:ProjectSims.Localization"
       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       mc:Ignorable="d" 
       xmlns:fa="http://schemas.fontawesome.io/icons/" 
@@ -49,12 +50,12 @@
             </Grid>
 
             <Grid Grid.Column="1">
-                <Label Content="Pokrenite novi forum" Margin="0,22,0,0" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></Label>
+                <Label Content="{ns:Loc PokreniteNoviForum}" Margin="0,22,0,0" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></Label>
             </Grid>
         </Grid>
 
         <Grid Grid.Row="1">
-            <Label Content="Lokacija:" HorizontalAlignment="Left" Margin="60,55,0,0" VerticalAlignment="Top"
+            <Label Content="{ns:Loc Lokacija:}" HorizontalAlignment="Left" Margin="60,55,0,0" VerticalAlignment="Top"
                        Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" FontSize="16"/>
             <ComboBox Name="TextboxName"  HorizontalAlignment="Left" Margin="60,80,0,0" VerticalAlignment="Top" Width="200" Height="25"
                      Validation.ErrorTemplate="{StaticResource ValidationTemplate}"  FontSize="16" FontFamily="Bahnschrift" 
@@ -78,7 +79,7 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" FontSize="15"
-                   Margin="30,13,0,0">Unesite pitanje ili komentar:</Label>
+                   Margin="30,13,0,0" Content="{ns:Loc UnesitePitanjeIliKomentar:}"></Label>
             <TextBox Grid.Row="1" Name="TextboxComment" HorizontalAlignment="Left" Margin="30,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="680" Height="200"
                      Validation.ErrorTemplate="{StaticResource ValidationTemplate}"   
                      Background="{DynamicResource TextboxColor}" Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
@@ -102,8 +103,7 @@
                     FontFamily="Bahnschrift"
                     FocusVisualStyle="{DynamicResource FocusControl}"
                     Command="{Binding StartForumCommand}"
-                    CommandParameter="{Binding ElementName=CreateForumPage}">
-                Pokreni
+                    CommandParameter="{Binding ElementName=CreateForumPage}" Content="{ns:Loc Pokreni}">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>
@@ -116,8 +116,7 @@
                     FontFamily="Bahnschrift"
                     FocusVisualStyle="{DynamicResource FocusControl}"
                     Command="{Binding CancelCommand}"
-                    CommandParameter="{Binding ElementName=CreateForumPage}">
-                Otkazi
+                    CommandParameter="{Binding ElementName=CreateForumPage}" Content="{ns:Loc Otkazi}">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>

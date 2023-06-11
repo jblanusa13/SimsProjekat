@@ -67,6 +67,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public RelayCommand SearchCommand { get; set; }
         public RelayCommand FindMyForumsCommand { get; set; }
         public RelayCommand ShowForumCommand { get; set; }
+        public RelayCommand LanguageCommand { get; set; }
         public RelayCommand StartNewForumCommand { get; set; }
         public RelayCommand ThemeCommand { get; set; }
         public RelayCommand NotifCommand { get; set; }
@@ -84,6 +85,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             Forums = new ObservableCollection<Forum>(forumService.GetAllForums());
             SearchCommand = new RelayCommand(Execute_SearchCommand);
             FindMyForumsCommand = new RelayCommand(Execute_FindMyForumsCommand);
+            LanguageCommand = new RelayCommand(Execute_LanguageCommand);
             ShowForumCommand = new RelayCommand(Execute_ShowForumCommand, CanExecute_ShowForumCommand);
             StartNewForumCommand = new RelayCommand(Execute_StartNewForumCommand);
             ThemeCommand = new RelayCommand(Execute_ThemeCommand);
@@ -130,6 +132,23 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 app.ChangeTheme(new Uri("Themes/Dark.xaml", UriKind.Relative));
                 App.IsDark = true;
             }
+        }
+
+        private void Execute_LanguageCommand(object obj)
+        {
+            App app = (App)Application.Current;
+
+            if (App.CurrentLanguage == "sr-LATN")
+            {
+                app.ChangeLanguage("en-US");
+                App.CurrentLanguage = "en-US";
+            }
+            else
+            {
+                app.ChangeLanguage("sr-LATN");
+                App.CurrentLanguage = "sr-LATN";
+            }
+
         }
         private void Execute_NotifCommand(object obj)
         {

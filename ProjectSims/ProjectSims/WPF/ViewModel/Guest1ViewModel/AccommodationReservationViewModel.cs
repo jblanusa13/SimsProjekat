@@ -75,6 +75,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public RelayCommand ConfirmCommand { get; set; }
         public RelayCommand CancelCommand { get; set; }
         public RelayCommand HelpCommand { get; set; }
+        public RelayCommand LanguageCommand { get; set; }
         public RelayCommand FirstChangedCommand { get; set; }
         public RelayCommand LastChangedCommand { get; set; }
         public NavigationService NavService { get; set; }
@@ -99,6 +100,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             HelpCommand = new RelayCommand(Execute_HelpCommand);
             FirstChangedCommand = new RelayCommand(Execute_FirstChangedCommand);
             LastChangedCommand = new RelayCommand(Execute_LastChangedCommand);
+            LanguageCommand = new RelayCommand(Execute_LanguageCommand);
             ValidateFirst();
             ValidateLast();
         }
@@ -179,6 +181,22 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 app.ChangeTheme(new Uri("Themes/Dark.xaml", UriKind.Relative));
                 App.IsDark = true;
             }
+        }
+        private void Execute_LanguageCommand(object obj)
+        {
+            App app = (App)Application.Current;
+
+            if (App.CurrentLanguage == "sr-LATN")
+            {
+                app.ChangeLanguage("en-US");
+                App.CurrentLanguage = "en-US";
+            }
+            else
+            {
+                app.ChangeLanguage("sr-LATN");
+                App.CurrentLanguage = "sr-LATN";
+            }
+
         }
         private void Execute_NotifCommand(object obj)
         {

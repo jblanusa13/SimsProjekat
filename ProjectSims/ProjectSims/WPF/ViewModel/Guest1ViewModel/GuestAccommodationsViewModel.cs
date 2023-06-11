@@ -116,6 +116,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public RelayCommand RateAccommodationCommand { get; set; }
         public RelayCommand ForumCommand { get; set; }
         public RelayCommand NotifCommand { get; set; }
+        public RelayCommand LanguageCommand { get; set; }
         public RelayCommand HelpCommand { get; set; }
         public RelayCommand ProfileCommand { get; set; }
         //public RelayCommand ReservationCommand { get; set; }
@@ -123,6 +124,9 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public NavigationService NavService { get; set; }
         public GuestAccommodationsViewModel(Guest1 guest, NavigationService navigation)
         {
+            App app = (App)Application.Current;
+            app.ChangeLanguage("sr-LATN");
+            App.CurrentLanguage = "sr-LATN";
             accommodationService = new AccommodationService();
 
             accommodationService.Subscribe(this);
@@ -142,6 +146,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             NotifCommand = new RelayCommand(Execute_NotifCommand);
             LogOutCommand = new MyICommand<GuestAccommodationsView>(OnLogOut);
             HelpCommand = new RelayCommand(Execute_HelpCommand);
+            LanguageCommand = new RelayCommand(Execute_LanguageCommand);
 
             NavService = navigation;
         }
@@ -205,6 +210,23 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 app.ChangeTheme(new Uri("Themes/Dark.xaml", UriKind.Relative));
                 App.IsDark = true;
             }
+        }
+
+        private void Execute_LanguageCommand(object obj)
+        {
+            App app = (App)Application.Current;
+
+            if(App.CurrentLanguage == "sr-LATN")
+            {
+                app.ChangeLanguage("en-US");
+                App.CurrentLanguage = "en-US";
+            }
+            else
+            {
+                app.ChangeLanguage("sr-LATN");
+                App.CurrentLanguage = "sr-LATN";
+            }
+            
         }
 
         private void Execute_NotifCommand(object obj)

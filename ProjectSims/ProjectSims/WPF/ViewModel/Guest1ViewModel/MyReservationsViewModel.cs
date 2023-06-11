@@ -35,6 +35,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public RelayCommand MyRequestsCommand { get; set; }
         public RelayCommand CancelReservationCommand { get; set; }
         public RelayCommand ThemeCommand { get; set; }
+        public RelayCommand LanguageCommand { get; set; }
         public RelayCommand NotifCommand { get; set; }
         public RelayCommand HelpCommand { get; set; }
         public RelayCommand GenerateActiveReservationsCommand { get; set; }
@@ -59,6 +60,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             GenerateCanceledReservationsCommand = new RelayCommand(Execute_GenerateCanceledReservationsCommand);
             LogOutCommand = new MyICommand<MyReservations>(OnLogOut);
             HelpCommand = new RelayCommand(Execute_HelpCommand);
+            LanguageCommand = new RelayCommand(Execute_LanguageCommand);
 
 
             NavService = navigation;
@@ -99,6 +101,22 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 app.ChangeTheme(new Uri("Themes/Dark.xaml", UriKind.Relative));
                 App.IsDark = true;
             }
+        }
+        private void Execute_LanguageCommand(object obj)
+        {
+            App app = (App)Application.Current;
+
+            if (App.CurrentLanguage == "sr-LATN")
+            {
+                app.ChangeLanguage("en-US");
+                App.CurrentLanguage = "en-US";
+            }
+            else
+            {
+                app.ChangeLanguage("sr-LATN");
+                App.CurrentLanguage = "sr-LATN";
+            }
+
         }
         private void Execute_NotifCommand(object obj)
         {
