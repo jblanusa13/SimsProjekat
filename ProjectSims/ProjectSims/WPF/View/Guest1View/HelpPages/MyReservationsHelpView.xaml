@@ -1,0 +1,53 @@
+﻿<Page x:Class="ProjectSims.WPF.View.Guest1View.HelpPages.MyReservationsHelpView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.HelpPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="710"
+      Title="MyReservationsHelpView">
+
+    <Grid Background="{DynamicResource BlueShade}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,0,0">
+            <StackPanel Orientation="Vertical">
+                <TextBlock TextWrapping="Wrap" FontSize="16" Margin="5,5,0,0"
+                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">
+                    Kroz aplikaciju se jednostavno mozete kretati tastaturom. 
+                    Na svakom prozoru, u svakom trenutku mozete
+                    otvoriti pomoc za trenutno otvoreni prozor
+                    pritiskom na Alt+H.
+ 
+                    Precice za pristup funkcionalnostima aplikacije:
+                </TextBlock>
+
+                <TextBlock TextWrapping="Wrap" FontSize="18" 
+                           Margin="20,10,0,0"
+                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">
+                        Tab - Dolazak do sledeceg elementa <LineBreak/>
+                        Shift+Tab - Dolazak do prethodnog elementa <LineBreak/>
+                        Enter - Potvrdi <LineBreak/>
+                        Alt+H - Pomoć <LineBreak/>
+                        Ctrl+T - Promena teme <LineBreak/> 
+                        Ctrl+N - Obavestenja <LineBreak/> 
+                        Ctrl+B - Vracanje na prethodnu stranicu <LineBreak/>
+                    Ctrl+L - Odjavi se <LineBreak/>
+                    Ctrl+Z - Generisanje izvestaja za sve zakazane rezervacije <LineBreak/>
+                     Ctrl+O - Generisanje izvestaja za sve otkazane rezervacije <LineBreak/>
+                    Ctrl+P - Pomeranje rezervacije <LineBreak/>
+                     Ctrl+M - Moji zahtevi <LineBreak/>
+                    Ctrl+K - Otkazivanje rezervacije 
+                </TextBlock>
+
+                <TextBlock TextWrapping="Wrap"  
+                           FontSize="16" Margin="5,10,0,0"
+                           Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">
+                        Kroz tabele se mozete kretati strelicama ili pritiskom na Tab.
+                    Pritisak na dugme se obavlja preko Enter-a. Da biste izabrali rezervaciju za otkazivanje
+                    ili pomeranje morate je selektovati pritiskom na S.
+                </TextBlock>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

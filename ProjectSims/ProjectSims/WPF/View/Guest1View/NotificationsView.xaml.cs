@@ -28,6 +28,7 @@ namespace ProjectSims.WPF.View.Guest1View.NotifAndHelp
             StatusBarFrame.Content = new NotifStatusBar();
             WindowBarFrame.Content = new NotifWindowBar();
             DataContext = new NotificationsViewModel(guest);
+            BackButton.Focus();
         }
     }
 }

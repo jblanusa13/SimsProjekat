@@ -14,6 +14,7 @@ using ProjectSims.Observer;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using ProjectSims.Commands;
+using ProjectSims.WPF.View.Guest1View.HelpPages;
 
 namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
 {
@@ -51,6 +52,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
 
         public MyICommand<View.Guest1View.ForumPages.CreateForum> StartForumCommand { get; set; }
         public MyICommand<View.Guest1View.ForumPages.CreateForum> CancelCommand { get; set; }
+        public RelayCommand HelpCommand { get; set; }
         private LocationService locationService;
         private ForumService forumService;
         private Guest1 guest;
@@ -62,7 +64,15 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             StartForumCommand = new MyICommand<ProjectSims.WPF.View.Guest1View.ForumPages.CreateForum>(OnStart, CanStart);
             CancelCommand = new MyICommand<ProjectSims.WPF.View.Guest1View.ForumPages.CreateForum>(OnCancel);
             Locations = new ObservableCollection<string>(locationService.GetAllLocationsString());
+            HelpCommand = new RelayCommand(Execute_HelpCommand);
             this.guest = guest;
+        }
+
+        private void Execute_HelpCommand(object obj)
+        {
+            HelpStartView helpStart = new HelpStartView();
+            helpStart.SelectedTab.Content = new CreateForumHelpView();
+            helpStart.Show();
         }
 
         public void OnCancel(View.Guest1View.ForumPages.CreateForum page)

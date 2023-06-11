@@ -30,6 +30,19 @@
         </Style>
     </Page.Resources>
 
+    <Page.InputBindings>
+        <KeyBinding Gesture="Alt+H" Command="{Binding HelpCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+B" Command="{Binding CancelCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+T" Command="{Binding ThemeCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+N" Command="{Binding NotifCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+L" Command="{Binding LogOutCommand}" CommandParameter="{Binding ElementName=MyReservationsPage}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+Z" Command="{Binding GenerateActiveReservationsCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+O" Command="{Binding GenerateCanceledReservationsCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+M" Command="{Binding MyRequestsCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+P" Command="{Binding DateChangeCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+K" Command="{Binding CancelReservationCommand}"></KeyBinding>
+    </Page.InputBindings>
+
     <Grid Background="{DynamicResource FirstGrayShade}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

@@ -16,6 +16,9 @@ using ProjectSims.WPF.View.Guest1View.MainPages;
 using ProjectSims.WPF.View.Guest1View.Report;
 using ProjectSims.WPF.View.Guest1View.Requests;
 using ProjectSims.Commands;
+using ProjectSims.WPF.View.Guest1View.NotifAndHelp;
+using ProjectSims.WPF.View.Guest1View.HelpPages;
+using ProjectSims.WPF.View.Guest1View;
 
 namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
 {
@@ -32,6 +35,8 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public RelayCommand MyRequestsCommand { get; set; }
         public RelayCommand CancelReservationCommand { get; set; }
         public RelayCommand ThemeCommand { get; set; }
+        public RelayCommand NotifCommand { get; set; }
+        public RelayCommand HelpCommand { get; set; }
         public RelayCommand GenerateActiveReservationsCommand { get; set; }
         public RelayCommand GenerateCanceledReservationsCommand { get; set; }
         public MyICommand<MyReservations> LogOutCommand { get; set; }
@@ -49,11 +54,20 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             MyRequestsCommand = new RelayCommand(Execute_MyRequestsCommand);
             CancelReservationCommand = new RelayCommand(Execute_CancelReservationCommand, CanExecute_CancelReservationCommand);
             ThemeCommand = new RelayCommand(Execute_ThemeCommand);
+            NotifCommand = new RelayCommand(Execute_NotifCommand);
             GenerateActiveReservationsCommand = new RelayCommand(Execute_GenerateActiveReservationsCommand);
             GenerateCanceledReservationsCommand = new RelayCommand(Execute_GenerateCanceledReservationsCommand);
             LogOutCommand = new MyICommand<MyReservations>(OnLogOut);
+            HelpCommand = new RelayCommand(Execute_HelpCommand);
+
 
             NavService = navigation;
+        }
+        private void Execute_HelpCommand(object obj)
+        {
+            HelpStartView helpStart = new HelpStartView();
+            helpStart.SelectedTab.Content = new MyReservationsHelpView();
+            helpStart.Show();
         }
         private void Execute_GenerateActiveReservationsCommand(object obj)
         {
@@ -85,6 +99,11 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 app.ChangeTheme(new Uri("Themes/Dark.xaml", UriKind.Relative));
                 App.IsDark = true;
             }
+        }
+        private void Execute_NotifCommand(object obj)
+        {
+            NotificationsView notificationsView = new NotificationsView(Guest);
+            notificationsView.Show();
         }
         private void Execute_CancelReservationCommand(object obj)
         {

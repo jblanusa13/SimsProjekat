@@ -31,6 +31,20 @@
             <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusControl}"/>
         </Style>
     </Page.Resources>
+    
+    <Page.InputBindings>
+        <KeyBinding Gesture="Alt+H" Command="{Binding HelpCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+S" Command="{Binding SearchCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+B" Command="{Binding AnywhereCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+M" Command="{Binding MyReservationsCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+O" Command="{Binding RateAccommodationCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+R" Command="{Binding ShowRatingsCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+F" Command="{Binding ForumCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+P" Command="{Binding ProfileCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+L" Command="{Binding LogOutCommand}" CommandParameter="{Binding ElementName=AccommodationsPage}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+T" Command="{Binding ThemeCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+N" Command="{Binding NotifCommand}"></KeyBinding>
+    </Page.InputBindings>
 
     <Grid Background="White">
         <Grid.ColumnDefinitions>
@@ -57,7 +71,7 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="30"/>
                     </Grid.RowDefinitions>
-                    <Button Grid.Row="0" x:Name="HelpButton"
+                    <Button Grid.Row="0" x:Name="HelpButton" Command="{Binding HelpCommand}"
                             Background="{DynamicResource SecondGrayShade}" BorderBrush="{DynamicResource SecondGrayShade}"
                             Margin="10,10,10,5" FocusVisualStyle="{DynamicResource FocusControl}">
                         <DynamicResource ResourceKey="QuestionIcon"></DynamicResource>

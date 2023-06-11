@@ -69,7 +69,7 @@ namespace ProjectSims.Repository
             List<Forum> forums = new List<Forum>();
             foreach (var item in notifications)
             {
-                if (item.ForumId != -1 && item.Seen == false)
+                if (item.ForumId != -1)
                 {
                     forums.Add(item.Forum);
                 }

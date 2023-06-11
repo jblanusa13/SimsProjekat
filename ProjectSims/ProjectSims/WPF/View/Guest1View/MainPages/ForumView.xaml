@@ -30,6 +30,17 @@
         </Style>
     </Page.Resources>
 
+    <Page.InputBindings>
+        <KeyBinding Gesture="Alt+H" Command="{Binding HelpCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+B" Command="{Binding CancelCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+T" Command="{Binding ThemeCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+N" Command="{Binding NotifCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+L" Command="{Binding LogOutCommand}" CommandParameter="{Binding ElementName=ForumPage}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+M" Command="{Binding FindMyForumsCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+P" Command="{Binding StartNewForumCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+S" Command="{Binding SearchCommand}"></KeyBinding>
+    </Page.InputBindings>
+
     <Grid Background="{DynamicResource FirstGrayShade}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

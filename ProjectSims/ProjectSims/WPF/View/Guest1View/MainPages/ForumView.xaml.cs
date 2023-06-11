@@ -26,6 +26,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         {
             this.DataContext = new ForumViewModel(guest, navigation);
             InitializeComponent();
+            BackButton.Focus();
         }
 
         private void ForumsTable_PreviewKeyDown(object sender, KeyEventArgs e)

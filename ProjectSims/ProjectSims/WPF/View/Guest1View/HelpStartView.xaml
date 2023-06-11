@@ -1,0 +1,69 @@
+﻿<Window x:Class="ProjectSims.WPF.View.Guest1View.HelpStartView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        mc:Ignorable="d"
+        MinHeight="650" MinWidth="750"
+        Title="HelpStartView"  Height="650" Width="750"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        BorderBrush="{DynamicResource BarShade}"
+        BorderThickness="3">
+
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Frame x:Name="WindowBarFrame" NavigationUIVisibility="Hidden" ></Frame>
+        </Grid>
+
+        <Grid Grid.Row="1" Background="{DynamicResource FirstGrayShade}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Background="{DynamicResource SecondGrayShade}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Button Margin="10" x:Name="BackButton"
+                        Click="Back_Click" CommandParameter="{Binding ElementName=NotifWindow}"
+                        Background="{DynamicResource SecondGrayShade}" BorderBrush="{DynamicResource SecondGrayShade}"
+                        FocusVisualStyle="{DynamicResource FocusControl}">
+                        <fa:ImageAwesome Icon="ArrowCircleLeft" Foreground="{DynamicResource FontsColor}"/>
+                    </Button>
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Label Content="Pomoc pri kretanju kroz prozor" Margin="10,23,0,0" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></Label>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Border Margin="20,20"
+                        BorderBrush="{DynamicResource FontsColor}"
+                        BorderThickness="1">
+                    <Frame x:Name="SelectedTab" NavigationUIVisibility="Hidden" ></Frame>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Frame x:Name="StatusBarFrame" NavigationUIVisibility="Hidden" ></Frame>
+        </Grid>
+    </Grid>
+</Window>

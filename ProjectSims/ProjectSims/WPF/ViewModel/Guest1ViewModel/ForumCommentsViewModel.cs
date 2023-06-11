@@ -13,7 +13,10 @@ using ProjectSims.Commands;
 using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 using ProjectSims.Service;
+using ProjectSims.WPF.View.Guest1View.HelpPages;
+using ProjectSims.WPF.View.Guest1View;
 using ProjectSims.WPF.View.Guest1View.MainPages;
+using ProjectSims.WPF.View.Guest1View.NotifAndHelp;
 
 namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
 {
@@ -40,8 +43,10 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public Guest1 Guest { get; set; }
         public Forum Forum { get; set; }
         public RelayCommand ThemeCommand { get; set; }
+        public RelayCommand NotifCommand { get; set; }
         public RelayCommand CloseForumCommand { get; set; }
         public RelayCommand CancelCommand { get; set; }
+        public RelayCommand HelpCommand { get; set; }
         public RelayCommand LeaveCommentCommand { get; set; }
         public MyICommand<View.Guest1View.MainPages.ForumCommentsView> LogOutCommand { get; set; }
         public NavigationService NavService { get; set; }
@@ -57,11 +62,13 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             accommodationReservationService = new AccommodationReservationService();
             forumCommentService.Subscribe(this);
             ThemeCommand = new RelayCommand(Execute_ThemeCommand);
+            NotifCommand = new RelayCommand(Execute_NotifCommand);
             CancelCommand = new RelayCommand(Execute_CancelCommand);
             CloseForumCommand = new RelayCommand(Execute_CloseForumCommand);
             LeaveCommentCommand = new RelayCommand(Execute_LeaveCommentCommand, CanExecute_LeaveCommentCommand);
             LogOutCommand = new MyICommand<View.Guest1View.MainPages.ForumCommentsView>(OnLogOut);
             Comments = new ObservableCollection<ForumComment>(forumCommentService.GetAllCommentsByForumId(Forum.Id));
+            HelpCommand = new RelayCommand(Execute_HelpCommand);
 
             SetCloseButton();
             if(Forum.Status == ForumStatus.Zatvoren)
@@ -132,6 +139,12 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             SetCloseButton();
             SetViewForClosedForum();
         }
+        private void Execute_HelpCommand(object obj)
+        {
+            HelpStartView helpStart = new HelpStartView();
+            helpStart.SelectedTab.Content = new ForumCommentsHelpView();
+            helpStart.Show();
+        }
 
         private void OnLogOut(View.Guest1View.MainPages.ForumCommentsView page)
         {
@@ -158,6 +171,11 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 app.ChangeTheme(new Uri("Themes/Dark.xaml", UriKind.Relative));
                 App.IsDark = true;
             }
+        }
+        private void Execute_NotifCommand(object obj)
+        {
+            NotificationsView notificationsView = new NotificationsView(Guest);
+            notificationsView.Show();
         }
         public void Update()
         {

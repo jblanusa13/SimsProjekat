@@ -31,6 +31,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             viewModel = new AnywhereAnytimeViewModel(FirstDatePicker, LastDatePicker, DatesTable, guest, navigation);
             this.DataContext = viewModel;
             NavService = navigation;
+            BackButton.Focus();
         }
 
         private void ShowDates(object sender, KeyEventArgs e)

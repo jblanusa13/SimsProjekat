@@ -38,6 +38,14 @@
         </ControlTemplate>
     </Page.Resources>
 
+    <Page.InputBindings>
+        <KeyBinding Gesture="Alt+H" Command="{Binding HelpCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+B" Command="{Binding CancelCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+T" Command="{Binding ThemeCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+N" Command="{Binding NotifCommand}"></KeyBinding>
+    </Page.InputBindings>
+    
+
     <Grid Background="{DynamicResource FirstGrayShade}">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>

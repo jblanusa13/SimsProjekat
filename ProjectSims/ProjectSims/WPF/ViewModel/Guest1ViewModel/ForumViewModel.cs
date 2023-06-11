@@ -14,6 +14,8 @@ using ProjectSims.Service;
 using ProjectSims.WPF.View.Guest1View;
 using ProjectSims.Commands;
 using ProjectSims.WPF.View.Guest1View.MainPages;
+using ProjectSims.WPF.View.Guest1View.NotifAndHelp;
+using ProjectSims.WPF.View.Guest1View.HelpPages;
 
 namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
 {
@@ -67,7 +69,9 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public RelayCommand ShowForumCommand { get; set; }
         public RelayCommand StartNewForumCommand { get; set; }
         public RelayCommand ThemeCommand { get; set; }
+        public RelayCommand NotifCommand { get; set; }
         public RelayCommand CancelCommand { get; set; }
+        public RelayCommand HelpCommand { get; set; }
         public MyICommand<View.Guest1View.MainPages.ForumView> LogOutCommand { get; set; }
         public ObservableCollection<Forum> Forums { get; set; }
         public Forum SelectedForum { get; set; }
@@ -83,13 +87,21 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             ShowForumCommand = new RelayCommand(Execute_ShowForumCommand, CanExecute_ShowForumCommand);
             StartNewForumCommand = new RelayCommand(Execute_StartNewForumCommand);
             ThemeCommand = new RelayCommand(Execute_ThemeCommand);
+            NotifCommand = new RelayCommand(Execute_NotifCommand);
             CancelCommand = new RelayCommand(Execute_CancelCommand);
             LogOutCommand = new MyICommand<View.Guest1View.MainPages.ForumView>(OnLogOut);
+            HelpCommand = new RelayCommand(Execute_HelpCommand);
 
             ButtonContent = "Nadji moje forume";
 
             this.guest = guest;
             NavService = navigation;
+        }
+        private void Execute_HelpCommand(object obj)
+        {
+            HelpStartView helpStart = new HelpStartView();
+            helpStart.SelectedTab.Content = new ForumHelpView();
+            helpStart.Show();
         }
         private void OnLogOut(View.Guest1View.MainPages.ForumView page)
         {
@@ -118,6 +130,11 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 app.ChangeTheme(new Uri("Themes/Dark.xaml", UriKind.Relative));
                 App.IsDark = true;
             }
+        }
+        private void Execute_NotifCommand(object obj)
+        {
+            NotificationsView notificationsView = new NotificationsView(guest);
+            notificationsView.Show();
         }
         public bool CanExecute_ShowForumCommand(object obj)
         {

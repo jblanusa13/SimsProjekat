@@ -31,7 +31,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
             Guest = guest;
             superGuestService = new SuperGuestService();
             CheckSuperGuest();
-
+            BackButton.Focus();
         }
 
         private void Theme_Click(object sender, RoutedEventArgs e)

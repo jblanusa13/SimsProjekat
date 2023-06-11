@@ -20,6 +20,10 @@
         </ControlTemplate>
     </Page.Resources>
 
+    <Page.InputBindings>
+        <KeyBinding Gesture="Ctrl+B" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=CreateForumPage}"></KeyBinding>
+    </Page.InputBindings>
+
     <Grid Background="{DynamicResource FirstGrayShade}">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>

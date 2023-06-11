@@ -14,6 +14,15 @@
         <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItem}"></Style>
     </Page.Resources>
 
+    <Page.InputBindings>
+        <KeyBinding Gesture="Alt+H" Command="{Binding HelpCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+B" Command="{Binding CancelCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+P" Command="{Binding LeaveCommentCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+T" Command="{Binding ThemeCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+N" Command="{Binding NotifCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+L" Command="{Binding LogOutCommand}" CommandParameter="{Binding ElementName=ForumCommentsPage}"></KeyBinding>
+    </Page.InputBindings>
+
     <Grid Background="{DynamicResource FirstGrayShade}">
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>

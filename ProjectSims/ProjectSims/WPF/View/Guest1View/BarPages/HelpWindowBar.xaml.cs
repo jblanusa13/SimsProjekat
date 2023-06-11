@@ -12,21 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ProjectSims.Domain.Model;
-using ProjectSims.WPF.ViewModel.Guest1ViewModel;
 
-namespace ProjectSims.WPF.View.Guest1View.ForumPages
+namespace ProjectSims.WPF.View.Guest1View.BarPages
 {
     /// <summary>
-    /// Interaction logic for CreateForum.xaml
+    /// Interaction logic for HelpWindowBar.xaml
     /// </summary>
-    public partial class CreateForum : Page
+    public partial class HelpWindowBar : Page
     {
-        public CreateForum(Guest1 guest)
+        public HelpWindowBar()
         {
             InitializeComponent();
-            this.DataContext = new CreateForumViewModel(guest);
-            BackButton.Focus();
+        }
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            HelpStartView startView = (HelpStartView)Window.GetWindow(this);
+            startView.Close();
         }
     }
 }

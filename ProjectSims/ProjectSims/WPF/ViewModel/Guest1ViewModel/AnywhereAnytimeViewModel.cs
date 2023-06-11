@@ -14,6 +14,9 @@ using ProjectSims.Domain.Model;
 using ProjectSims.Service;
 using ProjectSims.WPF.View.Guest1View.MainPages;
 using ProjectSims.Commands;
+using ProjectSims.WPF.View.Guest1View.NotifAndHelp;
+using ProjectSims.WPF.View.Guest1View.HelpPages;
+using ProjectSims.WPF.View.Guest1View;
 
 namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
 {
@@ -111,7 +114,9 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public RelayCommand SearchCommand { get; set; }
         public RelayCommand ReserveCommand { get; set; }
         public RelayCommand ThemeCommand { get; set; }
+        public RelayCommand NotifCommand { get; set; }
         public RelayCommand CancelCommand { get; set; }
+        public RelayCommand HelpCommand { get; set; }
         public DatePicker First { get; set; }
         public DatePicker Last { get; set; }
         public DataGrid DatesTable { get; set; }
@@ -125,7 +130,9 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             SearchCommand = new RelayCommand(Execute_SearchCommand, CanExecute_SearchCommand);
             ReserveCommand = new RelayCommand(Execute_ReserveCommand);
             ThemeCommand = new RelayCommand(Execute_ThemeCommand);
+            NotifCommand = new RelayCommand(Execute_NotifCommand);
             CancelCommand = new RelayCommand(Execute_CancelCommand);
+            HelpCommand = new RelayCommand(Execute_HelpCommand);
             AvailableAccommodations = new ObservableCollection<Accommodation>();
             AvailableDates = new ObservableCollection<DateRanges>();
             scheduleService = new AccommodationScheduleService();
@@ -139,6 +146,12 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             this.guest = guest;
         }
 
+        private void Execute_HelpCommand(object obj)
+        {
+            HelpStartView helpStart = new HelpStartView();
+            helpStart.SelectedTab.Content = new AnywhereHelpView();
+            helpStart.Show();
+        }
         public void ShowDates()
         {
             if(SelectedAccommodation != null)
@@ -167,6 +180,11 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 app.ChangeTheme(new Uri("Themes/Dark.xaml", UriKind.Relative));
                 App.IsDark = true;
             }
+        }
+        private void Execute_NotifCommand(object obj)
+        {
+            NotificationsView notificationsView = new NotificationsView(guest);
+            notificationsView.Show();
         }
         public void Execute_ReserveCommand(object obj)
         {

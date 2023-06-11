@@ -13,6 +13,9 @@ using ProjectSims.Domain.Model;
 using ProjectSims.Service;
 using ProjectSims.WPF.View.Guest1View.MainPages;
 using ProjectSims.Commands;
+using ProjectSims.WPF.View.Guest1View.NotifAndHelp;
+using ProjectSims.WPF.View.Guest1View.HelpPages;
+using ProjectSims.WPF.View.Guest1View;
 
 namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
 {
@@ -68,8 +71,10 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public Guest1 Guest { get; set; }
         public RelayCommand FindDatesCommand { get; set; }
         public RelayCommand ThemeCommand { get; set; }
+        public RelayCommand NotifCommand { get; set; }
         public RelayCommand ConfirmCommand { get; set; }
         public RelayCommand CancelCommand { get; set; }
+        public RelayCommand HelpCommand { get; set; }
         public RelayCommand FirstChangedCommand { get; set; }
         public RelayCommand LastChangedCommand { get; set; }
         public NavigationService NavService { get; set; }
@@ -89,11 +94,20 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             FindDatesCommand = new RelayCommand(Execute_FindDatesCommand, CanExecute_FindDatesCommand);
             ConfirmCommand = new RelayCommand(Execute_ConfirmCommand, CanExecute_ConfirmCommand);
             ThemeCommand = new RelayCommand(Execute_ThemeCommand);
+            NotifCommand = new RelayCommand(Execute_NotifCommand);
             CancelCommand = new RelayCommand(Execute_CancelCommand);
+            HelpCommand = new RelayCommand(Execute_HelpCommand);
             FirstChangedCommand = new RelayCommand(Execute_FirstChangedCommand);
             LastChangedCommand = new RelayCommand(Execute_LastChangedCommand);
             ValidateFirst();
             ValidateLast();
+        }
+
+        private void Execute_HelpCommand(object obj)
+        {
+            HelpStartView helpStart = new HelpStartView();
+            helpStart.SelectedTab.Content = new ReservationHelpView();
+            helpStart.Show();
         }
 
         public void Execute_CancelCommand(object obj)
@@ -165,6 +179,11 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 app.ChangeTheme(new Uri("Themes/Dark.xaml", UriKind.Relative));
                 App.IsDark = true;
             }
+        }
+        private void Execute_NotifCommand(object obj)
+        {
+            NotificationsView notificationsView = new NotificationsView(Guest);
+            notificationsView.Show();
         }
         public void Execute_FirstChangedCommand(object obj)
         {
