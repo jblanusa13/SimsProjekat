@@ -57,6 +57,61 @@ namespace ProjectSims.Repository
             return locations;
         }
 
+        public List<string> GetAllCities()
+        {
+            List<string> cities = new List<string>();
+            foreach(Location location in GetAll())
+            {
+                if (!cities.Contains(location.City))
+                {
+                    cities.Add(location.City);
+                }
+            }
+
+            return cities;
+        }
+        public List<string> GetAllCountries()
+        {
+            List<string> countries = new List<string>();
+            foreach (Location location in GetAll())
+            {
+                if (!countries.Contains(location.Country))
+                {
+                    countries.Add(location.Country);
+                }
+            }
+
+            return countries;
+        }
+
+        public List<string> GetAllCitiesByCountry(string country)
+        {
+            List<string> cities = new List<string>();
+            foreach (Location location in GetAll())
+            {
+                if (location.Country.Equals(country))
+                {
+                    cities.Add(location.City);
+                }
+            }
+
+            return cities;
+        }
+
+        public List<string> GetAllCountriesByCity(string city)
+        {
+            List<string> countries = new List<string>();
+            foreach (Location location in GetAll())
+            {
+                if (location.City.Equals(city))
+                {
+                    countries.Add(location.Country);
+                }
+            }
+
+            return countries;
+        }
+
         public int GetIdByLocation(string location)
         {
             string city = location.Split(",")[0];
@@ -79,6 +134,21 @@ namespace ProjectSims.Repository
                 Location loc = new Location(NextId(), location.Split(",")[0], location.Split(",")[1]);
                 Create(loc);
             }
+        }
+
+        public List<string> GetAllLocationsString()
+        {
+            List<string> locations = new List<string>();
+            foreach(Location location in GetAll())
+            {
+                locations.Add(location.City + ", " + location.Country);
+            }
+            return locations;
+        }
+
+        public Location GetLocationByCityAndCountry(string city, string country)
+        {
+            return locations.Find(l => l.City == city && l.Country == country);
         }
 
         public bool Exist(string location)

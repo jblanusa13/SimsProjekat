@@ -10,7 +10,8 @@ namespace ProjectSims.Domain.RepositoryInterface
 {
     public interface IAccommodationReservationRepository : IGenericRepository<AccommodationReservation, int>, ISubject
     {
-        public List<AccommodationReservation> GetByGuest(int guestId);
+        public List<AccommodationReservation> GetAllCanceledByGuest(int guestId);
+        public List<AccommodationReservation> GetAllActiveByGuest(int guestId);
         public AccommodationReservation GetReservation(int guestId, int accommodationId, DateOnly checkInDate, DateOnly checkOutDate);
         public List<AccommodationReservation> GetForGuestInLastYear(int guestId);
     }

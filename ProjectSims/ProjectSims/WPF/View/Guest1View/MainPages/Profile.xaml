@@ -28,6 +28,10 @@
                 <fa:ImageAwesome Icon="ArrowCircleLeft" Foreground="{DynamicResource FontsColor}"/>
             </Button>
 
+            <Grid Grid.Column="1">
+                <Label Content="Moj nalog" Margin="40,13,0,0" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></Label>
+            </Grid>
+
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="30"/>

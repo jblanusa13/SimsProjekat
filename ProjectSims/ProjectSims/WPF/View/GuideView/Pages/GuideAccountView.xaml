@@ -75,14 +75,14 @@
                     <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
                         <Image Source="/Resources/Icons/Guide/language.png" Margin="0,0,0,0" Height="20" Width="20" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                         <Label Content="Odaberite jezik:"/>
-                        <ComboBox  ItemsSource="{Binding Path=Languages}" Height="30" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <ComboBox  ItemsSource="{Binding Path=Languages}" SelectedItem="{Binding SelectedLanguage}" SelectionChanged="LanguageComboBox_SelectionChanged" Height="30" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal"  Margin="10,50,0,0">
-                        <Image Source="{Binding ImageSrc}" Margin="0,0,0,0" Height="20" Width="20" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                        <Label Content="{Binding LabelText}"/>
+                        <Image Name="StatusImage" Margin="10,10,0,0" Height="20" Width="20" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <Label Name="Label1"/>
                     </StackPanel>
-                    <TextBlock Text="{Binding StatusText}" FontSize="18" FontFamily="Helvetica" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,100,0,0"/>
-                    <TextBlock Text="{Binding ExplanationText}" FontSize="18" FontFamily="Helvetica" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,150,0,0"/>
+                    <TextBlock Name="TextBlock1" FontSize="18" FontFamily="Helvetica" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,100,0,0"/>
+                    <TextBlock Name="TextBlock2" FontSize="18" FontFamily="Helvetica" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,150,0,0"/>
                 </Grid>
             </GroupBox>
         </Grid>

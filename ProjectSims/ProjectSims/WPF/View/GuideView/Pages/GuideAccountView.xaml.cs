@@ -5,6 +5,7 @@ using ProjectSims.WPF.View.Guest1View;
 using ProjectSims.WPF.ViewModel.GuideViewModel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,8 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         private UserService userService { get; set; }
         private ReservationTourService reservationTourService { get; set; }
         public Guide Guide { get; set; }
+        public List<string> Languages { get; set; }
+        public string SelectedLanguage { get; set; }
         public GuideAccountView(Guide guide)
         {
             InitializeComponent();
@@ -41,6 +44,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             guest2Service = new Guest2Service();
             userService  = new UserService();   
             guideService= new GuideService();
+            Languages = guideService.GetGuidesLanguages(guide.Id);
         }
         public void Dismissal_Click(object sender, RoutedEventArgs e)
         {
@@ -70,6 +74,23 @@ namespace ProjectSims.WPF.View.GuideView.Pages
     
         public void Logout_Click(object sender, RoutedEventArgs e)
         {
+
+        }
+        public void LanguageComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (guideService.IsSuperGuideForLanguage(SelectedLanguage, Guide.Id))
+            {
+                Label1.Content = "Vi ste supervodic za " + SelectedLanguage.ToString() + " jezik";
+                TextBlock1.Text = "Imate " + guideService.GetSuperguideState(SelectedLanguage, Guide.Id).ToString() + " tura na ovom jeziku ciji je prosek iznad 9!";
+              //  StatusImage.Source = new BitmapImage(new Uri(@"/Resources/Icons/Guide/duration.png"));
+
+            }
+            else
+            {
+                Label1.Content = "Vi niste supervodic za " + SelectedLanguage.ToString() + " jezik";
+                TextBlock1.Text = "Imate " + guideService.GetSuperguideState(SelectedLanguage, Guide.Id).ToString() + " tura na ovom jeziku ciji je prosek iznad 9!";
+               // StatusImage.Source = new BitmapImage(new Uri(@"/Resources/Icons/Guide/superGuide.png"));
+            }
 
         }
     }

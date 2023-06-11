@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.MainPages"
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
       xmlns:fa="http://schemas.fontawesome.io/icons/" 
       mc:Ignorable="d" 
@@ -55,7 +56,7 @@
             
             <Grid Grid.Column="0">
                 <Button Margin="10" x:Name="BackButton"
-                        Click="Back_Click" Background="{DynamicResource SecondGrayShade}" BorderBrush="{DynamicResource SecondGrayShade}"
+                        Command="{Binding CancelCommand}" Background="{DynamicResource SecondGrayShade}" BorderBrush="{DynamicResource SecondGrayShade}"
                         FocusVisualStyle="{DynamicResource FocusControl}">
                     <fa:ImageAwesome Icon="ArrowCircleLeft" Foreground="{DynamicResource FontsColor}"/>
                 </Button>
@@ -78,7 +79,7 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="25"/>
                     </Grid.RowDefinitions>
-                    <Button Grid.Row="0" x:Name="ButtonTheme" Margin="0,5" Click="Theme_Click"
+                    <Button Grid.Row="0" x:Name="ButtonTheme" Margin="0,5" Command="{Binding ThemeCommand}"
                         Background="{DynamicResource SecondGrayShade}"
                             BorderBrush="{DynamicResource BarShade}"
                             FocusVisualStyle="{DynamicResource FocusControl}">
@@ -260,13 +261,10 @@
 
                             <Grid Grid.Row="1">
                                 <Label Margin="10,5" FontSize="14" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}">Pocetni datum pretrage:</Label>
-                                <DatePicker Name="FirstDatePicker" Margin="15,35,10,10" Height="28"
+                                <DatePicker Name="FirstDatePicker" Margin="15,30,10,10" Height="28"
                                             DisplayDateStart="{x:Static sys:DateTime.Today}"
-                                            SelectedDateChanged="FirstDatePicker_SelectedDateChanged"
                                             Background="{DynamicResource TextboxColor}"
-                                            FocusVisualStyle="{DynamicResource FocusControl}"
-                                            Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
-                                            Text="{Binding FirstDate, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
+                                            FocusVisualStyle="{DynamicResource FocusControl}">
                                     <DatePicker.Resources>
                                         <Style TargetType="DatePickerTextBox">
                                             <Setter Property="IsReadOnly" Value="True"/>
@@ -274,18 +272,23 @@
                                             <Setter Property="BorderThickness" Value="0"/>
                                         </Style>
                                     </DatePicker.Resources>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectedDateChanged" >
+                                            <i:InvokeCommandAction 
+				                                Command="{Binding FirstChangedCommand}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
                                 </DatePicker>
+                                <Label x:Name="ValidateFirst" Margin="10,57,0,0" Foreground="Red" FontSize="9" FontFamily="Bahnschrift" />
                             </Grid>
 
                             <Grid Grid.Row="2">
                                 <Label Margin="10,5" FontSize="14" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}">Krajnji datum pretrage:</Label>
-                                <DatePicker Name="LastDatePicker" Margin="15,35,10,10" Height="28"
+                                <DatePicker Name="LastDatePicker" Margin="15,30,10,10" Height="28"
                                             DisplayDateStart="{x:Static sys:DateTime.Today}"
-                                            SelectedDateChanged="LastDatePicker_SelectedDateChanged"
                                             Background="{DynamicResource TextboxColor}"
                                             FocusVisualStyle="{DynamicResource FocusControl}"
-                                            Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
-                                            Text="{Binding LastDate, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
+                                            >
                                     <DatePicker.Resources>
                                         <Style TargetType="DatePickerTextBox">
                                             <Setter Property="IsReadOnly" Value="True"/>
@@ -293,7 +296,14 @@
                                             <Setter Property="BorderThickness" Value="0"/>
                                         </Style>
                                     </DatePicker.Resources>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectedDateChanged" >
+                                            <i:InvokeCommandAction 
+				                                Command="{Binding LastChangedCommand}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
                                 </DatePicker>
+                                <Label x:Name="ValidateLast" Margin="10,57,0,0" Foreground="Red" FontSize="9" FontFamily="Bahnschrift" />
                             </Grid>
 
                             <Grid Grid.Row="3">
@@ -316,7 +326,7 @@
                             </Grid>
 
                             <Grid Grid.Row="5">
-                                <Button Margin="15,20,10,15" Click="FindDates_Click" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}"
+                                <Button Margin="15,20,10,15" Command="{Binding FindDatesCommand}" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}"
                                         Background="{DynamicResource SecondGrayShade}"
                                         FocusVisualStyle="{DynamicResource FocusControl}">Pretrazi datume
                                     <Button.Resources>
@@ -352,10 +362,10 @@
                             
 
                             <DataGrid Grid.Row="1" Name="DatesTable" ItemsSource="{Binding AvailableDates, UpdateSourceTrigger=PropertyChanged}" 
+                                      SelectedItem="{Binding SelectedDates, UpdateSourceTrigger=PropertyChanged}"
                                       Margin="30,10,30,10" 
                                       AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single"
                                       HeadersVisibility="Column"
-                                      SelectionChanged="Dates_SelectionChanged"
                                       PreviewKeyDown="Reserve">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Dolazak" Binding="{Binding CheckIn}" Width="1*"></DataGridTextColumn>
@@ -368,7 +378,8 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <Button Grid.Column="0" Margin="30,20,10,15" FontFamily="Bahnschrift" Click="Confirm_Click" Foreground="{DynamicResource FontsColor}"
+                                <Button Grid.Column="0" Margin="30,20,10,15" FontFamily="Bahnschrift" Command="{Binding ConfirmCommand}" 
+                                        Foreground="{DynamicResource FontsColor}"
                                         Background="{DynamicResource SecondGrayShade}"
                                         FocusVisualStyle="{DynamicResource FocusControl}">Potvrdi rezervaciju
                                     <Button.Resources>
@@ -377,7 +388,7 @@
                                         </Style>
                                     </Button.Resources>
                                 </Button>
-                                <Button Grid.Column="1" Margin="30,20,30,15" FontFamily="Bahnschrift" Click="Cancel_Click" Foreground="{DynamicResource FontsColor}"
+                                <Button Grid.Column="1" Margin="30,20,30,15" FontFamily="Bahnschrift" Command="{Binding CancelCommand}" Foreground="{DynamicResource FontsColor}"
                                         Background="{DynamicResource SecondGrayShade}"
                                         FocusVisualStyle="{DynamicResource FocusControl}">Otkazi
                                     <Button.Resources>

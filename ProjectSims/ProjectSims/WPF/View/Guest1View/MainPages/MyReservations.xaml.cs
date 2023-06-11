@@ -17,74 +17,28 @@ using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 using ProjectSims.Service;
 using ProjectSims.WPF.View.Guest1View.Requests;
+using ProjectSims.WPF.ViewModel.Guest1ViewModel;
 
 namespace ProjectSims.WPF.View.Guest1View.MainPages
 {
     /// <summary>
     /// Interaction logic for MyReservations.xaml
     /// </summary>
-    public partial class MyReservations : Page, IObserver
+    public partial class MyReservations : Page
     {
-        public ObservableCollection<AccommodationReservation> Reservations { get; set; }
-        public AccommodationReservation SelectedReservation { get; set; }
-        public Guest1 Guest { get; set; }
-        private AccommodationReservationService service;
-
-        public MyReservations(Guest1 guest)
+        public MyReservations(Guest1 guest, NavigationService navigation)
         {
             InitializeComponent();
-            DataContext = this;
-
-            Guest = guest;
-
-            service = new AccommodationReservationService();
-            service.Subscribe(this);
-
-            Reservations = new ObservableCollection<AccommodationReservation>(service.GetReservationByGuest(guest.Id));
+            DataContext = new MyReservationsViewModel(guest, navigation);
+            BackButton.Focus();
         }
 
-        private void DateChange_Click(object sender, RoutedEventArgs e)
+
+        private void SelectAccommodation_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (SelectedReservation != null)
+            if ((e.Key.Equals(Key.S)))
             {
-                DateChangeRequest request = new DateChangeRequest(SelectedReservation);
-                request.Show();
-            }
-        }
-        private void MyRequests_Click(object sender, RoutedEventArgs e)
-        {
-            MyRequests myRequests = new MyRequests(Guest);
-            myRequests.Show();
-        }
-
-        public void Update()
-        {
-            Reservations.Clear();
-            foreach (AccommodationReservation reservation in service.GetReservationByGuest(Guest.Id))
-            {
-                Reservations.Add(reservation);
-            }
-        }
-
-        private void Back_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
-        }
-
-        private void CancelReservation_Click(object sender, RoutedEventArgs e)
-        {
-            SelectedReservation = (AccommodationReservation)ReservationsTable.SelectedItem;
-            if(SelectedReservation != null)
-            {
-                if (service.CanCancel(SelectedReservation))
-                {
-                    service.RemoveReservation(SelectedReservation);
-                    MessageBox.Show("Uspesno ste otkazali rezervaciju");
-                }
-                else
-                {
-                    MessageBox.Show("Rok za otkazivanje je prosao, ne mozete otkazati rezervaciju");
-                }
+                ChangeButton.Focus();
             }
         }
     }

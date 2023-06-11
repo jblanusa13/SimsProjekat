@@ -24,8 +24,8 @@ namespace ProjectSims.Service
         private IKeyPointRepository keyPointRepository;
         private ITourRequestRepository tourRequestRepository;
         private IRequestForComplexTourRepository requestForComplexTourRepository;
-        private KeyPointService keyPointService;
         private ReservationTourService reservationService;
+
         public TourService()
         {
             tourRepository = Injector.CreateInstance<ITourRepository>();
@@ -33,11 +33,9 @@ namespace ProjectSims.Service
             keyPointRepository = Injector.CreateInstance<IKeyPointRepository>();
             tourRequestRepository = Injector.CreateInstance<ITourRequestRepository>();
             requestForComplexTourRepository = Injector.CreateInstance<IRequestForComplexTourRepository>();
-            keyPointService = new KeyPointService();
             reservationService = new ReservationTourService();
             InitializeGuide();
             InitializeKeyPoints();
-            InitializeTourRequest();
         }
         public void InitializeGuide()
         {
@@ -50,22 +48,15 @@ namespace ProjectSims.Service
         {
             foreach (var item in tourRepository.GetAll())
             {
-                if(item.KeyPoints.Count() != 0)
+                if (item.KeyPoints.Count() != 0)
                 {
                     item.KeyPoints.Clear();
                 }
-               foreach(int id in item.KeyPointIds)
+                foreach (int id in item.KeyPointIds)
                 {
                     item.KeyPoints.Add(keyPointRepository.GetById(id));
                 }
                 item.ActiveKeyPoint = keyPointRepository.GetById(item.ActiveKeyPointId);
-            }        
-        }
-        public void InitializeTourRequest()
-        {
-            foreach (var item in tourRepository.GetAll())
-            {
-                item.TourRequest = tourRequestRepository.GetById(item.TourRequestId);
             }
         }
         public int NextId()
@@ -82,17 +73,17 @@ namespace ProjectSims.Service
         }
         public List<Tour> GetToursByStateAndGuideId(TourState state, int guideId)
         {
-            return tourRepository.GetToursByStateAndGuideId(state,guideId);          
+            return tourRepository.GetToursByStateAndGuideId(state, guideId);
         }
         public Tour GetTourByStateAndGuideId(TourState state, int guideId)
         {
             return tourRepository.GetTourByStateAndGuideId(state, guideId);
         }
-        public List<Tour> GetToursByDateAndGuideId(DateTime date,int guideId)
+        public List<Tour> GetToursByDateAndGuideId(DateTime date, int guideId)
         {
-           return tourRepository.GetToursByDateAndGuideId(date,guideId);
+            return tourRepository.GetToursByDateAndGuideId(date, guideId);
         }
-        public Tour GetMostVisitedTour(int guideId,bool thisYear)
+        public Tour GetMostVisitedTour(int guideId, bool thisYear)
         {
             List<Tour> wantedTours = GetToursByStateAndGuideId(TourState.Finished, guideId);
             if (wantedTours.Count != 0)
@@ -110,91 +101,17 @@ namespace ProjectSims.Service
             else
                 return null;
         }
-        public List<Tuple<DateTime, DateTime>> GetScheduledAppointmentsByDateAndGuide(int guideId,DateTime date)
-        {
-            List<Tuple<DateTime, DateTime>> appointments = new List<Tuple<DateTime, DateTime>>();
-            foreach (var tour in tourRepository.GetToursByStateAndGuideId(TourState.Inactive, guideId))
-            {
-                if(tour.StartOfTheTour.Date == date.Date)
-                {
-                    appointments.Add(new Tuple<DateTime, DateTime>(tour.StartOfTheTour, tour.StartOfTheTour.AddHours(tour.Duration)));
-                }
-            }
-            return appointments.OrderBy(x => x.Item1).ToList();
-        }
-        public List<Tuple<DateTime, DateTime>> GetTimeSpanBetweenAppointmentsByDateAndGuide(int guideId,DateTime date)
-        {
-            List<Tuple<DateTime, DateTime>> freeAppointments = new List<Tuple<DateTime, DateTime>>();
-            List<Tuple<DateTime, DateTime>> scheduledAppointments = GetScheduledAppointmentsByDateAndGuide(guideId,date);
-            DateTime start = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
-            DateTime end = new DateTime(date.Year, date.Month, date.Day, 23, 59, 59);
-            if(scheduledAppointments.Count != 0)
-            {
-                freeAppointments.Add(new Tuple<DateTime, DateTime> ( start, scheduledAppointments.First().Item1));
-                for (int i = 0; i < scheduledAppointments.Count - 1; i++)
-                {
-                    freeAppointments.Add(new Tuple<DateTime, DateTime>(scheduledAppointments[1].Item2, scheduledAppointments[i + 1].Item1));
-                }
-                freeAppointments.Add(new Tuple<DateTime, DateTime>(scheduledAppointments.Last().Item2, end));
-                return freeAppointments;
-            }
-            return new List<Tuple<DateTime, DateTime>>() { new Tuple<DateTime, DateTime>(start, end) };
-        }
-        public List<Tuple<DateTime, DateTime>> SplitTimeSpan(Tuple<DateTime,DateTime> timeSpan)
-        {
-            List<DateTime> hours = new List<DateTime>();
-            List<DateTime> ends = new List<DateTime>();
-            List<Tuple<DateTime,DateTime>> appointments = new List<Tuple<DateTime, DateTime>>(); 
-            for (DateTime hour = timeSpan.Item1; hour != timeSpan.Item2; hour.AddMinutes(30))
-            {
-                hours.Add(hour);
-            }
-            for (int i = 0; i < hours.Count(); i++)
-            {
-                for (int j = i+1;j<hours.Count();j++)
-                {
-                    appointments.Add(new Tuple<DateTime, DateTime>(hours[i], hours[j]));
-                }
-            }
-            return appointments;
-        }
-        public List<Tuple<DateTime, DateTime>> GetFreeAppointmentsByDateAndGuide(int guideId, DateTime date)
-        {
-            List<Tuple<DateTime, DateTime>> freeAppointments = new List<Tuple<DateTime, DateTime>>();
-            foreach(var timeSpan in GetTimeSpanBetweenAppointmentsByDateAndGuide(guideId, date)){
-                freeAppointments.AddRange(SplitTimeSpan(timeSpan));
-            }
-            return freeAppointments;         
-        }
-        public List<Tuple<DateTime, DateTime>> GetAvailableAppointmentsForPartOfComplexTour(int guideId, DateTime date,int partId)
-        {
-            List<Tuple<DateTime, DateTime>> freeAppointments = GetFreeAppointmentsByDateAndGuide(guideId,date);
-            RequestForComplexTour complexRequest = requestForComplexTourRepository.GetBySimpleRequestId(partId);
-            foreach(var simpleAcceptedRequest in complexRequest.TourRequests)
-            {
-                Tour tour = tourRepository.GetByRequestId(simpleAcceptedRequest.Id);
-                if(tour != null)
-                {
-                    Tuple<DateTime,DateTime> unavailableAppointment = new Tuple<DateTime, DateTime>(tour.StartOfTheTour, tour.StartOfTheTour.AddHours(tour.Duration));
-                    if (freeAppointments.Contains(unavailableAppointment))
-                    {
-                        freeAppointments.Remove(unavailableAppointment);
-                    }
-                }
-            }
-            return freeAppointments;
-        }
-        public void Create(Tour tour) 
+        public void Create(Tour tour)
         {
             tourRepository.Create(tour);
         }
-        public void UpdateTourState(Tour tour,TourState state)
+        public void UpdateTourState(Tour tour, TourState state)
         {
             tour.State = state;
             tour.ActiveKeyPointId = (state == TourState.Active) ? tour.KeyPointIds.First() : -1;
-            Update(tour);         
-        }     
-        public void UpdateActiveKeyPoint(Tour tour,int keyPointId)
+            Update(tour);
+        }
+        public void UpdateActiveKeyPoint(Tour tour, int keyPointId)
         {
             tour.ActiveKeyPointId = keyPointId;
             Update(tour);
@@ -274,7 +191,7 @@ namespace ProjectSims.Service
         {
             foreach (Tour tour in tourRepository.GetAll())
             {
-                if (tour.Id == id && IsFinished(tour))
+                if (tour.Id == id && tour.State == TourState.Finished)
                 {
                     return tour;
 
@@ -300,7 +217,7 @@ namespace ProjectSims.Service
         {
             foreach (Tour tour in tourRepository.GetAll())
             {
-                if (tour.Id == id && IsActivated(tour))
+                if (tour.Id == id && tour.State == TourState.Active)
                 {
                     return tour;
 
@@ -324,21 +241,12 @@ namespace ProjectSims.Service
             return toursActivated;
         }
 
-        public bool IsFinished(Tour tour)
-        {
-            return (tour.State == TourState.Finished);
-        }
-        public bool IsActivated(Tour tour)
-        {
-            return (tour.State == TourState.Active);
-        }
-
         public Tour GetMostVisitedTourLastMonth()
         {
             List<Tour> tours = new List<Tour>();
-            foreach(var tour in GetAllTours())
+            foreach (var tour in tourRepository.GetAll())
             {
-                if(tour.State == TourState.Finished && tour.StartOfTheTour > DateTime.Now.AddMonths(-1))
+                if (tour.State == TourState.Finished && tour.StartOfTheTour > DateTime.Now.AddMonths(-1))
                 {
                     tours.Add(tour);
                 }
@@ -346,6 +254,5 @@ namespace ProjectSims.Service
             List<Tour> sortedTours = tours.OrderByDescending(t => t.MaxNumberGuests - t.AvailableSeats).ToList();
             return sortedTours.First();
         }
-
     }
 }
