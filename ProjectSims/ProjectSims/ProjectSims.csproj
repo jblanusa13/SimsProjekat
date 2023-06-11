@@ -8,9 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="FileHandler\Images\**" />
     <Compile Remove="WPF\View\Guest1View\NewFolder\**" />
+    <EmbeddedResource Remove="FileHandler\Images\**" />
     <EmbeddedResource Remove="WPF\View\Guest1View\NewFolder\**" />
+    <None Remove="FileHandler\Images\**" />
     <None Remove="WPF\View\Guest1View\NewFolder\**" />
+    <Page Remove="FileHandler\Images\**" />
     <Page Remove="WPF\View\Guest1View\NewFolder\**" />
   </ItemGroup>
 

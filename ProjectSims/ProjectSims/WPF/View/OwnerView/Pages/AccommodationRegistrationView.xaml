@@ -8,15 +8,22 @@
         Height="750" Width="430">
     <Page.Resources>
         <ControlTemplate x:Key="ValidationTemplate">
-            <Border BorderBrush="Red" BorderThickness="0.5" Height="22" Width="151">
-                <!--<StackPanel>
-                    <AdornedElementPlaceholder x:Name="textBox"/>
-                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
-                </StackPanel>-->
-            </Border>
+            <StackPanel>
+                <AdornedElementPlaceholder x:Name="textBox" />
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="10" FontStretch="ExtraExpanded" FontFamily="Bahnschrift" />
+            </StackPanel>
         </ControlTemplate>
     </Page.Resources>
-    <Grid>
+    
+    <Grid Background="#FF383378">
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Background" Value="AliceBlue"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="BorderBrush" Value="LightSteelBlue"/>
+                <Setter Property="BorderThickness" Value="1"/>
+            </Style>
+        </Grid.Resources>
         <Label Content="Naziv:" FontSize="14" HorizontalAlignment="Left" Margin="50,50,0,0" VerticalAlignment="Top" Width="200"/>
         <Label Content="Lokacija:" FontSize="14" HorizontalAlignment="Left" Margin="50,95,0,0" VerticalAlignment="Top" Height="30" Width="159"/>
         <Label Content="Tip:" FontSize="14" HorizontalAlignment="Left" Margin="50,140,0,0" VerticalAlignment="Top" Width="159"/>
@@ -24,22 +31,19 @@
         <Label Content="Broj dana:" FontSize="14" HorizontalAlignment="Left" Margin="50,230,0,0" VerticalAlignment="Top" Width="159"/>
         <Label Content="Otkazni rok:" FontSize="14" HorizontalAlignment="Left" Margin="50,275,0,0" VerticalAlignment="Top" Width="159"/>
         <Label Content="Slike:" FontSize="14" HorizontalAlignment="Left" Margin="50,320,0,0" VerticalAlignment="Top" Width="159"/>
-        <TextBox x:Name="AccommodationNameTextBox"  Text="{Binding Path=AccommodationName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Right" Height="22" Margin="0,50,50,0" TextWrapping="Wrap" FontSize="13" VerticalAlignment="Top" Width="151" IsEnabled="True"/>
-        <TextBox x:Name="LocationTextBox" Text="{Binding Path=Location, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Right" Height="22" Margin="0,95,50,0" TextWrapping="Wrap" FontSize="13" VerticalAlignment="Top" Width="151"/>
-        <TextBox x:Name="GuestsMaximumTextBox" Text="{Binding Path=GuestsMaximum, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, TargetNullValue=''}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Right" Height="22" Margin="0,185,50,0" TextWrapping="Wrap" FontSize="13" VerticalAlignment="Top" Width="151" IsEnabled="True"/>
-        <TextBox x:Name="MinimumReservationDaysTextBox" Text="{Binding Path=MinimumReservationDays, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Right" Height="22" Margin="0,230,50,0" TextWrapping="Wrap" FontSize="13" VerticalAlignment="Top" Width="151" IsEnabled="True"/>
-        <TextBox x:Name="DismissalDaysTextBox" Text="{Binding Path=DismissalDays, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Right" Height="22" Margin="0,275,50,0" TextWrapping="Wrap" FontSize="13" VerticalAlignment="Top" Width="151" IsEnabled="True"/>
-        <ComboBox Text="{Binding Path=Type, UpdateSourceTrigger=PropertyChanged}"  
-                  HorizontalAlignment="Right" 
-                  Margin="0,140,50,0" 
-                  VerticalAlignment="Top" 
-                  Width="151">
+        <TextBox x:Name="AccommodationNameTextBox"  Text="{Binding Path=AccommodationName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, Mode=OneWayToSource}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Right" Height="22" Margin="0,50,50,0" TextWrapping="Wrap" FontSize="13" VerticalAlignment="Top" Width="151" IsEnabled="True"/>
+        <TextBox x:Name="LocationTextBox" Text="{Binding Path=Location, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, Mode=TwoWay}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Right" Height="22" Margin="0,95,50,0" TextWrapping="Wrap" FontSize="13" VerticalAlignment="Top" Width="151"/>
+        <ComboBox Text="{Binding Path=Type, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" HorizontalAlignment="Right" Margin="0,140,50,0" VerticalAlignment="Top" Width="151">
             <ComboBoxItem Content="Kuca"/>
             <ComboBoxItem Content="Apartman"/>
             <ComboBoxItem Content="Koliba"/>
         </ComboBox>
+        <TextBox x:Name="GuestsMaximumTextBox" Text="{Binding Path=GuestsMaximum, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource, ValidatesOnDataErrors=True, TargetNullValue=''}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Right" Height="22" Margin="0,185,50,0" TextWrapping="Wrap" FontSize="13" VerticalAlignment="Top" Width="151" IsEnabled="True"/>
+        <TextBox x:Name="MinimumReservationDaysTextBox" Text="{Binding Path=MinimumReservationDays, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Right" Height="22" Margin="0,230,50,0" TextWrapping="Wrap" FontSize="13" VerticalAlignment="Top" Width="151" IsEnabled="True"/>
+        <TextBox x:Name="DismissalDaysTextBox" Text="{Binding Path=DismissalDays, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Right" Height="22" Margin="0,275,50,0" TextWrapping="Wrap" FontSize="13" VerticalAlignment="Top" Width="151" IsEnabled="True"/>
+      
         <Button Content="Učitaj" 
-                Click="LoadImages_Click" 
+                Command="{Binding LoadImagesCommand}" 
                 HorizontalAlignment="Right" 
                 Height="22"
                 FontSize="12.5"
@@ -62,7 +66,7 @@
             </ListView.ItemsPanel>
         </ListView>
         <Button Content="Potvrdi" 
-                Click="RegisterAccommodation_Click" 
+                Command="{Binding RegisterCommand}" 
                 FontSize="14" 
                 HorizontalAlignment="Left" 
                 Height="34"
@@ -72,7 +76,7 @@
                 RenderTransformOrigin="1.194,0.155" 
                 IsDefault="True"/>
         <Button Content="Odustani" 
-                Click="Dismiss_Click" 
+                Command="{Binding DismissCommand}" 
                 HorizontalAlignment="Right" 
                 Height="34"
                 FontSize="14" 

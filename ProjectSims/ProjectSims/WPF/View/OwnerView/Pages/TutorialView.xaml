@@ -1,0 +1,15 @@
+﻿<Page x:Class="ProjectSims.WPF.View.OwnerView.Pages.TutorialView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectSims.WPF.View.OwnerView.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="750" d:DesignWidth="430"
+      Title="TutorialView">
+
+    <Grid Background="#ff383378">
+        <Label Content="Tutorijal za registraciju novog smještaja:" FontSize="16" HorizontalAlignment="Center" Margin="0 25 0 0"/>
+        
+    </Grid>
+</Page>

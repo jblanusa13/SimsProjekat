@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Navigation;
 
 namespace ProjectSims.WPF.ViewModel.OwnerViewModel
 {
@@ -37,23 +38,17 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
                 }
             }
         }
+        public NavigationService NavService { get; set; }
 
-        public RenovationsViewModel(RenovationSchedule selectedRenovation, Owner owner) 
+        public RenovationsViewModel(RenovationSchedule selectedRenovation, Owner owner, NavigationService navService) 
         {
             Owner = owner;
             SelectedRenovation = selectedRenovation;
+            NavService = navService;
             renovationService = new RenovationScheduleService();
             renovationService.Subscribe(this);
             RenovationList = new ObservableCollection<RenovationSchedule>(renovationService.GetPassedAndFutureRenovationsByOwner(Owner.Id));
-            SetDurationForEachRenovation();
-        }
-
-        public void SetDurationForEachRenovation()
-        {
-            foreach (var renovation in renovationService.GetPassedAndFutureRenovationsByOwner(Owner.Id))
-            {
-                renovation.Duration = renovationService.CalculateDurationForRenovation(renovation);
-            }
+            renovationService.SetDurationForEachRenovation(Owner);
         }
 
         public void QuitRenovation(RenovationSchedule renovation)

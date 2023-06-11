@@ -82,15 +82,15 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
                 }
             }
         }
-
-        public StatisticsView(Owner o, TextBlock titleTextBlock, Accommodation selectedAccommodetion, Frame selectedTab)
+        public NavigationService NavService { get; set; }
+        public StatisticsView(Owner o, TextBlock titleTextBlock, Accommodation selectedAccommodetion, NavigationService navService)
         {
             InitializeComponent();
             Owner = o;
             TitleTextBlock = titleTextBlock;
             SelectedAccommodation = selectedAccommodetion;
-            SelectedTab = selectedTab;
-            statisticsViewModel = new StatisticsViewModel(Owner, this, TitleTextBlock, SelectedAccommodation, MostVisitedMonth, this.MostVisitedYear, selectedTab);
+            NavService = navService;
+            statisticsViewModel = new StatisticsViewModel(Owner, this, TitleTextBlock, SelectedAccommodation, MostVisitedMonth, MostVisitedYear, NavService);
             InitializeImages();
             this.DataContext = statisticsViewModel;
         }
@@ -118,22 +118,20 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
 
         private void RegisterNew_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new AccommodationRegistrationView(Owner, TitleTextBlock, SelectedAccommodation, SelectedTab));
+            NavService.Navigate(new AccommodationRegistrationView(Owner, TitleTextBlock, SelectedAccommodation, NavService));
             TitleTextBlock.Text = "Registracija smještaja";
         }
 
         private void GenerateReport_Click(object sender, RoutedEventArgs e)
         {
             PrintDialog printDialog = new PrintDialog();
-            ReportToGenerateView rtg = new ReportToGenerateView();
-            /*rtg.ReportScroll.ScrollToTop();
-            printDialog.PrintVisual(rtg.ReportScroll.Content as Visual, "IzvestajOZauzetostiProstorija");*/
+            ReportToGenerateView rtg = new ReportToGenerateView(Owner);
             FlowDocument fd = rtg.Document;
             DocumentPaginator documentPaginator = (fd as IDocumentPaginatorSource).DocumentPaginator;
-            printDialog.PrintDocument(documentPaginator, "Izvestaj");
+            printDialog.PrintDocument(documentPaginator, "Izvještaj");
 
             TitleTextBlock.Text = "Početna stranica";
-            this.NavigationService.Navigate(new HomePageView(Owner, TitleTextBlock, SelectedTab));
+            NavService.Navigate(new HomePageView(Owner, TitleTextBlock, NavService));
         }
 
         private void YearComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

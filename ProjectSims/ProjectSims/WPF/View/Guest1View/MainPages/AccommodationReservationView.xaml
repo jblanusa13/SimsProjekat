@@ -10,7 +10,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="540" d:DesignWidth="1067"
       Title="AccommodationReservation">
-    
+
     <Page.Resources>
         <Style TargetType="DataGrid" BasedOn="{StaticResource DataGridStyle}">
             <Setter Property="Background" Value="{DynamicResource DataGridBackground}"></Setter>
@@ -53,7 +53,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="320"/>
             </Grid.ColumnDefinitions>
-            
+
             <Grid Grid.Column="0">
                 <Button Margin="10" x:Name="BackButton"
                         Command="{Binding CancelCommand}" Background="{DynamicResource SecondGrayShade}" BorderBrush="{DynamicResource SecondGrayShade}"
@@ -135,8 +135,8 @@
                            HorizontalContentAlignment="Center"
                            FontSize="10"/>
                 </Grid>
-                
-                
+
+
             </Grid>
         </Grid>
 
@@ -359,7 +359,7 @@
                                    Margin="30,0,0,0"
                                        Foreground="{DynamicResource FontsColor}">pritisnite Enter na zeljenom opsegu datuma</Label>
                             </Grid>
-                            
+
 
                             <DataGrid Grid.Row="1" Name="DatesTable" ItemsSource="{Binding AvailableDates, UpdateSourceTrigger=PropertyChanged}" 
                                       SelectedItem="{Binding SelectedDates, UpdateSourceTrigger=PropertyChanged}"

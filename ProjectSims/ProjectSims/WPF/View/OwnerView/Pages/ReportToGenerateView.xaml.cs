@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectSims.Domain.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,11 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
     /// </summary>
     public partial class ReportToGenerateView : Page
     {
-        public ReportToGenerateView()
+        public ReportToGenerateView(Owner owner)
         {
             InitializeComponent();
+            OwnerName.Text = owner.Name + " " + owner.Surname;
+            
         }
     }
 }

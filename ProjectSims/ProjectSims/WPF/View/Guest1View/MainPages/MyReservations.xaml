@@ -49,7 +49,7 @@
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
-                
+
                 <Button Grid.Column="0" Margin="10" x:Name="BackButton"
                         Command="{Binding CancelCommand}" Background="{DynamicResource SecondGrayShade}" BorderBrush="{DynamicResource SecondGrayShade}"
                         FocusVisualStyle="{DynamicResource FocusControl}">
@@ -79,7 +79,7 @@
                     <Label Grid.Row="1" Content="Zakazane rezervacije" FontFamily="Bahnschrift" 
                            Foreground="{DynamicResource FontsColor}" 
                            FontSize="9" HorizontalContentAlignment="Center"/>
-                         
+
                 </Grid>
                 <Grid Grid.Column="3">
                     <Grid.RowDefinitions>

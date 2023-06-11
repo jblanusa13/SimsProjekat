@@ -19,13 +19,14 @@ namespace ProjectSims.Domain.Model
         public Location Location { get; set; }
         public string Comment { get; set; }
         public ForumStatus Status { get; set; }
+        public bool IsVeryUseful { get; set; }
 
         public Forum()
         {
 
         }
 
-        public Forum(int id, int locationId, Location location, string comment, ForumStatus status, int guestId, Guest1 guest)
+        public Forum(int id, int locationId, Location location, string comment, ForumStatus status, int guestId, Guest1 guest, bool isVeryUseful)
         {
             Id = id;
             LocationId = locationId;
@@ -34,6 +35,7 @@ namespace ProjectSims.Domain.Model
             Status = status;
             GuestId = guestId;
             Guest = guest;
+            IsVeryUseful = isVeryUseful;
         }
 
         public void FromCSV(string[] values)

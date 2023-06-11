@@ -101,13 +101,15 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
                 }
             }
         }
+        public NavigationService NavService { get; set; }
 
-        public ProfileView(Owner o)
+        public ProfileView(Owner o, NavigationService navService)
         {
             InitializeComponent();
             Owner = o;
-            profileViewModel = new ProfileViewModel(Owner);
-            this.DataContext = profileViewModel;
+            NavService = navService;
+            profileViewModel = new ProfileViewModel(Owner, NavService);
+            DataContext = profileViewModel;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

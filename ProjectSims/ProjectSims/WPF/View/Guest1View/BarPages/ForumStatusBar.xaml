@@ -9,6 +9,6 @@
       Title="ForumStatusBar">
 
     <Grid Background="{DynamicResource BarShade}">
-        
+
     </Grid>
 </Page>

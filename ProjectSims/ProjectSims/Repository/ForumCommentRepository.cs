@@ -29,8 +29,7 @@ namespace ProjectSims.Repository
         public List<ForumComment> GetAll()
         {
             return comments;
-        }
-
+        }  
         public int NextId()
         {
             return comments.Max(t => t.Id) + 1;

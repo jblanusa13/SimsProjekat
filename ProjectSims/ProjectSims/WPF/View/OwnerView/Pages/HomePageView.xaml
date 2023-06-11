@@ -8,24 +8,42 @@
       d:DesignHeight="750" d:DesignWidth="430"
       Title="HomePage">
 
-    <Grid>
+    <Grid Background="#FF3B3378">
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="200"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="2">
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Background" Value="AliceBlue"/>
+                <Setter Property="FontWeight"  Value="Bold"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="BorderBrush" Value="LightSteelBlue"/>
+                <Setter Property="BorderThickness" Value="1"/>
+            </Style>
+        </Grid.Resources>
+
+        <Grid Grid.Row="0">
+            <Image Source="/logoapp.png" Opacity="1" Height="200" Width="200"/>
+        </Grid>
+        
+        <Grid Grid.Row="1">
             <Button Content="Smještaji"
                     Click="Accommodations_Click"
                     Height="40"
                     Width="100"
-                    Margin="75,45,255,0"/>
+                    Margin="50,90,0,0" HorizontalAlignment="Left"/>
             <Button Content="Recenzije"
                     Click="Ratings_Click"
                     Height="40"
                     Width="100"
-                    Margin="255,45,75,0"/>
+                    Margin="0,90,0,0" HorizontalAlignment="Center"/>
+            <Button Content="Forumi"
+                    Click="Forumi_Click"
+                    Height="40"
+                    Width="100"
+                    Margin="0,90,50,0" HorizontalAlignment="Right"/>
         </Grid>
     </Grid>
 </Page>

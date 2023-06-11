@@ -30,16 +30,14 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
     /// Interaction logic for Requests.xaml
     /// </summary>
     public partial class RequestsView : Page
-    {
-        public Owner owner;
+    { 
         public Request SelectedRequest { get; set; }
         public RequestsViewModel requestsViewModel { get; set; }
 
-        public RequestsView(Owner o)
+        public RequestsView(Owner owner)
         {
             InitializeComponent();
-            owner = o;
-            requestsViewModel = new RequestsViewModel(o);
+            requestsViewModel = new RequestsViewModel(owner);
             this.DataContext = requestsViewModel;
         }
 

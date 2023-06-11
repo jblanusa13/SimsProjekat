@@ -31,7 +31,7 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
             if (SelectedRequest != null)
             {
                 SelectedRequest.State = Set(sender);
-                SelectedRequest.OwnerComment = comment;
+                SelectedRequest.ForumComment = comment;
                 requestService.Update(SelectedRequest);
                 SelectedRequest.Reservation.CheckInDate = SelectedRequest.ChangeDate;
                 SelectedRequest.Reservation.CheckOutDate = SelectedRequest.Reservation.CheckInDate.AddDays(SelectedRequest.Reservation.CheckOutDate.DayNumber - SelectedRequest.Reservation.CheckInDate.DayNumber);

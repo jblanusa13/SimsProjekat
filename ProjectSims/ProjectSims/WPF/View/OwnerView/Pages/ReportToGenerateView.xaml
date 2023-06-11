@@ -34,7 +34,7 @@
                                     <TextBlock Grid.Row="0" Width="450" Text="Izvještaj o smještaju" FontSize="30" HorizontalAlignment="Right"></TextBlock>
                                     <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 20 0 0">
                                         <TextBlock  Text="Naziv:" FontSize="20" HorizontalAlignment="Right"></TextBlock>
-                                        <TextBlock x:Name="NameTextBlock" FontSize="20" HorizontalAlignment="Right" Margin="15 0 0 0"></TextBlock>
+                                        <TextBlock x:Name="OwnerName" FontSize="20" HorizontalAlignment="Right" Margin="15 0 0 0"></TextBlock>
                                     </StackPanel>
                                     <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 18 0 0">
                                         <TextBlock  Text="Vlasnik:" FontSize="20" HorizontalAlignment="Right"></TextBlock>

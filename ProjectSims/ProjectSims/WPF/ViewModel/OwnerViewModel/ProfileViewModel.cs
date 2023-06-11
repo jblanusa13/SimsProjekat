@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Navigation;
 
 namespace ProjectSims.WPF.ViewModel.OwnerViewModel
 {
@@ -15,11 +16,13 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
         public Owner Owner { get; set; }
         private OwnerService ownerService;
         private UserService userService;
-        private AccommodationRatingService accommodationRatingService;
+        private AccommodationRatingService accommodationRatingService;    
+        public NavigationService NavService { get; set; }
 
-        public ProfileViewModel(Owner o)
+        public ProfileViewModel(Owner o, NavigationService navService)
         {
             Owner = o;
+            NavService = navService;
             ownerService = new OwnerService();
             userService = new UserService();
             accommodationRatingService = new AccommodationRatingService();

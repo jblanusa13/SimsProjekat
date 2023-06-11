@@ -7,7 +7,15 @@
         mc:Ignorable="d"
         Height="750" Width="430">
 
-    <Grid>
+    <Grid Background="#FF383378">
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Background" Value="AliceBlue"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="BorderBrush" Value="LightSteelBlue"/>
+                <Setter Property="BorderThickness" Value="1"/>
+            </Style>
+        </Grid.Resources>
         <StackPanel Orientation="Horizontal" 
                     Grid.RowSpan="2">
             <Grid ScrollViewer.CanContentScroll="True"
@@ -15,6 +23,7 @@
                   Grid.Row="0">
                 <DataGrid x:Name="AccommodationsTable"
                           ItemsSource="{Binding AccommodationsForDisplay}"
+                          SelectedItem="{Binding SelectedAccommodation, UpdateSourceTrigger=PropertyChanged}"
                           AutoGenerateColumns="False"
                           CanUserResizeColumns="False"
                           IsReadOnly="True"
@@ -32,7 +41,7 @@
                         <DataGridTextColumn Header="Lokacija"
                                             Width="140">
                             <DataGridTextColumn.Binding>
-                                <MultiBinding StringFormat="{}{0} {1}">
+                                <MultiBinding StringFormat="{}{0}, {1}">
                                     <Binding Path="Location.City"/>
                                     <Binding Path="Location.Country"/>
                                 </MultiBinding>
@@ -54,7 +63,7 @@
         </StackPanel>
         <Button x:Name="RegistrateButton"
                 Margin="8,642.5,0,0"
-                Click="Registrate_Click"
+                Command="{Binding RegistrateCommand}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 TextElement.FontSize="15"
@@ -65,7 +74,7 @@
                 Content="Registruj novi"
                 Grid.Row="1"/>
         <Button x:Name="RenovateButton"
-                Click="Renovate_Click"
+                Command="{Binding RenovateCommand}"
                 Margin="148,642.5,0,0"
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Top"
@@ -77,7 +86,7 @@
                 Content="Renoviraj"/>
         <Button x:Name="StatisticsButton"
                 Margin="289,642.5,8,0"
-                Click="Statistics_Click"
+                Command="{Binding StatisticsCommand}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 TextElement.FontSize="15"

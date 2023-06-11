@@ -91,13 +91,6 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             ImageList = new List<string>();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         public void AddRating(string comment, List<string> images)
         {
 
@@ -175,5 +168,12 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 return true;
             }
         }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
     }
 }

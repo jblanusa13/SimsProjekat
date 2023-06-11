@@ -46,7 +46,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
 
         private void LoadImages(List<string> pathList)
         {
-            foreach(string path in pathList)
+            foreach (string path in pathList)
             {
                 BitmapImage bitmapImage = new BitmapImage();
                 bitmapImage.BeginInit();

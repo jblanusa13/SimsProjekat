@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ProjectSims.Domain.Model;
+using ProjectSims.WPF.ViewModel.Guest1ViewModel;
+using ProjectSims.WPF.ViewModel.OwnerViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,8 +15,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ProjectSims.Domain.Model;
-using ProjectSims.WPF.ViewModel.Guest1ViewModel;
 
 namespace ProjectSims.WPF.View.Guest1View.MainPages
 {

@@ -24,27 +24,33 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
     {
         public Owner Owner { get; set; }
         public TextBlock TitleTextBlock { get; set; }
-        public Frame SelectedTab { get; set; }
+        public NavigationService NavService { get; set; }
 
-        public HomePageView(Owner o, TextBlock titleTextBlock, Frame selectedTab)
+        public HomePageView(Owner o, TextBlock titleTextBlock, NavigationService navService)
         {
             InitializeComponent();
             DataContext = this;
             Owner = o;
             TitleTextBlock = titleTextBlock;
-            SelectedTab = selectedTab;
+            NavService = navService;
         }
 
         private void Accommodations_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new AccommodationsDisplayView(Owner, TitleTextBlock, SelectedTab));
+            NavService.Navigate(new AccommodationsDisplayView(Owner, TitleTextBlock, NavService));
             TitleTextBlock.Text = "Smještaji";
         }
 
         private void Ratings_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new OwnerRatingsDisplayView(Owner));
+            NavService.Navigate(new OwnerRatingsDisplayView(Owner, NavService));
             TitleTextBlock.Text = "Recenzije";
+        }
+
+        private void Forumi_Click(object sender, RoutedEventArgs e)
+        {
+            NavService.Navigate(new ForumsDisplayView(Owner, NavService));
+            TitleTextBlock.Text = "Forumi";
         }
     }
 }

@@ -241,18 +241,19 @@ namespace ProjectSims.Service
             reservationRepository.Update(reservation);
         }
 
-        public Boolean IsAnyGuestRatable()
+        public List<AccommodationReservation> IsAnyGuestRatable(int ownerId)
         {
-            List<AccommodationReservation> reservations = GetAllReservations();
-
-            foreach (var item in reservations)
+            List<AccommodationReservation> reservations = new List<AccommodationReservation>();
+            foreach (var item in GetAllByOwnerId(ownerId))
             {
-                if (DateOnly.FromDateTime(DateTime.Today).CompareTo(item.CheckOutDate) > 0 && GetReservation(item.Id).RatedGuest == false)
+                if (DateOnly.FromDateTime(DateTime.Today).CompareTo(item.CheckOutDate) >= 0
+                    && item.CheckOutDate.AddDays(5).CompareTo(DateOnly.FromDateTime(DateTime.Today)) >= 0
+                    && GetReservation(item.Id).RatedGuest == false)
                 {
-                    return true;
+                    reservations.Add(item);
                 }
             }
-            return false;
+            return reservations;
         }
 
         public void Subscribe(IObserver observer)

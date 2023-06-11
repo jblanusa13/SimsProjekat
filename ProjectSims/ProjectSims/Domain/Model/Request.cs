@@ -20,7 +20,7 @@ namespace ProjectSims.Domain.Model
         public AccommodationReservation Reservation { get; set; }
         public DateOnly ChangeDate { get; set; }
         public RequestState State { get; set; }
-        public string OwnerComment { get; set; }
+        public string ForumComment { get; set; }
         public bool Reserved { get; set; }
         public Request() { }
 
@@ -30,7 +30,7 @@ namespace ProjectSims.Domain.Model
             ReservationId = reservationId;
             ChangeDate = changeDate;
             State = state;
-            OwnerComment = comment;
+            ForumComment = comment;
             Reserved = reserved;
             Reservation = reservation;
         }
@@ -41,7 +41,7 @@ namespace ProjectSims.Domain.Model
             ReservationId = Convert.ToInt32(values[1]);
             ChangeDate = DateOnly.ParseExact(values[2], "dd.MM.yyyy");
             State = Enum.Parse<RequestState>(values[3]);
-            OwnerComment = values[4];
+            ForumComment = values[4];
             Reserved = Convert.ToBoolean(values[5]);
         }
 
@@ -52,7 +52,7 @@ namespace ProjectSims.Domain.Model
                 ReservationId.ToString(),
                 ChangeDate.ToString("dd.MM.yyyy"),
                 State.ToString(),
-                OwnerComment,
+                ForumComment,
                 Reserved.ToString()
             };
             return csvvalues;

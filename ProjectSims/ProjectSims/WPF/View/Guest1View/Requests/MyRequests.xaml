@@ -19,7 +19,7 @@
                     <DataGridTextColumn Header="Naziv smestaja" Binding="{Binding Reservation.Accommodation.Name}" Width="150"></DataGridTextColumn>
                     <DataGridTextColumn Header="Datum dolaska za pomeranje" Binding="{Binding ChangeDate}" Width="200"></DataGridTextColumn>
                     <DataGridTextColumn Header="Status zahteva" Binding="{Binding State}" Width="100"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Komentar vlasnika" Binding="{Binding OwnerComment}" Width="*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Komentar vlasnika" Binding="{Binding ForumComment}" Width="*"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

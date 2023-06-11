@@ -19,6 +19,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using ProjectSims.Commands;
+using System.Windows.Navigation;
 
 namespace ProjectSims.WPF.ViewModel.OwnerViewModel
 {
@@ -41,7 +42,6 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
         public Owner Owner { get; set; }
         public TextBlock TitleTextBlock { get; set; }
         public Accommodation SelectedAccommodation { get; set; }
-        public Frame SelectedTab { get; set; }
         public Func<int, string> Values { get; set; }
         public Func<ChartPoint, string> Pointlabel { get; set; }
         public string[] YearLabels { get; set; }
@@ -114,13 +114,15 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
         public ChartValues<int> TotalMonthReservations { get; set; }
         public ChartValues<int> TotalReservations { get; set; }
         public StatisticsView StatisticsView { get; set; }
-        public StatisticsViewModel(Owner o, StatisticsView view, TextBlock titleTextBlock, Accommodation selectedAccommodetion, int mostVisitedMonth, string mostVisitedYear, Frame selectedTab)
+        public NavigationService NavService { get; set; }
+
+        public StatisticsViewModel(Owner o, StatisticsView view, TextBlock titleTextBlock, Accommodation selectedAccommodetion, int mostVisitedMonth, string mostVisitedYear, NavigationService navService)
         {
             Owner = o;
             StatisticsView = view;
             TitleTextBlock = titleTextBlock;
             SelectedAccommodation = selectedAccommodetion;
-            SelectedTab = selectedTab;
+            NavService = navService;
             accommodationReservationService = new AccommodationReservationService();
             accommodationRatingService = new AccommodationRatingService();
             requestService = new RequestService();
@@ -165,7 +167,7 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
 
         public void Open()
         {
-            SelectedTab.Content = new AccommodationRegistrationView(Owner, TitleTextBlock, SelectedAccommodation, SelectedTab);
+            NavService.Navigate(new AccommodationRegistrationView(Owner, TitleTextBlock, SelectedAccommodation, NavService));
         }
 
         public void OnClose()
@@ -177,7 +179,7 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
         {
             accommodationService.Delete(selectedAccommodation);
             ownerService.RemoveAccommodation(Owner, selectedAccommodation.Id);
-            SelectedTab.Content = new AccommodationsDisplayView(Owner, TitleTextBlock, SelectedTab);
+            NavService.Navigate(new AccommodationsDisplayView(Owner, TitleTextBlock, NavService));
         }
 
         public void DisplayTheNumberOfReservationsByCriteria()

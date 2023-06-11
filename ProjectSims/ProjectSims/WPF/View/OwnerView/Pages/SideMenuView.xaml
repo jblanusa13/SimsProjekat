@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:ProjectSims.WPF.View.OwnerView.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="750" d:DesignWidth="430"
-      Title="Menu" Background="#abc3cd">
+      Title="Menu" Background="Gold">
 
     <Grid Margin="20 50 20 20">
         <Grid.ColumnDefinitions>
@@ -32,7 +32,7 @@
                     FontWeight="DemiBold"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
-                    Background="#abc3cd"
+                    Background="Gold"
                     BorderThickness="0"/>
         </Grid>
         <Grid Grid.Row="1" Grid.ColumnSpan="2">
@@ -42,7 +42,7 @@
                     FontWeight="DemiBold"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
-                    Background="#abc3cd"
+                    Background="Gold"
                     BorderThickness="0"/>
         </Grid>
         <Grid Grid.Row="2" Grid.ColumnSpan="2">
@@ -52,7 +52,7 @@
                     FontWeight="DemiBold"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
-                    Background="#abc3cd"
+                    Background="Gold"
                     BorderThickness="0"/>
         </Grid>
         <Grid Grid.Row="3" Grid.ColumnSpan="2">
@@ -61,25 +61,27 @@
                     FontSize="18"                                        FontWeight="DemiBold"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
-                    Background="#abc3cd"
+                    Background="Gold"
                     BorderThickness="0"/>
         </Grid>
         <Grid Grid.Row="4" Grid.ColumnSpan="2">
             <Button Content="Forumi"
+                    Click="Forum_Click"
                     FontSize="18"
                     FontWeight="DemiBold"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
-                    Background="#abc3cd"
+                    Background="Gold"
                     BorderThickness="0"/>
         </Grid>
         <Grid Grid.Row="5" Grid.ColumnSpan="2">
             <Button Content="Tutorijal"
+                    Click="Tutorial_Click"
                     FontSize="18"
                     FontWeight="DemiBold"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
-                    Background="#abc3cd"
+                    Background="Gold"
                     BorderThickness="0"/>
         </Grid>
         <Grid Grid.Row="6" Grid.ColumnSpan="2">
@@ -89,7 +91,7 @@
                     FontWeight="DemiBold"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
-                    Background="#abc3cd"
+                    Background="Gold"
                     BorderThickness="0"/>
         </Grid>
         <Grid Grid.Row="7" Grid.ColumnSpan="2">
@@ -99,7 +101,7 @@
                     FontWeight="DemiBold"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
-                    Background="#abc3cd"
+                    Background="Gold"
                     BorderThickness="0"/>
         </Grid>
     </Grid>
