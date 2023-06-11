@@ -59,6 +59,18 @@ namespace ProjectSims.Repository
         public List<NotificationOwnerGuest> GetAll()
         {
             return notifications;
+        }        
+        public List<Forum> GetAllForums()
+        {
+            List<Forum> forums = new List<Forum>();
+            foreach (var item in notifications)
+            {
+                if (item.ForumId != -1 && item.Seen == false)
+                {
+                    forums.Add(item.Forum);
+                }
+            }
+            return forums;
         }
         public void Subscribe(IObserver observer)
         {

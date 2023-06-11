@@ -10,5 +10,6 @@ namespace ProjectSims.Domain.RepositoryInterface
 {
     public interface INotificationOwnerGuestRepository : IGenericRepository<NotificationOwnerGuest, int>, ISubject
     {
+        public List<Forum> GetAllForums();
     }
 }

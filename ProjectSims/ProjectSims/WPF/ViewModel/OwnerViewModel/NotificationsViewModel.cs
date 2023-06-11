@@ -30,7 +30,7 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
         public RelayCommand CommentCommand { get; set; }
         private GuestRatingService ratingService;
         private AccommodationReservationService reservationService;
-        private ForumService forumService;
+        private NotificationOwnerGuestService notificationService;
         public TextBlock TitleTextBlock { get; set; }
 
         public NotificationsViewModel(Owner owner, NavigationService navService)
@@ -39,9 +39,9 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
             NavService = navService;
             ratingService = new GuestRatingService();
             reservationService = new AccommodationReservationService();
-            forumService = new ForumService();
+            notificationService = new NotificationOwnerGuestService();
             Reservations = new ObservableCollection<AccommodationReservation>(ratingService.NotifyOwnerAboutRating(Owner.Id));
-            //NewForums = new ObservableCollection<Forum>(forumService.GetAllNewForums(selectedForum.Id));
+            NewForums = new ObservableCollection<Forum>(notificationService.GetAllForums());
             RateCommand = new RelayCommand(Execute_RateCommand, CanExecute_RateCommand);
             CommentCommand = new RelayCommand(Execute_CommentCommand, CanExecute_CommentCommand);
         }

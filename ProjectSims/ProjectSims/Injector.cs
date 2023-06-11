@@ -40,7 +40,8 @@ namespace ProjectSims
             { typeof(IAccommodationScheduleRepository), new AccommodationScheduleRepository() },
             { typeof(ISuperGuestRepository), new SuperGuestRepository() },
             { typeof(IForumRepository), new ForumRepository() },
-            { typeof(IForumCommentRepository), new ForumCommentRepository() }
+            { typeof(IForumCommentRepository), new ForumCommentRepository() },
+            { typeof(INotificationOwnerGuestRepository), new NotificationOwnerGuestRepository() }
         };
        public static T CreateInstance<T>()
         {
