@@ -74,7 +74,9 @@ namespace ProjectSims.WPF.View.GuideView.Pages
     
         public void Logout_Click(object sender, RoutedEventArgs e)
         {
-
+            var startView = new MainWindow();
+            startView.Show();
+            Window.GetWindow(this).Close();
         }
         public void LanguageComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

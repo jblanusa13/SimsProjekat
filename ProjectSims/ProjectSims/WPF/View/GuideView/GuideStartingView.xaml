@@ -6,15 +6,41 @@
         xmlns:local="clr-namespace:ProjectSims.View.GuideView"
         mc:Ignorable="d"
         Title="Guide Starting View" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Background="#FF75C8F1">
+    <Window.Resources>
+        <Style x:Key="TransparentStyle" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border>
+                        <Border.Style>
+                            <Style TargetType="{x:Type Border}">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="Height" Value="58"/>
+                                        <Setter Property="Width" Value="58"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <Grid Background="Transparent">
+                            <ContentPresenter></ContentPresenter>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    </Window.Resources>
     <Grid>
         <Grid Background ="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Height="83" Width="1280">
-            <Button HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40,0,0,0" Height="60" Width="60" Background="Transparent" BorderThickness="0">
+            <Button Style="{StaticResource TransparentStyle}" Name="HelpButton" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40,0,0,0" Height="60" Width="60" Background="Transparent" BorderThickness="0">
                 <Image Source="\Resources\Icons\Guide\question.png" Cursor="Hand"/>
             </Button>
-            <Button HorizontalAlignment="Right" Click="Account_Click" VerticalAlignment="Center" Margin="0,0,40,0" Height="60" Width="60" Background="Transparent" BorderThickness="0">
+            <Button Style="{StaticResource TransparentStyle}" ToolTip="Prikazi profil" HorizontalAlignment="Right" Click="Account_Click" VerticalAlignment="Center" Margin="0,0,40,0" Height="60" Width="60" Background="Transparent" BorderThickness="0">
                 <Image Source="\Resources\Icons\Guide\profile.png" Cursor="Hand"/>
             </Button>
-            <Button HorizontalAlignment="Right" Click="Logout_Click" VerticalAlignment="Center" Margin="0,0,110,0" Height="60" Width="60" Background="Transparent" BorderThickness="0">
+            <Button Style="{StaticResource TransparentStyle}" ToolTip="Odjavi se" HorizontalAlignment="Right" Click="Logout_Click" VerticalAlignment="Center" Margin="0,0,110,0" Height="60" Width="60" Background="Transparent" BorderThickness="0">
                 <Image Source="\Resources\Icons\Guide\logout1.png" Cursor="Hand"/>
             </Button>
             <Image Source="/Resources/Icons/Guide/logo.png" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="100"/>

@@ -25,10 +25,16 @@ namespace ProjectSims.WPF.View.GuideView.Pages
     /// </summary>
     public partial class ScheduledToursView : Page
     {
+        ScheduledToursViewModel viewModel;
         public ScheduledToursView(Guide guide,NavigationService navigationService)
         {
             InitializeComponent();
-            this.DataContext = new ScheduledToursViewModel(guide, navigationService);
+            viewModel = new ScheduledToursViewModel(guide, navigationService);
+            this.DataContext = viewModel;
+        }
+        private void ViewDetails_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.ViewDetails(((FrameworkElement)sender).DataContext as Tour);
         }
     }
 }

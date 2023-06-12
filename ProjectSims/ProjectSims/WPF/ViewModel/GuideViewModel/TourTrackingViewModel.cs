@@ -76,11 +76,25 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
                 }
             }
         }
+        private string _labelText;
+        public string LabelText
+        {
+            get => _labelText;
+            set
+            {
+                if (value != _labelText)
+                {
+                    _labelText = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public TourTrackingViewModel(Guide guide,Tour tour, NavigationService navigationService)
         {
             NavService = navigationService;
             Guide = guide;
             Tour = tour;
+            LabelText = Tour.Name + "," + Tour.StartOfTheTour.ToString("dd.MM.yyyy HH:mm");
             tourService = new TourService();
             keyPointService = new KeyPointService();
             guest2Service = new Guest2Service();

@@ -32,9 +32,49 @@
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="IsHitTestVisible" Value="False"/>
         </Style>
+        <Style x:Key="TransparentStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border>
+                            <Border.Style>
+                                <Style TargetType="{x:Type Border}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Height" Value="28"/>
+                                            <Setter Property="Width" Value="28"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <Grid Background="Transparent">
+                                <ContentPresenter></ContentPresenter>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
-    <ScrollViewer>
-        <Grid Background="Transparent">
+    <Grid>
+        <Border HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Height="40" Width="1280" BorderBrush="White" BorderThickness="0 0 0 1">
+            <Grid>
+                <Label Margin="20,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">
+                    <Hyperlink Command="{Binding HomeCommand}">
+                        <TextBlock Text="Pocetna"/>
+                    </Hyperlink>
+                </Label>
+                <Label Margin="80,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">
+                    <Hyperlink Command="{Binding BackCommand}">
+                        <TextBlock Text=" &#707; Ocene i recenzije zavrsenih tura "/>
+                    </Hyperlink>
+                </Label>
+                <Label Content="&#707;  Ocene i recenzije zavrsene ture " HorizontalAlignment="Left" VerticalAlignment="Center" Margin="330,10,0,0" FontSize="16"/>
+            </Grid>
+        </Border>
+        <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,40,0,0" Width="1280" >
+            <Grid Background="Transparent">
             <Label Margin="0,50,0,0" Height="60" FontSize="44" FontWeight="Bold" HorizontalAlignment="Center">
                 <AccessText>
                     <MultiBinding StringFormat="{}{0} , {1}">
@@ -52,7 +92,11 @@
             <Image Source="/Resources/Icons/Guide/people.png" Margin="100,450,0,0"/>
             <TextBox Text="{Binding NumberOfPresentGuests}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="170,450,0,0" Width="1000" Height="150" FontSize="30" FontFamily="Helvetica" Foreground="White" Background="Transparent" BorderThickness="0" IsReadOnly="True"/>
             <Image Source="/Resources/Icons/Guide/checkpoints.png" Margin="100,550,0,0"/>
-            <ListView  ItemsSource="{Binding SelectedTour.KeyPoints}" Margin="170,550,0,50" Width="300" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent" IsHitTestVisible="False">
+                <Image Source="{Binding SelectedTour.Images[0]}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,165,10,0" Height="300" Width="400" Stretch="UniformToFill"/>
+                <Image Source="{Binding SelectedTour.Images[1]}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,165,415,0" Height="300" Width="400" Stretch="UniformToFill"/>
+                <Image Source="{Binding SelectedTour.Images[2]}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,470,10,0" Height="300" Width="400" Stretch="UniformToFill" />
+                <Image Source="{Binding SelectedTour.Images[3]}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,470,415,0" Height="300" Width="400" Stretch="UniformToFill"/>
+                <ListView  ItemsSource="{Binding SelectedTour.KeyPoints}" Margin="150,550,0,50" Width="300" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent" IsHitTestVisible="False">
                 <ListView.Resources>
                     <Style TargetType="{x:Type Label}">
                         <Setter Property="Foreground" Value="#FF1B5886"/>
@@ -128,7 +172,7 @@
                         <GridViewColumn Width="200">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Vidi komentar" Click="ViewComment_Click" IsEnabled="{Binding IsValid}" Background="Transparent" BorderThickness="0"/>
+                                    <Button Style="{StaticResource TransparentStyle}" Content="Vidi komentar" Click="ViewComment_Click" IsEnabled="{Binding IsValid}" Background="Transparent" BorderThickness="0"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -144,4 +188,5 @@
             </ListView>
         </Grid>
     </ScrollViewer>
+    </Grid>
 </Page>

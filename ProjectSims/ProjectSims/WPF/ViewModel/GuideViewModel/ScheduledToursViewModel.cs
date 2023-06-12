@@ -23,7 +23,6 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
         private ReservationTourService reservationTourService;
         private Guest2Service guest2Service;
         public NavigationService NavService;
-        public RelayCommand ViewDetailsCommand { get; set; }
         public RelayCommand GenerateReportCommand { get; set; }
         public ObservableCollection<Tour> ScheduledTours { get; set; }
        
@@ -51,12 +50,11 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
             tourService.Subscribe(this);
             Guide = guide;
             ScheduledTours = new ObservableCollection<Tour>(tourService.GetToursByStateAndGuideId(TourState.Inactive, Guide.Id));
-            ViewDetailsCommand = new RelayCommand(Executed_ViewDetailsCommand);
             GenerateReportCommand = new RelayCommand(Executed_GenerateReportCommand);
         }
-        public void Executed_ViewDetailsCommand(object obj)
+        public void ViewDetails(Tour selectedTour)
         {
-            NavService.Navigate(new TourDetailsAndCancelling(SelectedTour));
+            NavService.Navigate(new TourDetailsAndCancelling(selectedTour));
         }
         public void Executed_GenerateReportCommand(object obj)
         {

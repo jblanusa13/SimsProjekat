@@ -95,6 +95,10 @@ namespace ProjectSims.Service
         {
             return tourRepository.GetToursByDateAndGuideId(date, guideId);
         }
+        public List<Tour> GetAvailableTours(DateTime date, int guideId)
+        {
+            return GetToursByDateAndGuideId(date, guideId).Where(t=>t.State == TourState.Inactive).ToList();
+        }
         public Tour GetMostVisitedTour(int guideId, bool thisYear)
         {
             List<Tour> wantedTours = GetToursByStateAndGuideId(TourState.Finished, guideId);

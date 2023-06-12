@@ -104,7 +104,7 @@
                         <GridViewColumn Header="Detalji/Otkaži" Width="180">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Height="60" Width="60" Background="Transparent" Command="{Binding DataContext.ViewDetailsCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding Path=SelectedTour}" BorderThickness="0" Margin="60,0,0,0">
+                                    <Button Height="60" Width="60" Background="Transparent" Click="ViewDetails_Click" BorderThickness="0" Margin="60,0,0,0">
                                         <Image Source="/Resources/Icons/Guide/info.png"/>
                                     </Button>
                                 </DataTemplate>

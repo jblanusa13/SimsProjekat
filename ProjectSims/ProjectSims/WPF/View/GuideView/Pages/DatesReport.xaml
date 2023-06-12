@@ -66,11 +66,11 @@
                     </Hyperlink>
                 </Label>
                 <Label Margin="80,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">
-                    <Hyperlink Command="{Binding SheduledToursCommand}" IsEnabled="True">
+                    <Hyperlink Command="{Binding ScheduledToursCommand}" IsEnabled="True">
                         <TextBlock Text="&#707;  Zakazane ture"/>
                     </Hyperlink>
                 </Label>
-                <Label Content="&#707;  Predlozi" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="210,10,0,0" FontSize="16"/>
+                <Label Content="&#707;  Generisi izvestaj" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="210,10,0,0" FontSize="16"/>
             </Grid>
         </Border>
         <Grid Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="490" Width="1280">
@@ -78,7 +78,7 @@
             <Image Source ="/Resources/Icons/Guide/pdf.png"/>
         </Button>
         <Label Content="Generisi izvestaj" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0" FontSize="44" Height="60" FontWeight="Bold"/>
-        <Label Content="Opseg datuma:" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,150,0,0" FontSize="28" Height="50"/>
+        <Label Content="Odaberite opseg datuma:" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,150,0,0" FontSize="28" Height="50"/>
             <Viewbox HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,200,0,0" Height="280" Width="280" Stretch="Fill">
                 <Calendar Name="DateRange" FirstDayOfWeek="Monday" IsTodayHighlighted="True" SelectionMode="SingleRange" />
             </Viewbox>

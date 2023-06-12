@@ -54,10 +54,10 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Pocetak" Width="180">
+                        <GridViewColumn Header="Pocetak" Width="300">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Label  Content="{Binding StartOfTheTour}" Margin="10,0,0,0"/>
+                                    <Label  Content="{Binding StartOfTheTour,StringFormat=dd.MM.yyyy HH:mm}" Margin="10,0,0,0"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -68,11 +68,10 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Prosecna ocena" Width="150"/>
                         <GridViewColumn Header="Detalji i otkazivanje" Width="270">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button  Height="20" Width="20" Background="Transparent" Click="TourInfo_Click" BorderThickness="0">
+                                    <Button  Height="50" Width="50" Background="Transparent" Click="TourInfo_Click" BorderThickness="0">
                                         <Image Source="/Resources/Icons/Guide/info.png"/>
                                     </Button>
                                 </DataTemplate>

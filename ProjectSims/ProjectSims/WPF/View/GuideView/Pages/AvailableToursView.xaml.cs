@@ -42,7 +42,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             tourService.Subscribe(this);
             reservationService = new ReservationTourService();
             Guide = g;
-            TodayTours = new ObservableCollection<Tour>(tourService.GetToursByDateAndGuideId(DateTime.Now,Guide.Id));
+            TodayTours = new ObservableCollection<Tour>(tourService.GetAvailableTours(DateTime.Now,Guide.Id));
             if (tourService.GetTourByStateAndGuideId(TourState.Active, Guide.Id) != null)
             {
                 AvailableTour.IsHitTestVisible = false;
@@ -70,7 +70,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         private void UpdateAvailableTours()
         {
             TodayTours.Clear();
-            foreach (var tour in tourService.GetToursByDateAndGuideId(DateTime.Now.Date,Guide.Id))
+            foreach (var tour in tourService.GetAvailableTours(DateTime.Now.Date,Guide.Id))
             {
                 TodayTours.Add(tour);
             }

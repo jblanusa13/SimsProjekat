@@ -114,7 +114,7 @@
             </Grid>
         </Border>
         <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,40,0,0" Width="1280" Height="530">
-        <Grid>
+            <Grid>
                 <Label Content="{Binding LabelText}" HorizontalAlignment="Center" Margin="0,50,0,0" FontSize="44" Height="60" FontWeight="Bold"/>
                 <Image Source="/Resources/Icons/Guide/checkpoints.png" Margin="0,190,200,0" HorizontalAlignment="Center"/>
                 <Button Style="{StaticResource TransparentStyle1}" Height="65" Width="65" Margin="0,50,50,00" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" BorderThickness="0" Command="{Binding FinishTourCommand}" Cursor="Hand">

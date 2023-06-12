@@ -34,7 +34,7 @@
                                         <Grid Grid.Row="0" >
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                                                 <TextBlock Text="Naziv: "/>
-                                                <TextBlock Text="{Binding Tour.Name}" />
+                                                <TextBlock Text="{Binding Name}" />
                                             </StackPanel>
 
                                             <Border BorderBrush="Black" BorderThickness="0,0,0,1"/>
@@ -42,7 +42,7 @@
                                         <Grid Grid.Row="1" >
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                                                 <TextBlock Text="Pocetak: "/>
-                                                <TextBlock Text="{Binding Tour.StartOfTheTour,StringFormat=dd.MM.yyyy HH:mm}" />
+                                                <TextBlock Text="{Binding StartOfTheTour,StringFormat=dd.MM.yyyy HH:mm}" />
                                             </StackPanel>
 
                                             <Border BorderBrush="Black" BorderThickness="0,0,0,1"/>
@@ -50,7 +50,7 @@
                                         <Grid Grid.Row="2" >
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                                                 <TextBlock Text="Lokacija: "/>
-                                                <TextBlock Text="{Binding Tour.Location}" />
+                                                <TextBlock Text="{Binding Location}" />
                                             </StackPanel>
 
                                             <Border BorderBrush="Black" BorderThickness="0,0,0,1"/>
@@ -58,7 +58,7 @@
                                         <Grid Grid.Row="3" >
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                                                 <TextBlock Text="Maksimalan broj gostiju: "/>
-                                                <TextBlock Text="{Binding Tour.MaxNumberGuests}" />
+                                                <TextBlock Text="{Binding MaxNumberGuests}" />
                                             </StackPanel>
 
                                             <Border BorderBrush="Black" BorderThickness="0,0,0,1"/>
@@ -66,7 +66,7 @@
                                         <Grid Grid.Row="4" >
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                                                 <TextBlock Text="Trajanje: "/>
-                                                <TextBlock Text="{Binding Tour.Duration}" />
+                                                <TextBlock Text="{Binding Duration}" />
                                             </StackPanel>
 
                                             <Border BorderBrush="Black" BorderThickness="0,0,0,1"/>
@@ -74,7 +74,7 @@
                                         <Grid Grid.Row="5" >
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                                                 <TextBlock Text="Jezik: "/>
-                                                <TextBlock Text="{Binding Tour.Language}" />
+                                                <TextBlock Text="{Binding Language}" />
                                             </StackPanel>
 
                                             <Border BorderBrush="Black" BorderThickness="0,0,0,1"/>

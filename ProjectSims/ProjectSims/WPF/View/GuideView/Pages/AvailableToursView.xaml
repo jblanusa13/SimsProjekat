@@ -5,8 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="1280"
-      Title="AvailableToursView">
+      d:DesignHeight="500" d:DesignWidth="1280">
     <Page.Resources>
         <Style TargetType="{x:Type Label}">
             <Setter Property="Foreground" Value="White"/>

@@ -34,6 +34,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
     {
         private CreateTourViewModel createTourViewModel;
         public RelayCommand AddAppointmentCommand { get; set; }
+        public RelayCommand BackCommand { get; set; }
         public RelayCommand AddKeyPointCommand { get; set; }
         public RelayCommand CreateTourCommand { get; set; }
         public List<string> OtherKeyPoints { get; set; }
@@ -335,6 +336,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             InitializeComponent();
             AddAppointmentCommand = new RelayCommand(Execute_AddAppointmentCommand, CanExecute_AddAppointmentCommand);
             AddKeyPointCommand = new RelayCommand(Execute_AddKeyPointCommand, CanExecute_AddKeyPointCommand);
+            BackCommand = new RelayCommand(Execute_BackCommand);
             CreateTourCommand = new RelayCommand(Execute_CreateTourCommand, CanExecute_CreateTourCommand);
             DataContext = this;
             createTourViewModel = new CreateTourViewModel(guide, tourRequest);
@@ -423,6 +425,10 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             OtherKeyPoints.Add(OtherKeyPointTextBox.Text);
             OtherKeyPointTextBox.Text = "";
         }
+        private void Execute_BackCommand(object obj)
+        {
+            this.NavigationService.GoBack();
+        }
         private bool CanExecute_CreateTourCommand(object obj)
         {
                 return IsValid;
@@ -447,6 +453,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             }
             Images.Add(GetRelativePath(apsolutePath));
         }
+
         private string GetRelativePath(string apsolutePath)
         {
             string[] helpString = apsolutePath.Split('\\');

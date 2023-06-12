@@ -7,7 +7,7 @@
       xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="ProjectSims.WPF.View.GuideView.Pages.CreateTourView"
       xmlns:custom="clr-namespace:ProjectSims.WPF.CustomControls"
       mc:Ignorable="d" 
-      d:DesignHeight="2000" d:DesignWidth="1280"
+ d:DesignWidth="1280"
       Title="CreateTourView">
     <Page.Resources>
         <Style TargetType="{x:Type Label}">
@@ -72,6 +72,16 @@
             <Setter Property="FontFamily" Value="Helvetica"/>
             <Setter Property="Width" Value="930"/>
         </Style>
+        <Style TargetType="{x:Type Hyperlink}">
+            <Setter Property="Foreground" Value="#FF1B5886" />
+            <Setter Property="TextBlock.TextDecorations" Value="{x:Null}" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="MidnightBlue" />
+                    <Setter Property="TextBlock.TextDecorations" Value="Underline" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <ControlTemplate x:Key="ValidationTemplate">
             <StackPanel>
                 <AdornedElementPlaceholder x:Name="textBox" />
@@ -79,8 +89,19 @@
             </StackPanel>
         </ControlTemplate>
     </Page.Resources>
-    <ScrollViewer>
-        <Grid Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Width="1200" Height="2000">
+    <Grid>
+        <Border HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Height="40" Width="1280" BorderBrush="White" BorderThickness="0 0 0 1">
+            <Grid>
+                <Label Margin="20,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">
+                    <Hyperlink Command="{Binding BackCommand}">
+                        <TextBlock Text="Početna"/>
+                    </Hyperlink>
+                </Label>
+                <Label Content="&#707; Kreiraj novu" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,10,0,0" FontSize="16"/>
+            </Grid>
+        </Border>
+        <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,40,0,0" Width="1280" >
+        <Grid Background="Transparent">
             <Image Source="/Resources/Icons/Guide/create.png" Margin="420,50,0,0"/>
             <Label Content="Nova tura" HorizontalAlignment="Center" Margin="0,50,0,0" FontSize="44" Height="50" FontWeight="Bold"/>
             <Image Source="/Resources/Icons/Guide/tourname.png" Margin="100,150,0,0"/>
@@ -177,10 +198,11 @@
             <GroupBox Header="Opis" Margin="0,1500,100,0" Height="300" >
                 <TextBox Text="{Binding Description, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="860" Height="220"/>
             </GroupBox>
-            <Button Margin="0,0,25,80" Height="65" Width="65"  VerticalAlignment="Bottom" Command="{Binding CreateTourCommand}">
+            <Button Margin="0,1920,25,80" Height="65" Width="65"  VerticalAlignment="Top" Command="{Binding CreateTourCommand}">
                 <Image Source="/Resources/Icons/Guide/checked.png"/>
             </Button>
-            <Label Content="Kreiraj turu" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,30" FontSize="18"/>
+            <Label Content="Kreiraj turu" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,1970,10,30" FontSize="18"/>
         </Grid>
     </ScrollViewer>
+    </Grid>
 </Page>

@@ -25,6 +25,8 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
         public NavigationService NavService { get; set; }
         public Guide Guide { get; set; }
         public RelayCommand GenerateReportCommand { get; set; }
+        public RelayCommand HomeCommand { get; set; }
+        public RelayCommand ScheduledToursCommand { get; set; }
         public Calendar DateRange { get; set; }
         public DateReportViewModel(Guide guide, NavigationService navigationService,Calendar dateRange)
         {
@@ -32,6 +34,8 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
             Guide = guide;
             tourService = new TourService();
             GenerateReportCommand = new RelayCommand(Execute_GenerateReportCommand);
+            ScheduledToursCommand = new RelayCommand(Execute_ScheduledToursCommand);
+            HomeCommand = new RelayCommand(Execute_HomeCommand);
             DateRange = dateRange;
         }
         private void Execute_GenerateReportCommand(object obj)
@@ -41,6 +45,14 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
             FlowDocument fd = report.Document;
             DocumentPaginator documentPaginator = (fd as IDocumentPaginatorSource).DocumentPaginator;
             printDialog.PrintDocument(documentPaginator, "Izvestaj");
+        }
+        private void Execute_HomeCommand(object obj)
+        {
+            NavService.Navigate(new HomeView(Guide, NavService));
+        }
+        private void Execute_ScheduledToursCommand(object obj)
+        {
+            NavService.Navigate(new ScheduledToursView(Guide, NavService));
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
