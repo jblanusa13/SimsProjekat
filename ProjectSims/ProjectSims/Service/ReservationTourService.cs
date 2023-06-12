@@ -134,9 +134,9 @@ namespace ProjectSims.Service
             tourReservations.ForEach(r => r.State = state);
             tourReservations.ForEach(r => Update(r));
         }
-        public void UpdateGuestState(Guest2 guest,Tour tour,Guest2State state)
+        public void UpdateGuestState(int guestId,Tour tour,Guest2State state)
         {
-            ReservationTour reservation = GetReservationsByTour(tour).Find(r=>r.Guest2Id == guest.Id);
+            ReservationTour reservation = GetReservationsByTour(tour).Find(r=>r.Guest2Id == guestId);
             reservation.State = state;
             if(state == Guest2State.Present)
                 reservation.KeyPointWhereGuestArrivedId = tour.ActiveKeyPointId;

@@ -50,6 +50,7 @@
     <None Remove="Resources\Icons\Guide\logout2.png" />
     <None Remove="Resources\Icons\Guide\mapPin.png" />
     <None Remove="Resources\Icons\Guide\notification.png" />
+    <None Remove="Resources\Icons\Guide\pdf.png" />
     <None Remove="Resources\Icons\Guide\people.png" />
     <None Remove="Resources\Icons\Guide\placeholder.png" />
     <None Remove="Resources\Icons\Guide\profile.png" />
@@ -96,6 +97,8 @@
     <None Remove="Resources\Images\Guide\barcelona1.jpg" />
     <None Remove="Resources\Images\Guide\bck.jpg" />
     <None Remove="Resources\Images\Guide\bckgrnd.jpg" />
+    <None Remove="Resources\Images\Guide\cover.png" />
+    <None Remove="Resources\Images\Guide\coverPhoto.jpg" />
     <None Remove="Resources\Images\Guide\etno-selo-stanisici.jpg" />
     <None Remove="Resources\Images\Guide\Grad-Bijeljina.jpg" />
     <None Remove="Resources\Images\Guide\gradske-sluzbe20757.jpg" />
@@ -114,6 +117,7 @@
     <None Remove="Resources\Images\Guide\sagrada-familia.jpg" />
     <None Remove="Resources\Images\Guide\sat.jpg" />
     <None Remove="Resources\Images\Guide\VojniMuzej.jpg" />
+    <None Remove="Resources\Images\Guide\wlppr.jpg" />
     <None Remove="Resources\Images\home.png" />
     <None Remove="Resources\Images\leftarrow.png" />
     <None Remove="Resources\Images\mappin.png" />
@@ -220,6 +224,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\notification.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\Guide\pdf.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\Guide\people.png">
@@ -336,6 +343,12 @@
     <Content Include="Resources\Images\Guide\barcelona1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Guide\cover.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guide\coverPhoto.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Guide\etno-selo-stanisici.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -388,6 +401,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Guide\VojniMuzej.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Guide\wlppr.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Owner\Accommodations\filipovic2.jpg">

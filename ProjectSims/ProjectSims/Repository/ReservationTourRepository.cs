@@ -79,7 +79,7 @@ namespace ProjectSims.Repository
         }
         public ReservationTour GetTourIdWhereGuestIsWaiting(Guest2 guest)
         {
-            ReservationTour reservation = reservations.Find(r=> r.Guest2Id == guest.Id && r.State == Guest2State.Waiting);
+            ReservationTour reservation = reservations.Find(r=> r.Guest2Id == guest.Id && r.State == Guest2State.ActiveTour);
             return reservation;
         }
         public ReservationTour GetReservationByGuestAndTour(Tour tour,Guest2 Guest)

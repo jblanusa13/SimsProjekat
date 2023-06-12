@@ -55,7 +55,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 SelectedTour = ((FrameworkElement)sender).DataContext as Tour;
                 tourService.UpdateTourState(SelectedTour, TourState.Active);
                 reservationService.UpdateGuestsState(SelectedTour, Guest2State.ActiveTour);
-                this.NavigationService.Navigate(new TourTrackingView(SelectedTour, Guide));
+                this.NavigationService.Navigate(new TourTrackingView(SelectedTour, Guide,this.NavigationService));
             }
             else
             {

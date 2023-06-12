@@ -75,7 +75,7 @@ namespace ProjectSims.WPF.View.Guest2View
                 MessageBoxResult answer = MessageBox.Show("Da li ste prisutni na turi " + tour.Name + "?", "", MessageBoxButton.YesNo);
                 if (answer == MessageBoxResult.Yes)
                 {
-                    reservationTourService.UpdateGuestState(guest2,tour,Guest2State.Present);
+                    reservationTourService.UpdateGuestState(guest2.Id,tour,Guest2State.Present);
                     CheckGuestReservation();
                 }
             }

@@ -1,10 +1,10 @@
-0|2|12|13|Present|12|False|True|18
-1|2|2|16|Present|12|False|True|51
+0|2|12|13|Present|11|False|True|18
+1|2|2|16|ActiveTour|12|False|True|51
 2|6|2|16|InactiveTour|-1|False|False|51
 3|7|5|16|InactiveTour|-1|False|False|51
-4|2|5|14|Present|12|False|False|53
+4|2|5|14|ActiveTour|12|False|False|53
 5|6|3|14|InactiveTour|-1|False|False|53
-6|2|1|15|Present|12|False|True|16
+6|2|1|15|ActiveTour|12|False|True|16
 7|8|5|13|Present|40|False|False|18
 8|9|3|13|Present|43|False|False|18
 9|10|1|13|Present|46|False|False|18

@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       mc:Ignorable="d" 
       d:DesignHeight="400" d:DesignWidth="1280"
       Title="ScheduledToursView">
@@ -32,11 +33,35 @@
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="IsHitTestVisible" Value="False"/>
         </Style>
+        <Style x:Key="TransparentStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border>
+                            <Border.Style>
+                                <Style TargetType="{x:Type Border}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Height" Value="50"/>
+                                            <Setter Property="Width" Value="50"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <Grid Background="Transparent">
+                                <ContentPresenter></ContentPresenter>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
     <ScrollViewer>
         <Grid Background="Transparent">
             <Label Content="Zakazane ture" HorizontalAlignment="Center" Margin="0,50,0,0" FontSize="44" Height="60" FontWeight="Bold"/>
-            <ListView  x:Name="ScheduledTour" ItemsSource="{Binding ScheduledTours}" Margin="0,150,0,100" HorizontalAlignment="Center" VerticalAlignment="Top"  Width="1200" Background="#ffc300" SelectionMode="Single">
+            <ListView  x:Name="ScheduledTour" ItemsSource="{Binding ScheduledTours}" SelectedItem="{Binding SelectedTour}" Margin="0,150,0,100" HorizontalAlignment="Center" VerticalAlignment="Top"  Width="1200" Background="#ffc300" SelectionMode="Single">
                 <ListView.Resources>
                     <Style TargetType="{x:Type Label}">
                         <Setter Property="Foreground" Value="#FF1B5886"/>
@@ -45,50 +70,53 @@
                     </Style>
                 </ListView.Resources>
                 <ListView.View>
-                        <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeader}" >
-                            <GridViewColumn Width="240">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
+                    <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeader}" >
+                        <GridViewColumn Width="240">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
                                     <Grid Height="180" Width="240" Margin="0,0,0,0">
                                         <Image  Source="{Binding Images[0]}" Height="180" Width="240" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Grid>
                                 </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Header="Naziv" Width="330">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Label  Content="{Binding Name}" Margin="10,0,0,0"/>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Header="Pocetak" Width="200">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Naziv" Width="330">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label  Content="{Binding Name}" Margin="10,0,0,0"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Pocetak" Width="200">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
                                     <TextBlock Text="{Binding StartOfTheTour,StringFormat=dd/MM/yyyy HH:mm}" Margin="0,50,0,0" Foreground="#FF1B5886" FontSize="22" FontFamily="Helvetica" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80"/>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Header="Lokacija" Width="240">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Label  Content="{Binding Location}" Margin="10,0,0,0"/>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Header="Detalji/Otkaži" Width="180">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                    <Button Height="60" Width="60" Background="Transparent" Command="{Binding ViewDetailsCommand}" BorderThickness="0" Margin="60,0,0,0">
-                                            <Image Source="/Resources/Icons/Guide/info.png"/>
-                                        </Button>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Lokacija" Width="240">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label  Content="{Binding Location}" Margin="10,0,0,0"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Detalji/Otkaži" Width="180">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Height="60" Width="60" Background="Transparent" Command="{Binding DataContext.ViewDetailsCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding Path=SelectedTour}" BorderThickness="0" Margin="60,0,0,0">
+                                        <Image Source="/Resources/Icons/Guide/info.png"/>
+                                    </Button>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
                 </ListView.View>
             </ListView>
-            <Button Height="30" Width="160" Content="hh" Background="Transparent" Command="{Binding DataContext.ViewDetailsCommand,RelativeSource= {RelativeSource FindAncestor,AncestorType={x:Type ListView}}}" BorderThickness="0" Margin="60,100,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White"/>
+            <Button Cursor="Hand" Height="60" Width="60" Style="{StaticResource TransparentStyle}" Command="{Binding GenerateReportCommand}" Margin="0,50,50,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Image Source="/Resources/Icons/Guide/pdf.png" />
+            </Button>
+            <Label Content="Generisi izvestaj" FontSize="16" HorizontalAlignment="Right" Margin="0,100,20,0"/>
         </Grid>
     </ScrollViewer>
 </Page>

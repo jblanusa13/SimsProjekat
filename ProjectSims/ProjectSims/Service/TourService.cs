@@ -75,6 +75,18 @@ namespace ProjectSims.Service
         {
             return tourRepository.GetToursByStateAndGuideId(state, guideId);
         }
+        public List<Tour> GetScheduledToursInDateRange(int guideId,DateTime start,DateTime end)
+        {
+            List<Tour> tours = new List<Tour>();
+            foreach(var tour in GetToursByStateAndGuideId(TourState.Inactive, guideId))
+            {
+                if(tour.StartOfTheTour <= end && tour.StartOfTheTour >= end)
+                {
+                    tours.Add(tour);
+                }
+            }
+            return tours;
+        }
         public Tour GetTourByStateAndGuideId(TourState state, int guideId)
         {
             return tourRepository.GetTourByStateAndGuideId(state, guideId);

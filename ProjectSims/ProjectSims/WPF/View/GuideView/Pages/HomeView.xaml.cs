@@ -1,9 +1,9 @@
 ﻿using ProjectSims.Domain.Model;
-using ProjectSims.Service;
-using ProjectSims.View.GuideView;
+using ProjectSims.WPF.ViewModel.Guest1ViewModel;
+using ProjectSims.WPF.ViewModel.GuideViewModel;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,23 +16,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ProjectSims.Observer;
-using ProjectSims.WPF.ViewModel.GuideViewModel;
 
 namespace ProjectSims.WPF.View.GuideView.Pages
 {
     /// <summary>
-    /// Interaction logic for TourTrackingView.xaml
+    /// Interaction logic for HomeView.xaml
     /// </summary>
-    public partial class TourTrackingView : Page
+    public partial class HomeView : Page
     {
-
-        public TourTrackingView(Tour startedTour, Guide guide, NavigationService navigation)
+        public HomeView(Guide guide,NavigationService navigation)
         {
             InitializeComponent();
-            this.DataContext = new TourTrackingViewModel(guide, startedTour, navigation);
+            this.DataContext = new HomeViewModel(guide, navigation);
         }
-
     }
-    
 }

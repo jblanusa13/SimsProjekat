@@ -30,12 +30,6 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             InitializeComponent();
             this.DataContext = new ScheduledToursViewModel(guide, navigationService);
         }
-
-       // private void CancelTour_Click(object sender, RoutedEventArgs e)
-        //{
-          //  SelectedTour = ((FrameworkElement)sender).DataContext as Tour;
-            //NavigationService.Navigate(new TourDetailsAndCancelling(SelectedTour));
-        //}
     }
 }
 

@@ -12,23 +12,39 @@ using System.Windows;
 using ProjectSims.WPF.View.GuideView.Pages;
 using System.Reflection;
 using System.Windows.Navigation;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace ProjectSims.WPF.ViewModel.GuideViewModel
 {
-    public class ScheduledToursViewModel : Page, IObserver
+    public class ScheduledToursViewModel : Page, IObserver,INotifyPropertyChanged
     {
         private TourService tourService;
         private ReservationTourService reservationTourService;
         private Guest2Service guest2Service;
-        public NavigationService navigationService;
+        public NavigationService NavService;
         public RelayCommand ViewDetailsCommand { get; set; }
+        public RelayCommand GenerateReportCommand { get; set; }
         public ObservableCollection<Tour> ScheduledTours { get; set; }
-        public Tour SelectedTour { get; set; }
+       
+        private Tour _selectedTour;
+        public Tour SelectedTour
+        {
+            get => _selectedTour;
+            set
+            {
+                if (value != _selectedTour)
+                {
+                    _selectedTour = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public Guide Guide { get; set; }
       
-        public ScheduledToursViewModel(Guide guide,NavigationService ns)
+        public ScheduledToursViewModel(Guide guide,NavigationService navigationService)
         {
-            navigationService = ns;
+            NavService = navigationService;
             tourService = new TourService();
             reservationTourService = new ReservationTourService();
             guest2Service = new Guest2Service();
@@ -36,19 +52,15 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
             Guide = guide;
             ScheduledTours = new ObservableCollection<Tour>(tourService.GetToursByStateAndGuideId(TourState.Inactive, Guide.Id));
             ViewDetailsCommand = new RelayCommand(Executed_ViewDetailsCommand);
+            GenerateReportCommand = new RelayCommand(Executed_GenerateReportCommand);
         }
         public void Executed_ViewDetailsCommand(object obj)
         {
-            SelectedTour = ((FrameworkElement)obj).DataContext as Tour;
-            NavigationService.Navigate(new TourDetailsAndCancelling(SelectedTour));
-            MessageBox.Show("rr");
+            NavService.Navigate(new TourDetailsAndCancelling(SelectedTour));
         }
-        public void CancelTour(Tour SelectedTour)
+        public void Executed_GenerateReportCommand(object obj)
         {
-            tourService.UpdateTourState(SelectedTour, TourState.Cancelled);
-            List<int> guestIds = reservationTourService.GetGuestIdsByTourAndState(SelectedTour, Guest2State.InactiveTour);
-            if (guestIds.Count > 0)
-                guestIds.ForEach(id => guest2Service.GiveVoucher(id,1));
+            NavService.Navigate(new DatesReport(NavService,Guide));
         }
         public void Update()
         {
@@ -57,6 +69,12 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
             {
                 ScheduledTours.Add(tour);
             }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

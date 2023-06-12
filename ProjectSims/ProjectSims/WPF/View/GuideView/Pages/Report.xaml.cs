@@ -1,6 +1,5 @@
 ﻿using ProjectSims.Domain.Model;
 using ProjectSims.Service;
-using ProjectSims.View.GuideView;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,23 +15,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ProjectSims.Observer;
-using ProjectSims.WPF.ViewModel.GuideViewModel;
 
 namespace ProjectSims.WPF.View.GuideView.Pages
 {
     /// <summary>
-    /// Interaction logic for TourTrackingView.xaml
+    /// Interaction logic for Report.xaml
     /// </summary>
-    public partial class TourTrackingView : Page
+    public partial class Report : Page
     {
-
-        public TourTrackingView(Tour startedTour, Guide guide, NavigationService navigation)
+        public ObservableCollection<Tour> Tours { get; set; }
+        private TourService tourService;
+        public Report(Guide guide,DateTime start,DateTime end)
         {
             InitializeComponent();
-            this.DataContext = new TourTrackingViewModel(guide, startedTour, navigation);
+            tourService = new TourService();
+            Tours = new ObservableCollection<Tour>(tourService.GetScheduledToursInDateRange(guide.Id,start,end));
+            ScheduledTours.ItemsSource = Tours;
         }
-
     }
-    
 }

@@ -34,12 +34,14 @@ namespace ProjectSims.View.GuideView
             tourService = new TourService();
             Guide = g;
             ActiveTour = tourService.GetTourByStateAndGuideId(TourState.Active, Guide.Id);
+            GuideFrame.Content = new HomeView(Guide, GuideFrame.NavigationService);
         }
         private void Back_Click(object sender, RoutedEventArgs e)
         {
         }
         private void Home_Click(object sender, RoutedEventArgs e)
         {
+            GuideFrame.Content = new HomeView(Guide,GuideFrame.NavigationService);
         }
         private void Account_Click(object sender, RoutedEventArgs e)
         {
@@ -54,7 +56,7 @@ namespace ProjectSims.View.GuideView
             ActiveTour = tourService.GetTourByStateAndGuideId(TourState.Active, Guide.Id);
             if (ActiveTour != null)
             {
-                Page tourTrackingPage = new TourTrackingView(ActiveTour,Guide);
+                Page tourTrackingPage = new TourTrackingView(ActiveTour,Guide,GuideFrame.NavigationService);
                 GuideFrame.Content = tourTrackingPage;
             }
         }

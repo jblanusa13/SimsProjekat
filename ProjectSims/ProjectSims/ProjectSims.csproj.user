@@ -149,7 +149,16 @@
     <Compile Update="WPF\View\GuideView\GuideStartingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\DatesReport.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\GuideView\Pages\GuideAccountView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\HomeView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\Report.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\GuideView\Pages\RequestStatisticsView.xaml.cs">
@@ -331,7 +340,16 @@
     <Page Update="WPF\View\GuideView\GuideStartingView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="WPF\View\GuideView\Pages\DatesReport.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="WPF\View\GuideView\Pages\GuideAccountView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\GuideView\Pages\HomeView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\GuideView\Pages\Report.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\GuideView\Pages\RequestStatisticsView.xaml">
