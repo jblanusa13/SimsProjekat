@@ -142,8 +142,12 @@
             </Grid>
 
             <Grid Grid.Row="3">
+                <Label Grid.Row="0" FontFamily="Bahnschrift"
+                       Foreground="{DynamicResource FontsColor}"
+                       FontSize="13"
+                       Margin="10,0,0,0" HorizontalContentAlignment="Stretch">Pritisnite S na zeljenom forumu da biste ga prikazali</Label>
                 <DataGrid Grid.Row="1" Name="ForumsTable" ItemsSource="{Binding Path=Forums, UpdateSourceTrigger=PropertyChanged}"
-                        Margin="10,0,10,10" HeadersVisibility="Column"
+                        Margin="10,23,10,10" HeadersVisibility="Column"
                       PreviewKeyDown="ForumsTable_PreviewKeyDown"
                           SelectedItem="{Binding SelectedForum, UpdateSourceTrigger=PropertyChanged}">
                     <DataGrid.Columns>
