@@ -25,8 +25,9 @@
         </Grid.RowDefinitions>
 
         <Grid ScrollViewer.CanContentScroll="True" 
-                  SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical" 
-                  Width="430">
+              SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+              ScrollViewer.VerticalScrollBarVisibility="Hidden"
+              Width="430">
             <DataGrid x:Name="ForumsTable"  
                           ItemsSource="{Binding Path=Forums, UpdateSourceTrigger=PropertyChanged}"
                           SelectedItem="{Binding Path=SelectedForum, UpdateSourceTrigger=PropertyChanged}"

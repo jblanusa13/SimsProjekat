@@ -11,6 +11,8 @@ using ProjectSims.WPF.View.Guest1View;
 using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.WPF.View.Guest1View.MainPages;
 using ProjectSims.WPF.View.OwnerView.Pages;
+using ceTe.DynamicPDF.PageElements.Charting;
+using LiveCharts;
 
 namespace ProjectSims.Service
 {
@@ -259,6 +261,141 @@ namespace ProjectSims.Service
         public void Subscribe(IObserver observer)
         {
             reservationRepository.Subscribe(observer);
+        }
+
+        public int FindMaxCountAccommodation(Owner owner, string[] YearLabels)
+        {
+            Dictionary<int, double[]> allBusyness = FindStatisticsForAllAccommodations(owner, YearLabels);
+            KeyValuePair<int, double[]> max = allBusyness.FirstOrDefault();
+            foreach (var item in allBusyness)
+            {
+                if (item.Value[1] > max.Value[1])
+                {
+                    max = item;
+                }
+            }
+            return max.Key;
+        }
+
+        public int FindMinCountAccommodation(Owner owner, string[] YearLabels)
+        {
+            Dictionary<int, double[]> allBusyness = FindStatisticsForAllAccommodations(owner, YearLabels);
+            KeyValuePair<int, double[]> min = allBusyness.FirstOrDefault();
+            foreach (var item in allBusyness)
+            {
+                if (item.Value[1] < min.Value[1])
+                {
+                    min = item;
+                }
+            }
+            return min.Key;
+        }
+
+        public int FindMostBusyAccommodation(Owner owner, string[] YearLabels)
+        {
+            Dictionary<int, double[]> allBusyness = FindStatisticsForAllAccommodations(owner, YearLabels);
+            KeyValuePair<int, double[]> most = allBusyness.FirstOrDefault();
+            foreach (var item in allBusyness)
+            {
+                if (item.Value[0] > most.Value[0])
+                {
+                    most = item;
+                }
+            }
+            return most.Key;
+        }
+
+        public int FindLeastBusyAccommodation(Owner owner, string[] YearLabels)
+        {
+            Dictionary<int, double[]> allBusyness = FindStatisticsForAllAccommodations(owner, YearLabels);
+            KeyValuePair<int, double[]> least = allBusyness.First();
+            foreach (var item in allBusyness)
+            {
+                if (item.Value[0] < least.Value[0])
+                {
+                    least = item;
+                }
+            }
+            return least.Key;
+        }
+
+        public Dictionary<int, double[]> FindStatisticsForAllAccommodations(Owner owner, string[] YearLabels)
+        {
+            Dictionary<int, double[]> accommodationsStatistics = new Dictionary<int, double[]>();
+            List<Accommodation> accommodations = accommodationRepository.GetAllByOwner(owner.Id);
+            foreach (Accommodation accommodation in accommodations)
+            {
+                List<AccommodationReservation> reservations = GetAllReservationsByAccommodationId(accommodation.Id);
+                accommodationsStatistics.Add(accommodation.Id, SumBusynessAndReservationCountForEachYear(reservations, YearLabels));
+            }
+            return accommodationsStatistics;
+        }
+
+        public double[] SumBusynessAndReservationCountForEachYear(List<AccommodationReservation> reservations, string[] YearLabels)
+        {
+            double[] sumAndCount = new double[] { 0, 0 };
+            Dictionary<string, double[]> busyness = CountBusynessAndReservationCountForEachYear(reservations, YearLabels);
+            foreach (var item in busyness)
+            {
+                sumAndCount[0] += item.Value[0];
+                sumAndCount[1] += item.Value[1];
+            }
+            return sumAndCount;
+        }
+        public int DisplayMostVisitedMonth(ChartValues<int> TotalMonthReservations, int MostVisitedMonth)
+        {
+            double[] daysInMonths = new double[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+            MostVisitedMonth = 0;
+            double unavailability = TotalMonthReservations[0] / daysInMonths[0];
+            for (int i = 1; i < TotalMonthReservations.Count(); i++)
+            {
+                if (TotalMonthReservations[i] / daysInMonths[i] > unavailability)
+                {
+                    MostVisitedMonth = i;
+                    unavailability = TotalMonthReservations[i] / daysInMonths[i];
+                }
+            }
+            MostVisitedMonth += 1;
+            return MostVisitedMonth;
+        }
+
+        public string FindMostVisitedYear(string[] YearLabels, List<AccommodationReservation> Reservations)
+        {
+            string MostVisitedYear = "";
+            Dictionary<string, double[]> busynessThroughYears = CountBusynessAndReservationCountForEachYear(Reservations, YearLabels);
+            KeyValuePair<string, double[]> mostVisited = busynessThroughYears.FirstOrDefault();
+            MostVisitedYear = mostVisited.Key;
+            foreach (var item in busynessThroughYears)
+            {
+                if (item.Value[0] > mostVisited.Value[0])
+                {
+                    mostVisited = item;
+                    MostVisitedYear = mostVisited.Key;
+                }
+            }
+            return MostVisitedYear;
+        }
+        public Dictionary<string, double[]> CountBusynessAndReservationCountForEachYear(List<AccommodationReservation> reservations, string[] YearLabels)
+        {
+            Dictionary<string, double[]> bussynessAndReservationCountInYears = new Dictionary<string, double[]>();
+            foreach (var year in YearLabels)
+            {
+                bussynessAndReservationCountInYears.Add(year, new double[] { CountBusynessAndReservationCountInOneYear(reservations, year)[0],
+                                                                             CountBusynessAndReservationCountInOneYear(reservations, year)[1] });
+            }
+            return bussynessAndReservationCountInYears;
+        }
+
+        public double[] CountBusynessAndReservationCountInOneYear(List<AccommodationReservation> reservations, string year)
+        {
+            double[] busyness = new double[2] { 0, 0 };
+            foreach (var item in GettAllReservationsByYear(reservations, year))
+            {
+                busyness[0] += (item.CheckOutDate.DayNumber - item.CheckInDate.DayNumber);
+                busyness[1]++;
+            }
+            busyness[0] = busyness[0] / 365.0;
+            return busyness;
         }
     }
 }

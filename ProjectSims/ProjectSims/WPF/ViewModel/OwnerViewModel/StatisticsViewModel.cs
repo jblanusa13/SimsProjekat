@@ -20,6 +20,11 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using ProjectSims.Commands;
 using System.Windows.Navigation;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
+using System.Windows;
+using System.Windows.Documents;
+using ProjectSims.WPF.View.OwnerView;
 
 namespace ProjectSims.WPF.ViewModel.OwnerViewModel
 {
@@ -27,12 +32,11 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
     {
         public MyICommand PopularLocationCommand { get; set; }
         public MyICommand UnpopularLocationCommand { get; set; }
+        public RelayCommand GenerateReportCommand { get; set; }
+        public RelayCommand SelectionChangedCommand { get; set; }
+        public RelayCommand MouseUpCommand { get; set; }
+        public RelayCommand MouseDownCommand { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
         private AccommodationReservationService accommodationReservationService;
         private AccommodationService accommodationService;
         private AccommodationRatingService accommodationRatingService;
@@ -111,16 +115,45 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
             }
         }
 
+        private Image _image;
+        public Image Image
+        {
+            get => _image;
+
+            set
+            {
+                if (value != _image)
+                {
+                    _image = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string _year;
+        public string Year
+        {
+            get => _year;
+
+            set
+            {
+                if (value != _year)
+                {
+                    _year = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public ChartValues<int> TotalMonthReservations { get; set; }
         public ChartValues<int> TotalReservations { get; set; }
-        public StatisticsView StatisticsView { get; set; }
+        public StatisticsView View { get; set; }
         public NavigationService NavService { get; set; }
-
-        public StatisticsViewModel(Owner o, StatisticsView view, TextBlock titleTextBlock, Accommodation selectedAccommodetion, int mostVisitedMonth, string mostVisitedYear, NavigationService navService)
+        public OwnerStartingView Window { get; set; }
+        public StatisticsViewModel(Owner o, StatisticsView view, OwnerStartingView window, Accommodation selectedAccommodetion, NavigationService navService)
         {
             Owner = o;
-            StatisticsView = view;
-            TitleTextBlock = titleTextBlock;
+            View = view;
+            Window = window;
             SelectedAccommodation = selectedAccommodetion;
             NavService = navService;
             accommodationReservationService = new AccommodationReservationService();
@@ -129,13 +162,17 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
             ownerService = new OwnerService();
             accommodationService = new AccommodationService();
 
+            InitializeImages();
+
             PopularLocationCommand = new MyICommand(OnOpen);
             UnpopularLocationCommand = new MyICommand(OnClose);
-            
+            GenerateReportCommand = new RelayCommand(Execute_GenerateReportCommand);
+            SelectionChangedCommand = new RelayCommand(Execute_SelectionChangedCommand);
+            MouseUpCommand = new RelayCommand(Execute_MouseUpCommand);
+            MouseDownCommand = new RelayCommand(Execute_MouseDownCommand);
+
             Pointlabel = chartPoint => String.Format("{0}({1:P})", chartPoint.Y, chartPoint.Participation);
             Reservations = new List<AccommodationReservation>(accommodationReservationService.GetAllReservationsByAccommodationId(SelectedAccommodation.Id));
-            MostVisitedMonth = mostVisitedMonth;
-            MostVisitedYear = this.MostVisitedYear;
             TotalMonthReservations = new ChartValues<int>();
             TotalReservations = new ChartValues<int>();
 
@@ -156,8 +193,32 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
                 LabelsForMonths.Add(l);
             }
 
-            MostVisitedYear = FindMostVisitedYear();
+            MostVisitedYear = accommodationReservationService.FindMostVisitedYear(YearLabels, Reservations);
             DisplayLink();
+        }
+
+        private void Execute_MouseDownCommand(object obj)
+        {
+            ShowChart();        
+        }
+
+        private void Execute_MouseUpCommand(object obj)
+        {
+            ShowChart();
+        }
+
+        private void Execute_SelectionChangedCommand(object obj)
+        {
+            ShowChart();
+        }
+
+        private void Execute_GenerateReportCommand(object obj)
+        {
+            PrintDialog printDialog = new PrintDialog();
+            ReportToGenerateView rtg = new ReportToGenerateView(Owner);
+            FlowDocument fd = rtg.Document;
+            DocumentPaginator documentPaginator = (fd as IDocumentPaginatorSource).DocumentPaginator;
+            printDialog.PrintDocument(documentPaginator, "Izvještaj");
         }
 
         public void OnOpen()
@@ -167,7 +228,7 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
 
         public void Open()
         {
-            NavService.Navigate(new AccommodationRegistrationView(Owner, TitleTextBlock, SelectedAccommodation, NavService));
+            NavService.Navigate(new AccommodationRegistrationView(Owner, Window, SelectedAccommodation, NavService));
         }
 
         public void OnClose()
@@ -179,7 +240,8 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
         {
             accommodationService.Delete(selectedAccommodation);
             ownerService.RemoveAccommodation(Owner, selectedAccommodation.Id);
-            NavService.Navigate(new AccommodationsDisplayView(Owner, TitleTextBlock, NavService));
+            NavService.Navigate(new AccommodationsDisplayView(Owner, NavService, Window));
+            Window.PageTitle = "Smještaji";
         }
 
         public void DisplayTheNumberOfReservationsByCriteria()
@@ -224,151 +286,53 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
             TotalMonthReservations = totalReservations;
         }
 
-        public int DisplayMostVisitedMonth()
-        {
-            double[] daysInMonths = new double[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-            MostVisitedMonth = 0;
-            double unavailability = TotalMonthReservations[0] / daysInMonths[0];
-            for (int i = 1; i < TotalMonthReservations.Count(); i++)
-            {
-                if (TotalMonthReservations[i] / daysInMonths[i] > unavailability)
-                {
-                    MostVisitedMonth = i;
-                    unavailability = TotalMonthReservations[i] / daysInMonths[i];
-                }
-            }
-            MostVisitedMonth += 1;
-            return MostVisitedMonth;
-        }
-
-        public string FindMostVisitedYear()
-        {
-            Dictionary<string, double[]> busynessThroughYears = CountBusynessAndReservationCountForEachYear(Reservations);
-            KeyValuePair<string, double[]> mostVisited = busynessThroughYears.FirstOrDefault();
-            MostVisitedYear = mostVisited.Key;
-            foreach (var item in busynessThroughYears)
-            {
-                if (item.Value[0] > mostVisited.Value[0]) 
-                {
-                    mostVisited = item;
-                    MostVisitedYear = mostVisited.Key;
-                }
-            }
-            return MostVisitedYear;
-        }
-
         public void DisplayLink() 
         {
-            if (SelectedAccommodation.Id == FindMostBusyAccommodation() && SelectedAccommodation.Id == FindMaxCountAccommodation())
+            if (SelectedAccommodation.Id == accommodationReservationService.FindMostBusyAccommodation(Owner, YearLabels) 
+                && SelectedAccommodation.Id == accommodationReservationService.FindMaxCountAccommodation(Owner, YearLabels))
             {
-                StatisticsView.PopularLocationTextBlock.Visibility = System.Windows.Visibility.Visible;
+                View.PopularLocationTextBlock.Visibility = Visibility.Visible;
             }
-            else if(SelectedAccommodation.Id == FindLeastBusyAccommodation() && SelectedAccommodation.Id == FindMinCountAccommodation())
+            else if(SelectedAccommodation.Id == accommodationReservationService.FindLeastBusyAccommodation(Owner, YearLabels) && SelectedAccommodation.Id == accommodationReservationService.FindMinCountAccommodation(Owner, YearLabels))
             {
-                StatisticsView.UnpopularLocationTextBlock.Visibility = System.Windows.Visibility.Visible;
+                View.UnpopularLocationTextBlock.Visibility = Visibility.Visible;
             }
         }
 
-        public int FindMaxCountAccommodation()
+        public void ShowChart()
         {
-            Dictionary<int, double[]> allBusyness = FindStatisticsForAllAccommodations();
-            KeyValuePair<int, double[]> max = allBusyness.FirstOrDefault();
-            foreach (var item in allBusyness)
+            if (!string.IsNullOrEmpty(Year))
             {
-                if (item.Value[1] > max.Value[1])
-                {
-                    max = item;
-                }
+                DisplayTheNumberOfMonthReservationsByCriteria(Year);
+                MostVisitedMonth = accommodationReservationService.DisplayMostVisitedMonth(TotalMonthReservations, MostVisitedMonth);
+                MostVisitedYear = accommodationReservationService.FindMostVisitedYear(YearLabels, Reservations);
+                View.MonthChart.Visibility = Visibility.Visible;
+                View.MostVisitedMonthTextBox.Visibility = Visibility.Visible;
+                View.MostVisitedYearTextBox.Visibility = Visibility.Visible;
+                View.MostVisitedMonthLabel.Visibility = Visibility.Visible;
+                View.MostVisitedYearLabel.Visibility = Visibility.Visible;
             }
-            return max.Key;
         }
 
-        public int FindMinCountAccommodation()
+        public void InitializeImages()
         {
-            Dictionary<int, double[]> allBusyness = FindStatisticsForAllAccommodations();
-            KeyValuePair<int, double[]> min = allBusyness.FirstOrDefault();
-            foreach (var item in allBusyness)
+            foreach (string fileName in SelectedAccommodation.Images)
             {
-                if (item.Value[1] < min.Value[1])
-                {
-                    min = item;
-                }
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(fileName, UriKind.RelativeOrAbsolute);
+                bitmap.EndInit();
+                Image = new Image();
+                Image.Source = bitmap;
+                Image.Stretch = Stretch.Fill;
+                View.ImageList.Items.Add(Image);
             }
-            return min.Key;
         }
 
-        public int FindMostBusyAccommodation()
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            Dictionary<int, double[]> allBusyness = FindStatisticsForAllAccommodations();
-            KeyValuePair<int, double[]> most = allBusyness.FirstOrDefault();
-            foreach (var item in allBusyness)
-            {
-                if (item.Value[0] > most.Value[0])
-                {
-                    most = item;
-                }
-            }
-            return most.Key;
-        }
-
-        public int FindLeastBusyAccommodation()
-        {
-            Dictionary<int, double[]> allBusyness = FindStatisticsForAllAccommodations();
-            KeyValuePair<int,double[]> least = allBusyness.First();
-            foreach (var item in allBusyness)
-            {
-                if (item.Value[0] < least.Value[0])
-                {
-                    least = item;
-                }
-            }
-            return least.Key;
-        }
-
-        public Dictionary<int, double[]> FindStatisticsForAllAccommodations() 
-        {
-            Dictionary<int, double[]> accommodationsStatistics = new Dictionary<int, double[]>();
-            List<Accommodation> accommodations = accommodationService.GetAccommodationsByOwner(Owner.Id);
-            foreach (Accommodation accommodation in accommodations)
-            {
-                List<AccommodationReservation> reservations = accommodationReservationService.GetAllReservationsByAccommodationId(accommodation.Id);
-                accommodationsStatistics.Add(accommodation.Id, SumBusynessAndReservationCountForEachYear(reservations));
-            }
-            return accommodationsStatistics;
-        }
-
-        public double[] SumBusynessAndReservationCountForEachYear(List<AccommodationReservation> reservations) 
-        {
-            double[] sumAndCount = new double[] { 0, 0 };
-            Dictionary<string, double[]> busyness = CountBusynessAndReservationCountForEachYear(reservations);
-            foreach (var item in busyness) 
-            {
-                sumAndCount[0] += item.Value[0];
-                sumAndCount[1] += item.Value[1];
-            }
-            return sumAndCount;
-        }
-
-        public Dictionary<string, double[]> CountBusynessAndReservationCountForEachYear(List<AccommodationReservation> reservations)
-        {
-            Dictionary<string, double[]> bussynessAndReservationCountInYears = new Dictionary<string, double[]>();
-            foreach (var year in YearLabels)
-            {
-                bussynessAndReservationCountInYears.Add(year, new double[] { CountBusynessAndReservationCountInOneYear(reservations, year)[0], 
-                                                                             CountBusynessAndReservationCountInOneYear(reservations, year)[1] } );
-            }
-            return bussynessAndReservationCountInYears;
-        }
-
-        public double[] CountBusynessAndReservationCountInOneYear(List<AccommodationReservation> reservations, string year) 
-        {
-            double[] busyness = new double[2] { 0, 0 };
-            foreach (var item in accommodationReservationService.GettAllReservationsByYear(reservations, year))         {
-                busyness[0] += (item.CheckOutDate.DayNumber - item.CheckInDate.DayNumber);
-                busyness[1]++;
-            }
-            busyness[0] = busyness[0] / 365.0;
-            return busyness;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -30,17 +30,17 @@
         
         <Grid Grid.Row="1">
             <Button Content="Smještaji"
-                    Click="Accommodations_Click"
+                    Command="{Binding AccommodationsCommand}"
                     Height="40"
                     Width="100"
                     Margin="50,90,0,0" HorizontalAlignment="Left"/>
             <Button Content="Recenzije"
-                    Click="Ratings_Click"
+                    Command="{Binding RatingsCommand}"
                     Height="40"
                     Width="100"
                     Margin="0,90,0,0" HorizontalAlignment="Center"/>
             <Button Content="Forumi"
-                    Click="Forumi_Click"
+                    Command="{Binding ForumsCommand}"
                     Height="40"
                     Width="100"
                     Margin="0,90,50,0" HorizontalAlignment="Right"/>

@@ -23,12 +23,11 @@ namespace ProjectSims.Domain.Model
         public int ForumId { get; set; }
         public Forum Forum { get; set; }
         string ContentNotification { get; set; }
-        public bool Seen { get; set; }
         public NotificationOwnerGuest()
         {
         }
         public NotificationOwnerGuest(int id, int guest1Id, Guest1 guest1, int ownerId, Owner owner,
-            int requestId, Request request, int forumId, Forum forum, string content, bool seen)
+            int requestId, Request request, int forumId, Forum forum, string content)
         {
             Id = id;
             Guest1Id = guest1Id;
@@ -40,7 +39,6 @@ namespace ProjectSims.Domain.Model
             ForumId = forumId;
             Forum = forum;
             ContentNotification = content;
-            Seen = seen;
         }
 
         public string[] ToCSV()
@@ -53,7 +51,6 @@ namespace ProjectSims.Domain.Model
                 RequestId.ToString(),
                 ForumId.ToString(),
                 ContentNotification,
-                Seen.ToString()
             };
             return csvvalues;
         }
@@ -66,7 +63,6 @@ namespace ProjectSims.Domain.Model
             RequestId = Convert.ToInt32(values[3]);
             ForumId = Convert.ToInt32(values[4]);
             ContentNotification = values[5];
-            Seen = Convert.ToBoolean(values[6]);
         }
     }
 }

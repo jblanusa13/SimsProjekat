@@ -14,15 +14,11 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
 {
     public class OwnerRatingsDisplayViewModel : IObserver
     { 
-        public Owner Owner { get; set; }
-        public NavigationService NavService { get; set; }
         public ObservableCollection<AccommodationAndOwnerRating> Ratings { get; set; }
         private AccommodationRatingService ratingService;
 
         public OwnerRatingsDisplayViewModel(Owner o, NavigationService navService)
         {
-            Owner = o;
-            NavService = navService;
             ratingService = new AccommodationRatingService();
             Ratings = new ObservableCollection<AccommodationAndOwnerRating>(ratingService.GetRatingsWhereGuestRated(o.Id));
         }

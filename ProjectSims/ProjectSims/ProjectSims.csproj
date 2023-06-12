@@ -127,6 +127,7 @@
     <None Remove="Resources\Images\Owner\Accommodations\visnjin_dom2.jpg" />
     <None Remove="Resources\Images\Owner\Accommodations\visnjin_dom3.jpg" />
     <None Remove="Resources\Images\rightarrow.png" />
+    <None Remove="Resources\Tutorial\sims_tutorijal.mp4" />
     <None Remove="WPF\View\Guest2View\logoapp.png" />
     <None Remove="WPF\View\Guest2View\travel-tour-logo.png" />
   </ItemGroup>
@@ -397,6 +398,9 @@
     <Content Include="Resources\Images\Owner\Accommodations\visnjin_dom3.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Tutorial\sims_tutorijal.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CalcBinding" Version="2.5.2">
@@ -438,5 +442,10 @@
     <Compile Update="WPF\View\OwnerView\Pages\RenovationsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Resources\Tutorial\Novi\Novi.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

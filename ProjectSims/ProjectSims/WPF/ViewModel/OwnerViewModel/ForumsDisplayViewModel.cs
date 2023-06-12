@@ -3,6 +3,7 @@ using ProjectSims.Domain.Model;
 using ProjectSims.Observer;
 using ProjectSims.Service;
 using ProjectSims.WPF.View.Guest1View.MainPages;
+using ProjectSims.WPF.View.OwnerView;
 using ProjectSims.WPF.View.OwnerView.Pages;
 using System;
 using System.Collections.Generic;
@@ -21,13 +22,15 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
         public ObservableCollection<Forum> Forums { get; set; }
         public Forum SelectedForum { get; set; }
         public Owner Owner { get; set; }
+        public OwnerStartingView Window { get; set; }
         private ForumService forumService;
         public NavigationService NavService { get; set; }
         public RelayCommand OpenCommand { get; set; }
 
-        public ForumsDisplayViewModel(Owner owner, NavigationService navService) 
+        public ForumsDisplayViewModel(Owner owner, OwnerStartingView window, NavigationService navService) 
         {
             Owner = owner;
+            Window = window;
             NavService = navService;
             forumService = new ForumService();
             forumService.Subscribe(this);
@@ -38,6 +41,7 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
         public void Execute_OpenCommand(object obj)
         {
             NavService.Navigate(new OpenedForumView(Owner, NavService, SelectedForum));
+            Window.PageTitle = "Forum";
         }
 
         public bool CanExecute_OpenCommand(object obj)

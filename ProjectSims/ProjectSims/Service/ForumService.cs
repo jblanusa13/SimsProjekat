@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using ceTe.DynamicPDF.Forms;
+using Org.BouncyCastle.Crypto.Agreement;
 using ProjectSims.Domain.Model;
 using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.Observer;
@@ -18,6 +20,8 @@ namespace ProjectSims.Service
         private ILocationRepository locationRepository;
         private IAccommodationRepository accommodationRepository;
         private IGuest1Repository guest1Repository;
+        private INotificationOwnerGuestRepository notificationRepository;
+        private IOwnerRepository ownerRepository;
 
         public ForumService()
         {
@@ -26,6 +30,8 @@ namespace ProjectSims.Service
             locationRepository = Injector.CreateInstance<ILocationRepository>();
             guest1Repository = Injector.CreateInstance<IGuest1Repository>();
             accommodationRepository = Injector.CreateInstance<IAccommodationRepository>();
+            notificationRepository = Injector.CreateInstance<INotificationOwnerGuestRepository>();
+            ownerRepository = Injector.CreateInstance<IOwnerRepository>();
 
             InitializeLocation();
             InitializeGuest();
@@ -77,6 +83,27 @@ namespace ProjectSims.Service
             int id = forumRepository.NextId();
             Forum forum = new Forum(id, location.Id, location, comment, ForumStatus.Otvoren, guest.Id, guest, false);
             forumRepository.Create(forum);
+            SendNotificationToOwner(forum, comment, guest, location);
+        }
+
+        public void SendNotificationToOwner(Forum forum, string comment, Guest1 guest, Location location)
+        {
+            List<Accommodation> accommodations = accommodationRepository.GetAllByLocation(location.Id);
+            List<Owner> owners = ownerRepository.GetAll();
+            foreach (var accommodation in accommodations)
+            {
+                foreach (var owner in owners)
+                {
+                    foreach (var accommodationId in owner.AccommodationIds)
+                    {
+                        if (accommodationId == accommodation.Id)
+                        {
+                            notificationRepository.Create(new NotificationOwnerGuest(notificationRepository.NextId(), guest.Id, guest,
+                                owner.Id, owner, -1, null, forum.Id, forum, comment));
+                        }
+                    }
+                }
+            }
         }
         public void Subscribe(IObserver observer)
         {

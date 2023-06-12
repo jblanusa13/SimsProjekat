@@ -37,7 +37,7 @@
                   Width="430">
                 <DataGrid x:Name="RenovationsTable"  
                           ItemsSource="{Binding RenovationList}"
-                          Margin="0,0,0,0" 
+                          SelectedItem="{Binding SelectedRenovation, UpdateSourceTrigger=PropertyChanged}"
                           Height="600"
                           AutoGenerateColumns="False" 
                           IsReadOnly="True" 
@@ -85,7 +85,7 @@
                 Width="120"
                 Content="Otkaži"
                 Visibility="Visible"
-                Click="QuitRenovation_Click" 
+                Command="{Binding QuitRenovationCommand}" 
                 Grid.Row="1"/>
         <Button x:Name="CancelButton"
                 Margin="0,28,80,0"
@@ -98,7 +98,7 @@
                 Width="120"
                 Content="Odustani"
                 Visibility="Visible"
-                Click="Cancel_Click" 
+                Command="{Binding CancelCommand}" 
                 Grid.Row="1"/>
     </Grid>
 </Page>

@@ -22,15 +22,21 @@ ASS -> ASS ++ : CheckAvailableDates(unavailableDate, daysNumber)
 loop firstDate != unavailableDate.CheckOut
 loop daysNumber times
 opt firstDate.AddDays(i) >= unavailableDate.CheckIn && firstDate.AddDays(i) <= unavailableDate.CheckOut
+ASS -> ASS : isAvailable = false
 break
 end
 end
 end
 
 opt isAvailable
+ASS -> ASS : availableDates.Add(new DateRanges(firstDate, firstDate.AddDays(daysNumber)))
 end
-ASS --> ASS -- : checkedAvailableDates
-loop foreach date in checkedAvailableDates              
+
+ASS -> ASS : firstDate = firstDate.AddDays(1);
+
+ASS -> ASS -- : checkedAvailableDates
+loop foreach date in checkedAvailableDates
+ASS -> ASS : availableDates.Add(dates)              
 end
 end
 end    
@@ -38,6 +44,9 @@ end
 
 opt this.firstDate != lastDate
 loop this.firstDate.AddDays(daysNumber) <= lastDate
+ASS -> ASS : checkIn = this.firstDate
+ASS -> ASS : availableDates.Add(new DateRanges(this.firstDate, checkIn.AddDays(daysNumber)))
+ASS -> ASS : this.firstDate = this.firstDate.AddDays(1)
 end
 end
             
@@ -55,7 +64,11 @@ deactivate ASR
 RSS -> ASR ++ : AddUnavailableDate(schedule, dateRange)
 loop schedule.UnavailableDates.Count times
 opt dateRange.CheckIn < schedule.UnavailableDates[i].CheckIn
+ASR -> ASR :  helpVariable = schedule.UnavailableDates[i]
+ASR -> ASR : schedule.UnavailableDates[i] = dateRange
+ASR -> ASR : dateRange = helpVariable
 end
+ASR -> ASR : schedule.UnavailableDates.Add(dateRange)
 end
 deactivate ASR
 RSS -> ASR ++ : Update(schedule)
@@ -76,7 +89,9 @@ RSS --> RSS : false
 end
 deactivate RSS
 alt IsRenovatedYearAgo(dateOfLastRenovation) || dateOfLastRenovation == new DateOnly(1, 1, 1)
+RSS -> RSS : accommodation.Renovated = false
 else
+RSS -> RSS : accommodation.Renovated = true
 end
 RSS -> AR ++ : Update(accommodation)
 deactivate AR  

@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"            
       xmlns:converters="clr-namespace:ProjectSims.WPF.Converters"
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       xmlns:local="clr-namespace:ProjectSims.WPF.View.OwnerView.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="1215" d:DesignWidth="430">
@@ -92,13 +93,29 @@
                        Margin="50,0,0,0" 
                        VerticalAlignment="Center" 
                        Width="200"/>
-                <ComboBox x:Name="YearComboBox" SelectionChanged="YearComboBox_SelectionChanged" LostFocus="YearComboBox_LostFocus" HorizontalAlignment="Right" Margin="0,0,50,0" VerticalAlignment="Center" Width="183" Height="26" Foreground="Black" IsEnabled="True">
+                <ComboBox x:Name="YearComboBox" Text="{Binding Year}" HorizontalAlignment="Right" Margin="0,0,50,0" VerticalAlignment="Center" Width="183" Height="26" Foreground="Black" IsEnabled="True">
                     <ComboBoxItem>2023</ComboBoxItem>
                     <ComboBoxItem>2022</ComboBoxItem>
                     <ComboBoxItem>2021</ComboBoxItem>
                     <ComboBoxItem>2020</ComboBoxItem>
                     <ComboBoxItem>2019</ComboBoxItem>
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction 
+				            Command="{Binding SelectionChangedCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="PreviewMouseUp">
+                            <i:InvokeCommandAction 
+				            Command="{Binding MouseUpCommand}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="PreviewMouseDown">
+                            <i:InvokeCommandAction 
+				            Command="{Binding MouseDownCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </ComboBox>
+                
             </Grid>
 
             <Grid Grid.Row="4">
@@ -148,7 +165,7 @@
 
             <Grid Grid.Row="7">
                 <Button x:Name="ReportButton"
-                Click="GenerateReport_Click"
+                Command = "{Binding GenerateReportCommand}"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 TextElement.FontSize="12"

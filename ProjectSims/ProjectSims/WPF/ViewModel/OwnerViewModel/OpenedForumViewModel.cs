@@ -26,7 +26,7 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
         public ForumCommentService commentService { get; set; }
         public RelayCommand ReportCommand { get; set; }
         public RelayCommand CommentCommand { get; set; }
-        private string _comment;
+        private string _comment="Unesite komentar...";
         public string Comment
         {
             get => _comment;
@@ -40,7 +40,6 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
                 }
             }
         }
-
         public OpenedForumViewModel(Owner owner, NavigationService navService, Forum selectedForum) 
         {
             Owner = owner;

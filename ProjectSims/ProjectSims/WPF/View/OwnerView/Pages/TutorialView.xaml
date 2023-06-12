@@ -5,11 +5,25 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.OwnerView.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="750" d:DesignWidth="430"
+      d:DesignHeight="800" d:DesignWidth="430"
       Title="TutorialView">
-
-    <Grid Background="#ff383378">
-        <Label Content="Tutorijal za registraciju novog smještaja:" FontSize="16" HorizontalAlignment="Center" Margin="0 25 0 0"/>
-        
-    </Grid>
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
+        <Grid Background="#ff383378">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Label Content="Tutorijal za registraciju novog smještaja:" FontSize="18" FontWeight="DemiBold" HorizontalAlignment="Center" Margin="0 25 0 0"/>
+            </Grid>
+            <Grid Grid.Row="1">
+                <MediaElement x:Name="Video" Source="C:\Users\win 10\Desktop\SIMS\SimsProjekat\ProjectSims\ProjectSims\bin\Debug\net6.0-windows\Resources\Tutorial\Novi\Novi.mp4" Height="600" VerticalAlignment="Center" LoadedBehavior="Manual"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Button Command="{Binding PlayCommand}" Content="Play" Background="AliceBlue" FontSize="15" Height="34" Width="120" HorizontalAlignment="Left" Margin="59,18,0,18"/>
+                <Button Command="{Binding PauseCommand}" Content="Pause" Background="AliceBlue" FontSize="15" Height="34" Width="120" HorizontalAlignment="Right" Margin="0,18,59,18"/>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
 </Page>

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims.View.OwnerView.Pages"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
         Height="750" Width="430">
     <Page.Resources>
@@ -16,72 +17,96 @@
             </Border>
         </ControlTemplate>
     </Page.Resources>
-    <Grid Margin="25,25,15,25" Background="#ff383378">
-        <Grid.Resources>
-            <Style TargetType="Button">
-                <Setter Property="Background" Value="AliceBlue"/>
-                <Setter Property="FontWeight"  Value="Bold"/>
-                <Setter Property="FontSize" Value="16"/>
-                <Setter Property="BorderBrush" Value="LightSteelBlue"/>
-                <Setter Property="BorderThickness" Value="1"/>
-            </Style>
-        </Grid.Resources>
-        <Label Content="Gost:" HorizontalAlignment="Left" Margin="5,20,0,0" VerticalAlignment="Top" Height="26"/>
-        <Label Content="Smještaj:" HorizontalAlignment="Left" Margin="5,50,0,0" VerticalAlignment="Top" Height="26"/>
-        <Label Content="Tip:" HorizontalAlignment="Left" Margin="5,80,0,0" VerticalAlignment="Top" Height="26"/>
-        <Label Content="Dolazak:" HorizontalAlignment="Left" Margin="5,110,0,0" VerticalAlignment="Top" Height="26"/>
-        <Label Content="Odlazak:" HorizontalAlignment="Left" Margin="5,140,0,0" VerticalAlignment="Top" Height="26"/>
-        <TextBox x:Name="GuestNameTextBox" HorizontalAlignment="Left" Margin="185,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False">
-            <MultiBinding StringFormat="{}{0} {1}">
-                <Binding Path="SelectedAccommodationReservation.Guest.Name"/>
-                <Binding Path="SelectedAccommodationReservation.Guest.Surname"/>
-            </MultiBinding>
-        </TextBox>
-        <TextBox x:Name="AccommodationNameTextBox" Text="{Binding SelectedAccommodationReservation.Accommodation.Name}" HorizontalAlignment="Left" Margin="185,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False"/>
-        <TextBox x:Name="TypeTextBox" Text="{Binding SelectedAccommodationReservation.Accommodation.Type}" HorizontalAlignment="Left" Margin="185,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False"/>
-        <TextBox x:Name="CheckInDateTextBox" Text="{Binding SelectedAccommodationReservation.CheckInDate, StringFormat={}{0:dd.MM.yyyy.}}" HorizontalAlignment="Left" Margin="185,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False"/>
-        <TextBox x:Name="CheckOutDateTextBox" Text="{Binding SelectedAccommodationReservation.CheckOutDate, StringFormat={}{0:dd.MM.yyyy.}}" HorizontalAlignment="Left" Margin="185,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False"/>
-        <Label Content="Čistoća:" HorizontalAlignment="Left" Margin="5,214,0,0" VerticalAlignment="Top" Height="26"/>
-        <Label Content="Poštovanje pravila:" HorizontalAlignment="Left" Margin="5,244,0,0" VerticalAlignment="Top" Height="26"/>
-        <Label Content="Urednost:" HorizontalAlignment="Left" Margin="5,274,0,0" VerticalAlignment="Top" Height="26"/>
-        <Label Content="Komunikacija:" HorizontalAlignment="Left" Margin="5,304,0,0" VerticalAlignment="Top" Height="26"/>
+        <Grid ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="#ff383378">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="165"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="AliceBlue"/>
+                    <Setter Property="FontWeight"  Value="DemiBold"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="BorderBrush" Value="LightSteelBlue"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                </Style>
+            </Grid.Resources>
+            <Label Content="Gost:" Grid.Row="1" Margin="30 0 0 0"  HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="26"/>
+            <Label Content="Smještaj:" Grid.Row="2" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center" Height="26"/>
+            <Label Content="Tip:" Grid.Row="3" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center" Height="26"/>
+            <Label Content="Dolazak:" Grid.Row="4" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center" Height="26"/>
+            <Label Content="Odlazak:" Grid.Row="5" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center" Height="26"/>
+            <TextBox x:Name="GuestNameTextBox" Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,30,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False">
+                <MultiBinding StringFormat="{}{0} {1}">
+                    <Binding Path="SelectedAccommodationReservation.Guest.Name"/>
+                    <Binding Path="SelectedAccommodationReservation.Guest.Surname"/>
+                </MultiBinding>
+            </TextBox>
+            <TextBox x:Name="AccommodationNameTextBox" Grid.Row="2" Text="{Binding SelectedAccommodationReservation.Accommodation.Name}" HorizontalAlignment="Right" Margin="0,0,30,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False"/>
+            <TextBox x:Name="TypeTextBox" Grid.Row="3" Text="{Binding SelectedAccommodationReservation.Accommodation.Type}" HorizontalAlignment="Right" Margin="0,0,30,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False"/>
+            <TextBox x:Name="CheckInDateTextBox" Grid.Row="4" Text="{Binding SelectedAccommodationReservation.CheckInDate, StringFormat={}{0:dd.MM.yyyy.}}" HorizontalAlignment="Right" Margin="0,0,30,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False"/>
+            <TextBox x:Name="CheckOutDateTextBox" Grid.Row="5" Text="{Binding SelectedAccommodationReservation.CheckOutDate, StringFormat={}{0:dd.MM.yyyy.}}" HorizontalAlignment="Right" Margin="0,0,30,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="False"/>
+            <Label Content="Čistoća:" Grid.Row="7" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center" Height="26"/>
+            <Label Content="Poštovanje pravila:" Grid.Row="8" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center" Height="26"/>
+            <Label Content="Urednost:" Grid.Row="10" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center" Height="26"/>
+            <Label Content="Komunikacija:" Grid.Row="9" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center" Height="26"/>
 
-        <ComboBox x:Name="CleanlinessComboBox" Text="{Binding Path=CleanlinessRate, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="246,214,0,0" VerticalAlignment="Top" Width="56" Height="26">
-            <ComboBoxItem HorizontalContentAlignment="Center">1</ComboBoxItem>
-            <ComboBoxItem HorizontalContentAlignment="Center">2</ComboBoxItem>
-            <ComboBoxItem HorizontalContentAlignment="Center">3</ComboBoxItem>
-            <ComboBoxItem HorizontalContentAlignment="Center">4</ComboBoxItem>
-            <ComboBoxItem HorizontalContentAlignment="Center">5</ComboBoxItem>
-        </ComboBox>
-        <ComboBox x:Name="RespectingRulesComboBox" Text="{Binding Path=RespectingRulesRate, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="246,244,0,0" VerticalAlignment="Top" Width="56" Height="26">
-            <ComboBoxItem HorizontalContentAlignment="Center">1</ComboBoxItem>
-            <ComboBoxItem HorizontalContentAlignment="Center">2</ComboBoxItem>
-            <ComboBoxItem HorizontalContentAlignment="Center">3</ComboBoxItem>
-            <ComboBoxItem HorizontalContentAlignment="Center">4</ComboBoxItem>
-            <ComboBoxItem HorizontalContentAlignment="Center">5</ComboBoxItem>
-        </ComboBox>
-        <ComboBox x:Name="TidinessComboBox" Text="{Binding Path=TidinessRate, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="246,274,0,0" VerticalAlignment="Top" Width="56" Height="26">
-            <ComboBoxItem HorizontalContentAlignment="Center">1</ComboBoxItem>
-            <ComboBoxItem HorizontalContentAlignment="Center">2</ComboBoxItem>
-            <ComboBoxItem HorizontalContentAlignment="Center">3</ComboBoxItem>
-            <ComboBoxItem HorizontalContentAlignment="Center">4</ComboBoxItem>
-            <ComboBoxItem HorizontalContentAlignment="Center">5</ComboBoxItem>
-        </ComboBox>
-        <ComboBox x:Name="CommunicationComboBox" Text="{Binding Path=CommunicationRate, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Left" Margin="246,304,0,0" VerticalAlignment="Top" Width="56" Height="26">
-            <ComboBoxItem HorizontalContentAlignment="Center">1</ComboBoxItem>
-            <ComboBoxItem HorizontalContentAlignment="Center">2</ComboBoxItem>
-            <ComboBoxItem HorizontalContentAlignment="Center">3</ComboBoxItem>
-            <ComboBoxItem HorizontalContentAlignment="Center">4</ComboBoxItem>
-            <ComboBoxItem HorizontalContentAlignment="Center">5</ComboBoxItem>
-        </ComboBox>
-        <TextBox x:Name="CommentTextBox" 
-                 Text="{Binding Path=Comment, FallbackValue='Dodatni komentar...', UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                 Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
-                 GotKeyboardFocus="CommentTextBox_GotKeyboardFocus"
-                 LostKeyboardFocus="CommentTextBox_LostKeyboardFocus" 
-                 Margin="9,387,28,212" 
-                 Foreground="#FF6E6E6E"/>
-        <Button x:Name="RateButton" Click="RateGuest_Click" Height="34" Width="125" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="Ocijeni" Margin="53,0,0,72"/>
-        <Button x:Name="CancelButton" Click="CancelRateGuest_Click" Height="34" Width="125" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="Odustani" Margin="214,0,0,72"/>
-    </Grid>
+            <ComboBox x:Name="CleanlinessComboBox" Grid.Row="7" Text="{Binding Path=CleanlinessRate, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Right" Margin="0,0,90,0" VerticalAlignment="Center" Width="56" Height="26">
+                <ComboBoxItem HorizontalContentAlignment="Center">1</ComboBoxItem>
+                <ComboBoxItem HorizontalContentAlignment="Center">2</ComboBoxItem>
+                <ComboBoxItem HorizontalContentAlignment="Center">3</ComboBoxItem>
+                <ComboBoxItem HorizontalContentAlignment="Center">4</ComboBoxItem>
+                <ComboBoxItem HorizontalContentAlignment="Center">5</ComboBoxItem>
+            </ComboBox>
+            <ComboBox x:Name="RespectingRulesComboBox" Grid.Row="8" Text="{Binding Path=RespectingRulesRate, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Right" Margin="0,0,90,0" VerticalAlignment="Center" Width="56" Height="26">
+                <ComboBoxItem HorizontalContentAlignment="Center">1</ComboBoxItem>
+                <ComboBoxItem HorizontalContentAlignment="Center">2</ComboBoxItem>
+                <ComboBoxItem HorizontalContentAlignment="Center">3</ComboBoxItem>
+                <ComboBoxItem HorizontalContentAlignment="Center">4</ComboBoxItem>
+                <ComboBoxItem HorizontalContentAlignment="Center">5</ComboBoxItem>
+            </ComboBox>
+            <ComboBox x:Name="TidinessComboBox" Grid.Row="10" Text="{Binding Path=TidinessRate, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Right" Margin="0,0,90,0" VerticalAlignment="Center" Width="56" Height="26">
+                <ComboBoxItem HorizontalContentAlignment="Center">1</ComboBoxItem>
+                <ComboBoxItem HorizontalContentAlignment="Center">2</ComboBoxItem>
+                <ComboBoxItem HorizontalContentAlignment="Center">3</ComboBoxItem>
+                <ComboBoxItem HorizontalContentAlignment="Center">4</ComboBoxItem>
+                <ComboBoxItem HorizontalContentAlignment="Center">5</ComboBoxItem>
+            </ComboBox>
+            <ComboBox x:Name="CommunicationComboBox" Grid.Row="9" Text="{Binding Path=CommunicationRate, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalAlignment="Right" Margin="0,0,90,0" VerticalAlignment="Center" Width="56" Height="26">
+                <ComboBoxItem HorizontalContentAlignment="Center">1</ComboBoxItem>
+                <ComboBoxItem HorizontalContentAlignment="Center">2</ComboBoxItem>
+                <ComboBoxItem HorizontalContentAlignment="Center">3</ComboBoxItem>
+                <ComboBoxItem HorizontalContentAlignment="Center">4</ComboBoxItem>
+                <ComboBoxItem HorizontalContentAlignment="Center">5</ComboBoxItem>
+            </ComboBox>
+            <TextBox x:Name="CommentTextBox" Grid.Row="11"
+                         Text="{Binding Path=Comment, FallbackValue='Dodatni komentar...', UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                         Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                         Margin="30 30 30 30" 
+                         Foreground="#FF6E6E6E">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseEnter">
+                        <i:InvokeCommandAction 
+				            Command="{Binding GotFocusCommand}"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="LostKeyboardFocus">
+                        <i:InvokeCommandAction 
+				            Command="{Binding LostFocusCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+        </TextBox>
+            <Button x:Name="RateButton" Command="{Binding RateGuestCommand}" Height="34" Width="120" VerticalAlignment="Top" HorizontalAlignment="Left" Content="Ocijeni" Grid.Row="12" Margin="70,0,0,0"/>
+            <Button x:Name="CancelButton" Command="{Binding CancelCommand}" Height="34" Width="120" VerticalAlignment="Top" HorizontalAlignment="Right" Content="Odustani" Grid.Row="12" Margin="0,0,70,0"/>
+        </Grid>
 </Page>

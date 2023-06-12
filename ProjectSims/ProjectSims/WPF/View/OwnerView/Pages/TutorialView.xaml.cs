@@ -25,7 +25,7 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
         public TutorialView(Owner owner, NavigationService navService)
         {
             InitializeComponent();
-            DataContext = new TutorialViewModel(owner, navService);
+            DataContext = new TutorialViewModel(owner, navService, Video);
         }
     }
 }

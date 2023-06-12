@@ -25,87 +25,10 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
     /// </summary>
     public partial class RenovationScheduleView : Page
     {
-        public Owner Owner { get; set; }
-        public TextBlock TitleTextBlock { get; set; }
-        public Accommodation SelectedAccommodation { get; set; }
-        public NavigationService NavService { get; set; }
-        public RenovationScheduleViewModel renovationViewModel { get; set; }
-
-        public RenovationScheduleView(Owner owner, TextBlock titleTextBlock, Accommodation selectedAccommodation, NavigationService navService)
+        public RenovationScheduleView(Owner owner, OwnerStartingView window, Accommodation selectedAccommodation, NavigationService navService)
         {
             InitializeComponent();
-            Owner = owner;
-            TitleTextBlock = titleTextBlock;
-            SelectedAccommodation = selectedAccommodation;
-            NavService = navService;
-            renovationViewModel = new RenovationScheduleViewModel(SelectedAccommodation, Owner, NavService);
-            DataContext = renovationViewModel;
-        }
-
-        private void Confirm_Click(object sender, RoutedEventArgs e)
-        {
-            if ((DateRanges)DateRangesDataGrid.SelectedItem != null && !string.IsNullOrWhiteSpace(DescriptionTextBox.Text)) 
-            {
-                renovationViewModel.CreateRenovation((DateRanges)DateRangesDataGrid.SelectedItem, DescriptionTextBox.Text);
-                NavService.Navigate(new AccommodationsDisplayView(Owner, TitleTextBlock, NavService));
-                TitleTextBlock.Text = "Smještaji";
-            }
-        }
-
-        private void Cancel_Click(object sender, RoutedEventArgs e)
-        {
-            NavService.Navigate(new AccommodationsDisplayView(Owner, TitleTextBlock, NavService));
-            TitleTextBlock.Text = "Smještaji";
-        }
-        
-        private void FirstDatePickerDateChanged(Object sender, SelectionChangedEventArgs e)
-        {
-            if (SecondDatePicker.SelectedDate != null && !string.IsNullOrEmpty(DurationTextBox.Text))
-            {
-                renovationViewModel.FindAvailableDates(DateOnly.FromDateTime((DateTime)FirstDatePicker.SelectedDate), DateOnly.FromDateTime((DateTime)SecondDatePicker.SelectedDate), Convert.ToInt32(DurationTextBox.Text));
-            }
-        }
-
-        private void SecondDatePickerDateChanged(Object sender, SelectionChangedEventArgs e)
-        {
-            if (FirstDatePicker.SelectedDate != null && !string.IsNullOrEmpty(DurationTextBox.Text))
-            {
-                renovationViewModel.FindAvailableDates(DateOnly.FromDateTime((DateTime)FirstDatePicker.SelectedDate), DateOnly.FromDateTime((DateTime)SecondDatePicker.SelectedDate), Convert.ToInt32(DurationTextBox.Text));
-            }
-        }
-
-        private void DurationTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (SecondDatePicker.SelectedDate != null && FirstDatePicker.SelectedDate != null && !string.IsNullOrWhiteSpace(DurationTextBox.Text))
-            {
-                renovationViewModel.FindAvailableDates(DateOnly.FromDateTime((DateTime)FirstDatePicker.SelectedDate), DateOnly.FromDateTime((DateTime)SecondDatePicker.SelectedDate), Convert.ToInt32(DurationTextBox.Text));
-            }
-        }
-        
-        private void DescriptonTextBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
-        {
-            TextBox source = e.Source as TextBox;
-
-            if (source != null)
-            {
-                source.Background = Brushes.MintCream;
-                source.Foreground = Brushes.Black;
-                if (source.Text == "Unesite opis...")
-                {
-                    source.Clear();
-                }
-            }
-        }
-
-        private void DescriptonTextBox_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
-        {
-            TextBox source = e.Source as TextBox;
-
-            if (source != null)
-            {
-                source.Background = Brushes.White;
-                source.Foreground = Brushes.Black;
-            }
+            DataContext = new RenovationScheduleViewModel(window, this, selectedAccommodation, owner, navService);
         }
     }
 }

@@ -11,5 +11,6 @@ namespace ProjectSims.Domain.RepositoryInterface
     public interface IAccommodationRepository : IGenericRepository<Accommodation, int>, ISubject
     {
         public List<Accommodation> GetAllByOwner(int ownerId);
+        public List<Accommodation> GetAllByLocation(int locationId);
     }
 }

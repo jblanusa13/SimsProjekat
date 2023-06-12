@@ -60,12 +60,12 @@ namespace ProjectSims.Repository
         {
             return notifications;
         }        
-        public List<Forum> GetAllForums()
+        public List<Forum> GetAllForums(Owner owner)
         {
             List<Forum> forums = new List<Forum>();
             foreach (var item in notifications)
             {
-                if (item.ForumId != -1 && item.Seen == false)
+                if (item.ForumId != -1 && item.OwnerId == owner.Id)
                 {
                     forums.Add(item.Forum);
                 }

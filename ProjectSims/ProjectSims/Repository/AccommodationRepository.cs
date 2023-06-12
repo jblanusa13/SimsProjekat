@@ -86,6 +86,19 @@ namespace ProjectSims.Repository
             }
             return ownerAccomodations;
         }
+        public List<Accommodation> GetAllByLocation(int locationId)
+        {
+            List<Accommodation> accomodations = new List<Accommodation>();
+            foreach (Accommodation accommodation in GetAll())
+            {
+                if (accommodation.IdLocation == locationId)
+                {
+                    accomodations.Add(accommodation);
+                }
+            }
+            return accomodations;
+        }
+
 
         public void Subscribe(IObserver observer)
         {

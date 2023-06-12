@@ -25,65 +25,64 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
     {
         public Owner Owner { get; set; }
         public NavigationService NavService { get; set; }
-        public TextBlock TitleTextBlock { get; set; }
+        public OwnerStartingView Window { get; set; }
 
-        public SideMenuView(Owner o, TextBlock titleTextBlock, NavigationService navService)
+        public SideMenuView(Owner o, OwnerStartingView window, NavigationService navService)
         {
             InitializeComponent();
             DataContext = this;
             Owner = o;
             NavService = navService;
-            TitleTextBlock = titleTextBlock;
+            Window = window;
         }
 
         private void LogOut_Click(object sender, RoutedEventArgs e)
         {
             var login = new MainWindow();
             login.Show();
-            Window parentWindow = Window.GetWindow(this);
-            parentWindow.Close();
+            Window.Close();
         }
 
         private void HomePage_Click(object sender, RoutedEventArgs e)
         {
-            NavService.Navigate(new HomePageView(Owner, TitleTextBlock, NavService));
-            TitleTextBlock.Text = "Početna stranica";
+            NavService.Navigate(new HomePageView(Owner, NavService, Window));
+            Window.PageTitle = "Početna stranica";
         }
 
         private void Accommodations_Click(object sender, RoutedEventArgs e)
         {
-            NavService.Navigate(new AccommodationsDisplayView(Owner, TitleTextBlock, NavService));
-            TitleTextBlock.Text = "Smještaji";
+            NavService.Navigate(new AccommodationsDisplayView(Owner, NavService, Window));
+            Window.PageTitle = "Smještaji";
         }
 
         private void Ratings_Click(object sender, RoutedEventArgs e)
         {
             NavService.Navigate(new OwnerRatingsDisplayView(Owner, NavService));
-            TitleTextBlock.Text = "Recenzije";
+            Window.PageTitle = "Recenzije";
         }
 
         private void Profile_Click(object sender, RoutedEventArgs e)
         {
             NavService.Navigate(new ProfileView(Owner, NavService));
-            TitleTextBlock.Text = "Profil";
+            Window.PageTitle = "Profil";
         }
 
         private void Renovations_Click(object sender, RoutedEventArgs e)
         {
-            NavService.Navigate(new RenovationsView(Owner, TitleTextBlock, NavService));
-            TitleTextBlock.Text = "Renoviranja";
+            NavService.Navigate(new RenovationsView(Owner, Window, NavService));
+            Window.PageTitle = "Renoviranja";
         }
 
         private void Forum_Click(object sender, RoutedEventArgs e)
         {
-            NavService.Navigate(new ForumsDisplayView(Owner, NavService));
-            TitleTextBlock.Text = "Forumi"; 
+            NavService.Navigate(new ForumsDisplayView(Owner, Window, NavService));
+            Window.PageTitle = "Forumi"; 
         }
         
         private void Tutorial_Click(object sender, RoutedEventArgs e)
         {
             NavService.Navigate(new TutorialView(Owner, NavService));
-            TitleTextBlock.Text = "Tutorijal"; 
+            Window.PageTitle = "Tutorijal"; 
         }
     }
 }

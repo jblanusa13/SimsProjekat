@@ -9,7 +9,7 @@
       Title="Profile">
     <StackPanel Background="#ff383378">
         <Border>
-            <Grid Height="460"  Margin="25 29 25 0" Background="AliceBlue">
+            <Grid Height="460"  Margin="25 29 25 0" Background="LightSteelBlue">
                 <Grid.Resources>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="AliceBlue"/>

@@ -31,52 +31,10 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
     /// </summary>
     public partial class RequestsView : Page
     { 
-        public Request SelectedRequest { get; set; }
-        public RequestsViewModel requestsViewModel { get; set; }
-
         public RequestsView(Owner owner)
         {
             InitializeComponent();
-            requestsViewModel = new RequestsViewModel(owner);
-            this.DataContext = requestsViewModel;
-        }
-
-        private void Accept_Click(object sender, RoutedEventArgs e)
-        {
-            SelectedRequest = (Request)RequestsTable.SelectedItem;
-            requestsViewModel.UpdateSelectedRequest(sender, SelectedRequest, CommentTextBox.Text);
-            CommentTextBox.Text = "Unesite komentar ukoliko odbijate zahtjev...";
-        }
-
-        private void Refuse_Click(object sender, RoutedEventArgs e)
-        {
-            SelectedRequest = (Request)RequestsTable.SelectedItem;
-            requestsViewModel.UpdateSelectedRequest(sender, SelectedRequest, CommentTextBox.Text);
-            CommentTextBox.Text = "Unesite komentar ukoliko odbijate zahtjev...";
-        }
-
-        private void CommentTextBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
-        {
-            TextBox source = e.Source as TextBox;
-
-            if (CommentTextBox.Text == "Unesite komentar ukoliko odbijate zahtjev...")
-            {
-                source.Background = Brushes.MintCream;
-                source.Foreground = Brushes.Black;
-                source.Clear();
-            }
-        }
-
-        private void CommentTextBox_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
-        {
-            TextBox source = e.Source as TextBox;
-
-            if (CommentTextBox.Text == "")
-            {
-                CommentTextBox.Text = "Unesite komentar ukoliko odbijate zahtjev...";
-                source.Background = Brushes.White;
-                source.Foreground = Brushes.Gray;
-            }
+            DataContext = new RequestsViewModel(owner, this);
         }
     }
 }

@@ -22,10 +22,10 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
     /// </summary>
     public partial class ForumsDisplayView : Page
     {
-        public ForumsDisplayView(Owner owner, NavigationService navService)
+        public ForumsDisplayView(Owner owner, OwnerStartingView window, NavigationService navService)
         {
             InitializeComponent();
-            DataContext = new ForumsDisplayViewModel(owner, navService);
+            DataContext = new ForumsDisplayViewModel(owner, window, navService);
         }
     }
 }

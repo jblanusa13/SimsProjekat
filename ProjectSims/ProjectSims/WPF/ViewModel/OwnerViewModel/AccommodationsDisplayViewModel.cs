@@ -8,7 +8,9 @@ using ProjectSims.WPF.View.OwnerView.Pages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,12 +19,11 @@ using System.Windows.Navigation;
 
 namespace ProjectSims.WPF.ViewModel.OwnerViewModel
 {
-    public class AccommodationsDisplayViewModel : IObserver
+    public class AccommodationsDisplayViewModel : IObserver, INotifyPropertyChanged
     {
         public Owner Owner { get; set; }
         public ObservableCollection<Accommodation> AccommodationsForDisplay { get; set; }
         public Accommodation SelectedAccommodation { get; set; }
-        public TextBlock TitleTextBlock { get; set; }
         public RelayCommand RenovateCommand { get; set; }
         public RelayCommand RegistrateCommand { get; set; }
         public RelayCommand StatisticsCommand { get; set; }
@@ -31,9 +32,10 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
         private AccommodationReservationService accommodationReservationService;
         private RenovationScheduleService renovationScheduleService;
         public AccommodationsDisplayView View { get; set; }
+        public OwnerStartingView Window { get; set; }
         public NavigationService NavService { get; set; }
 
-        public AccommodationsDisplayViewModel(Owner o, NavigationService navService, AccommodationsDisplayView view, TextBlock titleTextBlock) {
+        public AccommodationsDisplayViewModel(Owner o, NavigationService navService, AccommodationsDisplayView view, OwnerStartingView window) {
             Owner = o;
             NavService = navService;
             accommodationService = new AccommodationService();
@@ -46,15 +48,14 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
             RenovateCommand = new RelayCommand(Execute_RenovateCommand, CanExecute_RenovateCommand);
             StatisticsCommand = new RelayCommand(Execute_StatisticsCommand, CanExecute_StatisticsCommand);
             View = view;
+            Window = window;
             SelectedAccommodation = (Accommodation)View.AccommodationsTable.SelectedItem;
-            TitleTextBlock = titleTextBlock;
-
         }
 
         private void Execute_RegistrateCommand(object obj)
         {
-            NavService.Navigate(new AccommodationRegistrationView(Owner, TitleTextBlock, SelectedAccommodation, NavService));
-            TitleTextBlock.Text = "Registracija smještaja";
+            NavService.Navigate(new AccommodationRegistrationView(Owner, Window, SelectedAccommodation, NavService));
+            Window.PageTitle = "Registracija smještaja";
         }
 
         private bool CanExecute_RegistrateCommand(object obj)
@@ -66,8 +67,8 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
         {
             if (SelectedAccommodation != null)
             {
-                NavService.Navigate(new RenovationScheduleView(Owner, TitleTextBlock, SelectedAccommodation, NavService));
-                TitleTextBlock.Text = "Renovacija smještaja";
+                NavService.Navigate(new RenovationScheduleView(Owner, Window, SelectedAccommodation, NavService));
+                Window.PageTitle = "Renovacija smještaja";
             }
         }
 
@@ -80,19 +81,14 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
         {
             if (SelectedAccommodation != null)
             {
-                NavService.Navigate(new StatisticsView(Owner, TitleTextBlock, SelectedAccommodation, NavService));
-                TitleTextBlock.Text = "Statistika smještaja";
+                NavService.Navigate(new StatisticsView(Owner, Window, SelectedAccommodation, NavService));
+                Window.PageTitle = "Statistika smještaja";
             }
         }
 
         private bool CanExecute_StatisticsCommand(object obj)
         {
             return SelectedAccommodation != null;
-        }
-
-        public bool HasWaitingRequests(Owner owner)
-        {
-            return requestService.HasWaitingRequests(owner.Id);
         }
 
         public void UpdateAccommodationsIfRenovated()
@@ -107,6 +103,11 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
             {
                 AccommodationsForDisplay.Add(accommodation);
             }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

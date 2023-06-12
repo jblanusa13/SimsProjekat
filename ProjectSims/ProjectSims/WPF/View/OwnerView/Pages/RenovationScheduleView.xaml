@@ -4,8 +4,17 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.OwnerView.Pages"
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       mc:Ignorable="d" 
       d:DesignHeight="750" d:DesignWidth="430">
+    <Page.Resources>
+        <ControlTemplate x:Key="ValidationTemplate">
+            <StackPanel>
+                <AdornedElementPlaceholder x:Name="textBox" />
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" FontSize="9" FontFamily="Bahnschrift" />
+            </StackPanel>
+        </ControlTemplate>
+    </Page.Resources>
     <Grid Margin="0,2,0,-2" Background="#ff383378">
         <Grid.Resources>
             <Style TargetType="Button">
@@ -25,9 +34,38 @@
             <Label Content="Početak:" FontSize="14" HorizontalAlignment="Left" Margin="50,50,0,0" VerticalAlignment="Top" Width="200"/>
             <Label Content="Kraj:" FontSize="14" HorizontalAlignment="Left" Margin="50,95,0,0" VerticalAlignment="Top" Height="30" Width="159"/>
             <Label Content="Trajanje:" FontSize="14" HorizontalAlignment="Left" Margin="50,140,0,0" VerticalAlignment="Top" Width="159"/>
-            <DatePicker SelectedDateChanged="FirstDatePickerDateChanged" x:Name="FirstDatePicker"  HorizontalAlignment="Right" Margin="0,54,50,0" Height="26" Width="183" VerticalAlignment="Top"/>
-            <DatePicker SelectedDateChanged="SecondDatePickerDateChanged" x:Name="SecondDatePicker"  HorizontalAlignment="Right" Margin="0,99,50,0" Height="26" Width="183" VerticalAlignment="Top"/>
-            <TextBox TextChanged="DurationTextBox_TextChanged" x:Name="DurationTextBox"  HorizontalAlignment="Right" Margin="0,143,50,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="True"/>
+            <DatePicker x:Name="FirstDatePicker" HorizontalAlignment="Right" Margin="0,54,50,0" Height="26" Width="183" VerticalAlignment="Top">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectedDateChanged">
+                        <i:InvokeCommandAction 
+				            Command="{Binding FirstDateChangedCommand}"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="SelectedDateChanged" >
+                        <i:InvokeCommandAction 
+				            Command="{Binding FirstChangedCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </DatePicker>
+            <Label x:Name="ValidateFirst" Margin="0,78,90,0" Foreground="Red" HorizontalAlignment="Right" VerticalAlignment="Top" Width="140" Height="26" FontSize="13" FontFamily="Bahnschrift" />
+
+            <DatePicker x:Name="SecondDatePicker"  HorizontalAlignment="Right" Margin="0,99,50,0" Height="26" Width="183" VerticalAlignment="Top">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectedDateChanged">
+                        <i:InvokeCommandAction 
+				            Command="{Binding SecondDateChangedCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </DatePicker>
+            <Label x:Name="ValidateLast" HorizontalAlignment="Right" Margin="0,124,150,0" VerticalAlignment="Top" Foreground="Red" Width="80" Height="26" FontSize="13" FontFamily="Bahnschrift"/>
+            
+            <TextBox Text="{Binding Duration, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" x:Name="DurationTextBox"  HorizontalAlignment="Right" Margin="0,143,50,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="26" Foreground="#FF6E6E6E" IsEnabled="True">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="TextChanged">
+                        <i:InvokeCommandAction 
+				            Command="{Binding DurationChangedCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
         </Grid>
         <Grid Grid.Row="1">
             <Label Content="Izaberite slobodan termin:" 
@@ -51,15 +89,23 @@
         </Grid>
         <Grid Grid.Row="2">
             <TextBox x:Name="DescriptionTextBox" 
-                 Text="{Binding Path=Description, FallbackValue='Unesite opis...', UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                 GotKeyboardFocus="DescriptonTextBox_GotKeyboardFocus"
-                 LostKeyboardFocus="DescriptonTextBox_LostKeyboardFocus" 
-                 Margin="50,15,50,15" 
-                 Foreground="#FF6E6E6E"/>
+                 Text="{Binding Path=Description, Mode=TwoWay, FallbackValue='Unesite opis...', UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                 Margin="50,15,50,15" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <i:InvokeCommandAction 
+				            Command="{Binding MouseDownCommand}"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="PreviewLostKeyboardFocus">
+                        <i:InvokeCommandAction 
+				            Command="{Binding LostKeyboardFocusCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+            </TextBox>
         </Grid>
         <Grid Grid.Row="3">
         <Button x:Name="ConfirmButton" 
-                Click="Confirm_Click" 
+                Command="{Binding ConfirmCommand}" 
                 Height="34" 
                 Width="125" 
                 Margin="80,60,0,0" 
@@ -67,7 +113,7 @@
                 HorizontalAlignment="Left" 
                 Content="Potvrdi"/>
         <Button x:Name="CancelButton" 
-                Click="Cancel_Click" 
+                Command="{Binding CancelCommand}" 
                 Height="34"
                 Width="120"
                 Margin="0,60,80,0"  

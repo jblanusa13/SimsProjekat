@@ -22,10 +22,10 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
     /// </summary>
     public partial class NotificationsView : Page
     {
-        public NotificationsView(Owner owner, NavigationService navService)
+        public NotificationsView(Owner owner, OwnerStartingView window, NavigationService navService)
         {
             InitializeComponent();
-            DataContext = new NotificationsViewModel(owner, navService);
+            DataContext = new NotificationsViewModel(owner, window, navService, this);
         }
     }
 }

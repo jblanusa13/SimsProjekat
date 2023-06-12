@@ -22,15 +22,10 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
     /// </summary>
     public partial class OwnerRatingsDisplayView : Page
     {
-        public OwnerRatingsDisplayViewModel ownerRatingsDisplayViewModel { get; set; }
-        public Owner Owner { get; set; }
-        public NavigationService NavService { get; set; }
         public OwnerRatingsDisplayView(Owner o, NavigationService navService) 
         {
             InitializeComponent();
-            Owner = o;
-            NavService = navService;
-            DataContext = new OwnerRatingsDisplayViewModel(Owner, NavService);
+            DataContext = new OwnerRatingsDisplayViewModel(o, navService);
         }
     }
 }

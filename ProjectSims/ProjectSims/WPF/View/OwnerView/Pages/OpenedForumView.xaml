@@ -88,11 +88,11 @@
         
         <Grid Grid.Row="2">
             <TextBox x:Name="CommentTextBox"
-                Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged}"
+                Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                 HorizontalAlignment="Center" 
                 Height="86"
                 TextWrapping="Wrap"
-                Foreground="Gray"
+                Foreground="Black"
                 VerticalAlignment="Center"
                 Width="376"
                 Grid.Row="1"/>

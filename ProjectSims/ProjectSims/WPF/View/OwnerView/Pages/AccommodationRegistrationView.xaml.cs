@@ -32,16 +32,11 @@ namespace ProjectSims.View.OwnerView.Pages
     /// </summary>
     public partial class AccommodationRegistrationView : Page
     {
-        public Owner Owner { get; set; }
         public AccommodationRegistrationViewModel accommodationRegistrationViewModel { get; set; }
-        public NavigationService NavService { get; set; }
-        public AccommodationRegistrationView(Owner o, TextBlock titleTextBlock, Accommodation selectedAccommodation, NavigationService navService)
+        public AccommodationRegistrationView(Owner owner, OwnerStartingView window, Accommodation selectedAccommodation, NavigationService navService)
         {
             InitializeComponent();
-            Owner = o;
-            NavService = navService;
-            accommodationRegistrationViewModel = new AccommodationRegistrationViewModel(Owner, selectedAccommodation, NavService, this);
-            this.DataContext = accommodationRegistrationViewModel;
+            DataContext = new AccommodationRegistrationViewModel(owner, window, selectedAccommodation, navService, this); ;
         }
         private void DeleteImage_PreviewKeyDown(object sender, KeyEventArgs e)
         {

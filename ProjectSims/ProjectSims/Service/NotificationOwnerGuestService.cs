@@ -66,25 +66,15 @@ namespace ProjectSims.Service
         {
             return notificationRepository.GetAll();
         }     
-        public List<Forum> GetAllForums()
+        public List<Forum> GetAllForums(Owner owner)
         {
-            return notificationRepository.GetAllForums();
+            return notificationRepository.GetAllForums(owner);
         }
         public NotificationOwnerGuest GetById(int id)
         {
             return notificationRepository.GetById(id);
         }
-/*
-        public int GetNumberUnseenNotificationsByGuest2(int guest2Id)
-        {
-            int number = 0;
-            foreach(NotificationOwnerGuest notificationTour in GetAllNotificationsByGuest2(guest2Id))
-            {
-                if (notificationTour.Seen == false) number++;
-            }
-            return number;
-        }
-*/
+        
         public void Create(NotificationOwnerGuest notificationTour)
         {
             notificationRepository.Create(notificationTour);

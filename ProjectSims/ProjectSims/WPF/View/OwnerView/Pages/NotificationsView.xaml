@@ -3,12 +3,13 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       xmlns:local="clr-namespace:ProjectSims.WPF.View.OwnerView"
       mc:Ignorable="d" 
       d:DesignHeight="750" d:DesignWidth="430"
       Title="NotificationsView">
 
-    <ScrollViewer>
+    <ScrollViewer CanContentScroll="True" SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical" ScrollViewer.VerticalScrollBarVisibility="Hidden">
         <Grid Background="#FF383378" Width="430">
             <Grid.Resources>
                 <Style TargetType="Button">
@@ -31,8 +32,9 @@
             </Grid>
 
             <Grid Grid.Row="1">
-                <ListView ItemsSource="{Binding Reservations}" Width="429"
-                          SelectedItem="{Binding SelectedGuestInReservation, Mode=TwoWay}" 
+                <ListView ItemsSource="{Binding Reservations, UpdateSourceTrigger=PropertyChanged}" Width="429"
+                          SelectedItem="{Binding SelectedGuestInReservation, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                          SelectionMode="Single"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                           ScrollViewer.VerticalScrollBarVisibility="Auto">
 
@@ -67,6 +69,14 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                        <i:InvokeCommandAction 
+				            Command="{Binding OnReservationsCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                
             </Grid>
         
             <Grid Grid.Row="2">
@@ -74,8 +84,9 @@
             </Grid>
         
             <Grid Grid.Row="3">
-                <ListView ItemsSource="{Binding NewForums}" Width="430"
-                          SelectedItem="{Binding SelectedForum, Mode=TwoWay}" 
+                <ListView ItemsSource="{Binding NewForums, UpdateSourceTrigger=PropertyChanged}" Width="430"
+                          SelectedItem="{Binding SelectedForum, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                          SelectionMode="Single"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                           ScrollViewer.VerticalScrollBarVisibility="Auto">
 
@@ -109,6 +120,14 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                        <i:InvokeCommandAction 
+				            Command="{Binding OnForumsCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
             </Grid>
 
             <Grid Grid.Row="4">

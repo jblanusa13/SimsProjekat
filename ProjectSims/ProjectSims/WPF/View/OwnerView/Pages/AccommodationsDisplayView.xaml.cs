@@ -35,24 +35,13 @@ namespace ProjectSims.View.OwnerView.Pages
     public partial class AccommodationsDisplayView : Page
     {
         public AccommodationsDisplayViewModel accommodationsDisplayViewModel;
-        public Owner Owner { get; set; }
-
-        public AccommodationsDisplayView(Owner o, TextBlock titleTextBlock, NavigationService navService)
+        
+        public AccommodationsDisplayView(Owner owner, NavigationService navService, OwnerStartingView window)
         {
             InitializeComponent();
-            Owner = o;
-            accommodationsDisplayViewModel = new AccommodationsDisplayViewModel(Owner, navService, this, titleTextBlock);
+            accommodationsDisplayViewModel = new AccommodationsDisplayViewModel(owner, navService, this, window);
             DataContext = accommodationsDisplayViewModel;
-            NotifyAboutRequest();
             accommodationsDisplayViewModel.UpdateAccommodationsIfRenovated();
-        }
-
-        public void NotifyAboutRequest()
-        {
-            if (accommodationsDisplayViewModel.HasWaitingRequests(Owner))
-            {
-                MessageBox.Show("Imate zahteve na čekanju!");
-            }
         }
     }
 }

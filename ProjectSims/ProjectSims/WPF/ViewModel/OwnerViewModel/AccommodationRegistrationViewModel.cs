@@ -5,6 +5,7 @@ using ProjectSims.Observer;
 using ProjectSims.Repository;
 using ProjectSims.Service;
 using ProjectSims.View.OwnerView.Pages;
+using ProjectSims.WPF.View.OwnerView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,8 +28,9 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
         private AccommodationService accommodationService;
         private LocationService locationService;
         private OwnerService ownerService;
-        private NavigationService NavService;
-        public AccommodationRegistrationView View;
+        private NavigationService NavService { get; set; }
+        public AccommodationRegistrationView View { get; set; }
+        public OwnerStartingView Window { get; set; }
         public RelayCommand DismissCommand { get; set; }
         public RelayCommand RegisterCommand { get; set; }
         public RelayCommand LoadImagesCommand { get; set; }
@@ -140,12 +142,13 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
                 }
             }
         }
-        public AccommodationRegistrationViewModel(Owner o, Accommodation selectedAccommodation, NavigationService navService, AccommodationRegistrationView view)
+        public AccommodationRegistrationViewModel(Owner o, OwnerStartingView window, Accommodation selectedAccommodation, NavigationService navService, AccommodationRegistrationView view)
         {
             accommodationService = new AccommodationService();
             locationService = new LocationService();
             ownerService = new OwnerService();
             Owner = o;
+            Window = window;
             NavService = navService;
             View = view;
             relativePaths = new List<string>();
@@ -167,7 +170,8 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
                 Pics.Add(path);
             }
             RegisterAccommodation(Location, Pics, AccommodationName, Type, Convert.ToInt32(GuestsMaximum), Convert.ToInt32(MinimumReservationDays), Convert.ToInt32(DismissalDays));
-            NavService.Navigate(new AccommodationsDisplayView(Owner, new TextBlock(), NavService));
+            NavService.Navigate(new AccommodationsDisplayView(Owner, NavService, Window));
+            Window.PageTitle = "Smještaji";
         }
 
         private bool CanExecute_RegisterCommand(object obj)
@@ -182,7 +186,8 @@ namespace ProjectSims.WPF.ViewModel.OwnerViewModel
 
         private void Execute_DismissCommand(object obj)
         {
-            NavService.Navigate(new AccommodationsDisplayView(Owner, new TextBlock(), NavService));
+            NavService.Navigate(new AccommodationsDisplayView(Owner, NavService, Window));
+            Window.PageTitle = "Smještaji";
         }
 
         public void RegisterAccommodation(string Location, List<string> Pics, string AccommodationName, AccommodationType Type, int GuestsMaximum, int MinimumReservationDays, int DismissalDays)

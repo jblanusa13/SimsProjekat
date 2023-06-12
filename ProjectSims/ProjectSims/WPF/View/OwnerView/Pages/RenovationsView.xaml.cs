@@ -31,33 +31,10 @@ namespace ProjectSims.WPF.View.OwnerView.Pages
     /// </summary>
     public partial class RenovationsView : Page
     {
-        public Owner Owner;
-        public TextBlock TitleTextBlock { get; set; }
-        public RenovationSchedule SelectedRenovation { get; set; }
-        public NavigationService NavService { get; set; }
-        public RenovationsViewModel renovationViewModel { get; set; }
-        private RenovationScheduleService renovationService;
-
-        public RenovationsView(Owner o, TextBlock titleTextBlock, NavigationService navService)
+        public RenovationsView(Owner o, OwnerStartingView window, NavigationService navService)
         {
             InitializeComponent();
-            Owner = o;
-            TitleTextBlock = titleTextBlock;
-            NavService = navService;
-            renovationService = new RenovationScheduleService();
-            renovationViewModel = new RenovationsViewModel(SelectedRenovation, Owner, NavService);
-            this.DataContext = renovationViewModel;
-        }
-
-        private void QuitRenovation_Click(object sender, RoutedEventArgs e)
-        {
-            SelectedRenovation = (RenovationSchedule)RenovationsTable.SelectedItem;
-            renovationViewModel.QuitRenovation(SelectedRenovation);
-        }
-
-        private void Cancel_Click(object sender, RoutedEventArgs e)
-        {
-            NavService.Navigate(new HomePageView(Owner, TitleTextBlock, NavService));
+            DataContext = new RenovationsViewModel(window, o, navService, this);
         }
     }
 }
