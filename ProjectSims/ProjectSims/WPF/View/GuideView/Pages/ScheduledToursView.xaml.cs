@@ -25,20 +25,16 @@ namespace ProjectSims.WPF.View.GuideView.Pages
     /// </summary>
     public partial class ScheduledToursView : Page
     {
-        public Tour SelectedTour { get; set; }
-        public ScheduledToursViewModel scheduledToursViewModel{get; set;}
-        public ScheduledToursView(Guide guide)
+        ScheduledToursViewModel viewModel;
+        public ScheduledToursView(Guide guide,NavigationService navigationService)
         {
             InitializeComponent();
-            scheduledToursViewModel = new ScheduledToursViewModel(guide);
-            this.DataContext = scheduledToursViewModel;
+            viewModel = new ScheduledToursViewModel(guide, navigationService);
+            this.DataContext = viewModel;
         }
-
-        private void CancelTour_Click(object sender, RoutedEventArgs e)
+        private void ViewDetails_Click(object sender, RoutedEventArgs e)
         {
-            SelectedTour = ((FrameworkElement)sender).DataContext as Tour;
-            NavigationService.Navigate(new TourDetailsAndCancelling(SelectedTour));
-            //48
+            viewModel.ViewDetails(((FrameworkElement)sender).DataContext as Tour);
         }
     }
 }

@@ -67,10 +67,10 @@ namespace ProjectSims.Service
                 age--;
             return age;
         }
-        public void GiveVoucher(int id)
+        public void GiveVoucher(int id,int years)
         {
             Guest2 guest = guest2Repository.GetById(id);
-            Voucher voucher = new Voucher(voucherService.NextId(),DateTime.Now,DateTime.Now.AddYears(1),false,true);
+            Voucher voucher = new Voucher(voucherService.NextId(),DateTime.Now,DateTime.Now.AddYears(years),false,true);
             voucherService.Create(voucher);
             guest.VoucherIds.Add(voucher.Id);
             Update(guest);

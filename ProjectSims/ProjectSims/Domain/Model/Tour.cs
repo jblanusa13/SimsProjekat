@@ -36,7 +36,7 @@ namespace ProjectSims.Domain.Model
             Images = new List<string>();
         }
 
-        public Tour(int id, int guideId, string name, string location, string description, string language, int maxNumberGuests,List<int> keyPointIds, DateTime startOfTheTour, double duration, List<String> images, int availableSeats, TourState state, int activeKeyPointId,List<KeyPoint> keyPoints)
+        public Tour(int id, int guideId, string name, string location, string description, string language, int maxNumberGuests,List<int> keyPointIds, DateTime startOfTheTour, double duration, List<String> images, int availableSeats, TourState state, int activeKeyPointId, List<KeyPoint> keyPoints, int tourRequestId)
         {
             Id = id;
             GuideId = guideId;

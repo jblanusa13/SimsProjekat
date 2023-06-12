@@ -62,7 +62,7 @@ namespace ProjectSims.Repository
         {
             return tours.Find(t=>t.Id == id);
         }
-        public List<Tour> GetToursByStateAndGuideId(TourState state,int guideId)
+        public List<Tour> GetToursByStateAndGuideId(TourState state, int guideId)
         {
             return tours.Where(t => t.State == state && t.GuideId == guideId).ToList();
         }
@@ -72,8 +72,11 @@ namespace ProjectSims.Repository
         }
         public List<Tour> GetToursByDateAndGuideId(DateTime date, int guideId)
         {
-            List<Tour> inactiveTours = GetToursByStateAndGuideId(TourState.Inactive, guideId);
-            return inactiveTours.Where(t => t.StartOfTheTour.Date == date.Date).ToList();
+            return tours.Where(t => t.StartOfTheTour.Year == date.Year && t.StartOfTheTour.Month == date.Month && t.StartOfTheTour.Day == date.Day && t.GuideId == guideId).ToList();
+        }
+        public List<Tour> GetToursByLanguageAndGuideId(string language, int guideId)
+        {
+            return tours.Where(t => t.Language == language && t.GuideId == guideId).ToList();
         }
         public void Subscribe(IObserver observer)
         {

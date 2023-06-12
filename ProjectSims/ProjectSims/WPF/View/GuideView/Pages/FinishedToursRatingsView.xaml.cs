@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,17 +26,21 @@ namespace ProjectSims.WPF.View.GuideView.Pages
     public partial class FinishedToursRatingsView : Page
     {
         public Tour SelectedTour { get; set; }
-        public FinishedToursRatingsView(Guide guide)
+        public Guide Guide { get; set; }
+        public NavigationService navigationService { get; set; }
+        public FinishedToursRatingsView(Guide guide,NavigationService ns)
         {
             InitializeComponent();
+            Guide = guide;
             this.DataContext = new FinishedToursRatingsViewModel(guide);
+            navigationService = ns;
         }
         private void TourInfo_Click(object sender, RoutedEventArgs e)
         {
             SelectedTour = ((FrameworkElement)sender).DataContext as Tour;
             if (SelectedTour != null)
             {
-               this.NavigationService.Navigate(new TourDetailsAndRatingsView(SelectedTour));
+               this.NavigationService.Navigate(new TourDetailsAndRatingsView(SelectedTour,navigationService,Guide));
             }
         }
     }

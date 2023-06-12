@@ -16,7 +16,6 @@ namespace ProjectSims.WPF.ViewModel.Guest2ViewModel
     {
         private TourService tourService;
         private ReservationTourService reservationTourService;
-
         public ObservableCollection<Tour> ListTour { get; set; }
         public Tour SelectedTour { get; set; }
         public Guest2 guest2 { get; set; }
@@ -41,7 +40,7 @@ namespace ProjectSims.WPF.ViewModel.Guest2ViewModel
         {
             UpdateListTour();
         }
-        public void ButtonRatingTour(object sender)
+        public void RatingTour()
         {
             if (SelectedTour != null)
             {

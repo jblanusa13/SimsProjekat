@@ -34,20 +34,20 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
         }
         private void ButtonCreateRequest(object sender, RoutedEventArgs e)
         {
-            viewModel.ButtonCreateRequest(sender);
+            viewModel.CreateRequest();
         }
         private void ImageAndLabel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            viewModel.ImageAndLabel_MouseLeftButtonDown(sender);
+            viewModel.ShowHelp();
         }
         private void Statistic_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            viewModel.Statistic_MouseLeftButtonDown(sender);
+            viewModel.ShowStatistics();
         }
 
         private void ButtonCreateRequestForComplexTour (object sender, RoutedEventArgs e)
         {
-            viewModel.ButtonCreateRequestForComplexTour(sender);
+            viewModel.CreateRequestForComplexTour();
         }
 
         private void DetailsAboutRequestClick(object sender, RoutedEventArgs e)

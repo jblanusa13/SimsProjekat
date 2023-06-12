@@ -11,27 +11,21 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ProjectSims.Domain.Model;
+using System.Windows.Shapes;
+using ProjectSims.WPF.ViewModel.GuideViewModel;
 
 namespace ProjectSims.WPF.View.GuideView.Pages
 {
     /// <summary>
-    /// Interaction logic for AccountView.xaml
+    /// Interaction logic for DatesReport.xaml
     /// </summary>
-    public partial class AccountView : Page
+    public partial class DatesReport : Page
     {
-        public AccountView(Guide g)
+        public DatesReport(NavigationService navigationService,Guide guide)
         {
             InitializeComponent();
-            DataContext = this;
-        }
-
-        private void Logout_Click(object sender, RoutedEventArgs e)
-        {
-            var startView = new MainWindow();
-            startView.Show();
-            Window.GetWindow(this).Close();
+            this.DataContext = new DateReportViewModel(guide, navigationService,DateRange);
         }
     }
 }

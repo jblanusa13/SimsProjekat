@@ -38,7 +38,7 @@ namespace ProjectSims.WPF.View.Guest2View
 
         private void SeeMoreDetailsButton(object sender, RoutedEventArgs e)
         {
-            viewModel.SeeMoreDetailsButton(sender);
+            viewModel.SeeMoreDetails();
             
         }
     }

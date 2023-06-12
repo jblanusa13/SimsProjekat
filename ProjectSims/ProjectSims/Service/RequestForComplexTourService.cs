@@ -1,6 +1,7 @@
 ﻿using ProjectSims.Domain.Model;
 using ProjectSims.Domain.RepositoryInterface;
 using ProjectSims.Observer;
+using ProjectSims.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,42 @@ namespace ProjectSims.Service
                 }
             }
         }
+
+        public void UpdateRequestForComplexTour()
+        {
+            DateOnly today = DateOnly.FromDateTime(DateTime.Today).AddDays(2);
+            List<RequestForComplexTour> requests = new List<RequestForComplexTour>(GetAllRequests());
+            foreach (RequestForComplexTour request in requests)
+            {
+                if (request.State == TourRequestState.Waiting)
+                {
+                    UpdateInAcceptedRequests(request);
+                }
+                if (today >= request.TourRequests.First().DateRangeStart && request.State == TourRequestState.Waiting)
+                {
+                    request.State = TourRequestState.Invalid;
+                    Update(request);
+                }
+            }
+        }
+
+        public void UpdateInAcceptedRequests(RequestForComplexTour request)
+        {
+            int number = 0;
+            foreach(TourRequest r in request.TourRequests)
+            {
+                if(r.State != TourRequestState.Accepted)
+                {
+                    number++; 
+                }
+            }
+            if(number == 0)
+            {
+                request.State = TourRequestState.Accepted;
+                Update(request);
+            }
+        }
+
         public int NextId()
         {
             return complexTourRequestRepository.NextId();
@@ -56,7 +93,52 @@ namespace ProjectSims.Service
         {
             return complexTourRequestRepository.GetByGuest2Id(guest2Id);
         }
-
+        public List<int> GetGuidesWhoAcceptedSimpleRequestsIds(int id)
+        {
+            RequestForComplexTour requestForComplexTour  = GetById(id);
+            return requestForComplexTour.TourRequests.Select(r => r.GuideId).ToList();
+        }
+        public List<Tuple<DateTime, DateTime>> GetAcepptedPartsSchedule(int id)
+        {
+            List<Tuple<DateTime, DateTime>> scheduledAppointments = new List<Tuple<DateTime, DateTime>>();
+            RequestForComplexTour complexRequest = complexTourRequestRepository.GetById(id);
+            foreach (TourRequest part in complexRequest.TourRequests)
+            {
+                if (part.State == TourRequestState.Accepted)
+                {
+                    scheduledAppointments.Add(new Tuple<DateTime, DateTime>(part.AcceptedStartOfAppointment, part.AcceptedStartOfAppointment));
+                }
+            }
+            return scheduledAppointments.OrderBy(x => x.Item1).ToList();
+        }
+        public List<Tuple<DateTime, DateTime>> GetFreeAppointmentsByDate(TourRequest simpleRequest,DateTime date)
+        {
+            RequestForComplexTour complexRequest = complexTourRequestRepository.GetBySimpleRequestId(simpleRequest.Id);
+            List<Tuple<DateTime, DateTime>> scheduledAppointmnets = GetAcepptedPartsSchedule(complexRequest.Id);    
+            DateTime dayBegin = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
+            DateTime dayEnd = new DateTime(date.Year, date.Month, date.Day, 23, 59, 59);
+            if (scheduledAppointmnets.Count != 0)
+            {
+                List<Tuple<DateTime, DateTime>> freeAppointments = new List<Tuple<DateTime, DateTime>>();
+                freeAppointments.Add(new Tuple<DateTime, DateTime>(dayBegin, scheduledAppointmnets.First().Item1));
+                for (int i = 0; i < scheduledAppointmnets.Count - 1; i++)
+                {
+                    freeAppointments.Add(new Tuple<DateTime, DateTime>(scheduledAppointmnets[1].Item2, scheduledAppointmnets[i + 1].Item1));
+                }
+                freeAppointments.Add(new Tuple<DateTime, DateTime>(scheduledAppointmnets.Last().Item2, dayEnd));
+                return freeAppointments;
+            }
+            return new List<Tuple<DateTime, DateTime>>() { new Tuple<DateTime, DateTime>(dayBegin, dayEnd) };
+        }
+        public bool CheckIfAppointmentIsAvailable(DateTime start, DateTime end,TourRequest simpleRequest)
+        {
+            foreach (var freeAppointment in GetFreeAppointmentsByDate(simpleRequest, start))
+            {
+                if ((start >= freeAppointment.Item1) && (start <= freeAppointment.Item2) && (end <= freeAppointment.Item2) && (end <= freeAppointment.Item2))
+                    return true;
+            }
+            return false;
+        }
         public RequestForComplexTour GetById(int id)
         {
             return complexTourRequestRepository.GetById(id);

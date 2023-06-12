@@ -11,5 +11,6 @@ namespace ProjectSims.Domain.RepositoryInterface
     public interface IRequestForComplexTourRepository : IGenericRepository<RequestForComplexTour, int>, ISubject
     {
         public List<RequestForComplexTour> GetByGuest2Id(int guest2Id);
+        public RequestForComplexTour GetBySimpleRequestId(int partId);
     }
 }

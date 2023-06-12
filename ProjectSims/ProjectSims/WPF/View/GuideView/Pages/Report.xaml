@@ -1,0 +1,93 @@
+﻿<Page x:Class="ProjectSims.WPF.View.GuideView.Pages.Report"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1122.52" d:DesignWidth="793.701">
+    <Grid x:Name="GridReport" Height="29.7cm" Width="21cm">
+        <FlowDocumentScrollViewer Name="ReportScroll" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden">
+            <FlowDocument x:Name="Document" PagePadding="22" MaxPageHeight="1000" MaxPageWidth="750">
+                <Section>
+                    <BlockUIContainer>
+                        <Grid>
+                            <Image Source="/Resources/Icons/Guide/logo.png" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0"/>
+                            <TextBlock Text="Izvestaj o zakazanim turama u odredjenom vremenskom periodu " FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,90,0,0"/>
+                        </Grid>
+                    </BlockUIContainer>
+                </Section>
+                <Section>
+                    <BlockUIContainer x:Name="BlockContainer">
+                        <ItemsControl x:Name="ScheduledTours">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <Grid Grid.Row="0" >
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                                <TextBlock Text="Naziv: "/>
+                                                <TextBlock Text="{Binding Name}" />
+                                            </StackPanel>
+
+                                            <Border BorderBrush="Black" BorderThickness="0,0,0,1"/>
+                                        </Grid>
+                                        <Grid Grid.Row="1" >
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                                <TextBlock Text="Pocetak: "/>
+                                                <TextBlock Text="{Binding StartOfTheTour,StringFormat=dd.MM.yyyy HH:mm}" />
+                                            </StackPanel>
+
+                                            <Border BorderBrush="Black" BorderThickness="0,0,0,1"/>
+                                        </Grid>
+                                        <Grid Grid.Row="2" >
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                                <TextBlock Text="Lokacija: "/>
+                                                <TextBlock Text="{Binding Location}" />
+                                            </StackPanel>
+
+                                            <Border BorderBrush="Black" BorderThickness="0,0,0,1"/>
+                                        </Grid>
+                                        <Grid Grid.Row="3" >
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                                <TextBlock Text="Maksimalan broj gostiju: "/>
+                                                <TextBlock Text="{Binding MaxNumberGuests}" />
+                                            </StackPanel>
+
+                                            <Border BorderBrush="Black" BorderThickness="0,0,0,1"/>
+                                        </Grid>
+                                        <Grid Grid.Row="4" >
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                                <TextBlock Text="Trajanje: "/>
+                                                <TextBlock Text="{Binding Duration}" />
+                                            </StackPanel>
+
+                                            <Border BorderBrush="Black" BorderThickness="0,0,0,1"/>
+                                        </Grid>
+                                        <Grid Grid.Row="5" >
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                                <TextBlock Text="Jezik: "/>
+                                                <TextBlock Text="{Binding Language}" />
+                                            </StackPanel>
+
+                                            <Border BorderBrush="Black" BorderThickness="0,0,0,1"/>
+                                        </Grid>
+
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </BlockUIContainer>
+                </Section>
+            </FlowDocument>
+        </FlowDocumentScrollViewer>
+
+    </Grid>
+</Page>

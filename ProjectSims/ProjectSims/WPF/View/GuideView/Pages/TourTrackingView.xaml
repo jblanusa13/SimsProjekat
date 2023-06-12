@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       mc:Ignorable="d" 
       d:DesignHeight="0" d:DesignWidth="1280"
       Title="TourTrackingView" Background="Transparent">
@@ -105,18 +106,18 @@
         <Border HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Height="40" Width="1280" BorderBrush="White" BorderThickness="0 0 0 1">
             <Grid>
                 <Label Margin="20,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">
-                    <Hyperlink Click="Back_Click">
-                        <TextBlock Text="Praćenje ture"/>
+                    <Hyperlink Command="{Binding BackCommand}">
+                        <TextBlock Text="Početna"/>
                     </Hyperlink>
                 </Label>
-                <Label Content="&#707;  Aktivna tura" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="130,10,0,0" FontSize="16"/>
+                <Label Content="&#707; Aktivna tura" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,10,0,0" FontSize="16"/>
             </Grid>
         </Border>
         <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,40,0,0" Width="1280" Height="530">
-        <Grid>
-                <Label x:Name="TourInfoLabel" HorizontalAlignment="Center" Margin="0,50,0,0" FontSize="44" Height="60" FontWeight="Bold"/>
+            <Grid>
+                <Label Content="{Binding LabelText}" HorizontalAlignment="Center" Margin="0,50,0,0" FontSize="44" Height="60" FontWeight="Bold"/>
                 <Image Source="/Resources/Icons/Guide/checkpoints.png" Margin="0,190,200,0" HorizontalAlignment="Center"/>
-                <Button Style="{StaticResource TransparentStyle1}" Height="65" Width="65" Margin="0,50,50,00" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" BorderThickness="0" Click="FinishTour_Click" Cursor="Hand">
+                <Button Style="{StaticResource TransparentStyle1}" Height="65" Width="65" Margin="0,50,50,00" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" BorderThickness="0" Command="{Binding FinishTourCommand}" Cursor="Hand">
                     <Image Source="/Resources/Icons/Guide/stop.png"/>
                 </Button>
                 <Label Content="Stanice" Margin="0,190,0,0" FontSize="36" Height="60" FontWeight="Medium" HorizontalAlignment="Center"/>
@@ -133,7 +134,12 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-                <ListView x:Name="KeyPointListView" ItemsSource="{Binding UnFinishedKeyPoints}"  SelectedItem="{Binding Path=SelectedKeyPoint}" SelectionMode="Single" SelectionChanged="KeyPointSelected_SelectionChanged" Margin="100,300,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Background="#ffc300">
+                <ListView x:Name="KeyPointListView" ItemsSource="{Binding UnFinishedKeyPoints}" SelectedItem="{Binding SelectedKeyPoint, Mode=TwoWay}" SelectionMode="Single" Margin="100,300,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Background="#ffc300">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding SelectKeyPointCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                     <ListView.View>
                         <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeader}" >
                         <GridViewColumn Header="Nezavršene stanice" Width="490">
@@ -185,7 +191,7 @@
                         </GridView>
                 </ListView.View>
             </ListView>
-                <ListView ItemsSource="{Binding WaitingGuests}"  SelectedItem="{Binding Path=SelectedGuest}" SelectionMode="Single" Margin="100,650,0,100" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Background="#ffc300">
+                <ListView Name="WaitingGuestsListView" ItemsSource="{Binding WaitingGuests}"  SelectedItem="{Binding Path=SelectedGuest}" SelectionMode="Single" Margin="100,650,0,100" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Background="#ffc300">
                     <ListView.Resources>
                         <Style TargetType="{x:Type Label}">
                             <Setter Property="Foreground" Value="#FF1B5886"/>
@@ -196,16 +202,6 @@
                     </ListView.Resources>
                     <ListView.View>
                         <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeader}" >
-                            <GridViewColumn Header="Obavesti" Width="100">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Style="{StaticResource TransparentStyle}" Margin="30,0,0,0" Background="Transparent" BorderThickness="0" Click="NotifyGuest_Click" Cursor="Hand">
-                                          
-                                            <Image Source="/Resources/Icons/Guide/notification.png" Height="30" Width="30"/>
-                                        </Button>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
                             <GridViewColumn Header="Nisu potvrdili prisustvo" Width="390">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>

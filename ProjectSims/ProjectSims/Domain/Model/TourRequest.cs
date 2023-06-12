@@ -24,12 +24,13 @@ namespace ProjectSims.Domain.Model
         public DateOnly DateRangeStart { get; set; }
         public DateOnly DateRangeEnd { get; set; }
         public DateTime CreationDate { get; set; }
-
-        //public bool RequestForComplexTour { get; set; }
+        public bool RequestForComplexTour { get; set; }
+        public DateTime AcceptedStartOfAppointment { get; set; }
+        public DateTime AcceptedEndOfAppointment { get; set; }
         public TourRequest()
         {
         }
-        public TourRequest(int guest2Id, int guideId, TourRequestState state, string location, string description, string language, int maxNumberGuests, DateOnly dateRangeStart, DateOnly dateRangeEnd)
+        public TourRequest(int guest2Id, int guideId, TourRequestState state, string location, string description, string language, int maxNumberGuests, DateOnly dateRangeStart, DateOnly dateRangeEnd,bool requestForComplexTour)
         {
             Guest2Id = guest2Id;
             GuideId = guideId;
@@ -41,6 +42,10 @@ namespace ProjectSims.Domain.Model
             DateRangeStart = dateRangeStart;
             DateRangeEnd = dateRangeEnd;
             CreationDate = DateTime.Now;
+            RequestForComplexTour = requestForComplexTour;
+            AcceptedStartOfAppointment = new DateTime(0001, 1, 1);
+            AcceptedEndOfAppointment = new DateTime(0001, 1, 1);
+
         }
 
         public static TourRequestState GetRequestState(string state)
@@ -75,10 +80,13 @@ namespace ProjectSims.Domain.Model
             DateRangeStart = DateOnly.ParseExact(values[8], "dd/MM/yyyy", CultureInfo.InvariantCulture);
             DateRangeEnd = DateOnly.ParseExact(values[9], "dd/MM/yyyy", CultureInfo.InvariantCulture);
             CreationDate = DateTime.ParseExact(values[10], "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            RequestForComplexTour = Convert.ToBoolean(values[11]);
+            AcceptedStartOfAppointment = DateTime.ParseExact(values[12], "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+            AcceptedEndOfAppointment = DateTime.ParseExact(values[13], "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
         }
         public string[] ToCSV()
         {
-            string[] csvvalues = { Id.ToString(), Guest2Id.ToString(), GuideId.ToString(), State.ToString(), Location, Description, Language, MaxNumberGuests.ToString(), DateRangeStart.ToString("dd/MM/yyyy"), DateRangeEnd.ToString("dd/MM/yyyy"),CreationDate.ToString("dd/MM/yyyy") };
+            string[] csvvalues = { Id.ToString(), Guest2Id.ToString(), GuideId.ToString(), State.ToString(), Location, Description, Language, MaxNumberGuests.ToString(), DateRangeStart.ToString("dd/MM/yyyy"), DateRangeEnd.ToString("dd/MM/yyyy"),CreationDate.ToString("dd/MM/yyyy"),RequestForComplexTour.ToString(), AcceptedStartOfAppointment.ToString("dd/MM/yyyy HH:mm:ss") , AcceptedEndOfAppointment.ToString("dd/MM/yyyy HH:mm:ss") };
             return csvvalues;
         }
     }

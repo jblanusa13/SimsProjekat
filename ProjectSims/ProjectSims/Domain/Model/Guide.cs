@@ -21,6 +21,8 @@ namespace ProjectSims.Domain.Model
         }
         public string Adress { get; set; }
         public string Email { get; set; }
+        public DateOnly BirthDate { get; set; }
+        public string PhoneNumber { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
 
@@ -28,13 +30,15 @@ namespace ProjectSims.Domain.Model
         {
 
         }
-        public Guide(int id, string name, string surname, string adress, string email, int userId)
+        public Guide(int id, string name, string surname, string adress, string email, DateOnly birthDate,string phoneNumber,int userId)
         {
             Id = id;
             Name = name;
             Surname = surname;
             Adress = adress;
             Email = email;
+            BirthDate = birthDate;
+            PhoneNumber = phoneNumber;
             UserId = userId;
         }
 
@@ -45,12 +49,14 @@ namespace ProjectSims.Domain.Model
             Surname = values[2];
             Adress = values[3];
             Email = values[4];
-            UserId = Convert.ToInt32(values[5]);
+            BirthDate = DateOnly.ParseExact(values[5], "dd/MM/yyyy");
+            PhoneNumber = values[6];
+            UserId = Convert.ToInt32(values[7]);
         }
 
         public string[] ToCSV()
         {
-            string[] csvvalues = { Id.ToString(), Name, Surname, Adress, Email, UserId.ToString() };
+            string[] csvvalues = { Id.ToString(), Name, Surname, Adress, Email,BirthDate.ToString("dd/MM/yyyy"),PhoneNumber, UserId.ToString() };
             return csvvalues;
         }
     }

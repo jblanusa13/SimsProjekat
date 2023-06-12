@@ -29,11 +29,11 @@ namespace ProjectSims.WPF.View.GuideView.Pages
     {
         public TourAndGuideRating TourRating { get; set; }
         public Tour SelectedTour;
-        public TourDetailsAndRatingsView(Tour selectedTour)
+        public TourDetailsAndRatingsView(Tour selectedTour,NavigationService navigationService,Guide guide)
         {
             InitializeComponent();
             SelectedTour = selectedTour;
-            this.DataContext = new TourDetailsAndRatingsViewModel(selectedTour);
+            this.DataContext = new TourDetailsAndRatingsViewModel(selectedTour,navigationService,guide);
 
         }
         public void ViewComment_Click(object sender, EventArgs e)

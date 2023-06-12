@@ -1,4 +1,5 @@
-﻿using ProjectSims.Domain.Model;
+﻿using ceTe.DynamicPDF.PageElements;
+using ProjectSims.Domain.Model;
 using ProjectSims.Service;
 using ProjectSims.View.GuideView;
 using ProjectSims.WPF.ViewModel.GuideViewModel;
@@ -22,6 +23,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static System.Net.Mime.MediaTypeNames;
+using ProjectSims.Commands;
 
 namespace ProjectSims.WPF.View.GuideView.Pages
 {
@@ -31,10 +33,17 @@ namespace ProjectSims.WPF.View.GuideView.Pages
     public partial class CreateTourView : Page,INotifyPropertyChanged, IDataErrorInfo
     {
         private CreateTourViewModel createTourViewModel;
+        public RelayCommand AddAppointmentCommand { get; set; }
+        public RelayCommand BackCommand { get; set; }
+        public RelayCommand AddKeyPointCommand { get; set; }
+        public RelayCommand CreateTourCommand { get; set; }
         public List<string> OtherKeyPoints { get; set; }
-        public List<string> Appointments { get; set; }
+        public List<Tuple<DateTime,int>> Appointments { get; set; }
         public Guide Guide { get; set; }
+        public bool CreatedTourByLanguage { get; set; }
+        public bool CreatedTourByLocation { get; set; }
         public List<string> Images { get; set; }
+
         private string _tourName;
         public string TourName
         {
@@ -87,8 +96,8 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 }
             }
         }
-        private string _date;
-        public string Date
+        private DateTime _date;
+        public DateTime Date
         {
             get => _date;
             set
@@ -100,8 +109,8 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 }
             }
         }
-        private string _hour;
-        public string Hour
+        private int _hour;
+        public int Hour
         {
             get => _hour;
             set
@@ -113,8 +122,8 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 }
             }
         }
-        private string _minute;
-        public string Minute
+        private int _minute;
+        public int Minute
         {
             get => _minute;
             set
@@ -139,6 +148,19 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 }
             }
         }
+        private string _otherKeyPoint;
+        public string OtherKeyPoint
+        {
+            get => _otherKeyPoint;
+            set
+            {
+                if (value != _otherKeyPoint)
+                {
+                    _otherKeyPoint = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         private string _finishKeyPoint;
         public string FinishKeyPoint
         {
@@ -152,8 +174,8 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 }
             }
         }
-        private string _duration;
-        public string Duration
+        private int _duration;
+        public int Duration
         {
             get => _duration;
             set
@@ -165,8 +187,8 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 }
             }
         }
-        private string _maxNumberGuests;
-        public string MaxNumberGuests
+        private int _maxNumberGuests;
+        public int MaxNumberGuests
         {
             get => _maxNumberGuests;
             set
@@ -191,7 +213,60 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 }
             }
         }
-        private Regex _maxNumberGuestsRegex = new Regex("^[1-9][0-9]*$");
+        private bool _numberGuestsEnabled;
+        public bool NumberGuestsEnabled
+        {
+            get => _numberGuestsEnabled;
+            set
+            {
+                if (value != _numberGuestsEnabled)
+                {
+                    _numberGuestsEnabled = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private bool _appointmentEnabled;
+        public bool AppointmentEnabled
+        {
+            get => _appointmentEnabled;
+            set
+            {
+                if (value != _appointmentEnabled)
+                {
+                    _appointmentEnabled = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private bool _locationEnabled;
+        public bool LocationEnabled
+        {
+            get => _locationEnabled;
+            set
+            {
+                if (value != _locationEnabled)
+                {
+                    _locationEnabled = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private bool _languageEnabled;
+        public bool LanguageEnabled
+        {
+            get => _languageEnabled;
+            set
+            {
+                if (value != _languageEnabled)
+                {
+                    _languageEnabled = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+
         public String Error => null;
 
         public string this[string columnName]
@@ -220,11 +295,8 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 }
                 else if (columnName == "MaxNumberGuests")
                 {
-                    if (string.IsNullOrEmpty(MaxNumberGuests))
+                    if (MaxNumberGuests == 0)
                         return "Unesite broj mesta!";
-                    Match match = _maxNumberGuestsRegex.Match(MaxNumberGuests);
-                    if (!match.Success)
-                        return "Los format!";
                 }
                 else if (columnName == "StartKeyPoint")
                 {
@@ -259,25 +331,30 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 return true;
             }
         }
-        public bool CreatedTourByLanguage { get; set; }
-        public bool CreatedTourByLocation { get; set; }
-        public CreateTourView(Guide guide, TourRequest tourRequest,string language,string location)
+        public CreateTourView(Guide guide, TourRequest tourRequest,string language,string location,DateTime selectedDate,int duration)
         {
             InitializeComponent();
+            AddAppointmentCommand = new RelayCommand(Execute_AddAppointmentCommand, CanExecute_AddAppointmentCommand);
+            AddKeyPointCommand = new RelayCommand(Execute_AddKeyPointCommand, CanExecute_AddKeyPointCommand);
+            BackCommand = new RelayCommand(Execute_BackCommand);
+            CreateTourCommand = new RelayCommand(Execute_CreateTourCommand, CanExecute_CreateTourCommand);
             DataContext = this;
             createTourViewModel = new CreateTourViewModel(guide, tourRequest);
             Guide = guide;
             OtherKeyPoints = new List<string>();
-            Appointments = new List<string>();
+            Appointments = new List<Tuple<DateTime,int>>();
             Images = new List<string>();
-            AddKeyPointButton.IsEnabled = false;
-            AddAppointmentButton.IsEnabled = false;
             TourDatePicker.BlackoutDates.AddDatesInPast();
+            Date = DateTime.Now;
             CreatedTourByLanguage = false;
             CreatedTourByLocation = false;
+            LanguageEnabled = true;
+            LocationEnabled = true;
+            AppointmentEnabled = true;
+            _numberGuestsEnabled = true;
             if (tourRequest != null)
             {
-               SetRequestData(tourRequest);
+               SetRequestData(tourRequest,selectedDate,duration);
             }
             if(language != null)
             {
@@ -290,31 +367,76 @@ namespace ProjectSims.WPF.View.GuideView.Pages
                 CreatedTourByLocation = true;
             }
         }
-        public void SetRequestData(TourRequest tourRequest)
+        public void SetRequestData(TourRequest tourRequest,DateTime date,int duration)
         {
             SetLocation(tourRequest.Location);
             SetLanguage(tourRequest.Language);
-            MaxNumberGuests = tourRequest.MaxNumberGuests.ToString();
-            MaxNumberGuestsTextBox.IsReadOnly = true;
-            TourDatePicker.DisplayDateStart = new DateTime(tourRequest.DateRangeStart.Year, tourRequest.DateRangeStart.Month, tourRequest.DateRangeStart.Day);
-            TourDatePicker.DisplayDateEnd = new DateTime(tourRequest.DateRangeEnd.Year, tourRequest.DateRangeEnd.Month, tourRequest.DateRangeEnd.Day);
+            MaxNumberGuests = tourRequest.MaxNumberGuests;
+            NumberGuestsEnabled = false;
+            Date = date.Date;
+            Hour = date.Hour;
+            Minute = date.Minute;
+            Duration = duration;
+            AppointmentEnabled = false;
         }
         public void SetLocation(string location)
         {
             City = location.Split(',')[0];
-            CityTextBox.IsReadOnly = true;
             Country = location.Split(',')[1];
-            CountryTextBox.IsReadOnly = true;
+            LocationEnabled = false;
         }
         public void SetLanguage(string language)
         {
-            LanguageComboBox.Items.Clear();
-            LanguageComboBox.Items.Add(language);
+            LanguageComboBox.SetValue(UidProperty, language);
+            TourLanguage = language;
+            LanguageEnabled = false;
         }
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private bool CanExecute_AddAppointmentCommand(object obj)
+        {
+            if (!createTourViewModel.GuideIsAvailable(Date, Hour, Minute, Duration))
+              MessageTextBox.Text = "Termin je zauzet!";
+            else
+            MessageTextBox.Text = "";
+            return string.IsNullOrEmpty(MessageTextBox.Text);
+        }
+        private void Execute_AddAppointmentCommand(object obj)
+        {
+            DateTime date = new DateTime(Date.Year,Date.Month,Date.Day, Hour, Minute, 0);
+            Appointments.Add(new Tuple<DateTime, int>(date, Duration));
+            Date = DateTime.Now;
+            Hour = 0;
+            Minute = 0;
+            Duration = 0;
+        }
+        private bool CanExecute_AddKeyPointCommand(object obj)
+        {
+            if (!string.IsNullOrEmpty(OtherKeyPointTextBox.Text))
+                return true;
+            else
+                return false;
+        }
+        private void Execute_AddKeyPointCommand(object obj)
+        {
+            OtherKeyPoints.Add(OtherKeyPointTextBox.Text);
+            OtherKeyPointTextBox.Text = "";
+        }
+        private void Execute_BackCommand(object obj)
+        {
+            this.NavigationService.GoBack();
+        }
+        private bool CanExecute_CreateTourCommand(object obj)
+        {
+                return IsValid;
+        }
+        private void Execute_CreateTourCommand(object obj)
+        {
+            createTourViewModel.CreateTour(TourName, TourLanguage, City + "," + Country, MaxNumberGuests.ToString(), Appointments, StartKeyPoint, OtherKeyPoints, FinishKeyPoint, Description, Images, CreatedTourByLocation, CreatedTourByLanguage);
+            this.NavigationService.Navigate(new ScheduledToursView(Guide,this.NavigationService));
         }
         private void BrowseImage_Click(object sender, RoutedEventArgs e)
         {
@@ -331,70 +453,12 @@ namespace ProjectSims.WPF.View.GuideView.Pages
             }
             Images.Add(GetRelativePath(apsolutePath));
         }
+
         private string GetRelativePath(string apsolutePath)
         {
             string[] helpString = apsolutePath.Split('\\');
             string image = helpString.Last();
             return "/Resources/Images/Guide/" + image;
-        }
-        public void OtherKeyPointTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(OtherKeyPointTextBox.Text))
-                AddKeyPointButton.IsEnabled = true;
-            else
-                AddKeyPointButton.IsEnabled = false;
-        }
-        public void DurationTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(OtherKeyPointTextBox.Text))
-                AddKeyPointButton.IsEnabled = true;
-            else
-                AddKeyPointButton.IsEnabled = false;
-        }
-        public bool IsCorrectAppointment()
-        {
-            int hour;
-            int minute;
-            double duration;
-            DateTime date = TourDatePicker.SelectedDate.GetValueOrDefault();
-            if (TourDatePicker.SelectedDate == null || string.IsNullOrEmpty(Hour) || string.IsNullOrEmpty(Minute) || string.IsNullOrEmpty(Duration))
-                MessageTextBox.Text = "Odaberite termin!";
-            else if (!Int32.TryParse(Hour, out hour) || hour < 0 || hour >= 24 || !Int32.TryParse(Minute, out minute) || minute < 0 || minute > 60 || !Double.TryParse(Duration, out duration))
-                MessageTextBox.Text = "Los format!";
-            else if (!createTourViewModel.GuideIsAvailable(date, hour, minute, duration))
-                MessageTextBox.Text = "Termin je zauzet!";
-            else
-                MessageTextBox.Text = "";
-            return string.IsNullOrEmpty(MessageTextBox.Text);
-        }
-        public void AppointmentInput_Changed(object sender, EventArgs e)
-        {
-            AddAppointmentButton.IsEnabled = IsCorrectAppointment();
-        }
-        public void AddAppointment_Click(object sender, RoutedEventArgs e)
-        {
-            Appointments.Add(TourDatePicker.SelectedDate.GetValueOrDefault().ToString("MM/dd/yyyy") + " " + Hour + ":" + Minute + "-" + Duration);
-            TourDatePicker.SelectedDate = null;
-            HourTextBox.Text = "";
-            MinuteTextBox.Text = "";
-            DurationTextBox.Text = "";
-            AddAppointmentButton.IsEnabled = false;
-        }
-        public void AddKeyPoint_Click(object sender, RoutedEventArgs e)
-        {
-            OtherKeyPoints.Add(OtherKeyPointTextBox.Text);
-            OtherKeyPointTextBox.Text = "";
-            AddKeyPointButton.IsEnabled = false; 
-        }
-        private void CreateTour_Click(object sender, RoutedEventArgs e)
-        {
-           if (IsValid)
-           {
-                createTourViewModel.CreateTour(TourName,TourLanguage,City + "," + Country,MaxNumberGuests, Appointments,StartKeyPoint,OtherKeyPoints,FinishKeyPoint,Description,Images,CreatedTourByLocation,CreatedTourByLanguage);
-                this.NavigationService.Navigate(new ScheduledToursView(Guide));
-            }
-           else
-               MessageBox.Show("Nisu validno popunjena polja!");
         }
     }
 }
