@@ -86,7 +86,8 @@ namespace ProjectSims.WPF.View.Guest2View
             }
         }
 
-        private Regex locationRegex = new Regex("^[A-Za-z]+,[A-Za-z]+$");
+        //private Regex locationRegex = new Regex("^[A-Za-z]+,[A-Za-z]+$");
+        private Regex locationRegex = new Regex(@"^[A-Za-z\s]+,[A-Za-z\s]+$");
         public string Error => null;
         public string this[string columnName]
         {
