@@ -15,8 +15,16 @@
             <Setter Property="Background" Value="{DynamicResource DataGridBackground}"></Setter>
             <Setter Property="BorderBrush" Value="{DynamicResource SecondGrayShade}"></Setter>
         </Style>
-        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridHeader}"/>
-        <Style TargetType="DataGridRow" BasedOn="{StaticResource DataGridRow}"/>
+        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridHeader}">
+            <Setter Property="Background" Value="{DynamicResource HeaderBackground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource DataGridBorder}"/>
+            <Setter Property="Foreground" Value="{DynamicResource DataGridForeground}"/>
+        </Style>
+        <Style TargetType="DataGridRow" BasedOn="{StaticResource DataGridRow}">
+            <Setter Property="Background" Value="{DynamicResource RowBackground}"/>
+            <Setter Property="Foreground" Value="{DynamicResource DataGridForeground}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
         <Style TargetType="DataGridCell" BasedOn="{StaticResource DataGridCell}">
             <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusControl}"/>
         </Style>
@@ -86,7 +94,8 @@
                     <Button Grid.Row="0" x:Name="ButtonLanguage" Margin="0,15,0,0"
                         Background="{DynamicResource SecondGrayShade}" 
                             BorderBrush="{DynamicResource BarShade}"
-                            FocusVisualStyle="{DynamicResource FocusControl}">
+                            FocusVisualStyle="{DynamicResource FocusControl}"
+                            Click="ButtonLanguage_Click">
                         <DynamicResource ResourceKey="LanguageIconRatings"></DynamicResource>
                         <Button.Resources>
                             <Style TargetType="Border">
@@ -106,7 +115,8 @@
                     <Button Grid.Row="0" x:Name="ButtonNotifications" Margin="0,15,0,0"
                         Background="{DynamicResource SecondGrayShade}" 
                             BorderBrush="{DynamicResource BarShade}"
-                            FocusVisualStyle="{DynamicResource FocusControl}">
+                            FocusVisualStyle="{DynamicResource FocusControl}"
+                            Click="ButtonNotifications_Click">
                         <DynamicResource ResourceKey="NotificationsIconRatings"></DynamicResource>
                         <Button.Resources>
                             <Style TargetType="Border">
@@ -123,8 +133,8 @@
         </Grid>
 
         <Grid Grid.Row="1">
-            <TabControl Margin="50,20,50,10">
-                <TabItem Header="{ns:Loc MojiUtisci}" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" >
+            <TabControl Margin="50,20,50,10" Background="{DynamicResource SecondGrayShade}">
+                <TabItem Header="{ns:Loc MojiUtisci}" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" Background="{DynamicResource SecondGrayShade}">
                     <Grid Background="{DynamicResource BlueShade}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -140,7 +150,7 @@
 
                             <Label Grid.Row="1"
                                    FontSize="13"
-                                   Margin="20,0,0,0">Da biste videli komentar, pritiskom na Tab se pomerajte kroz tabelu ocena</Label>
+                                   Margin="20,0,0,0" Foreground="{DynamicResource FontsColor}">Da biste videli komentar, pritiskom na Tab se pomerajte kroz tabelu ocena</Label>
                             <DataGrid Name="MyRatingsTable" Grid.Row="2" Margin="20,0,20,10"
                                   ItemsSource="{Binding MyRatings, UpdateSourceTrigger=PropertyChanged}"
                                   IsReadOnly="True" AutoGenerateColumns="False"
@@ -180,7 +190,7 @@
                         </Grid>
                     </Grid>
                 </TabItem>
-                <TabItem Header="{ns:Loc UtisciVlasnika}" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">
+                <TabItem Header="{ns:Loc UtisciVlasnika}" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" Background="{DynamicResource SecondGrayShade}">
                     <Grid Background="{DynamicResource BlueShade}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -199,7 +209,7 @@
                                 Foreground="{DynamicResource FontsColor}">Ocenu odredjenog vlasnika, 
                                 ako vas je ocenio, mozete videti tek kad vi njega ocenite</Label>
                             <Label Grid.Row="1"
-                                   FontSize="13"
+                                   FontSize="13" Foreground="{DynamicResource FontsColor}"
                                    Margin="20,-5,0,0">Da biste videli komentar, pritiskom na Tab se pomerajte kroz tabelu ocena</Label>
                             <DataGrid Name="OwnerRatingsTable" Grid.Row="2" Margin="20,0,20,10"
                                   ItemsSource="{Binding OwnerRatings, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"

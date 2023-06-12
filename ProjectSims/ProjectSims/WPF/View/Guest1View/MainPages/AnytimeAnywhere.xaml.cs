@@ -28,7 +28,7 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         public AnytimeAnywhere(Guest1 guest, NavigationService navigation)
         {
             InitializeComponent();
-            viewModel = new AnywhereAnytimeViewModel(FirstDatePicker, LastDatePicker, DatesTable, guest, navigation);
+            viewModel = new AnywhereAnytimeViewModel(guest, navigation, this);
             this.DataContext = viewModel;
             NavService = navigation;
             BackButton.Focus();
@@ -46,24 +46,8 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
         {
             if ((e.Key.Equals(Key.Enter)) || (e.Key.Equals(Key.Return)))
             {
-                viewModel.Reserve();
+                ConfirmBtn.Focus();
             }
         }
-
-        private void FirstDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            LastDatePicker.DisplayDateStart = FirstDatePicker.SelectedDate;
-        }
-
-        private void LastDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            FirstDatePicker.DisplayDateEnd = LastDatePicker.SelectedDate;
-        }
-
-        /*
-        private void Back_Click(object sender, RoutedEventArgs e)
-        {
-            NavService.GoBack();
-        }*/
     }
 }

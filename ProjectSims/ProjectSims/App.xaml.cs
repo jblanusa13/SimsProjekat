@@ -16,7 +16,7 @@ namespace ProjectSims
     public partial class App : Application
     {
         public static bool IsDark = false;
-        public static string CurrentLanguage = "en-US";
+        public static string CurrentLanguage = "sr-LATN";
 
         public void ChangeTheme(Uri uri)
         {

@@ -133,6 +133,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         {
             forumCommentService.CreateComment(Forum, Guest, Comment);
             ForumCommentsView.CommentTb.Text = "";
+            SetUsefulForum();
         }
 
         private void Execute_CloseForumCommand(object obj)

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ProjectSims.Domain.Model;
 using ProjectSims.Service;
+using ProjectSims.WPF.View.Guest1View.NotifAndHelp;
 
 namespace ProjectSims.WPF.View.Guest1View.MainPages
 {
@@ -48,6 +49,28 @@ namespace ProjectSims.WPF.View.Guest1View.MainPages
                 app.ChangeTheme(new Uri("Themes/Dark.xaml", UriKind.Relative));
                 App.IsDark = true;
             }
+        }
+
+        private void ButtonLanguage_Click(object sender, RoutedEventArgs e)
+        {
+            App app = (App)Application.Current;
+
+            if (App.CurrentLanguage == "sr-LATN")
+            {
+                app.ChangeLanguage("en-US");
+                App.CurrentLanguage = "en-US";
+            }
+            else
+            {
+                app.ChangeLanguage("sr-LATN");
+                App.CurrentLanguage = "sr-LATN";
+            }
+        }
+
+        private void ButtonNotifications_Click(object sender, RoutedEventArgs e)
+        {
+            NotificationsView notificationsView = new NotificationsView(Guest);
+            notificationsView.Show();
         }
 
         public void CheckSuperGuest()

@@ -118,34 +118,43 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public RelayCommand CancelCommand { get; set; }
         public RelayCommand LanguageCommand { get; set; }
         public RelayCommand HelpCommand { get; set; }
-        public DatePicker First { get; set; }
-        public DatePicker Last { get; set; }
-        public DataGrid DatesTable { get; set; }
+        public RelayCommand FirstChangedCommand { get; set; }
+        public RelayCommand LastChangedCommand { get; set; }
+        public AnytimeAnywhere AnytimeAnywhere { get; set; }
         private AccommodationReservationService reservationService;
 
         private Guest1 guest;
 
         public NavigationService NavService { get; set; }
-        public AnywhereAnytimeViewModel(DatePicker first, DatePicker last, DataGrid datesTable, Guest1 guest, NavigationService navigation)
+        public AnywhereAnytimeViewModel(Guest1 guest, NavigationService navigation, AnytimeAnywhere anywhereAnytimeView)
         {
             SearchCommand = new RelayCommand(Execute_SearchCommand, CanExecute_SearchCommand);
-            ReserveCommand = new RelayCommand(Execute_ReserveCommand);
+            ReserveCommand = new RelayCommand(Execute_ReserveCommand, CanExecute_ReserveCommand);
             ThemeCommand = new RelayCommand(Execute_ThemeCommand);
             NotifCommand = new RelayCommand(Execute_NotifCommand);
             CancelCommand = new RelayCommand(Execute_CancelCommand);
             HelpCommand = new RelayCommand(Execute_HelpCommand);
             LanguageCommand = new RelayCommand(Execute_LanguageCommand);
+            FirstChangedCommand = new RelayCommand(Execute_FirstChangedCommand);
+            LastChangedCommand = new RelayCommand(Execute_LastChangedCommand);
             AvailableAccommodations = new ObservableCollection<Accommodation>();
             AvailableDates = new ObservableCollection<DateRanges>();
             scheduleService = new AccommodationScheduleService();
-            First = first;
-            Last = last;
-            DatesTable = datesTable;
+            this.AnytimeAnywhere = anywhereAnytimeView;
 
             reservationService = new AccommodationReservationService();
             NavService = navigation;
 
             this.guest = guest;
+        }
+
+        public void Execute_FirstChangedCommand(object obj)
+        {
+            AnytimeAnywhere.LastDatePicker.DisplayDateStart = AnytimeAnywhere.FirstDatePicker.SelectedDate;
+        }
+        public void Execute_LastChangedCommand(object obj)
+        {
+            AnytimeAnywhere.FirstDatePicker.DisplayDateEnd = AnytimeAnywhere.LastDatePicker.SelectedDate;
         }
 
         private void Execute_HelpCommand(object obj)
@@ -161,7 +170,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 List<DateRanges> availableDates = new List<DateRanges>();
                 availableDates = scheduleService.FindDates(FirstDate, LastDate, Convert.ToInt32(DaysNumber), SelectedAccommodation.Id);
                 UpdateDatesTable(availableDates);
-                DatesTable.Focus();
+                AnytimeAnywhere.DatesTable.Focus();
             }
         }
         public void Execute_CancelCommand(object obj)
@@ -205,14 +214,15 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             NotificationsView notificationsView = new NotificationsView(guest);
             notificationsView.Show();
         }
+
+        public bool CanExecute_ReserveCommand(object obj)
+        {
+            return SelectedDate != null;
+        }
         public void Execute_ReserveCommand(object obj)
         {
-            Reserve();
-        }
-
-        public void Reserve()
-        {
             reservationService.CreateReservation(SelectedAccommodation.Id, guest.Id, SelectedDate.CheckIn, SelectedDate.CheckOut, Convert.ToInt32(GuestNumber));
+            MessageBox.Show("Uspesno ste izvrsili rezervaciju!", "Travel&Tour");
             NavService.GoBack();
         }
 
@@ -226,8 +236,8 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         }
         private bool CanExecute_SearchCommand(object obj)
         {
-            bool firstDateSelected = First.SelectedDate == null;
-            bool lastDateSelected = Last.SelectedDate == null;
+            bool firstDateSelected = AnytimeAnywhere.FirstDatePicker.SelectedDate == null;
+            bool lastDateSelected = AnytimeAnywhere.LastDatePicker.SelectedDate == null;
 
             return IsValid && ((firstDateSelected && !lastDateSelected || !firstDateSelected && lastDateSelected) ? false : true);
         }
@@ -237,7 +247,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             List<Accommodation> availableAccommodations = new List<Accommodation>();
 
             
-            if (First.SelectedDate == null && Last.SelectedDate == null)
+            if (AnytimeAnywhere.FirstDatePicker.SelectedDate == null && AnytimeAnywhere.LastDatePicker.SelectedDate == null)
             {
                 FirstDate = DateOnly.FromDateTime(DateTime.Today);
                 LastDate = DateOnly.FromDateTime(DateTime.Today).AddDays(365);
@@ -245,8 +255,8 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             }
             else
             {
-                FirstDate = DateOnly.FromDateTime((DateTime)First.SelectedDate);
-                LastDate = DateOnly.FromDateTime((DateTime)Last.SelectedDate);    
+                FirstDate = DateOnly.FromDateTime((DateTime)AnytimeAnywhere.FirstDatePicker.SelectedDate);
+                LastDate = DateOnly.FromDateTime((DateTime)AnytimeAnywhere.LastDatePicker.SelectedDate);    
             }
             availableAccommodations = scheduleService.FindAvailableAccommodations(FirstDate, LastDate, Convert.ToInt32(DaysNumber), Convert.ToInt32(GuestNumber));
 

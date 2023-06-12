@@ -9,6 +9,8 @@
       Title="ForumStatusBar">
 
     <Grid Background="{DynamicResource BarShade}">
-
+        <TextBlock Grid.Column="0" Foreground="{DynamicResource FontsColor}"
+                   FontFamily="Bahnschrift"
+                   Margin="10,3,0,0" FontSize="12">Pritisnite Alt+H za pomoc za koriscenje aplikacije tastaturom</TextBlock>
     </Grid>
 </Page>

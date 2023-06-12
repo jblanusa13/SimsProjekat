@@ -132,7 +132,8 @@
                     <Button Grid.Row="0" x:Name="ButtonNotifications" Margin="0,5"
                         Background="{DynamicResource SecondGrayShade}" 
                             BorderBrush="{DynamicResource BarShade}"
-                            FocusVisualStyle="{DynamicResource FocusControl}">
+                            FocusVisualStyle="{DynamicResource FocusControl}"
+                            Command="{Binding NotifCommand}">
                         <DynamicResource ResourceKey="NotificationsIconReservation"></DynamicResource>
                         <Button.Resources>
                             <Style TargetType="Border">
@@ -361,6 +362,17 @@
                                     <RowDefinition Height="22"/>
                                     <RowDefinition Height="22"/>
                                 </Grid.RowDefinitions>
+
+                                <Border x:Name="BorderAlt" BorderBrush="Purple" BorderThickness="1">
+                                    <Grid Grid.Row="0">
+                                        <Label Foreground="{DynamicResource FontsColor}"
+                                       FontSize="11" Margin="30,0,0,0">Nema slobodnih datuma u trazenom opsegu.</Label>
+
+                                        <Label Foreground="{DynamicResource FontsColor}"
+                                       FontSize="11" Margin="30,12,0,0">Prikazani su vam alternativni datumi</Label>
+                                    </Grid>
+                                </Border>
+
 
                                 <Label Grid.Row="1" FontSize="12" 
                                    Margin="30,0,0,0"

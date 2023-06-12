@@ -101,6 +101,9 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             FirstChangedCommand = new RelayCommand(Execute_FirstChangedCommand);
             LastChangedCommand = new RelayCommand(Execute_LastChangedCommand);
             LanguageCommand = new RelayCommand(Execute_LanguageCommand);
+
+            ReservationView.BorderAlt.Visibility = Visibility.Hidden;
+
             ValidateFirst();
             ValidateLast();
         }
@@ -133,10 +136,12 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             if (scheduleService.FindDates(firstDate, lastDate, Convert.ToInt32(DaysNumber), Accommodation.Id).Count == 0)
             {
                 availableDates = scheduleService.FindAlternativeDates(firstDate, lastDate, Convert.ToInt32(DaysNumber), Accommodation.Id);
+                ReservationView.BorderAlt.Visibility = Visibility.Visible;
             }
             else
             {
                 availableDates = scheduleService.FindDates(firstDate, lastDate, Convert.ToInt32(DaysNumber), Accommodation.Id);
+                ReservationView.BorderAlt.Visibility = Visibility.Hidden;
             }
 
             UpdateDatesTable(availableDates);
@@ -152,11 +157,11 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public void Execute_ConfirmCommand(object obj)
         {
             Reserve();
-            NavService.GoBack();
         }
         public void Reserve()
         {
             reservationService.CreateReservation(Accommodation.Id, Guest.Id, SelectedDates.CheckIn, SelectedDates.CheckOut, Convert.ToInt32(GuestNumber));
+            MessageBox.Show("Uspesno ste izvrsili rezervaciju!", "Travel&Tour");
             NavService.GoBack();
         }
         public void UpdateDatesTable(List<DateRanges> availableDates)

@@ -76,6 +76,21 @@
                 </Grid>
             </Grid>
 
+            <Grid Grid.Row="1">
+                <TextBlock FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Margin="250,10,0,0">
+               Na forumu se nalaze svi komentari na neku lokaciju. Mozete da pretrazujete sve forume po gradu i drzavi,
+                <LineBreak/>
+                a mozete i da vidite sve forume koje ste vi pokrenuli. Da biste pokrenuli neki forum potrebno je da unesete
+                <LineBreak/>
+                lokaciju i komentar ili neko pitanje na koje zelite dobiti odgovor. Takodje mozete da prikazete neki forum
+                <LineBreak/>
+                i vidite sve komentare koji su ljudi napisali na tom forumu. Takodje mozete da komentarisete forume, a ako
+                    <LineBreak/>
+                    ste posetili lokaciju foruma koji komentarisete vas komentar ce biti posebno oznacen!
+                <LineBreak/>
+                </TextBlock>
+            </Grid>
+
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1.2*"/>
@@ -202,7 +217,8 @@
                     </Grid.RowDefinitions>
                     <Button Grid.Row="0" x:Name="ButtonNotifications" Margin="0,5"
                         Background="{DynamicResource BlueShade}" BorderBrush="{DynamicResource FirstGrayShade}"
-                            FocusVisualStyle="{DynamicResource FocusControl}">
+                            FocusVisualStyle="{DynamicResource FocusControl}"
+                            Command="{Binding NotifCommand}">
                         <DynamicResource ResourceKey="NotificationsIconForum"></DynamicResource>
                         <Button.Resources>
                             <Style TargetType="Border">

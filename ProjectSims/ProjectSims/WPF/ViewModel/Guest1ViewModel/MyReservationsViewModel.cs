@@ -152,7 +152,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         }
         private bool CanExecute_DateChangeCommand(object obj)
         {
-            return SelectedReservation != null;
+            return SelectedReservation != null && SelectedReservation.CheckInDate >= DateOnly.FromDateTime(DateTime.Today);
         }
         private void Execute_CancelCommand(object obj)
         {
