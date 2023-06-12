@@ -108,7 +108,7 @@
 107|druga|True|Last
 108|prva|True|First
 109|druga|True|Last
-110|prva|False|First
+110|prva|True|First
 111|druga|False|Last
 112|prva|False|First
 113|druge|False|Last
