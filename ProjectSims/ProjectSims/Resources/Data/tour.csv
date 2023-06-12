@@ -1,8 +1,8 @@
 0|9|Obilazak Kalemegdana|Beograd,Srbija|Veoma zanimljiva tura|Srpski|20|0,1,2,3,4|20/06/2023 10:00:00|4|/Resources/Images/Guide/kalemegdan1.jpg,/Resources/Images/Guide/klmgdn.jpg,/Resources/Images/Guide/knez.jpg|20|Inactive|-1
 1|9|Obilazak Kalemegdana|Beograd,Srbija|Veoma zanimljiva tura|Srpski|20|5,6,7,8,9|28/06/2023 12:00:00|4|/Resources/Images/Guide/kalemegdan1.jpg,/Resources/Images/Guide/klmgdn.jpg,/Resources/Images/Guide/knez.jpg|20|Inactive|-1
-2|9|Obilazak Pariza|Pariz,Francuska|Veoma zanimljiva i zahtevna tura|Francuski|20|10,11,12,13|12/06/2023 15:30:00|5|/Resources/Images/Guide/pariz1.jpg,/Resources/Images/Guide/luvr.jpg|0|Active|11
-3|9|Obilazak Petrovaradinske tvrdjave|Novi Sad,Srbija|Zanimljiva lagana tura|Španski|4|14,15,16,17,18|12/06/2023 13:30:00|1|/Resources/Images/Guide/sat.jpg,/Resources/Images/Guide/petrovaradin.jpg|4|Inactive|-1
-4|9|Obilazak Bijeljine|Bijeljina,RS|veoma zanimljiva tura|Srpski|15|23,24,25,26|15/06/2023 08:30:00|2|/Resources/Images/Guide/etno-selo-stanisici.jpg,/Resources/Images/Guide/Grad-Bijeljina.jpg|15|Inactive|-1
+2|9|Obilazak Pariza|Pariz,Francuska|Veoma zanimljiva i zahtevna tura|Francuski|20|10,11,12,13|11/06/2023 15:30:00|5|/Resources/Images/Guide/pariz1.jpg,/Resources/Images/Guide/luvr.jpg|0|Finished|-1
+3|9|Obilazak Petrovaradinske tvrdjave|Novi Sad,Srbija|Zanimljiva lagana tura|Španski|4|14,15,16,17,18|11/06/2023 13:30:00|1|/Resources/Images/Guide/sat.jpg,/Resources/Images/Guide/petrovaradin.jpg|4|Finished|-1
+4|9|Obilazak Bijeljine|Bijeljina,RS|veoma zanimljiva tura|Srpski|15|23,24,25,26|15/06/2023 08:30:00|2|/Resources/Images/Guide/etno-selo-stanisici.jpg,/Resources/Images/Guide/Grad-Bijeljina.jpg|13|Inactive|-1
 5|9|Obilazak Rima|Rim,Italija|veoma zanimljiva tura|Italijanski|15|27,28,29|24/06/2023 09:00:00|4|/Resources/Images/Guide/panteon.jpg|15|Inactive|-1
 6|10|Izlet u Beogradu|Beograd,Srbija|Veoma zanimljiva tura|Engleski|20|30,31,32,33,34|13/06/2023 02:30:00|3|/Resources/Images/Guide/kalemegdan1.jpg,/Resources/Images/Guide/JaksicevaKula.jpg|15|Cancelled|-1
 7|10|Izlet u Beogradu|Beograd,Srbija|Veoma zanimljiva tura|Engleski|20|35,36,37,38,39|20/06/2023 12:00:00|2|/Resources/Images/Guide/kalemegdan1.jpg,/Resources/Images/Guide/JaksicevaKula.jpg|15|Cancelled|-1
@@ -17,13 +17,20 @@
 16|9|Obilazak Nice|Nica,Francuska|odlicna tura|Francuski|12|64,65,66|10/02/2023 12:30:00|4|/Resources/Images/Guide/panteon.jpg|2|Finished|-1
 17|9|Obilazak Nice|Nica,Francuska|odlicna tura|Francuski|12|67,68,69|09/01/2023 11:30:00|5|/Resources/Images/Guide/panteon.jpg|1|Finished|-1
 18|9|Obilazak Nice|Nica,Francuska|odlicna tura|Francuski|12|70,71,72|08/03/2023 12:30:00|5|/Resources/Images/Guide/panteon.jpg|1|Finished|-1
-19|9|Obilazak Nice-najposecenija ikad-najposecenija ove godine|Nica,Francuska|odlicna tura|Francuski|12|73,74,75|10/05/2023 08:30:00|2|/Resources/Images/Guide/panteon.jpg|0|Finished|-1
+19|9|Obilazak Nice|Nica,Francuska|odlicna tura|Francuski|12|73,74,75|10/05/2023 08:30:00|2|/Resources/Images/Guide/panteon.jpg|0|Finished|-1
 20|9|Obilazak Nice|Nica,Francuska|odlicna tura|Francuski|12|76,77,78|01/05/2023 08:30:00|2|/Resources/Images/Guide/panteon.jpg|11|Finished|-1
 21|9|Obilazak Nice|Nica,Francuska|odlicna tura|Francuski|12|79,80,81|12/09/2022 08:30:00|2|/Resources/Images/Guide/panteon.jpg|6|Finished|-1
 22|9|Obilazak Nice|Nica,Francuska|odlicna tura|Francuski|12|82,83,84|11/10/2022 12:30:00|4|/Resources/Images/Guide/panteon.jpg|5|Finished|-1
 23|9|Obilazak Nice|Nica,Francuska|odlicna tura|Francuski|12|85,86,87|11/09/2022 13:30:00|0|/Resources/Images/Guide/panteon.jpg|3|Finished|-1
-24|9|Obilazak Nice|Nica,Francuska|odlicna tura|Francuski|12|88,90,91|10/11/2022 12:30:00|4|/Resources/Images/Guide/panteon.jpg|1|Finished|-1
-25|9|Obilazak Nice|Nica,Francuska|odlicna tura|Francuski|12|92,93,94|09/12/2022 11:30:00|5|/Resources/Images/Guide/panteon.jpg|2|Finished|-1
-26|9|Obilazak Nice|Nica,Francuska|odlicna tura|Francuski|12|95,96,97|05/04/2023 12:30:00|5|/Resources/Images/Guide/panteon.jpg|1|Finished|-1
-27|9|Obilazak Nice|Nica,Francuska|odlicna tura|Francuski|12|98,99,100|12/10/2022 08:30:00|2|/Resources/Images/Guide/panteon.jpg|0|Finished|-1
-28|9|Obilazak Nice|Nica,Francuska|odlicna tura|Francuski|12|101,102,103|01/11/2022 08:30:00|2|/Resources/Images/Guide/panteon.jpg|9|Finished|-1
+24|9|Obilazak Nice|Nica,Francuska|odlicna tura|Francuski|12|88,89,90|10/11/2022 12:30:00|4|/Resources/Images/Guide/panteon.jpg|1|Finished|-1
+25|9|Obilazak Nice|Nica,Francuska|odlicna tura|Francuski|12|91,92,93|09/12/2022 11:30:00|5|/Resources/Images/Guide/panteon.jpg|2|Finished|-1
+26|9|Obilazak Nice|Nica,Francuska|odlicna tura|Francuski|12|94,95,96|05/04/2023 12:30:00|5|/Resources/Images/Guide/panteon.jpg|1|Finished|-1
+27|9|Obilazak Nice|Nica,Francuska|odlicna tura|Francuski|12|97,98,99|12/10/2022 08:30:00|2|/Resources/Images/Guide/panteon.jpg|0|Finished|-1
+28|9|Obilazak Nice|Nica,Francuska|odlicna tura|Francuski|12|100,101,102|01/11/2022 08:30:00|2|/Resources/Images/Guide/panteon.jpg|9|Finished|-1
+29|11|Obilazak Sejsela|Viktorija,Sejseli|Opis ture...|Španski|15|103,104,105|11/06/2023 14:30:00|5|/Resources/Images/Guide/Sejseli.jpg|12|Finished|-1
+30|11|Obilazak Berlina|Berlin,Nemacka|Opis ture|Nemački|15|106,107|11/06/2023 08:30:00|2|/Resources/Images/Guide/etno-selo-stanisici.jpg|12|Finished|-1
+31|11|Obilazak Berlina|Berlin,Nemacka|Opis ture|Nemački|15|108,109|11/06/2023 11:00:00|2|/Resources/Images/Guide/etno-selo-stanisici.jpg|12|Finished|-1
+32|11|Obilazak Barselone|Barselona,Spanija|Opis ture...|Srpski|23|110,111|12/06/2023 13:30:00|3|/Resources/Images/Guide/barcelona.jpg,/Resources/Images/Guide/barcelona1.jpg|19|Active|111
+33|11|Obilazak Venecije|Venecija,Italija|Opis ture|Engleski|15|112,113|25/06/2023 09:30:00|3|/Resources/Images/Guide/panteon.jpg|15|Inactive|-1
+34|11|Obilazak Venecije|Venecija,Italija|Opis ture|Engleski|15|114,115|12/06/2023 00:00:00|0|/Resources/Images/Guide/panteon.jpg|15|Inactive|-1
+35|12|Obilazak Riminija|Rimini,Italija|opis ture|Engleski|15|116,117|28/06/2023 09:00:00|4|/Resources/Images/Guide/sagrada-familia.jpg|15|Inactive|-1

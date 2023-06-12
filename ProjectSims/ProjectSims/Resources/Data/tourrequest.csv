@@ -1,6 +1,9 @@
 0|13|9|Accepted|Bijeljina,RS|Obilazak Etno sela Stanisici obavezan|Srpski|15|14/06/2023|28/06/2023|11/06/2023|False|15/06/2023 08:30:00|15/06/2023 10:30:00
 1|13|-1|Waiting|Madrid,Spanija|Da tura traje vise od 4 sata|Španski|20|28/06/2023|30/06/2023|11/06/2023|False|01/01/0001 00:00:00|01/01/0001 00:00:00
 2|13|9|Accepted|Rim,Italija|obilazak fontane i koloseuma obavezan|Italijanski|15|22/06/2023|28/06/2023|11/06/2023|True|24/06/2023 09:00:00|24/06/2023 13:00:00
-3|13|-1|Waiting|Venecija,Italija|Da tura ukljucuje i prevoz gondolom|Engleski|15|23/06/2023|30/06/2023|11/06/2023|True|01/01/0001 00:00:00|01/01/0001 00:00:00
-4|13|-1|Waiting|Rimini,Italija|Da imamo slobodno vreme za boravak na plazi|Engleski|15|28/06/2023|29/06/2023|11/06/2023|True|01/01/0001 00:00:00|01/01/0001 00:00:00
+3|13|11|Accepted|Venecija,Italija|Da tura ukljucuje i prevoz gondolom|Engleski|15|23/06/2023|30/06/2023|11/06/2023|True|12/06/2023 00:00:00|12/06/2023 00:00:00
+4|13|12|Accepted|Rimini,Italija|Da imamo slobodno vreme za boravak na plazi|Engleski|15|28/06/2023|29/06/2023|11/06/2023|True|28/06/2023 09:00:00|28/06/2023 13:00:00
 5|16|-1|Waiting|Budva,CG|Obilazak starog grada|Srpski|15|20/06/2023|28/06/2023|11/06/2023|False|01/01/0001 00:00:00|01/01/0001 00:00:00
+6|13|-1|Waiting|Berlin,Nemacka|Opis ture|Nemački|15|20/07/2023|23/07/2023|12/06/2023|True|01/01/0001 00:00:00|01/01/0001 00:00:00
+7|13|-1|Waiting|Frankfurt,Nemacka|Obici aerodrom|Nemački|15|22/07/2023|26/07/2023|12/06/2023|True|01/01/0001 00:00:00|01/01/0001 00:00:00
+8|13|-1|Waiting|Madrid,Spanija|Obici Madrid|Španski|20|27/08/2023|31/08/2023|12/06/2023|False|01/01/0001 00:00:00|01/01/0001 00:00:00

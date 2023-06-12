@@ -34,7 +34,7 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
         }
         private void OpenNotificationAboutNewTours_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            viewModel.OpenNotificationAboutNewTours_PreviewMouseDown(sender);
+            viewModel.OpenNotificationAboutNewTours();
         }
         private void Home_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {

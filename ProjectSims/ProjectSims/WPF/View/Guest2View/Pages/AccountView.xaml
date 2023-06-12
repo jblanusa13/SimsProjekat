@@ -32,7 +32,7 @@
         <Label Grid.Column="1" Content="Email adresa:" FontSize="18" HorizontalAlignment="Left" Margin="225,142,0,0" Grid.Row="2" VerticalAlignment="Top"/>
         <TextBlock Grid.Column="1" FontSize="18" HorizontalAlignment="Left" Margin="345,147,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding guest2.Email}" VerticalAlignment="Top"/>
         <Label Grid.Column="1" Content="Datum rodjenja:" FontSize="18" HorizontalAlignment="Left" Margin="225,183,0,0" Grid.Row="2" VerticalAlignment="Top"/>
-        <TextBlock Grid.Column="1" FontSize="18" HorizontalAlignment="Left" Margin="369,188,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding guest2.BirthDate}" VerticalAlignment="Top"/>
+        <TextBlock Grid.Column="1" FontSize="18" HorizontalAlignment="Left" Margin="369,188,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding guest2.BirthDate, StringFormat={}{0:dd.MM.yyyy}}" VerticalAlignment="Top"/>
         <Label Grid.Column="1" Content="Adresa stanovanja:" FontSize="18" HorizontalAlignment="Left" Margin="225,222,0,0" Grid.Row="2" VerticalAlignment="Top"/>
         <TextBlock Grid.Column="1" FontSize="18" HorizontalAlignment="Left" Margin="390,227,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding guest2.Adress}" VerticalAlignment="Top"/>
         <Label Grid.Column="1" Content="Telefon:" FontSize="18" HorizontalAlignment="Left" Margin="225,262,0,0" Grid.Row="2" VerticalAlignment="Top"/>

@@ -83,3 +83,36 @@
 82|Stari grad|False|First
 83|Plaza|False|Intermediate
 84|Englesko setaliste|False|Last
+85|Stari grad|False|First
+86|Plaza|False|Intermediate
+87|Englesko setaliste|False|Last
+88|Stari grad|False|First
+89|Plaza|False|Intermediate
+90|Englesko setaliste|False|Last
+91|Stari grad|False|First
+92|Plaza|False|Intermediate
+93|Englesko setaliste|False|Last
+94|Stari grad|False|First
+95|Plaza|False|Intermediate
+96|Englesko setaliste|False|Last
+97|Stari grad|False|First
+98|Plaza|False|Intermediate
+99|Englesko setaliste|False|Last
+100|Stari grad|False|First
+101|Plaza|False|Intermediate
+102|Englesko setaliste|False|Last
+103|Prva stanica|True|First
+104|Druga stanica|True|Intermediate
+105|Treca stanica|True|Last
+106|prva|True|First
+107|druga|True|Last
+108|prva|True|First
+109|druga|True|Last
+110|prva|True|First
+111|druga|False|Last
+112|prva|False|First
+113|druge|False|Last
+114|prva|False|First
+115|druge|False|Last
+116|prva|False|First
+117|druga|False|Last

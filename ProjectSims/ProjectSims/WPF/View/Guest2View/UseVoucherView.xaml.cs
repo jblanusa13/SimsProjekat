@@ -34,7 +34,7 @@ namespace ProjectSims.WPF.View.Guest2View
 
         private void ReservationClick(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(viewModel.ReservationClick(sender));
+            MessageBox.Show(viewModel.Reservation());
             Close();
         }
     }
