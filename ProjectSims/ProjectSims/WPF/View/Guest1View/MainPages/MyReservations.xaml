@@ -5,6 +5,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.MainPages"
+      xmlns:ns="clr-namespace:ProjectSims.Localization"
       xmlns:fa="http://schemas.fontawesome.io/icons/" 
       mc:Ignorable="d" 
       d:DesignHeight="540" d:DesignWidth="1067"
@@ -29,6 +30,20 @@
             <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusControl}"/>
         </Style>
     </Page.Resources>
+
+    <Page.InputBindings>
+        <KeyBinding Gesture="Alt+H" Command="{Binding HelpCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+B" Command="{Binding CancelCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+T" Command="{Binding ThemeCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+N" Command="{Binding NotifCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+J" Command="{Binding LanguageCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+L" Command="{Binding LogOutCommand}" CommandParameter="{Binding ElementName=MyReservationsPage}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+Z" Command="{Binding GenerateActiveReservationsCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+O" Command="{Binding GenerateCanceledReservationsCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+M" Command="{Binding MyRequestsCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+P" Command="{Binding DateChangeCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+K" Command="{Binding CancelReservationCommand}"></KeyBinding>
+    </Page.InputBindings>
 
     <Grid Background="{DynamicResource FirstGrayShade}">
         <Grid.ColumnDefinitions>
@@ -76,7 +91,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Label Grid.Row="1" Content="Zakazane rezervacije" FontFamily="Bahnschrift" 
+                    <Label Grid.Row="1" Content="{ns:Loc ZakazaneRezervacije}" FontFamily="Bahnschrift" 
                            Foreground="{DynamicResource FontsColor}" 
                            FontSize="9" HorizontalContentAlignment="Center"/>
 
@@ -98,7 +113,7 @@
                         </Button.Resources>
                     </Button>
 
-                    <Label Grid.Row="1" Content="Otkazane rezervacije" FontFamily="Bahnschrift" 
+                    <Label Grid.Row="1" Content="{ns:Loc OtkazaneRezervacije}" FontFamily="Bahnschrift" 
                            Foreground="{DynamicResource FontsColor}" 
                            FontSize="9" HorizontalContentAlignment="Center"/>
                 </Grid>
@@ -156,7 +171,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Label Grid.Row="1" Content="Tema" FontFamily="Bahnschrift" 
+                    <Label Grid.Row="1" Content="{ns:Loc Tema}" FontFamily="Bahnschrift" 
                            Foreground="{DynamicResource FontsColor}" 
                            FontSize="8" HorizontalContentAlignment="Center"/>
                 </Grid>
@@ -167,7 +182,8 @@
                     </Grid.RowDefinitions>
                     <Button Grid.Row="0" x:Name="ButtonLanguage" Margin="0,5"
                         Background="{DynamicResource BlueShade}" BorderBrush="{DynamicResource FirstGrayShade}"
-                            FocusVisualStyle="{DynamicResource FocusControl}">
+                            FocusVisualStyle="{DynamicResource FocusControl}"
+                             Command="{Binding LanguageCommand}">
                         <DynamicResource ResourceKey="LanguageIconMyReservations"></DynamicResource>
                         <Button.Resources>
                             <Style TargetType="Border">
@@ -175,7 +191,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Label Grid.Row="1" Content="Jezik" FontFamily="Bahnschrift" 
+                    <Label Grid.Row="1" Content="{ns:Loc Jezik}" FontFamily="Bahnschrift" 
                            Foreground="{DynamicResource FontsColor}" HorizontalContentAlignment="Center"
                            FontSize="8"/>
                 </Grid>
@@ -186,7 +202,8 @@
                     </Grid.RowDefinitions>
                     <Button Grid.Row="0" x:Name="ButtonNotifications" Margin="0,5"
                         Background="{DynamicResource BlueShade}" BorderBrush="{DynamicResource FirstGrayShade}"
-                            FocusVisualStyle="{DynamicResource FocusControl}">
+                            FocusVisualStyle="{DynamicResource FocusControl}"
+                            Command="{Binding NotifCommand}">
                         <DynamicResource ResourceKey="NotificationsIconMyReservations"></DynamicResource>
                         <Button.Resources>
                             <Style TargetType="Border">
@@ -194,7 +211,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Label Grid.Row="1" Content="Obavestenja" FontFamily="Bahnschrift" 
+                    <Label Grid.Row="1" Content="{ns:Loc Obavestenja}" FontFamily="Bahnschrift" 
                            Foreground="{DynamicResource FontsColor}" 
                            HorizontalContentAlignment="Center"
                            FontSize="8"/>
@@ -210,7 +227,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Button x:Name="ChangeButton" Grid.Row="1" Margin="10,10" Content="Pomeranje rezervacije"
+                <Button x:Name="ChangeButton" Grid.Row="1" Margin="10,10" Content="{ns:Loc PomeranjeRezervacije}"
                         Command="{Binding DateChangeCommand}"
                         Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}"
                          BorderBrush="{DynamicResource FirstGrayShade}"
@@ -222,7 +239,7 @@
                         </Style>
                     </Button.Resources>
                 </Button>
-                <Button x:Name="RequestButton" Grid.Row="2" Margin="10,10" Content="Moji zahtevi"
+                <Button x:Name="RequestButton" Grid.Row="2" Margin="10,10" Content="{ns:Loc MojiZahtevi}"
                           Command="{Binding MyRequestsCommand}"
                         Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}"
                          BorderBrush="{DynamicResource FirstGrayShade}" 
@@ -234,7 +251,7 @@
                         </Style>
                     </Button.Resources>
                 </Button>
-                <Button x:Name="CancelButton" Grid.Row="3" Margin="10,10,10,10" Content="Otkazivanje rezervacije"
+                <Button x:Name="CancelButton" Grid.Row="3" Margin="10,10,10,10" Content="{ns:Loc OtkazivanjeRezervacije}"
                          Command="{Binding CancelReservationCommand}"
                         Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}"
                          BorderBrush="{DynamicResource FirstGrayShade}" 
@@ -250,7 +267,7 @@
             </Grid>
 
             <Grid Grid.Row="2">
-                <Button Content="Odjavi se"  Margin="30,10" VerticalAlignment="Top" Height="30"
+                <Button Content="{ns:Loc OdjaviSe}"  Margin="30,10" VerticalAlignment="Top" Height="30"
                         Background="{DynamicResource BlueShade}" Foreground="{DynamicResource FontsColor}"
                         FontFamily="Bahnschrift"
                          BorderBrush="{DynamicResource FirstGrayShade}" FontWeight="Bold"

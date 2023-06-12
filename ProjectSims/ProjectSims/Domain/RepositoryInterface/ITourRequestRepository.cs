@@ -13,6 +13,7 @@ namespace ProjectSims.Domain.RepositoryInterface
     {
         public List<TourRequest> GetByGuest2Id(int guest2Id);
         public List<TourRequest> GetWaitingRequests();
+        public List<TourRequest> GetWaitingRequestsForComplexTour();
         public List<TourRequest> GetUnrealizedRequests();
         public List<TourRequest> GetByLocation(string location);
         public List<TourRequest> GetByLanguage(string language);

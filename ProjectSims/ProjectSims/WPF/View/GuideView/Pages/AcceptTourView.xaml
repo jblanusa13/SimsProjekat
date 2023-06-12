@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.GuideView.Pages"
+      xmlns:conv="clr-namespace:CalcBinding;assembly=CalcBinding"
       mc:Ignorable="d" 
       d:DesignHeight="1100" d:DesignWidth="1280">
     <Page.Resources>
@@ -24,7 +25,7 @@
     </Page.Resources>
     <ScrollViewer>
         <Grid Background="Transparent">
-            <Label Content="Prihvati turu" HorizontalAlignment="Center" Margin="0,50,0,0" FontSize="44" Height="50" FontWeight="Bold"/>
+            <TextBox Text = "{conv:Binding (SelectedTourRequest.RequestForComplexTour?\'Prihvati deo slozene ture\':\'Prihvati turu\')}" Foreground="White"  Background="Transparent" FontFamily="Helvetica" FontSize="44" BorderThickness="0" HorizontalAlignment="Center" Margin="0,50,0,0" Height="50" FontWeight="Bold" VerticalAlignment="Top"/>
             <Image Source="/Resources/Icons/Guide/location.png" Margin="100,150,0,0"/>
             <Label Content="{Binding SelectedTourRequest.Location}"  Margin="170,150,0,0"/>
             <Image Source="/Resources/Icons/Guide/language.png" Margin="100,250,0,0"/>
@@ -33,8 +34,8 @@
             <Label Content="{Binding SelectedTourRequest.MaxNumberGuests}" Margin="170,350,0,0"/>
             <Image Source="/Resources/Icons/Guide/description.png" Margin="100,450,0,0"/>
             <TextBox Text="{Binding SelectedTourRequest.Description}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="170,450,0,0" Width="1000" Height="150" FontSize="30" FontFamily="Helvetica" Foreground="White" Background="Transparent" BorderThickness="0" IsReadOnly="True"/>
-            <Image Source="/Resources/Icons/Guide/calendar.png" Margin="100,700,0,0"/>
-            <Label Margin="170,700,0,0">
+            <Image Source="/Resources/Icons/Guide/calendar.png" Margin="100,600,0,0"/>
+            <Label Margin="170,600,0,0">
                 <AccessText>
                     <MultiBinding StringFormat="{}{0} - {1}">
                         <Binding Path="SelectedTourRequest.DateRangeStart" />
@@ -42,14 +43,18 @@
                     </MultiBinding>
                 </AccessText>
             </Label>
-            <Button Name="AcceptTour" Margin="0,800,300,0" Height="85" Width="85" HorizontalAlignment="Center" VerticalAlignment="Top"  Background="Transparent" BorderThickness="0" Click="AcceptTour_Click" Cursor="Hand">
+            <Label Margin="100,660,0,0" Content="Odaberite termin i trajanje:"/>
+            <ComboBox Name="DateComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,700,0,0" Width="200" Height="40" SelectionChanged="TimeSelected_SelectionChanged"/>
+            <ComboBox Name="TimeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="350,700,0,0" Width="150" Height="40" Background="Transparent" SelectionChanged="TimeSelected_SelectionChanged"/>
+            <ComboBox Name="DurationComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="550,700,0,0" Width="100" Height="40" Background="Transparent"/>
+            <Button Name="AcceptTour" Margin="0,800,300,0" Height="85" Width="85" HorizontalAlignment="Center" VerticalAlignment="Top"  Background="Transparent" BorderThickness="0" Cursor="Hand" Command="{Binding AcceptTourCommand}">
                 <Image Source="/Resources/Icons/Guide/checked.png" Height="80" Width="80" Cursor="Hand">
                     <Image.Effect>
                         <DropShadowEffect/>
                     </Image.Effect>
                 </Image>
             </Button>
-            <Label Content="Prihvati turu" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,900,300,80" FontSize="18"/>
+            <Label Content="Prihvati" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,900,300,80" FontSize="18"/>
             <Button Margin="300,800,0,0" Height="85" Width="85" HorizontalAlignment="Center" VerticalAlignment="Top"  Background="Transparent" BorderThickness="0" Click="Back_Click" Cursor="Hand">
                 <Image Source="/Resources/Icons/Guide/back.png" Height="80" Width="80" Cursor="Hand">
                     <Image.Effect>

@@ -16,6 +16,9 @@ using ProjectSims.WPF.View.Guest1View.MainPages;
 using ProjectSims.WPF.View.Guest1View.Report;
 using ProjectSims.WPF.View.Guest1View.Requests;
 using ProjectSims.Commands;
+using ProjectSims.WPF.View.Guest1View.NotifAndHelp;
+using ProjectSims.WPF.View.Guest1View.HelpPages;
+using ProjectSims.WPF.View.Guest1View;
 
 namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
 {
@@ -32,6 +35,9 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public RelayCommand MyRequestsCommand { get; set; }
         public RelayCommand CancelReservationCommand { get; set; }
         public RelayCommand ThemeCommand { get; set; }
+        public RelayCommand LanguageCommand { get; set; }
+        public RelayCommand NotifCommand { get; set; }
+        public RelayCommand HelpCommand { get; set; }
         public RelayCommand GenerateActiveReservationsCommand { get; set; }
         public RelayCommand GenerateCanceledReservationsCommand { get; set; }
         public MyICommand<MyReservations> LogOutCommand { get; set; }
@@ -49,11 +55,21 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             MyRequestsCommand = new RelayCommand(Execute_MyRequestsCommand);
             CancelReservationCommand = new RelayCommand(Execute_CancelReservationCommand, CanExecute_CancelReservationCommand);
             ThemeCommand = new RelayCommand(Execute_ThemeCommand);
+            NotifCommand = new RelayCommand(Execute_NotifCommand);
             GenerateActiveReservationsCommand = new RelayCommand(Execute_GenerateActiveReservationsCommand);
             GenerateCanceledReservationsCommand = new RelayCommand(Execute_GenerateCanceledReservationsCommand);
             LogOutCommand = new MyICommand<MyReservations>(OnLogOut);
+            HelpCommand = new RelayCommand(Execute_HelpCommand);
+            LanguageCommand = new RelayCommand(Execute_LanguageCommand);
+
 
             NavService = navigation;
+        }
+        private void Execute_HelpCommand(object obj)
+        {
+            HelpStartView helpStart = new HelpStartView();
+            helpStart.SelectedTab.Content = new MyReservationsHelpView();
+            helpStart.Show();
         }
         private void Execute_GenerateActiveReservationsCommand(object obj)
         {
@@ -86,6 +102,27 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 App.IsDark = true;
             }
         }
+        private void Execute_LanguageCommand(object obj)
+        {
+            App app = (App)Application.Current;
+
+            if (App.CurrentLanguage == "sr-LATN")
+            {
+                app.ChangeLanguage("en-US");
+                App.CurrentLanguage = "en-US";
+            }
+            else
+            {
+                app.ChangeLanguage("sr-LATN");
+                App.CurrentLanguage = "sr-LATN";
+            }
+
+        }
+        private void Execute_NotifCommand(object obj)
+        {
+            NotificationsView notificationsView = new NotificationsView(Guest);
+            notificationsView.Show();
+        }
         private void Execute_CancelReservationCommand(object obj)
         {
             if (service.CanCancel(SelectedReservation))
@@ -115,7 +152,7 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         }
         private bool CanExecute_DateChangeCommand(object obj)
         {
-            return SelectedReservation != null;
+            return SelectedReservation != null && SelectedReservation.CheckInDate >= DateOnly.FromDateTime(DateTime.Today);
         }
         private void Execute_CancelCommand(object obj)
         {

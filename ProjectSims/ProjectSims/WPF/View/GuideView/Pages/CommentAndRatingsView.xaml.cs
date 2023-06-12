@@ -35,7 +35,7 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         public void ReportComment_Click(object sender, RoutedEventArgs e)
         {
             viewModel.ReportComment();
-            this.NavigationService.Navigate(new TourDetailsAndRatingsView(Tour));
+            this.NavigationService.GoBack();
         }
         public void AcceptComment_Click(object sender, RoutedEventArgs e)
         {

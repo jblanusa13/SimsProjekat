@@ -23,19 +23,16 @@ namespace ProjectSims.WPF.View.GuideView.Pages
 {
     public partial class FinishedToursStatisticsView : Page
     {
-        private Tour SelectedTour { get; set; }
-        public FinishedToursStatisticsView(Guide guide)
+       public FinishedToursStatisticsViewModel finishedToursStatisticsViewModel;
+        public FinishedToursStatisticsView(Guide guide,NavigationService NavService)
         {
             InitializeComponent();
-            this.DataContext = new FinishedToursStatisticsViewModel(guide);
+            finishedToursStatisticsViewModel = new FinishedToursStatisticsViewModel(guide, NavService);
+            this.DataContext = finishedToursStatisticsViewModel;
         }
-        private void TourInfo_Click(object sender, RoutedEventArgs e)
+        private void ViewDetails_Click(object sender, RoutedEventArgs e)
         {
-            SelectedTour = ((FrameworkElement)sender).DataContext as Tour;
-            if (SelectedTour != null)
-            {
-                this.NavigationService.Navigate(new TourDetailsAndStatisticsView(SelectedTour));
-            }
+            finishedToursStatisticsViewModel.ViewDetails(((FrameworkElement)sender).DataContext as Tour);
         }
     }
 }

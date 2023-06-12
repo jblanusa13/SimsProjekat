@@ -7,6 +7,7 @@
       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
       xmlns:fa="http://schemas.fontawesome.io/icons/" 
+      xmlns:ns="clr-namespace:ProjectSims.Localization"
       mc:Ignorable="d" 
       d:DesignHeight="540" d:DesignWidth="1067"
       Title="AccommodationReservation">
@@ -40,6 +41,14 @@
             </StackPanel>
         </ControlTemplate>
     </Page.Resources>
+
+    <Page.InputBindings>
+        <KeyBinding Gesture="Alt+H" Command="{Binding HelpCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+B" Command="{Binding CancelCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+T" Command="{Binding ThemeCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+N" Command="{Binding NotifCommand}"></KeyBinding>
+        <KeyBinding Gesture="Ctrl+J" Command="{Binding LanguageCommand}"></KeyBinding>
+    </Page.InputBindings>
 
     <Grid Background="{DynamicResource FirstGrayShade}">
         <Grid.RowDefinitions>
@@ -90,7 +99,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Label Grid.Row="1" Content="Tema" FontFamily="Bahnschrift" 
+                    <Label Grid.Row="1" Content="{ns:Loc Tema}" FontFamily="Bahnschrift" 
                            Foreground="{DynamicResource FontsColor}" 
                            FontSize="10" HorizontalContentAlignment="Center"/>
                 </Grid>
@@ -102,7 +111,8 @@
                     <Button Grid.Row="0" x:Name="ButtonLanguage" Margin="0,5"
                         Background="{DynamicResource SecondGrayShade}" 
                             BorderBrush="{DynamicResource BarShade}"
-                            FocusVisualStyle="{DynamicResource FocusControl}">
+                            FocusVisualStyle="{DynamicResource FocusControl}"
+                             Command="{Binding LanguageCommand}">
                         <DynamicResource ResourceKey="LanguageIconReservation"></DynamicResource>
                         <Button.Resources>
                             <Style TargetType="Border">
@@ -110,7 +120,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Label Grid.Row="1" Content="Jezik" FontFamily="Bahnschrift" 
+                    <Label Grid.Row="1" Content="{ns:Loc Jezik}" FontFamily="Bahnschrift" 
                            Foreground="{DynamicResource FontsColor}" HorizontalContentAlignment="Center"
                            FontSize="10"/>
                 </Grid>
@@ -122,7 +132,8 @@
                     <Button Grid.Row="0" x:Name="ButtonNotifications" Margin="0,5"
                         Background="{DynamicResource SecondGrayShade}" 
                             BorderBrush="{DynamicResource BarShade}"
-                            FocusVisualStyle="{DynamicResource FocusControl}">
+                            FocusVisualStyle="{DynamicResource FocusControl}"
+                            Command="{Binding NotifCommand}">
                         <DynamicResource ResourceKey="NotificationsIconReservation"></DynamicResource>
                         <Button.Resources>
                             <Style TargetType="Border">
@@ -130,7 +141,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Label Grid.Row="1" Content="Obavestenja" FontFamily="Bahnschrift" 
+                    <Label Grid.Row="1" Content="{ns:Loc Obavestenja}" FontFamily="Bahnschrift" 
                            Foreground="{DynamicResource FontsColor}" 
                            HorizontalContentAlignment="Center"
                            FontSize="10"/>
@@ -163,7 +174,7 @@
                         <ColumnDefinition Width="250"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Margin="20,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}">Grad:</Label>
+                    <Label Grid.Column="0" Margin="20,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{ns:Loc Grad:}"></Label>
                     <Label Grid.Column="1" Margin="0,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{Binding Accommodation.Location.City}"></Label>
                 </Grid>
 
@@ -173,7 +184,7 @@
                         <ColumnDefinition Width="250"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Margin="20,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}">Drzava:</Label>
+                    <Label Grid.Column="0" Margin="20,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{ns:Loc Drzava:}"></Label>
                     <Label Grid.Column="1" Margin="0,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{Binding Accommodation.Location.Country}"></Label>
                 </Grid>
 
@@ -183,7 +194,7 @@
                         <ColumnDefinition Width="250"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Margin="20,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}">Tip smestaja:</Label>
+                    <Label Grid.Column="0" Margin="20,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{ns:Loc TipSmestaja:}"></Label>
                     <Label Grid.Column="1" Margin="0,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{Binding Accommodation.Type}"></Label>
                 </Grid>
 
@@ -193,7 +204,7 @@
                         <ColumnDefinition Width="250"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Margin="20,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}">Maksimalan broj gostiju:</Label>
+                    <Label Grid.Column="0" Margin="20,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{ns:Loc MaksimalanBrojGostiju:}"></Label>
                     <Label Grid.Column="1" Margin="0,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{Binding Accommodation.GuestsMaximum}"></Label>
                 </Grid>
 
@@ -203,7 +214,7 @@
                         <ColumnDefinition Width="250"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Margin="20,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}">Minimalan broj dana:</Label>
+                    <Label Grid.Column="0" Margin="20,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{ns:Loc MinimalanBrojDana:}"></Label>
                     <Label Grid.Column="1" Margin="0,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{Binding Accommodation.MinimumReservationDays}"></Label>
                 </Grid>
 
@@ -213,7 +224,7 @@
                         <ColumnDefinition Width="250"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Margin="20,5,5,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}">Rok za otkazivanje (broj dana):</Label>
+                    <Label Grid.Column="0" Margin="20,5,5,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{ns:Loc RokZaOtkazivanje:}"></Label>
                     <Label Grid.Column="1" Margin="0,5" FontSize="15" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{Binding Accommodation.DismissalDays}"></Label>
                 </Grid>
 
@@ -260,7 +271,7 @@
                             </Grid>
 
                             <Grid Grid.Row="1">
-                                <Label Margin="10,5" FontSize="14" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}">Pocetni datum pretrage:</Label>
+                                <Label Margin="10,5" FontSize="14" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{ns:Loc PocetniDatumPretrage:}"></Label>
                                 <DatePicker Name="FirstDatePicker" Margin="15,30,10,10" Height="28"
                                             DisplayDateStart="{x:Static sys:DateTime.Today}"
                                             Background="{DynamicResource TextboxColor}"
@@ -283,7 +294,7 @@
                             </Grid>
 
                             <Grid Grid.Row="2">
-                                <Label Margin="10,5" FontSize="14" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}">Krajnji datum pretrage:</Label>
+                                <Label Margin="10,5" FontSize="14" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{ns:Loc KrajnjiDatumPretrage:}"></Label>
                                 <DatePicker Name="LastDatePicker" Margin="15,30,10,10" Height="28"
                                             DisplayDateStart="{x:Static sys:DateTime.Today}"
                                             Background="{DynamicResource TextboxColor}"
@@ -307,7 +318,7 @@
                             </Grid>
 
                             <Grid Grid.Row="3">
-                                <Label Margin="10,5" FontSize="14" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}">Broj dana:</Label>
+                                <Label Margin="10,5" FontSize="14" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{ns:Loc BrojDana:}"></Label>
 
                                 <TextBox Name="TextboxDaysNumber"
                                          Margin="15,35,10,0" Height="28" VerticalAlignment="Top"
@@ -318,7 +329,7 @@
                             </Grid>
 
                             <Grid Grid.Row="4">
-                                <Label Margin="10,5" FontSize="14" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}">Broj gostiju:</Label>
+                                <Label Margin="10,5" FontSize="14" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" Content="{ns:Loc BrojGostiju:}"></Label>
                                 <TextBox x:Name="TextboxGuestNumber" Margin="15,35,10,10" Background="{DynamicResource TextboxColor}" Height="28"
                                          Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
                                          Text="{Binding GuestNumber, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
@@ -328,7 +339,7 @@
                             <Grid Grid.Row="5">
                                 <Button Margin="15,20,10,15" Command="{Binding FindDatesCommand}" FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}"
                                         Background="{DynamicResource SecondGrayShade}"
-                                        FocusVisualStyle="{DynamicResource FocusControl}">Pretrazi datume
+                                        FocusVisualStyle="{DynamicResource FocusControl}" Content="{ns:Loc PretraziDatume}">
                                     <Button.Resources>
                                         <Style TargetType="Border">
                                             <Setter Property="CornerRadius" Value="10"/>
@@ -351,6 +362,17 @@
                                     <RowDefinition Height="22"/>
                                     <RowDefinition Height="22"/>
                                 </Grid.RowDefinitions>
+
+                                <Border x:Name="BorderAlt" BorderBrush="Purple" BorderThickness="1">
+                                    <Grid Grid.Row="0">
+                                        <Label Foreground="{DynamicResource FontsColor}"
+                                       FontSize="11" Margin="30,0,0,0">Nema slobodnih datuma u trazenom opsegu.</Label>
+
+                                        <Label Foreground="{DynamicResource FontsColor}"
+                                       FontSize="11" Margin="30,12,0,0">Prikazani su vam alternativni datumi</Label>
+                                    </Grid>
+                                </Border>
+
 
                                 <Label Grid.Row="1" FontSize="12" 
                                    Margin="30,0,0,0"
@@ -378,10 +400,10 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <Button Grid.Column="0" Margin="30,20,10,15" FontFamily="Bahnschrift" Command="{Binding ConfirmCommand}" 
+                                <Button x:Name="ReserveBtn" Grid.Column="0" Margin="30,20,10,15" FontFamily="Bahnschrift" Command="{Binding ConfirmCommand}" 
                                         Foreground="{DynamicResource FontsColor}"
                                         Background="{DynamicResource SecondGrayShade}"
-                                        FocusVisualStyle="{DynamicResource FocusControl}">Potvrdi rezervaciju
+                                        FocusVisualStyle="{DynamicResource FocusControl}" Content="{ns:Loc Potvrdi}">
                                     <Button.Resources>
                                         <Style TargetType="Border">
                                             <Setter Property="CornerRadius" Value="10"/>
@@ -390,8 +412,7 @@
                                 </Button>
                                 <Button Grid.Column="1" Margin="30,20,30,15" FontFamily="Bahnschrift" Command="{Binding CancelCommand}" Foreground="{DynamicResource FontsColor}"
                                         Background="{DynamicResource SecondGrayShade}"
-                                        FocusVisualStyle="{DynamicResource FocusControl}">Otkazi
-                                    <Button.Resources>
+                                        FocusVisualStyle="{DynamicResource FocusControl}" Content="{ns:Loc Otkazi}">                                     <Button.Resources>
                                         <Style TargetType="Border">
                                             <Setter Property="CornerRadius" Value="10"/>
                                         </Style>

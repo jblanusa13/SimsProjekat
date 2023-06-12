@@ -66,6 +66,16 @@ namespace ProjectSims.Repository
         {
             return tourRequests.Where(t => t.Guest2Id == guest2Id).ToList();
         }
+      
+        public RequestForComplexTour GetBySimpleRequestId(int simpleRequestId)
+        {
+            foreach(var request in tourRequests)
+            {
+                if (request.RequestIds.Contains(simpleRequestId))
+                    return request;
+            }
+            return null;
+        }
         public void Subscribe(IObserver observer)
         {
             observers.Add(observer);

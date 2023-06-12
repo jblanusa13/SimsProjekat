@@ -26,6 +26,7 @@ namespace ProjectSims.WPF.View.Guest1View.ForumPages
         {
             InitializeComponent();
             this.DataContext = new CreateForumViewModel(guest);
+            BackButton.Focus();
         }
     }
 }

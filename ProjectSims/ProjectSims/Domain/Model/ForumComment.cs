@@ -30,7 +30,7 @@ namespace ProjectSims.Domain.Model
 
         }
 
-        public ForumComment(int id, int forumId, Forum forum, int guestid, Guest1 guest, int ownerId, Owner owner, string name, string surname, string comment, bool visited, bool isGuest, string reportNum)
+        public ForumComment(int id, int forumId, Forum forum, int guestid, Guest1 guest, int ownerId, Owner owner, string name, string surname, string comment, bool visited, bool isGuest, string reportNumber)
         {
             Id = id;
             ForumId = forumId;
@@ -44,7 +44,7 @@ namespace ProjectSims.Domain.Model
             Comment = comment;
             GuestVisited = visited;
             IsGuest = isGuest;
-            ReportNumber = reportNum;
+            ReportNumber = reportNumber;
         }
         public void FromCSV(string[] values)
         {

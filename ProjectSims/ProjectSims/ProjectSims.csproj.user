@@ -2,6 +2,12 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="WPF\CustomControls\HourNumericBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\CustomControls\MinuteNumericBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\CustomControls\NumericBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -9,6 +15,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\Guest1View\BarPages\ForumWindowBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\BarPages\HelpStatusBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\BarPages\HelpWindowBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\BarPages\NotifStatusBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\BarPages\NotifWindowBar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\Guest1View\BarPages\RatingStatusBar.xaml.cs">
@@ -23,6 +41,30 @@
     <Compile Update="WPF\View\Guest1View\ForumStartView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WPF\View\Guest1View\HelpPages\AnywhereHelpView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\HelpPages\CreateForumHelpView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\HelpPages\ForumCommentsHelpView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\HelpPages\ForumHelpView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\HelpPages\MainHelpView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\HelpPages\MyReservationsHelpView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\HelpPages\ReservationHelpView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\HelpStartView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WPF\View\Guest1View\MainPages\AccommodationReservationView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -30,6 +72,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\Guest1View\MainPages\RatingsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\Guest1View\NotificationsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\Guest1View\RatingPages\FinishRatingView.xaml.cs">
@@ -104,9 +149,6 @@
     <Compile Update="WPF\View\GuideView\Pages\AcceptTourView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WPF\View\GuideView\Pages\AccountView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="WPF\View\GuideView\Pages\CommentAndRatingsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -138,6 +180,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\GuideView\GuideStartingView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\DatesReport.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\GuideAccountView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\HomeView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WPF\View\GuideView\Pages\Report.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WPF\View\GuideView\Pages\RequestStatisticsView.xaml.cs">
@@ -175,6 +229,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="WPF\CustomControls\HourNumericBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\CustomControls\MinuteNumericBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="WPF\CustomControls\NumericBox.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -190,6 +250,18 @@
     <Page Update="WPF\View\Guest1View\BarPages\ForumWindowBar.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="WPF\View\Guest1View\BarPages\HelpStatusBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\BarPages\HelpWindowBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\BarPages\NotifStatusBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\BarPages\NotifWindowBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="WPF\View\Guest1View\BarPages\RatingStatusBar.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -202,6 +274,30 @@
     <Page Update="WPF\View\Guest1View\ForumStartView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="WPF\View\Guest1View\HelpPages\AnywhereHelpView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\HelpPages\CreateForumHelpView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\HelpPages\ForumCommentsHelpView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\HelpPages\ForumHelpView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\HelpPages\MainHelpView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\HelpPages\MyReservationsHelpView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\HelpPages\ReservationHelpView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\HelpStartView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="WPF\View\Guest1View\MainPages\AccommodationReservationView.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -209,6 +305,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\Guest1View\MainPages\RatingsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\Guest1View\NotificationsView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\Guest1View\RatingPages\FinishRatingView.xaml">
@@ -286,9 +385,6 @@
     <Page Update="WPF\View\GuideView\Pages\AcceptTourView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WPF\View\GuideView\Pages\AccountView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="WPF\View\GuideView\Pages\CommentAndRatingsView.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -320,6 +416,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\GuideView\GuideStartingView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\GuideView\Pages\DatesReport.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\GuideView\Pages\GuideAccountView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\GuideView\Pages\HomeView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WPF\View\GuideView\Pages\Report.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WPF\View\GuideView\Pages\RequestStatisticsView.xaml">

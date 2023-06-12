@@ -12,26 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ProjectSims.Domain.Model;
 
-namespace ProjectSims.WPF.View.GuideView.Pages
+namespace ProjectSims.WPF.View.Guest1View.HelpPages
 {
     /// <summary>
-    /// Interaction logic for AccountView.xaml
+    /// Interaction logic for AnywhereHelpView.xaml
     /// </summary>
-    public partial class AccountView : Page
+    public partial class AnywhereHelpView : Page
     {
-        public AccountView(Guide g)
+        public AnywhereHelpView()
         {
             InitializeComponent();
-            DataContext = this;
-        }
-
-        private void Logout_Click(object sender, RoutedEventArgs e)
-        {
-            var startView = new MainWindow();
-            startView.Show();
-            Window.GetWindow(this).Close();
         }
     }
 }

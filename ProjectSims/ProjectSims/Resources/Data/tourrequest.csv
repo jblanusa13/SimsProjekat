@@ -1,18 +1,9 @@
-0|13|9|Accepted|Bijeljina,BIH|Obavezan obilazak Etno sela Stanisici!|Srpski|10|31/05/2023|10/06/2023|21/12/2022
-1|13|-1|Invalid|Bijeljina,BIH|Da ne traje vise od 5 sati|Francuski|10|25/05/2023|31/05/2023|21/01/2023
-2|13|-1|Invalid|Pariz,Francuska|Da ne mora mnogo da se seta|Francuski|20|24/05/2023|01/06/2023|21/02/2023
-3|16|-1|Invalid|Pariz,Francuska|Obavezna poseta Luvra|Srpski|15|25/05/2023|31/05/2023|21/03/2022
-4|16|-1|Invalid|Bijeljina,BIH|Obavezan obilazak Etno sela Stanisici!|Srpski|20|27/05/2023|23/06/2023|21/08/2020
-5|16|-1|Invalid|Beograd,Srbija|Obavezna stanica Muzej iluzija!|Srpski|30|25/05/2023|31/05/2023|21/07/2021
-6|15|-1|Waiting|Pariz,Francuska|Da se ne pesaci mnogo|Francuski|15|22/06/2023|06/07/2023|21/05/2022
-7|13|-1|Invalid|Pariz,Francuska|Obilazak ajfelovog tornja|Srpski|15|07/06/2023|10/06/2023|30/05/2023
-8|13|-1|Invalid|Marsej,Francuska|Obilazak Luke|Srpski|15|10/06/2023|13/06/2023|30/05/2023
-9|13|-1|Invalid|Tuluz,Francuska|Obilazak znamenitosti|Srpski|15|13/06/2023|16/06/2023|30/05/2023
-10|13|-1|Invalid|Madrid,Spanija|Obilazak Madrida|Španski|20|10/06/2023|14/06/2023|30/05/2023
-11|13|-1|Waiting|Barselona,Spanija|Obilazak stadiona Barselone, Kamp Nou|Španski|20|14/06/2023|17/06/2023|30/05/2023
-12|13|-1|Invalid|Rim,Italija|Obilazak Rima|Italijanski|30|10/06/2023|15/06/2023|30/05/2023
-13|13|-1|Waiting|Rim,Italija|Obilazak Koloseuma|Italijanski|25|18/06/2023|22/06/2023|06/06/2023
-14|13|-1|Waiting|Milan,Italija|Obilazak San Sira.|Italijanski|25|20/06/2023|28/06/2023|06/06/2023
-15|13|-1|Waiting|Venecija,Italija|Obilazak...|Italijanski|25|25/06/2023|29/06/2023|06/06/2023
-16|13|-1|Waiting|Nis,Srbija|Obilazak Cele kule|Srpski|30|23/06/2023|26/06/2023|06/06/2023
-17|13|-1|Waiting|Beograd,Srbija|Obilazak Kalemegdana|Srpski|30|25/06/2023|28/06/2023|06/06/2023
+0|13|9|Accepted|Bijeljina,RS|Obilazak Etno sela Stanisici obavezan|Srpski|15|14/06/2023|28/06/2023|11/06/2023|False|15/06/2023 08:30:00|15/06/2023 10:30:00
+1|13|-1|Waiting|Madrid,Spanija|Da tura traje vise od 4 sata|Španski|20|28/06/2023|30/06/2023|11/06/2023|False|01/01/0001 00:00:00|01/01/0001 00:00:00
+2|13|9|Accepted|Rim,Italija|obilazak fontane i koloseuma obavezan|Italijanski|15|22/06/2023|28/06/2023|11/06/2023|True|24/06/2023 09:00:00|24/06/2023 13:00:00
+3|13|11|Accepted|Venecija,Italija|Da tura ukljucuje i prevoz gondolom|Engleski|15|23/06/2023|30/06/2023|11/06/2023|True|12/06/2023 00:00:00|12/06/2023 00:00:00
+4|13|12|Accepted|Rimini,Italija|Da imamo slobodno vreme za boravak na plazi|Engleski|15|28/06/2023|29/06/2023|11/06/2023|True|28/06/2023 09:00:00|28/06/2023 13:00:00
+5|16|-1|Waiting|Budva,CG|Obilazak starog grada|Srpski|15|20/06/2023|28/06/2023|11/06/2023|False|01/01/0001 00:00:00|01/01/0001 00:00:00
+6|13|-1|Waiting|Berlin,Nemacka|Opis ture|Nemački|15|20/07/2023|23/07/2023|12/06/2023|True|01/01/0001 00:00:00|01/01/0001 00:00:00
+7|13|-1|Waiting|Frankfurt,Nemacka|Obici aerodrom|Nemački|15|22/07/2023|26/07/2023|12/06/2023|True|01/01/0001 00:00:00|01/01/0001 00:00:00
+8|13|-1|Waiting|Madrid,Spanija|Obici Madrid|Španski|20|27/08/2023|31/08/2023|12/06/2023|False|01/01/0001 00:00:00|01/01/0001 00:00:00

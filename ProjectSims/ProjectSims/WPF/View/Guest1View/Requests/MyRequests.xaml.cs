@@ -47,5 +47,10 @@ namespace ProjectSims.WPF.View.Guest1View.Requests
                 Requests.Add(request);
             }
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

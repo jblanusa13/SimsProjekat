@@ -19,8 +19,8 @@
                        AutoGenerateColumns="False" Margin="95,149,540,251"  >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Broj vaucera" Binding="{Binding Id}" Width="100" />
-                <DataGridTextColumn Header="Datum kreiranja" Binding="{Binding CreationDate}" Width="150" />
-                <DataGridTextColumn Header="Datum do kada vazi" Binding="{Binding ExpirationDate}" Width="150" />
+                <DataGridTextColumn Header="Datum kreiranja" Binding="{Binding CreationDate, StringFormat={}{0:dd.MM.yyyy}}" Width="150" />
+                <DataGridTextColumn Header="Datum do kada vazi" Binding="{Binding ExpirationDate, StringFormat={}{0:dd.MM.yyyy}}" Width="150" />
                 <DataGridCheckBoxColumn Header="Iskoriscen" Binding="{Binding Used}" Width="70" />
                 <DataGridCheckBoxColumn Header="Vazeci" Binding="{Binding ValidVoucher}" Width="*" />
             </DataGrid.Columns>

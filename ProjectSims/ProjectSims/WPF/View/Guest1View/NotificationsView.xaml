@@ -1,0 +1,98 @@
+﻿<Window x:Class="ProjectSims.WPF.View.Guest1View.NotifAndHelp.NotificationsView"
+        x:Name="NotifWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.NotifAndHelp"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        mc:Ignorable="d"
+        MinHeight="650" MinWidth="750"
+        Title="NotificationsView" Height="650" Width="750"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        BorderBrush="{DynamicResource BarShade}"
+        BorderThickness="3">
+    
+    <Window.Resources>
+        <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItem}"></Style>
+    </Window.Resources>
+
+    <Window.InputBindings>
+        <KeyBinding Gesture="Ctrl+B" Command="{Binding BackCommand}" CommandParameter="{Binding ElementName=NotifWindow}"></KeyBinding>
+    </Window.InputBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Frame x:Name="WindowBarFrame" NavigationUIVisibility="Hidden" ></Frame>
+        </Grid>
+
+        <Grid Grid.Row="1" Background="{DynamicResource FirstGrayShade}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Background="{DynamicResource SecondGrayShade}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Button Margin="10" x:Name="BackButton"
+                        Command="{Binding BackCommand}" CommandParameter="{Binding ElementName=NotifWindow}"
+                        Background="{DynamicResource SecondGrayShade}" BorderBrush="{DynamicResource SecondGrayShade}"
+                        FocusVisualStyle="{DynamicResource FocusControl}">
+                        <fa:ImageAwesome Icon="ArrowCircleLeft" Foreground="{DynamicResource FontsColor}"/>
+                    </Button>
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Label Content="Obavestenja" Margin="40,20,0,0" FontSize="45" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></Label>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <ListView Margin="50,40" Background="{DynamicResource BlueShade}" 
+                                      BorderBrush="{DynamicResource FontsColor}"
+                                      ItemsSource="{Binding Notifications, UpdateSourceTrigger=PropertyChanged}"
+                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                      ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                      >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,5,0,0">
+                                                    <AccessText>
+                                                        <MultiBinding StringFormat="{}{0}  {1}">
+                                                            <Binding Path="Owner.Name"/>
+                                                            <Binding Path="Owner.Surname" />
+                                                        </MultiBinding>
+                                                    </AccessText>
+                                    </TextBlock>
+                                    <Label Content=", vlasnik:  "/>
+                                    <Label Content="{Binding Request.Reservation.Accommodation.Name}"/>
+                                </StackPanel>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding ContentNotification}" Margin="5,0,0,0" FontSize="10"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    
+                </ListView>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Frame x:Name="StatusBarFrame" NavigationUIVisibility="Hidden" ></Frame>
+        </Grid>
+    </Grid>
+</Window>

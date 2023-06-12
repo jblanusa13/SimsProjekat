@@ -21,6 +21,10 @@ namespace ProjectSims.Repository
             notifications = notificationFileHandler.Load();
             observers = new List<IObserver>();
         }
+        public List<NotificationOwnerGuest> GetAllForGuest(int guestId)
+        {
+            return notifications.Where(n => n.Guest1.Id == guestId && n.RequestId != -1).ToList();
+        }
         public int NextId()
         {
             if (notifications.Count == 0)

@@ -10,13 +10,15 @@
 
     <Grid Background="{DynamicResource BarShade}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="500"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="230"/>
         </Grid.ColumnDefinitions>
 
       
-        <TextBlock Grid.Column="0" Foreground="{DynamicResource FontsColor}">Pritisnite alt...</TextBlock>
+        <TextBlock Grid.Column="0" Foreground="{DynamicResource FontsColor}"
+                   FontFamily="Bahnschrift"
+                   Margin="10,5,0,0" FontSize="12">Pritisnite Alt+H za pomoc za koriscenje aplikacije tastaturom</TextBlock>
         <Grid Grid.Column="2"></Grid>
     </Grid>
 </Page>

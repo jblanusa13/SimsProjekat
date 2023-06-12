@@ -17,6 +17,7 @@ namespace ProjectSims.Domain.Model
         public int GuideId { get; set; }
         public Guide Guide { get; set; }
         public List<int> TourIds { get; set; }
+        public List<Tour> Tours { get; set; }
         public string ContentNotification { get; set; }
         public DateTime DateSentNotification { get; set; }
         public bool Seen { get; set; }

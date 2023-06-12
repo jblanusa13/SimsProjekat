@@ -80,6 +80,9 @@ namespace ProjectSims.WPF.View.Guest2View.Pages
                     } else if (reservation.Tour.State == TourState.Active)
                     {
                         guest2Appoinment.AppointmentBackground = new SolidColorBrush(Colors.Green);
+                    }else if(reservation.Tour.State == TourState.Finished)
+                    {
+                        guest2Appoinment.AppointmentBackground = new SolidColorBrush(Colors.Orange);
                     }
                     appointmentCollection.Add(guest2Appoinment);
                 }

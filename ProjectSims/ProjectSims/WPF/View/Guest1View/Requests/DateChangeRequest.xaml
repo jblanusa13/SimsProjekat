@@ -5,16 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.Requests"
         mc:Ignorable="d"
+        xmlns:fa="http://schemas.fontawesome.io/icons/" 
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         MinHeight="550" MinWidth="700"
         WindowStartupLocation="CenterScreen"
         Title="DateChangeRequest" Height="550" Width="700">
-    <Grid>
+    <Grid Background="{DynamicResource FirstGrayShade}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0" Background="{DynamicResource SecondGrayShade}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0">
+            <Grid Grid.Column="0">
+                <Button Margin="0,10" Click="Cancel_Click" 
+                        x:Name="BackButton"
+                        Background="{DynamicResource SecondGrayShade}" 
+                        BorderBrush="{DynamicResource SecondGrayShade}"
+                        FocusVisualStyle="{DynamicResource FocusControl}">
+                    <fa:ImageAwesome Icon="ArrowCircleLeft" Foreground="{DynamicResource FontsColor}" Width="40"/>
+                </Button>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Label Margin="0,25,0,0" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" Content="{Binding Accommodation.Name}"></Label>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.2*"/>
                 <ColumnDefinition/>
@@ -22,7 +46,7 @@
 
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="10"/>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -36,38 +60,81 @@
                     <ColumnDefinition Width="160"/>
                     <ColumnDefinition Width="255"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Row="1" Grid.Column="1" Margin="20,10" FontSize="14">Grad:</Label>
-                <Label Grid.Row="2" Grid.Column="1" Margin="20,10" FontSize="14">Drzava:</Label>
-                <Label Grid.Row="3" Grid.Column="1" Margin="20,10" FontSize="14">Tip smestaja:</Label>
-                <Label Grid.Row="4" Grid.Column="1" Margin="20,10" FontSize="14">Datum dolaska:</Label>
-                <Label Grid.Row="5" Grid.Column="1" Margin="20,10" FontSize="14">Datum odlaska:</Label>
-                <Label Grid.Row="6" Grid.Column="1" Margin="20,10" FontSize="14">Broj gostiju:</Label>
+                <Label Grid.Row="1" Grid.Column="1" Margin="20,10" FontSize="14"
+                       FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" >Grad:</Label>
+                <Label Grid.Row="2" Grid.Column="1" Margin="20,10" FontSize="14"
+                       FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" >Drzava:</Label>
+                <Label Grid.Row="3" Grid.Column="1" Margin="20,10" FontSize="14"
+                       FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" >Tip smestaja:</Label>
+                <Label Grid.Row="4" Grid.Column="1" Margin="20,10" FontSize="14"
+                       FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" >Datum dolaska:</Label>
+                <Label Grid.Row="5" Grid.Column="1" Margin="20,10" FontSize="14"
+                       FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" >Datum odlaska:</Label>
+                <Label Grid.Row="6" Grid.Column="1" Margin="20,10" FontSize="14"
+                       FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" >Broj gostiju:</Label>
 
-                <Label Grid.Row="1" Grid.Column="2" Content="{Binding Accommodation.Location.City}"  Margin="0,10" FontSize="14"></Label>
-                <Label Grid.Row="2" Grid.Column="2" Content="{Binding Accommodation.Location.Country}" Margin="0,10" FontSize="14"></Label>
-                <Label Grid.Row="3" Grid.Column="2" Content="{Binding Accommodation.Type}" Margin="0,10" FontSize="14"></Label>
-                <Label Grid.Row="4" Grid.Column="2" Content="{Binding CheckInDate}" Margin="0,10" FontSize="14"></Label>
-                <Label Grid.Row="5" Grid.Column="2" Content="{Binding CheckOutDate}" Margin="0,10" FontSize="14"></Label>
-                <Label Grid.Row="6" Grid.Column="2" Content="{Binding GuestNumber}" Margin="0,10" FontSize="14"></Label>
+                <Label Grid.Row="1" Grid.Column="2" Content="{Binding Accommodation.Location.City}"  Margin="0,10" FontSize="14"
+                       FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" ></Label>
+                <Label Grid.Row="2" Grid.Column="2" Content="{Binding Accommodation.Location.Country}" Margin="0,10" FontSize="14"
+                       FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" ></Label>
+                <Label Grid.Row="3" Grid.Column="2" Content="{Binding Accommodation.Type}" Margin="0,10" FontSize="14"
+                       FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" ></Label>
+                <Label Grid.Row="4" Grid.Column="2" Content="{Binding CheckInDate}" Margin="0,10" FontSize="14"
+                       FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" ></Label>
+                <Label Grid.Row="5" Grid.Column="2" Content="{Binding CheckOutDate}" Margin="0,10" FontSize="14"
+                       FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" ></Label>
+                <Label Grid.Row="6" Grid.Column="2" Content="{Binding GuestNumber}" Margin="0,10" FontSize="14"
+                       FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" ></Label>
             </Grid>
+            
+            
             <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="100"/>
-                </Grid.RowDefinitions>
+                <Border Background="{DynamicResource BlueShade}"
+                        BorderBrush="{DynamicResource FontsColor}"
+                        BorderThickness="1"
+                        Margin="15,10,15,0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="100"/>
+                        </Grid.RowDefinitions>
 
-                <Label Grid.Row="0" Content="Datum dolaska za pomeranje" HorizontalAlignment="Left" Margin="83,293,0,0" VerticalAlignment="Top" FontSize="16"/>
-                <DatePicker x:Name="DateChangePicker" Grid.Row="0" HorizontalAlignment="Left" Margin="109,335,0,0" VerticalAlignment="Top" Height="26" Width="164" FontSize="16"/>
+                        <Label Grid.Row="0" Content="Datum dolaska za pomeranje" HorizontalAlignment="Left" Margin="30,120,0,0"
+                               FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" 
+                               VerticalAlignment="Top" FontSize="16"/>
+                        <DatePicker x:Name="DateChangePicker" 
+                                    Background="{DynamicResource TextboxColor}"
+                                            FocusVisualStyle="{DynamicResource FocusControl}"
+                                            DisplayDateStart="{x:Static sys:DateTime.Today}"
+                                    Grid.Row="0" HorizontalAlignment="Left" Margin="30,160,0,0" VerticalAlignment="Top" Height="26" Width="164" FontSize="16"/>
 
-                <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="170"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                    <Button Grid.Column="0" Click="Cancel_Click" HorizontalAlignment="Left" Margin="30, 30" VerticalAlignment="Top" Height="40" Width="105" FontSize="14">Otkazi</Button>
-                    <Button Grid.Column="1" Click="SendRequest_Click" Margin="20, 30" Height="40" Width="105" FontSize="14">Potvrdi</Button>
-                </Grid>
+                            <Button Grid.Column="0" Click="Cancel_Click" HorizontalAlignment="Left" Margin="30, 30" VerticalAlignment="Top" Height="40" Width="100" FontSize="14"
+                                    FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" 
+                                    Background="{DynamicResource SecondGrayShade}">Otkazi
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="15"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                            <Button Grid.Column="1" Click="SendRequest_Click" Margin="0,30" Height="40" Width="100" FontSize="14"
+                                    FontFamily="Bahnschrift" Foreground="{DynamicResource FontsColor}" 
+                                    Background="{DynamicResource SecondGrayShade}">Potvrdi
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="15"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </Border>
 
             </Grid>
         </Grid>

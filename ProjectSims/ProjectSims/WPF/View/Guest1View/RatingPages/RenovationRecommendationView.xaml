@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.RatingPages"
+      xmlns:ns="clr-namespace:ProjectSims.Localization"
       mc:Ignorable="d" 
       d:DesignHeight="590" d:DesignWidth="750"
       Title="RenovationRecommendationView">
@@ -22,7 +23,7 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" FontSize="38" Margin="10"
-                   Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Preporuka za renoviranje (opciono)</Label>
+                   Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" Content="{ns:Loc PreporukaZaRenoviranje}"></Label>
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
@@ -36,8 +37,7 @@
                         Margin="70,10,30,10" FontSize="14" Click="SkipRecommendation_Click"
                         Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"
                         Background="{DynamicResource SecondGrayShade}"
-                        FocusVisualStyle="{DynamicResource FocusControl}">
-                    Preskoci
+                        FocusVisualStyle="{DynamicResource FocusControl}" Content="{ns:Loc Preskoci}">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="20"/>
@@ -59,7 +59,7 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Margin="20,10" FontSize="16"
-                   Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Nivo hitnosti renoviranja:</Label>
+                   Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" Content="{ns:Loc NivoHitnostiRenoviranja:}"></Label>
             <RadioButton Grid.Row="1" Name="Rb1" Margin="30,15" Height="30" Content="1 - bilo bi lepo renovirati neke sitnice, ali sve funkcioniše kako treba i bez toga" FontSize="13"
                          Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"></RadioButton>
             <RadioButton Grid.Row="2" Name="Rb2" Margin="30,15" Height="30" Content="2 - male zamerke na smeštaj koje kada bi se uklonile bi ga učinile savršenim" FontSize="13"
@@ -76,7 +76,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Margin="20,0,0,0" FontSize="15"
-                       Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Preporuke za renoviranje:</Label>
+                       Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" Content="{ns:Loc PreporukeZaRenoviranje:}"></Label>
                 <TextBox Name="TbRecommendation" Grid.Column="1" 
                          Margin="0,5,20,10"
                          TextWrapping="Wrap"></TextBox>
@@ -91,8 +91,7 @@
             <Button Grid.Column="0" Margin="30,10,190,20" FontSize="14" Click="Back_Click"
                     Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"
                     Background="{DynamicResource SecondGrayShade}"
-                    FocusVisualStyle="{DynamicResource FocusControl}">
-                Nazad
+                    FocusVisualStyle="{DynamicResource FocusControl}" Content="{ns:Loc Nazad}">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>
@@ -102,8 +101,7 @@
             <Button Grid.Column="2" Margin="28,10,30,20" FontSize="14" Click="RateAcommodation_Click"
                     Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift"
                     Background="{DynamicResource SecondGrayShade}"
-                    FocusVisualStyle="{DynamicResource FocusControl}">
-                Dalje
+                    FocusVisualStyle="{DynamicResource FocusControl}" Content="{ns:Loc Dalje}">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>

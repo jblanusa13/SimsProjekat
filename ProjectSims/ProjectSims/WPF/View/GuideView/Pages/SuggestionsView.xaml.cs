@@ -34,11 +34,11 @@ namespace ProjectSims.WPF.View.GuideView.Pages
         }
         private void CreateTourByLanguage_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new CreateTourView(Guide,null,suggestionsViewModel.GetMostWantedLanguage(),null));
+            this.NavigationService.Navigate(new CreateTourView(Guide,null,suggestionsViewModel.GetMostWantedLanguage(),null,new DateTime(0001,01,01),0));
         }
         private void CreateTourByLocation_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new CreateTourView(Guide, null, null, suggestionsViewModel.GetMostWantedLocation()));
+            this.NavigationService.Navigate(new CreateTourView(Guide, null, null, suggestionsViewModel.GetMostWantedLocation(), new DateTime(0001, 01, 01), 0));
         }
         private void Back_Click(object sender, RoutedEventArgs e)
         {

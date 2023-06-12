@@ -33,6 +33,7 @@ namespace ProjectSims.Service
             notificationRepository = Injector.CreateInstance<INotificationOwnerGuestRepository>();
             ownerRepository = Injector.CreateInstance<IOwnerRepository>();
 
+
             InitializeLocation();
             InitializeGuest();
         }
@@ -77,7 +78,6 @@ namespace ProjectSims.Service
             }
             return forums;
         }
-
         public void CreateForum(Guest1 guest, Location location, string comment)
         {
             int id = forumRepository.NextId();
@@ -105,10 +105,14 @@ namespace ProjectSims.Service
                 }
             }
         }
-        public void Subscribe(IObserver observer)
+
+        public void CloseForum(int forumId)
         {
-            forumRepository.Subscribe(observer);
+            Forum forumToClose = forumRepository.GetById(forumId);
+            forumToClose.Status = ForumStatus.Zatvoren;
+            forumRepository.Update(forumToClose);
         }
+
         public bool CheckIfVeryUseful(Forum forum)
         {
             return IsVeryUsefulForum(commentRepository.GetAllByForumId(forum.Id));
@@ -138,6 +142,10 @@ namespace ProjectSims.Service
             {
                 forum.IsVeryUseful = CheckIfVeryUseful(forum);
             }
+        }
+        public void Subscribe(IObserver observer)
+        {
+            forumRepository.Subscribe(observer);
         }
     }
 }

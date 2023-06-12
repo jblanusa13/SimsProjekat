@@ -62,6 +62,10 @@ namespace ProjectSims.Repository
         {
             return tourRequests.Where(r => r.State == TourRequestState.Waiting).ToList();
         }
+        public List<TourRequest> GetWaitingRequestsForComplexTour()
+        {
+            return tourRequests.Where(r => r.RequestForComplexTour == true && r.State == TourRequestState.Waiting).ToList();
+        }
         public List<TourRequest> GetUnrealizedRequests()
         {
             return tourRequests.Where(r => r.State != TourRequestState.Accepted).ToList();
@@ -78,6 +82,10 @@ namespace ProjectSims.Repository
         public List<TourRequest> GetByGuest2Id(int guest2Id)
         {
             return tourRequests.Where(t => t.Guest2Id == guest2Id).ToList();
+        }
+        public List<TourRequest> GetByGuideId(int guideId)
+        {
+            return tourRequests.Where(t => t.GuideId == guideId).ToList();
         }
         public List<TourRequest> GetByLocation(string location)
         {

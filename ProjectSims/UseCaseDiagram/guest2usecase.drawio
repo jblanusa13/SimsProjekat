@@ -1,0 +1,1029 @@
+<mxfile host="app.diagrams.net" modified="2023-06-12T12:08:18.140Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="JNj6OGduEWbO9dCGmUp4" version="21.3.8" type="device">
+  <diagram name="Page-1" id="xyA26z7PXGH8B0JkVWCE">
+    <mxGraphModel dx="1687" dy="872" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-2" value="Gost 2" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" parent="1" vertex="1">
+          <mxGeometry x="190" y="290" width="60" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-6" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="470" y="20" width="850" height="900" as="geometry" />
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-7" value="Prikaz svih tura" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="520" y="60" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-8" value="&amp;lt;&amp;lt;extends&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="VtIDwdUe5Uc5AGWYI4rm-9" target="VtIDwdUe5Uc5AGWYI4rm-7" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="740" y="130" as="sourcePoint" />
+            <mxPoint x="660" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-9" value="Prikaz detalja i rezervacija ture" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="790" y="60" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-10" value="Upotreba vaucera" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1050" y="60" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-11" value="Pretraga tura" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="770" y="150" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-12" value="Ocjenjivanje ture i vodica" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="800" y="330" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-13" value="Kreiranje zahteva za turu" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="820" y="420" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-14" value="Prikaz svih zahtjeva" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="530" y="550" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-15" value="Statistika o zahtjevu" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="820" y="510" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-16" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="VtIDwdUe5Uc5AGWYI4rm-10" target="VtIDwdUe5Uc5AGWYI4rm-9" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="1080" y="160" as="sourcePoint" />
+            <mxPoint x="900" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-17" value="Prikaz trenutno aktivnih tura" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="520" y="230" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-18" value="&amp;lt;&amp;lt;extends&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="VtIDwdUe5Uc5AGWYI4rm-19" target="VtIDwdUe5Uc5AGWYI4rm-17" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="820" y="297.5" as="sourcePoint" />
+            <mxPoint x="670" y="292.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-19" value="Prisustvo na turi" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="790" y="230" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-20" value="Prikaz zavrsenih tura" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="530" y="330" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-21" value="&amp;lt;&amp;lt;extends&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="VtIDwdUe5Uc5AGWYI4rm-12" target="VtIDwdUe5Uc5AGWYI4rm-20" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="850" y="370" as="sourcePoint" />
+            <mxPoint x="670" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-22" value="&amp;lt;&amp;lt;extends&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="VtIDwdUe5Uc5AGWYI4rm-15" target="VtIDwdUe5Uc5AGWYI4rm-14" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="850" y="405" as="sourcePoint" />
+            <mxPoint x="670" y="395" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-23" value="Kreiranje zahteva za&amp;nbsp;&lt;br&gt;slozenu turu" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="825" y="600" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-25" value="Prikaz svih dijelova slozene ture" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="825" y="700" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-26" value="&amp;lt;&amp;lt;extends&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;entryX=0.79;entryY=0.906;entryDx=0;entryDy=0;exitX=-0.02;exitY=0.387;exitDx=0;exitDy=0;exitPerimeter=0;entryPerimeter=0;" parent="1" source="VtIDwdUe5Uc5AGWYI4rm-25" target="VtIDwdUe5Uc5AGWYI4rm-14" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="835" y="680" as="sourcePoint" />
+            <mxPoint x="680" y="725" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-27" value="Prikaz svih vaucera" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="540" y="700" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-28" value="" style="endArrow=none;html=1;rounded=0;entryX=0.057;entryY=0.718;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="VtIDwdUe5Uc5AGWYI4rm-2" target="VtIDwdUe5Uc5AGWYI4rm-7" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="370" y="310" as="sourcePoint" />
+            <mxPoint x="420" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-31" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="VtIDwdUe5Uc5AGWYI4rm-2" target="VtIDwdUe5Uc5AGWYI4rm-17" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="270" y="339" as="sourcePoint" />
+            <mxPoint x="548" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-32" value="&amp;lt;&amp;lt;extends&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0.021;exitY=0.361;exitDx=0;exitDy=0;entryX=0.743;entryY=0.932;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;" parent="1" source="VtIDwdUe5Uc5AGWYI4rm-11" target="VtIDwdUe5Uc5AGWYI4rm-7" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="790" y="125" as="sourcePoint" />
+            <mxPoint x="670" y="120" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-33" value="" style="endArrow=none;html=1;rounded=0;entryX=0.029;entryY=0.318;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="VtIDwdUe5Uc5AGWYI4rm-2" target="VtIDwdUe5Uc5AGWYI4rm-20" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="780" y="420" as="sourcePoint" />
+            <mxPoint x="830" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-35" value="" style="endArrow=none;html=1;rounded=0;entryX=0.057;entryY=0.218;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="VtIDwdUe5Uc5AGWYI4rm-14" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="250" y="350" as="sourcePoint" />
+            <mxPoint x="830" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtIDwdUe5Uc5AGWYI4rm-38" value="" style="endArrow=none;html=1;rounded=0;entryX=0.064;entryY=0.289;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="VtIDwdUe5Uc5AGWYI4rm-2" target="VtIDwdUe5Uc5AGWYI4rm-27" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="780" y="670" as="sourcePoint" />
+            <mxPoint x="830" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-30" value="Prikaz svih tura" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1350" y="20" width="330" height="300" as="geometry">
+            <mxRectangle x="1080" y="1040" width="130" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-38" value="Preduslov: Gost 2 je prijavljen" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-30" vertex="1">
+          <mxGeometry y="30" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-39" value="Posledica: Sistem prikazuje gostu 2 sve postojece ture" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-30" vertex="1">
+          <mxGeometry y="80" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-41" value="Osnovni tok izvrsanja:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-30" vertex="1">
+          <mxGeometry y="120" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-63" value="1. Gost2 se prijavljuje u aplikaciju" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-30" vertex="1">
+          <mxGeometry y="140" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-64" value="2. Sistem prikazuje pocetnu stranicu" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-30" vertex="1">
+          <mxGeometry y="160" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-65" value="3. Gost2 bira tab Pretraga tura" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-30" vertex="1">
+          <mxGeometry y="180" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-66" value="4. Sistem mu prikazuje listu svih tura" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-30" vertex="1">
+          <mxGeometry y="200" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-123" value="5. [Tacka prosirenja: Prikaz detalja i rezervacija ture]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-30" vertex="1">
+          <mxGeometry y="226" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-37" value="" style="endArrow=none;html=1;rounded=0;" parent="32xqSgNh9X-ksn6WSLf4-30" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="300" as="sourcePoint" />
+            <mxPoint x="335" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-124" value="6. [Tacka prosirenja: Pretraga tura]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-30" vertex="1">
+          <mxGeometry y="250" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-1" value="7. Slucaj koriscenja se zavrsava" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="32xqSgNh9X-ksn6WSLf4-30">
+          <mxGeometry y="270" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-35" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1350" y="90" as="sourcePoint" />
+            <mxPoint x="1680" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-36" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1350" y="140" as="sourcePoint" />
+            <mxPoint x="1680" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-55" value="Prikaz detalja i rezervacija ture" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1765" y="20" width="390" height="510" as="geometry">
+            <mxRectangle x="1080" y="1040" width="130" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-56" value="Preduslov: Gost 2 je odabrao turu i uneo broj ljudi za koji zeli da izvrsi rezervaciju" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-55" vertex="1">
+          <mxGeometry y="30" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-57" value="Posledica: Sistem prikazuje vaucere koje mozete upotrebiti kod rezervacije" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-55" vertex="1">
+          <mxGeometry y="80" width="370" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-58" value="Osnovni tok izvrsanja:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-55" vertex="1">
+          <mxGeometry y="120" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-62" value="1. Gost2 bira turu iz liste svih postojecih tura o kojima zeli da vidi detalje i izvrsi rezervaciju" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-55" vertex="1">
+          <mxGeometry y="140" width="380" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-67" value="2. Sistem prikazuje gostu2 polje za unos broj ljudi i detalje o turi(prozor DetailsAndReservationTourView)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-55" vertex="1">
+          <mxGeometry y="170" width="380" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-68" value="3. Gost2 unosi broj ljudi za koji nije moguce da se izvrsi rezervacija(Alternativni tok A)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-55" vertex="1">
+          <mxGeometry y="200" width="370" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-69" value="5. Gost2 na osnovu vidjenih detalja odustaje od rezervacije ture(Alternativnik tok C)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-55" vertex="1">
+          <mxGeometry y="260" width="380" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-101" value="Alternativni tok A:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-55" vertex="1">
+          <mxGeometry y="324" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-102" value="Sistem ispisuje koliko je mjesta ostalo na turi ukoliko nije moguce izvrisiti rezervaciju za unijeti broj ljudi.Ako nema uopste vise nema mjesta na datoj turi sistem prikazuje alternativne ture za koje je takodje moguce izvrsiti rezervaciju.&lt;span id=&quot;docs-internal-guid-6969003b-7fff-105f-7879-e54818bc257e&quot;&gt;&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-55" vertex="1">
+          <mxGeometry y="344" width="390" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-106" value="" style="endArrow=none;html=1;rounded=0;" parent="32xqSgNh9X-ksn6WSLf4-55" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="460" as="sourcePoint" />
+            <mxPoint x="390" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-105" value="4. Gost2 unosi broj ljudi za koji je moguce da se izvrsi rezervacija(Alternativni tok B)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-55" vertex="1">
+          <mxGeometry y="230" width="370" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-104" value="" style="endArrow=none;html=1;rounded=0;" parent="32xqSgNh9X-ksn6WSLf4-55" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="414" as="sourcePoint" />
+            <mxPoint x="390" y="414" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-108" value="Alternativni tok B:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-55" vertex="1">
+          <mxGeometry y="414" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-109" value="Sistem prikazuje prozor za upotrebu vaucera" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-55" vertex="1">
+          <mxGeometry y="434" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-110" value="Alternativni tok C:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-55" vertex="1">
+          <mxGeometry y="460" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-111" value="Sistem nas vraca na prikaz svih tura." style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-55" vertex="1">
+          <mxGeometry y="476" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-61" value="" style="endArrow=none;html=1;rounded=0;" parent="32xqSgNh9X-ksn6WSLf4-55" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="324" as="sourcePoint" />
+            <mxPoint x="390" y="324" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-4" value="6. Slucaj koriscenja se zavrsava" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="32xqSgNh9X-ksn6WSLf4-55">
+          <mxGeometry y="298" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-59" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1765" y="90" as="sourcePoint" />
+            <mxPoint x="2155" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-60" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1765" y="140" as="sourcePoint" />
+            <mxPoint x="2155" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-70" value="Upotreba vaucera" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="2235" y="20" width="420" height="440" as="geometry">
+            <mxRectangle x="1080" y="1040" width="130" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-71" value="Preduslov: Gost 2 vrsi rezervaciju ture" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-70" vertex="1">
+          <mxGeometry y="30" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-72" value="Posledica: Sistem rezervise turu za gosta2&amp;nbsp; uz (ne)koriscenje vaucera" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-70" vertex="1">
+          <mxGeometry y="80" width="380" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-73" value="Osnovni tok izvrsanja:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-70" vertex="1">
+          <mxGeometry y="120" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-74" value="1. Sistem prikazuje gostu 2 sve vaucere koje moze da upotrebi&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-70" vertex="1">
+          <mxGeometry y="150" width="380" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-75" value="2. Gost2 bira vaucer i vrsi rezervaciju(Alternativni tok A)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-70" vertex="1">
+          <mxGeometry y="170" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-76" value="3. Gost2 ne koristi vaucer i vrsi rezervaciju (Alternativni tok B)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-70" vertex="1">
+          <mxGeometry y="190" width="370" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-77" value="4. Gost2 odustaje o rezervacije (Alternativni tok C)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-70" vertex="1">
+          <mxGeometry y="210" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-84" value="Sistem vrsi rezervaciju za gosta2 i stavlja stanje vaucera na iskoriscen. Takodje vraca poruku o uspjesno izvrsenoj rezervaciji" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-70" vertex="1">
+          <mxGeometry y="270" width="410" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-85" value="Alternativni tok A:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-70" vertex="1">
+          <mxGeometry y="250" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-86" value="Alternativni tok B:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-70" vertex="1">
+          <mxGeometry y="320" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-98" value="Alternativni tok C:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-70" vertex="1">
+          <mxGeometry y="380" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-99" value="Sistem vrsi rezervaciju za gosta2 i ne dira stanje vaucera. Takodje vraca poruku o uspjesno izvrsenoj rezervaciji" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-70" vertex="1">
+          <mxGeometry x="5" y="340" width="410" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-100" value="Sistem nas vraca nazad na prikaz detalja o samoj turi i eventualno ponovno izvrsavanje rezervaijce.&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-70" vertex="1">
+          <mxGeometry y="400" width="410" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-5" value="5. Slucaj koriscenja se zavrsava" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="32xqSgNh9X-ksn6WSLf4-70">
+          <mxGeometry y="230" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-80" value="" style="endArrow=none;html=1;rounded=0;" parent="32xqSgNh9X-ksn6WSLf4-70" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="256" as="sourcePoint" />
+            <mxPoint x="420" y="256" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-78" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2235" y="90" as="sourcePoint" />
+            <mxPoint x="2655" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-79" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2235" y="140" as="sourcePoint" />
+            <mxPoint x="2655" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-82" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2235" y="340" as="sourcePoint" />
+            <mxPoint x="2655" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-83" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2235" y="400" as="sourcePoint" />
+            <mxPoint x="2655" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-112" value="Pretraga tura" style="swimlane;whiteSpace=wrap;html=1;startSize=23;" parent="1" vertex="1">
+          <mxGeometry x="1350" y="330" width="370" height="230" as="geometry">
+            <mxRectangle x="1080" y="1040" width="130" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-113" value="Preduslov: Gost 2 treba da unese odredjene parametere pretrage(lokacija,jezik,trajanje ture ili broj ljudi)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-112" vertex="1">
+          <mxGeometry y="30" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-114" value="Posledica: Sistem prikazuje gostu 2 ture za pretragu koju je unio" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-112" vertex="1">
+          <mxGeometry y="70" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-115" value="Osnovni tok izvrsanja:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-112" vertex="1">
+          <mxGeometry y="120" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-116" value="1. Gost2 u polje za rezervaciju unosi neke parametre pretrage" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-112" vertex="1">
+          <mxGeometry y="140" width="360" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-117" value="2. Sistem obavlja pretragu po unetim parametrima i prikazuje gostu2 listu tura koje zadovoljovaju unete parametre&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-112" vertex="1">
+          <mxGeometry y="160" width="360" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-2" value="3. Slucaj koriscenja se zavrsava" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="32xqSgNh9X-ksn6WSLf4-112">
+          <mxGeometry y="190" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-120" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1350" y="400" as="sourcePoint" />
+            <mxPoint x="1720" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-121" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1350" y="450" as="sourcePoint" />
+            <mxPoint x="1720" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-125" value="Prikaz trenutno aktivnih tura" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1350" y="570" width="330" height="330" as="geometry">
+            <mxRectangle x="1080" y="1040" width="130" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-126" value="Preduslov: Gost 2 je prijavljen" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-125" vertex="1">
+          <mxGeometry y="30" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-127" value="Posledica: Sistem prikazuje gostu 2 sve ture koje su trenutno aktivne i na kojima je on prisutan" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-125" vertex="1">
+          <mxGeometry y="80" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-128" value="Osnovni tok izvrsanja:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-125" vertex="1">
+          <mxGeometry y="120" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-129" value="1. Gost2 se prijavljuje u aplikaciju" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-125" vertex="1">
+          <mxGeometry y="150" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-130" value="2. Sistem prikazuje pocetnu stranicu" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-125" vertex="1">
+          <mxGeometry y="170" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-131" value="3. Gost2 bira tab Pracenja tura" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-125" vertex="1">
+          <mxGeometry y="190" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-132" value="4. Sistem mu prikazuje listu tura koje su aktivne i na kojima je on prisutan" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-125" vertex="1">
+          <mxGeometry y="210" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-133" value="5. [Tacka prosirenja: Prisustvo na turi]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-125" vertex="1">
+          <mxGeometry y="240" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-7" value="6. Slucaj koriscenja se zavrsava" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="32xqSgNh9X-ksn6WSLf4-125">
+          <mxGeometry y="266" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-136" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1350" y="640" as="sourcePoint" />
+            <mxPoint x="1680" y="640" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-137" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1350" y="690" as="sourcePoint" />
+            <mxPoint x="1680" y="690" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-138" value="Prisustvo na turi" style="swimlane;whiteSpace=wrap;html=1;startSize=23;" parent="1" vertex="1">
+          <mxGeometry x="1750" y="590" width="380" height="240" as="geometry">
+            <mxRectangle x="1080" y="1040" width="130" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-140" value="Posledica: Sistem prikazuje gostu 2 podatke o aktivnoj turi(Ko je vodic?, Naziv ture?, Dokle je tura stigla? ...)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-138" vertex="1">
+          <mxGeometry y="70" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-141" value="Osnovni tok izvrsanja:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-138" vertex="1">
+          <mxGeometry y="120" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-147" value="Preduslov: Gost 2 je odabrao turu koju zeli da prati uzivo" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-138" vertex="1">
+          <mxGeometry y="30" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-148" value="1. Gost2 bira turu iz liste aktivnih tura koju zeli da prati uzivo" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-138" vertex="1">
+          <mxGeometry y="140" width="380" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-149" value="2. Sistem mu prikazuje prozor(Guest2TrackingTourView) gdje moze vidjeti podatke o aktivnoj turi" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-138" vertex="1">
+          <mxGeometry y="160" width="380" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-6" value="3. Slucaj koriscenja se zavrsava" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="32xqSgNh9X-ksn6WSLf4-138">
+          <mxGeometry y="200" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-144" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1750" y="660" as="sourcePoint" />
+            <mxPoint x="2130" y="660" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-145" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1750" y="710" as="sourcePoint" />
+            <mxPoint x="2130" y="710" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-150" value="Prikaz zavrsenih tura" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1360" y="920" width="330" height="330" as="geometry">
+            <mxRectangle x="1080" y="1040" width="130" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-151" value="Preduslov: Gost 2 je prijavljen" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-150" vertex="1">
+          <mxGeometry y="30" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-152" value="Posledica: Sistem prikazuje gostu 2 sve ture koje su se zavrsile i na kojima je on bio prisutan, a nije ih ocjenio" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-150" vertex="1">
+          <mxGeometry y="80" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-153" value="Osnovni tok izvrsanja:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-150" vertex="1">
+          <mxGeometry y="120" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-154" value="1. Gost2 se prijavljuje u aplikaciju" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-150" vertex="1">
+          <mxGeometry y="150" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-155" value="2. Sistem prikazuje pocetnu stranicu" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-150" vertex="1">
+          <mxGeometry y="170" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-156" value="3. Gost2 bira tab Ocjeni ture" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-150" vertex="1">
+          <mxGeometry y="190" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-157" value="4. Sistem mu prikazuje listu tura koje su se zavrsile i na kojima je on bio prisutan" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-150" vertex="1">
+          <mxGeometry y="210" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-158" value="5. [Tacka prosirenja: Ocjenjivanje ture i vodica]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-150" vertex="1">
+          <mxGeometry y="240" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-8" value="6. Slucaj koriscenja se zavrsava" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="32xqSgNh9X-ksn6WSLf4-150">
+          <mxGeometry y="266" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-160" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1360" y="990" as="sourcePoint" />
+            <mxPoint x="1690" y="990" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-161" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1360" y="1040" as="sourcePoint" />
+            <mxPoint x="1690" y="1040" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-162" value="Ocjenjivanje ture i vodica" style="swimlane;whiteSpace=wrap;html=1;startSize=23;" parent="1" vertex="1">
+          <mxGeometry x="1750" y="930" width="381" height="390" as="geometry">
+            <mxRectangle x="1080" y="1040" width="130" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-163" value="Posledica: Sistem cuva ocjene koje je gost2 napravio za ture i vodica" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-162" vertex="1">
+          <mxGeometry y="70" width="370" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-164" value="Osnovni tok izvrsanja:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-162" vertex="1">
+          <mxGeometry y="120" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-165" value="Preduslov: Gost 2 je odabrao turu koju zeli da ocjeni" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-162" vertex="1">
+          <mxGeometry y="30" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-166" value="1. Gost2 bira turu iz liste zavrsenih tura koju zeli da ocjeni" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-162" vertex="1">
+          <mxGeometry y="140" width="380" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-167" value="2. Sistem mu prikazuje prozor(RatingTourView) gdje moze ocjeniti turu i vodica" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-162" vertex="1">
+          <mxGeometry y="160" width="380" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-171" value="3. Gost2 popunjava formu za ocjenjivanje (Alternativni tok A)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-162" vertex="1">
+          <mxGeometry x="1" y="190" width="380" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-172" value="4. Gost2 odustaje od ocjenjivanja ture i vodica(Alternativni tok B)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-162" vertex="1">
+          <mxGeometry y="210" width="380" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-173" value="Alternativni tok A:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-162" vertex="1">
+          <mxGeometry y="260" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-174" value="Sistem prikazuje poruku o uspjesno ocjenjivanju i trajno cuva tu ocjenu" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-162" vertex="1">
+          <mxGeometry y="280" width="370" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-175" value="" style="endArrow=none;html=1;rounded=0;" parent="32xqSgNh9X-ksn6WSLf4-162" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="320" as="sourcePoint" />
+            <mxPoint x="380" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-176" value="Alternativni tok B:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-162" vertex="1">
+          <mxGeometry y="320" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-177" value="Sistem nas vraca na prikaz zavrsenih tura" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-162" vertex="1">
+          <mxGeometry y="340" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-9" value="5. Slucaj koriscenja se zavrsava" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="32xqSgNh9X-ksn6WSLf4-162">
+          <mxGeometry y="230" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-168" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1750" y="1000" as="sourcePoint" />
+            <mxPoint x="2130" y="1000" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-169" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1750" y="1050" as="sourcePoint" />
+            <mxPoint x="2130" y="1050" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-170" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1751" y="1190" as="sourcePoint" />
+            <mxPoint x="2131" y="1190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-178" value="Kreiranje zahtjeva za turu" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1372.5" y="1340" width="355" height="430" as="geometry">
+            <mxRectangle x="1080" y="1040" width="130" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-179" value="Preduslov: Gost 2 je prijavljen i nalazi se u tabu Zahtjevi" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-178" vertex="1">
+          <mxGeometry y="30" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-180" value="Posledica: Sistem kreira i trajno cuva obican zahtjev gosta2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-178" vertex="1">
+          <mxGeometry y="70" width="350" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-181" value="Osnovni tok izvrsanja:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-178" vertex="1">
+          <mxGeometry y="120" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-182" value="1. Gost2 aktivira dugme &quot;Kreiraj novi&quot; za kreiranje novog obicnog zahtjeva" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-178" vertex="1">
+          <mxGeometry y="150" width="340" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-183" value="2. Sistem prikazuje formu za kreiranje zahtjeva" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-178" vertex="1">
+          <mxGeometry y="182" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-184" value="3. Gost2 popunjava formu za kreiranje obicnog zahtjeva" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-178" vertex="1">
+          <mxGeometry y="200" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-185" value="4. Gost2 pritisce dugme &quot;Kreiraj zahtjev&quot;(Alternativni tok A)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-178" vertex="1">
+          <mxGeometry y="220" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-187" value="" style="endArrow=none;html=1;rounded=0;" parent="32xqSgNh9X-ksn6WSLf4-178" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="300" as="sourcePoint" />
+            <mxPoint x="355" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-223" value="5. Gost2 pritisce dugme &quot;Odustani&quot;(Alternativni tok B)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-178" vertex="1">
+          <mxGeometry y="250" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-224" value="Alternativni tok A:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-178" vertex="1">
+          <mxGeometry y="300" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-225" value="Sistem trajno cuva novi kreiran zahtjev i vraca nas na prikaz svi zahtjeva gdje se u listi obicnih prikazuje i novokreirani" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-178" vertex="1">
+          <mxGeometry x="5" y="320" width="330" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-226" value="" style="endArrow=none;html=1;rounded=0;" parent="32xqSgNh9X-ksn6WSLf4-178" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-2.5" y="370" as="sourcePoint" />
+            <mxPoint x="352.5" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-227" value="Alternativni tok B:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-178" vertex="1">
+          <mxGeometry y="370" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-228" value="Sistem nas vraca na prikaz svih zahtjeva" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-178" vertex="1">
+          <mxGeometry x="5" y="390" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-12" value="6. Slucaj koriscenja se zavrsava" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="32xqSgNh9X-ksn6WSLf4-178">
+          <mxGeometry y="274" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-189" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1372.5" y="1410" as="sourcePoint" />
+            <mxPoint x="1727.5" y="1410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-190" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1372.5" y="1460" as="sourcePoint" />
+            <mxPoint x="1727.5" y="1460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-191" value="&amp;lt;&amp;lt;extends&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;entryX=0.971;entryY=0.36;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryPerimeter=0;" parent="1" source="VtIDwdUe5Uc5AGWYI4rm-13" target="VtIDwdUe5Uc5AGWYI4rm-14" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="837" y="540" as="sourcePoint" />
+            <mxPoint x="690" y="505" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-192" value="Prikaz svih zahtjeva" style="swimlane;whiteSpace=wrap;html=1;startSize=23;" parent="1" vertex="1">
+          <mxGeometry x="1010" y="1340" width="330" height="360" as="geometry">
+            <mxRectangle x="1080" y="1040" width="130" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-193" value="Preduslov: Gost 2 je prijavljen" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-192" vertex="1">
+          <mxGeometry y="30" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-194" value="Posledica: Sistem prikazuje gostu 2 sve zahtjeve(obicne i slozene)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-192" vertex="1">
+          <mxGeometry y="80" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-195" value="Osnovni tok izvrsanja:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-192" vertex="1">
+          <mxGeometry y="120" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-196" value="1. Gost2 se prijavljuje u aplikaciju" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-192" vertex="1">
+          <mxGeometry y="150" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-197" value="2. Sistem prikazuje pocetnu stranicu" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-192" vertex="1">
+          <mxGeometry y="170" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-198" value="3. Gost2 bira tab Zahtjevi" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-192" vertex="1">
+          <mxGeometry y="190" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-199" value="4. Sistem mu prikazuje listu svih zahtjeva i obicnih i slozenih" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-192" vertex="1">
+          <mxGeometry y="210" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-200" value="5. [Tacka prosirenja: Kreiranje zahtjeva za turu]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-192" vertex="1">
+          <mxGeometry y="240" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-291" value="6. [Tacka prosirenja: Statistika o zahjtevu]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-192" vertex="1">
+          <mxGeometry y="260" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-292" value="7. [Tacka prosirenja: Kreiraj zahtjev za slozenu turu]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-192" vertex="1">
+          <mxGeometry y="286" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-294" value="8. [Tacka prosirenja: Prikaz dela slozene ture ]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-192" vertex="1">
+          <mxGeometry y="312" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-11" value="9. Slucaj koriscenja se zavrsava" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="32xqSgNh9X-ksn6WSLf4-192">
+          <mxGeometry y="334" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-202" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1010" y="1410" as="sourcePoint" />
+            <mxPoint x="1340" y="1410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-203" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1010" y="1460" as="sourcePoint" />
+            <mxPoint x="1340" y="1460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-204" value="&amp;lt;&amp;lt;extends&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;entryX=0.971;entryY=0.75;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryPerimeter=0;" parent="1" source="VtIDwdUe5Uc5AGWYI4rm-23" target="VtIDwdUe5Uc5AGWYI4rm-14" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="834" y="567" as="sourcePoint" />
+            <mxPoint x="680" y="595" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-205" value="Prikaz svih vaucera" style="swimlane;whiteSpace=wrap;html=1;startSize=23;" parent="1" vertex="1">
+          <mxGeometry x="2270" y="970" width="330" height="270" as="geometry">
+            <mxRectangle x="1080" y="1040" width="130" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-206" value="Preduslov: Gost 2 je prijavljen" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-205" vertex="1">
+          <mxGeometry y="30" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-207" value="Posledica: Sistem prikazuje gostu 2 sve njegove vaucere" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-205" vertex="1">
+          <mxGeometry y="80" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-208" value="Osnovni tok izvrsanja:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-205" vertex="1">
+          <mxGeometry y="120" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-209" value="1. Gost2 se prijavljuje u aplikaciju" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-205" vertex="1">
+          <mxGeometry y="150" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-210" value="2. Sistem prikazuje pocetnu stranicu" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-205" vertex="1">
+          <mxGeometry y="170" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-211" value="3. Gost2 bira tab Vauceri" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-205" vertex="1">
+          <mxGeometry y="190" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-212" value="4. Sistem mu prikazuje listu svih vaucera(bilo to vazeci ili nevazeci)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-205" vertex="1">
+          <mxGeometry y="210" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-215" value="" style="endArrow=none;html=1;rounded=0;" parent="32xqSgNh9X-ksn6WSLf4-205" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="70" as="sourcePoint" />
+            <mxPoint x="330" y="70" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-295" value="" style="endArrow=none;html=1;rounded=0;" parent="32xqSgNh9X-ksn6WSLf4-205" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="120" as="sourcePoint" />
+            <mxPoint x="330" y="120" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-10" value="5. Slucaj koriscenja se zavrsava" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="32xqSgNh9X-ksn6WSLf4-205">
+          <mxGeometry y="244" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-216" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1773.5" y="1780" as="sourcePoint" />
+            <mxPoint x="2103.5" y="1780" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-229" value="Statistika o zahtjevu" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1776" y="1350" width="355" height="430" as="geometry">
+            <mxRectangle x="1080" y="1040" width="130" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-230" value="Preduslov: Gost 2 je prijavljen i nalazi se u tabu Zahtjevi" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-229" vertex="1">
+          <mxGeometry y="30" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-231" value="Posledica: Sistem prikazuje statistiku o zahtjevima" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-229" vertex="1">
+          <mxGeometry y="70" width="350" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-232" value="Osnovni tok izvrsanja:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-229" vertex="1">
+          <mxGeometry y="120" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-233" value="1. Gost2 aktivira link &quot;Statistika&quot; za prikaz statistike o obicnim zahtjevima" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-229" vertex="1">
+          <mxGeometry y="150" width="340" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-234" value="2. Sistem prikazuje novi prozor RequestStatisticsView" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-229" vertex="1">
+          <mxGeometry y="182" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-235" value="3. Gost2 bira godinu za procenat (ne)prihvacenih zahtjeva(Alternativni tok A)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-229" vertex="1">
+          <mxGeometry y="200" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-237" value="" style="endArrow=none;html=1;rounded=0;" parent="32xqSgNh9X-ksn6WSLf4-229" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="300" as="sourcePoint" />
+            <mxPoint x="355" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-241" value="" style="endArrow=none;html=1;rounded=0;" parent="32xqSgNh9X-ksn6WSLf4-229" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-2.5" y="370" as="sourcePoint" />
+            <mxPoint x="352.5" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-246" value="4. Gost2 bira godinu za prosecan broj ljudi u prihvacenim zahtjevima(Alternativni tok B)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-229" vertex="1">
+          <mxGeometry y="230" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-239" value="Alternativni tok A:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-229" vertex="1">
+          <mxGeometry x="2.5" y="300" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-240" value="Sistem prikazuje gostu2 procenat (ne)prihvacenih zahtjeva za odabranu godinu" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-229" vertex="1">
+          <mxGeometry x="7.5" y="320" width="330" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-242" value="Alternativni tok B:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-229" vertex="1">
+          <mxGeometry x="2.5" y="370" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-247" value="Sistem prikazuje gostu2 prosecan broj ljudi u prihvacenim zahtjevima za odabranu godinu" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-229" vertex="1">
+          <mxGeometry x="7.5" y="390" width="330" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-13" value="5. Slucaj koriscenja se zavrsava" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="32xqSgNh9X-ksn6WSLf4-229">
+          <mxGeometry y="260" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-244" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1776" y="1420" as="sourcePoint" />
+            <mxPoint x="2131" y="1420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-245" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1776" y="1470" as="sourcePoint" />
+            <mxPoint x="2131" y="1470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-248" value="Kreiranje zahtjeva za slozenu turu" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="2157.5" y="1340" width="355" height="530" as="geometry">
+            <mxRectangle x="1080" y="1040" width="130" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-249" value="Preduslov: Gost 2 je prijavljen i nalazi se u tabu Zahtjevi" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-248" vertex="1">
+          <mxGeometry y="30" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-250" value="Posledica: Sistem kreira i trajno cuva slozeni zahtjev gosta2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-248" vertex="1">
+          <mxGeometry y="70" width="350" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-251" value="Osnovni tok izvrsanja:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-248" vertex="1">
+          <mxGeometry y="120" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-252" value="1. Gost2 aktivira dugme &quot;Kreiraj novi&quot;&amp;nbsp; u sekciji slozenih zahtjeva za kreiranje novog slozenog zahtjeva" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-248" vertex="1">
+          <mxGeometry y="150" width="340" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-253" value="2. Sistem prikazuje formu za kreiranje slozenog zahtjeva" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-248" vertex="1">
+          <mxGeometry y="182" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-254" value="3. Gost2 popunjava formu za kreiranje slozenog zahtjeva" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-248" vertex="1">
+          <mxGeometry y="200" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-255" value="5. Gost2 pritisce dugme &quot;Kreiraj zahtjev&quot;(Alternativni tok B)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-248" vertex="1">
+          <mxGeometry x="-1.25" y="240" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-256" value="" style="endArrow=none;html=1;rounded=0;" parent="32xqSgNh9X-ksn6WSLf4-248" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1.25" y="320" as="sourcePoint" />
+            <mxPoint x="353.75" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-257" value="6. Gost2 pritisce dugme &quot;Odustani&quot;(Alternativni tok C)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-248" vertex="1">
+          <mxGeometry x="-1.25" y="270" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-258" value="Alternativni tok A:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-248" vertex="1">
+          <mxGeometry x="-2.5" y="320" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-259" value="Sistem dodaj obican zahjtev za turu u listi zahtjeva koji ce se kasnije kreirati kao slozeni zahtjev" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-248" vertex="1">
+          <mxGeometry x="-1.25" y="340" width="330" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-260" value="" style="endArrow=none;html=1;rounded=0;" parent="32xqSgNh9X-ksn6WSLf4-248" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1.25" y="380" as="sourcePoint" />
+            <mxPoint x="353.75" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-261" value="Alternativni tok B:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-248" vertex="1">
+          <mxGeometry x="2.5" y="380" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-265" value="4. Gost2 pritisce dugme &quot;Dodaj turu&quot;(Alternativni tok A)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-248" vertex="1">
+          <mxGeometry y="220" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-266" value="Sistem trajno cuva novokreirani slozeni zahtjev i vraca nas na prikaz svi zahtjeva gdje se u listi slozenih prikazuje i novokreirani slozeni zahtjev" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-248" vertex="1">
+          <mxGeometry x="-1.25" y="400" width="330" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-267" value="" style="endArrow=none;html=1;rounded=0;" parent="32xqSgNh9X-ksn6WSLf4-248" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1.25" y="460" as="sourcePoint" />
+            <mxPoint x="353.75" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-268" value="Alternativni tok C:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-248" vertex="1">
+          <mxGeometry x="-2.5" y="460" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-269" value="Sistem nas vraca na prikaz svih zahtjeva" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-248" vertex="1">
+          <mxGeometry x="2.5" y="480" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-14" value="7. Slucaj koriscenja se zavrsava" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="32xqSgNh9X-ksn6WSLf4-248">
+          <mxGeometry x="-1.25" y="290" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-263" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2157.5" y="1410" as="sourcePoint" />
+            <mxPoint x="2512.5" y="1410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-264" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2157.5" y="1460" as="sourcePoint" />
+            <mxPoint x="2512.5" y="1460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-270" value="Prikaz dela slozene ture" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="2587.5" y="1340" width="355" height="260" as="geometry">
+            <mxRectangle x="1080" y="1040" width="130" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-271" value="Preduslov: Gost 2 je prijavljen i nalazi se u tabu Zahtjevi" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-270" vertex="1">
+          <mxGeometry y="30" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-272" value="Posledica: Sistem prikazuje gostu2 dijelove jednog slozenog zahtjeva gdje moze da vidi koji je dio (ne)prihvacen" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-270" vertex="1">
+          <mxGeometry y="70" width="350" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-273" value="Osnovni tok izvrsanja:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-270" vertex="1">
+          <mxGeometry y="120" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-274" value="1. Gost2 selektuje jedan slozeni zahtjev i aktivira dugme &quot;Detalji o zahtjevu&quot;&amp;nbsp; u sekciji slozenih zahtjeva" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-270" vertex="1">
+          <mxGeometry y="150" width="340" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-275" value="2. Sistem prikazuje gostu2 detalje o tom slozenom zahtjevu(koji dio zahtjeva je prihvacen a koji nije" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="32xqSgNh9X-ksn6WSLf4-270" vertex="1">
+          <mxGeometry y="182" width="320" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-15" value="3. Slucaj koriscenja se zavrsava" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="32xqSgNh9X-ksn6WSLf4-270">
+          <mxGeometry y="220" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-289" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2587.5" y="1410" as="sourcePoint" />
+            <mxPoint x="2942.5" y="1410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32xqSgNh9X-ksn6WSLf4-290" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2587.5" y="1460" as="sourcePoint" />
+            <mxPoint x="2942.5" y="1460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-16" value="Prikaz obavjestenja" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="530" y="800" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-17" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.057;entryY=0.261;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="VtIDwdUe5Uc5AGWYI4rm-2" target="JkuANRisChPASVUHw6Iv-16">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="820" y="660" as="sourcePoint" />
+            <mxPoint x="870" y="610" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-18" value="Prikaz obavjestenja" style="swimlane;whiteSpace=wrap;html=1;startSize=23;" vertex="1" parent="1">
+          <mxGeometry x="2640" y="970" width="330" height="350" as="geometry">
+            <mxRectangle x="1080" y="1040" width="130" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-19" value="Preduslov: Gost 2 je prijavljen" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="JkuANRisChPASVUHw6Iv-18">
+          <mxGeometry y="30" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-20" value="Posledica: Sistem prikazuje gostu 2 sva njegova obavjestenja koja je dobio od vodica" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="JkuANRisChPASVUHw6Iv-18">
+          <mxGeometry y="80" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-21" value="Osnovni tok izvrsanja:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="JkuANRisChPASVUHw6Iv-18">
+          <mxGeometry y="120" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-22" value="1. Gost2 se prijavljuje u aplikaciju" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="JkuANRisChPASVUHw6Iv-18">
+          <mxGeometry y="150" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-23" value="2. Sistem prikazuje pocetnu stranicu" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="JkuANRisChPASVUHw6Iv-18">
+          <mxGeometry y="170" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-24" value="3. Gost2 bira tab Nalog" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="JkuANRisChPASVUHw6Iv-18">
+          <mxGeometry y="190" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-25" value="4. Sistem mu prikazuje podatke o njegovom nalogu i dugma za njegova obavjestnja" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="JkuANRisChPASVUHw6Iv-18">
+          <mxGeometry y="210" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-26" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="JkuANRisChPASVUHw6Iv-18">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="70" as="sourcePoint" />
+            <mxPoint x="330" y="70" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-27" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="JkuANRisChPASVUHw6Iv-18">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="120" as="sourcePoint" />
+            <mxPoint x="330" y="120" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-28" value="8. Slucaj koriscenja se zavrsava" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="JkuANRisChPASVUHw6Iv-18">
+          <mxGeometry y="324" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-29" value="5. Gost2 aktivira dugme &quot;Vasa obavjestenja&quot;&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="JkuANRisChPASVUHw6Iv-18">
+          <mxGeometry y="250" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-30" value="6. Sistem gostu2 prikazuje sva njegova obavjestenja" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="JkuANRisChPASVUHw6Iv-18">
+          <mxGeometry y="274" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-46" value="7.[Tacka prosirenja : Prikaz prihvacenog zahtjeva]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="JkuANRisChPASVUHw6Iv-18">
+          <mxGeometry y="298" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-31" value="Prikaz prihvacenog zahtjeva" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="810" y="810" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-32" value="&amp;lt;&amp;lt;extends&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;entryX=1.024;entryY=0.615;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryPerimeter=0;" edge="1" parent="1" source="JkuANRisChPASVUHw6Iv-31" target="JkuANRisChPASVUHw6Iv-16">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="832" y="737" as="sourcePoint" />
+            <mxPoint x="651" y="623" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-33" value="Prikaz prihvacenog zahtjeva" style="swimlane;whiteSpace=wrap;html=1;startSize=23;" vertex="1" parent="1">
+          <mxGeometry x="2640" y="670" width="330" height="250" as="geometry">
+            <mxRectangle x="1080" y="1040" width="130" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-34" value="Preduslov: Gost 2 je izabrao jedno obavjestenje" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="JkuANRisChPASVUHw6Iv-33">
+          <mxGeometry y="30" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-35" value="Posledica: Sistem prikazuje gostu 2 obavjestenje u kojem ima prikaz detaljima prihvacenog zahtjeva" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="JkuANRisChPASVUHw6Iv-33">
+          <mxGeometry y="80" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-36" value="Osnovni tok izvrsanja:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="JkuANRisChPASVUHw6Iv-33">
+          <mxGeometry y="120" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-37" value="1. Gost2 dvoklikom bira obavjestenje&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="JkuANRisChPASVUHw6Iv-33">
+          <mxGeometry y="150" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-38" value="2. Sistem otvara obavjestenje i prikazuje detalje o obavjestenju" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="JkuANRisChPASVUHw6Iv-33">
+          <mxGeometry y="170" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-41" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="JkuANRisChPASVUHw6Iv-33">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="70" as="sourcePoint" />
+            <mxPoint x="330" y="70" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-42" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="JkuANRisChPASVUHw6Iv-33">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="120" as="sourcePoint" />
+            <mxPoint x="330" y="120" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JkuANRisChPASVUHw6Iv-43" value="3. Slucaj koriscenja se zavrsava" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="JkuANRisChPASVUHw6Iv-33">
+          <mxGeometry y="210" width="320" height="26" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

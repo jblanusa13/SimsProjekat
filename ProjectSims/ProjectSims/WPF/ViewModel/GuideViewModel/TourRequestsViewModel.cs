@@ -20,7 +20,7 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
             tourRequestService = new TourRequestService();
             tourRequestService.Subscribe(this);
             Guide = guide;
-            TourRequests = new ObservableCollection<TourRequest>(tourRequestService.GetWaitingRequests());
+            TourRequests = new ObservableCollection<TourRequest>(tourRequestService.GetAvailableRequestsForGuide(guide.Id));
         }
         public void SearchRequests(string location, string language, string maxNumberGuests, List<DateTime> dateRange)
         {
@@ -34,7 +34,7 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
         public void Update()
         {
             TourRequests.Clear();
-            foreach (var tourRequest in tourRequestService.GetWaitingRequests())
+            foreach (var tourRequest in tourRequestService.GetAvailableRequestsForGuide(Guide.Id))
             {
                 TourRequests.Add(tourRequest);
             }

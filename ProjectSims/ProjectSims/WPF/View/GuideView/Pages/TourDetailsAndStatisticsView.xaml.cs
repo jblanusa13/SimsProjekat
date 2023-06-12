@@ -24,10 +24,11 @@ namespace ProjectSims.WPF.View.GuideView.Pages
     /// </summary>
     public partial class TourDetailsAndStatisticsView : Page
     {
-        public TourDetailsAndStatisticsView(Tour selectedTour)
+        public TourDetailsAndStatisticsView(Tour selectedTour, NavigationService navigationService, Guide guide)
         {
             InitializeComponent();
-            this.DataContext = new TourDetailsAndStatisticsViewModel(selectedTour);
+            this.DataContext = new TourDetailsAndStatisticsViewModel(selectedTour, navigationService, guide);
+
         }
     }
 }

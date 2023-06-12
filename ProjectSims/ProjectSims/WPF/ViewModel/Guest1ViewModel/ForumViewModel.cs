@@ -14,6 +14,8 @@ using ProjectSims.Service;
 using ProjectSims.WPF.View.Guest1View;
 using ProjectSims.Commands;
 using ProjectSims.WPF.View.Guest1View.MainPages;
+using ProjectSims.WPF.View.Guest1View.NotifAndHelp;
+using ProjectSims.WPF.View.Guest1View.HelpPages;
 
 namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
 {
@@ -65,9 +67,12 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public RelayCommand SearchCommand { get; set; }
         public RelayCommand FindMyForumsCommand { get; set; }
         public RelayCommand ShowForumCommand { get; set; }
+        public RelayCommand LanguageCommand { get; set; }
         public RelayCommand StartNewForumCommand { get; set; }
         public RelayCommand ThemeCommand { get; set; }
+        public RelayCommand NotifCommand { get; set; }
         public RelayCommand CancelCommand { get; set; }
+        public RelayCommand HelpCommand { get; set; }
         public MyICommand<View.Guest1View.MainPages.ForumView> LogOutCommand { get; set; }
         public ObservableCollection<Forum> Forums { get; set; }
         public Forum SelectedForum { get; set; }
@@ -76,19 +81,29 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public ForumViewModel(Guest1 guest, NavigationService navigation)
         {
             forumService = new ForumService();
+            forumService.Subscribe(this);
             Forums = new ObservableCollection<Forum>(forumService.GetAllForums());
             SearchCommand = new RelayCommand(Execute_SearchCommand);
             FindMyForumsCommand = new RelayCommand(Execute_FindMyForumsCommand);
+            LanguageCommand = new RelayCommand(Execute_LanguageCommand);
             ShowForumCommand = new RelayCommand(Execute_ShowForumCommand, CanExecute_ShowForumCommand);
             StartNewForumCommand = new RelayCommand(Execute_StartNewForumCommand);
             ThemeCommand = new RelayCommand(Execute_ThemeCommand);
+            NotifCommand = new RelayCommand(Execute_NotifCommand);
             CancelCommand = new RelayCommand(Execute_CancelCommand);
             LogOutCommand = new MyICommand<View.Guest1View.MainPages.ForumView>(OnLogOut);
+            HelpCommand = new RelayCommand(Execute_HelpCommand);
 
             ButtonContent = "Nadji moje forume";
 
             this.guest = guest;
             NavService = navigation;
+        }
+        private void Execute_HelpCommand(object obj)
+        {
+            HelpStartView helpStart = new HelpStartView();
+            helpStart.SelectedTab.Content = new ForumHelpView();
+            helpStart.Show();
         }
         private void OnLogOut(View.Guest1View.MainPages.ForumView page)
         {
@@ -118,13 +133,35 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
                 App.IsDark = true;
             }
         }
+
+        private void Execute_LanguageCommand(object obj)
+        {
+            App app = (App)Application.Current;
+
+            if (App.CurrentLanguage == "sr-LATN")
+            {
+                app.ChangeLanguage("en-US");
+                App.CurrentLanguage = "en-US";
+            }
+            else
+            {
+                app.ChangeLanguage("sr-LATN");
+                App.CurrentLanguage = "sr-LATN";
+            }
+
+        }
+        private void Execute_NotifCommand(object obj)
+        {
+            NotificationsView notificationsView = new NotificationsView(guest);
+            notificationsView.Show();
+        }
         public bool CanExecute_ShowForumCommand(object obj)
         {
             return SelectedForum != null; 
         }
         public void Execute_ShowForumCommand(object obj)
         {
-            NavService.Navigate(new ForumCommentsView(guest, NavService));
+            NavService.Navigate(new ForumCommentsView(guest, NavService, SelectedForum));
         }
         public void Execute_StartNewForumCommand(object obj)
         {

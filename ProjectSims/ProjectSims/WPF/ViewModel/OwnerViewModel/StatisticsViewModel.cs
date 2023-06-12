@@ -1,6 +1,7 @@
 ﻿using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
+using ProjectSims.Commands;
 using ProjectSims.Domain.Model;
 using ProjectSims.Service;
 using ProjectSims.Validation;
@@ -25,6 +26,7 @@ using System.Windows.Media;
 using System.Windows;
 using System.Windows.Documents;
 using ProjectSims.WPF.View.OwnerView;
+
 
 namespace ProjectSims.WPF.ViewModel.OwnerViewModel
 {

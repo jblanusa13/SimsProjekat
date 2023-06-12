@@ -22,7 +22,7 @@ namespace ProjectSims.Domain.Model
         public Request Request { get; set; }
         public int ForumId { get; set; }
         public Forum Forum { get; set; }
-        string ContentNotification { get; set; }
+        public string ContentNotification { get; set; }
         public NotificationOwnerGuest()
         {
         }

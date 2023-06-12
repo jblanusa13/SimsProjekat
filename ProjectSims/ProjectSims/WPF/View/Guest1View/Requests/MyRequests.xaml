@@ -4,17 +4,64 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.Requests"
+        xmlns:ns="clr-namespace:ProjectSims.Localization"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
         MinHeight="450" MinWidth="800"
         Title="MyRequests" Height="450" Width="800">
-    <Grid>
+
+    <Window.Resources>
+        <Style TargetType="DataGrid" BasedOn="{StaticResource DataGridStyle}">
+            <Setter Property="Background" Value="{DynamicResource DataGridBackground}"></Setter>
+            <Setter Property="BorderBrush" Value="{DynamicResource SecondGrayShade}"></Setter>
+        </Style>
+        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridHeader}">
+            <Setter Property="Background" Value="{DynamicResource HeaderBackground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource DataGridBorder}"/>
+            <Setter Property="Foreground" Value="{DynamicResource DataGridForeground}"/>
+        </Style>
+        <Style TargetType="DataGridRow" BasedOn="{StaticResource DataGridRow}">
+            <Setter Property="Background" Value="{DynamicResource RowBackground}"/>
+            <Setter Property="Foreground" Value="{DynamicResource DataGridForeground}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        <Style TargetType="DataGridCell" BasedOn="{StaticResource DataGridCell}">
+            <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusControl}"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid Background="{DynamicResource FirstGrayShade}">
         <Grid.RowDefinitions>
             <RowDefinition Height="120"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
+        <Grid Grid.Row="0" Background="{DynamicResource SecondGrayShade}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Button Margin="0,10" 
+                        x:Name="BackButton" Click="BackButton_Click"
+                        Background="{DynamicResource SecondGrayShade}" 
+                        BorderBrush="{DynamicResource SecondGrayShade}"
+                        FocusVisualStyle="{DynamicResource FocusControl}">
+                    <fa:ImageAwesome Icon="ArrowCircleLeft" Foreground="{DynamicResource FontsColor}" Width="40"/>
+                </Button>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Label Margin="0,30,0,0" FontSize="45" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" Content="{ns:Loc MojiZahtevi}"></Label>
+            </Grid>
+        </Grid>
+
+
         <Grid Grid.Row="1">
-            <DataGrid Name="MyRequestsTable" ItemsSource="{Binding Requests}" Margin="50" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid Name="MyRequestsTable" HeadersVisibility="Column"
+                      ItemsSource="{Binding Requests}" Margin="40,30" AutoGenerateColumns="False" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv smestaja" Binding="{Binding Reservation.Accommodation.Name}" Width="150"></DataGridTextColumn>
                     <DataGridTextColumn Header="Datum dolaska za pomeranje" Binding="{Binding ChangeDate}" Width="200"></DataGridTextColumn>

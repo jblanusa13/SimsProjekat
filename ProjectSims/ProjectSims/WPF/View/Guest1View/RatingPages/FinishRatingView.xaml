@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.RatingPages"
+      xmlns:ns="clr-namespace:ProjectSims.Localization"
       mc:Ignorable="d" 
       d:DesignHeight="590" d:DesignWidth="750"
       Title="FinishRatingView">
@@ -20,7 +21,7 @@
             <Label FontSize="45" Margin="70,20,70,100"
                    Foreground="{DynamicResource FontsColor}" 
                    FontFamily="Bahnschrift"
-                   HorizontalContentAlignment="Center">Zavrsi ocenjivanje smestaja</Label>
+                   HorizontalContentAlignment="Center" Content="{ns:Loc ZavrsiOcenjivanjeSmestaja}"></Label>
             <Label FontSize="37" Margin="70,110,70,0"
                    Foreground="{DynamicResource FontsColor}" 
                    FontFamily="Bahnschrift"
@@ -39,7 +40,7 @@
                     FontSize="20"
                     Background="{DynamicResource SecondGrayShade}" 
                     Click="Back_Click"
-                    FocusVisualStyle="{DynamicResource FocusControl}">Nazad
+                    FocusVisualStyle="{DynamicResource FocusControl}" Content="{ns:Loc Nazad}">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>
@@ -52,7 +53,7 @@
                     FontSize="20"
                     Background="{DynamicResource SecondGrayShade}" 
                     Click="FinishRating_Click"
-                    FocusVisualStyle="{DynamicResource FocusControl}">Potvrdi
+                    FocusVisualStyle="{DynamicResource FocusControl}" Content="{ns:Loc Potvrdi}">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>

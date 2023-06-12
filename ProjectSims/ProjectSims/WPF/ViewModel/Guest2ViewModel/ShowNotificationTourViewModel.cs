@@ -28,7 +28,7 @@ namespace ProjectSims.WPF.ViewModel.Guest2ViewModel
                                         (notificationTourService.GetAllNotificationsByGuest2(guest2.Id));
         }
 
-        public void OpenNotificationAboutNewTours_PreviewMouseDown(object sender)
+        public void OpenNotificationAboutNewTours()
         {
             if (SelectedNotification != null)
             {

@@ -21,6 +21,7 @@ namespace ProjectSims.Repository
             comments = commentFileHandler.Load();
             observers = new List<IObserver>();
         }
+
         public List<ForumComment> GetAllByForumId(int forumId)
         {
             return comments.Where(c => c.ForumId == forumId).ToList();

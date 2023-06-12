@@ -17,6 +17,8 @@ using System.Windows;
 using System.Windows.Navigation;
 using ProjectSims.WPF.View.Guest1View.MainPages;
 using ProjectSims.WPF.View.Guest1View;
+using ProjectSims.WPF.View.Guest1View.NotifAndHelp;
+using ProjectSims.WPF.View.Guest1View.HelpPages;
 
 namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
 {
@@ -113,12 +115,18 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         public RelayCommand ShowRatingsCommand { get; set; }
         public RelayCommand RateAccommodationCommand { get; set; }
         public RelayCommand ForumCommand { get; set; }
+        public RelayCommand NotifCommand { get; set; }
+        public RelayCommand LanguageCommand { get; set; }
+        public RelayCommand HelpCommand { get; set; }
         public RelayCommand ProfileCommand { get; set; }
-        public RelayCommand ReservationCommand { get; set; }
+        //public RelayCommand ReservationCommand { get; set; }
         public MyICommand<GuestAccommodationsView> LogOutCommand { get; set; }
         public NavigationService NavService { get; set; }
         public GuestAccommodationsViewModel(Guest1 guest, NavigationService navigation)
         {
+            App app = (App)Application.Current;
+            app.ChangeLanguage("sr-LATN");
+            App.CurrentLanguage = "sr-LATN";
             accommodationService = new AccommodationService();
 
             accommodationService.Subscribe(this);
@@ -134,10 +142,20 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             RateAccommodationCommand = new RelayCommand(Execute_RateAccommodationCommand);
             ForumCommand = new RelayCommand(Execute_ForumCommand);
             ProfileCommand = new RelayCommand(Execute_ProfileCommand);
-            ReservationCommand = new RelayCommand(Execute_ReservationCommand);
+            //ReservationCommand = new RelayCommand(Execute_ReservationCommand);
+            NotifCommand = new RelayCommand(Execute_NotifCommand);
             LogOutCommand = new MyICommand<GuestAccommodationsView>(OnLogOut);
+            HelpCommand = new RelayCommand(Execute_HelpCommand);
+            LanguageCommand = new RelayCommand(Execute_LanguageCommand);
 
             NavService = navigation;
+        }
+        private void Execute_HelpCommand(object obj)
+        {
+            HelpStartView helpStart = new HelpStartView();
+            helpStart.SelectedTab.Content = new MainHelpView();
+            helpStart.Show();
+
         }
         public void Execute_AnywhereCommand(object obj)
         {
@@ -164,13 +182,13 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
         {
             NavService.Navigate(new Profile(Guest));
         }
-        public void Execute_ReservationCommand(object obj)
+     /*   public void Execute_ReservationCommand(object obj)
         {
             if (obj.Equals(System.Windows.Input.Key.Enter) || obj.Equals(System.Windows.Input.Key.Return))
             {
                 NavService.Navigate(new AccommodationReservationView(SelectedAccommodation, Guest, NavService));
             }
-        }
+        }*/
         private void OnLogOut(GuestAccommodationsView page)
         {
             var login = new MainWindow();
@@ -194,6 +212,28 @@ namespace ProjectSims.WPF.ViewModel.Guest1ViewModel
             }
         }
 
+        private void Execute_LanguageCommand(object obj)
+        {
+            App app = (App)Application.Current;
+
+            if(App.CurrentLanguage == "sr-LATN")
+            {
+                app.ChangeLanguage("en-US");
+                App.CurrentLanguage = "en-US";
+            }
+            else
+            {
+                app.ChangeLanguage("sr-LATN");
+                App.CurrentLanguage = "sr-LATN";
+            }
+            
+        }
+
+        private void Execute_NotifCommand(object obj)
+        {
+            NotificationsView notificationsView = new NotificationsView(Guest);
+            notificationsView.Show();
+        }
         public void Execute_SearchCommand(object obj)
         {
             Accommodations.Clear();

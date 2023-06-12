@@ -30,7 +30,6 @@ namespace ProjectSims.Repository
         {
             return forums;
         }
-
         public int NextId()
         {
             return forums.Max(t => t.Id) + 1;

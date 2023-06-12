@@ -36,7 +36,8 @@ namespace ProjectSims.View.OwnerView.Pages
         public AccommodationRegistrationView(Owner owner, OwnerStartingView window, Accommodation selectedAccommodation, NavigationService navService)
         {
             InitializeComponent();
-            DataContext = new AccommodationRegistrationViewModel(owner, window, selectedAccommodation, navService, this); ;
+            accommodationRegistrationViewModel = new AccommodationRegistrationViewModel(owner, window, selectedAccommodation, navService, this);
+            DataContext = accommodationRegistrationViewModel;
         }
         private void DeleteImage_PreviewKeyDown(object sender, KeyEventArgs e)
         {

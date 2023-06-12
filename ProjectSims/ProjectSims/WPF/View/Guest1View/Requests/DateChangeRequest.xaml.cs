@@ -41,6 +41,7 @@ namespace ProjectSims.WPF.View.Guest1View.Requests
             {
                 DateOnly dateChange = DateOnly.FromDateTime((DateTime)DateChangePicker.SelectedDate);
                 viewModel.SendRequest(dateChange);
+                MessageBox.Show("Uspesno ste poslali zahtev za pomeranje rezervacije!", "Travel&Tour");
                 Close();
             }
         }

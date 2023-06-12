@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:fa="http://schemas.fontawesome.io/icons/"
       xmlns:local="clr-namespace:ProjectSims.WPF.View.Guest1View.RatingPages"
+      xmlns:ns="clr-namespace:ProjectSims.Localization"
       mc:Ignorable="d" 
       d:DesignHeight="590" d:DesignWidth="750"
       Title="AccommodationsForRatingView">
@@ -14,8 +15,16 @@
             <Setter Property="Background" Value="{DynamicResource DataGridBackground}"></Setter>
             <Setter Property="BorderBrush" Value="{DynamicResource SecondGrayShade}"></Setter>
         </Style>
-        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridHeader}"/>
-        <Style TargetType="DataGridRow" BasedOn="{StaticResource DataGridRow}"/>
+        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridHeader}">
+            <Setter Property="Background" Value="{DynamicResource HeaderBackground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource DataGridBorder}"/>
+            <Setter Property="Foreground" Value="{DynamicResource DataGridForeground}"/>
+        </Style>
+        <Style TargetType="DataGridRow" BasedOn="{StaticResource DataGridRow}">
+            <Setter Property="Background" Value="{DynamicResource RowBackground}"/>
+            <Setter Property="Foreground" Value="{DynamicResource DataGridForeground}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
         <Style TargetType="DataGridCell" BasedOn="{StaticResource DataGridCell}">
             <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusControl}"/>
         </Style>
@@ -45,7 +54,7 @@
             </Grid>
 
             <Grid Grid.Column="1">
-                <Label Margin="0,25,0,0" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift">Izaberite smestaj za ocenjivanje</Label>
+                <Label Margin="0,25,0,0" FontSize="40" Foreground="{DynamicResource FontsColor}" FontFamily="Bahnschrift" Content="{ns:Loc IzaberiteSmestajZaOcenjivanje}"></Label>
             </Grid>
         </Grid>
 
@@ -82,8 +91,7 @@
                     Background="{DynamicResource SecondGrayShade}"
                     Foreground="{DynamicResource FontsColor}" 
                     FontFamily="Bahnschrift"
-                    FocusVisualStyle="{DynamicResource FocusControl}">
-                Oceni
+                    FocusVisualStyle="{DynamicResource FocusControl}" Content="{ns:Loc Oceni}">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>
@@ -94,8 +102,7 @@
                     Background="{DynamicResource SecondGrayShade}" 
                     Foreground="{DynamicResource FontsColor}" 
                     FontFamily="Bahnschrift"
-                    FocusVisualStyle="{DynamicResource FocusControl}">
-                Otkazi
+                    FocusVisualStyle="{DynamicResource FocusControl}" Content="{ns:Loc Otkazi}">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>
