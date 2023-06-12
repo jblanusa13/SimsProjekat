@@ -52,11 +52,32 @@ namespace ProjectSims.Service
             List<RequestForComplexTour> requests = new List<RequestForComplexTour>(GetAllRequests());
             foreach (RequestForComplexTour request in requests)
             {
+                if (request.State == TourRequestState.Waiting)
+                {
+                    UpdateInAcceptedRequests(request);
+                }
                 if (today >= request.TourRequests.First().DateRangeStart && request.State == TourRequestState.Waiting)
                 {
                     request.State = TourRequestState.Invalid;
                     Update(request);
                 }
+            }
+        }
+
+        public void UpdateInAcceptedRequests(RequestForComplexTour request)
+        {
+            int number = 0;
+            foreach(TourRequest r in request.TourRequests)
+            {
+                if(r.State != TourRequestState.Accepted)
+                {
+                    number++; 
+                }
+            }
+            if(number == 0)
+            {
+                request.State = TourRequestState.Accepted;
+                Update(request);
             }
         }
 

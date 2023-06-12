@@ -71,7 +71,15 @@ namespace ProjectSims.WPF.ViewModel.GuideViewModel
                     TourRequest.AcceptedEndOfAppointment = tour.StartOfTheTour.AddHours(tour.Duration);
                     TourRequest.GuideId = Guide.Id;
                     tourRequestService.Update(TourRequest);
-                    string content = "Obavjestenje o novim turama (Vas zahtjev je prihvacen)";
+                    string content = "";
+                    if(TourRequest.RequestForComplexTour == false)
+                    {
+                        content = "Obavjestenje o novim turama (Vas zahtjev je prihvacen)";
+                    }
+                    else
+                    {
+                        content = "Obavjestenje o novim turama (Vas zahtjev u okviru slozenog zahtjeva je prihvacen)";
+                    }
                     NotificationTour notification = new NotificationTour(-1, TourRequest.Guest2Id, TourRequest.GuideId, lastAddedTours, content, DateTime.Now, false);
                     notificationTourService.Create(notification);
                 }
