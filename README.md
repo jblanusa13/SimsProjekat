@@ -2,11 +2,12 @@
 Group 4, Team C: <br>
 Owner - Marina Kicanovic<br>
 >Users for log in:<br>
->>Username    Password<br>
->>m           m<br>
->>Marija      marija123<br>
->>Nikola      nikola123<br>
->>Bojan       bojan123<br>
+|Username|Password|
+|m|m|
+|Marija|marija123|
+|Nikola|nikola123|
+|Bojan|bojan123|
+>
 Guest 1 - Jelene Blanusa<br>
 >Users for log in:<br>
 >>Username    Password<br>
