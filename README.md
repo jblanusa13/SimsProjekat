@@ -1,4 +1,5 @@
-# SimsProjekat
+# Travel agency project
+Project developed for the purpose of SIMS(Specifiaction and Software Modeling) and HCI(Human-Computer Interaction) courses on Faculty of Technical Sciences in Novi Sad.<br>
 ## Group 4, Team C: <br>
 ### Owner - Marina Kićanović<br>
 Users for log in:<br>
