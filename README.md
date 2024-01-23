@@ -1,7 +1,8 @@
 # Travel agency project, Group 4, Team C:
 Project developed for the purpose of SIMS(Specification and Software Modeling) and HCI(Human-Computer Interaction) courses on Faculty of Technical Sciences in Novi Sad.<br>
 ## About: <br>
-Application was developed as a WPF (Windows Presentation Foundation) application using C# and XAML. Data management was done through CSV files stored in Resources/Data folder. The project was implemented following SOLID principles, design patterns, and the MVVM (Model-View-ViewModel) architecture.
+Application is for travel agency, with functionalities like booking an accomodation, tours, creating forum about a place, becoming super guest based on number of reservations...<br>
+It was developed as a WPF (Windows Presentation Foundation) application using C# and XAML. Data management was done through CSV files stored in Resources/Data folder. The project was implemented following SOLID principles, design patterns, and the MVVM (Model-View-ViewModel) architecture.
 ## Used tools:<br>
 - draw.io
 - PlantUML
